@@ -44,13 +44,13 @@ export default function PartnersPage() {
     <main className="min-h-screen bg-goods-cream">
       <section className="border-b border-goods-grid bg-[radial-gradient(circle_at_top_left,_#efe2cf_0,_#fbf8f1_46%,_#f4eee4_100%)]">
         <div className="container mx-auto max-w-6xl px-5 py-16 md:py-24">
-          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.24em] text-[#a64f35]">
+          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.24em] text-goods-clay">
             For delivery partners
           </p>
           <h1 className="max-w-3xl font-display text-4xl leading-[1.06] text-goods-ink md:text-6xl">
             Nine modules. You take the ones that are yours.
           </h1>
-          <p className="mt-7 max-w-2xl text-lg leading-8 text-[#665f53]">
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-goods-sub">
             {MODULE_RULE}
           </p>
         </div>
@@ -68,11 +68,11 @@ export default function PartnersPage() {
               className="rounded-lg border border-goods-grid bg-white p-5 shadow-[0_1px_0_rgba(0,0,0,0.02)]"
             >
               <p className="text-sm font-semibold text-goods-ink">{m.label}</p>
-              <p className="mt-2 text-sm leading-relaxed text-[#665f53]">{m.what}</p>
+              <p className="mt-2 text-sm leading-relaxed text-goods-sub">{m.what}</p>
             </li>
           ))}
         </ul>
-        <p className="mt-8 max-w-2xl text-sm leading-relaxed text-[#665f53]">
+        <p className="mt-8 max-w-2xl text-sm leading-relaxed text-goods-sub">
           A partner might hold one of these, or several. Which ones are yours and which stay ours is
           a conversation, and it is the first one worth having. We will not quote you for a whole
           site when you are taking a single module.
@@ -85,18 +85,18 @@ export default function PartnersPage() {
           <h2 className="font-display text-2xl text-goods-ink md:text-3xl">
             How the work moves, and who holds what
           </h2>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-[#665f53]">{STAGE_RULE}</p>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-goods-sub">{STAGE_RULE}</p>
           <ol className="mt-8 space-y-3">
             {PUBLIC_STAGES.map((s, i) => (
               <li
                 key={s.id}
                 className="flex flex-col gap-2 rounded-lg border border-goods-grid bg-white p-5 sm:flex-row sm:items-baseline sm:gap-6"
               >
-                <span className="flex-shrink-0 text-xs font-semibold uppercase tracking-[0.18em] text-[#a64f35]">
+                <span className="flex-shrink-0 text-xs font-semibold uppercase tracking-[0.18em] text-goods-clay">
                   {i + 1}. {s.label}
                 </span>
                 <span className="flex-1 text-sm leading-relaxed text-goods-ink">{s.line}</span>
-                <span className="flex-shrink-0 text-xs text-[#665f53]">
+                <span className="flex-shrink-0 text-xs text-goods-sub">
                   Community holds: <span className="font-semibold text-goods-ink">{s.holds}</span>
                 </span>
               </li>
@@ -109,7 +109,7 @@ export default function PartnersPage() {
         <h2 className="font-display text-2xl text-goods-ink md:text-3xl">
           Agree the scope in writing
         </h2>
-        <p className="mt-4 max-w-2xl text-base leading-7 text-[#665f53]">
+        <p className="mt-4 max-w-2xl text-base leading-7 text-goods-sub">
           The next step is naming which modules are yours, which are ours, and who holds the
           enterprise at Transfer. That is a conversation and a written scope, not a proposal we
           arrive with.

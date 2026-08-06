@@ -350,7 +350,7 @@ function renderArticleBlock(block: TripBlock, i: number): React.ReactNode {
 
 export function ArticleRenderer({ story, editHref, elEditHref }: Props) {
   return (
-    <main className="bg-[#FDF8F3] text-foreground">
+    <main className="bg-goods-cream text-foreground">
       {/* Admin-only floating edit affordance. Two pills, stacked bottom-right.
           Goods admin (✎) and EL editor (↗) — EL is canonical; Goods is the
           convenience. Hidden from public viewers. */}

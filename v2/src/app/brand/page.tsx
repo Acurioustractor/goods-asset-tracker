@@ -13,12 +13,12 @@ export const metadata: Metadata = {
 
 const C = {
   ink: '#1C1A17',
-  terracotta: '#C9613C',
+  terracotta: '#C45C3E',
   cream: '#FBF8F1',
   white: '#FFFFFF',
   sand: '#E8DCC8',
   sage: '#8B9D77',
-  sub: '#6A6158',
+  sub: '#7A7363',
   grid: '#E6DFD1',
 };
 
@@ -343,6 +343,7 @@ export default function BrandGuidePage() {
             {[
               { cls: 'bg-goods-terracotta', name: 'Terracotta', varName: '--goods-terracotta', hex: '#C45C3E', dark: true },
               { cls: 'bg-goods-clay', name: 'Clay', varName: '--goods-clay', hex: '#A8643F', dark: true },
+              { cls: 'bg-goods-terracotta-light', name: 'Terracotta light', varName: '--goods-terracotta-light', hex: '#E88461', dark: false },
               { cls: 'bg-goods-sage', name: 'Sage', varName: '--goods-sage', hex: '#8B9D77', dark: false },
               { cls: 'bg-goods-teal', name: 'Teal', varName: '--goods-teal', hex: '#5C8A86', dark: true },
               { cls: 'bg-goods-gold', name: 'Gold', varName: '--goods-gold', hex: '#BBA255', dark: false },
@@ -396,6 +397,69 @@ export default function BrandGuidePage() {
               gold or sage — it fails contrast.
             </p>
           </div>
+
+          <h3 className="mt-12 text-xs font-bold uppercase tracking-widest" style={{ color: C.sub }}>
+            Sub-themes
+          </h3>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed" style={{ color: C.sub }}>
+            Two deliberate departures exist and are the only ones: the deep-green skin on the
+            community-narrative surfaces, and the elevation greys on dark funder pages. Anything
+            else off this palette is drift — fix it to a token.
+          </p>
+        </div>
+      </section>
+
+      {/* How the brand shows up beyond the screen: the standing rules, stated once,
+          each living in code or a guarded process elsewhere. */}
+      <section className="border-t px-6 py-16 md:px-12" style={{ borderColor: C.grid }}>
+        <div className="mx-auto max-w-5xl">
+          <p className="text-sm font-semibold" style={{ color: C.terracotta }}>05</p>
+          <h2 className="mt-2 font-display text-4xl">How we show up</h2>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <div className="rounded-2xl border bg-white p-6" style={{ borderColor: C.grid }}>
+              <h3 className="font-bold">Photography</h3>
+              <ul className="mt-3 space-y-2 text-sm leading-relaxed" style={{ color: C.sub }}>
+                <li>Real photos, never illustrations, for anything photographable.</li>
+                <li>Every face and name is consent-cleared before it ships; photos of people carry the storyteller&apos;s permission.</li>
+                <li>Country, hands and the work carry the story: builds, deliveries, the plant.</li>
+                <li>Drawn line illustrations (terracotta on cream) are for process and concepts only, never in place of a real photo.</li>
+              </ul>
+            </div>
+            <div className="rounded-2xl border bg-white p-6" style={{ borderColor: C.grid }}>
+              <h3 className="font-bold">Video</h3>
+              <ul className="mt-3 space-y-2 text-sm leading-relaxed" style={{ color: C.sub }}>
+                <li>Background video: silent, autoplaying, desktop + mobile cuts with a poster frame.</li>
+                <li>Produced edits with sound are click-to-play with controls, never autoplay.</li>
+                <li>Which film plays where is picked centrally (canon slots), so a cleared cut updates every surface at once.</li>
+              </ul>
+            </div>
+            <div className="rounded-2xl border bg-white p-6" style={{ borderColor: C.grid }}>
+              <h3 className="font-bold">The letter</h3>
+              <p className="mt-3 text-sm leading-relaxed" style={{ color: C.sub }}>
+                The monthly letter at <Link href="/news" className="underline underline-offset-2">/news</Link> assembles
+                only already-cleared, already-public artifacts — one face, one voice, one place. The
+                email version is that page sent, so the two can never diverge. Earth-tone email
+                master; same palette as this page.
+              </p>
+            </div>
+            <div className="rounded-2xl border bg-white p-6" style={{ borderColor: C.grid }}>
+              <h3 className="font-bold">Field notes &amp; case studies</h3>
+              <p className="mt-3 text-sm leading-relaxed" style={{ color: C.sub }}>
+                Long-form writing lives as <Link href="/field-notes" className="underline underline-offset-2">field notes</Link> (trip
+                stories, community-first) and <Link href="/case-studies/maningrida" className="underline underline-offset-2">case studies</Link> (how
+                a proven run happened). Voice: warm, grounded, community-first; designed in
+                community, led by community; ownership is a pathway, never claimed complete;
+                the health chain is the why, never a claimed outcome.
+              </p>
+            </div>
+          </div>
+          <p className="mt-8 text-sm" style={{ color: C.sub }}>
+            Writing about the work? Everything sendable lives on the{' '}
+            <Link href="/press" className="font-semibold underline underline-offset-2" style={{ color: C.terracotta }}>
+              media page
+            </Link>
+            .
+          </p>
         </div>
       </section>
     </div>

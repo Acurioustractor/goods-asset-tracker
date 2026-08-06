@@ -192,9 +192,9 @@ export default async function FunderPathwaysPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-[#f8f3ea] text-[#211f1b]">
+    <main className="min-h-screen bg-goods-cream text-goods-ink">
       <CanonicalPitchNotice />
-      <header className="border-b border-[#ded4c5] bg-[#f8f3ea]">
+      <header className="border-b border-[#ded4c5] bg-goods-cream">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-5">
           <Link href="/pathways" className="block">
             <Image
@@ -212,7 +212,7 @@ export default async function FunderPathwaysPage() {
             </span>
             <Link
               href="/pathways"
-              className="inline-flex min-h-11 items-center rounded-full border border-[#cfc2b1] px-4 py-2 text-sm font-semibold transition hover:bg-white"
+              className="inline-flex min-h-11 items-center rounded-full border border-goods-sand px-4 py-2 text-sm font-semibold transition hover:bg-white"
             >
               Live pathways
             </Link>
@@ -220,10 +220,10 @@ export default async function FunderPathwaysPage() {
         </div>
       </header>
 
-      <section className="border-b border-[#d8cdbd]">
+      <section className="border-b border-goods-sand">
         <div className="mx-auto grid min-h-[760px] max-w-[1600px] lg:grid-cols-[1.04fr_0.96fr]">
           <div className="flex flex-col justify-center px-5 py-16 sm:px-10 lg:px-16 xl:px-24">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#b65738]">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-goods-clay">
               Community chooses. We build the pathway.
             </p>
             <h1 className="mt-6 max-w-4xl font-display text-5xl leading-[0.95] tracking-[-0.04em] sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
@@ -237,21 +237,21 @@ export default async function FunderPathwaysPage() {
             <div className="mt-9 flex flex-wrap gap-3">
               <Link
                 href="#take-part"
-                className="inline-flex min-h-12 items-center gap-2 rounded-full bg-[#c8613d] px-6 py-3 font-semibold text-white transition hover:bg-[#ad4f32]"
+                className="inline-flex min-h-12 items-center gap-2 rounded-full bg-goods-terracotta px-6 py-3 font-semibold text-white transition hover:bg-[#ad4f32]"
               >
                 Find your way in <ArrowDown className="h-4 w-4" />
               </Link>
               <Link
                 href="#worked-pathway"
-                className="inline-flex min-h-12 items-center gap-2 rounded-full border border-[#cfc2b1] bg-white/50 px-6 py-3 font-semibold transition hover:bg-white"
+                className="inline-flex min-h-12 items-center gap-2 rounded-full border border-goods-sand bg-white/50 px-6 py-3 font-semibold transition hover:bg-white"
               >
                 See one request become a pathway
               </Link>
             </div>
             <div className="mt-12 flex flex-wrap gap-x-7 gap-y-3 border-t border-[#ded4c5] pt-6 text-sm text-[#756b5f]">
-              <span><strong className="text-[#211f1b]">3</strong> live community pathways</span>
-              <span><strong className="text-[#211f1b]">8</strong> selectable modules</span>
-              <span><strong className="text-[#211f1b]">1</strong> shared operating system</span>
+              <span><strong className="text-goods-ink">3</strong> live community pathways</span>
+              <span><strong className="text-goods-ink">8</strong> selectable modules</span>
+              <span><strong className="text-goods-ink">1</strong> shared operating system</span>
             </div>
           </div>
           <div className="relative min-h-[500px] overflow-hidden bg-[#cabdac] lg:min-h-full">
@@ -294,17 +294,17 @@ export default async function FunderPathwaysPage() {
         </div>
       </section>
 
-      <section id="take-part" className="scroll-mt-24 border-b border-[#d8cdbd] bg-white">
+      <section id="take-part" className="scroll-mt-24 border-b border-goods-sand bg-white">
         <div className="mx-auto max-w-7xl px-5 py-16 md:py-24">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#b65738]">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-goods-clay">
               Choose your front door
             </p>
             <h2 className="mt-4 font-display text-4xl leading-tight md:text-6xl">
               You do not need to understand the whole system to take part.
             </h2>
           </div>
-          <div className="mt-12 divide-y divide-[#d8cdbd] border-y border-[#d8cdbd]">
+          <div className="mt-12 divide-y divide-goods-sand border-y border-goods-sand">
             {entryPoints.map((entry) => {
               const Icon = entry.icon;
               return (
@@ -321,10 +321,10 @@ export default async function FunderPathwaysPage() {
                     </p>
                   </div>
                   <h3 className="font-display text-2xl leading-tight md:text-3xl">{entry.title}</h3>
-                  <p className="max-w-xl text-base leading-7 text-[#665d51]">{entry.description}</p>
+                  <p className="max-w-xl text-base leading-7 text-goods-sub">{entry.description}</p>
                   <Link
                     href={entry.href}
-                    className="inline-flex min-h-11 items-center gap-2 font-semibold text-[#a64f35]"
+                    className="inline-flex min-h-11 items-center gap-2 font-semibold text-goods-clay"
                   >
                     {entry.action} <ArrowRight className="h-4 w-4" />
                   </Link>
@@ -335,11 +335,11 @@ export default async function FunderPathwaysPage() {
         </div>
       </section>
 
-      <section id="how-it-works" className="scroll-mt-24 border-b border-[#d8cdbd] bg-[#211f1b] text-white">
+      <section id="how-it-works" className="scroll-mt-24 border-b border-goods-sand bg-goods-ink text-white">
         <div className="mx-auto max-w-7xl px-5 py-16 md:py-24">
           <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#e5a78e]">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-goods-terracotta-light">
                 One shared process
               </p>
               <h2 className="mt-4 font-display text-4xl leading-tight md:text-6xl">
@@ -355,14 +355,14 @@ export default async function FunderPathwaysPage() {
             {publicSteps.map((step, index) => {
               const Icon = step.icon;
               return (
-                <article key={step.title} className="min-h-56 bg-[#211f1b] p-6">
+                <article key={step.title} className="min-h-56 bg-goods-ink p-6">
                   <div className="flex items-center justify-between">
-                    <Icon className="h-5 w-5 text-[#e5a78e]" />
+                    <Icon className="h-5 w-5 text-goods-terracotta-light" />
                     <span className="text-xs font-semibold text-white/35">0{index + 1}</span>
                   </div>
                   <h3 className="mt-9 font-display text-2xl">{step.title}</h3>
                   <p className="mt-3 text-sm leading-6 text-white/58">{step.line}</p>
-                  <p className="mt-4 border-t border-white/12 pt-3 text-xs uppercase tracking-[0.14em] text-[#e5a78e]">
+                  <p className="mt-4 border-t border-white/12 pt-3 text-xs uppercase tracking-[0.14em] text-goods-terracotta-light">
                     Community holds: {step.holds}
                   </p>
                 </article>
@@ -378,17 +378,17 @@ export default async function FunderPathwaysPage() {
       </section>
 
       {utopia?.caseStudy ? (
-        <section id="worked-pathway" className="scroll-mt-24 border-b border-[#d8cdbd] bg-[#ece2d3]">
+        <section id="worked-pathway" className="scroll-mt-24 border-b border-goods-sand bg-goods-sand">
           <div className="mx-auto max-w-7xl px-5 py-16 md:py-24">
             <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#b65738]">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-goods-clay">
                   One request, made concrete
                 </p>
                 <h2 className="mt-4 font-display text-4xl leading-tight md:text-6xl">
                   Jane asks about a shredder. This is what happens next.
                 </h2>
-                <p className="mt-6 max-w-xl text-lg leading-8 text-[#665d51]">
+                <p className="mt-6 max-w-xl text-lg leading-8 text-goods-sub">
                   The request is not treated as a grant category or expanded into a fixed
                   program. It becomes one visible pathway that Urapuntja can change, pause
                   or approve.
@@ -424,11 +424,11 @@ export default async function FunderPathwaysPage() {
                 </div>
               </div>
 
-              <div className="overflow-hidden rounded-[2rem] border border-[#cdbda7] bg-[#f8f3ea] shadow-[0_22px_70px_rgba(63,46,26,0.1)]">
-                <div className="border-b border-[#d8cdbd] bg-white px-6 py-5 md:px-8">
+              <div className="overflow-hidden rounded-[2rem] border border-[#cdbda7] bg-goods-cream shadow-[0_22px_70px_rgba(63,46,26,0.1)]">
+                <div className="border-b border-goods-sand bg-white px-6 py-5 md:px-8">
                   <div className="flex items-center justify-between gap-4">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#b65738]">
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-goods-clay">
                         Community pathway card
                       </p>
                       <h3 className="mt-2 font-display text-3xl">Urapuntja · shredder module</h3>
@@ -438,7 +438,7 @@ export default async function FunderPathwaysPage() {
                     </span>
                   </div>
                 </div>
-                <div className="divide-y divide-[#d8cdbd]">
+                <div className="divide-y divide-goods-sand">
                   {[
                     ['1. Community request', 'Explore a shredder that can support practical youth activity and local recycling capability.'],
                     ['2. Confirm before pricing', 'Operator, site, plastic feedstock, safety, maintenance and intended ownership.'],
@@ -449,11 +449,11 @@ export default async function FunderPathwaysPage() {
                   ].map(([title, line]) => (
                     <div key={title} className="grid gap-2 px-6 py-5 md:grid-cols-[0.42fr_1fr] md:px-8">
                       <p className="text-sm font-semibold text-[#3a352e]">{title}</p>
-                      <p className="text-sm leading-6 text-[#665d51]">{line}</p>
+                      <p className="text-sm leading-6 text-goods-sub">{line}</p>
                     </div>
                   ))}
                 </div>
-                <div className="flex flex-col gap-4 bg-[#211f1b] px-6 py-6 text-white sm:flex-row sm:items-center sm:justify-between md:px-8">
+                <div className="flex flex-col gap-4 bg-goods-ink px-6 py-6 text-white sm:flex-row sm:items-center sm:justify-between md:px-8">
                   <p className="max-w-md text-sm leading-6 text-white/65">
                     No purchase or public promise is made until Urapuntja confirms the pathway.
                   </p>
@@ -467,25 +467,25 @@ export default async function FunderPathwaysPage() {
         </section>
       ) : null}
 
-      <section className="border-b border-[#d8cdbd] bg-white">
+      <section className="border-b border-goods-sand bg-white">
         <div className="mx-auto max-w-7xl px-5 py-16 md:py-24">
           <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#b65738]">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-goods-clay">
                 The common record
               </p>
               <h2 className="mt-4 font-display text-4xl leading-tight md:text-5xl">
                 Every pathway answers the same eight questions.
               </h2>
-              <p className="mt-5 max-w-lg text-base leading-7 text-[#665d51]">
+              <p className="mt-5 max-w-lg text-base leading-7 text-goods-sub">
                 This pathway card becomes the shared object across the community conversation,
                 budget, delivery system, funder update and community-approved story.
               </p>
             </div>
-            <div className="grid gap-px overflow-hidden rounded-[2rem] border border-[#d8cdbd] bg-[#d8cdbd] sm:grid-cols-2">
+            <div className="grid gap-px overflow-hidden rounded-[2rem] border border-goods-sand bg-goods-sand sm:grid-cols-2">
               {pathwayFields.map((field, index) => (
-                <div key={field} className="flex min-h-24 items-center gap-4 bg-[#f8f3ea] p-5">
-                  <span className="text-xs font-semibold text-[#b65738]">0{index + 1}</span>
+                <div key={field} className="flex min-h-24 items-center gap-4 bg-goods-cream p-5">
+                  <span className="text-xs font-semibold text-goods-clay">0{index + 1}</span>
                   <p className="font-semibold">{field}</p>
                 </div>
               ))}
@@ -494,11 +494,11 @@ export default async function FunderPathwaysPage() {
         </div>
       </section>
 
-      <section id="pathways" className="scroll-mt-24 border-b border-[#d8cdbd]">
+      <section id="pathways" className="scroll-mt-24 border-b border-goods-sand">
         <div className="mx-auto max-w-7xl px-5 py-16 md:py-24">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div className="max-w-3xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#b65738]">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-goods-clay">
                 The model in practice
               </p>
               <h2 className="mt-4 font-display text-4xl leading-tight md:text-6xl">
@@ -518,7 +518,7 @@ export default async function FunderPathwaysPage() {
               return (
                 <article
                   key={pathway.id}
-                  className="group overflow-hidden rounded-[2rem] border border-[#d8cdbd] bg-white transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_65px_rgba(66,50,31,0.12)]"
+                  className="group overflow-hidden rounded-[2rem] border border-goods-sand bg-white transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_65px_rgba(66,50,31,0.12)]"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-[#ddd4c8]">
                     <Image
@@ -556,13 +556,13 @@ export default async function FunderPathwaysPage() {
                     ) : null}
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-6 pt-20 text-white">
                       <p className="flex items-center gap-2 text-xs font-semibold">
-                        <MapPin className="h-4 w-4 text-[#e5a78e]" /> {pathway.region}
+                        <MapPin className="h-4 w-4 text-goods-terracotta-light" /> {pathway.region}
                       </p>
                       <h3 className="mt-2 font-display text-3xl">{pathway.name}</h3>
                     </div>
                   </div>
                   <div className="p-6">
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#b65738]">
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-goods-clay">
                       {pathway.caseStudy.eyebrow}
                     </p>
                     <p className="mt-4 text-lg font-semibold leading-7">{pathway.invitation}</p>
@@ -588,7 +588,7 @@ export default async function FunderPathwaysPage() {
                     </div>
                     <Link
                       href={`/pathways/${pathway.id}`}
-                      className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[#a64f35]"
+                      className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-goods-clay"
                     >
                       Open the pathway and evidence <ArrowRight className="h-4 w-4" />
                     </Link>
@@ -600,27 +600,27 @@ export default async function FunderPathwaysPage() {
         </div>
       </section>
 
-      <section className="border-b border-[#d8cdbd] bg-[#ece2d3]">
+      <section className="border-b border-goods-sand bg-goods-sand">
         <div className="mx-auto max-w-7xl px-5 py-16 md:py-24">
           <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr]">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#b65738]">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-goods-clay">
                 Clear responsibility
               </p>
               <h2 className="mt-4 font-display text-4xl leading-tight md:text-5xl">
                 One movement toward community control.
               </h2>
-              <p className="mt-5 max-w-lg text-base leading-7 text-[#665d51]">
+              <p className="mt-5 max-w-lg text-base leading-7 text-goods-sub">
                 Funding can enter at any layer. The community’s decision rights and
                 ownership direction do not change.
               </p>
             </div>
-            <div className="divide-y divide-[#cfc2b1] border-y border-[#cfc2b1]">
+            <div className="divide-y divide-goods-sand border-y border-goods-sand">
               {roles.map((role, index) => (
                 <article key={role.name} className="grid gap-3 py-5 md:grid-cols-[4rem_0.65fr_1fr] md:items-center">
-                  <span className="text-xs font-semibold text-[#b65738]">0{index + 1}</span>
+                  <span className="text-xs font-semibold text-goods-clay">0{index + 1}</span>
                   <h3 className="font-display text-2xl">{role.name}</h3>
-                  <p className="text-sm leading-6 text-[#665d51]">{role.line}</p>
+                  <p className="text-sm leading-6 text-goods-sub">{role.line}</p>
                 </article>
               ))}
             </div>
@@ -628,10 +628,10 @@ export default async function FunderPathwaysPage() {
         </div>
       </section>
 
-      <section id="fund" className="scroll-mt-24 border-b border-[#d8cdbd] bg-[#211f1b] text-white">
+      <section id="fund" className="scroll-mt-24 border-b border-goods-sand bg-goods-ink text-white">
         <div className="mx-auto max-w-7xl px-5 py-16 md:py-24">
           <div className="max-w-4xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#e5a78e]">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-goods-terracotta-light">
               Ways to fund
             </p>
             <h2 className="mt-4 font-display text-4xl leading-tight md:text-6xl">
@@ -648,7 +648,7 @@ export default async function FunderPathwaysPage() {
                 key={layer.label}
                 className="grid gap-4 py-7 md:grid-cols-[5rem_0.8fr_0.5fr_1.3fr] md:items-center md:gap-8"
               >
-                <span className="font-display text-3xl text-[#e5a78e]">{layer.number}</span>
+                <span className="font-display text-3xl text-goods-terracotta-light">{layer.number}</span>
                 <h3 className="font-display text-2xl">{layer.label}</h3>
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/42">
                   {layer.example}
@@ -660,25 +660,25 @@ export default async function FunderPathwaysPage() {
         </div>
       </section>
 
-      <section className="border-b border-[#d8cdbd] bg-white">
+      <section className="border-b border-goods-sand bg-white">
         <div className="mx-auto max-w-7xl px-5 py-16 md:py-24">
           <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#b65738]">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-goods-clay">
                 How money and value move
               </p>
               <h2 className="mt-4 font-display text-4xl leading-tight md:text-5xl">
                 Capital enters. Capability stays.
               </h2>
             </div>
-            <p className="max-w-2xl text-base leading-7 text-[#665d51] lg:justify-self-end">
+            <p className="max-w-2xl text-base leading-7 text-goods-sub lg:justify-self-end">
               The exact entity, contract and allocation are agreed for each pathway.
               Every budget separates community-held value, Goods operating revenue and
               the shared capacity needed to support more than one community.
             </p>
           </div>
           <div className="mt-10 grid gap-4 lg:grid-cols-[0.65fr_1.35fr]">
-            <article className="rounded-[2rem] bg-[#c8613d] p-7 text-white md:p-9">
+            <article className="rounded-[2rem] bg-goods-terracotta p-7 text-white md:p-9">
               <PackageCheck className="h-6 w-6 text-[#ffd2bd]" />
               <h3 className="mt-6 font-display text-3xl">What funding buys</h3>
               <div className="mt-6 space-y-3">
@@ -698,7 +698,7 @@ export default async function FunderPathwaysPage() {
             </article>
             <div className="grid gap-4 sm:grid-cols-3">
               {valueDestinations.map((destination) => (
-                <article key={destination.name} className="rounded-[2rem] border border-[#d8cdbd] bg-[#f8f3ea] p-6">
+                <article key={destination.name} className="rounded-[2rem] border border-goods-sand bg-goods-cream p-6">
                   <h3 className="font-display text-2xl">{destination.name}</h3>
                   <div className="mt-6 space-y-3">
                     {destination.points.map((point) => (
@@ -722,11 +722,11 @@ export default async function FunderPathwaysPage() {
         </div>
       </section>
 
-      <section className="bg-[#f8f3ea]">
+      <section className="bg-goods-cream">
         <div className="mx-auto max-w-7xl px-5 py-16 md:py-24">
           <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr]">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#b65738]">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-goods-clay">
                 Accountability
               </p>
               <h2 className="mt-4 font-display text-4xl leading-tight md:text-5xl">
@@ -740,7 +740,7 @@ export default async function FunderPathwaysPage() {
                 'Media stays linked to person, place, permission and audience.',
                 'Progress is reported against the agreed pathway, not imposed outcomes.',
               ].map((item) => (
-                <div key={item} className="flex gap-3 border-t border-[#d8cdbd] py-5">
+                <div key={item} className="flex gap-3 border-t border-goods-sand py-5">
                   <ShieldCheck className="h-5 w-5 shrink-0 text-[#718461]" />
                   <p className="text-sm leading-6 text-[#5f574c]">{item}</p>
                 </div>
@@ -748,11 +748,11 @@ export default async function FunderPathwaysPage() {
             </div>
           </div>
 
-          <div className="relative mt-14 overflow-hidden rounded-[2rem] bg-[#211f1b] p-8 text-white md:p-12">
+          <div className="relative mt-14 overflow-hidden rounded-[2rem] bg-goods-ink p-8 text-white md:p-12">
             <Building2 className="absolute -bottom-16 -right-10 h-72 w-72 text-white/[0.035]" />
             <div className="relative grid gap-9 lg:grid-cols-[1fr_auto] lg:items-end">
               <div className="max-w-4xl">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#e5a78e]">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-goods-terracotta-light">
                   The next useful step
                 </p>
                 <p className="mt-4 font-display text-3xl leading-tight md:text-5xl">
@@ -763,7 +763,7 @@ export default async function FunderPathwaysPage() {
               <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
                 <Link
                   href="/partner"
-                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#c8613d] px-6 py-3 font-semibold text-white"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-goods-terracotta px-6 py-3 font-semibold text-white"
                 >
                   Start a conversation <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -779,7 +779,7 @@ export default async function FunderPathwaysPage() {
 
           <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-[#e0d6c8] pt-7 text-xs text-[#766d61]">
             <p className="flex items-center gap-2">
-              <Factory className="h-4 w-4 text-[#b65738]" />
+              <Factory className="h-4 w-4 text-goods-clay" />
               Working brief. Budgets and ownership structures remain community- and opportunity-specific.
             </p>
             <p>{PATHWAY_STAGES.length} internal stages · 3 live case studies · 1 community-controlled model</p>

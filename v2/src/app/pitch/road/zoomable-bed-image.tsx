@@ -51,8 +51,8 @@ function BedPartHotspots({ fullScreen = false }: { fullScreen?: boolean }) {
       >
         +
       </button>
-      <div className="pointer-events-none absolute bottom-full left-1/2 mb-3 w-64 -translate-x-1/2 translate-y-2 border border-white/15 bg-[#171714]/95 p-4 text-white opacity-0 shadow-2xl backdrop-blur transition group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100">
-        <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#e88461]">
+      <div className="pointer-events-none absolute bottom-full left-1/2 mb-3 w-64 -translate-x-1/2 translate-y-2 border border-white/15 bg-goods-ink/95 p-4 text-white opacity-0 shadow-2xl backdrop-blur transition group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100">
+        <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-goods-terracotta-light">
           {part.name}
         </p>
         <p className="mt-1 text-sm font-semibold">{part.cost}</p>
@@ -146,7 +146,7 @@ export function ZoomableBedImage({ src, alt }: ZoomableBedImageProps) {
     <>
       <section
         id="open-the-stretch-bed"
-        className="relative min-h-screen scroll-mt-16 overflow-hidden bg-[#171714]"
+        className="relative min-h-screen scroll-mt-16 overflow-hidden bg-goods-ink"
       >
         <button
           type="button"
@@ -173,7 +173,7 @@ export function ZoomableBedImage({ src, alt }: ZoomableBedImageProps) {
 
         <Link
           href="/stretch-bed"
-          className="absolute bottom-8 right-8 z-10 inline-flex items-center gap-2 border-b border-[#e88461] pb-2 text-sm font-semibold text-white drop-shadow-md md:bottom-12 md:right-12"
+          className="absolute bottom-8 right-8 z-10 inline-flex items-center gap-2 border-b border-goods-terracotta-light pb-2 text-sm font-semibold text-white drop-shadow-md md:bottom-12 md:right-12"
         >
           Open the bed
           <ArrowUpRight className="h-4 w-4" aria-hidden="true" />

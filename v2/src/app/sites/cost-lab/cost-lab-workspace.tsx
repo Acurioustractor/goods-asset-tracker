@@ -172,7 +172,7 @@ function SectionHeading({
 }) {
   return (
     <div className="max-w-3xl">
-      <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#A0532B]">
+      <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-goods-clay">
         <Icon className="h-4 w-4" aria-hidden /> {kicker}
       </p>
       <h2 className="mt-2 font-serif text-2xl text-stone-900 sm:text-3xl">{title}</h2>
@@ -402,9 +402,9 @@ export function CostLabWorkspace() {
   ];
 
   return (
-    <main className="min-h-screen bg-[#FAF6F0] pb-24 text-stone-900">
+    <main className="min-h-screen bg-goods-cream pb-24 text-stone-900">
       {/* ── Header ── */}
-      <header className="border-b border-stone-200 bg-goods-ink text-[#FDF8F3]">
+      <header className="border-b border-stone-200 bg-goods-ink text-goods-cream">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-goods-gold">
             Goods on Country · internal working room
@@ -513,7 +513,7 @@ export function CostLabWorkspace() {
                         <td className="px-3 py-2">{fmt(row.inHouse)}</td>
                         <td className="px-3 py-2" title={row.floorNote}>{fmt(row.floor)}</td>
                         <td className="px-3 py-2">
-                          <span className={multiple >= 3 ? 'font-semibold text-[#A0532B]' : 'text-stone-700'}>
+                          <span className={multiple >= 3 ? 'font-semibold text-goods-clay' : 'text-stone-700'}>
                             {multiple.toFixed(1)}x
                           </span>
                         </td>
@@ -622,7 +622,7 @@ export function CostLabWorkspace() {
                   setCapexRows((rows) => [...rows, { id: nextRowId, label: 'New line item', low: 0, high: 0, note: '' }]);
                   setNextRowId((n) => n + 1);
                 }}
-                className="text-xs font-semibold uppercase tracking-wide text-[#A0532B] hover:underline"
+                className="text-xs font-semibold uppercase tracking-wide text-goods-clay hover:underline"
               >
                 + Add line item
               </button>
@@ -702,7 +702,7 @@ export function CostLabWorkspace() {
 
         <div className="mt-6 grid gap-4 lg:grid-cols-3">
           <div className="rounded-lg border border-stone-200 bg-white p-5">
-            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[#A0532B]">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-goods-clay">
               <Factory className="h-4 w-4" aria-hidden /> Production capex
             </p>
             <p className="mt-2 text-2xl font-semibold">{fmt(capexLow)} to {fmt(capexHigh)}</p>
@@ -713,7 +713,7 @@ export function CostLabWorkspace() {
             </p>
           </div>
           <div className="rounded-lg border border-stone-200 bg-white p-5">
-            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[#A0532B]">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-goods-clay">
               <Users className="h-4 w-4" aria-hidden /> Fixed block to break-even
             </p>
             <p className="mt-2 text-2xl font-semibold">{fmt(model.fixedBlock)}/yr</p>
@@ -723,7 +723,7 @@ export function CostLabWorkspace() {
             </p>
           </div>
           <div className="rounded-lg border border-stone-200 bg-white p-5">
-            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[#A0532B]">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-goods-clay">
               <Boxes className="h-4 w-4" aria-hidden /> Working capital
             </p>
             <p className="mt-2 text-2xl font-semibold">{fmt(model.selectedMarginal * 100)}</p>
@@ -734,7 +734,7 @@ export function CostLabWorkspace() {
           </div>
         </div>
 
-        <div className="mt-6 rounded-lg border border-stone-200 bg-goods-ink p-6 text-[#FDF8F3]">
+        <div className="mt-6 rounded-lg border border-stone-200 bg-goods-ink p-6 text-goods-cream">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-goods-gold">QBE Stage 2 coverage test</p>
           <div className="mt-4 grid items-end gap-4 sm:grid-cols-[280px_1fr]">
             <NumberField
@@ -805,7 +805,7 @@ export function CostLabWorkspace() {
             <button
               type="button"
               onClick={() => setSimField({ containerCost: Math.round(capexMid) })}
-              className="text-xs font-semibold uppercase tracking-wide text-[#A0532B] hover:underline"
+              className="text-xs font-semibold uppercase tracking-wide text-goods-clay hover:underline"
             >
               Use coster mid-range
             </button>
@@ -864,7 +864,7 @@ export function CostLabWorkspace() {
             </div>
 
             <div className="rounded-lg border border-stone-200 bg-white p-5">
-              <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[#A0532B]">
+              <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-goods-clay">
                 <LineChart className="h-4 w-4" aria-hidden /> How to say it to an investor
               </p>
               <ul className="mt-3 space-y-2 text-sm leading-6 text-stone-700">
@@ -950,13 +950,13 @@ export function CostLabWorkspace() {
             onChange={(e) => setNotes(e.target.value)}
             rows={10}
             placeholder={'Decisions, quotes to chase, dials we are betting on...\n\ne.g.\n- Get the hot press quote first (biggest range)\n- Bet on throughput before contribution\n- Ask SEFA about a 3-year container loan'}
-            className="w-full rounded-lg border border-stone-300 bg-white p-4 text-sm leading-6 text-stone-900 outline-none focus:border-[#A0532B]"
+            className="w-full rounded-lg border border-stone-300 bg-white p-4 text-sm leading-6 text-stone-900 outline-none focus:border-goods-clay"
           />
           <div className="space-y-3">
             <button
               type="button"
               onClick={copySummary}
-              className="w-full rounded-md bg-goods-ink px-4 py-2.5 text-sm font-semibold text-[#FDF8F3] transition hover:bg-[#3d3b35]"
+              className="w-full rounded-md bg-goods-ink px-4 py-2.5 text-sm font-semibold text-goods-cream transition hover:bg-[#3d3b35]"
             >
               {copied ? 'Copied to clipboard' : 'Copy session summary'}
             </button>
@@ -967,7 +967,7 @@ export function CostLabWorkspace() {
             </p>
             <Link
               href="/sites/cost-lab/playbook"
-              className="block text-center text-xs font-semibold uppercase tracking-wide text-[#A0532B] hover:underline"
+              className="block text-center text-xs font-semibold uppercase tracking-wide text-goods-clay hover:underline"
             >
               Run a set play from the playbook
             </Link>

@@ -178,17 +178,17 @@ export function PitchChrome() {
           role="dialog"
           aria-modal="true"
           aria-label={OPENER_HEADING}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-[#171714]/97 px-6 py-10 text-goods-cream backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-goods-ink/97 px-6 py-10 text-goods-cream backdrop-blur-sm"
           onClick={() => setOpenerOpen(false)}
         >
           <div className="max-h-full w-full max-w-[1000px] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#e88461]">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-goods-terracotta-light">
               {OPENER_HEADING}
             </p>
             <ol className="mt-8 space-y-6">
               {OPENER_LINES.map((line, i) => (
                 <li key={line} className="flex gap-5 text-xl leading-9 md:text-2xl md:leading-10">
-                  <span className="goods-pitch-display text-2xl leading-9 text-[#e88461] md:text-3xl md:leading-10">{i + 1}</span>
+                  <span className="goods-pitch-display text-2xl leading-9 text-goods-terracotta-light md:text-3xl md:leading-10">{i + 1}</span>
                   <span>{line}</span>
                 </li>
               ))}
@@ -208,7 +208,7 @@ export function PitchChrome() {
           in slide mode where it is the transport. */}
       <div
         data-pitch-bar
-        className={`z-40 border-t border-white/15 bg-[#171714]/95 text-white backdrop-blur ${
+        className={`z-40 border-t border-white/15 bg-goods-ink/95 text-white backdrop-blur ${
           mode === 'slides' ? 'fixed inset-x-0 bottom-0' : 'sticky top-0 border-b border-t-0'
         }`}
       >
@@ -274,7 +274,7 @@ export function PitchChrome() {
             <button
               type="button"
               onClick={() => setOpenerOpen(true)}
-              className="border border-goods-terracotta px-3 py-1 text-xs text-[#e88461] hover:border-[#e88461]"
+              className="border border-goods-terracotta px-3 py-1 text-xs text-goods-terracotta-light hover:border-goods-terracotta-light"
             >
               Read this first
             </button>
@@ -305,7 +305,7 @@ export function PitchChrome() {
             <div className="mx-auto grid max-w-[1600px] gap-5 sm:grid-cols-2 lg:grid-cols-5">
               {chapters.map((chapter) => (
                 <div key={chapter.id}>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#d97a59]">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-goods-terracotta-light">
                     {chapter.label}
                   </p>
                   <ul className="mt-2 space-y-1">
@@ -332,7 +332,7 @@ export function PitchChrome() {
             {/* Appendices. Named here so the supporting surfaces stay reachable FROM the deck
                 rather than competing with it as separate front doors. */}
             <div className="mx-auto mt-5 max-w-[1600px] border-t border-white/15 pt-4">
-              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#d97a59]">
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-goods-terracotta-light">
                 Appendices
               </p>
               <ul className="mt-2 flex flex-wrap gap-x-6 gap-y-1">

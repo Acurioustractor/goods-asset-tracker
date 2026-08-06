@@ -142,7 +142,7 @@ export default async function StretchBedPage() {
           )}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/30 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 mx-auto max-w-5xl px-6 pb-10">
-            <p className="mb-2 text-sm uppercase tracking-[0.18em] text-[#D99A6A]">How it works</p>
+            <p className="mb-2 text-sm uppercase tracking-[0.18em] text-goods-terracotta-light">How it works</p>
             <h1 style={serif} className="text-4xl font-bold text-white sm:text-5xl">
               The Stretch Bed
             </h1>
@@ -152,7 +152,7 @@ export default async function StretchBedPage() {
             <div className="mt-5 flex flex-wrap gap-3">
               <a
                 href="#build"
-                className="rounded-md bg-[#B0673B] px-5 py-2.5 font-medium text-white transition hover:bg-[#974F2C]"
+                className="rounded-md bg-goods-clay px-5 py-2.5 font-medium text-white transition hover:bg-[#974F2C]"
               >
                 Watch it built
               </a>
@@ -169,7 +169,7 @@ export default async function StretchBedPage() {
 
       {/* Overview photo (real product photography, fixed, not swappable) */}
       <section className="mx-auto max-w-6xl px-6 pt-14">
-        <p className="mb-4 text-center text-sm uppercase tracking-[0.18em] text-[#B0673B]">
+        <p className="mb-4 text-center text-sm uppercase tracking-[0.18em] text-goods-clay">
           The whole bed, three parts
         </p>
         <div className="overflow-hidden rounded-xl border border-slate-200 shadow-sm">
@@ -214,7 +214,7 @@ export default async function StretchBedPage() {
                   )}
                 </div>
                 <div className="p-5">
-                  <div className="text-xs font-semibold uppercase tracking-wider text-[#B0673B]">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-goods-clay">
                     {c.n}× per bed
                   </div>
                   <h3 style={serif} className="mt-1 text-lg font-bold">
@@ -292,7 +292,7 @@ export default async function StretchBedPage() {
                   )}
                 </div>
                 <div>
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#B0673B] text-lg font-bold text-white">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-goods-clay text-lg font-bold text-white">
                     {s.n}
                   </div>
                   <h3 style={serif} className="mt-4 text-2xl font-bold">
@@ -309,14 +309,14 @@ export default async function StretchBedPage() {
       {/* The clever bit */}
       <section className="bg-[#221E18] py-16 text-white">
         <div className="mx-auto max-w-3xl px-6">
-          <p className="text-sm uppercase tracking-[0.18em] text-[#D99A6A]">Why it works</p>
+          <p className="text-sm uppercase tracking-[0.18em] text-goods-terracotta-light">Why it works</p>
           <h2 style={serif} className="mt-2 text-3xl font-bold">
             The weight is what holds it together
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-slate-200">
             It is a tension design. Each pole threads through the hole at the top of each X-leg, so
             the poles cannot slip, and the canvas stretched tight between them braces the whole
-            frame. The frame <span className="text-[#D99A6A]">will not stand without the canvas</span>:
+            frame. The frame <span className="text-goods-terracotta-light">will not stand without the canvas</span>:
             it is the tension that holds everything together. No screws, no tools, just thread the
             poles through and pull it tight.
           </p>
@@ -356,20 +356,20 @@ export default async function StretchBedPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#B0673B] py-14 text-white">
+      <section className="bg-goods-clay py-14 text-white">
         <div className="mx-auto flex max-w-5xl flex-col items-start gap-5 px-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 style={serif} className="text-3xl font-bold">
               Put one in a home
             </h2>
-            <p className="mt-1 text-[#F4E9E1]">
+            <p className="mt-1 text-goods-cream-muted">
               Every bed diverts {STRETCH_BED.specs.plasticDiverted.replace(' per bed', '')} from
               landfill and is built toward community ownership.
             </p>
           </div>
           <Link
             href="/shop/stretch-bed-single"
-            className="whitespace-nowrap rounded-md bg-white px-6 py-3 font-semibold text-[#B0673B] transition hover:bg-[#F4E9E1]"
+            className="whitespace-nowrap rounded-md bg-white px-6 py-3 font-semibold text-goods-clay transition hover:bg-goods-cream-muted"
           >
             Buy or sponsor a bed
           </Link>

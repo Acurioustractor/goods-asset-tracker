@@ -97,8 +97,8 @@ function FacilityHotspots({ fullScreen = false }: { fullScreen?: boolean }) {
       >
         +
       </button>
-      <div className="pointer-events-none absolute bottom-full left-1/2 mb-3 w-64 -translate-x-1/2 translate-y-2 border border-white/15 bg-[#171714]/95 p-4 text-white opacity-0 shadow-2xl backdrop-blur transition group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100">
-        <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#e88461]">
+      <div className="pointer-events-none absolute bottom-full left-1/2 mb-3 w-64 -translate-x-1/2 translate-y-2 border border-white/15 bg-goods-ink/95 p-4 text-white opacity-0 shadow-2xl backdrop-blur transition group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100">
+        <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-goods-terracotta-light">
           {item.name}
         </p>
         <p className="mt-2 text-xs leading-5 text-white/75">{item.detail}</p>
@@ -216,13 +216,13 @@ export function ProductionFacilityExperience() {
             <div>
               <p
                 data-road-text="production-facility.body"
-                className="max-w-3xl text-base leading-7 text-[#6d675c] lg:text-lg lg:leading-8"
+                className="max-w-3xl text-base leading-7 text-goods-sub lg:text-lg lg:leading-8"
               >
                 The facility turns sorted local plastic into the X-frames that carry a Stretch
                 Bed. Shredding, sheet-making, CNC cutting, finishing and quality checks sit in one
                 connected workflow. The material left by each cut goes around again.
               </p>
-              <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 border-y border-[#d9d1c3] py-4 font-mono text-[9px] uppercase tracking-[0.17em] text-goods-sub">
+              <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 border-y border-goods-sand py-4 font-mono text-[9px] uppercase tracking-[0.17em] text-goods-sub">
                 <span>Containerised</span>
                 <span>Repairable by station</span>
                 <span>Designed to transfer</span>
@@ -234,7 +234,7 @@ export function ProductionFacilityExperience() {
             {facilityStages.map((stage, stageIndex) => (
               <li
                 key={stage.name}
-                className="group relative grid min-h-36 grid-cols-[0.9fr_1.1fr] overflow-hidden border border-[#d9d1c3] bg-goods-cream-muted"
+                className="group relative grid min-h-36 grid-cols-[0.9fr_1.1fr] overflow-hidden border border-goods-sand bg-goods-cream-muted"
               >
                 <button
                   type="button"
@@ -255,7 +255,7 @@ export function ProductionFacilityExperience() {
                     sizes="(max-width: 640px) 45vw, 25vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                   />
-                  <span className="absolute bottom-3 left-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#171714]/75 text-white opacity-0 backdrop-blur transition-opacity group-hover:opacity-100 group-focus-within:opacity-100">
+                  <span className="absolute bottom-3 left-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-goods-ink/75 text-white opacity-0 backdrop-blur transition-opacity group-hover:opacity-100 group-focus-within:opacity-100">
                     <Maximize2 className="h-4 w-4" aria-hidden="true" />
                   </span>
                 </div>
@@ -265,15 +265,15 @@ export function ProductionFacilityExperience() {
                   </span>
                   <div>
                     <h3 className="text-sm font-semibold">{stage.name}</h3>
-                    <p className="mt-2 text-xs leading-5 text-[#6d675c]">{stage.body}</p>
+                    <p className="mt-2 text-xs leading-5 text-goods-sub">{stage.body}</p>
                   </div>
                 </div>
               </li>
             ))}
           </ol>
 
-          <div className="mt-5 flex items-center justify-between gap-5 border-t border-[#d9d1c3] pt-4">
-            <p className="text-sm text-[#6d675c]">
+          <div className="mt-5 flex items-center justify-between gap-5 border-t border-goods-sand pt-4">
+            <p className="text-sm text-goods-sub">
               The equipment is real. The next measured run must prove sustained time and cost.
             </p>
             <Link
@@ -289,7 +289,7 @@ export function ProductionFacilityExperience() {
 
       <section
         id="open-production-facility"
-        className="relative min-h-screen overflow-hidden bg-[#171714]"
+        className="relative min-h-screen overflow-hidden bg-goods-ink"
       >
         <button
           type="button"
@@ -315,7 +315,7 @@ export function ProductionFacilityExperience() {
         <FacilityHotspots />
 
         <div className="pointer-events-none absolute left-8 top-8 z-10 max-w-md text-white md:left-12 md:top-12">
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#e88461]">
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-goods-terracotta-light">
             Inside the line
           </p>
           <h2 className="goods-pitch-display mt-3 text-4xl leading-none drop-shadow-lg md:text-5xl">
@@ -326,7 +326,7 @@ export function ProductionFacilityExperience() {
 
       {stageOpenIndex !== null && (
         <div
-          className="fixed inset-0 z-[210] grid bg-[#171714] text-white"
+          className="fixed inset-0 z-[210] grid bg-goods-ink text-white"
           role="dialog"
           aria-modal="true"
           aria-label={`${facilityStages[stageOpenIndex].name} full-screen photograph`}
@@ -344,7 +344,7 @@ export function ProductionFacilityExperience() {
 
           <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-6 bg-gradient-to-t from-black via-black/85 to-transparent px-6 pb-7 pt-24 md:px-10">
             <div className="max-w-2xl">
-              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#e88461]">
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-goods-terracotta-light">
                 {facilityStages[stageOpenIndex].number} · The production facility
               </p>
               <h3 className="goods-pitch-display mt-2 text-3xl md:text-5xl">

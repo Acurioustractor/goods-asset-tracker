@@ -14,7 +14,7 @@ export default function PrivacyPage() {
   });
 
   return (
-    <main className="bg-[#FDF8F3] text-[#2E2E2E]">
+    <main className="bg-goods-cream text-goods-ink">
       <div className="max-w-2xl mx-auto px-6 py-16 sm:py-24">
         <p className="text-xs uppercase tracking-[0.25em] text-goods-terracotta mb-4">
           Goods on Country
@@ -22,7 +22,7 @@ export default function PrivacyPage() {
         <h1 className="font-display text-4xl sm:text-5xl tracking-tight mb-3">
           Privacy
         </h1>
-        <p className="text-sm text-[#2E2E2E]/60 mb-10">
+        <p className="text-sm text-goods-ink/60 mb-10">
           Last updated {today}
         </p>
 
@@ -111,10 +111,10 @@ export default function PrivacyPage() {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section>
-      <h2 className="font-display text-xl sm:text-2xl mt-8 mb-3 text-[#2E2E2E]">
+      <h2 className="font-display text-xl sm:text-2xl mt-8 mb-3 text-goods-ink">
         {title}
       </h2>
-      <div className="space-y-3 text-[#2E2E2E]/85">{children}</div>
+      <div className="space-y-3 text-goods-ink/85">{children}</div>
     </section>
   );
 }

@@ -34,18 +34,18 @@ export function MapShell({
     : 'h-[720px] w-[1280px] overflow-hidden';
 
   return (
-    <div className={`${frame} bg-goods-cream text-[#26201B]`}>
+    <div className={`${frame} bg-goods-cream text-goods-ink`}>
       <div className="flex h-full flex-col px-10 py-7">
         <header className="flex items-start justify-between gap-8">
           <div className="max-w-xl">
             <h1 className="font-display text-[28px] font-bold leading-tight">{title}</h1>
-            <p className="mt-1.5 text-[13px] leading-relaxed text-[#6E645A]">{standfirst}</p>
+            <p className="mt-1.5 text-[13px] leading-relaxed text-goods-sub">{standfirst}</p>
           </div>
           <div className="flex shrink-0 items-start gap-6">
             {figures.map((f) => (
               <div key={f.label} className="text-center">
                 <div className="font-display text-[26px] font-bold leading-none text-[#B44D2B]">{f.value}</div>
-                <div className="mt-1 text-[10px] uppercase tracking-wide text-[#8A7F72]">{f.label}</div>
+                <div className="mt-1 text-[10px] uppercase tracking-wide text-goods-sub">{f.label}</div>
               </div>
             ))}
           </div>
@@ -77,7 +77,7 @@ export function MapShell({
         </div>
 
         <footer className="mt-2 flex items-end justify-between gap-6">
-          <div className="flex flex-wrap items-center gap-4 text-[11px] text-[#6E645A]">{legend}</div>
+          <div className="flex flex-wrap items-center gap-4 text-[11px] text-goods-sub">{legend}</div>
           <p className="shrink-0 text-[10px] text-[#A79C8C]">
             {footnote ? `${footnote} · ` : ''}Boundaries: ABS ASGS (CC-BY 4.0)
           </p>

@@ -280,8 +280,8 @@ function BoardFrame({
   className?: string;
 }) {
   return (
-    <section className={['rounded-lg border border-[#d9cdb8] bg-[#fffdf8] p-5 shadow-sm', className].join(' ')}>
-      <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#9b6a45]">{eyebrow}</p>
+    <section className={['rounded-lg border border-[#d9cdb8] bg-goods-cream p-5 shadow-sm', className].join(' ')}>
+      <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-goods-clay">{eyebrow}</p>
       <h2
         className="mt-2 text-3xl font-light leading-tight text-goods-ink"
         style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
@@ -296,7 +296,7 @@ function BoardFrame({
 function StrategySketch() {
   return (
     <div className="rounded-lg border border-[#d9cdb8] bg-goods-cream p-5">
-      <div className="relative min-h-[330px] overflow-hidden rounded-lg border border-[#ded4c1] bg-[#fffdf8] p-5">
+      <div className="relative min-h-[330px] overflow-hidden rounded-lg border border-goods-sand bg-goods-cream p-5">
         <svg className="absolute inset-0 h-full w-full" viewBox="0 0 920 330" aria-hidden="true">
           <path
             d="M112 162 C 230 74, 360 74, 463 162 S 696 250, 820 162"
@@ -322,21 +322,21 @@ function StrategySketch() {
             ['Learn', 'What did community say?'],
             ['Own', 'Where should making land?'],
           ].map(([label, line]) => (
-            <div key={label} className="rounded-lg border border-[#ded4c1] bg-white/95 p-4 shadow-sm">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#9b6a45]">{label}</p>
+            <div key={label} className="rounded-lg border border-goods-sand bg-white/95 p-4 shadow-sm">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-clay">{label}</p>
               <p className="mt-3 text-lg font-semibold leading-tight text-goods-ink">{line}</p>
             </div>
           ))}
         </div>
         <div className="relative mt-8 grid items-center gap-5 md:grid-cols-[1fr_auto_1fr]">
-          <div className="rounded-lg border border-[#ded4c1] bg-goods-ink p-5 text-goods-cream">
+          <div className="rounded-lg border border-goods-sand bg-goods-ink p-5 text-goods-cream">
             <p className="text-xs uppercase tracking-[0.2em] text-goods-terracotta">Visible object</p>
             <p className="mt-3 text-2xl font-light leading-tight" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>
               A bed off the ground
             </p>
           </div>
           <ArrowRight className="hidden h-8 w-8 text-goods-terracotta md:block" />
-          <div className="rounded-lg border border-[#ded4c1] bg-goods-sage p-5 text-white">
+          <div className="rounded-lg border border-goods-sand bg-goods-sage p-5 text-white">
             <p className="text-xs uppercase tracking-[0.2em] text-white/80">Strategic transfer</p>
             <p className="mt-3 text-2xl font-light leading-tight" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>
               Making held closer to community
@@ -350,7 +350,7 @@ function StrategySketch() {
 
 function SmallPhoto({ photo }: { photo: PhotoCandidate }) {
   return (
-    <figure className="overflow-hidden rounded-md border border-[#ded4c1] bg-white">
+    <figure className="overflow-hidden rounded-md border border-goods-sand bg-white">
       <div className="relative aspect-[4/3] bg-goods-cream-muted">
         <Image src={photo.src} alt={photo.label} fill sizes="240px" className="object-cover" loading="eager" />
       </div>
@@ -363,7 +363,7 @@ function SmallPhoto({ photo }: { photo: PhotoCandidate }) {
 
 function ArcCard({ item, index }: { item: (typeof missionArc)[number]; index: number }) {
   return (
-    <article className="rounded-lg border border-[#ded4c1] bg-white p-3">
+    <article className="rounded-lg border border-goods-sand bg-white p-3">
       <div className="relative aspect-[4/3] overflow-hidden rounded-md bg-goods-cream-muted">
         <Image src={item.image} alt={item.step} fill sizes="260px" className="object-cover" loading="eager" />
         <span className="absolute left-2 top-2 rounded bg-goods-ink/85 px-2 py-1 text-[11px] font-semibold text-goods-cream">
@@ -378,7 +378,7 @@ function ArcCard({ item, index }: { item: (typeof missionArc)[number]; index: nu
 
 function PersonCard({ person }: { person: (typeof storytellerReview)[number] }) {
   return (
-    <article className="rounded-md border border-[#ded4c1] bg-white p-3">
+    <article className="rounded-md border border-goods-sand bg-white p-3">
       <div className="flex gap-3">
         {person.photo ? (
           <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-md bg-goods-cream-muted">
@@ -458,11 +458,11 @@ export default function MiroReadyBoardPage() {
             <StrategySketch />
             <div className="space-y-4">
               {centralMotifs.map((motif) => (
-                <article key={motif.label} className="rounded-lg border border-[#ded4c1] bg-white p-5">
+                <article key={motif.label} className="rounded-lg border border-goods-sand bg-white p-5">
                   <div className="flex items-start gap-3">
                     <Sparkles className="mt-0.5 h-5 w-5 flex-shrink-0 text-goods-terracotta" />
                     <div>
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#9b6a45]">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-clay">
                         {motif.label}
                       </p>
                       <h3
@@ -488,8 +488,8 @@ export default function MiroReadyBoardPage() {
           </div>
           <div className="mt-5 grid gap-4 md:grid-cols-4">
             {messageBuildouts.map((message) => (
-              <article key={message.label} className="rounded-lg border border-[#ded4c1] bg-goods-cream p-4">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#9b6a45]">{message.label}</p>
+              <article key={message.label} className="rounded-lg border border-goods-sand bg-goods-cream p-4">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-clay">{message.label}</p>
                 <p className="mt-3 text-sm leading-relaxed text-goods-ink">{message.line}</p>
               </article>
             ))}
@@ -500,12 +500,12 @@ export default function MiroReadyBoardPage() {
           <div className="grid gap-5 xl:grid-cols-[1.15fr_0.85fr]">
             <div className="grid gap-3 md:grid-cols-3">
               {fieldNoteBeats.map((beat) => (
-                <article key={beat.title} className="overflow-hidden rounded-lg border border-[#ded4c1] bg-white">
+                <article key={beat.title} className="overflow-hidden rounded-lg border border-goods-sand bg-white">
                   <div className="relative aspect-[4/3] bg-goods-cream-muted">
                     <Image src={beat.image} alt={beat.title} fill sizes="320px" className="object-cover" loading="eager" />
                   </div>
                   <div className="p-3">
-                    <div className="flex items-center gap-2 text-[#9b6a45]">
+                    <div className="flex items-center gap-2 text-goods-clay">
                       <MapPin className="h-3.5 w-3.5" />
                       <p className="text-[11px] font-semibold uppercase tracking-[0.18em]">{beat.place}</p>
                     </div>
@@ -516,7 +516,7 @@ export default function MiroReadyBoardPage() {
               ))}
             </div>
             <div className="space-y-3">
-              <div className="rounded-lg border border-[#ded4c1] bg-goods-ink p-5 text-goods-cream">
+              <div className="rounded-lg border border-goods-sand bg-goods-ink p-5 text-goods-cream">
                 <div className="flex items-center gap-2 text-goods-terracotta">
                   <Route className="h-5 w-5" />
                   <p className="text-xs font-semibold uppercase tracking-[0.2em]">Deck spine from the field note</p>
@@ -535,7 +535,7 @@ export default function MiroReadyBoardPage() {
               </div>
               <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-1">
                 {fieldNoteQuotes.map((item) => (
-                  <blockquote key={`${item.by}-${item.quote}`} className="rounded-lg border border-[#ded4c1] bg-white p-4">
+                  <blockquote key={`${item.by}-${item.quote}`} className="rounded-lg border border-goods-sand bg-white p-4">
                     <p className="text-sm leading-relaxed text-goods-ink">&quot;{item.quote}&quot;</p>
                     <footer className="mt-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-goods-sub">
                       {item.by}
@@ -551,8 +551,8 @@ export default function MiroReadyBoardPage() {
           <BoardFrame eyebrow="04" title="Pitch spine">
             <div className="grid grid-cols-6 gap-3">
               {pitchSections.map((section) => (
-                <div key={section.id} className="rounded-lg border border-[#ded4c1] bg-goods-cream p-4">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#9b6a45]">
+                <div key={section.id} className="rounded-lg border border-goods-sand bg-goods-cream p-4">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-goods-clay">
                     {section.navLabel}
                   </p>
                   <p className="mt-2 text-sm font-semibold leading-snug">{section.question}</p>
@@ -564,7 +564,7 @@ export default function MiroReadyBoardPage() {
           <BoardFrame eyebrow="05" title="Message options">
             <div className="grid gap-3 md:grid-cols-2">
               {messageLenses.map((lens) => (
-                <article key={lens.id} className="rounded-lg border border-[#ded4c1] bg-white p-4">
+                <article key={lens.id} className="rounded-lg border border-goods-sand bg-white p-4">
                   <div className="mb-2 flex items-center gap-2 text-goods-terracotta">
                     <MessageSquareQuote className="h-4 w-4" />
                     <h3 className="text-sm font-semibold text-goods-ink">{lens.label}</h3>
@@ -580,7 +580,7 @@ export default function MiroReadyBoardPage() {
         <BoardFrame eyebrow="06" title="Photo swap wall">
           <div className="grid gap-5 xl:grid-cols-3">
             {deckPhotoSlots.map((slot) => (
-              <article key={slot.id} className="rounded-lg border border-[#ded4c1] bg-goods-cream p-4">
+              <article key={slot.id} className="rounded-lg border border-goods-sand bg-goods-cream p-4">
                 <h3 className="text-base font-semibold">{slot.slide}</h3>
                 <p className="mt-1 text-xs leading-relaxed text-goods-sub">{slot.job}</p>
                 <div className="mt-4 grid grid-cols-3 gap-2">
@@ -598,7 +598,7 @@ export default function MiroReadyBoardPage() {
         <BoardFrame eyebrow="07" title="Expanded photo bank">
           <div className="grid gap-6 xl:grid-cols-[1fr_0.7fr]">
             <div>
-              <div className="mb-3 flex items-center gap-2 text-[#9b6a45]">
+              <div className="mb-3 flex items-center gap-2 text-goods-clay">
                 <UsersRound className="h-4 w-4" />
                 <h3 className="text-sm font-semibold uppercase tracking-[0.18em]">Field note sequence</h3>
               </div>
@@ -609,7 +609,7 @@ export default function MiroReadyBoardPage() {
               </div>
             </div>
             <div>
-              <div className="mb-3 flex items-center gap-2 text-[#9b6a45]">
+              <div className="mb-3 flex items-center gap-2 text-goods-clay">
                 <ImageIcon className="h-4 w-4" />
                 <h3 className="text-sm font-semibold uppercase tracking-[0.18em]">Partner proof photos</h3>
               </div>
@@ -620,8 +620,8 @@ export default function MiroReadyBoardPage() {
               </div>
             </div>
           </div>
-          <div className="mt-6 rounded-lg border border-[#ded4c1] bg-goods-cream p-4">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#9b6a45]">
+          <div className="mt-6 rounded-lg border border-goods-sand bg-goods-cream p-4">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-clay">
               Mparntwe and Utopia extras for review
             </p>
             <p className="mt-2 text-xs leading-relaxed text-goods-sub">
@@ -647,7 +647,7 @@ export default function MiroReadyBoardPage() {
           <BoardFrame eyebrow="09" title="Themes we are hearing">
             <div className="space-y-3">
               {themeThreads.map((thread) => (
-                <article key={thread.id} className="rounded-lg border border-[#ded4c1] bg-white p-4">
+                <article key={thread.id} className="rounded-lg border border-goods-sand bg-white p-4">
                   <h3 className="text-base font-semibold">{thread.theme}</h3>
                   <p className="mt-2 text-xs leading-relaxed text-goods-sub">{thread.whatCommunityIsSaying}</p>
                   <blockquote className="mt-3 rounded-md bg-goods-cream-muted p-3 text-sm leading-relaxed">
@@ -663,7 +663,7 @@ export default function MiroReadyBoardPage() {
         <BoardFrame eyebrow="10" title="Place pathways">
           <div className="grid gap-4 xl:grid-cols-4">
             {placePathways.map((place) => (
-              <article key={place.id} className="rounded-lg border border-[#ded4c1] bg-white p-4">
+              <article key={place.id} className="rounded-lg border border-goods-sand bg-white p-4">
                 <h3 className="text-lg font-semibold">{place.name}</h3>
                 <p className="mt-2 text-xs leading-relaxed text-goods-sub">{place.role}</p>
                 <div className="mt-4 grid grid-cols-3 gap-2">
@@ -671,7 +671,7 @@ export default function MiroReadyBoardPage() {
                     <SmallPhoto key={photo.src} photo={photo} />
                   ))}
                 </div>
-                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#9b6a45]">Next move</p>
+                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-goods-clay">Next move</p>
                 <p className="mt-2 text-xs leading-relaxed text-goods-ink">{place.nextMove}</p>
               </article>
             ))}
@@ -681,7 +681,7 @@ export default function MiroReadyBoardPage() {
         <BoardFrame eyebrow="11" title="Deck storyboard">
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
             {deckRun.map((slide) => (
-              <article key={slide.number} className="overflow-hidden rounded-lg border border-[#ded4c1] bg-white">
+              <article key={slide.number} className="overflow-hidden rounded-lg border border-goods-sand bg-white">
                 <div className="relative aspect-video bg-goods-cream-muted">
                   <Image src={slide.photo.src} alt={slide.photo.label} fill sizes="300px" className="object-cover" loading="eager" />
                   <span className="absolute left-2 top-2 rounded bg-goods-ink/85 px-2 py-1 text-[11px] font-semibold text-goods-cream">
@@ -689,7 +689,7 @@ export default function MiroReadyBoardPage() {
                   </span>
                 </div>
                 <div className="p-3">
-                  <p className="text-[11px] uppercase tracking-[0.18em] text-[#9b6a45]">{slide.job}</p>
+                  <p className="text-[11px] uppercase tracking-[0.18em] text-goods-clay">{slide.job}</p>
                   <h3 className="mt-1 text-sm font-semibold leading-snug">{slide.title}</h3>
                   <p className="mt-2 text-[11px] leading-relaxed text-goods-sub">{slide.message}</p>
                 </div>
@@ -702,7 +702,7 @@ export default function MiroReadyBoardPage() {
           <div className="grid gap-6 xl:grid-cols-[1fr_0.75fr]">
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
               {decisionLanes.map((lane) => (
-                <article key={lane.label} className="rounded-lg border border-[#ded4c1] bg-goods-cream p-4">
+                <article key={lane.label} className="rounded-lg border border-goods-sand bg-goods-cream p-4">
                   <h3 className="text-lg font-semibold">{lane.label}</h3>
                   <ul className="mt-4 space-y-3">
                     {lane.items.map((item) => (
@@ -715,8 +715,8 @@ export default function MiroReadyBoardPage() {
                 </article>
               ))}
             </div>
-            <article className="rounded-lg border border-[#ded4c1] bg-white p-5">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#9b6a45]">Questions for the deck room</p>
+            <article className="rounded-lg border border-goods-sand bg-white p-5">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-clay">Questions for the deck room</p>
               <ul className="mt-4 space-y-3">
                 {deckDecisionPrompts.map((prompt) => (
                   <li key={prompt} className="flex gap-2 text-sm leading-relaxed text-goods-ink">

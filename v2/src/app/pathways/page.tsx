@@ -38,13 +38,13 @@ export default function PathwaysPage() {
       <section className="border-b border-goods-grid bg-[radial-gradient(circle_at_top_left,_#efe2cf_0,_#fbf8f1_46%,_#f4eee4_100%)]">
         <div className="container mx-auto max-w-7xl px-5 py-16 md:py-24">
           <div className="max-w-4xl">
-            <p className="mb-5 text-xs font-semibold uppercase tracking-[0.24em] text-[#a64f35]">
+            <p className="mb-5 text-xs font-semibold uppercase tracking-[0.24em] text-goods-clay">
               Community pathway workspace
             </p>
             <h1 className="max-w-3xl font-display text-4xl leading-[1.06] text-goods-ink md:text-6xl">
               Start with what a community wants. Build only what helps.
             </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-[#665f53]">
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-goods-sub">
               One shared pathway for listening, choosing support, approving ownership,
               finding funding and learning together. Communities can choose one module,
               the complete facility, or nothing yet.
@@ -67,7 +67,7 @@ export default function PathwaysPage() {
             {PATHWAY_STAGES.map((stage, index) => (
               <li key={stage.id} className="flex flex-1 items-start gap-2">
                 <div className="min-w-0 flex-1">
-                  <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-goods-cream-muted text-sm font-semibold text-[#a64f35]">
+                  <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-goods-cream-muted text-sm font-semibold text-goods-clay">
                     {index + 1}
                   </div>
                   <p className="text-sm font-semibold text-goods-ink">{stage.label}</p>
@@ -85,7 +85,7 @@ export default function PathwaysPage() {
       <section id="communities" className="container mx-auto max-w-7xl px-5 py-16 md:py-24">
         <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#a64f35]">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-goods-clay">
               Four different starting points
             </p>
             <h2 className="mt-3 font-display text-3xl text-goods-ink md:text-4xl">
@@ -108,7 +108,7 @@ export default function PathwaysPage() {
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="flex items-center gap-2 text-xs font-medium text-goods-sub">
-                    <MapPinned className="h-4 w-4 text-[#a64f35]" /> {pathway.region}
+                    <MapPinned className="h-4 w-4 text-goods-clay" /> {pathway.region}
                   </p>
                   <h3 className="mt-3 font-display text-3xl text-goods-ink">{pathway.name}</h3>
                   <p className="mt-2 text-sm text-[#6f675b]">{pathway.relationship}</p>
@@ -119,7 +119,7 @@ export default function PathwaysPage() {
               </div>
 
               <div className="my-6 rounded-2xl bg-[#f8f4ed] p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#a64f35]">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-goods-clay">
                   Next decision
                 </p>
                 <p className="mt-2 text-sm leading-6 text-[#3f3b35]">{pathway.nextDecision}</p>
@@ -137,8 +137,8 @@ export default function PathwaysPage() {
               </div>
 
               <div className="mt-7 flex items-center justify-between border-t border-[#eee7dc] pt-5 text-sm">
-                <span className="font-medium text-[#6b6358]">{pathway.stageLabel}</span>
-                <span className="flex items-center gap-2 font-semibold text-[#a64f35]">
+                <span className="font-medium text-goods-sub">{pathway.stageLabel}</span>
+                <span className="flex items-center gap-2 font-semibold text-goods-clay">
                   Open pathway <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                 </span>
               </div>

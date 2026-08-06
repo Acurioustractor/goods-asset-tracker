@@ -80,17 +80,17 @@ export default async function PartnerOutcomesPage({ params }: PageProps) {
   const outcomes = computePartnerOutcomes(partner, rollup);
 
   return (
-    <main className="bg-[#fbf7f1] text-[#282828] min-h-screen print:bg-white">
+    <main className="bg-goods-cream text-goods-ink min-h-screen print:bg-white">
       <PrintStyles />
 
       {/* Toolbar — hidden in print, lets the user print to PDF */}
-      <div className="print:hidden border-b border-[#e5d9cd] bg-white">
+      <div className="print:hidden border-b border-goods-sand bg-white">
         <div className="mx-auto max-w-6xl flex items-center justify-between gap-4 px-5 py-3 text-xs">
-          <Link href={`/partners/${partner.slug}`} className="text-[#68635d] hover:text-[#282828]">
+          <Link href={`/partners/${partner.slug}`} className="text-goods-sub hover:text-goods-ink">
             ← Back to {partner.shortName ?? partner.name}
           </Link>
           <div className="flex items-center gap-3">
-            <span className="text-[#68635d]">
+            <span className="text-goods-sub">
               Source:{' '}
               {outcomes.bedsDeliveredSource === 'live' ? 'live community register' : 'committed numbers'}
             </span>
@@ -101,7 +101,7 @@ export default async function PartnerOutcomesPage({ params }: PageProps) {
 
       <div className="mx-auto print:m-0 print:p-0 print:max-w-none max-w-[1400px] p-7 print:break-inside-avoid">
         <article
-          className="snapshot mx-auto bg-[#fffdf9] border border-[#e5d9cd] overflow-hidden print:border-0 print:shadow-none shadow-sm"
+          className="snapshot mx-auto bg-goods-cream border border-goods-sand overflow-hidden print:border-0 print:shadow-none shadow-sm"
           style={{ width: 1344 }}
         >
           {/* Accent ribbon */}
@@ -113,20 +113,20 @@ export default async function PartnerOutcomesPage({ params }: PageProps) {
           </div>
 
           {/* Topbar */}
-          <header className="flex items-center justify-between gap-6 border-b border-[#e5d9cd] bg-white px-7 py-4">
+          <header className="flex items-center justify-between gap-6 border-b border-goods-sand bg-white px-7 py-4">
             <Link href="/" className="leading-none">
               <span className="block font-display text-[26px]" style={{ color: '#282828' }}>
                 Goods
               </span>
-              <span className="block text-[9px] uppercase tracking-[0.24em] text-[#68635d] mt-1 font-semibold">
+              <span className="block text-[9px] uppercase tracking-[0.24em] text-goods-sub mt-1 font-semibold">
                 On Country
               </span>
             </Link>
             <div className="flex items-center gap-4">
-              <span className="text-[9px] uppercase tracking-[0.24em] text-[#68635d] font-semibold">
+              <span className="text-[9px] uppercase tracking-[0.24em] text-goods-sub font-semibold">
                 Supported by
               </span>
-              <div className="rounded-md bg-white px-3 py-1 border border-[#e5d9cd]">
+              <div className="rounded-md bg-white px-3 py-1 border border-goods-sand">
                 <Image
                   src={partner.logoSrc}
                   alt={partner.name}
@@ -154,7 +154,7 @@ export default async function PartnerOutcomesPage({ params }: PageProps) {
 
 function LeftFeature({ partner }: { partner: Partner }) {
   return (
-    <aside className="bg-[#fffdf9] flex flex-col">
+    <aside className="bg-goods-cream flex flex-col">
       <div className="relative w-full" style={{ aspectRatio: '488 / 560' }}>
         <Image
           src={partner.hero.imageSrc}
@@ -170,9 +170,9 @@ function LeftFeature({ partner }: { partner: Partner }) {
         </p>
       </div>
 
-      <div className="grid grid-cols-3 gap-2.5 border-t border-b border-[#e5d9cd] bg-[#f9f3ed] p-3.5">
+      <div className="grid grid-cols-3 gap-2.5 border-t border-b border-goods-sand bg-[#f9f3ed] p-3.5">
         {partner.evidencePhotos.map((photo) => (
-          <div key={photo.src} className="relative overflow-hidden border border-[#e5d9cd]" style={{ aspectRatio: '4 / 3' }}>
+          <div key={photo.src} className="relative overflow-hidden border border-goods-sand" style={{ aspectRatio: '4 / 3' }}>
             <Image
               src={photo.src}
               alt={photo.alt}
@@ -189,10 +189,10 @@ function LeftFeature({ partner }: { partner: Partner }) {
           className="flex-1 bg-[#fff8f0] border-l-[6px] px-6 py-7"
           style={{ borderLeftColor: partner.accent || PARTNER_ACCENTS.rust }}
         >
-          <blockquote className="font-display text-[17px] leading-snug text-[#282828]">
+          <blockquote className="font-display text-[17px] leading-snug text-goods-ink">
             “{partner.quote.text}”
           </blockquote>
-          <figcaption className="mt-3 text-[10px] leading-relaxed text-[#68635d]">
+          <figcaption className="mt-3 text-[10px] leading-relaxed text-goods-sub">
             {partner.quote.cite}
           </figcaption>
         </figure>
@@ -204,17 +204,17 @@ function LeftFeature({ partner }: { partner: Partner }) {
 function RightContent({ partner, outcomes }: { partner: Partner; outcomes: PartnerOutcomes }) {
   const accent = partner.accent || PARTNER_ACCENTS.rust;
   return (
-    <section className="border-l border-[#e5d9cd] bg-white px-7 py-7 flex flex-col gap-3.5">
+    <section className="border-l border-goods-sand bg-white px-7 py-7 flex flex-col gap-3.5">
       <p
         className="text-[10px] font-bold uppercase tracking-[0.24em]"
         style={{ color: accent }}
       >
         {partner.hero.eyebrow}
       </p>
-      <h1 className="font-display text-[44px] leading-[1.04] text-[#282828] whitespace-pre-line">
+      <h1 className="font-display text-[44px] leading-[1.04] text-goods-ink whitespace-pre-line">
         {partner.hero.title}
       </h1>
-      <p className="text-[13px] leading-[1.5] text-[#68635d]">
+      <p className="text-[13px] leading-[1.5] text-goods-sub">
         {partner.hero.summary}
       </p>
 
@@ -224,11 +224,11 @@ function RightContent({ partner, outcomes }: { partner: Partner; outcomes: Partn
 
       <Measurement partner={partner} />
 
-      <div className="mt-auto flex items-center justify-between gap-4 border-t border-[#e5d9cd] pt-3 text-[9px] text-[#68635d]">
+      <div className="mt-auto flex items-center justify-between gap-4 border-t border-goods-sand pt-3 text-[9px] text-goods-sub">
         <span>
           goodsoncountry.com/partners/{partner.slug} · goodsoncountry.com/contact
         </span>
-        <span className="font-bold text-[#282828]">
+        <span className="font-bold text-goods-ink">
           {partner.acknowledgement}
         </span>
       </div>
@@ -273,19 +273,19 @@ function KpiStrip({ outcomes }: { outcomes: PartnerOutcomes }) {
   ];
 
   return (
-    <div className="grid grid-cols-4 bg-[#f6efe7] border border-[#e5d9cd]">
+    <div className="grid grid-cols-4 bg-[#f6efe7] border border-goods-sand">
       {cells.map((cell, idx) => (
         <div
           key={cell.label}
-          className={`flex flex-col gap-1.5 p-3.5 ${idx > 0 ? 'border-l border-[#e5d9cd]' : ''}`}
+          className={`flex flex-col gap-1.5 p-3.5 ${idx > 0 ? 'border-l border-goods-sand' : ''}`}
         >
           <span className="font-display text-[36px] leading-none" style={{ color: cell.color }}>
             {cell.value}
           </span>
-          <span className="text-[9px] font-bold uppercase tracking-[0.13em] text-[#282828]">
+          <span className="text-[9px] font-bold uppercase tracking-[0.13em] text-goods-ink">
             {cell.label}
           </span>
-          <p className="text-[9.5px] leading-[1.45] text-[#68635d]">{cell.body}</p>
+          <p className="text-[9.5px] leading-[1.45] text-goods-sub">{cell.body}</p>
         </div>
       ))}
     </div>
@@ -295,19 +295,19 @@ function KpiStrip({ outcomes }: { outcomes: PartnerOutcomes }) {
 function VoiceThemes({ partner }: { partner: Partner }) {
   return (
     <div>
-      <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#282828] mb-2.5">
+      <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-goods-ink mb-2.5">
         Voice themes emerging
       </p>
       <div className="grid grid-cols-2 gap-2.5">
         {partner.themes.map((theme) => (
           <div
             key={theme.id}
-            className="flex flex-col gap-1.5 border border-[#e5d9cd] bg-[#fbf7f1] px-3.5 py-3"
+            className="flex flex-col gap-1.5 border border-goods-sand bg-goods-cream px-3.5 py-3"
           >
-            <span className="text-[9.5px] font-bold uppercase tracking-[0.12em] text-[#282828]">
+            <span className="text-[9.5px] font-bold uppercase tracking-[0.12em] text-goods-ink">
               {theme.label}
             </span>
-            <p className="text-[10px] leading-[1.45] text-[#68635d]">{theme.body}</p>
+            <p className="text-[10px] leading-[1.45] text-goods-sub">{theme.body}</p>
           </div>
         ))}
       </div>
@@ -318,19 +318,19 @@ function VoiceThemes({ partner }: { partner: Partner }) {
 function Measurement({ partner }: { partner: Partner }) {
   return (
     <div>
-      <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#282828] mb-2">
+      <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-goods-ink mb-2">
         What we measure next
       </p>
       <ul className="list-none p-0 m-0">
         {partner.measurement.map((row, idx) => (
           <li
             key={row.label}
-            className={`grid grid-cols-[148px_minmax(0,1fr)] gap-3.5 py-2 ${idx === 0 ? 'border-t' : ''} border-b border-[#e5d9cd]`}
+            className={`grid grid-cols-[148px_minmax(0,1fr)] gap-3.5 py-2 ${idx === 0 ? 'border-t' : ''} border-b border-goods-sand`}
           >
-            <span className="text-[9px] font-bold uppercase tracking-[0.1em] text-[#282828] leading-[1.4]">
+            <span className="text-[9px] font-bold uppercase tracking-[0.1em] text-goods-ink leading-[1.4]">
               {row.label}
             </span>
-            <span className="text-[10px] leading-[1.45] text-[#68635d]">{row.body}</span>
+            <span className="text-[10px] leading-[1.45] text-goods-sub">{row.body}</span>
           </li>
         ))}
       </ul>
@@ -340,12 +340,12 @@ function Measurement({ partner }: { partner: Partner }) {
 
 function FooterNote({ partner, outcomes }: { partner: Partner; outcomes: PartnerOutcomes }) {
   return (
-    <p className="print:hidden mx-auto mt-6 max-w-[1344px] text-[11px] text-[#68635d]">
-      <strong className="text-[#282828]">Live data:</strong> KPIs pull from {partner.communityIds.length}{' '}
+    <p className="print:hidden mx-auto mt-6 max-w-[1344px] text-[11px] text-goods-sub">
+      <strong className="text-goods-ink">Live data:</strong> KPIs pull from {partner.communityIds.length}{' '}
       mapped community ID{partner.communityIds.length === 1 ? '' : 's'}{' '}
       ({outcomes.matchedCommunities.length} matched in the register). When the live count is zero, the
       partner&apos;s committed figures are used as a floor. Update the registry at{' '}
-      <code className="text-[#282828]">v2/src/lib/data/partners.ts</code> to add a new funder.
+      <code className="text-goods-ink">v2/src/lib/data/partners.ts</code> to add a new funder.
     </p>
   );
 }

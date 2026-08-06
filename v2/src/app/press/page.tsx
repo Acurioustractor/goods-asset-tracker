@@ -222,7 +222,7 @@ export default async function PressPage() {
       </section>
 
       {/* Brand system */}
-      <section id="brand-system" className="border-b bg-[#FDF8F3] py-20">
+      <section id="brand-system" className="border-b bg-goods-cream py-20">
         <div className="container mx-auto max-w-6xl px-6">
           <SectionLabel>Brand system</SectionLabel>
           <h2 className="mt-2 text-3xl font-medium tracking-tight">Wordmark, colours, type, voice</h2>
@@ -363,7 +363,7 @@ export default async function PressPage() {
       </section>
 
       {/* Voices */}
-      <section id="voices" className="border-b bg-[#FDF8F3] py-20">
+      <section id="voices" className="border-b bg-goods-cream py-20">
         <div className="container mx-auto max-w-5xl px-6">
           <SectionLabel>Voices</SectionLabel>
           <h2 className="mt-2 text-3xl font-medium tracking-tight">Quote from community, not about</h2>
@@ -418,7 +418,7 @@ export default async function PressPage() {
       </section>
 
       {/* Partners */}
-      <section id="partners" className="border-b bg-[#FDF8F3] py-20">
+      <section id="partners" className="border-b bg-goods-cream py-20">
         <div className="container mx-auto max-w-6xl px-6">
           <SectionLabel>Partners</SectionLabel>
           <h2 className="mt-2 text-3xl font-medium tracking-tight">Who we work with</h2>

@@ -169,7 +169,7 @@ export function RoadPitchEditor() {
 
   return (
     <>
-      <div className="road-pitch-editor fixed bottom-5 right-5 z-[100] flex items-center gap-2 rounded-full border border-white/15 bg-[#171714] p-2 text-white shadow-2xl">
+      <div className="road-pitch-editor fixed bottom-5 right-5 z-[100] flex items-center gap-2 rounded-full border border-white/15 bg-goods-ink p-2 text-white shadow-2xl">
         <button
           type="button"
           onClick={() => setEditing((value) => !value)}
@@ -231,10 +231,10 @@ export function RoadPitchEditor() {
       {pickerKey && (
         <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/75 p-4">
           <div className="flex max-h-[88vh] w-full max-w-5xl flex-col overflow-hidden rounded-xl bg-goods-cream text-goods-ink shadow-2xl">
-            <div className="flex items-center gap-3 border-b border-[#d9d1c3] p-4">
+            <div className="flex items-center gap-3 border-b border-goods-sand p-4">
               <div>
                 <p className="font-semibold">Swap this photo</p>
-                <p className="text-xs text-[#6d675c]">
+                <p className="text-xs text-goods-sub">
                   Saves to the project and appears in every browser. Deploy the project to publish it.
                 </p>
               </div>
@@ -242,7 +242,7 @@ export function RoadPitchEditor() {
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Search people, place or tag"
-                className="ml-auto w-64 rounded-md border border-[#d9d1c3] bg-white px-3 py-2 text-sm"
+                className="ml-auto w-64 rounded-md border border-goods-sand bg-white px-3 py-2 text-sm"
               />
               <button type="button" onClick={() => setPickerKey(null)} className="p-2">
                 <X className="h-5 w-5" />
@@ -264,7 +264,7 @@ export function RoadPitchEditor() {
                   type="button"
                   disabled={savingMedia}
                   onClick={() => void pickMedia(item.url)}
-                  className="flex h-[190px] min-h-[190px] flex-col overflow-hidden rounded-md border border-[#d9d1c3] bg-white text-left hover:border-goods-terracotta"
+                  className="flex h-[190px] min-h-[190px] flex-col overflow-hidden rounded-md border border-goods-sand bg-white text-left hover:border-goods-terracotta"
                 >
                   {/* External EL hosts vary, so the editor intentionally uses an unoptimised thumbnail. */}
                   {/* eslint-disable-next-line @next/next/no-img-element */}

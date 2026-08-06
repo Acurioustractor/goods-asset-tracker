@@ -103,7 +103,7 @@ export default async function CommunityPathwayPage({
         <div className="container mx-auto max-w-7xl px-5 py-5">
           <Link
             href="/pathways"
-            className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[#5f584e] hover:text-[#a64f35]"
+            className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[#5f584e] hover:text-goods-clay"
           >
             <ArrowLeft className="h-4 w-4" /> All pathways
           </Link>
@@ -113,34 +113,34 @@ export default async function CommunityPathwayPage({
       <section className="border-b border-goods-grid bg-[linear-gradient(145deg,#f4eadb_0%,#fbf8f1_56%,#eef1e9_100%)]">
         <div className="container mx-auto grid max-w-7xl gap-10 px-5 py-14 lg:grid-cols-[1fr_0.72fr] lg:py-20">
           <div>
-            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#a64f35]">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-goods-clay">
               <MapPinned className="h-4 w-4" /> {pathway.region}
             </p>
             <h1 className="mt-4 font-display text-4xl text-goods-ink md:text-6xl">{pathway.name}</h1>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-[#625b50]">{pathway.invitation}</p>
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-goods-sub">{pathway.invitation}</p>
             <div className="mt-8 flex flex-wrap gap-2">
               <span className="rounded-full bg-goods-ink px-4 py-2 text-xs font-semibold text-white">
                 {pathway.stageLabel}
               </span>
-              <span className="rounded-full border border-[#d5cabc] bg-white/70 px-4 py-2 text-xs font-semibold text-[#5c554b]">
+              <span className="rounded-full border border-goods-sand bg-white/70 px-4 py-2 text-xs font-semibold text-[#5c554b]">
                 Evidence: {evidenceLabel[pathway.evidenceState]}
               </span>
-              <span className="rounded-full border border-[#d5cabc] bg-white/70 px-4 py-2 text-xs font-semibold text-[#5c554b]">
+              <span className="rounded-full border border-goods-sand bg-white/70 px-4 py-2 text-xs font-semibold text-[#5c554b]">
                 Media: {evidenceLabel[pathway.mediaState]}
               </span>
             </div>
           </div>
 
           <aside className="rounded-3xl border border-white/80 bg-white/80 p-6 shadow-[0_18px_50px_rgba(69,57,39,0.08)]">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#a64f35]">Relationship</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-goods-clay">Relationship</p>
             <dl className="mt-5 space-y-5 text-sm">
               <div>
                 <dt className="flex items-center gap-2 font-semibold text-[#37332e]"><UserRound className="h-4 w-4" /> Community lead</dt>
-                <dd className="mt-1.5 leading-6 text-[#6b6358]">{pathway.communityLead}</dd>
+                <dd className="mt-1.5 leading-6 text-goods-sub">{pathway.communityLead}</dd>
               </div>
               <div>
                 <dt className="font-semibold text-[#37332e]">Organisation</dt>
-                <dd className="mt-1.5 leading-6 text-[#6b6358]">{pathway.leadOrganisation}</dd>
+                <dd className="mt-1.5 leading-6 text-goods-sub">{pathway.leadOrganisation}</dd>
               </div>
               <div className="rounded-2xl bg-[#f5f0e8] p-4">
                 <dt className="font-semibold text-[#37332e]">Decision needed next</dt>
@@ -158,11 +158,11 @@ export default async function CommunityPathwayPage({
               <li key={stage.id} className="flex flex-1 items-center">
                 <div className="flex items-center gap-2">
                   <span className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-semibold ${
-                    index < activeStage ? 'bg-[#6f815f] text-white' : index === activeStage ? 'bg-[#a64f35] text-white' : 'bg-[#eee9e0] text-[#7b7468]'
+                    index < activeStage ? 'bg-[#6f815f] text-white' : index === activeStage ? 'bg-goods-clay text-white' : 'bg-[#eee9e0] text-[#7b7468]'
                   }`}>
                     {index < activeStage ? <Check className="h-4 w-4" /> : index + 1}
                   </span>
-                  <span className={`text-xs font-semibold ${index === activeStage ? 'text-[#a64f35]' : 'text-[#625b50]'}`}>
+                  <span className={`text-xs font-semibold ${index === activeStage ? 'text-goods-clay' : 'text-goods-sub'}`}>
                     {stage.label}
                   </span>
                 </div>
@@ -203,20 +203,20 @@ export default async function CommunityPathwayPage({
                 </div>
               </div>
               <div className="flex flex-col justify-center p-7 md:p-12">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#a64f35]">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-goods-clay">
                   {pathway.caseStudy.eyebrow}
                 </p>
                 <h2 className="mt-4 font-display text-3xl leading-tight text-goods-ink md:text-5xl">
                   {pathway.caseStudy.headline}
                 </h2>
-                <p className="mt-6 text-base leading-8 text-[#625b50]">
+                <p className="mt-6 text-base leading-8 text-goods-sub">
                   {pathway.caseStudy.summary}
                 </p>
-                <figure className="mt-8 border-l-2 border-[#c9613c] pl-5">
+                <figure className="mt-8 border-l-2 border-goods-terracotta pl-5">
                   <blockquote className="font-display text-xl leading-8 text-goods-ink">
                     “{pathway.caseStudy.quote.text}”
                   </blockquote>
-                  <figcaption className="mt-4 text-sm text-[#6b6358]">
+                  <figcaption className="mt-4 text-sm text-goods-sub">
                     <strong className="text-[#37332e]">{pathway.caseStudy.quote.name}</strong>
                     <span className="block">{pathway.caseStudy.quote.context}</span>
                   </figcaption>
@@ -236,7 +236,7 @@ export default async function CommunityPathwayPage({
 
             <div className="grid gap-10 bg-[#f7f1e8] p-7 md:p-12 lg:grid-cols-[0.82fr_1.18fr]">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#a64f35]">What happened</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-goods-clay">What happened</p>
                 <div className="mt-6 space-y-7">
                   {pathway.caseStudy.story.map((beat, index) => (
                     <article key={beat.title} className="grid grid-cols-[2rem_1fr] gap-3">
@@ -244,8 +244,8 @@ export default async function CommunityPathwayPage({
                         {index + 1}
                       </span>
                       <div>
-                        <h3 className="font-semibold text-[#302d28]">{beat.title}</h3>
-                        <p className="mt-2 text-sm leading-6 text-[#6b6358]">{beat.body}</p>
+                        <h3 className="font-semibold text-goods-ink">{beat.title}</h3>
+                        <p className="mt-2 text-sm leading-6 text-goods-sub">{beat.body}</p>
                       </div>
                     </article>
                   ))}
@@ -320,7 +320,7 @@ export default async function CommunityPathwayPage({
             )}
 
             <div className="grid gap-8 p-7 md:p-12 lg:grid-cols-[1.2fr_0.8fr]">
-              <div className="rounded-2xl bg-[#c9613c] p-7 text-white">
+              <div className="rounded-2xl bg-goods-terracotta p-7 text-white">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">The fundable next step</p>
                 <p className="mt-4 font-display text-2xl leading-9">{pathway.caseStudy.nextAsk}</p>
                 {pathway.caseStudy.statusNote && (
@@ -330,17 +330,17 @@ export default async function CommunityPathwayPage({
                 )}
               </div>
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#a64f35]">Go deeper</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-goods-clay">Go deeper</p>
                 <div className="mt-4 space-y-3">
                   {pathway.caseStudy.links.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="group block rounded-2xl border border-[#e1d8c9] p-4 transition hover:border-[#c9613c]"
+                      className="group block rounded-2xl border border-goods-sand p-4 transition hover:border-goods-terracotta"
                     >
-                      <span className="flex items-center justify-between gap-3 font-semibold text-[#302d28]">
+                      <span className="flex items-center justify-between gap-3 font-semibold text-goods-ink">
                         {item.label}
-                        <ArrowRight className="h-4 w-4 text-[#a64f35] transition group-hover:translate-x-1" />
+                        <ArrowRight className="h-4 w-4 text-goods-clay transition group-hover:translate-x-1" />
                       </span>
                       <span className="mt-1 block text-sm leading-6 text-[#746c60]">{item.note}</span>
                     </Link>
@@ -353,9 +353,9 @@ export default async function CommunityPathwayPage({
 
         <section id="support-menu">
           <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#a64f35]">Choose support</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-goods-clay">Choose support</p>
             <h2 className="mt-3 font-display text-3xl text-goods-ink md:text-4xl">A menu, not a fixed program</h2>
-            <p className="mt-4 leading-7 text-[#6b6358]">
+            <p className="mt-4 leading-7 text-goods-sub">
               These are working options. A module only becomes part of the delivery plan
               after the community confirms it.
             </p>
@@ -365,31 +365,31 @@ export default async function CommunityPathwayPage({
             {pathway.modules.map((item) => (
               <article key={item.id} className="rounded-2xl border border-[#e2d9ca] bg-white p-6">
                 <div className="flex items-start justify-between gap-4">
-                  <h3 className="text-lg font-semibold text-[#302d28]">{item.name}</h3>
+                  <h3 className="text-lg font-semibold text-goods-ink">{item.name}</h3>
                   <span className={`shrink-0 rounded-full border px-3 py-1 text-[11px] font-semibold ${moduleStyle[item.state]}`}>
                     {moduleLabel[item.state]}
                   </span>
                 </div>
-                <p className="mt-3 text-sm leading-6 text-[#6b6358]">{item.summary}</p>
+                <p className="mt-3 text-sm leading-6 text-goods-sub">{item.summary}</p>
               </article>
             ))}
           </div>
         </section>
 
         <section className="mt-16 grid gap-5 lg:grid-cols-2">
-          <article className="rounded-3xl border border-[#e1d8c9] bg-white p-7">
+          <article className="rounded-3xl border border-goods-sand bg-white p-7">
             <div className="flex items-center gap-3">
               <ShieldCheck className="h-6 w-6 text-[#718461]" />
               <h2 className="font-display text-2xl text-goods-ink">Evidence boundary</h2>
             </div>
-            <p className="mt-5 text-sm leading-7 text-[#625b50]">{pathway.evidenceNote}</p>
+            <p className="mt-5 text-sm leading-7 text-goods-sub">{pathway.evidenceNote}</p>
           </article>
-          <article className="rounded-3xl border border-[#e1d8c9] bg-white p-7">
+          <article className="rounded-3xl border border-goods-sand bg-white p-7">
             <div className="flex items-center gap-3">
-              <ImageIcon className="h-6 w-6 text-[#a64f35]" />
+              <ImageIcon className="h-6 w-6 text-goods-clay" />
               <h2 className="font-display text-2xl text-goods-ink">Stories and media</h2>
             </div>
-            <p className="mt-5 text-sm leading-7 text-[#625b50]">{pathway.mediaNote}</p>
+            <p className="mt-5 text-sm leading-7 text-goods-sub">{pathway.mediaNote}</p>
           </article>
         </section>
 
@@ -419,16 +419,16 @@ export default async function CommunityPathwayPage({
         <section className="mt-12 flex flex-col items-start justify-between gap-5 rounded-3xl border border-[#ded5c7] bg-[#f3ede4] p-7 md:flex-row md:items-center">
           <div>
             <p className="flex items-center gap-2 font-semibold text-[#37332e]">
-              <MessageCircle className="h-5 w-5 text-[#a64f35]" /> Conversation-first
+              <MessageCircle className="h-5 w-5 text-goods-clay" /> Conversation-first
             </p>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-[#6b6358]">
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-goods-sub">
               Use this pathway in a phone call, Google Meet or on-Country conversation.
               Return the summary for correction before turning it into a proposal.
             </p>
           </div>
           <Link
             href="/partner"
-            className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full bg-[#a64f35] px-5 py-3 text-sm font-semibold text-white hover:bg-[#8f422d]"
+            className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full bg-goods-clay px-5 py-3 text-sm font-semibold text-white hover:bg-[#8f422d]"
           >
             Start a conversation <ArrowRight className="h-4 w-4" />
           </Link>

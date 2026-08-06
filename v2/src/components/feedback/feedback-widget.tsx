@@ -145,7 +145,7 @@ export function FeedbackWidget() {
                   rows={5}
                   maxLength={2000}
                   placeholder="e.g. The weight says 12kg but it should be 20kg..."
-                  className="border-[#E8DED4] focus:border-goods-terracotta focus:ring-goods-terracotta"
+                  className="border-goods-sand focus:border-goods-terracotta focus:ring-goods-terracotta"
                 />
               </div>
 
@@ -159,7 +159,7 @@ export function FeedbackWidget() {
                   name="email"
                   type="email"
                   placeholder="you@example.com"
-                  className="border-[#E8DED4] focus:border-goods-terracotta focus:ring-goods-terracotta"
+                  className="border-goods-sand focus:border-goods-terracotta focus:ring-goods-terracotta"
                 />
               </div>
 

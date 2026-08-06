@@ -8,7 +8,7 @@ export function PrintButton() {
     <button
       type="button"
       onClick={() => window.print()}
-      className="rounded-md border border-[#282828]/30 px-3 py-1.5 font-semibold hover:bg-[#282828] hover:text-[#fbf7f1] transition print:hidden"
+      className="rounded-md border border-goods-ink/30 px-3 py-1.5 font-semibold hover:bg-goods-ink hover:text-goods-cream transition print:hidden"
       suppressHydrationWarning
     >
       Print or save as PDF

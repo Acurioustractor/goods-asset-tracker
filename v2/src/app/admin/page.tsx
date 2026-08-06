@@ -165,7 +165,7 @@ export default async function MapHome() {
                   <Link href={`/admin/communities/${c.id}`} className="flex items-center justify-between gap-2 hover:text-primary transition-colors">
                     <span className="flex items-center gap-1.5 text-sm truncate">
                       {c.name}
-                      {c.washers > 0 && <span className="h-1.5 w-1.5 rounded-full bg-[#4E8F88]" aria-hidden />}
+                      {c.washers > 0 && <span className="h-1.5 w-1.5 rounded-full bg-goods-teal" aria-hidden />}
                     </span>
                     <span className="font-display text-sm font-bold tabular-nums" style={{ fontFamily: 'Georgia, serif' }}>{c.beds}</span>
                   </Link>

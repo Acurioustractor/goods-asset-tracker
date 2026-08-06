@@ -32,7 +32,7 @@ export function RoadPitchMap({ locations }: { locations: CommunityLocation[] }) 
   );
 
   return (
-    <div className="grid overflow-hidden border border-[#47453f] bg-[#22211e] sm:grid-cols-[minmax(0,1.45fr)_minmax(250px,0.55fr)]">
+    <div className="grid overflow-hidden border border-[#47453f] bg-goods-ink sm:grid-cols-[minmax(0,1.45fr)_minmax(250px,0.55fr)]">
       <div className="min-h-[430px] bg-goods-cream-muted">
         <CommunityMap
           locations={locations}
@@ -45,7 +45,7 @@ export function RoadPitchMap({ locations }: { locations: CommunityLocation[] }) 
 
       <aside className="flex flex-col justify-between p-5 text-goods-cream md:p-6">
         <div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#d97a59]">
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-goods-terracotta-light">
             {selected ? 'Selected place' : 'The national picture'}
           </p>
           {!selected && (
@@ -53,7 +53,7 @@ export function RoadPitchMap({ locations }: { locations: CommunityLocation[] }) 
               <h3 className="goods-pitch-display text-2xl leading-none lg:text-3xl">
                 Products delivered. Four pathways open.
               </h3>
-              <p className="mt-3 text-xs leading-5 text-[#d8d2c7] lg:text-sm lg:leading-6">
+              <p className="mt-3 text-xs leading-5 text-goods-grid lg:text-sm lg:leading-6">
                 The map opens on every recorded location. Four places are considering different
                 parts of the making; the other markers show where products have already travelled.
               </p>
@@ -69,7 +69,7 @@ export function RoadPitchMap({ locations }: { locations: CommunityLocation[] }) 
                       className="flex w-full items-center justify-between gap-2 border-b border-[#47453f] py-1 text-left"
                     >
                       <span className="text-xs text-goods-cream lg:text-sm">{location.name}</span>
-                      <span className="text-right font-mono text-[7px] uppercase tracking-[0.1em] text-[#d97a59] lg:text-[8px]">
+                      <span className="text-right font-mono text-[7px] uppercase tracking-[0.1em] text-goods-terracotta-light lg:text-[8px]">
                         {status.replace('Pathway · ', '')}
                       </span>
                     </button>
@@ -82,13 +82,13 @@ export function RoadPitchMap({ locations }: { locations: CommunityLocation[] }) 
             <div className="mt-7" aria-live="polite">
               <p className="text-sm text-[#b9b3a8]">{selected.region}</p>
               <h3 className="goods-pitch-display mt-2 text-4xl leading-none">{selected.name}</h3>
-              <p className="mt-6 text-base leading-7 text-[#d8d2c7]">{selected.description}</p>
+              <p className="mt-6 text-base leading-7 text-goods-grid">{selected.description}</p>
               <dl className="mt-8 grid grid-cols-2 gap-4 border-t border-[#47453f] pt-6">
                 <div>
                   <dt className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#9f998f]">
                     Beds recorded
                   </dt>
-                  <dd className="goods-pitch-display mt-2 text-4xl text-[#d97a59]">
+                  <dd className="goods-pitch-display mt-2 text-4xl text-goods-terracotta-light">
                     {selected.bedsDelivered}
                   </dd>
                 </div>
@@ -96,15 +96,15 @@ export function RoadPitchMap({ locations }: { locations: CommunityLocation[] }) 
                   <dt className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#9f998f]">
                     Cleared voices
                   </dt>
-                  <dd className="goods-pitch-display mt-2 text-4xl text-[#d97a59]">
+                  <dd className="goods-pitch-display mt-2 text-4xl text-goods-terracotta-light">
                     {selected.storytellerCount}
                   </dd>
                 </div>
               </dl>
-              <p className="mt-6 border-l border-[#d97a59] pl-4 text-sm leading-6 text-[#b9b3a8]">
+              <p className="mt-6 border-l border-goods-terracotta-light pl-4 text-sm leading-6 text-[#b9b3a8]">
                 {selected.highlight}
               </p>
-              <p className="mt-5 font-mono text-[9px] uppercase tracking-[0.16em] text-[#d97a59]">
+              <p className="mt-5 font-mono text-[9px] uppercase tracking-[0.16em] text-goods-terracotta-light">
                 {pathwayByLocation[selected.id] ?? 'Products delivered'}
               </p>
             </div>
@@ -117,14 +117,14 @@ export function RoadPitchMap({ locations }: { locations: CommunityLocation[] }) 
             <button
               type="button"
               onClick={() => setSelectedId(null)}
-                className="border border-[#57544d] px-3 py-2 text-left text-xs text-[#d8d2c7] transition-colors hover:border-[#d97a59]"
+                className="border border-[#57544d] px-3 py-2 text-left text-xs text-goods-grid transition-colors hover:border-goods-terracotta-light"
             >
                 Back to all places
             </button>
             </div>
             <Link
               href={`/communities/${selected.id}`}
-              className="mt-6 inline-flex border-b border-[#d97a59] pb-1 text-sm text-goods-cream hover:text-[#d97a59]"
+              className="mt-6 inline-flex border-b border-goods-terracotta-light pb-1 text-sm text-goods-cream hover:text-goods-terracotta-light"
             >
               Open the place evidence page
             </Link>

@@ -51,7 +51,7 @@ export default function OnePagerPage() {
       {/* The claim */}
       <section className="mt-6">
         <h1 className="goods-pitch-display text-3xl leading-tight">{NORTH_STAR.headline}</h1>
-        <p className="mt-3 max-w-2xl text-sm leading-6 text-[#6d675c]">
+        <p className="mt-3 max-w-2xl text-sm leading-6 text-goods-sub">
           Beds built for remote communities: {CANONICAL_ASSETS.bedsDeployed} delivered across{' '}
           {CANONICAL_ASSETS.communitiesServed} communities, {CANONICAL_ASSETS.washersInCommunity} washing
           machines in homes, {CANONICAL_ASSETS.plasticKg.toLocaleString()}kg of recycled plastic in bed
@@ -78,7 +78,7 @@ export default function OnePagerPage() {
         {FIVE_NUMBERS.map((cell) => (
           <div key={cell.l} className="bg-goods-cream p-3">
             <p className={`goods-pitch-display text-2xl ${cell.v === '$0' ? 'text-goods-terracotta' : ''}`}>{cell.v}</p>
-            <p className="mt-1 text-[11px] leading-4 text-[#6d675c]">{cell.l}</p>
+            <p className="mt-1 text-[11px] leading-4 text-goods-sub">{cell.l}</p>
             <p className="mt-1 font-mono text-[8px] uppercase tracking-[0.14em] text-goods-sub">{cell.chip}</p>
           </div>
         ))}
@@ -98,7 +98,7 @@ export default function OnePagerPage() {
               <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-goods-terracotta">0{i + 1} · {cell.step}</p>
               <p className="goods-pitch-display mt-2 text-xl">{cell.amount}</p>
               <p className="font-mono text-[8px] uppercase tracking-[0.14em] text-goods-sub">{cell.chip}</p>
-              <p className="mt-2 text-[11px] leading-4 text-[#6d675c]">{cell.line}</p>
+              <p className="mt-2 text-[11px] leading-4 text-goods-sub">{cell.line}</p>
             </div>
           ))}
         </div>
@@ -111,8 +111,8 @@ export default function OnePagerPage() {
           {DOORS.map((door) => (
             <div key={door.verb} className="border-t-2 border-goods-terracotta pt-2">
               <p className="goods-pitch-display text-xl">{door.verb}</p>
-              <p className="mt-1 text-[11px] leading-4 text-[#6d675c]">{door.entity}</p>
-              <p className="mt-1 text-[11px] leading-4 text-[#6d675c]">{door.does}</p>
+              <p className="mt-1 text-[11px] leading-4 text-goods-sub">{door.entity}</p>
+              <p className="mt-1 text-[11px] leading-4 text-goods-sub">{door.does}</p>
             </div>
           ))}
         </div>
@@ -120,7 +120,7 @@ export default function OnePagerPage() {
 
       {/* Footer */}
       <footer className="mt-8 flex items-baseline justify-between border-t border-goods-ink/25 pt-3">
-        <p className="text-[11px] text-[#6d675c]">
+        <p className="text-[11px] text-goods-sub">
           Watch the run: case study + film at{' '}
           <Link href="/case-studies/maningrida" className="underline decoration-goods-terracotta underline-offset-2">
             /case-studies/maningrida

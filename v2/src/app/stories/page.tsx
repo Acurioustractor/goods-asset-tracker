@@ -6,7 +6,11 @@ import { MediaGallery, MediaGallerySkeleton } from '@/components/empathy-ledger/
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { storytellerProfiles, storytellerEnrichment, videoGallery, impactStories, communityPartnerships } from '@/lib/data/content';
+import { storytellerProfiles, storytellerEnrichment, videoGallery, impactStories, communityPartnerships, communityLocations } from '@/lib/data/content';
+
+// Only communities with a live /communities/[slug] page get a link (townsville is
+// a partnership with no page; an unconditional link 404ed in production).
+const communityPageIds = new Set(communityLocations.map((c) => c.id));
 import { curatedQuotes } from '@/lib/data/curated-quotes';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import { isClearedForExternal } from '@/lib/data/cleared-voices';
@@ -34,13 +38,17 @@ const impactPersonPhoto: Record<string, string | undefined> = {
 // pages actually generated at build time (v2/src/app/storytellers/[slug]) — Melissa
 // Jackson and Norman Frank don't have a live Empathy Ledger storyteller page, so
 // their cards link to their community page instead of a dead /storytellers/ URL.
+// 2026-08-06: the EL storyteller feed currently returns zero slugs, so NO
+// /storytellers/[slug] page generates and every deep link 404s (verified on
+// production). Until the feed is back, cards link to the community page where
+// the person's community is certain, else the storytellers index.
 const impactStoryLink: Record<string, string> = {
-  'alfred-safety': '/storytellers/alfred-johnson',
+  'alfred-safety': '/storytellers',
   'melissa-comfort': '/communities/tennant-creek',
-  'gloria-health': '/storytellers/gloria-turner',
+  'gloria-health': '/communities/kalgoorlie',
   'norman-future': '/communities/tennant-creek',
-  'boe-washing-logic': '/storytellers/dr-boe-remenyi',
-  'cliff-health-messages': '/storytellers/cliff-plummer',
+  'boe-washing-logic': '/storytellers',
+  'cliff-health-messages': '/storytellers',
 };
 import type { SyndicationStoryteller } from '@/lib/empathy-ledger/types';
 import type { Metadata } from 'next';
@@ -651,8 +659,14 @@ export default async function StoriesPage() {
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {communityPartnerships.map((c) => {
               const photo = communityPhotoOverrides[c.id];
+              const CardWrap = ({ children }: { children: React.ReactNode }) =>
+                communityPageIds.has(c.id) ? (
+                  <Link href={`/communities/${c.id}`} className="group block">{children}</Link>
+                ) : (
+                  <div className="group block">{children}</div>
+                );
               return (
-                <Link key={c.id} href={`/communities/${c.id}`} className="group block">
+                <CardWrap key={c.id}>
                   <Card className="overflow-hidden border-0 shadow-sm hover:shadow-lg transition-shadow h-full">
                     <CardContent className="p-0">
                       {photo ? (
@@ -685,7 +699,7 @@ export default async function StoriesPage() {
                       </div>
                     </CardContent>
                   </Card>
-                </Link>
+                </CardWrap>
               );
             })}
           </div>

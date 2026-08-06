@@ -247,7 +247,7 @@ export default async function OrderDetailPage({
               opening a sponsored order. Surfaces the destination community and the
               dedication message that needs to travel with the bed. */}
           {order.is_sponsorship && (
-            <Card className="border-2 border-goods-terracotta/40 bg-[#FDF8F3]">
+            <Card className="border-2 border-goods-terracotta/40 bg-goods-cream">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between flex-wrap gap-2">
                   <CardTitle className="flex items-center gap-2 text-xl">

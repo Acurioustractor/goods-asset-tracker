@@ -369,7 +369,7 @@ function SectionHeading({
 
 export default function QbeReadinessPage() {
   return (
-    <main className="min-h-screen bg-[#FDF8F3] text-goods-ink">
+    <main className="min-h-screen bg-goods-cream text-goods-ink">
       {/* Confidential banner */}
       <div className="border-b border-amber-300 bg-[#FBEFD8]">
         <div className="mx-auto flex max-w-5xl items-center gap-2 px-4 py-2 text-xs font-medium text-amber-900 sm:px-6">
@@ -380,13 +380,13 @@ export default function QbeReadinessPage() {
       </div>
 
       {/* Header */}
-      <section className="border-b border-stone-800 bg-[#24211D] text-[#FDF8F3]">
+      <section className="border-b border-stone-800 bg-goods-ink text-goods-cream">
         <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
           <div className="flex flex-wrap items-center gap-2">
-            <Badge className="border-goods-gold/30 bg-goods-gold/15 text-[#FDF8F3]">
+            <Badge className="border-goods-gold/30 bg-goods-gold/15 text-goods-cream">
               QBE readiness
             </Badge>
-            <Badge className="border-white/15 bg-white/10 text-[#FDF8F3]">
+            <Badge className="border-white/15 bg-white/10 text-goods-cream">
               One goal · five proofs · the timeline
             </Badge>
           </div>
@@ -445,7 +445,7 @@ export default function QbeReadinessPage() {
       </section>
 
       {/* The simple frame */}
-      <section className="border-y border-stone-200 bg-[#24211D] text-[#FDF8F3]">
+      <section className="border-y border-stone-200 bg-goods-ink text-goods-cream">
         <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-goods-gold">
             The whole thing, simply
@@ -497,7 +497,7 @@ export default function QbeReadinessPage() {
             {STACK.map((item) => (
               <div
                 key={item.label}
-                className="flex flex-col rounded-xl border border-stone-200 bg-[#FDF8F3] p-5 shadow-sm"
+                className="flex flex-col rounded-xl border border-stone-200 bg-goods-cream p-5 shadow-sm"
               >
                 <div className="flex items-start justify-between gap-2">
                   <span className="text-sm font-semibold text-stone-700">{item.label}</span>
@@ -558,7 +558,7 @@ export default function QbeReadinessPage() {
       </section>
 
       {/* The program timeline */}
-      <section className="border-y border-stone-200 bg-[#F6EFE6]">
+      <section className="border-y border-stone-200 bg-goods-cream">
         <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
           <SectionHeading icon={CalendarDays} color="#5C8A86">
             The program timeline
@@ -571,7 +571,7 @@ export default function QbeReadinessPage() {
           <ol className="mt-7 space-y-0 border-l-2 border-stone-300 pl-6">
             {MILESTONES.map((m) => (
               <li key={m.when} className="relative pb-6 last:pb-0">
-                <span className="absolute -left-[1.92rem] top-1 h-3.5 w-3.5 rounded-full border-2 border-goods-teal bg-[#FDF8F3]" />
+                <span className="absolute -left-[1.92rem] top-1 h-3.5 w-3.5 rounded-full border-2 border-goods-teal bg-goods-cream" />
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="text-sm font-semibold text-goods-ink">{m.when}</span>
                   {m.tier ? <Pill tier={m.tier} /> : null}
@@ -638,7 +638,7 @@ export default function QbeReadinessPage() {
                     {r.to}
                   </span>
                 ) : (
-                  <span className="inline-flex items-center rounded-md border border-goods-gold/40 bg-[#FFF9EA] px-2 py-0.5 text-xs font-semibold text-[#8A6D1F]">
+                  <span className="inline-flex items-center rounded-md border border-goods-gold/40 bg-goods-cream px-2 py-0.5 text-xs font-semibold text-[#8A6D1F]">
                     {r.label}
                   </span>
                 )}
@@ -650,7 +650,7 @@ export default function QbeReadinessPage() {
       </section>
 
       {/* The live models */}
-      <section className="border-y border-stone-200 bg-[#F6EFE6]">
+      <section className="border-y border-stone-200 bg-goods-cream">
         <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
           <SectionHeading icon={ExternalLink} color="#5C8A86">
             Open the real models

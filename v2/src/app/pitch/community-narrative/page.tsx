@@ -107,7 +107,7 @@ function SectionHeader({
 }) {
   return (
     <div className="mb-6">
-      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#a84f35]">{eyebrow}</p>
+      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-goods-clay">{eyebrow}</p>
       <h2
         className="mt-3 max-w-5xl text-3xl font-light leading-tight text-[#1f2623] md:text-5xl"
         style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
@@ -151,7 +151,7 @@ function PhotoFrame({
 
 function QuoteBlock({ quote }: { quote: TranscriptQuote }) {
   return (
-    <blockquote className="rounded-md border border-[#d6ddd4] bg-[#fdfcf7] p-4">
+    <blockquote className="rounded-md border border-[#d6ddd4] bg-goods-cream p-4">
       <p className="text-sm leading-relaxed text-[#2f3b36]">&quot;{quote.text}&quot;</p>
       <p className="mt-3 text-xs font-semibold uppercase tracking-[0.14em] text-[#7a8a83]">
         {quote.context}
@@ -190,7 +190,7 @@ function StorytellerCard({ row }: { row: { person: StorytellerReview; quotes: Tr
             {person.themes.map((theme) => (
               <span
                 key={theme}
-                className="rounded-full border border-[#d6ddd4] bg-[#f5f3ea] px-2 py-1 text-[11px] font-semibold text-[#4f5f59]"
+                className="rounded-full border border-[#d6ddd4] bg-goods-cream px-2 py-1 text-[11px] font-semibold text-[#4f5f59]"
               >
                 {theme}
               </span>
@@ -199,7 +199,7 @@ function StorytellerCard({ row }: { row: { person: StorytellerReview; quotes: Tr
 
           <p className="mt-3 text-sm leading-relaxed text-[#4f5f59]">{person.deckUse}</p>
           {person.note && (
-            <p className="mt-3 rounded-md border border-[#ddb5a2] bg-[#fff8ee] p-3 text-xs leading-relaxed text-[#6d452e]">
+            <p className="mt-3 rounded-md border border-goods-terracotta-light bg-goods-cream p-3 text-xs leading-relaxed text-[#6d452e]">
               {person.note}
             </p>
           )}
@@ -210,7 +210,7 @@ function StorytellerCard({ row }: { row: { person: StorytellerReview; quotes: Tr
         {quotes.length > 0 ? (
           quotes.map((quote) => <QuoteBlock key={`${person.name}-${quote.text}`} quote={quote} />)
         ) : (
-          <div className="rounded-md border border-[#d6ddd4] bg-[#fdfcf7] p-4 text-sm leading-relaxed text-[#65756f]">
+          <div className="rounded-md border border-[#d6ddd4] bg-goods-cream p-4 text-sm leading-relaxed text-[#65756f]">
             No direct transcript quote is used for this person. Keep the role, image, or story caveat visible.
           </div>
         )}
@@ -221,7 +221,7 @@ function StorytellerCard({ row }: { row: { person: StorytellerReview; quotes: Tr
 
 export default function CommunityNarrativePage() {
   return (
-    <main className="min-h-screen bg-[#f5f3ea] text-[#1f2623]">
+    <main className="min-h-screen bg-goods-cream text-[#1f2623]">
       <OtherPitchSurfaceNotice note="This is the community-narrative cut." />
       <section className="border-b border-[#203833] bg-[#243d3a] text-white">
         <div className="mx-auto max-w-[1560px] px-4 py-8 md:px-6 md:py-12">
@@ -249,7 +249,7 @@ export default function CommunityNarrativePage() {
 
           <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
             <div>
-              <p className="mb-4 flex items-center gap-2 text-sm uppercase tracking-[0.22em] text-[#e09b6f]">
+              <p className="mb-4 flex items-center gap-2 text-sm uppercase tracking-[0.22em] text-goods-terracotta-light">
                 <BookOpenText className="h-4 w-4" />
                 Community narrative synthesis
               </p>
@@ -295,7 +295,7 @@ export default function CommunityNarrativePage() {
         </div>
       </section>
 
-      <section className="sticky top-0 z-20 border-b border-[#d6ddd4] bg-[#fdfcf7]/95 backdrop-blur">
+      <section className="sticky top-0 z-20 border-b border-[#d6ddd4] bg-goods-cream/95 backdrop-blur">
         <div className="mx-auto flex max-w-[1560px] gap-2 overflow-x-auto px-4 py-3 md:px-6">
           {[
             ['Lead', '#lead'],
@@ -336,7 +336,7 @@ export default function CommunityNarrativePage() {
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {leadNarrative.sections.map((section) => (
               <article key={section.id} className="rounded-md border border-[#d6ddd4] bg-white p-5">
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#a84f35]">
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-goods-clay">
                   {section.label}
                 </p>
                 <h3
@@ -417,8 +417,8 @@ export default function CommunityNarrativePage() {
             {quoteDripSequence.map((item) => (
               <article key={`${item.moment}-${item.voice}`} className="rounded-md border border-[#d6ddd4] bg-white p-4">
                 <div className="flex items-center justify-between gap-3">
-                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#a84f35]">{item.moment}</p>
-                  <span className="rounded-full border border-[#d6ddd4] bg-[#f5f3ea] px-2 py-1 text-[11px] font-semibold text-[#4f5f59]">
+                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-goods-clay">{item.moment}</p>
+                  <span className="rounded-full border border-[#d6ddd4] bg-goods-cream px-2 py-1 text-[11px] font-semibold text-[#4f5f59]">
                     {item.voice}
                   </span>
                 </div>
@@ -438,7 +438,7 @@ export default function CommunityNarrativePage() {
         </div>
       </section>
 
-      <section className="border-b border-[#d6ddd4] bg-[#fdfcf7] py-10" id="storytellers">
+      <section className="border-b border-[#d6ddd4] bg-goods-cream py-10" id="storytellers">
         <div className="mx-auto max-w-[1560px] px-4 md:px-6">
           <SectionHeader
             eyebrow="Complete cleared corpus"
@@ -475,12 +475,12 @@ export default function CommunityNarrativePage() {
             />
             <div className="space-y-3">
               {blockedOrHoldVoices.map((voice) => (
-                <article key={voice.name} className="rounded-md border border-[#ddb5a2] bg-white p-4">
+                <article key={voice.name} className="rounded-md border border-goods-terracotta-light bg-white p-4">
                   <div className="flex gap-3">
-                    <CircleAlert className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#a84f35]" />
+                    <CircleAlert className="mt-0.5 h-5 w-5 flex-shrink-0 text-goods-clay" />
                     <div>
                       <h3 className="text-base font-semibold text-[#1f2623]">{voice.name}</h3>
-                      <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#a84f35]">
+                      <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-goods-clay">
                         {voice.status}
                       </p>
                       <p className="mt-2 text-sm leading-relaxed text-[#4f5f59]">{voice.reason}</p>
@@ -510,7 +510,7 @@ export default function CommunityNarrativePage() {
                     <p className="rounded-md border border-[#b7c7bd] bg-[#ecf2ed] p-3 text-xs leading-relaxed text-[#24423f]">
                       Community effect: {stage.communityEffect}
                     </p>
-                    <p className="rounded-md border border-[#ddb5a2] bg-[#fff8ee] p-3 text-xs leading-relaxed text-[#6d452e]">
+                    <p className="rounded-md border border-goods-terracotta-light bg-goods-cream p-3 text-xs leading-relaxed text-[#6d452e]">
                       Investor value: {stage.investorValue}
                     </p>
                   </div>
@@ -540,7 +540,7 @@ export default function CommunityNarrativePage() {
           <div className="grid gap-4 lg:grid-cols-[1fr_0.8fr]">
             <div className="rounded-md border border-[#d6ddd4] bg-white p-5">
               <h3 className="flex items-center gap-2 text-lg font-semibold text-[#1f2623]">
-                <FileText className="h-5 w-5 text-[#a84f35]" />
+                <FileText className="h-5 w-5 text-goods-clay" />
                 Source files
               </h3>
               <div className="mt-4 grid gap-2">
@@ -553,7 +553,7 @@ export default function CommunityNarrativePage() {
             </div>
             <div className="rounded-md border border-[#d6ddd4] bg-[#243d3a] p-5 text-white">
               <h3 className="flex items-center gap-2 text-lg font-semibold">
-                <UsersRound className="h-5 w-5 text-[#e09b6f]" />
+                <UsersRound className="h-5 w-5 text-goods-terracotta-light" />
                 Deck rule
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-white/72">

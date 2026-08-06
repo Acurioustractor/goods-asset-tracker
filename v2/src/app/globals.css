@@ -24,6 +24,7 @@
   --color-goods-ink: var(--goods-ink);
   --color-goods-sub: var(--goods-sub);
   --color-goods-terracotta: var(--goods-terracotta);
+  --color-goods-terracotta-light: var(--goods-terracotta-light);
   --color-goods-clay: var(--goods-clay);
   --color-goods-sage: var(--goods-sage);
   --color-goods-gold: var(--goods-gold);
@@ -83,6 +84,7 @@
   --goods-ink:          #2B2A26; /* body text */
   --goods-sub:          #7A7363; /* captions, muted text */
   --goods-terracotta:   #C45C3E; /* brand primary (logo terracotta) */
+  --goods-terracotta-light: #E88461; /* terracotta tint for text/accents on dark surfaces */
   --goods-clay:         #A8643F; /* HDPE / chart anchor */
   --goods-sage:         #8B9D77; /* secondary accent, connection to Country */
   --goods-gold:         #BBA255; /* steel / chart */

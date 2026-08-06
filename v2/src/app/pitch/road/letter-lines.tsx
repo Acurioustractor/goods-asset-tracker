@@ -24,11 +24,11 @@ export function LetterLines() {
   }
 
   return (
-    <div className="border border-white/20 bg-[#22211e]">
+    <div className="border border-white/20 bg-goods-ink">
       <ol className="divide-y divide-white/15">
         {LETTER_LINES.map((line) => (
           <li key={line.n} className="flex items-baseline gap-5 px-6 py-5 lg:px-8">
-            <span className="goods-pitch-display text-2xl text-[#e88461]">{line.n}</span>
+            <span className="goods-pitch-display text-2xl text-goods-terracotta-light">{line.n}</span>
             <span>
               <span className="block text-base font-semibold">{line.label}</span>
               <span className="mt-1 block text-sm leading-5 text-white/60">{line.detail}</span>

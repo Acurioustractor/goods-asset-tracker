@@ -28,6 +28,7 @@
      RECONCILED 2026-08-06: was #C9613C here while the live app rendered #C45C3E
      everywhere (v2 globals.css). What ships is canonical; this file now matches. */
   --goods-terracotta:   #C45C3E;  /* primary / brand (full stop + ground rail) */
+  --goods-terracotta-light: #E88461; /* terracotta tint, text/accents on dark surfaces */
   --goods-clay:         #A8643F;  /* HDPE plastic, the chart anchor            */
 
   /* ---- Secondary accents (connection to Country) ------------------------- */

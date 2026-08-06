@@ -44,7 +44,7 @@ export default async function NewsPage() {
             The letter{el.publishedAt ? ` · ${new Date(el.publishedAt).toLocaleDateString('en-AU', { month: 'long', year: 'numeric' })}` : ''}
           </p>
           <h1 className="goods-pitch-display mt-3 text-4xl leading-tight md:text-5xl">{el.title}</h1>
-          {el.excerpt && <p className="mt-4 text-lg leading-8 text-[#6d675c]">{el.excerpt}</p>}
+          {el.excerpt && <p className="mt-4 text-lg leading-8 text-goods-sub">{el.excerpt}</p>}
         </header>
         {el.isHtml ? (
           <div
@@ -59,11 +59,11 @@ export default async function NewsPage() {
           </div>
         )}
         {elIssues.length > 1 && (
-          <section className="mt-12 border-t border-[#d9d1c3] pt-6">
+          <section className="mt-12 border-t border-goods-sand pt-6">
             <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-goods-sub">Earlier letters</h2>
             <ul className="mt-3 space-y-2">
               {elIssues.slice(1).map((prev) => (
-                <li key={prev.id} className="text-sm text-[#6d675c]">{prev.title}</li>
+                <li key={prev.id} className="text-sm text-goods-sub">{prev.title}</li>
               ))}
             </ul>
           </section>
@@ -76,14 +76,14 @@ export default async function NewsPage() {
             {DOORS.map((door) => (
               <div key={door.verb} className="border-t-2 border-goods-terracotta pt-2">
                 <p className="goods-pitch-display text-xl">{door.verb}</p>
-                <p className="mt-1 text-sm leading-5 text-[#6d675c]">{door.entity}</p>
+                <p className="mt-1 text-sm leading-5 text-goods-sub">{door.entity}</p>
               </div>
             ))}
           </div>
           <div className="mt-5"><MoneyPointer /></div>
         </section>
-        <footer className="mt-14 border-t border-[#d9d1c3] pt-8">
-          <p className="text-sm leading-6 text-[#6d675c]">Get the letter by email:</p>
+        <footer className="mt-14 border-t border-goods-sand pt-8">
+          <p className="text-sm leading-6 text-goods-sub">Get the letter by email:</p>
           <div className="mt-4"><NewsletterSignup /></div>
         </footer>
       </article>
@@ -99,7 +99,7 @@ export default async function NewsPage() {
           The letter · {issue.month}
         </p>
         <h1 className="goods-pitch-display mt-3 text-4xl leading-tight md:text-5xl">{issue.title}</h1>
-        <p className="mt-4 text-lg leading-8 text-[#6d675c]">{issue.standfirst}</p>
+        <p className="mt-4 text-lg leading-8 text-goods-sub">{issue.standfirst}</p>
       </header>
 
       <section className="mt-12">
@@ -114,7 +114,7 @@ export default async function NewsPage() {
                   <h3 className="goods-pitch-display text-2xl leading-tight group-hover:text-goods-terracotta">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-base leading-7 text-[#6d675c]">{item.line}</p>
+                  <p className="mt-2 text-base leading-7 text-goods-sub">{item.line}</p>
                 </div>
                 {item.photo && (
                   <div className="relative aspect-[4/3] overflow-hidden max-sm:order-first">
@@ -136,7 +136,7 @@ export default async function NewsPage() {
             <li key={item.title}>
               <Link href={item.href} className="group">
                 <h3 className="goods-pitch-display text-xl group-hover:text-goods-terracotta">{item.title}</h3>
-                <p className="mt-1 text-base leading-7 text-[#6d675c]">{item.line}</p>
+                <p className="mt-1 text-base leading-7 text-goods-sub">{item.line}</p>
               </Link>
             </li>
           ))}
@@ -149,7 +149,7 @@ export default async function NewsPage() {
         </h2>
         <ul className="mt-6 space-y-3">
           {issue.road.map((line) => (
-            <li key={line} className="border-l-2 border-[#d9d1c3] pl-4 text-base leading-7 text-goods-ink">
+            <li key={line} className="border-l-2 border-goods-sand pl-4 text-base leading-7 text-goods-ink">
               {line}
             </li>
           ))}
@@ -167,14 +167,14 @@ export default async function NewsPage() {
           {DOORS.map((door) => (
             <div key={door.verb} className="border-t-2 border-goods-terracotta pt-2">
               <p className="goods-pitch-display text-xl">{door.verb}</p>
-              <p className="mt-1 text-sm leading-5 text-[#6d675c]">{door.entity}</p>
+              <p className="mt-1 text-sm leading-5 text-goods-sub">{door.entity}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <footer className="mt-14 border-t border-[#d9d1c3] pt-8">
-        <p className="text-sm leading-6 text-[#6d675c]">Get the letter by email, once a month:</p>
+      <footer className="mt-14 border-t border-goods-sand pt-8">
+        <p className="text-sm leading-6 text-goods-sub">Get the letter by email, once a month:</p>
         <div className="mt-4">
           <NewsletterSignup />
         </div>

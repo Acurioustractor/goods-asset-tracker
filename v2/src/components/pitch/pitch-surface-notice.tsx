@@ -36,13 +36,13 @@ export function CanonicalPitchNotice() {
 
 export function OtherPitchSurfaceNotice({ note }: { note?: string }) {
   return (
-    <div className="border-b border-[#d8cdbd] bg-[#efe8dc] px-5 py-2.5 text-center">
+    <div className="border-b border-goods-sand bg-[#efe8dc] px-5 py-2.5 text-center">
       <p className="text-xs leading-5 text-[#6b5f4c]">
         {note ? `${note} ` : 'This is a supporting pitch surface. '}
         It is an appendix to the deck. The one to send a funder is{' '}
         <a
           href={FUNDER_FRONT_DOOR}
-          className="font-semibold underline decoration-[#b65738] underline-offset-2"
+          className="font-semibold underline decoration-goods-clay underline-offset-2"
         >
           {FUNDER_FRONT_DOOR}
         </a>
