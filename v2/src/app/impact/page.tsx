@@ -6,12 +6,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { TheoryOfChange } from '@/components/marketing';
 import { fetchImpactData } from '@/lib/data/impact-fetcher';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
-import {
-  MODELLED_LABOUR_HOURS_PER_BED,
-  REVENUE_SEGMENTS,
-  CANONICAL_BUILD_PATHS,
-  CANONICAL_WEBSITE_PRICE,
-} from '@/lib/data/impact-model';
+import { MODELLED_LABOUR_HOURS_PER_BED, REVENUE_SEGMENTS } from '@/lib/data/impact-model';
+import { MoneyPointer } from '@/components/money-pointer';
 import type { ImpactSnapshot, ImpactDimension, ImpactMetric } from '@/lib/data/impact-model';
 import type { Metadata } from 'next';
 
@@ -538,61 +534,9 @@ function ProductionCostSection() {
             </p>
           </div>
 
-          {/* Canonical build-path cost table (direct cost + margin at the $750 price) */}
-          <p className="text-xs mb-3 text-center" style={{ color: '#8B9D77' }}>
-            Direct cost per bed by build path, and the margin at our ${CANONICAL_WEBSITE_PRICE} price.
-            Modelled from verified supplier invoices. These are direct production costs, not
-            fully-loaded costs at today&apos;s pilot volume.
-          </p>
-          <div className="rounded-lg overflow-x-auto border" style={{ borderColor: '#E8DED4' }}>
-            <table className="w-full text-sm min-w-[480px]">
-              <thead>
-                <tr style={{ backgroundColor: '#E8DED4' }}>
-                  <th className="text-left px-4 py-3 font-medium" style={{ color: '#2E2E2E' }}>
-                    Build path
-                  </th>
-                  <th className="text-right px-4 py-3 font-medium" style={{ color: '#2E2E2E' }}>
-                    Direct cost
-                  </th>
-                  <th className="text-right px-4 py-3 font-medium" style={{ color: '#2E2E2E' }}>
-                    Price
-                  </th>
-                  <th className="text-right px-4 py-3 font-medium" style={{ color: '#2E2E2E' }}>
-                    Margin
-                  </th>
-                  <th className="text-right px-4 py-3 font-medium" style={{ color: '#2E2E2E' }}>
-                    Margin %
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {CANONICAL_BUILD_PATHS.map((row, i) => (
-                  <tr
-                    key={row.path}
-                    style={{
-                      backgroundColor: i % 2 === 0 ? 'white' : '#FDF8F3',
-                    }}
-                  >
-                    <td className="px-4 py-2.5" style={{ color: '#2E2E2E' }}>
-                      {row.path}
-                    </td>
-                    <td className="text-right px-4 py-2.5 font-medium" style={{ color: '#C45C3E' }}>
-                      ${row.direct.toFixed(2)}
-                    </td>
-                    <td className="text-right px-4 py-2.5" style={{ color: '#5E5E5E' }}>
-                      ${CANONICAL_WEBSITE_PRICE}
-                    </td>
-                    <td className="text-right px-4 py-2.5" style={{ color: '#5E5E5E' }}>
-                      ${row.margin.toFixed(2)}
-                    </td>
-                    <td className="text-right px-4 py-2.5 font-medium" style={{ color: '#8B9D77' }}>
-                      {row.margin_pct}%
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          {/* One money surface (Ben, 2026-08-06): the build-path margin table moved to the
+              deck's money half; the impact page talks impact and points at the money. */}
+          <MoneyPointer lead="As the making moves On Country, more of each bed stays in community." />
 
           {/* Revenue segments */}
           <div className="mt-10">
@@ -706,7 +650,7 @@ function PartnersSection() {
       name: 'Oonchiumpa / Bloomfield Family',
       location: 'Alice Springs, NT',
       role: 'Cultural Lead & Design in Community',
-      model: '100% Aboriginal-owned consultancy. Two years designing products in community, "around the fire." Paid at university-equivalent cultural consultation rates (~$3,800/day). Planning to host production facility in Alice Springs.',
+      model: '100% Aboriginal-owned consultancy. Two years designing products in community, "around the fire." Paid at university-equivalent cultural consultation rates. Planning to host production facility in Alice Springs.',
       status: 'Active: delivering beds on country together',
       color: '#C45C3E',
     },

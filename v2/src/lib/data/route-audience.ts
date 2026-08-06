@@ -1012,17 +1012,8 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     },
     verdict: 'keep',
   },
-  {
-    route: '/cost-story',
-    audience: 'funder',
-    access: 'open',
-    leadsWithNow: {
-      heading: 'What a bed really costs',
-      eyebrow: 'Cost model v6 · 2026',
-      body: 'People looked at our books and said we lose a thousand dollars on every bed. That’s not quite right. Making one more bed costs about',
-    },
-    verdict: 'keep',
-  },
+  // /cost-story RETIRED 2026-08-06 (one-money-surface rule): it was a second full public
+  // telling of the cost model. 307s to /pitch/road; archived at _archive/2026-08-06-cost-story.
   {
     route: '/dashboard',
     audience: 'community',

@@ -46,8 +46,8 @@ export default function ThroughputPage() {
           <li>7. Assemble the bed (5 min)</li>
         </ol>
         <div className="mt-4 p-4 bg-red-100 rounded-lg">
-          <p className="font-bold text-red-800">Total: ~6.5 hours = $325 labour per bed</p>
-          <p className="text-sm text-red-700 mt-1">At $600 retail, that's a $35 margin. Barely worth it.</p>
+          <p className="font-bold text-red-800">Total: ~6.5 labour-hours per bed</p>
+          <p className="text-sm text-red-700 mt-1">Nearly a full day of one person's time for one bed. Barely worth it.</p>
         </div>
         <p className="text-red-800 font-semibold mt-4">But nobody works like this.</p>
       </div>
@@ -125,21 +125,19 @@ export default function ThroughputPage() {
           <div className="bg-red-50 rounded-xl p-5 text-center">
             <p className="text-xs text-red-500 uppercase font-semibold">Sequential Model</p>
             <p className="text-sm text-red-700 mt-2">"Each bed takes 6.5 hours"</p>
-            <p className="text-3xl font-bold text-red-700 mt-2">$325</p>
+            <p className="text-3xl font-bold text-red-700 mt-2">6.5h</p>
             <p className="text-xs text-red-500 mt-1">labour per bed</p>
             <div className="mt-3 pt-3 border-t border-red-200">
-              <p className="text-sm text-red-600">$565 total cost</p>
-              <p className="text-sm font-bold text-red-700">6% margin</p>
+              <p className="text-sm font-bold text-red-700">~1 bed per person-day</p>
             </div>
           </div>
           <div className="bg-green-50 rounded-xl p-5 text-center">
             <p className="text-xs text-green-500 uppercase font-semibold">Throughput Model</p>
             <p className="text-sm text-green-700 mt-2">"Joey makes 5 beds in 8 hours"</p>
-            <p className="text-3xl font-bold text-green-700 mt-2">$80</p>
+            <p className="text-3xl font-bold text-green-700 mt-2">1.6h</p>
             <p className="text-xs text-green-500 mt-1">labour per bed</p>
             <div className="mt-3 pt-3 border-t border-green-200">
-              <p className="text-sm text-green-600">$232 total cost</p>
-              <p className="text-sm font-bold text-green-700">61% margin</p>
+              <p className="text-sm font-bold text-green-700">5 beds per person-day</p>
             </div>
           </div>
         </div>
@@ -206,8 +204,8 @@ export default function ThroughputPage() {
           <div className="grid grid-cols-3 gap-3 text-center">
             <div className="bg-stone-50 rounded-lg p-3">
               <p className="text-xs text-stone-500">Labour/bed</p>
-              <p className="text-lg font-bold">$67</p>
-              <p className="text-xs text-green-600">was $80</p>
+              <p className="text-lg font-bold">1.3h</p>
+              <p className="text-xs text-green-600">was 1.6h</p>
             </div>
             <div className="bg-stone-50 rounded-lg p-3">
               <p className="text-xs text-stone-500">Weekly output</p>
@@ -215,9 +213,9 @@ export default function ThroughputPage() {
               <p className="text-xs text-green-600">was 25</p>
             </div>
             <div className="bg-stone-50 rounded-lg p-3">
-              <p className="text-xs text-stone-500">Monthly profit</p>
-              <p className="text-lg font-bold">+$1,800</p>
-              <p className="text-xs text-green-600">extra</p>
+              <p className="text-xs text-stone-500">Beds/person-day</p>
+              <p className="text-lg font-bold">6</p>
+              <p className="text-xs text-green-600">was 5</p>
             </div>
           </div>
         </div>
@@ -227,9 +225,9 @@ export default function ThroughputPage() {
           <p className="text-stone-600 mb-3">One person runs press + shredder. The other runs CNC + finishing + assembly.</p>
           <div className="grid grid-cols-3 gap-3 text-center">
             <div className="bg-stone-50 rounded-lg p-3">
-              <p className="text-xs text-stone-500">Daily cost</p>
-              <p className="text-lg font-bold">$800</p>
-              <p className="text-xs text-stone-400">2 operators</p>
+              <p className="text-xs text-stone-500">Crew</p>
+              <p className="text-lg font-bold">2</p>
+              <p className="text-xs text-stone-400">operators</p>
             </div>
             <div className="bg-stone-50 rounded-lg p-3">
               <p className="text-xs text-stone-500">Throughput</p>
@@ -238,7 +236,7 @@ export default function ThroughputPage() {
             </div>
             <div className="bg-stone-50 rounded-lg p-3">
               <p className="text-xs text-stone-500">Labour/bed</p>
-              <p className="text-lg font-bold">$100</p>
+              <p className="text-lg font-bold">~1.9h</p>
               <p className="text-xs text-amber-600">higher, but 60% more output</p>
             </div>
           </div>
@@ -249,14 +247,9 @@ export default function ThroughputPage() {
           <p className="text-purple-900 mb-3">The facility runs with CDP participants or volunteers. Plastic is collected locally for free.</p>
           <div className="grid grid-cols-3 gap-3 text-center">
             <div className="bg-purple-100 rounded-lg p-3">
-              <p className="text-xs text-purple-600">Cost/bed</p>
-              <p className="text-lg font-bold text-purple-800">$39</p>
-              <p className="text-xs text-purple-500">diesel + hardware only</p>
-            </div>
-            <div className="bg-purple-100 rounded-lg p-3">
-              <p className="text-xs text-purple-600">Margin @ $560</p>
-              <p className="text-lg font-bold text-purple-800">$521</p>
-              <p className="text-xs text-purple-500">93%</p>
+              <p className="text-xs text-purple-600">Inputs</p>
+              <p className="text-lg font-bold text-purple-800">Diesel + hardware</p>
+              <p className="text-xs text-purple-500">plastic collected locally</p>
             </div>
             <div className="bg-purple-100 rounded-lg p-3">
               <p className="text-xs text-purple-600">That margin goes to</p>
@@ -271,9 +264,9 @@ export default function ThroughputPage() {
           <p className="text-amber-900 mb-3">Containers aren't there yet but families need beds now.</p>
           <div className="grid grid-cols-3 gap-3 text-center">
             <div className="bg-amber-100 rounded-lg p-3">
-              <p className="text-xs text-amber-600">Kit cost</p>
-              <p className="text-lg font-bold text-amber-800">$393</p>
-              <p className="text-xs text-amber-500">buy + assemble</p>
+              <p className="text-xs text-amber-600">Model</p>
+              <p className="text-lg font-bold text-amber-800">Buy kits</p>
+              <p className="text-xs text-amber-500">assemble locally</p>
             </div>
             <div className="bg-amber-100 rounded-lg p-3">
               <p className="text-xs text-amber-600">Throughput</p>
@@ -312,7 +305,7 @@ export default function ThroughputPage() {
             <p className="font-semibold">order / beds per day</p>
           </div>
         </div>
-        <p className="text-green-200 mt-6">When Joey says "I did 5 today", that single number tells you your margins, your costs, and your capacity.</p>
+        <p className="text-green-200 mt-6">When Joey says "I did 5 today", that single number tells you your throughput, your bottleneck, and your capacity.</p>
       </div>
 
       <figure className="my-8">

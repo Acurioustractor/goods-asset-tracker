@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { PartnershipForm } from '@/components/partnership-form';
 import { WasherInterestForm } from '@/components/washer-interest-form';
 import { TRACTION_STATS } from '@/lib/data/funder-shared-content';
+import { ASK_HEADLINE } from '@/lib/data/ask-surface';
 
 export const metadata = {
   title: 'Back the Work | Goods on Country',
@@ -325,13 +326,12 @@ export default async function PartnerPage({
               <div className="grid gap-6 md:grid-cols-[0.85fr_1.15fr] md:items-start">
                 <div>
                   <h3 className="mb-3 text-2xl font-semibold text-background">
-                    Current target: about $3M
+                    The ask
                   </h3>
-                  <p className="text-sm leading-relaxed text-background/70">
-                    This is a blended-finance target, not committed capital. It combines
-                    philanthropic funding, eligible giving via Butterfly, recoverable funding,
-                    patient working capital and procurement-backed revenue.
-                  </p>
+                  {/* One money surface (Ben, 2026-08-06): this line renders from ask-surface.ts,
+                      the same module the deck reads, so /partner can never again ask for a
+                      different amount than /pitch/road (it said "about $3M" until today). */}
+                  <p className="text-sm leading-relaxed text-background/70">{ASK_HEADLINE.line}</p>
                 </div>
                 <ul className="space-y-3 text-sm text-background/75">
                   <li>
