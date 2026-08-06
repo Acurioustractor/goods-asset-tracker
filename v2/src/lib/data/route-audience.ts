@@ -1017,7 +1017,8 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
   {
     route: '/dashboard',
     audience: 'community',
-    access: 'open',
+    // Gated 2026-08-06 (Ben: live revenue charts were on an open route). Investors cookie.
+    access: 'gated',
     leadsWithNow: null,
     whyUnread: 'no server-rendered heading inside <main> (client-rendered)',
     verdict: 'keep',
@@ -1025,7 +1026,7 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
   {
     route: '/dashboard/feedback',
     audience: 'community',
-    access: 'open',
+    access: 'gated',
     leadsWithNow: null,
     whyUnread: 'no server-rendered heading inside <main> (client-rendered)',
     verdict: 'keep',
@@ -1402,7 +1403,9 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
   {
     route: '/pathways/[id]/numbers',
     audience: 'community',
-    access: 'open',
+    // Gated 2026-08-06 (Ben): per-community cost numbers sit next to the rule that no
+    // community reads its own price on a public page before seeing it in person.
+    access: 'gated',
     leadsWithNow: null,
     whyUnread: 'dynamic route with no nameable representative instance',
     verdict: 'keep',
