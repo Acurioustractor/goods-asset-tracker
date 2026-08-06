@@ -35,17 +35,30 @@ export function Hero({
     <section className="relative min-h-[85vh] flex items-end overflow-hidden">
       {/* Full-bleed background — video or image */}
       {videoSrc ? (
-        <video
-          className="absolute inset-0 w-full h-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster={videoSrc.poster}
-        >
-          <source src={videoSrc.desktop} media="(min-width: 768px)" type="video/mp4" />
-          <source src={videoSrc.mobile} type="video/mp4" />
-        </video>
+        // Two <video> elements, not one video with media-queried <source> children:
+        // browsers ignore the `media` attribute on video sources, so phones were handed
+        // the desktop file, stalled, and Safari painted a dead play button (2026-08-06).
+        // Same pattern as every other background-video section.
+        <>
+          <video
+            className="absolute inset-0 hidden h-full w-full object-cover md:block"
+            src={videoSrc.desktop}
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={videoSrc.poster}
+          />
+          <video
+            className="absolute inset-0 h-full w-full object-cover md:hidden"
+            src={videoSrc.mobile}
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={videoSrc.poster}
+          />
+        </>
       ) : imageSrc ? (
         <Image
           src={imageSrc}
