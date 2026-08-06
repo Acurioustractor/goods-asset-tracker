@@ -1265,6 +1265,20 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     why: 'a per-surface password gate',
   },
   {
+    route: '/invest',
+    audience: 'funder',
+    access: 'open',
+    // 2026-08-06 (Ben): the structural page /partner never was — the three entities as three
+    // doors (ENTITY_DOORS, import-locked), which giver fits which door, and the levels the
+    // work supports. Figures stay on /pitch/road; this page routes, /partner converses.
+    leadsWithNow: {
+      heading: 'Support communities where they are at. The bed is the entry point, never the whole point.',
+      eyebrow: 'Back the work',
+      body: 'One piece of work touches health, enterprise, young people and learning at once.',
+    },
+    verdict: 'keep',
+  },
+  {
     route: '/kit',
     audience: 'press',
     access: 'open',

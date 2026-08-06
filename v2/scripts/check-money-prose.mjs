@@ -44,6 +44,8 @@ const ALLOWED_APP_PREFIXES = [
   'wiki/community/tracking-model', // one sourced story fact ($3M/yr of washers into dumps)
   'partner', // the public capital page: its ask renders from ask-surface.ts (import-locked),
   //           and its QBE lines state the program terms per ruling V
+  'invest', // the structural how-to-back-Goods page: renders ENTITY_DOORS from ask-surface.ts
+  //          (import-locked, carries the $750 list price); all other money is <MoneyPointer />
   'wiki/products/washing-machine', // the sourced "$3M/yr of washers" story fact
   'pathways/', // consent-shaped per-community numbers; its own rules live in that module
   'field-notes/', // trip stories quote real invoices with consent-cleared context
