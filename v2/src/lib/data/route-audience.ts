@@ -1458,6 +1458,19 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     target: '/pitch/road',
   },
   {
+    route: '/news',
+    audience: 'supporter',
+    access: 'open',
+    // 2026-08-06: the monthly letter, assembled ONLY from already-cleared, already-public
+    // artifacts (news.ts). The email version is this page sent, so they cannot diverge.
+    leadsWithNow: {
+      heading: 'The making is proven',
+      eyebrow: 'The letter',
+      body: 'What happened in community, who is stepping up, and where the road to ownership is.',
+    },
+    verdict: 'keep',
+  },
+  {
     route: '/case-studies/[slug]',
     audience: 'partner',
     access: 'open',
