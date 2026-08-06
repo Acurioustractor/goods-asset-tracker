@@ -34,7 +34,7 @@ export function MapShell({
     : 'h-[720px] w-[1280px] overflow-hidden';
 
   return (
-    <div className={`${frame} bg-[#FBF8F1] text-[#26201B]`}>
+    <div className={`${frame} bg-goods-cream text-[#26201B]`}>
       <div className="flex h-full flex-col px-10 py-7">
         <header className="flex items-start justify-between gap-8">
           <div className="max-w-xl">

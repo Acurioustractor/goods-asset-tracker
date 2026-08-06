@@ -46,7 +46,7 @@ function BedPartHotspots({ fullScreen = false }: { fullScreen?: boolean }) {
     >
       <button
         type="button"
-        className="flex h-7 w-7 items-center justify-center rounded-full border border-white/80 bg-[#c45c3e] text-xs font-bold text-white shadow-lg transition-transform hover:scale-110 focus:scale-110 focus:outline-none focus:ring-2 focus:ring-white"
+        className="flex h-7 w-7 items-center justify-center rounded-full border border-white/80 bg-goods-terracotta text-xs font-bold text-white shadow-lg transition-transform hover:scale-110 focus:scale-110 focus:outline-none focus:ring-2 focus:ring-white"
         aria-label={`${part.name}: ${part.cost}`}
       >
         +

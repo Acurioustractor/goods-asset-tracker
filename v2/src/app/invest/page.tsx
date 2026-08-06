@@ -111,7 +111,7 @@ export default function InvestPage() {
                   {level.title}
                 </h2>
                 <p className="mb-4 text-sm leading-relaxed text-muted-foreground">{level.line}</p>
-                <Link href={level.link.href} className="text-sm font-semibold text-[#C45C3E]">
+                <Link href={level.link.href} className="text-sm font-semibold text-goods-terracotta">
                   {level.link.label} →
                 </Link>
               </div>
@@ -123,7 +123,7 @@ export default function InvestPage() {
       {/* The three entities, from the locked doors */}
       <section className="bg-muted/30 py-16 md:py-20">
         <div className="container mx-auto px-4">
-          <p className="mb-3 text-sm uppercase tracking-widest text-[#C45C3E]">The three doors</p>
+          <p className="mb-3 text-sm uppercase tracking-widest text-goods-terracotta">The three doors</p>
           <h2 className="mb-4 max-w-3xl text-3xl font-semibold text-foreground md:text-4xl" style={DISPLAY_FONT}>
             Three doors, three legal entities. They are not interchangeable, and that is the point.
           </h2>
@@ -134,11 +134,11 @@ export default function InvestPage() {
           </p>
           <div className="grid gap-6 md:grid-cols-3">
             {ENTITY_DOORS.map((door) => (
-              <div key={door.verb} className="flex flex-col rounded-2xl border-t-4 border-[#C45C3E] bg-background p-7 shadow-sm">
+              <div key={door.verb} className="flex flex-col rounded-2xl border-t-4 border-goods-terracotta bg-background p-7 shadow-sm">
                 <h3 className="text-2xl font-semibold text-foreground" style={DISPLAY_FONT}>
                   {door.verb}
                 </h3>
-                <p className="mt-1 text-sm font-medium text-[#6F7F5C]">{door.entity}</p>
+                <p className="mt-1 text-sm font-medium text-goods-sub">{door.entity}</p>
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{door.what}</p>
               </div>
             ))}
@@ -168,7 +168,7 @@ export default function InvestPage() {
                     {giver.who}
                   </h3>
                   <p className="text-sm leading-relaxed text-muted-foreground">{giver.fit}</p>
-                  <p className="text-sm font-semibold text-[#C45C3E]">{door?.verb}</p>
+                  <p className="text-sm font-semibold text-goods-terracotta">{door?.verb}</p>
                 </div>
               );
             })}
@@ -187,7 +187,7 @@ export default function InvestPage() {
             what it does.
           </p>
           <div className="flex flex-wrap gap-3">
-            <Button size="lg" className="bg-[#C45C3E] text-white hover:opacity-90" asChild>
+            <Button size="lg" className="bg-goods-terracotta text-white hover:opacity-90" asChild>
               <Link href="/partner#start">Start the conversation</Link>
             </Button>
             <Button size="lg" variant="outline" className="border-white bg-transparent text-white hover:bg-white/10" asChild>

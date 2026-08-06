@@ -29,11 +29,20 @@ const HOME_SLUG = 'home';
 
 const DISPLAY_FONT = { fontFamily: 'var(--font-display, Georgia, serif)' } as const;
 
+// Canonical palette via CSS vars (globals.css --goods-*), never restated hex.
+// Text pairs per tone keep AA contrast: white on the dark tones, ink on the light.
 const DOOR_TONES = {
-  terracotta: '#C45C3E',
-  sage: '#6F7F5C',
-  teal: '#3E6363',
-  gold: '#C9A227',
+  terracotta: 'var(--goods-terracotta)',
+  sage: 'var(--goods-sage)',
+  teal: 'var(--goods-teal)',
+  gold: 'var(--goods-gold)',
+} as const;
+
+const DOOR_TEXT = {
+  terracotta: '#FFFFFF',
+  sage: 'var(--goods-ink)',
+  teal: '#FFFFFF',
+  gold: 'var(--goods-ink)',
 } as const;
 
 const HOME_FOLDERS: SwapFolder[] = [
@@ -413,7 +422,7 @@ export default async function HomePage() {
           <Button
             size="lg"
             variant="outline"
-            className="mt-8 border-[#C9A227] bg-transparent text-[#C9A227] hover:bg-[#C9A227]/10"
+            className="mt-8 border-goods-gold bg-transparent text-goods-gold hover:bg-goods-gold/10"
             asChild
           >
             <Link href={HOME_ROAD.cta.href}>{HOME_ROAD.cta.label}</Link>
@@ -431,7 +440,7 @@ export default async function HomePage() {
                   {door.title}
                 </h3>
                 <p className="mb-6 flex-1 text-base leading-relaxed text-muted-foreground">{door.body}</p>
-                <Button className="self-start text-white hover:opacity-90" style={{ backgroundColor: DOOR_TONES[door.tone] }} asChild>
+                <Button className="self-start hover:opacity-90" style={{ backgroundColor: DOOR_TONES[door.tone], color: DOOR_TEXT[door.tone] }} asChild>
                   <Link href={door.cta.href}>{door.cta.label}</Link>
                 </Button>
               </div>

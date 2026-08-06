@@ -174,7 +174,7 @@ export function RoadPitchEditor() {
           type="button"
           onClick={() => setEditing((value) => !value)}
           className={`flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold ${
-            editing ? 'bg-[#c45c3e]' : 'hover:bg-white/10'
+            editing ? 'bg-goods-terracotta' : 'hover:bg-white/10'
           }`}
         >
           {editing ? <Check className="h-4 w-4" /> : <Pencil className="h-4 w-4" />}
@@ -217,7 +217,7 @@ export function RoadPitchEditor() {
                 key={`${key}-${Math.round(rect.top)}`}
                 type="button"
                 onClick={() => openPicker(key)}
-                className="pointer-events-auto fixed flex items-center gap-1.5 rounded-full bg-[#c45c3e] px-3 py-2 text-[11px] font-bold uppercase tracking-wide text-white shadow-lg"
+                className="pointer-events-auto fixed flex items-center gap-1.5 rounded-full bg-goods-terracotta px-3 py-2 text-[11px] font-bold uppercase tracking-wide text-white shadow-lg"
                 style={{ top: Math.max(12, rect.top + 12), left: Math.max(12, rect.right - 112) }}
               >
                 <ImageIcon className="h-3.5 w-3.5" />
@@ -230,7 +230,7 @@ export function RoadPitchEditor() {
 
       {pickerKey && (
         <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/75 p-4">
-          <div className="flex max-h-[88vh] w-full max-w-5xl flex-col overflow-hidden rounded-xl bg-[#fbf8f1] text-[#2b2a26] shadow-2xl">
+          <div className="flex max-h-[88vh] w-full max-w-5xl flex-col overflow-hidden rounded-xl bg-goods-cream text-goods-ink shadow-2xl">
             <div className="flex items-center gap-3 border-b border-[#d9d1c3] p-4">
               <div>
                 <p className="font-semibold">Swap this photo</p>
@@ -264,7 +264,7 @@ export function RoadPitchEditor() {
                   type="button"
                   disabled={savingMedia}
                   onClick={() => void pickMedia(item.url)}
-                  className="flex h-[190px] min-h-[190px] flex-col overflow-hidden rounded-md border border-[#d9d1c3] bg-white text-left hover:border-[#c45c3e]"
+                  className="flex h-[190px] min-h-[190px] flex-col overflow-hidden rounded-md border border-[#d9d1c3] bg-white text-left hover:border-goods-terracotta"
                 >
                   {/* External EL hosts vary, so the editor intentionally uses an unoptimised thumbnail. */}
                   {/* eslint-disable-next-line @next/next/no-img-element */}

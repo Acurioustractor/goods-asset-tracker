@@ -99,7 +99,7 @@ export default async function MapHome() {
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-4 items-stretch">
         {/* Left: map + product tiles */}
         <div className="flex flex-col gap-4 min-w-0">
-          <div className="relative rounded-2xl border bg-[#FBF8F1] overflow-hidden" style={{ minHeight: 460 }}>
+          <div className="relative rounded-2xl border bg-goods-cream overflow-hidden" style={{ minHeight: 460 }}>
             <MapCard communities={communities} />
             <Link
               href="/admin/atlas"

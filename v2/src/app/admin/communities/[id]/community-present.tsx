@@ -45,7 +45,7 @@ export default function CommunityPresent({ community, slides }: { community: str
       </button>
 
       {open && (
-        <div className="fixed inset-0 z-[9999] bg-[#FBF8F1]" role="dialog" aria-modal="true">
+        <div className="fixed inset-0 z-[9999] bg-goods-cream" role="dialog" aria-modal="true">
           {/* progress */}
           <div className="absolute top-0 left-0 right-0 flex gap-1 p-3">
             {slides.map((_, k) => (
@@ -53,7 +53,7 @@ export default function CommunityPresent({ community, slides }: { community: str
             ))}
           </div>
 
-          <button onClick={() => setOpen(false)} className="absolute top-4 right-4 z-10 rounded-full bg-black/10 p-2 text-[#2B2A26] hover:bg-black/20" aria-label="Close">
+          <button onClick={() => setOpen(false)} className="absolute top-4 right-4 z-10 rounded-full bg-black/10 p-2 text-goods-ink hover:bg-black/20" aria-label="Close">
             <X className="h-5 w-5" />
           </button>
 
@@ -87,9 +87,9 @@ function Slide({ slide, community }: { slide: PresentSlide; community: string })
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center px-8 text-center">
-      {slide.sub && <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-[#C45C3E]">{slide.sub}</p>}
+      {slide.sub && <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-goods-terracotta">{slide.sub}</p>}
       {slide.heading && (
-        <h2 className="max-w-4xl font-bold text-[#2B2A26]" style={{ fontFamily: 'Georgia, serif', fontSize: slide.kind === 'title' ? '4.5rem' : '3rem', lineHeight: 1.05 }}>
+        <h2 className="max-w-4xl font-bold text-goods-ink" style={{ fontFamily: 'Georgia, serif', fontSize: slide.kind === 'title' ? '4.5rem' : '3rem', lineHeight: 1.05 }}>
           {slide.heading}
         </h2>
       )}
@@ -97,7 +97,7 @@ function Slide({ slide, community }: { slide: PresentSlide; community: string })
         <div className="mt-10 flex flex-wrap items-end justify-center gap-x-14 gap-y-8">
           {slide.lines.map((l, k) => (
             <div key={k}>
-              <div className="font-bold tabular-nums text-[#2B2A26]" style={{ fontFamily: 'Georgia, serif', fontSize: '3.5rem', lineHeight: 1 }}>{l.big}</div>
+              <div className="font-bold tabular-nums text-goods-ink" style={{ fontFamily: 'Georgia, serif', fontSize: '3.5rem', lineHeight: 1 }}>{l.big}</div>
               <div className="mt-1 text-base text-[#6F6155]">{l.small}</div>
             </div>
           ))}
@@ -106,7 +106,7 @@ function Slide({ slide, community }: { slide: PresentSlide; community: string })
       {slide.names && (
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           {slide.names.map((n) => (
-            <span key={n} className="rounded-full bg-white px-4 py-2 text-lg text-[#2B2A26] shadow-sm" style={{ fontFamily: 'Georgia, serif' }}>{n}</span>
+            <span key={n} className="rounded-full bg-white px-4 py-2 text-lg text-goods-ink shadow-sm" style={{ fontFamily: 'Georgia, serif' }}>{n}</span>
           ))}
         </div>
       )}

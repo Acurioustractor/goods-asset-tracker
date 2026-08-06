@@ -9,5 +9,5 @@ import type { ReactNode } from 'react';
 export const metadata = { robots: { index: false, follow: false } };
 
 export default function ExportLayout({ children }: { children: ReactNode }) {
-  return <div className="bg-[#FBF8F1]">{children}</div>;
+  return <div className="bg-goods-cream">{children}</div>;
 }

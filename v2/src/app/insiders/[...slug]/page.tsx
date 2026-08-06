@@ -77,7 +77,7 @@ export default async function InsidersArticlePage({ params }: { params: Promise<
 
       <header className="mt-6 mb-10">
         {article.frontmatter.type && (
-          <p className="text-xs uppercase tracking-[0.18em] text-[#8B9D77] font-semibold">
+          <p className="text-xs uppercase tracking-[0.18em] text-goods-sage font-semibold">
             {article.frontmatter.type}
           </p>
         )}
@@ -103,7 +103,7 @@ export default async function InsidersArticlePage({ params }: { params: Promise<
               <Link
                 key={child.slugPath}
                 href={`/insiders/${child.slugPath}`}
-                className="group flex items-start justify-between gap-4 rounded-md border border-stone-200 bg-white p-4 transition-all hover:border-[#C45C3E]/40"
+                className="group flex items-start justify-between gap-4 rounded-md border border-stone-200 bg-white p-4 transition-all hover:border-goods-terracotta/40"
               >
                 <div className="min-w-0">
                   <h3 className="font-serif text-base font-semibold text-stone-900">
@@ -114,7 +114,7 @@ export default async function InsidersArticlePage({ params }: { params: Promise<
                   )}
                 </div>
                 <ArrowRight
-                  className="h-4 w-4 shrink-0 text-stone-400 transition-all group-hover:text-[#C45C3E] group-hover:translate-x-0.5 mt-1"
+                  className="h-4 w-4 shrink-0 text-stone-400 transition-all group-hover:text-goods-terracotta group-hover:translate-x-0.5 mt-1"
                   strokeWidth={1.5}
                 />
               </Link>

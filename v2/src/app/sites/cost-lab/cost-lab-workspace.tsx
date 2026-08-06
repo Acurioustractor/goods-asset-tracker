@@ -404,13 +404,13 @@ export function CostLabWorkspace() {
   return (
     <main className="min-h-screen bg-[#FAF6F0] pb-24 text-stone-900">
       {/* ── Header ── */}
-      <header className="border-b border-stone-200 bg-[#2B2A26] text-[#FDF8F3]">
+      <header className="border-b border-stone-200 bg-goods-ink text-[#FDF8F3]">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#BBA255]">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-goods-gold">
             Goods on Country · internal working room
           </p>
           <h1 className="mt-3 font-serif text-3xl sm:text-4xl">The Cost Lab</h1>
-          <p className="mt-3 max-w-2xl text-sm leading-6 text-[#E6DFD1]">
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-goods-grid">
             For Ben and Nic. Break every cost to its raw amount, price a container build, map the
             funding, and watch the compounding math. Every field is editable and recomputes through
             the same verified engine as the investor cockpit. Your edits stay in this browser.
@@ -419,25 +419,25 @@ export function CostLabWorkspace() {
             <button
               type="button"
               onClick={resetAll}
-              className="inline-flex items-center gap-2 rounded-md border border-[#BBA255]/60 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-[#BBA255] transition hover:bg-[#BBA255]/10"
+              className="inline-flex items-center gap-2 rounded-md border border-goods-gold/60 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-goods-gold transition hover:bg-goods-gold/10"
             >
               <RotateCcw className="h-3.5 w-3.5" aria-hidden /> Reset to canon
             </button>
             <Link
               href="/sites/cost-lab/playbook"
-              className="inline-flex items-center rounded-md bg-[#BBA255] px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-[#2B2A26] transition hover:bg-[#d4bb6e]"
+              className="inline-flex items-center rounded-md bg-goods-gold px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-goods-ink transition hover:bg-[#d4bb6e]"
             >
               Open the playbook
             </Link>
             <Link
               href="/sites/qbe"
-              className="text-xs text-[#E6DFD1] underline underline-offset-4 hover:text-white"
+              className="text-xs text-goods-grid underline underline-offset-4 hover:text-white"
             >
               Investor workspace
             </Link>
             <Link
               href="/investors?skin=mc"
-              className="text-xs text-[#E6DFD1] underline underline-offset-4 hover:text-white"
+              className="text-xs text-goods-grid underline underline-offset-4 hover:text-white"
             >
               Cost cockpit
             </Link>
@@ -451,14 +451,14 @@ export function CostLabWorkspace() {
                 title={s.hint}
                 className={`rounded-md border px-3 py-1.5 text-xs font-semibold transition ${
                   activeScenario === s.key
-                    ? 'border-[#BBA255] bg-[#BBA255] text-[#2B2A26]'
-                    : 'border-white/20 bg-white/5 text-[#E6DFD1] hover:border-[#BBA255]/60'
+                    ? 'border-goods-gold bg-goods-gold text-goods-ink'
+                    : 'border-white/20 bg-white/5 text-goods-grid hover:border-goods-gold/60'
                 }`}
               >
                 {s.label}
               </button>
             ))}
-            <span className="self-center text-[11px] text-[#E6DFD1]/60">
+            <span className="self-center text-[11px] text-goods-grid/60">
               One click sets every dial. All scenarios are modelled, not forecasts.
             </span>
           </div>
@@ -734,8 +734,8 @@ export function CostLabWorkspace() {
           </div>
         </div>
 
-        <div className="mt-6 rounded-lg border border-stone-200 bg-[#2B2A26] p-6 text-[#FDF8F3]">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#BBA255]">QBE Stage 2 coverage test</p>
+        <div className="mt-6 rounded-lg border border-stone-200 bg-goods-ink p-6 text-[#FDF8F3]">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-goods-gold">QBE Stage 2 coverage test</p>
           <div className="mt-4 grid items-end gap-4 sm:grid-cols-[280px_1fr]">
             <NumberField
               label="Signed external capital"
@@ -747,23 +747,23 @@ export function CostLabWorkspace() {
             />
             <div className="grid gap-3 sm:grid-cols-2">
               <div>
-                <p className="text-xs uppercase tracking-wide text-[#E6DFD1]/70">
+                <p className="text-xs uppercase tracking-wide text-goods-grid/70">
                   Would cover a grant at {fmt(MATCH_TARGET.typicalLow)}
                 </p>
                 <p className="mt-1 text-xl font-semibold">{coversLowEnd ? 'Yes' : 'Not yet'}</p>
               </div>
               <div>
-                <p className="text-xs uppercase tracking-wide text-[#E6DFD1]/70">
+                <p className="text-xs uppercase tracking-wide text-goods-grid/70">
                   Would cover a grant at {fmt(MATCH_TARGET.cap)}
                 </p>
                 <p className="mt-1 text-xl font-semibold">{coversCap ? 'Yes' : 'Not yet'}</p>
               </div>
             </div>
           </div>
-          <p className="mt-4 text-xs leading-5 text-[#E6DFD1]">
+          <p className="mt-4 text-xs leading-5 text-goods-grid">
             {MATCH_TARGET.note}
           </p>
-          <p className="mt-2 text-xs leading-5 text-[#E6DFD1]/80">
+          <p className="mt-2 text-xs leading-5 text-goods-grid/80">
             There is no total to read here on purpose. A QBE grant is not added to signed capital
             and signing does not oblige QBE: the requirement runs the other way, and signed capital
             is what a grant would have to be covered by. 2025 paid {fmt(1_020_000)} across{' '}
@@ -956,7 +956,7 @@ export function CostLabWorkspace() {
             <button
               type="button"
               onClick={copySummary}
-              className="w-full rounded-md bg-[#2B2A26] px-4 py-2.5 text-sm font-semibold text-[#FDF8F3] transition hover:bg-[#3d3b35]"
+              className="w-full rounded-md bg-goods-ink px-4 py-2.5 text-sm font-semibold text-[#FDF8F3] transition hover:bg-[#3d3b35]"
             >
               {copied ? 'Copied to clipboard' : 'Copy session summary'}
             </button>

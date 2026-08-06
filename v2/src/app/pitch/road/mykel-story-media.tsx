@@ -70,7 +70,7 @@ export function MykelStoryMedia({
                 Mykel, on the bed he made.
               </span>
             </span>
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#c45c3e] text-white transition group-hover:scale-105 group-hover:bg-[#d36a49]">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-goods-terracotta text-white transition group-hover:scale-105 group-hover:bg-[#d36a49]">
               <Play className="ml-0.5 h-5 w-5 fill-current" aria-hidden="true" />
             </span>
           </span>

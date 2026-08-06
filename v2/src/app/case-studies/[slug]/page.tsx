@@ -59,9 +59,9 @@ export default async function CaseStudyPage({ params }: Props) {
     .filter((v): v is NonNullable<typeof v> => v !== null);
 
   return (
-    <article className="bg-[#fbf8f1] text-[#2b2a26]">
+    <article className="bg-goods-cream text-goods-ink">
       {/* Hero */}
-      <header className="relative min-h-[70svh] overflow-hidden bg-[#171714] text-[#fbf8f1]">
+      <header className="relative min-h-[70svh] overflow-hidden bg-[#171714] text-goods-cream">
         <Image src={study.hero.src} alt={study.hero.alt} fill priority sizes="100vw" className="object-cover opacity-70" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
         <div className="relative mx-auto flex min-h-[70svh] max-w-[1200px] flex-col justify-end px-6 pb-12 pt-24 md:px-10">
@@ -90,7 +90,7 @@ export default async function CaseStudyPage({ params }: Props) {
           <p className="max-w-3xl text-lg leading-8 text-[#6d675c]">
             This run was commissioned by{' '}
             {study.partner.nameCleared ? (
-              <strong className="text-[#2b2a26]">{study.partner.name}</strong>
+              <strong className="text-goods-ink">{study.partner.name}</strong>
             ) : (
               study.partner.role
             )}
@@ -103,12 +103,12 @@ export default async function CaseStudyPage({ params }: Props) {
       {/* The steps */}
       <section className="px-6 py-12 md:px-10">
         <div className="mx-auto max-w-[1200px]">
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">How it worked</p>
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-goods-terracotta">How it worked</p>
           <ol className="mt-8 space-y-12">
             {study.steps.map((step, i) => (
               <li key={step.title} className="grid gap-6 md:grid-cols-[0.9fr_1.1fr] md:items-center">
                 <div className={i % 2 === 1 ? 'md:order-2' : ''}>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#c45c3e]">0{i + 1}</p>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-goods-terracotta">0{i + 1}</p>
                   <h2 className="goods-pitch-display mt-2 text-3xl leading-tight">{step.title}</h2>
                   <p className="mt-4 max-w-xl text-base leading-7 text-[#6d675c]">{step.body}</p>
                 </div>
@@ -124,7 +124,7 @@ export default async function CaseStudyPage({ params }: Props) {
       </section>
 
       {/* Film slot */}
-      <section className="border-y border-[#d9d1c3] bg-[#171714] px-6 py-12 text-[#fbf8f1] md:px-10">
+      <section className="border-y border-[#d9d1c3] bg-[#171714] px-6 py-12 text-goods-cream md:px-10">
         <div className="mx-auto max-w-[1200px]">
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#e88461]">The film</p>
           {film ? (
@@ -146,13 +146,13 @@ export default async function CaseStudyPage({ params }: Props) {
       {voices.length > 0 && (
         <section className="px-6 py-12 md:px-10">
           <div className="mx-auto max-w-[1200px]">
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">In their words</p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-goods-terracotta">In their words</p>
             {voices.map(({ person, quote }) => (
-              <figure key={person.name} className="mt-6 border-l-2 border-[#c45c3e] pl-5">
+              <figure key={person.name} className="mt-6 border-l-2 border-goods-terracotta pl-5">
                 <blockquote className="goods-pitch-display max-w-3xl text-xl leading-snug md:text-2xl">
                   &quot;{quote.text}&quot;
                 </blockquote>
-                <figcaption className="mt-3 text-sm text-[#7a7363]">
+                <figcaption className="mt-3 text-sm text-goods-sub">
                   {person.name}
                   {person.role ? `, ${person.role}` : ''}
                 </figcaption>
@@ -165,7 +165,7 @@ export default async function CaseStudyPage({ params }: Props) {
       {/* Momentum */}
       <section className="border-t border-[#d9d1c3] px-6 py-12 md:px-10">
         <div className="mx-auto max-w-[1200px]">
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">What happens next</p>
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-goods-terracotta">What happens next</p>
           <ul className="mt-6 max-w-3xl space-y-4">
             {study.momentum.map((line) => (
               <li key={line} className="border-l-2 border-[#d9d1c3] pl-5 text-base leading-7 text-[#6d675c]">{line}</li>
@@ -175,22 +175,22 @@ export default async function CaseStudyPage({ params }: Props) {
       </section>
 
       {/* For communities */}
-      <section className="border-t border-[#d9d1c3] bg-[#f1ece4] px-6 py-12 md:px-10">
+      <section className="border-t border-[#d9d1c3] bg-goods-cream-muted px-6 py-12 md:px-10">
         <div className="mx-auto max-w-[1200px]">
           <h2 className="goods-pitch-display text-3xl leading-tight">Could this work where you are?</h2>
           <ol className="mt-8 grid gap-6 md:grid-cols-2">
             {study.forCommunities.map((line, i) => (
               <li key={line} className="flex gap-4">
-                <span className="goods-pitch-display text-2xl text-[#c45c3e]">0{i + 1}</span>
-                <p className="text-base leading-7 text-[#2b2a26]">{line}</p>
+                <span className="goods-pitch-display text-2xl text-goods-terracotta">0{i + 1}</span>
+                <p className="text-base leading-7 text-goods-ink">{line}</p>
               </li>
             ))}
           </ol>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/contact" className="bg-[#c45c3e] px-6 py-3 text-sm font-semibold text-white hover:bg-[#d26a4a]">
+            <Link href="/contact" className="bg-goods-terracotta px-6 py-3 text-sm font-semibold text-white hover:bg-[#d26a4a]">
               Start a yarn
             </Link>
-            <Link href="/pitch/road" className="border border-[#2b2a26]/30 px-6 py-3 text-sm font-semibold hover:border-[#2b2a26]">
+            <Link href="/pitch/road" className="border border-goods-ink/30 px-6 py-3 text-sm font-semibold hover:border-goods-ink">
               The whole road
             </Link>
           </div>

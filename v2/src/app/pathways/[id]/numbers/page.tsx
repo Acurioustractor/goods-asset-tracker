@@ -58,8 +58,8 @@ export default async function PathwayNumbersPage({
   const net = model.annual.netToCommunity;
 
   return (
-    <div className="min-h-screen bg-[#fbf8f1]">
-      <section className="border-b border-[#e6dfd1] bg-white print:hidden">
+    <div className="min-h-screen bg-goods-cream">
+      <section className="border-b border-goods-grid bg-white print:hidden">
         <div className="container mx-auto max-w-5xl px-5 py-5">
           <Link
             href={`/pathways/${pathway.id}`}
@@ -82,7 +82,7 @@ export default async function PathwayNumbersPage({
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#a64f35]">
             {pathway.region}
           </p>
-          <h1 className="mt-3 font-display text-4xl text-[#2b2a26] md:text-5xl">
+          <h1 className="mt-3 font-display text-4xl text-goods-ink md:text-5xl">
             What this would mean for {pathway.name}
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-[#625b50]">{pathway.invitation}</p>
@@ -90,7 +90,7 @@ export default async function PathwayNumbersPage({
 
         {/* ── 1. The chain ─────────────────────────────────────────────── */}
         <section className="mt-14">
-          <h2 className="font-display text-2xl text-[#2b2a26]">
+          <h2 className="font-display text-2xl text-goods-ink">
             The line comes in five pieces. You choose which ones.
           </h2>
           <p className="mt-3 max-w-3xl leading-7 text-[#625b50]">
@@ -116,8 +116,8 @@ export default async function PathwayNumbersPage({
                       key={rung.module}
                       className={
                         picked
-                          ? 'border-b border-[#e6dfd1] bg-[#f4f7f0]'
-                          : 'border-b border-[#e6dfd1] text-[#8b8378]'
+                          ? 'border-b border-goods-grid bg-[#f4f7f0]'
+                          : 'border-b border-goods-grid text-[#8b8378]'
                       }
                     >
                       <td className="py-3 pr-4 font-semibold">
@@ -151,7 +151,7 @@ export default async function PathwayNumbersPage({
 
         {/* ── 2. What it costs and what it brings ──────────────────────── */}
         <section className="mt-16">
-          <h2 className="font-display text-2xl text-[#2b2a26]">
+          <h2 className="font-display text-2xl text-goods-ink">
             What {pathway.name} asked for, with the numbers on it
           </h2>
 
@@ -165,9 +165,9 @@ export default async function PathwayNumbersPage({
           ) : (
             <>
               <dl className="mt-8 grid gap-5 sm:grid-cols-2">
-                <div className="rounded-2xl border border-[#e6dfd1] bg-white p-6">
+                <div className="rounded-2xl border border-goods-grid bg-white p-6">
                   <dt className="text-sm font-semibold text-[#6b6358]">To set it up, once</dt>
-                  <dd className="mt-2 font-display text-3xl text-[#2b2a26]">
+                  <dd className="mt-2 font-display text-3xl text-goods-ink">
                     {money(model.setup.capexLow)} &ndash; {money(model.setup.capexHigh)}
                   </dd>
                   <p className="mt-3 text-sm leading-6 text-[#6b6358]">
@@ -176,9 +176,9 @@ export default async function PathwayNumbersPage({
                   </p>
                 </div>
 
-                <div className="rounded-2xl border border-[#e6dfd1] bg-white p-6">
+                <div className="rounded-2xl border border-goods-grid bg-white p-6">
                   <dt className="text-sm font-semibold text-[#6b6358]">To keep it running, each year</dt>
-                  <dd className="mt-2 font-display text-3xl text-[#2b2a26]">
+                  <dd className="mt-2 font-display text-3xl text-goods-ink">
                     {money(model.annual.operatingCost)}
                   </dd>
                   <p className="mt-3 text-sm leading-6 text-[#6b6358]">
@@ -207,7 +207,7 @@ export default async function PathwayNumbersPage({
                   </p>
                 ) : (
                   <>
-                    <p className="mt-3 font-display text-3xl text-[#2b2a26]">
+                    <p className="mt-3 font-display text-3xl text-goods-ink">
                       {money(model.annual.grossEarnings)} in, {money(model.annual.operatingCost)} out
                     </p>
                     {model.sells && model.makingPerBed !== null && (
@@ -220,7 +220,7 @@ export default async function PathwayNumbersPage({
                         homes.
                       </p>
                     )}
-                    <p className="mt-3 text-lg font-semibold text-[#2b2a26]">
+                    <p className="mt-3 text-lg font-semibold text-goods-ink">
                       {net !== null && net < 0
                         ? `This step needs about ${money(Math.abs(net))} a year of grant behind it.`
                         : `That leaves ${money(net ?? 0)} a year in community.`}
@@ -264,7 +264,7 @@ export default async function PathwayNumbersPage({
 
         {/* ── 3. Why more sites is good for this one ───────────────────── */}
         <section className="mt-16">
-          <h2 className="font-display text-2xl text-[#2b2a26]">Why we do not stop at one</h2>
+          <h2 className="font-display text-2xl text-goods-ink">Why we do not stop at one</h2>
           <p className="mt-3 max-w-3xl leading-7 text-[#625b50]">
             Behind every site is one shared team: quality, suppliers, freight, the person on the
             road. That costs {money(networkFeePerSite(1))} a year whether there is one site or
@@ -274,12 +274,12 @@ export default async function PathwayNumbersPage({
             {[1, 2, 3].map((sites) => (
               <div
                 key={sites}
-                className="min-w-[10rem] flex-1 rounded-2xl border border-[#e6dfd1] bg-white p-5"
+                className="min-w-[10rem] flex-1 rounded-2xl border border-goods-grid bg-white p-5"
               >
                 <p className="text-sm font-semibold text-[#6b6358]">
                   {sites} {sites === 1 ? 'site' : 'sites'}
                 </p>
-                <p className="mt-1 font-display text-2xl text-[#2b2a26]">
+                <p className="mt-1 font-display text-2xl text-goods-ink">
                   {money(networkFeePerSite(sites))}
                 </p>
                 <p className="mt-1 text-xs text-[#8b8378]">shared cost, each site</p>
@@ -294,12 +294,12 @@ export default async function PathwayNumbersPage({
 
         {/* ── 4. Open decisions ────────────────────────────────────────── */}
         <section className="mt-16">
-          <h2 className="font-display text-2xl text-[#2b2a26]">Still to work out together</h2>
+          <h2 className="font-display text-2xl text-goods-ink">Still to work out together</h2>
           <ul className="mt-5 space-y-4">
             {model.openDecisions.map((decision) => (
               <li
                 key={decision}
-                className="rounded-2xl border border-[#e6dfd1] bg-white px-5 py-4 leading-7 text-[#5f584e]"
+                className="rounded-2xl border border-goods-grid bg-white px-5 py-4 leading-7 text-[#5f584e]"
               >
                 {decision}
               </li>
@@ -310,7 +310,7 @@ export default async function PathwayNumbersPage({
           </p>
         </section>
 
-        <footer className="mt-16 border-t border-[#e6dfd1] pt-6 text-xs leading-6 text-[#8b8378]">
+        <footer className="mt-16 border-t border-goods-grid pt-6 text-xs leading-6 text-[#8b8378]">
           Every figure on this page is worked out fresh from the cost model when the page loads,
           not typed in. Step values come from Goods&rsquo; own invoices with Defy. Volume is{' '}
           {PLANNING_VOLUME.toLocaleString()} beds&rsquo; worth of material a year, a planning rate

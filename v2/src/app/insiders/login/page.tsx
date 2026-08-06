@@ -61,7 +61,7 @@ function LoginForm() {
               autoFocus
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-2 w-full rounded-md border border-stone-300 bg-white px-4 py-2.5 text-sm text-stone-900 focus:border-[#C45C3E] focus:outline-none focus:ring-1 focus:ring-[#C45C3E]"
+              className="mt-2 w-full rounded-md border border-stone-300 bg-white px-4 py-2.5 text-sm text-stone-900 focus:border-goods-terracotta focus:outline-none focus:ring-1 focus:ring-goods-terracotta"
               required
             />
           </div>
@@ -73,7 +73,7 @@ function LoginForm() {
           <button
             type="submit"
             disabled={loading || !password}
-            className="w-full rounded-md bg-[#C45C3E] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#a74d33] disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full rounded-md bg-goods-terracotta px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#a74d33] disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? 'Checking…' : 'Continue'}
           </button>

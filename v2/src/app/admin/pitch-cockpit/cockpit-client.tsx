@@ -461,7 +461,7 @@ function DrawingsTab({ data }: { data: CockpitData }) {
             {data.drawings.filter((d) => d.set === set).map((d) => (
               <a key={d.file} href={d.file} target="_blank" rel="noreferrer" className="block overflow-hidden rounded border">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={d.file} alt={d.file} className="aspect-video w-full bg-[#FBF8F1] object-contain" loading="lazy" />
+                <img src={d.file} alt={d.file} className="aspect-video w-full bg-goods-cream object-contain" loading="lazy" />
                 <div className="truncate p-1 text-[10px] text-muted-foreground">{d.file.split('/').pop()}</div>
               </a>
             ))}

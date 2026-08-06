@@ -92,7 +92,7 @@ function FacilityHotspots({ fullScreen = false }: { fullScreen?: boolean }) {
     >
       <button
         type="button"
-        className="flex h-8 w-8 items-center justify-center rounded-full border border-white/80 bg-[#c45c3e] text-xs font-bold text-white shadow-lg transition-transform hover:scale-110 focus:scale-110 focus:outline-none focus:ring-2 focus:ring-white"
+        className="flex h-8 w-8 items-center justify-center rounded-full border border-white/80 bg-goods-terracotta text-xs font-bold text-white shadow-lg transition-transform hover:scale-110 focus:scale-110 focus:outline-none focus:ring-2 focus:ring-white"
         aria-label={`${item.name}: ${item.detail}`}
       >
         +
@@ -198,12 +198,12 @@ export function ProductionFacilityExperience() {
     <>
       <section
         id="production-facility"
-        className="min-h-screen bg-[#fbf8f1] px-6 py-8 md:px-10 md:py-10 lg:px-14"
+        className="min-h-screen bg-goods-cream px-6 py-8 md:px-10 md:py-10 lg:px-14"
       >
         <div className="mx-auto flex min-h-[calc(100vh-5rem)] max-w-[1600px] flex-col justify-center">
           <div className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
             <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-goods-terracotta">
                 The production facility
               </p>
               <h2
@@ -222,7 +222,7 @@ export function ProductionFacilityExperience() {
                 Bed. Shredding, sheet-making, CNC cutting, finishing and quality checks sit in one
                 connected workflow. The material left by each cut goes around again.
               </p>
-              <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 border-y border-[#d9d1c3] py-4 font-mono text-[9px] uppercase tracking-[0.17em] text-[#7a7363]">
+              <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 border-y border-[#d9d1c3] py-4 font-mono text-[9px] uppercase tracking-[0.17em] text-goods-sub">
                 <span>Containerised</span>
                 <span>Repairable by station</span>
                 <span>Designed to transfer</span>
@@ -234,12 +234,12 @@ export function ProductionFacilityExperience() {
             {facilityStages.map((stage, stageIndex) => (
               <li
                 key={stage.name}
-                className="group relative grid min-h-36 grid-cols-[0.9fr_1.1fr] overflow-hidden border border-[#d9d1c3] bg-[#f1ece4]"
+                className="group relative grid min-h-36 grid-cols-[0.9fr_1.1fr] overflow-hidden border border-[#d9d1c3] bg-goods-cream-muted"
               >
                 <button
                   type="button"
                   onClick={() => setStageOpenIndex(stageIndex)}
-                  className="absolute inset-0 z-10 cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#c45c3e]"
+                  className="absolute inset-0 z-10 cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-inset focus:ring-goods-terracotta"
                   aria-label={`Open ${stage.number} ${stage.name} full screen`}
                 >
                   <span className="sr-only">Open {stage.name} full screen</span>
@@ -259,8 +259,8 @@ export function ProductionFacilityExperience() {
                     <Maximize2 className="h-4 w-4" aria-hidden="true" />
                   </span>
                 </div>
-                <div className="flex flex-col justify-between bg-[#fbf8f1] p-4">
-                  <span className="goods-pitch-display text-3xl text-[#c45c3e]">
+                <div className="flex flex-col justify-between bg-goods-cream p-4">
+                  <span className="goods-pitch-display text-3xl text-goods-terracotta">
                     {stage.number}
                   </span>
                   <div>
@@ -278,7 +278,7 @@ export function ProductionFacilityExperience() {
             </p>
             <Link
               href="/process"
-              className="inline-flex shrink-0 items-center gap-2 border-b border-[#c45c3e] pb-1 text-sm font-semibold"
+              className="inline-flex shrink-0 items-center gap-2 border-b border-goods-terracotta pb-1 text-sm font-semibold"
             >
               Open the process
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />

@@ -10,7 +10,7 @@ const CommunityMap = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="flex h-[520px] items-center justify-center bg-[#f1ece4] text-sm text-[#7a7363]">
+      <div className="flex h-[520px] items-center justify-center bg-goods-cream-muted text-sm text-goods-sub">
         Loading the live community map…
       </div>
     ),
@@ -33,7 +33,7 @@ export function RoadPitchMap({ locations }: { locations: CommunityLocation[] }) 
 
   return (
     <div className="grid overflow-hidden border border-[#47453f] bg-[#22211e] sm:grid-cols-[minmax(0,1.45fr)_minmax(250px,0.55fr)]">
-      <div className="min-h-[430px] bg-[#f1ece4]">
+      <div className="min-h-[430px] bg-goods-cream-muted">
         <CommunityMap
           locations={locations}
           storytellers={[]}
@@ -43,7 +43,7 @@ export function RoadPitchMap({ locations }: { locations: CommunityLocation[] }) 
         />
       </div>
 
-      <aside className="flex flex-col justify-between p-5 text-[#fbf8f1] md:p-6">
+      <aside className="flex flex-col justify-between p-5 text-goods-cream md:p-6">
         <div>
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#d97a59]">
             {selected ? 'Selected place' : 'The national picture'}
@@ -68,7 +68,7 @@ export function RoadPitchMap({ locations }: { locations: CommunityLocation[] }) 
                       onClick={() => setSelectedId(id)}
                       className="flex w-full items-center justify-between gap-2 border-b border-[#47453f] py-1 text-left"
                     >
-                      <span className="text-xs text-[#fbf8f1] lg:text-sm">{location.name}</span>
+                      <span className="text-xs text-goods-cream lg:text-sm">{location.name}</span>
                       <span className="text-right font-mono text-[7px] uppercase tracking-[0.1em] text-[#d97a59] lg:text-[8px]">
                         {status.replace('Pathway · ', '')}
                       </span>
@@ -124,7 +124,7 @@ export function RoadPitchMap({ locations }: { locations: CommunityLocation[] }) 
             </div>
             <Link
               href={`/communities/${selected.id}`}
-              className="mt-6 inline-flex border-b border-[#d97a59] pb-1 text-sm text-[#fbf8f1] hover:text-[#d97a59]"
+              className="mt-6 inline-flex border-b border-[#d97a59] pb-1 text-sm text-goods-cream hover:text-[#d97a59]"
             >
               Open the place evidence page
             </Link>

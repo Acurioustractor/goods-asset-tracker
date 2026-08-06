@@ -27,7 +27,7 @@ export function InsidersSidebar({ tree, currentSlug }: Props) {
         <div className="px-5 py-6 border-b border-stone-200/70">
           <Link
             href="/insiders"
-            className="flex items-center gap-2 text-sm font-semibold tracking-tight text-stone-900 hover:text-[#C45C3E]"
+            className="flex items-center gap-2 text-sm font-semibold tracking-tight text-stone-900 hover:text-goods-terracotta"
           >
             <BookOpen className="h-4 w-4" strokeWidth={1.5} />
             Insiders Wiki
@@ -80,7 +80,7 @@ function TreeNode({
         className={cn(
           'block rounded-md border-l-2 border-transparent px-3 py-1.5 text-sm text-stone-600 hover:bg-stone-100 hover:text-stone-900 transition-colors',
           depth > 0 && 'ml-4',
-          isCurrent && 'border-[#C45C3E] bg-[#C45C3E]/10 text-[#9F452D] font-semibold shadow-sm'
+          isCurrent && 'border-goods-terracotta bg-goods-terracotta/10 text-[#9F452D] font-semibold shadow-sm'
         )}
       >
         {node.label}
@@ -95,7 +95,7 @@ function TreeNode({
         onClick={() => setOpen(!open)}
         className={cn(
           'flex w-full items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold uppercase tracking-wider transition-colors',
-          hasActiveChild ? 'text-[#C45C3E]' : 'text-stone-500 hover:text-stone-900'
+          hasActiveChild ? 'text-goods-terracotta' : 'text-stone-500 hover:text-stone-900'
         )}
       >
         <ChevronRight

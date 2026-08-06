@@ -40,7 +40,7 @@ export default async function NewsPage() {
     return (
       <article className="mx-auto max-w-3xl px-6 py-14">
         <header>
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-goods-terracotta">
             The letter{el.publishedAt ? ` · ${new Date(el.publishedAt).toLocaleDateString('en-AU', { month: 'long', year: 'numeric' })}` : ''}
           </p>
           <h1 className="goods-pitch-display mt-3 text-4xl leading-tight md:text-5xl">{el.title}</h1>
@@ -54,13 +54,13 @@ export default async function NewsPage() {
         ) : (
           <div className="mt-10 space-y-5">
             {el.content.split(/\n\s*\n/).map((para, i) => (
-              <p key={i} className="text-base leading-7 text-[#2b2a26]">{para}</p>
+              <p key={i} className="text-base leading-7 text-goods-ink">{para}</p>
             ))}
           </div>
         )}
         {elIssues.length > 1 && (
           <section className="mt-12 border-t border-[#d9d1c3] pt-6">
-            <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#7a7363]">Earlier letters</h2>
+            <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-goods-sub">Earlier letters</h2>
             <ul className="mt-3 space-y-2">
               {elIssues.slice(1).map((prev) => (
                 <li key={prev.id} className="text-sm text-[#6d675c]">{prev.title}</li>
@@ -69,12 +69,12 @@ export default async function NewsPage() {
           </section>
         )}
         <section className="mt-12">
-          <h2 className="border-b-2 border-[#2b2a26] pb-2 font-mono text-[11px] uppercase tracking-[0.18em]">
+          <h2 className="border-b-2 border-goods-ink pb-2 font-mono text-[11px] uppercase tracking-[0.18em]">
             Three ways in
           </h2>
           <div className="mt-6 grid gap-6 sm:grid-cols-3">
             {DOORS.map((door) => (
-              <div key={door.verb} className="border-t-2 border-[#c45c3e] pt-2">
+              <div key={door.verb} className="border-t-2 border-goods-terracotta pt-2">
                 <p className="goods-pitch-display text-xl">{door.verb}</p>
                 <p className="mt-1 text-sm leading-5 text-[#6d675c]">{door.entity}</p>
               </div>
@@ -95,7 +95,7 @@ export default async function NewsPage() {
   return (
     <article className="mx-auto max-w-3xl px-6 py-14">
       <header>
-        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
+        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-goods-terracotta">
           The letter · {issue.month}
         </p>
         <h1 className="goods-pitch-display mt-3 text-4xl leading-tight md:text-5xl">{issue.title}</h1>
@@ -103,7 +103,7 @@ export default async function NewsPage() {
       </header>
 
       <section className="mt-12">
-        <h2 className="border-b-2 border-[#2b2a26] pb-2 font-mono text-[11px] uppercase tracking-[0.18em]">
+        <h2 className="border-b-2 border-goods-ink pb-2 font-mono text-[11px] uppercase tracking-[0.18em]">
           From community
         </h2>
         <ul className="mt-6 space-y-8">
@@ -111,7 +111,7 @@ export default async function NewsPage() {
             <li key={item.href + item.title}>
               <Link href={item.href} className="group grid gap-4 sm:grid-cols-[1fr_180px]">
                 <div>
-                  <h3 className="goods-pitch-display text-2xl leading-tight group-hover:text-[#c45c3e]">
+                  <h3 className="goods-pitch-display text-2xl leading-tight group-hover:text-goods-terracotta">
                     {item.title}
                   </h3>
                   <p className="mt-2 text-base leading-7 text-[#6d675c]">{item.line}</p>
@@ -128,14 +128,14 @@ export default async function NewsPage() {
       </section>
 
       <section className="mt-12">
-        <h2 className="border-b-2 border-[#2b2a26] pb-2 font-mono text-[11px] uppercase tracking-[0.18em]">
+        <h2 className="border-b-2 border-goods-ink pb-2 font-mono text-[11px] uppercase tracking-[0.18em]">
           People stepping up
         </h2>
         <ul className="mt-6 space-y-6">
           {issue.people.map((item) => (
             <li key={item.title}>
               <Link href={item.href} className="group">
-                <h3 className="goods-pitch-display text-xl group-hover:text-[#c45c3e]">{item.title}</h3>
+                <h3 className="goods-pitch-display text-xl group-hover:text-goods-terracotta">{item.title}</h3>
                 <p className="mt-1 text-base leading-7 text-[#6d675c]">{item.line}</p>
               </Link>
             </li>
@@ -144,12 +144,12 @@ export default async function NewsPage() {
       </section>
 
       <section className="mt-12">
-        <h2 className="border-b-2 border-[#2b2a26] pb-2 font-mono text-[11px] uppercase tracking-[0.18em]">
+        <h2 className="border-b-2 border-goods-ink pb-2 font-mono text-[11px] uppercase tracking-[0.18em]">
           The road to ownership
         </h2>
         <ul className="mt-6 space-y-3">
           {issue.road.map((line) => (
-            <li key={line} className="border-l-2 border-[#d9d1c3] pl-4 text-base leading-7 text-[#2b2a26]">
+            <li key={line} className="border-l-2 border-[#d9d1c3] pl-4 text-base leading-7 text-goods-ink">
               {line}
             </li>
           ))}
@@ -160,12 +160,12 @@ export default async function NewsPage() {
       </section>
 
       <section className="mt-12">
-        <h2 className="border-b-2 border-[#2b2a26] pb-2 font-mono text-[11px] uppercase tracking-[0.18em]">
+        <h2 className="border-b-2 border-goods-ink pb-2 font-mono text-[11px] uppercase tracking-[0.18em]">
           Three ways in
         </h2>
         <div className="mt-6 grid gap-6 sm:grid-cols-3">
           {DOORS.map((door) => (
-            <div key={door.verb} className="border-t-2 border-[#c45c3e] pt-2">
+            <div key={door.verb} className="border-t-2 border-goods-terracotta pt-2">
               <p className="goods-pitch-display text-xl">{door.verb}</p>
               <p className="mt-1 text-sm leading-5 text-[#6d675c]">{door.entity}</p>
             </div>

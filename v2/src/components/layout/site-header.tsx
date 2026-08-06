@@ -26,12 +26,13 @@ const navigation: NavItem[] = [
   { name: 'Contact', href: '/contact' },
 ];
 
-/** The same four audience doors the homepage closes on (home.ts HOME_DOORS order). */
+/** The same four audience doors the homepage closes on (home.ts HOME_DOORS order).
+    Colours via the canonical CSS vars; ink text on the light tones for contrast. */
 const menuDoors = [
-  { name: 'Buy a bed', href: '/shop/stretch-bed-single', color: '#C45C3E' },
-  { name: 'Sponsor a bed', href: '/sponsor', color: '#C9A227' },
-  { name: 'Want this where you are?', href: '/communities', color: '#6F7F5C' },
-  { name: 'Back the making', href: '/invest', color: '#3E6363' },
+  { name: 'Buy a bed', href: '/shop/stretch-bed-single', color: 'var(--goods-terracotta)', text: '#FFFFFF' },
+  { name: 'Sponsor a bed', href: '/sponsor', color: 'var(--goods-gold)', text: 'var(--goods-ink)' },
+  { name: 'Want this where you are?', href: '/communities', color: 'var(--goods-sage)', text: 'var(--goods-ink)' },
+  { name: 'Back the making', href: '/invest', color: 'var(--goods-teal)', text: '#FFFFFF' },
 ];
 
 export function SiteHeader() {
@@ -74,13 +75,13 @@ export function SiteHeader() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`relative text-sm font-medium transition-colors hover:text-[#C45C3E] ${
-                  active ? 'text-[#C45C3E]' : 'text-foreground/70'
+                className={`relative text-sm font-medium transition-colors hover:text-goods-terracotta ${
+                  active ? 'text-goods-terracotta' : 'text-foreground/70'
                 }`}
               >
                 {item.name}
                 {active && (
-                  <span className="absolute -bottom-[22px] left-0 right-0 h-0.5 bg-[#C45C3E]" aria-hidden />
+                  <span className="absolute -bottom-[22px] left-0 right-0 h-0.5 bg-goods-terracotta" aria-hidden />
                 )}
               </Link>
             );
@@ -89,7 +90,7 @@ export function SiteHeader() {
 
         {/* Desktop CTAs & cart */}
         <div className="hidden lg:flex lg:items-center lg:gap-3">
-          <Button size="sm" className="bg-[#C45C3E] text-white hover:bg-[#C45C3E]/90" asChild>
+          <Button size="sm" className="bg-goods-terracotta text-white hover:bg-goods-terracotta/90" asChild>
             <Link href="/shop/stretch-bed-single">Buy a bed</Link>
           </Button>
           <CartButton />
@@ -114,8 +115,8 @@ export function SiteHeader() {
 
       {/* Full-screen mobile menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-[60] flex flex-col bg-[#fbf8f1] lg:hidden" role="dialog" aria-modal="true">
-          <div className="flex h-16 items-center justify-between border-b border-[#2b2a26]/10 px-4">
+        <div className="fixed inset-0 z-[60] flex flex-col bg-goods-cream lg:hidden" role="dialog" aria-modal="true">
+          <div className="flex h-16 items-center justify-between border-b border-goods-ink/10 px-4">
             <Link href="/" aria-label="Goods on Country home" onClick={() => setMobileMenuOpen(false)}>
               <Image
                 src="/brand/canonical/goods-on-country-primary-ink.png"
@@ -129,7 +130,7 @@ export function SiteHeader() {
               type="button"
               onClick={() => setMobileMenuOpen(false)}
               aria-label="Close menu"
-              className="flex h-10 w-10 items-center justify-center rounded-md text-[#2b2a26] hover:bg-black/5"
+              className="flex h-10 w-10 items-center justify-center rounded-md text-goods-ink hover:bg-black/5"
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.8" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
@@ -144,7 +145,7 @@ export function SiteHeader() {
                   key={item.name}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block py-2.5 text-3xl font-semibold text-[#2b2a26] transition-colors hover:text-[#C45C3E]"
+                  className="block py-2.5 text-3xl font-semibold text-goods-ink transition-colors hover:text-goods-terracotta"
                   style={{ fontFamily: 'var(--font-display, Georgia, serif)', transitionDelay: `${i * 15}ms` }}
                 >
                   {item.name}
@@ -153,7 +154,7 @@ export function SiteHeader() {
             </div>
 
             <div className="mt-10">
-              <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-[#7a7363]">
+              <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-goods-sub">
                 Where do you want to go?
               </p>
               <div className="grid grid-cols-2 gap-2.5">
@@ -162,14 +163,14 @@ export function SiteHeader() {
                     key={door.name}
                     href={door.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="rounded-xl px-4 py-4 text-sm font-semibold leading-snug text-white"
-                    style={{ backgroundColor: door.color }}
+                    className="rounded-xl px-4 py-4 text-sm font-semibold leading-snug"
+                    style={{ backgroundColor: door.color, color: door.text }}
                   >
                     {door.name}
                   </Link>
                 ))}
               </div>
-              <p className="mt-6 text-sm text-[#7a7363]">
+              <p className="mt-6 text-sm text-goods-sub">
                 hello@goodsoncountry.com
               </p>
             </div>

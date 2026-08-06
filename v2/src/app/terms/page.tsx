@@ -16,7 +16,7 @@ export default function TermsPage() {
   return (
     <main className="bg-[#FDF8F3] text-[#2E2E2E]">
       <div className="max-w-2xl mx-auto px-6 py-16 sm:py-24">
-        <p className="text-xs uppercase tracking-[0.25em] text-[#C45C3E] mb-4">
+        <p className="text-xs uppercase tracking-[0.25em] text-goods-terracotta mb-4">
           Goods on Country
         </p>
         <h1 className="font-display text-4xl sm:text-5xl tracking-tight mb-3">
@@ -114,7 +114,7 @@ export default function TermsPage() {
           <Section title="Contact">
             <p>
               Questions about these terms:{' '}
-              <a href="mailto:ben@goodsoncountry.com" className="underline text-[#C45C3E]">
+              <a href="mailto:ben@goodsoncountry.com" className="underline text-goods-terracotta">
                 ben@goodsoncountry.com
               </a>.
             </p>

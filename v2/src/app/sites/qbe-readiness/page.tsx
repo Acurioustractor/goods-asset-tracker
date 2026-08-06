@@ -369,7 +369,7 @@ function SectionHeading({
 
 export default function QbeReadinessPage() {
   return (
-    <main className="min-h-screen bg-[#FDF8F3] text-[#2B2A26]">
+    <main className="min-h-screen bg-[#FDF8F3] text-goods-ink">
       {/* Confidential banner */}
       <div className="border-b border-amber-300 bg-[#FBEFD8]">
         <div className="mx-auto flex max-w-5xl items-center gap-2 px-4 py-2 text-xs font-medium text-amber-900 sm:px-6">
@@ -383,7 +383,7 @@ export default function QbeReadinessPage() {
       <section className="border-b border-stone-800 bg-[#24211D] text-[#FDF8F3]">
         <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
           <div className="flex flex-wrap items-center gap-2">
-            <Badge className="border-[#BBA255]/30 bg-[#BBA255]/15 text-[#FDF8F3]">
+            <Badge className="border-goods-gold/30 bg-goods-gold/15 text-[#FDF8F3]">
               QBE readiness
             </Badge>
             <Badge className="border-white/15 bg-white/10 text-[#FDF8F3]">
@@ -391,13 +391,13 @@ export default function QbeReadinessPage() {
             </Badge>
           </div>
 
-          <p className="mt-6 text-xs font-semibold uppercase tracking-[0.28em] text-[#BBA255]">
+          <p className="mt-6 text-xs font-semibold uppercase tracking-[0.28em] text-goods-gold">
             Goods on Country
           </p>
           <h1 className="mt-3 max-w-3xl text-4xl font-light leading-tight sm:text-5xl" style={serif}>
             A good bed is health hardware.
           </h1>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-[#E6DFD1] sm:text-lg">
+          <p className="mt-5 max-w-2xl text-base leading-7 text-goods-grid sm:text-lg">
             We deliver quality, washable, repairable household goods to remote Indigenous
             communities, built for real remote conditions from recycled plastic, every unit tracked.
             This is environmental-health hardware, not charity furniture. The endgame is to become
@@ -434,7 +434,7 @@ export default function QbeReadinessPage() {
               className="flex flex-col rounded-xl border border-stone-200 bg-white p-5 shadow-sm"
             >
               <div className="flex items-start justify-between gap-2">
-                <p className="text-2xl font-semibold leading-tight text-[#2B2A26]">{m.value}</p>
+                <p className="text-2xl font-semibold leading-tight text-goods-ink">{m.value}</p>
                 <Pill tier={m.tier} />
               </div>
               <p className="mt-1 text-sm font-medium text-stone-700">{m.label}</p>
@@ -447,14 +447,14 @@ export default function QbeReadinessPage() {
       {/* The simple frame */}
       <section className="border-y border-stone-200 bg-[#24211D] text-[#FDF8F3]">
         <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#BBA255]">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-goods-gold">
             The whole thing, simply
           </p>
           <p className="mt-4 max-w-3xl text-xl leading-8 sm:text-2xl" style={serif}>
             Twelve readiness areas collapse into one goal and five proofs. The homework is finished.
             What is left is not more documents. It is real-world evidence.
           </p>
-          <p className="mt-4 max-w-2xl text-sm leading-6 text-[#E6DFD1]">
+          <p className="mt-4 max-w-2xl text-sm leading-6 text-goods-grid">
             Close one signed dollar, get the carve-out signed by the accountant, decide the legal entity, measure
             (not model) the bed cost, and clear consent on impact. Get those and a QBE grant has something to sit on
             the money. That is the game between now and 31 August.
@@ -466,7 +466,7 @@ export default function QbeReadinessPage() {
       <section className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
         <SectionHeading icon={Target}>The one goal</SectionHeading>
         <div className="mt-6 rounded-2xl border border-rose-200 bg-rose-50/60 p-6 sm:p-8">
-          <p className="text-lg leading-8 text-[#2B2A26] sm:text-xl">
+          <p className="text-lg leading-8 text-goods-ink sm:text-xl">
             Close the first{' '}
             <span className="font-semibold">~AU$400K of signed, match-eligible capital by 31
             August 2026.</span>{' '}
@@ -503,14 +503,14 @@ export default function QbeReadinessPage() {
                   <span className="text-sm font-semibold text-stone-700">{item.label}</span>
                   <Pill tier={item.tier} />
                 </div>
-                <p className="mt-2 text-xl font-semibold text-[#2B2A26]">{item.amount}</p>
+                <p className="mt-2 text-xl font-semibold text-goods-ink">{item.amount}</p>
                 <p className="mt-1 text-xs leading-5 text-stone-500">{item.detail}</p>
               </div>
             ))}
           </div>
           <p className="mt-3 text-xs leading-5 text-stone-500">
             All sought except the QBE invitation. See the numbers move in the{' '}
-            <Link href="/sites/qbe" className="font-semibold text-[#A8643F] underline">
+            <Link href="/sites/qbe" className="font-semibold text-goods-clay underline">
               live cost-model cockpit
             </Link>
             .
@@ -533,10 +533,10 @@ export default function QbeReadinessPage() {
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#2B2A26] text-sm font-bold text-[#BBA255]">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-goods-ink text-sm font-bold text-goods-gold">
                     {proof.number}
                   </span>
-                  <h3 className="text-base font-semibold leading-snug text-[#2B2A26]">
+                  <h3 className="text-base font-semibold leading-snug text-goods-ink">
                     {proof.title}
                   </h3>
                 </div>
@@ -571,9 +571,9 @@ export default function QbeReadinessPage() {
           <ol className="mt-7 space-y-0 border-l-2 border-stone-300 pl-6">
             {MILESTONES.map((m) => (
               <li key={m.when} className="relative pb-6 last:pb-0">
-                <span className="absolute -left-[1.92rem] top-1 h-3.5 w-3.5 rounded-full border-2 border-[#5C8A86] bg-[#FDF8F3]" />
+                <span className="absolute -left-[1.92rem] top-1 h-3.5 w-3.5 rounded-full border-2 border-goods-teal bg-[#FDF8F3]" />
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-sm font-semibold text-[#2B2A26]">{m.when}</span>
+                  <span className="text-sm font-semibold text-goods-ink">{m.when}</span>
                   {m.tier ? <Pill tier={m.tier} /> : null}
                 </div>
                 <p className="mt-1 text-sm leading-6 text-stone-600">{m.what}</p>
@@ -592,10 +592,10 @@ export default function QbeReadinessPage() {
                 className="flex flex-col rounded-xl border border-stone-200 bg-white p-5 shadow-sm"
               >
                 <div className="flex items-center gap-2">
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#5C8A86]/15 text-sm font-bold text-[#3F6E6A]">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-goods-teal/15 text-sm font-bold text-[#3F6E6A]">
                     {p.n}
                   </span>
-                  <h4 className="text-base font-semibold text-[#2B2A26]">{p.name}</h4>
+                  <h4 className="text-base font-semibold text-goods-ink">{p.name}</h4>
                 </div>
                 <p className="mt-1 text-xs font-medium uppercase tracking-[0.12em] text-stone-400">
                   {p.horizon}
@@ -623,9 +623,9 @@ export default function QbeReadinessPage() {
             >
               <div className="flex items-center gap-2 sm:w-64 sm:shrink-0">
                 <span className="text-sm font-semibold tabular-nums text-stone-400">{r.number}</span>
-                <span className="text-sm font-semibold text-[#2B2A26]">{r.name}</span>
+                <span className="text-sm font-semibold text-goods-ink">{r.name}</span>
                 {r.priority ? (
-                  <span className="text-[#BBA255]" aria-label="priority area">
+                  <span className="text-goods-gold" aria-label="priority area">
                     ★
                   </span>
                 ) : null}
@@ -638,7 +638,7 @@ export default function QbeReadinessPage() {
                     {r.to}
                   </span>
                 ) : (
-                  <span className="inline-flex items-center rounded-md border border-[#BBA255]/40 bg-[#FFF9EA] px-2 py-0.5 text-xs font-semibold text-[#8A6D1F]">
+                  <span className="inline-flex items-center rounded-md border border-goods-gold/40 bg-[#FFF9EA] px-2 py-0.5 text-xs font-semibold text-[#8A6D1F]">
                     {r.label}
                   </span>
                 )}
@@ -663,13 +663,13 @@ export default function QbeReadinessPage() {
               <Link
                 key={model.href}
                 href={model.href}
-                className="group flex flex-col rounded-xl border border-stone-200 bg-white p-5 shadow-sm transition hover:border-[#5C8A86] hover:shadow"
+                className="group flex flex-col rounded-xl border border-stone-200 bg-white p-5 shadow-sm transition hover:border-goods-teal hover:shadow"
               >
                 <div className="flex items-start justify-between gap-3">
-                  <h3 className="text-base font-semibold leading-snug text-[#2B2A26]">
+                  <h3 className="text-base font-semibold leading-snug text-goods-ink">
                     {model.title}
                   </h3>
-                  <ArrowRight className="h-4 w-4 shrink-0 text-stone-400 transition group-hover:translate-x-0.5 group-hover:text-[#5C8A86]" />
+                  <ArrowRight className="h-4 w-4 shrink-0 text-stone-400 transition group-hover:translate-x-0.5 group-hover:text-goods-teal" />
                 </div>
                 <p className="mt-2 text-sm leading-6 text-stone-600">{model.body}</p>
                 <span className="mt-3 font-mono text-xs text-stone-400">{model.href}</span>

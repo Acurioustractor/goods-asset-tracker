@@ -263,14 +263,18 @@ export default function BrandGuidePage() {
               </p>
               <p className="mt-2 text-3xl font-bold">Archivo Bold 700</p>
               <p className="mt-1" style={{ color: C.sub }}>
-                Grounded descriptor: Archivo SemiBold 600.
+                Grounded descriptor: Archivo SemiBold 600. Outlined in the supplied
+                artwork — never set live. Use the files, do not rebuild the mark.
               </p>
             </div>
             <div>
               <p className="text-xs font-bold uppercase tracking-widest" style={{ color: C.sub }}>
                 Editorial display
               </p>
-              <p className="mt-2 font-display text-4xl">Georgia</p>
+              <p className="mt-2 font-display text-4xl">Playfair Display</p>
+              <p className="mt-1" style={{ color: C.sub }}>
+                Georgia is the fallback, not the face.
+              </p>
             </div>
             <div>
               <p className="text-xs font-bold uppercase tracking-widest" style={{ color: C.sub }}>
@@ -312,6 +316,84 @@ export default function BrandGuidePage() {
               Use the full grounded lockup above 160px digital or 42mm print. Below
               160px, remove the rail if necessary. Below 96px, use Goods. alone and
               provide “Goods on Country” as accessible text.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* The system, live. Every swatch and specimen below renders from the SAME
+          registered tokens the site uses (globals.css --goods-* via the Tailwind
+          theme), so this board cannot drift from what actually ships. Reconciled
+          2026-08-06: tokens.css, globals.css and the app now agree. */}
+      <section id="system" className="border-t px-6 py-16 md:px-12" style={{ borderColor: C.grid }}>
+        <div className="mx-auto max-w-5xl">
+          <p className="text-sm font-semibold" style={{ color: C.terracotta }}>
+            04
+          </p>
+          <h2 className="mt-2 font-display text-4xl">The system, live</h2>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed" style={{ color: C.sub }}>
+            Rendered from the site&apos;s own design tokens, not pasted values. If a colour or a
+            face changes in code, this board changes with it.
+          </p>
+
+          <h3 className="mt-10 text-xs font-bold uppercase tracking-widest" style={{ color: C.sub }}>
+            Colour
+          </h3>
+          <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+            {[
+              { cls: 'bg-goods-terracotta', name: 'Terracotta', varName: '--goods-terracotta', hex: '#C45C3E', dark: true },
+              { cls: 'bg-goods-clay', name: 'Clay', varName: '--goods-clay', hex: '#A8643F', dark: true },
+              { cls: 'bg-goods-sage', name: 'Sage', varName: '--goods-sage', hex: '#8B9D77', dark: false },
+              { cls: 'bg-goods-teal', name: 'Teal', varName: '--goods-teal', hex: '#5C8A86', dark: true },
+              { cls: 'bg-goods-gold', name: 'Gold', varName: '--goods-gold', hex: '#BBA255', dark: false },
+              { cls: 'bg-goods-ink', name: 'Ink', varName: '--goods-ink', hex: '#2B2A26', dark: true },
+              { cls: 'bg-goods-sub', name: 'Sub', varName: '--goods-sub', hex: '#7A7363', dark: true },
+              { cls: 'bg-goods-cream', name: 'Cream', varName: '--goods-cream', hex: '#FBF8F1', dark: false },
+              { cls: 'bg-goods-cream-muted', name: 'Cream muted', varName: '--goods-cream-muted', hex: '#F1ECE4', dark: false },
+              { cls: 'bg-goods-sand', name: 'Sand', varName: '--goods-sand', hex: '#E8DCC8', dark: false },
+              { cls: 'bg-goods-grid', name: 'Grid', varName: '--goods-grid', hex: '#E6DFD1', dark: false },
+              { cls: 'bg-goods-card', name: 'Card', varName: '--goods-card', hex: '#FFFFFF', dark: false },
+            ].map((s) => (
+              <div key={s.varName} className="overflow-hidden rounded-xl border" style={{ borderColor: C.grid }}>
+                <div className={`flex h-20 items-end p-2 ${s.cls}`}>
+                  <span className={`font-mono text-[10px] ${s.dark ? 'text-white/80' : 'text-goods-ink/60'}`}>{s.hex}</span>
+                </div>
+                <div className="bg-white p-2">
+                  <p className="text-xs font-semibold">{s.name}</p>
+                  <p className="font-mono text-[10px]" style={{ color: C.sub }}>{s.varName}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <h3 className="mt-12 text-xs font-bold uppercase tracking-widest" style={{ color: C.sub }}>
+            Type, as loaded
+          </h3>
+          <div className="mt-4 grid gap-4 md:grid-cols-2">
+            <div className="rounded-2xl border bg-white p-6" style={{ borderColor: C.grid }}>
+              <p className="font-mono text-[10px]" style={{ color: C.sub }}>font-display · Playfair Display</p>
+              <p className="mt-2 font-display text-3xl leading-snug">The making belongs on Country.</p>
+            </div>
+            <div className="rounded-2xl border bg-white p-6" style={{ borderColor: C.grid }}>
+              <p className="font-mono text-[10px]" style={{ color: C.sub }}>font-sans · Inter</p>
+              <p className="mt-2 text-lg leading-relaxed">
+                A flat-packable, washable bed designed in community for remote Australia.
+              </p>
+            </div>
+          </div>
+
+          <h3 className="mt-12 text-xs font-bold uppercase tracking-widest" style={{ color: C.sub }}>
+            Actions
+          </h3>
+          <div className="mt-4 flex flex-wrap items-center gap-4 rounded-2xl border bg-white p-6" style={{ borderColor: C.grid }}>
+            <span className="rounded-md bg-goods-terracotta px-5 py-2.5 text-sm font-semibold text-white">Primary</span>
+            <span className="rounded-md border border-goods-terracotta px-5 py-2.5 text-sm font-semibold text-goods-terracotta">Outline</span>
+            <span className="rounded-md bg-goods-gold px-5 py-2.5 text-sm font-semibold text-goods-ink">Gold · ink text</span>
+            <span className="rounded-md bg-goods-sage px-5 py-2.5 text-sm font-semibold text-goods-ink">Sage · ink text</span>
+            <span className="rounded-md bg-goods-teal px-5 py-2.5 text-sm font-semibold text-white">Teal · white text</span>
+            <p className="w-full text-xs leading-relaxed" style={{ color: C.sub }}>
+              White text on terracotta and teal; ink text on gold and sage. Never white on
+              gold or sage — it fails contrast.
             </p>
           </div>
         </div>

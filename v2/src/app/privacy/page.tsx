@@ -16,7 +16,7 @@ export default function PrivacyPage() {
   return (
     <main className="bg-[#FDF8F3] text-[#2E2E2E]">
       <div className="max-w-2xl mx-auto px-6 py-16 sm:py-24">
-        <p className="text-xs uppercase tracking-[0.25em] text-[#C45C3E] mb-4">
+        <p className="text-xs uppercase tracking-[0.25em] text-goods-terracotta mb-4">
           Goods on Country
         </p>
         <h1 className="font-display text-4xl sm:text-5xl tracking-tight mb-3">
@@ -81,7 +81,7 @@ export default function PrivacyPage() {
           <Section title="Your rights">
             <p>
               You can ask us at any time to see, correct, or delete the information we hold
-              about you. Email us at <a href="mailto:ben@goodsoncountry.com" className="underline text-[#C45C3E]">ben@goodsoncountry.com</a> and
+              about you. Email us at <a href="mailto:ben@goodsoncountry.com" className="underline text-goods-terracotta">ben@goodsoncountry.com</a> and
               we&apos;ll do it within thirty days.
             </p>
           </Section>
@@ -97,7 +97,7 @@ export default function PrivacyPage() {
           <Section title="Contact">
             <p>
               Questions, corrections, or concerns:{' '}
-              <a href="mailto:ben@goodsoncountry.com" className="underline text-[#C45C3E]">
+              <a href="mailto:ben@goodsoncountry.com" className="underline text-goods-terracotta">
                 ben@goodsoncountry.com
               </a>.
             </p>

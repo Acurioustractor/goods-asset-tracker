@@ -178,7 +178,7 @@ export function PitchChrome() {
           role="dialog"
           aria-modal="true"
           aria-label={OPENER_HEADING}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-[#171714]/97 px-6 py-10 text-[#fbf8f1] backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[#171714]/97 px-6 py-10 text-goods-cream backdrop-blur-sm"
           onClick={() => setOpenerOpen(false)}
         >
           <div className="max-h-full w-full max-w-[1000px] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
@@ -274,7 +274,7 @@ export function PitchChrome() {
             <button
               type="button"
               onClick={() => setOpenerOpen(true)}
-              className="border border-[#c45c3e] px-3 py-1 text-xs text-[#e88461] hover:border-[#e88461]"
+              className="border border-goods-terracotta px-3 py-1 text-xs text-[#e88461] hover:border-[#e88461]"
             >
               Read this first
             </button>

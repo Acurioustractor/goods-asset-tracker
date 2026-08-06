@@ -131,7 +131,7 @@ export default function AtlasClient({ communities, canon }: { communities: Atlas
   }, [communities]);
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-[#FBF8F1]">
+    <div className="fixed inset-0 z-50 flex flex-col bg-goods-cream">
       {/* Top bar */}
       <div className="flex items-center gap-4 border-b border-[#E5DCCB] bg-[#F5EEE4] px-5 py-3">
         <Link
@@ -156,7 +156,7 @@ export default function AtlasClient({ communities, canon }: { communities: Atlas
               {matches.map((c) => (
                 <button
                   key={c.id}
-                  className="block w-full px-3 py-2 text-left text-sm hover:bg-[#FBF8F1]"
+                  className="block w-full px-3 py-2 text-left text-sm hover:bg-goods-cream"
                   onClick={() => {
                     setSelectedId(c.id);
                     setQuery('');
@@ -500,7 +500,7 @@ export default function AtlasClient({ communities, canon }: { communities: Atlas
             <div className="mt-auto space-y-2 p-5">
               <Link
                 href={`/admin/communities/${selected.id}`}
-                className="block rounded-xl bg-[#B44D2B] px-4 py-2.5 text-center text-sm font-semibold text-[#FBF8F1] hover:bg-[#8A4B26]"
+                className="block rounded-xl bg-[#B44D2B] px-4 py-2.5 text-center text-sm font-semibold text-goods-cream hover:bg-[#8A4B26]"
               >
                 Open full {selected.name} dashboard →
               </Link>

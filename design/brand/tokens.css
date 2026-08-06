@@ -24,8 +24,10 @@
 
   /* ---- Brand primary ----------------------------------------------------- */
   /* [CHOICE] the Goods terracotta. Logo terracotta is the brand primary; clay
-     is the chart/HDPE anchor. They are different roles, not competitors. */
-  --goods-terracotta:   #C9613C;  /* primary / brand (full stop + ground rail) */
+     is the chart/HDPE anchor. They are different roles, not competitors.
+     RECONCILED 2026-08-06: was #C9613C here while the live app rendered #C45C3E
+     everywhere (v2 globals.css). What ships is canonical; this file now matches. */
+  --goods-terracotta:   #C45C3E;  /* primary / brand (full stop + ground rail) */
   --goods-clay:         #A8643F;  /* HDPE plastic, the chart anchor            */
 
   /* ---- Secondary accents (connection to Country) ------------------------- */
@@ -43,11 +45,14 @@
   --goods-sub:          #7A7363;  /* captions, sub-text                        */
 
   /* ---- Type -------------------------------------------------------------- */
-  /* Display = Georgia (editorial, public pages). Logo = Archivo Bold 700;
-     the grounded descriptor uses Archivo SemiBold 600. Body = system sans. */
-  --goods-font-display: Georgia, "Times New Roman", serif;
-  --goods-font-logo:    "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --goods-font-body:    system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  /* RECONCILED 2026-08-06 to what the app actually loads (v2 layout.tsx via
+     next/font): display = Playfair Display, body = Inter. Georgia is the
+     fallback, not the face. The wordmark is SUPPLIED ARTWORK (PNG/SVG in
+     /brand/canonical/) and is never set live in a font — Archivo was claimed
+     here and on /brand while never being loaded anywhere. Do not rebuild the
+     wordmark from type. */
+  --goods-font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --goods-font-body:    "Inter", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
 
   --goods-display-tracking: -0.01em;   /* editorial headings sit tight        */
   --goods-eyebrow-tracking: 0.12em;    /* all-caps eyebrows / labels          */

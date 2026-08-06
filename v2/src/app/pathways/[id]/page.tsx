@@ -98,8 +98,8 @@ export default async function CommunityPathwayPage({
   ];
 
   return (
-    <div className="min-h-screen bg-[#fbf8f1]">
-      <section className="border-b border-[#e6dfd1] bg-white">
+    <div className="min-h-screen bg-goods-cream">
+      <section className="border-b border-goods-grid bg-white">
         <div className="container mx-auto max-w-7xl px-5 py-5">
           <Link
             href="/pathways"
@@ -110,16 +110,16 @@ export default async function CommunityPathwayPage({
         </div>
       </section>
 
-      <section className="border-b border-[#e6dfd1] bg-[linear-gradient(145deg,#f4eadb_0%,#fbf8f1_56%,#eef1e9_100%)]">
+      <section className="border-b border-goods-grid bg-[linear-gradient(145deg,#f4eadb_0%,#fbf8f1_56%,#eef1e9_100%)]">
         <div className="container mx-auto grid max-w-7xl gap-10 px-5 py-14 lg:grid-cols-[1fr_0.72fr] lg:py-20">
           <div>
             <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#a64f35]">
               <MapPinned className="h-4 w-4" /> {pathway.region}
             </p>
-            <h1 className="mt-4 font-display text-4xl text-[#2b2a26] md:text-6xl">{pathway.name}</h1>
+            <h1 className="mt-4 font-display text-4xl text-goods-ink md:text-6xl">{pathway.name}</h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-[#625b50]">{pathway.invitation}</p>
             <div className="mt-8 flex flex-wrap gap-2">
-              <span className="rounded-full bg-[#2b2a26] px-4 py-2 text-xs font-semibold text-white">
+              <span className="rounded-full bg-goods-ink px-4 py-2 text-xs font-semibold text-white">
                 {pathway.stageLabel}
               </span>
               <span className="rounded-full border border-[#d5cabc] bg-white/70 px-4 py-2 text-xs font-semibold text-[#5c554b]">
@@ -151,7 +151,7 @@ export default async function CommunityPathwayPage({
         </div>
       </section>
 
-      <section className="border-b border-[#e6dfd1] bg-white">
+      <section className="border-b border-goods-grid bg-white">
         <div className="container mx-auto max-w-7xl overflow-x-auto px-5 py-6">
           <ol className="flex min-w-[860px] items-center">
             {PATHWAY_STAGES.map((stage, index) => (
@@ -206,14 +206,14 @@ export default async function CommunityPathwayPage({
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#a64f35]">
                   {pathway.caseStudy.eyebrow}
                 </p>
-                <h2 className="mt-4 font-display text-3xl leading-tight text-[#2b2a26] md:text-5xl">
+                <h2 className="mt-4 font-display text-3xl leading-tight text-goods-ink md:text-5xl">
                   {pathway.caseStudy.headline}
                 </h2>
                 <p className="mt-6 text-base leading-8 text-[#625b50]">
                   {pathway.caseStudy.summary}
                 </p>
                 <figure className="mt-8 border-l-2 border-[#c9613c] pl-5">
-                  <blockquote className="font-display text-xl leading-8 text-[#2b2a26]">
+                  <blockquote className="font-display text-xl leading-8 text-goods-ink">
                     “{pathway.caseStudy.quote.text}”
                   </blockquote>
                   <figcaption className="mt-4 text-sm text-[#6b6358]">
@@ -227,7 +227,7 @@ export default async function CommunityPathwayPage({
             <div className="grid border-t border-[#e6dfd3] md:grid-cols-3">
               {pathway.caseStudy.proof.map((item) => (
                 <div key={item.label} className="border-b border-[#e6dfd3] p-6 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0">
-                  <p className="font-display text-4xl text-[#2b2a26]">{item.value}</p>
+                  <p className="font-display text-4xl text-goods-ink">{item.value}</p>
                   <p className="mt-2 font-semibold text-[#37332e]">{item.label}</p>
                   <p className="mt-1 text-sm leading-6 text-[#746c60]">{item.note}</p>
                 </div>
@@ -240,7 +240,7 @@ export default async function CommunityPathwayPage({
                 <div className="mt-6 space-y-7">
                   {pathway.caseStudy.story.map((beat, index) => (
                     <article key={beat.title} className="grid grid-cols-[2rem_1fr] gap-3">
-                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#2b2a26] text-xs font-semibold text-white">
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-goods-ink text-xs font-semibold text-white">
                         {index + 1}
                       </span>
                       <div>
@@ -354,7 +354,7 @@ export default async function CommunityPathwayPage({
         <section id="support-menu">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#a64f35]">Choose support</p>
-            <h2 className="mt-3 font-display text-3xl text-[#2b2a26] md:text-4xl">A menu, not a fixed program</h2>
+            <h2 className="mt-3 font-display text-3xl text-goods-ink md:text-4xl">A menu, not a fixed program</h2>
             <p className="mt-4 leading-7 text-[#6b6358]">
               These are working options. A module only becomes part of the delivery plan
               after the community confirms it.
@@ -380,20 +380,20 @@ export default async function CommunityPathwayPage({
           <article className="rounded-3xl border border-[#e1d8c9] bg-white p-7">
             <div className="flex items-center gap-3">
               <ShieldCheck className="h-6 w-6 text-[#718461]" />
-              <h2 className="font-display text-2xl text-[#2b2a26]">Evidence boundary</h2>
+              <h2 className="font-display text-2xl text-goods-ink">Evidence boundary</h2>
             </div>
             <p className="mt-5 text-sm leading-7 text-[#625b50]">{pathway.evidenceNote}</p>
           </article>
           <article className="rounded-3xl border border-[#e1d8c9] bg-white p-7">
             <div className="flex items-center gap-3">
               <ImageIcon className="h-6 w-6 text-[#a64f35]" />
-              <h2 className="font-display text-2xl text-[#2b2a26]">Stories and media</h2>
+              <h2 className="font-display text-2xl text-goods-ink">Stories and media</h2>
             </div>
             <p className="mt-5 text-sm leading-7 text-[#625b50]">{pathway.mediaNote}</p>
           </article>
         </section>
 
-        <section className="mt-16 rounded-3xl bg-[#2b2a26] p-7 text-white md:p-10">
+        <section className="mt-16 rounded-3xl bg-goods-ink p-7 text-white md:p-10">
           <div className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#e6b59e]">Next actions</p>
