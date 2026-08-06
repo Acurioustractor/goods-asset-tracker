@@ -71,12 +71,12 @@ const footerLinks = {
     { name: 'Our Story', href: '/story' },
     { name: 'Community Stories', href: '/stories' },
     { name: 'Communities', href: '/communities' },
+    { name: 'News', href: '/news' },
     { name: 'Impact', href: '/story#impact' },
     { name: 'Centrecorp Partnership', href: '/partners/centrecorp' },
     { name: 'Gallery', href: '/gallery' },
   ],
   connect: [
-    { name: 'Back the work', href: '/partner' },
     { name: 'Partner With Us', href: '/partner' },
     { name: 'Sponsor a Bed', href: '/sponsor' },
     { name: 'Support / FAQ', href: '/support' },
