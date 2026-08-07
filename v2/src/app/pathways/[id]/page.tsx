@@ -427,10 +427,10 @@ export default async function CommunityPathwayPage({
             </p>
           </div>
           <Link
-            href="/partner"
+            href="/partners"
             className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full bg-goods-clay px-5 py-3 text-sm font-semibold text-white hover:bg-[#8f422d]"
           >
-            Start a conversation <ArrowRight className="h-4 w-4" />
+            Explore the partnership pathway <ArrowRight className="h-4 w-4" />
           </Link>
         </section>
       </main>

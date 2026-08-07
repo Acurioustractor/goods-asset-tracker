@@ -533,10 +533,10 @@ export default async function CommunityPage({ params }: PageProps) {
             Sponsor beds
           </Link>
           <Link
-            href="/partner"
+            href="/partners"
             className="rounded-full border border-amber-700 px-5 py-2.5 text-sm font-semibold text-amber-800 transition-colors hover:bg-amber-100"
           >
-            Become a partner
+            Explore partnerships
           </Link>
           <Link
             href="/contact"

@@ -89,11 +89,12 @@ export const ASK_BLOCKS: AskBlock[] = [
  * enterprises; 2025 paid $1.02M across ten, averaging about $102,000. $400K is the top of a
  * stated $150K-$400K range and 36% of the whole pool.
  *
- * The sentence keeps Ben's target and his own 31 August gate, which are his to set, and keeps
+ * The sentence keeps Ben's target and makes the real timing clear: commitments need to be
+ * signed before the QBE submission, and earlier commitments strengthen the application.
  * "funds itself", which rests on Goods' own economics rather than on QBE.
  */
 export const ASK_HEADLINE = {
-  line: 'We are raising $400,000 in signed commitments by 31 August. That covers the equipment, a measured fifty-bed run and the months before beds pay for themselves, with the cash-cycle line still to be sized after the run. QBE can add a grant on top of signed paper, at their discretion. $0 is signed today.',
+  line: 'We are raising $300,000 a year to keep Goods making beds, working with communities and supporting community-led enterprises. Capital for on-Country production facilities is raised separately: up to $222,000 for a full facility, with smaller modular options shaped around what each community needs. Earlier signed commitments make the QBE application stronger. $0 is signed today.',
   ifMore: 'More signed paper raises the most a grant could cover. How much they give is still theirs to decide. Past our own ceiling of about $550,000 the extra is better spent buying beds.',
   ifShort: 'A smaller raise still funds the measured run, and a smaller grant is what fits a smaller stack. Every signed dollar is one a grant can sit on.',
 };
@@ -107,9 +108,8 @@ export const ASK_MATCH_VEHICLE = {
   // 14 September STRUCK 2026-07-31. canon.ts signed-lois states it plainly: "Do NOT write
   // '14 Sep' as the application date: that is the Butterfly AGM, a different thing, and no
   // firmer QBE date is sourced." Canon is authority 1, so this string stops asserting a date
-  // canon forbids. Our own 31 Aug gate and the November outcome are both sourced; the
-  // program's own close is late September and nobody has pinned the day. Ask Jay.
-  rule: 'Must be at least matched by SIGNED external commitments. Repayable finance preferred. Our own match-paper gate is 31 Aug; the program closes late September 2026, exact date unconfirmed; outcomes November 2026.',
+  // canon forbids. The program's own close is late September and nobody has pinned the day.
+  rule: 'Must be at least matched by SIGNED external commitments. Repayable finance preferred. Commitments are needed before submission; earlier commitments strengthen the application. The program closes in late September 2026, exact date unconfirmed; outcomes November 2026.',
   note: 'A discretionary grant that sits on top of signed external paper. The ask is the sum of the blocks, never a slogan number.',
 };
 

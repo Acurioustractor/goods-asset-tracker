@@ -272,10 +272,7 @@ export function ProductionFacilityExperience() {
             ))}
           </ol>
 
-          <div className="mt-5 flex items-center justify-between gap-5 border-t border-goods-sand pt-4">
-            <p className="text-sm text-goods-sub">
-              The equipment is real. The next measured run must prove sustained time and cost.
-            </p>
+          <div className="mt-5 flex items-center justify-end border-t border-goods-sand pt-4">
             <Link
               href="/process"
               className="inline-flex shrink-0 items-center gap-2 border-b border-goods-terracotta pb-1 text-sm font-semibold"

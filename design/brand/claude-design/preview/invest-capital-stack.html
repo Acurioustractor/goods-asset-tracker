@@ -1,5 +1,20 @@
 <!doctype html>
-<!-- @dsCard group="Investment" name="Capital stack" subtitle="The $475K match: repayable core plus warm grants" viewport="700x540" -->
+<!-- @dsCard group="Investment" name="Capital stack" subtitle="The $400K raise: a repayable core and a warm grant, with QBE on top" viewport="700x540" -->
+<!--
+  REBUILT 2026-08-05 against src/lib/data/ask-surface.ts. Three things were wrong and all three
+  were the same mistake, treating a discretionary grant as an arithmetic partner:
+
+  1. "The $475K match". QBE money is CATALYTIC, never matching (ruling V, 2026-08-01). Raising
+     $400,000 creates no obligation on QBE at all. The word match is struck from this card.
+  2. Centrecorp $75K. REMOVED from the stack by Ben 2026-08-02: they are a BUYER and will not
+     give a grant. Carrying them here inflated the grant column by $75,000 and pointed the
+     relationship at the wrong conversation. Their bed order is a sale, on a different surface.
+  3. The "QBE match line" drawn across the bar implied our raise had to clear a threshold. It
+     does not. The grant sits ON TOP of signed paper, at the Steering Committee's discretion.
+
+  Total is $400K, confirmed by Ben 2026-08-05, and it is the same $400K as ASK_HEADLINE.line:
+  signed commitments by 31 August. SEFA $300K + Snow $100K. Neither is signed.
+-->
 <html><head><meta charset="utf-8"><link rel="stylesheet" href="_base.css">
 <style>
   .card {
@@ -32,17 +47,9 @@
     color: var(--muted-foreground);
     margin: 6px 0 0;
   }
-  .stage {
-    display: flex;
-    gap: 28px;
-    align-items: stretch;
-  }
-  /* Chart column: the proportional stacked bar */
-  .chart {
-    position: relative;
-    width: 150px;
-    flex: 0 0 150px;
-  }
+  .stage { display: flex; gap: 28px; align-items: stretch; }
+  .chart { position: relative; width: 150px; flex: 0 0 150px; }
+  .barwrap { position: relative; padding-top: 38px; }
   .bar {
     position: relative;
     width: 90px;
@@ -54,7 +61,7 @@
     overflow: hidden;
     box-shadow: 0 1px 0 var(--border);
   }
-  /* heights honestly proportional: 300 : 100 : 75 over 475 total */
+  /* Heights honestly proportional: 300 : 100 over a 400 total. */
   .seg {
     width: 100%;
     display: flex;
@@ -65,9 +72,8 @@
     font-weight: 600;
     font-size: 13px;
   }
-  .seg-sefa { height: 227.4px; background: var(--primary); }      /* 300 of 475 */
-  .seg-snow { height: 75.8px; background: var(--accent); }        /* 100 of 475 */
-  .seg-centrecorp { height: 56.8px; background: var(--chart-3); } /* 75 of 475 */
+  .seg-snow { height: 90px; background: var(--accent); }   /* 100 of 400 */
+  .seg-sefa { height: 270px; background: var(--primary); } /* 300 of 400 */
   .seg small {
     display: block;
     font-weight: 400;
@@ -75,35 +81,26 @@
     opacity: 0.85;
     text-align: center;
   }
-  /* QBE match line at 400 of 475 from the bottom */
-  .matchline {
+  /* QBE is drawn ABOVE the bar, detached and dashed, because it is not part of the
+     raise and does not have to be cleared. Its size is not ours to set. */
+  .ontop {
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 303.2px; /* 400/475 of 360px */
-    height: 0;
-    border-top: 2px dashed var(--foreground);
-  }
-  .matchline .tag {
-    position: absolute;
-    right: 0;
-    top: -9px;
-    background: var(--muted);
-    color: var(--foreground);
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    width: 90px;
+    height: 26px;
+    border: 2px dashed var(--muted-foreground);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: var(--font-sans);
-    font-size: 9.5px;
+    font-size: 10px;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    padding: 2px 6px;
-    border-radius: 3px;
-    white-space: nowrap;
+    color: var(--muted-foreground);
   }
-  .axis-total {
-    text-align: center;
-    margin-top: 8px;
-    font-family: var(--font-sans);
-  }
+  .axis-total { text-align: center; margin-top: 8px; font-family: var(--font-sans); }
   .axis-total .n {
     font-family: var(--font-display);
     font-weight: 300;
@@ -118,29 +115,18 @@
     color: var(--muted-foreground);
     margin-top: 2px;
   }
-  /* Detail column */
   .detail {
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
     gap: 12px;
-    padding-top: 4px;
+    padding-top: 42px;
   }
-  .item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-  }
-  .swatch {
-    flex: 0 0 14px;
-    width: 14px;
-    height: 14px;
-    border-radius: 3px;
-    margin-top: 3px;
-  }
+  .item { display: flex; align-items: flex-start; gap: 12px; }
+  .swatch { flex: 0 0 14px; width: 14px; height: 14px; border-radius: 3px; margin-top: 3px; }
   .sw-sefa { background: var(--primary); }
   .sw-snow { background: var(--accent); }
-  .sw-centrecorp { background: var(--chart-3); }
+  .sw-qbe { background: none; border: 2px dashed var(--muted-foreground); }
   .item .body { flex: 1 1 auto; }
   .item .src {
     font-family: var(--font-sans);
@@ -170,17 +156,13 @@
     font-size: 11.5px;
     color: var(--muted-foreground);
   }
-  .legend .dot {
-    width: 11px;
-    height: 11px;
-    border-radius: 3px;
-  }
+  .legend .dot { width: 11px; height: 11px; border-radius: 3px; }
   .legend .dot.repay { background: var(--primary); }
   .legend .dot.grant { background: var(--accent); }
   .legend .dot.line {
     width: 16px;
     height: 0;
-    border-top: 2px dashed var(--foreground);
+    border-top: 2px dashed var(--muted-foreground);
     border-radius: 0;
   }
   .caption {
@@ -188,7 +170,7 @@
     font-family: var(--font-sans);
     font-size: 11.5px;
     color: var(--muted-foreground);
-    line-height: 1.5;
+    line-height: 1.55;
     border-top: 1px solid var(--border);
     padding-top: 12px;
   }
@@ -198,21 +180,22 @@
 <body>
   <div class="card">
     <div class="head">
-      <p class="eyebrow">Scenario A capital stack</p>
-      <h1>The $475K match: repayable core plus warm grants</h1>
-      <p class="sub">Target asks staged to clear the QBE match with a repayable core first.</p>
+      <p class="eyebrow">The raise</p>
+      <h1>$400K in signed commitments, with a repayable core</h1>
+      <p class="sub">Target asks by 31 August. A QBE grant can sit on top, at their discretion.</p>
     </div>
 
     <div class="stage">
       <div class="chart">
-        <div class="bar">
-          <div class="seg seg-centrecorp">$75K</div>
-          <div class="seg seg-snow">$100K</div>
-          <div class="seg seg-sefa">$300K<small>anchor</small></div>
+        <div class="barwrap">
+          <div class="ontop">QBE, on top</div>
+          <div class="bar">
+            <div class="seg seg-snow">$100K</div>
+            <div class="seg seg-sefa">$300K<small>anchor</small></div>
+          </div>
         </div>
-        <div class="matchline"><span class="tag">QBE match line $400K (contingent)</span></div>
         <div class="axis-total">
-          <span class="n">$475K</span>
+          <span class="n">$400K</span>
           <span class="l">Total target</span>
         </div>
       </div>
@@ -222,32 +205,35 @@
           <span class="swatch sw-sefa"></span>
           <div class="body">
             <div class="src">SEFA Loan Fund <span class="amt">$300K</span></div>
-            <div class="inst">Repayable term loan. The anchor, no ownership gate.</div>
+            <div class="inst">Repayable term loan. The anchor, no ownership gate. Proposed, not signed.</div>
           </div>
         </div>
         <div class="item">
           <span class="swatch sw-snow"></span>
           <div class="body">
             <div class="src">Snow Foundation <span class="amt">$100K</span></div>
-            <div class="inst">Grant pushing toward repayable or multi-year.</div>
+            <div class="inst">Grant, pushing toward repayable or multi-year. Warm, not signed.</div>
           </div>
         </div>
         <div class="item">
-          <span class="swatch sw-centrecorp"></span>
+          <span class="swatch sw-qbe"></span>
           <div class="body">
-            <div class="src">Centrecorp Foundation <span class="amt">$75K</span></div>
-            <div class="inst">Grant, kept separate from its bed order.</div>
+            <div class="src">QBE Catalysing Impact <span class="amt">on top</span></div>
+            <div class="inst">Discretionary, typically $150K to $400K, from a pool of up to $1.1M shared across ten enterprises. Not part of the raise.</div>
           </div>
         </div>
 
         <div class="legend">
           <span class="key"><span class="dot repay"></span>Repayable finance</span>
           <span class="key"><span class="dot grant"></span>Grant</span>
-          <span class="key"><span class="dot line"></span>QBE target (contingent)</span>
+          <span class="key"><span class="dot line"></span>Discretionary, sits on top</span>
         </div>
       </div>
     </div>
 
-    <p class="caption">Scenario A target asks, not awarded amounts. <strong>Repayable is prioritised by QBE.</strong> The QBE grant (up to $400K) is contingent and not secured. <strong>0 signed today.</strong></p>
+    <p class="caption">Target asks, not awarded amounts. <strong>Repayable is preferred by QBE.</strong>
+      The grant is <strong>catalytic, not dollar for dollar</strong>: raising $400,000 creates no
+      obligation on QBE, and how much they give is theirs to decide. Centrecorp is a buyer, not a
+      grant source, so their bed order is not in this stack. <strong>$0 signed today.</strong></p>
   </div>
 </body></html>

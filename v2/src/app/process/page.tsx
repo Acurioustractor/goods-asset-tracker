@@ -573,7 +573,7 @@ export default async function ProcessPage() {
                 <Link href="/sponsor">Sponsor a bed</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="bg-transparent text-background border-background/40 hover:bg-background/10">
-                <Link href="/partner">Partner with us</Link>
+                <Link href="/partners">Explore community partnerships</Link>
               </Button>
             </div>
           </div>

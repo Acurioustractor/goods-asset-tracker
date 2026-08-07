@@ -280,3 +280,4 @@ deliverables/*.csv
 deliverables/community-model.json
 tools/.gsheet-targets.json
 .venv-sheets/
+.vercel

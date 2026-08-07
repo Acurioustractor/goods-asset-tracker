@@ -275,7 +275,7 @@ export default function StretchBedPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" variant="secondary" asChild>
-              <Link href="/partner">Partner With Us</Link>
+              <Link href="/get-involved">See ways to back the work</Link>
             </Button>
             <Button size="lg" variant="outline" className="bg-transparent border-accent-foreground text-accent-foreground hover:bg-accent-foreground/10" asChild>
               <Link href="/story">Our Story</Link>

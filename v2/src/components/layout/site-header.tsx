@@ -22,7 +22,7 @@ const navigation: NavItem[] = [
   { name: 'How it’s made', href: '/process' },
   { name: 'Communities', href: '/communities' },
   { name: 'Our story', href: '/story' },
-  { name: 'Invest', href: '/invest' },
+  { name: 'Back the work', href: '/partner' },
   { name: 'Contact', href: '/contact' },
 ];
 
@@ -32,7 +32,7 @@ const menuDoors = [
   { name: 'Buy a bed', href: '/shop/stretch-bed-single', color: 'var(--goods-terracotta)', text: '#FFFFFF' },
   { name: 'Sponsor a bed', href: '/sponsor', color: 'var(--goods-gold)', text: 'var(--goods-ink)' },
   { name: 'Want this where you are?', href: '/communities', color: 'var(--goods-sage)', text: 'var(--goods-ink)' },
-  { name: 'Back the making', href: '/invest', color: 'var(--goods-teal)', text: '#FFFFFF' },
+  { name: 'Back the work', href: '/partner', color: 'var(--goods-teal)', text: '#FFFFFF' },
 ];
 
 export function SiteHeader() {
@@ -115,7 +115,11 @@ export function SiteHeader() {
 
       {/* Full-screen mobile menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-[60] flex flex-col bg-goods-cream lg:hidden" role="dialog" aria-modal="true">
+        <div
+          className="fixed left-0 top-0 z-[60] flex h-dvh w-screen flex-col bg-goods-cream lg:hidden"
+          role="dialog"
+          aria-modal="true"
+        >
           <div className="flex h-16 items-center justify-between border-b border-goods-ink/10 px-4">
             <Link href="/" aria-label="Goods on Country home" onClick={() => setMobileMenuOpen(false)}>
               <Image
@@ -170,9 +174,9 @@ export function SiteHeader() {
                   </Link>
                 ))}
               </div>
-              <p className="mt-6 text-sm text-goods-sub">
-                hello@goodsoncountry.com
-              </p>
+              <a className="mt-6 inline-block text-sm text-goods-sub hover:text-goods-terracotta" href="mailto:hi@act.place">
+                hi@act.place
+              </a>
             </div>
           </nav>
         </div>

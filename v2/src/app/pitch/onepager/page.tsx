@@ -27,14 +27,14 @@ const FIVE_NUMBERS = [
   { v: '$750', l: 'A bed sells for', chip: 'verified' },
   { v: '~$685', l: 'To make + truck today', chip: 'verified' },
   { v: '~$426', l: 'Pressing our own legs', chip: 'modelled' },
-  { v: '$400K', l: 'The raise, signed by 31 Aug', chip: 'target' },
+  { v: '$300K', l: 'Annual funding Goods needs', chip: 'target' },
   { v: '$0', l: 'Signed today', chip: 'verified' },
 ];
 
 const FACILITY = [
-  { step: 'Stand it up', amount: '$112K–$222K', chip: 'modelled', line: 'Shredder, press, cutter, container, power. $110,046 of our own already in, beside this number, never subtracted.' },
-  { step: 'Prove it', amount: '$60K–$80K', chip: 'target', line: 'Fifty beds, timed and costed with receipts. Turns $426 from modelled to measured.' },
-  { step: 'Run it', amount: '~$109.5K a year', chip: 'workpaper', line: 'Shed, books, travel. A community site’s own cost is being settled with the first community.' },
+  { step: 'Community facility', amount: 'Up to $222K', chip: 'capital per full facility', line: 'A complete production facility, or a smaller set of modules shaped around what a community needs and already has.' },
+  { step: 'Keep making beds', amount: '$100K a year', chip: 'production funding', line: 'Continue production at the farm and The Harvest while on-Country facilities are developed.' },
+  { step: 'Keep Goods working', amount: '$200K a year', chip: 'organisation funding', line: 'Visit communities, develop products and support community-led enterprises to grow and take on production.' },
 ];
 
 export default function OnePagerPage() {

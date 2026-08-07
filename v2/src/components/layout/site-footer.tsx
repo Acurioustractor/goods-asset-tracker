@@ -69,6 +69,7 @@ const footerLinks = {
   ],
   about: [
     { name: 'Our Story', href: '/story' },
+    { name: 'The Road to Ownership', href: '/pitch/road' },
     { name: 'Community Stories', href: '/stories' },
     { name: 'Communities', href: '/communities' },
     { name: 'Impact', href: '/story#impact' },
@@ -77,9 +78,9 @@ const footerLinks = {
   ],
   connect: [
     { name: 'Back the work', href: '/partner' },
-    { name: 'Partner With Us', href: '/partner' },
+    { name: 'Community partnerships', href: '/partners' },
     { name: 'Sponsor a Bed', href: '/sponsor' },
-    { name: 'Support / FAQ', href: '/support' },
+    { name: 'Product support', href: '/support' },
     { name: 'Contact', href: '/contact' },
   ],
 };

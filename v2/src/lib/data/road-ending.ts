@@ -54,7 +54,7 @@ export const VOICE_ONE_BED: EndingVoice = {
 };
 
 export const VOICE_FOUR_ASKS: EndingVoice = {
-  text: 'We\'re given the opportunity to be consulted with, but you\'re never given the opportunity... it\'s rare that you\'re consulted with and then told, Hey.',
+  text: 'We\'re given the opportunity to be consulted with, but you\'re never given the opportunity... it\'s rare that you\'re consulted with and then told, Hey, we are here to listen and learn, to grow this together.',
   name: 'Tanya Turner',
   attribution: 'Tanya Turner, Oonchiumpa Consultancy leadership, Alice Springs',
   portrait: null,
@@ -261,9 +261,9 @@ export const PATHWAY_ASKS: PathwayAsk[] = [
     size: 'One machine',
     field: 'Asked for',
     body:
-      'Asked what they would want to own first, Urapuntja said a shredder. One machine, so the plastic collected around the homelands becomes clean flake on Country, with young people doing the work. It is a request we are still scoping with Jane Wilson.',
+      'Asked what they would want to own first, Urapuntja said a shredder. One machine, so the plastic collected around the homelands becomes clean flake on Country, with young people doing the work. The next step is to scope it together.',
     whatWeCanSay:
-      'We can price the shredder. Power, a pad, somewhere to stand it and somebody to run it are the parts we have not worked out with Urapuntja, and none of our numbers have gone to them.',
+      'We are working toward a first modular setup built around a shredder. The site, power and operating plan still need to be worked through with Urapuntja. No funding is secured yet.',
     whoseCall: 'Jane Wilson and Urapuntja Aboriginal Corporation.',
     ground: 'cream',
   },
@@ -276,7 +276,7 @@ export const PATHWAY_ASKS: PathwayAsk[] = [
     body:
       'The whole thing. Shredding, pressing, cutting the legs, training and the support to keep it running, all of it run by Oonchiumpa, with the records and the photos staying with Oonchiumpa. Young people have already built Stretch Beds behind their office and kept the first one each.',
     whatWeCanSay:
-      'We have priced the whole build. Oonchiumpa has not seen that number yet, and they see it before anybody else does. They have also applied for federal money for this. Nothing is secured, and it sits outside the QBE match.',
+      'We are working toward a complete community-led production facility. Oonchiumpa has submitted a federal funding application and is waiting on the outcome. No funding is secured yet.',
     whoseCall: 'Oonchiumpa Consultancy and Services, Aboriginal owned and led.',
     ground: 'dark',
   },
@@ -289,7 +289,7 @@ export const PATHWAY_ASKS: PathwayAsk[] = [
     body:
       'To work through the shed they already have. A two-stage proposal went to them in February, and the relationship goes back years, built around turning local plastic into local work out of Our Community Shed.',
     whatWeCanSay:
-      'We have not gone back to check it still stands. The email is written and it has not been sent. Until it goes, what the Shed wants now is theirs to say and not ours to print.',
+      'We are working toward using the existing shed for local recycling and production. The earlier proposal now needs to be confirmed with Our Community Shed. No funding is secured yet.',
     whoseCall: 'Michelle Bates and the Our Community Shed committee.',
     ground: 'cream',
   },
@@ -297,12 +297,12 @@ export const PATHWAY_ASKS: PathwayAsk[] = [
     id: 'palm-island',
     place: 'Palm Island',
     country: 'Manbarra Country, QLD',
-    size: 'A conversation',
+    size: 'Recycling and production',
     field: 'Where this sits',
     body:
-      'Nothing has been asked for, because nobody has been asked. The introduction runs through the Council, and the community contacts are still to be confirmed. The first move is sitting down and listening, on the Council\'s terms and in their time.',
+      'Palm Island is redesigning its refuse facility. That creates an opportunity to include recycling and local production as part of the new facility, shaped with the Council and community.',
     whatWeCanSay:
-      'Our own cost model puts this at $0, and $0 is the wrong answer. Sitting down, listening, and writing back what we heard takes real time and real money. It is the most common first step and the one nobody funds.',
+      'We are working toward making recycled-plastic production part of the wider refuse-facility redevelopment. The scope has not been agreed and no funding is secured yet.',
     whoseCall: 'Palm Island Aboriginal Shire Council, then community.',
     ground: 'warm',
   },
@@ -311,7 +311,7 @@ export const PATHWAY_ASKS: PathwayAsk[] = [
 /** Where the first site goes is not ours alone to settle, and four named
  *  communities are reading. State the process, never the outcome. */
 export const FIRST_SITE_RULE =
-  'Where the first site goes is not settled, and it is not ours alone to settle. The fifty get pressed on the gear we already own, because the risk of going first is ours to carry. What moves to Country is the version that already works, at the size that community asked for.';
+  'Where the first facility goes will be decided with communities. Goods will keep producing beds at the farm and The Harvest while each community chooses what it wants to build and own.';
 
 // ---------------------------------------------------------------------------
 // Section 4: the letter.
@@ -362,7 +362,7 @@ export const DOORS: Door[] = [
     does:
       'Buys the press, the shredder and the machine that cuts the legs, and covers the gap between building beds and getting paid for them. They are the same machines a community can take one at a time.',
     returns:
-      'Your money back, out of bed sales, on terms we write with you: the rate, the term, and when repayment starts. Nobody has agreed those terms yet, and we will not promise you a return before the fifty beds are timed and costed.',
+      'Your money back, out of bed sales, on terms agreed with you: the rate, the term and when repayment starts. Nobody has agreed those terms yet, and we will not promise a return until the repayment plan is clear.',
     match: 'Counts toward the QBE match. It is the form QBE would rather see.',
   },
   {
@@ -411,10 +411,9 @@ export const ASK_BELIEVABILITY =
 
 export const ASK_NEXT_STEP = {
   sentence:
-    'The smallest step is fifteen minutes on the phone. If it still makes sense at the end of it, the four lines above are the letter, and on your own letterhead they take about five minutes. We set the 31 August date ourselves, early, so there is time to check the paperwork before the program closes.',
+    'The smallest step is fifteen minutes on the phone. Commitments need to be signed before we submit the QBE application, and the earlier they are in place, the stronger the application will be.',
   primary: { label: 'Ask for a fifteen minute call', href: '/contact' },
   secondary: { label: 'Every figure, with its source', href: '/register' },
-  tertiary: { label: 'Where the money goes', href: '/cost-story' },
 };
 
 export const CLOSING_TAIL = 'Nothing is signed yet. That is where this starts.';

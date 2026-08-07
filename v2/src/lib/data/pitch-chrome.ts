@@ -92,34 +92,34 @@ export const PITCH_PANELS: PitchPanel[] = [
 
   { id: 'stop-1-kalgoorlie', label: 'Ninga Mia', chapter: 'the-places', packs: ['funder', 'supporter', 'press'] },
   { id: 'stop-2-tennant-creek', label: 'Warumungu Country', chapter: 'the-places', packs: ['funder', 'supporter', 'press'] },
-  { id: 'stop-3-the-machine-with-a-name', label: 'Name it', chapter: 'the-places', packs: ['funder', 'supporter', 'press'] },
-  { id: 'stop-4-palm-island', label: 'Bwgcolman', chapter: 'the-places', packs: ['funder', 'supporter', 'press'] },
+  { id: 'stop-3-the-machine-with-a-name', label: 'Pakkimjalki Kari', chapter: 'the-places', packs: ['funder', 'supporter', 'press'] },
+  { id: 'stop-4-palm-island', label: 'Palm Island', chapter: 'the-places', packs: ['funder', 'supporter', 'press'] },
   { id: 'the-stretch-bed', label: 'The Stretch Bed', chapter: 'the-places', packs: ['funder', 'supporter', 'press'] },
   // Funder-only: the zoomable bed prints per-part prices ($93.50 canvas, $344.05 finished legs),
   // which the supporter and press packs deliberately withhold. Until 2026-08-06 it carried no
   // data-pitch-panel at all, so it leaked into every pack and stacked under every slide.
   { id: 'bed-in-detail', label: 'The bed, in detail', chapter: 'the-places', packs: ['funder'] },
-  { id: 'stop-5-utopia', label: 'Urapuntja', chapter: 'the-places', packs: ['funder', 'supporter', 'press'] },
-  { id: 'stop-6-maningrida-and-the-farm', label: 'Manayingkarírra', chapter: 'the-places', packs: ['funder', 'supporter', 'press'] },
-  { id: 'stop-7-oonchiumpa', label: 'Mparntwe', chapter: 'the-places', packs: ['funder', 'supporter', 'press'] },
+  { id: 'stop-5-utopia', label: 'Utopia Homelands', chapter: 'the-places', packs: ['funder', 'supporter', 'press'] },
+  { id: 'stop-6-maningrida-and-the-farm', label: 'Maningrida and the farm', chapter: 'the-places', packs: ['funder', 'supporter', 'press'] },
+  { id: 'stop-7-oonchiumpa', label: 'Oonchiumpa', chapter: 'the-places', packs: ['funder', 'supporter', 'press'] },
   // Same repair as bed-in-detail: previously un-id'd, so it rendered in every pack and every slide.
   { id: 'the-farm', label: 'The farm', chapter: 'the-places', packs: ['funder', 'supporter'] },
 
-  { id: 'map', label: 'Where things went', chapter: 'the-map', packs: ['funder', 'supporter', 'press'] },
+  { id: 'map', label: 'Communities reached', chapter: 'the-map', packs: ['funder', 'supporter', 'press'] },
 
   // The money half. A supporter did not come for the unit economics and a press reader must never
   // be handed a funding ask as though it were a fact about the organisation.
   // The five-number strip investors actually read; every later money panel is evidence for it.
-  { id: 'money-at-a-glance', label: 'Five numbers', chapter: 'the-money', packs: ['funder'] },
+  { id: 'money-at-a-glance', label: 'The key numbers', chapter: 'the-money', packs: ['funder'] },
   // The plain-English facility overview: stand it up / prove it / run it, and the three doors.
-  { id: 'the-facility', label: 'The facility', chapter: 'the-money', packs: ['funder'] },
-  { id: 'model', label: 'The model', chapter: 'the-money', packs: ['funder'] },
+  { id: 'the-facility', label: 'What funding makes possible', chapter: 'the-money', packs: ['funder'] },
+  { id: 'model', label: 'How it works', chapter: 'the-money', packs: ['funder'] },
   // `one-bed` (with the merged stopwatch) and `the-chain` were cut from the deck 2026-08-06:
   // the five-number strip + the facility panel carry the money story; the working lives at
   // /register. The data modules behind them are unchanged.
-  { id: 'four-asks', label: 'The four asks', chapter: 'the-money', packs: ['funder'] },
+  { id: 'four-asks', label: 'Community pathways', chapter: 'the-money', packs: ['funder'] },
 
-  { id: 'the-letter', label: 'The letter', chapter: 'the-close', packs: ['funder', 'supporter'] },
+  { id: 'the-letter', label: 'Ways to fund the work', chapter: 'the-close', packs: ['funder', 'supporter'] },
   { id: 'closing', label: 'The promise', chapter: 'the-close', packs: ['funder', 'supporter', 'press'] },
 ];
 

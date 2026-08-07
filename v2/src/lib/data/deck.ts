@@ -137,7 +137,7 @@ export interface DeckSlide {
   note: string;
 }
 
-export const deckUpdated = '25 July 2026';
+export const deckUpdated = '7 August 2026';
 
 /** Read once so a figure cannot drift between two slides that state it. */
 const price = canonFact('stretch-price').value;
@@ -216,8 +216,8 @@ export const deckSlides: DeckSlide[] = [
     eyebrow: 'Stop 3 · Tennant Creek',
     headline: 'Dianne named it Pakkimjalki Kari.',
     body: 'People in Tennant Creek asked Goods to look beyond beds. Dianne helped shape a one-button washing-machine prototype, then gave it a Warumungu name.',
-    photo: '/images/product/washing-machine-name.jpg',
-    photoAlt: 'Pakkimjalki Kari: the name plate on the washing machine',
+    photo: '/images/media-pack/washing-machine-enclosure-sunset.jpg',
+    photoAlt: 'The complete Pakkimjalki Kari washing machine on Country at sunset',
     place: 'Tennant Creek, NT',
     voiceNames: ['Dianne Stokes', 'Patricia Frank'],
     voiceQuoteContext: 'What the washer on her homeland changes',
@@ -250,7 +250,6 @@ export const deckSlides: DeckSlide[] = [
       { src: '/images/community/palm-island/family-dogs-new-bed.jpg', alt: 'A family and their dogs with a new bed' },
       { src: '/images/community/palm-island/kids-new-mattress.jpg', alt: 'Kids with a new mattress on Palm Island' },
     ],
-    goDeeper: [{ label: 'Where the money goes', href: '/cost-story' }],
     script:
       'Alfred Johnson explains that a bed must come by barge and every part of that trip costs money. Daniel Patrick Noble does the household arithmetic: a cheaper bed may last only a year or two, but a durable one plus freight can reach nearly a thousand dollars. The lower price wins today. The cost returns when the bed fails.',
     note: 'Ruling F: MONEY ENTERS HERE, through place, never as its own section. Both voices registry-verified and on the cleared list. Daniel Patrick Noble\'s quote is stored verbatim including the transcription artefact in "1, 000"; do not tidy a person\'s words. Only one chip on this slide on purpose: the price is the anchor the economics slide later divides into.',
@@ -483,7 +482,6 @@ export const deckSlides: DeckSlide[] = [
       { label: 'Modelled · plus a full-time supervisor', value: `${aud(SITE_PRODUCTION_BLOCK_BARE + SITE_SUPERVISOR_COST.full_time)}/yr` },
       { label: 'Still open', value: 'Who employs and pays the line supervisor' },
     ],
-    goDeeper: [{ label: 'Where the money goes', href: '/cost-story' }],
     script:
       'We used to quote a bed number a site had to hit. It divided by rent and left out the person running the line, insurance, administration, maintenance and safety, so we retired it and we are not replacing it with another one. What we can give you is the bill. A bare production site is 79,333 dollars a year. A half-time supervisor takes it to 129,333, a full-time one to 179,333. Employment support and youth work sit in a separate grant-funded budget. The open question on this slide is ordinary and decisive: who employs the line supervisor, and from which budget?',
     note: 'Ruling I retired "75 to 100 beds a year". It was previously CHIPPED here under a "Retired - do not use" label, which was wrong: a chip still prints the sentence to a funder, and labelling it retired does not unprint it. Removed 2026-08-01; the history stays here, in a field no public renderer reads. The "= N beds" conversions were removed at the same time under STRATEGY.md ("no bed number goes in front of anyone until the measured run happens"). The denominator table is modelled on DERIVED splits of stated DEWR figures and the supervisor costs are ASSUMED, not costed roles. The three-dial payback figures (2.6 years, 19.8 years) exist only in prose in STRATEGY.md and the session pack: they are NOT in code and NOT drift-checked, so they are spoken in the script and never chipped.',
@@ -539,7 +537,6 @@ export const deckSlides: DeckSlide[] = [
       { label: 'The grant', value: 'Catalysing Impact: discretionary, typically AU$150K to AU$400K, from one pool across ten enterprises' },
     ],
     goDeeper: [
-      { label: 'Where the money goes', href: '/cost-story' },
       { label: 'Every number, audited', href: '/register' },
     ],
     script:

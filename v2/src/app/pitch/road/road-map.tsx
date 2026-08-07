@@ -40,6 +40,8 @@ export function RoadPitchMap({ locations }: { locations: CommunityLocation[] }) 
           selectedCommunity={selectedId}
           onSelectCommunity={setSelectedId}
           heightClassName="h-[400px] md:h-[460px]"
+          showCaption={false}
+          showNationalExtent
         />
       </div>
 
@@ -51,11 +53,11 @@ export function RoadPitchMap({ locations }: { locations: CommunityLocation[] }) 
           {!selected && (
             <div className="mt-4">
               <h3 className="goods-pitch-display text-2xl leading-none lg:text-3xl">
-                Products delivered. Four pathways open.
+                Products delivered across Australia. Four communities exploring local production.
               </h3>
               <p className="mt-3 text-xs leading-5 text-goods-grid lg:text-sm lg:leading-6">
-                The map opens on every recorded location. Four places are considering different
-                parts of the making; the other markers show where products have already travelled.
+                The dots show where products have been delivered. The four places below are working
+                through what they want to make and own.
               </p>
               <div className="mt-4 space-y-1 border-t border-[#47453f] pt-3">
                 {Object.entries(pathwayByLocation).map(([id, status]) => {
@@ -66,7 +68,7 @@ export function RoadPitchMap({ locations }: { locations: CommunityLocation[] }) 
                       key={id}
                       type="button"
                       onClick={() => setSelectedId(id)}
-                      className="flex w-full items-center justify-between gap-2 border-b border-[#47453f] py-1 text-left"
+                      className="flex min-h-11 w-full items-center justify-between gap-2 border-b border-[#47453f] py-2 text-left"
                     >
                       <span className="text-xs text-goods-cream lg:text-sm">{location.name}</span>
                       <span className="text-right font-mono text-[7px] uppercase tracking-[0.1em] text-goods-terracotta-light lg:text-[8px]">

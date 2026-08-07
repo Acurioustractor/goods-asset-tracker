@@ -38,7 +38,7 @@ function BedPartHotspots({ fullScreen = false }: { fullScreen?: boolean }) {
   return bedParts.map((part) => (
     <div
       key={part.name}
-      className={`group absolute z-20 -translate-x-1/2 -translate-y-1/2 ${part.position} ${
+      className={`group absolute z-20 hidden -translate-x-1/2 -translate-y-1/2 md:block ${part.position} ${
         fullScreen ? 'pointer-events-auto' : ''
       }`}
       onPointerDown={fullScreen ? (event) => event.stopPropagation() : undefined}
@@ -46,7 +46,7 @@ function BedPartHotspots({ fullScreen = false }: { fullScreen?: boolean }) {
     >
       <button
         type="button"
-        className="flex h-7 w-7 items-center justify-center rounded-full border border-white/80 bg-goods-terracotta text-xs font-bold text-white shadow-lg transition-transform hover:scale-110 focus:scale-110 focus:outline-none focus:ring-2 focus:ring-white"
+        className="flex h-11 w-11 items-center justify-center rounded-full border border-white/80 bg-goods-terracotta text-xs font-bold text-white shadow-lg transition-transform hover:scale-110 focus:scale-110 focus:outline-none focus:ring-2 focus:ring-white"
         aria-label={`${part.name}: ${part.cost}`}
       >
         +
@@ -160,12 +160,12 @@ export function ZoomableBedImage({ src, alt }: ZoomableBedImageProps) {
               alt={alt}
               fill
               sizes="100vw"
-              className="object-cover transition-transform duration-700 group-hover:scale-[1.01]"
+              className="object-contain transition-transform duration-700 group-hover:scale-[1.01] md:object-cover"
             />
           </div>
-          <span className="absolute bottom-8 left-8 inline-flex items-center gap-2 border-b border-white/70 pb-2 text-sm font-semibold text-white drop-shadow-md md:bottom-12 md:left-12">
+          <span className="absolute bottom-8 left-6 inline-flex min-h-11 items-center gap-2 border-b border-white/70 pb-2 text-sm font-semibold text-white drop-shadow-md md:bottom-12 md:left-12">
             <Maximize2 className="h-4 w-4" aria-hidden="true" />
-            Click to view full screen
+            View full screen
           </span>
         </button>
 
@@ -173,7 +173,7 @@ export function ZoomableBedImage({ src, alt }: ZoomableBedImageProps) {
 
         <Link
           href="/stretch-bed"
-          className="absolute bottom-8 right-8 z-10 inline-flex items-center gap-2 border-b border-goods-terracotta-light pb-2 text-sm font-semibold text-white drop-shadow-md md:bottom-12 md:right-12"
+          className="absolute bottom-8 right-6 z-10 inline-flex min-h-11 items-center gap-2 border-b border-goods-terracotta-light pb-2 text-sm font-semibold text-white drop-shadow-md md:bottom-12 md:right-12"
         >
           Open the bed
           <ArrowUpRight className="h-4 w-4" aria-hidden="true" />

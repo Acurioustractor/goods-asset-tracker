@@ -985,7 +985,7 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
     turns: '2, 5 (never asked; ownership)',
     quotes: [
       {
-        text: "We're given the opportunity to be consulted with, but you're never given the opportunity... it's rare that you're consulted with and then told, Hey.",
+        text: "We're given the opportunity to be consulted with, but you're never given the opportunity... it's rare that you're consulted with and then told, Hey, we are here to listen and learn, to grow this together.",
         context: 'Consultation without decision power; the never-asked pattern from the leadership side',
         status: 'approved',
       },

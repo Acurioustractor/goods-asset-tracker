@@ -174,7 +174,8 @@ describe('road-ending: nothing is claimed on a community behalf', () => {
       palm.field,
       'community-pathways.ts records "Existing Goods relationships must not be treated as a request"',
     ).toBe('Where this sits');
-    expect(palm.body.toLowerCase()).toContain('nobody has been asked');
+    expect(palm.body.toLowerCase()).toContain('redesigning its refuse facility');
+    expect(palm.field).not.toBe('Asked for');
   });
 
   it('no dollar figure is attached to any named community pathway', () => {
@@ -195,7 +196,7 @@ describe('road-ending: nothing is claimed on a community behalf', () => {
   it('Tennant Creek does not claim the Youth Centre position as settled', () => {
     const tc = PATHWAY_ASKS.find((p) => p.id === 'tennant-creek')!;
     expect(`${tc.body} ${tc.whatWeCanSay}`).not.toContain('Youth Centre');
-    expect(tc.whatWeCanSay.toLowerCase()).toContain('has not been sent');
+    expect(tc.whatWeCanSay.toLowerCase()).toContain('needs to be confirmed');
   });
 });
 

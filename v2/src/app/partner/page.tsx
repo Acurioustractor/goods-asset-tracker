@@ -4,26 +4,24 @@ import { Button } from '@/components/ui/button';
 import { PartnershipForm } from '@/components/partnership-form';
 import { WasherInterestForm } from '@/components/washer-interest-form';
 import { TRACTION_STATS } from '@/lib/data/funder-shared-content';
-import { ASK_HEADLINE } from '@/lib/data/ask-surface';
 
 export const metadata = {
   title: 'Back the Work | Goods on Country',
   description:
-    'How philanthropists, foundations, family offices and patient capital partners can back Goods on Country from product proof to On-Country production.',
+    'How people and organisations can support Goods on Country to keep making beds and working with communities.',
   alternates: {
     canonical: 'https://www.goodsoncountry.com/partner',
   },
   openGraph: {
-    title: 'Back the Work Behind Goods on Country',
-    description:
-      'Capital for beds now, washing machines next, and community-owned production over time.',
+    title: 'Support Goods on Country',
+    description: 'Help Goods keep making beds, working with communities and preparing for local production.',
     url: 'https://www.goodsoncountry.com/partner',
     images: [
       {
-        url: 'https://www.goodsoncountry.com/images/media-pack/community-bed-assembly.jpg',
+        url: 'https://www.goodsoncountry.com/images/community/alice-springs/stretch-bed-two-generations.jpg',
         width: 1200,
         height: 900,
-        alt: 'Community members assembling a Goods on Country Stretch Bed',
+        alt: 'Community members sitting on a Goods on Country Stretch Bed',
       },
     ],
   },
@@ -40,7 +38,7 @@ const ALLOWED_TYPES = [
 ];
 
 const DGR_NOTE =
-  'DGR-deductible giving is available only through The Butterfly Movement Ltd, an ACNC-registered charity and Item 1 DGR, which trades as Goods on Country. A Curious Tractor Pty Ltd, which trades as Goods. and sells the products, is NOT DGR-endorsed. The Goods giving pathway through Butterfly is still being formalised, so confirm current routing with us before structuring a tax-deductible gift.';
+  'Goods on Country is being set up as the charity. Until that change is complete, The Butterfly Movement Ltd is the charity and the current DGR pathway. A Curious Tractor Pty Ltd trades as Goods. and sells the products; it is separate from the charity.';
 
 const backedByPartners = [
   {
@@ -89,67 +87,76 @@ const backedByPartners = [
     width: 800,
     height: 220,
     href: 'https://www.qbe.com/sustainability/qbe-foundation',
-    role: 'Catalysing Impact 2026 cohort, with Stage 2 funding of up to $400,000, at least matched by external capital raised.',
+    role: 'Catalysing Impact 2026 cohort. Stage 2 is a competitive application to one funding pool shared across ten enterprises.',
   },
 ];
 
 const capitalPathways = [
   {
-    title: 'Grant funding',
+    title: 'Grants',
     body:
-      'Best for R&D, community readiness, plant setup, evidence, governance and work that should not carry repayment pressure.',
+      'For equipment, setup, training and community work. Grants do not need to be repaid.',
   },
   {
-    title: 'DGR-deductible giving via Butterfly',
+    title: 'Gifts',
     body:
-      'Useful for eligible philanthropic gifts where the Goods pathway through The Butterfly Movement Ltd is the right structure.',
+      'For people who want to support the work directly. Goods on Country is becoming the charity; until then, eligible giving goes through The Butterfly Movement Ltd.',
   },
   {
-    title: 'Recoverable grants',
+    title: 'Loans we can repay',
     body:
-      'A fit where repayment can be patient and tied to the success of inventory, production or confirmed buyer pathways.',
-  },
-  {
-    title: 'Patient working capital',
-    body:
-      'Relevant once orders, inventory and repayment timing are clear enough to avoid loading uncertainty into debt.',
+      'For orders and stock when we have a clear way to repay the money.',
   },
 ];
 
 const useOfFunds = [
-  'Finish plant readiness: equipment, safety systems, tooling, training and production planning.',
-  'Build inventory so Goods is not waiting for each funded batch before beds can move.',
-  'Support community partners with setup, local production pathways, delivery and repair loops.',
-  'Strengthen evidence without extracting stories: asset data, field notes, consent and reporting.',
-  'Formalise governance, legal structure and the trade/DGR boundary before larger capital lands.',
+  'Get the equipment, safety systems, tools and training ready.',
+  'Keep beds in stock so we can fulfil orders without waiting for each new payment.',
+  'Work with communities on local production, delivery and repairs.',
+  'Keep clear records of the products, field work and consent.',
+  'Set up the legal and governance arrangements for the charity and trading business.',
 ];
 
 const proofPoints = [
-  'Stretch Bed is available now: recycled HDPE legs, galvanised steel poles and heavy-duty canvas.',
-  'Pakkimjalki Kari washing machines are prototype only, with interest captured through partner conversations.',
-  'Every bed is treated as a trackable asset with QR support, repair pathways and field evidence.',
-  'The production model is built to move value toward On-Country manufacturing and community ownership.',
+  {
+    title: 'Beds are already in use.',
+    body: 'Available now: recycled HDPE legs, galvanised steel poles and heavy-duty canvas.',
+    src: '/images/product/stretch-bed-in-use.jpg',
+    alt: 'A person resting on a Goods on Country Stretch Bed outdoors',
+  },
+  {
+    title: 'The work is made together.',
+    body: 'Community members assemble beds with us as we build toward more local production.',
+    src: '/images/media-pack/community-bed-assembly.jpg',
+    alt: 'Community members assembling a Goods on Country Stretch Bed',
+  },
+  {
+    title: 'The washing machine is next.',
+    body: 'Prototype only. We are listening, testing and sharing updates as it develops.',
+    src: '/images/product/washing-machine-hero.jpg',
+    alt: 'A Pakkimjalki Kari washing machine prototype in a community laundry',
+  },
 ];
 
 const faq = [
   {
     question: 'Is Goods on Country a charity?',
     answer:
-      'No. The products are sold by A Curious Tractor Pty Ltd, which trades as Goods. The DGR pathway for eligible giving is through The Butterfly Movement Ltd, which holds the registered business name Goods on Country. A Curious Tractor Pty Ltd is not itself DGR-endorsed.',
+      'Goods on Country is being set up as the charity. Until that change is complete, The Butterfly Movement Ltd is the charity and current DGR pathway. The products are sold by A Curious Tractor Pty Ltd, which trades as Goods.',
   },
   {
-    question: 'Can a funder make a DGR-deductible gift?',
+    question: 'Can I make a tax-deductible gift?',
     answer: DGR_NOTE,
   },
   {
     question: 'What is the main ask right now?',
     answer:
-      'We are inviting foundations, PAF/PuAF-style funders, family offices and patient capital partners to explore the blended capital stack: grants, eligible giving via Butterfly, recoverable funding, working capital and procurement-backed revenue.',
+      'We are raising $300,000 a year to keep Goods making beds, working with communities and supporting local production. Facility costs are worked out separately with each community.',
   },
   {
-    question: 'What should not be funded with debt?',
+    question: 'When would a loan make sense?',
     answer:
-      'Early learning, community readiness, impact measurement and unresolved product R&D should stay grant-funded. Debt only fits activities with credible repayment timing.',
+      'Only when there are orders or stock sales that give us a clear way to repay it. Grants and gifts are better for setup, community work and product testing.',
   },
 ];
 
@@ -198,25 +205,30 @@ export default async function PartnerPage({
                 Back the work
               </p>
               <h1 className="mb-6 text-4xl font-bold leading-tight text-foreground md:text-6xl">
-                Capital for beds now, washing machines next, and production moving to Country.
+                Help Goods keep making beds and working with communities.
               </h1>
               <p className="mb-5 text-lg leading-relaxed text-muted-foreground">
-                Goods on Country builds essential health hardware with remote First Nations
-                communities. The Stretch Bed is in market. Pakkimjalki Kari is in prototype. The
-                next phase is the bridge from product proof to On-Country production and community
-                ownership.
+                Goods on Country makes practical products with remote First Nations communities.
+                The Stretch Bed is available now. Pakkimjalki Kari, the washing machine, is still a
+                prototype.
+              </p>
+              <p className="mb-5 text-lg leading-relaxed text-muted-foreground">
+                We are raising $300,000 a year to keep making beds, visiting communities and
+                supporting local production. Separate facility costs are worked out with each
+                community.
               </p>
               <p className="mb-8 text-lg leading-relaxed text-muted-foreground">
-                Philanthropic and patient capital does not fund dependency. It funds the plant,
-                inventory, repair loops, evidence and governance needed for communities to make and
-                own more of the work over time.
+                If you are considering a grant, gift or loan, start a conversation with us.
               </p>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Button asChild size="lg">
-                  <Link href="#capital-stack">Explore the capital stack</Link>
+                  <Link href="#start">Start a conversation</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline">
-                  <Link href="#start">Start a conversation</Link>
+                  <Link href="/pitch/road">Read the pitch / longer story</Link>
+                </Button>
+                <Button asChild size="lg" variant="outline">
+                  <Link href="#capital-stack">See the funding structure</Link>
                 </Button>
               </div>
             </div>
@@ -224,8 +236,8 @@ export default async function PartnerPage({
             <div className="space-y-4">
               <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-muted shadow-sm">
                 <Image
-                  src="/images/media-pack/community-bed-assembly.jpg"
-                  alt="Community members assembling a Goods on Country Stretch Bed"
+                  src="/images/community/alice-springs/stretch-bed-two-generations.jpg"
+                  alt="Community members sitting on a Goods on Country Stretch Bed"
                   fill
                   priority
                   sizes="(max-width: 1024px) 100vw, 540px"
@@ -237,10 +249,9 @@ export default async function PartnerPage({
                   Entity and DGR note
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  A Curious Tractor Pty Ltd is the trading company; it makes and sells the products
-                  as Goods. The Butterfly Movement Ltd is the ACNC-registered charity and DGR, and it
-                  holds the registered business name Goods on Country. The long-term structure is
-                  being designed to protect enterprise discipline and community ownership.
+                  A Curious Tractor Pty Ltd makes and sells the products as Goods. Goods on Country
+                  is becoming the charity. Until that change is complete, The Butterfly Movement
+                  Ltd is the charity and current DGR pathway.
                 </p>
               </div>
             </div>
@@ -248,18 +259,26 @@ export default async function PartnerPage({
         </div>
       </section>
 
-      <section className="border-y border-border bg-accent py-12">
+      <section className="border-y border-border bg-muted/20 py-10 md:py-12">
         <div className="container mx-auto px-4">
-          <div className="mx-auto grid max-w-5xl gap-8 text-center sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.75fr_repeat(3,1fr)] lg:items-center">
+            <div className="lg:border-r lg:border-border lg:pr-8">
+              <p className="mb-2 text-xs uppercase tracking-[0.25em] text-muted-foreground">
+                At a glance
+              </p>
+              <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
+                A few plain facts about where the work stands today.
+              </p>
+            </div>
             {TRACTION_STATS.map((stat) => (
-              <div key={stat.label}>
-                <div className="text-3xl font-bold text-accent-foreground md:text-4xl">
+              <div key={stat.label} className="border-l border-border pl-5 lg:border-l-0 lg:pl-0">
+                <div className="text-4xl font-bold tracking-tight text-foreground md:text-5xl">
                   {stat.value}
                 </div>
-                <div className="mt-1 text-sm font-medium text-accent-foreground">
+                <div className="mt-2 text-sm font-semibold text-foreground">
                   {stat.label}
                 </div>
-                <div className="mt-1 text-xs text-accent-foreground/70">{stat.sub}</div>
+                <div className="mt-1 text-xs leading-relaxed text-muted-foreground">{stat.sub}</div>
               </div>
             ))}
           </div>
@@ -268,28 +287,43 @@ export default async function PartnerPage({
 
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-            <div>
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-10 max-w-2xl">
               <p className="mb-3 text-xs uppercase tracking-[0.25em] text-muted-foreground">
-                Why capital matters
+                What is already working
               </p>
               <h2 className="mb-5 text-3xl font-bold leading-tight text-foreground md:text-4xl">
-                The product proof is here. The next risk is the bridge.
+                The beds are in use. The next step is making more locally.
               </h2>
               <p className="mb-6 text-lg leading-relaxed text-muted-foreground">
-                Goods should not become a bed distributor. The point is a product system: beds and
-                washers that people want, can repair, can track, and can eventually make and own
-                closer to home.
+                The Stretch Bed is available now and can be repaired and tracked. The washing machine
+                is still being tested. Funding helps us keep delivering the products while we work
+                with communities on local production.
               </p>
               <Button asChild variant="outline">
-                <Link href="/process">See the production process</Link>
+                <Link href="/process">See how the products are made</Link>
               </Button>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {proofPoints.map((point) => (
-                <div key={point} className="rounded-xl border border-border bg-card p-5">
-                  <p className="text-sm leading-relaxed text-muted-foreground">{point}</p>
-                </div>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {proofPoints.map((point, index) => (
+                <article key={point.title} className="overflow-hidden rounded-xl border border-border bg-card">
+                  <div className="relative aspect-[4/3]">
+                    <Image
+                      src={point.src}
+                      alt={point.alt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-5">
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+                      0{index + 1}
+                    </p>
+                    <h3 className="mb-2 font-semibold text-foreground">{point.title}</h3>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{point.body}</p>
+                  </div>
+                </article>
               ))}
             </div>
           </div>
@@ -304,16 +338,16 @@ export default async function PartnerPage({
                 Capital stack
               </p>
               <h2 className="mb-5 text-3xl font-bold leading-tight md:text-4xl">
-                The right capital is blended, patient and honest about what is proven.
+                How the funding could come together.
               </h2>
               <p className="text-lg leading-relaxed text-background/75">
-                QBE Catalysing Impact 2026 creates a timely match opportunity of up to $400,000,
-                at least matched by external capital we raise first. The practical ask is to
-                explore which layer fits your mandate.
+                We need $300,000 a year to keep Goods running. QBE may contribute a grant, but it is
+                not promised. The rest could come through grants, gifts or loans, depending on what
+                the money is for.
               </p>
             </div>
 
-            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-5 md:grid-cols-3">
               {capitalPathways.map((pathway) => (
                 <div key={pathway.title} className="rounded-xl border border-background/15 bg-background/5 p-5">
                   <h3 className="mb-3 text-lg font-semibold text-background">{pathway.title}</h3>
@@ -326,26 +360,25 @@ export default async function PartnerPage({
               <div className="grid gap-6 md:grid-cols-[0.85fr_1.15fr] md:items-start">
                 <div>
                   <h3 className="mb-3 text-2xl font-semibold text-background">
-                    The ask
+                    Where we are now
                   </h3>
-                  {/* One money surface (Ben, 2026-08-06): this line renders from ask-surface.ts,
-                      the same module the deck reads, so /partner can never again ask for a
-                      different amount than /pitch/road (it said "about $3M" until today). */}
-                  <p className="text-sm leading-relaxed text-background/70">{ASK_HEADLINE.line}</p>
+                  <p className="text-sm leading-relaxed text-background/70">
+                    Our current ask is $300,000 a year to keep Goods making beds, working with
+                    communities and supporting community-led production. Nothing is signed today.
+                  </p>
                 </div>
                 <ul className="space-y-3 text-sm text-background/75">
                   <li>
-                    <span className="font-semibold text-background">QBE match:</span> up to
-                    $400,000, at least matched by external capital raised, awarded at the
-                    program&apos;s discretion.
+                    <span className="font-semibold text-background">QBE:</span> a possible grant,
+                    not a promise.
                   </li>
                   <li>
-                    <span className="font-semibold text-background">Debt:</span> only where orders,
-                    inventory and repayment timing are credible.
+                    <span className="font-semibold text-background">Grants and gifts:</span> for
+                    setup, community work and evidence.
                   </li>
                   <li>
-                    <span className="font-semibold text-background">Grants:</span> the right home
-                    for community readiness, R&D, measurement and legal/governance work.
+                    <span className="font-semibold text-background">Loans:</span> only where orders
+                    give us a clear way to repay.
                   </li>
                 </ul>
               </div>
@@ -362,11 +395,11 @@ export default async function PartnerPage({
                 Use of funds
               </p>
               <h2 className="mb-5 text-3xl font-bold leading-tight text-foreground md:text-4xl">
-                What the next capital actually does.
+                What the money pays for.
               </h2>
               <p className="text-lg leading-relaxed text-muted-foreground">
-                The near-term job is not polish. It is inventory, plant readiness, local capability,
-                evidence and the legal boundary between trading and eligible giving.
+                It keeps Goods running while we make more beds, work with communities and prepare
+                for local production.
               </p>
             </div>
             <div className="rounded-xl border border-border bg-card p-6">
@@ -387,40 +420,19 @@ export default async function PartnerPage({
 
       <section className="border-y border-border bg-muted/30 py-16 md:py-20">
         <div className="container mx-auto px-4">
-          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div className="mx-auto max-w-3xl">
             <div>
               <p className="mb-3 text-xs uppercase tracking-[0.25em] text-muted-foreground">
                 DGR pathway
               </p>
               <h2 className="mb-5 text-3xl font-bold leading-tight text-foreground md:text-4xl">
-                DGR access without turning Goods into a bed-distribution program.
+                Goods on Country is becoming the charity.
               </h2>
               <p className="text-lg leading-relaxed text-muted-foreground">
-                The split matters. A Curious Tractor Pty Ltd trades as Goods. and keeps product
-                discipline. The Butterfly Movement Ltd trades as Goods on Country and carries the
-                eligible giving pathway where it fits.
+                Until that change is complete, The Butterfly Movement Ltd is the charity and current
+                DGR pathway. A Curious Tractor Pty Ltd trades as Goods. and sells the products; it
+                is separate from the charity.
               </p>
-            </div>
-            <div className="rounded-xl border border-border bg-background p-6">
-              <p className="text-sm leading-relaxed text-muted-foreground">{DGR_NOTE}</p>
-              <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                <a
-                  href="https://abr.business.gov.au/ABN/View?id=22155132684"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-lg border border-border px-4 py-2 text-sm font-semibold text-foreground transition hover:bg-muted"
-                >
-                  ABN Lookup record
-                </a>
-                <a
-                  href="https://www.acnc.gov.au/tools/factsheets/deductible-gift-recipients-dgr-and-acnc"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-lg border border-border px-4 py-2 text-sm font-semibold text-foreground transition hover:bg-muted"
-                >
-                  ACNC DGR factsheet
-                </a>
-              </div>
             </div>
           </div>
         </div>
@@ -430,9 +442,9 @@ export default async function PartnerPage({
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-5xl text-center">
             <p className="mb-3 text-xs uppercase tracking-[0.25em] text-muted-foreground">
-              Existing backers
-            </p>
-            <h2 className="mb-10 text-3xl font-bold text-foreground">Proof from people already close to the work.</h2>
+                People who have backed the work
+              </p>
+            <h2 className="mb-10 text-3xl font-bold text-foreground">Support that has helped us get here.</h2>
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {backedByPartners.map((partner) => (
                 <a
@@ -465,10 +477,10 @@ export default async function PartnerPage({
           <div className="mx-auto max-w-4xl">
             <div className="mb-10 text-center">
               <p className="mb-3 text-xs uppercase tracking-[0.25em] text-muted-foreground">
-                Funder questions
+                Questions about giving
               </p>
               <h2 className="text-3xl font-bold text-foreground md:text-4xl">
-                The plain answers first.
+                The answers, plainly.
               </h2>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
@@ -491,17 +503,23 @@ export default async function PartnerPage({
           <div className="mx-auto max-w-2xl">
             <div className="mb-10 text-center">
               <p className="mb-3 text-xs uppercase tracking-[0.25em] text-accent">
-                Start the capital conversation
+                Start here
               </p>
               <h2 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">
-                Tell us what kind of capital you can bring.
+                Want to talk about funding?
               </h2>
               <p className="text-lg text-muted-foreground">
-                We will route you by capital type, timing and mandate, then come back with the
-                cleanest next step.
+                Tell us whether you are thinking about a grant, gift or loan and we will take it from
+                there.
               </p>
             </div>
             <PartnershipForm defaultType={requestedType || 'capital-interest'} />
+            <p className="mt-8 text-center text-sm text-muted-foreground">
+              Want the full context first?{' '}
+              <Link href="/pitch/road" className="font-semibold text-goods-terracotta underline underline-offset-4">
+                Read the pitch / longer story.
+              </Link>
+            </p>
           </div>
         </div>
       </section>

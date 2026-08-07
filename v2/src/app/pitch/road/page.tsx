@@ -19,9 +19,7 @@ import { STAGE_RULE } from '@/lib/data/pathway-stages';
 import { NORTH_STAR } from '@/lib/data/content';
 import {
   ASK_INTRO,
-  ASK_NEXT_STEP,
   ASK_STATUS_ROWS,
-  CLOSING_TAIL,
   DOORS,
   FIRST_SITE_RULE,
   PATHWAY_ASKS,
@@ -29,7 +27,6 @@ import {
   VOICE_THE_LETTER,
   type EndingVoice,
 } from '@/lib/data/road-ending';
-import { LetterLines } from './letter-lines';
 
 export const metadata: Metadata = {
   title: { absolute: 'The road to ownership | Goods.' },
@@ -275,7 +272,7 @@ export default function RoadPitchPage() {
                 </button>
                 <a
                   href="?view=slides"
-                  className="border border-white/35 px-6 py-3 text-sm font-semibold text-white hover:border-white"
+                  className="hidden border border-white/35 px-6 py-3 text-sm font-semibold text-white hover:border-white sm:block"
                 >
                   Present as slides
                 </a>
@@ -317,7 +314,7 @@ export default function RoadPitchPage() {
                 <a
                   href={`#${stop.id}`}
                   data-road-media-mirror={`${stop.id}.photo`}
-                  className="group relative block h-full min-h-[300px] overflow-hidden bg-goods-ink text-white lg:min-h-0"
+                  className="group relative block h-full min-h-[220px] overflow-hidden bg-goods-ink text-white sm:min-h-[260px] lg:min-h-0"
                 >
                   <Image
                     src={stop.photo}
@@ -616,7 +613,7 @@ export default function RoadPitchPage() {
                 <div className="mt-6 grid gap-3 md:grid-cols-[0.6fr_1.4fr]">
                   <div
                     data-road-media={`${resolvedProductSlide.id}.photo`}
-                    className="relative aspect-[4/3] min-h-[320px] overflow-hidden border border-goods-sand bg-goods-cream-muted md:min-h-0"
+                    className="relative h-[260px] w-full overflow-hidden border border-goods-sand bg-goods-cream-muted sm:h-auto sm:aspect-[4/3] md:min-h-0"
                   >
                     <Image
                       src={resolvedProductSlide.photo}
@@ -627,7 +624,7 @@ export default function RoadPitchPage() {
                     />
                   </div>
 
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                     {[
                       {
                         number: '01',
@@ -647,9 +644,9 @@ export default function RoadPitchPage() {
                     ].map((component) => (
                       <div
                         key={component.label}
-                        className="grid min-h-32 grid-rows-[1fr_auto] overflow-hidden border border-goods-sand bg-goods-cream-muted"
+                        className="grid min-w-0 grid-cols-[110px_minmax(0,1fr)] overflow-hidden border border-goods-sand bg-goods-cream-muted sm:min-h-32 sm:grid-cols-1 sm:grid-rows-[1fr_auto]"
                       >
-                        <div className="relative aspect-[3/2] min-h-24">
+                        <div className="relative min-h-24 sm:aspect-[3/2]">
                           <Image
                             src={component.image}
                             alt={component.label}
@@ -723,12 +720,12 @@ export default function RoadPitchPage() {
                 Products and pathways
               </p>
               <h2 className="goods-pitch-display mt-3 max-w-3xl text-4xl leading-[1.02] md:text-5xl lg:text-6xl">
-                The products went everywhere. The making is asked for in four places.
+                Goods has delivered products across Australia. Four communities are exploring local production.
               </h2>
             </div>
             <p className="max-w-xl text-sm leading-6 text-[#b9b3a8] sm:justify-self-end lg:text-lg lg:leading-8">
-              Start with the whole national extent. Select a place to see delivered products,
-              cleared voices and whether a production pathway is open.
+              This map shows where Goods products have been delivered and the communities we are
+              working with on local production.
             </p>
           </div>
           <RoadPitchMap locations={communityLocations} />
@@ -748,7 +745,7 @@ export default function RoadPitchPage() {
               { v: '$750', l: 'A bed sells for', chip: 'verified' },
               { v: '~$685', l: 'Costs to make + truck today', chip: 'verified' },
               { v: '~$426', l: 'Pressing our own legs', chip: 'modelled' },
-              { v: '$400K', l: 'The raise, signed by 31 Aug', chip: 'target' },
+              { v: '$300K', l: 'Annual funding Goods needs', chip: 'target' },
               { v: '$0', l: 'Signed today', chip: 'verified' },
             ].map((cell) => (
               <div key={cell.l} className="bg-goods-ink p-6 lg:p-8">
@@ -762,10 +759,6 @@ export default function RoadPitchPage() {
               </div>
             ))}
           </dl>
-          <p className="mt-6 max-w-3xl text-sm leading-6 text-white/55">
-            Everything below this line is evidence for one of these five. Every figure carries its
-            status at <Link href="/register" className="underline decoration-goods-terracotta underline-offset-2">/register</Link>.
-          </p>
         </div>
       </section>
 
@@ -776,31 +769,31 @@ export default function RoadPitchPage() {
       <section id="the-facility" data-pitch-panel="the-facility" className="border-b border-goods-sand bg-goods-cream-muted px-6 py-14 md:px-10 lg:min-h-[80svh] lg:px-14 lg:py-20">
         <div className="mx-auto flex h-full max-w-[1600px] flex-col justify-center">
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-goods-terracotta">
-            The facility, simply
+            What the funding pays for
           </p>
           <h2 className="goods-pitch-display mt-4 max-w-4xl text-4xl leading-[1.02] md:text-5xl">
-            The money stands up a production line, proves its numbers, and keeps the lights on
-            while beds start paying.
+            $300,000 a year keeps Goods making beds, working with communities and growing. Capital
+            for community production facilities is raised separately.
           </h2>
           <div className="mt-10 grid gap-px border border-goods-sand bg-goods-sand md:grid-cols-3">
             {[
               {
-                step: '01 · Stand it up',
-                amount: '$112K to $222K',
-                chip: 'modelled',
-                line: 'Shredder, press, cutter, container, power. We have already put $110,046 of our own in; it sits beside this number, never subtracted.',
+                step: '01 · A community production facility',
+                amount: 'Up to $222K',
+                chip: 'capital per full facility',
+                line: 'A full production facility can be built for up to $222,000. A community can also start with a smaller set of modules, depending on what it wants to make, what it wants to own and what infrastructure it already has.',
               },
               {
-                step: '02 · Prove it',
-                amount: '$60K to $80K',
-                chip: 'target',
-                line: 'Fifty beds, timed and costed with receipts. Turns the $426 bed from modelled to measured. The beds go to communities that ordered them.',
+                step: '02 · Keep making beds now',
+                amount: '$100K a year',
+                chip: 'production funding',
+                line: 'Continue making beds at the farm and The Harvest so Goods can keep filling community orders while on-Country production facilities are developed.',
               },
               {
-                step: '03 · Run it',
-                amount: '~$109.5K a year',
-                chip: 'workpaper',
-                line: 'The block that keeps Goods running: shed, books, travel. What a community-owned site costs to run is being settled with the first community, so it is not printed here.',
+                step: '03 · Keep Goods working with communities',
+                amount: '$200K a year',
+                chip: 'organisation funding',
+                line: 'Keep visiting communities, developing products, building relationships and supporting community-led enterprises to grow and take on production.',
               },
             ].map((cell) => (
               <div key={cell.step} className="bg-goods-cream p-6 lg:p-8">
@@ -811,18 +804,9 @@ export default function RoadPitchPage() {
               </div>
             ))}
           </div>
-          <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-goods-sand pt-6">
-            <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-goods-sub">Three ways in</p>
-            {DOORS.map((door) => (
-              <a key={door.verb} href="#the-letter" className="group text-base">
-                <span className="goods-pitch-display text-2xl text-goods-terracotta group-hover:text-goods-terracotta">{door.verb}</span>
-                <span className="ml-2 text-sm text-goods-sub">{door.entity}</span>
-              </a>
-            ))}
-          </div>
-          <p className="mt-4 text-sm leading-6 text-goods-sub">
-            The full working — every part price, the buy list, the cost chain — lives at{' '}
-            <Link href="/register" className="underline decoration-goods-terracotta underline-offset-2">/register</Link>, each figure with its status.
+          <p className="mt-7 max-w-5xl text-lg leading-8 text-goods-sub">
+            Raising $300,000 a year lets Goods keep operating, innovating and growing while we
+            raise capital in different ways for the on-Country facilities each community chooses.
           </p>
         </div>
       </section>
@@ -881,11 +865,8 @@ export default function RoadPitchPage() {
               Four communities asked for four different things.
             </h2>
             <p className="max-w-2xl text-lg leading-8 text-goods-sub">
-              Nobody gets sold a facility. A community says what it would want to own first, we
-              price that, at that size, and where a partner already has the shed or the power we
-              take those lines out instead of assuming them. Each of these has a number against it
-              in our own planning. None of those numbers has gone to the community it belongs to,
-              so none of them is on this page.
+              We do not arrive with a facility to sell. Each community decides what it wants to
+              make and own. We build the plan around what is already there and what is needed next.
             </p>
           </div>
         </div>
@@ -916,12 +897,9 @@ export default function RoadPitchPage() {
               </div>
               <div>
                 <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-goods-sub">
-                  What we can say about the money
+                  Where it stands
                 </p>
                 <p className="mt-3 text-base leading-7 text-goods-sub">{ask.whatWeCanSay}</p>
-                <p className="mt-4 border-t border-goods-sand pt-3 text-xs leading-5 text-goods-sub">
-                  Whose call: {ask.whoseCall}
-                </p>
               </div>
             </div>
           ))}
@@ -950,10 +928,6 @@ export default function RoadPitchPage() {
               <p className="goods-pitch-display mt-7 max-w-3xl text-3xl leading-tight text-goods-terracotta-light md:text-4xl">
                 {ASK_HEADLINE.line}
               </p>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-[#cfc8bc]">{ASK_INTRO.body}</p>
-              <div className="mt-9">
-                <LetterLines />
-              </div>
             </div>
 
             <div>
@@ -1000,30 +974,6 @@ export default function RoadPitchPage() {
               </li>
             ))}
           </ol>
-
-          <div className="mt-12 grid gap-8 border-t border-white/20 pt-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <p className="max-w-2xl text-lg leading-8">{ASK_NEXT_STEP.sentence}</p>
-            <div className="flex flex-wrap items-center gap-4">
-              <Link
-                href={ASK_NEXT_STEP.primary.href}
-                className="bg-goods-terracotta px-6 py-3 text-sm font-semibold text-white hover:bg-goods-terracotta"
-              >
-                {ASK_NEXT_STEP.primary.label}
-              </Link>
-              <Link
-                href={ASK_NEXT_STEP.secondary.href}
-                className="border border-white/30 px-6 py-3 text-sm font-semibold hover:border-white"
-              >
-                {ASK_NEXT_STEP.secondary.label}
-              </Link>
-              <Link
-                href={ASK_NEXT_STEP.tertiary.href}
-                className="border-b border-goods-terracotta-light pb-1 text-sm text-white/70 hover:text-white"
-              >
-                {ASK_NEXT_STEP.tertiary.label}
-              </Link>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -1046,12 +996,6 @@ export default function RoadPitchPage() {
             </h2>
             <p data-road-text="closing.body" className="mt-7 max-w-3xl text-xl leading-9 text-white/80 md:text-2xl">
               {NORTH_STAR.line}
-            </p>
-            <p className="mt-10 border-t border-white/25 pt-6 text-lg leading-8 text-goods-terracotta-light">
-              {CLOSING_TAIL}
-            </p>
-            <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.14em] text-white/45">
-              Updated {deckUpdated} · every figure on this page carries its status at /register
             </p>
           </div>
         </div>
