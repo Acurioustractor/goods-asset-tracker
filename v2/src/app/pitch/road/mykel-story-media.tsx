@@ -63,14 +63,14 @@ export function MykelStoryMedia({
           <span className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/10" />
           <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 md:p-7">
             <span>
-              <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#e88461]">
+              <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-goods-terracotta-light">
                 Film · 1:29
               </span>
               <span className="goods-pitch-display mt-2 block max-w-md text-3xl leading-tight text-white md:text-4xl">
                 Mykel, on the bed he made.
               </span>
             </span>
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#c45c3e] text-white transition group-hover:scale-105 group-hover:bg-[#d36a49]">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-goods-terracotta text-white transition group-hover:scale-105 group-hover:bg-[#d36a49]">
               <Play className="ml-0.5 h-5 w-5 fill-current" aria-hidden="true" />
             </span>
           </span>
@@ -86,8 +86,8 @@ export function MykelStoryMedia({
               className="object-cover"
             />
           </div>
-          <div className="flex flex-col justify-center bg-[#22211e] px-5 text-white md:px-7">
-            <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#e88461]">
+          <div className="flex flex-col justify-center bg-goods-ink px-5 text-white md:px-7">
+            <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-goods-terracotta-light">
               The making
             </p>
             <p className="goods-pitch-display mt-2 text-2xl leading-tight md:text-3xl">

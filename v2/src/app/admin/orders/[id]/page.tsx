@@ -247,13 +247,13 @@ export default async function OrderDetailPage({
               opening a sponsored order. Surfaces the destination community and the
               dedication message that needs to travel with the bed. */}
           {order.is_sponsorship && (
-            <Card className="border-2 border-[#C45C3E]/40 bg-[#FDF8F3]">
+            <Card className="border-2 border-goods-terracotta/40 bg-goods-cream">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between flex-wrap gap-2">
                   <CardTitle className="flex items-center gap-2 text-xl">
                     <span>Sponsorship · Fulfilment briefing</span>
                   </CardTitle>
-                  <Badge className="bg-[#C45C3E] text-white hover:bg-[#C45C3E]">
+                  <Badge className="bg-goods-terracotta text-white hover:bg-goods-terracotta">
                     Buy for community
                   </Badge>
                 </div>
@@ -293,8 +293,8 @@ export default async function OrderDetailPage({
                 </div>
 
                 {order.sponsor_message ? (
-                  <div className="rounded-xl bg-card border border-[#C45C3E]/30 p-4">
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-[#C45C3E] mb-2 font-medium">
+                  <div className="rounded-xl bg-card border border-goods-terracotta/30 p-4">
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-goods-terracotta mb-2 font-medium">
                       Message to pass on with the bed
                     </p>
                     <p className="text-lg italic text-foreground leading-snug">

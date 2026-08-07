@@ -140,8 +140,8 @@ export default function ContactPage() {
                             onClick={() => setInquiryType(type.id)}
                             className={`p-3 rounded-xl border-2 text-left transition-all ${
                               inquiryType === type.id
-                                ? 'border-[#C45C3E] bg-[#FDF8F3]'
-                                : 'border-[#E8DED4] hover:border-[#C45C3E]/50'
+                                ? 'border-goods-terracotta bg-goods-cream'
+                                : 'border-goods-sand hover:border-goods-terracotta/50'
                             }`}
                           >
                             <p className="font-medium text-sm" style={{ color: '#2E2E2E' }}>{type.label}</p>
@@ -162,7 +162,7 @@ export default function ContactPage() {
                           name="name"
                           required
                           placeholder="Jane Smith"
-                          className="border-[#E8DED4] focus:border-[#C45C3E] focus:ring-[#C45C3E]"
+                          className="border-goods-sand focus:border-goods-terracotta focus:ring-goods-terracotta"
                         />
                       </div>
                       <div>
@@ -175,7 +175,7 @@ export default function ContactPage() {
                           type="email"
                           required
                           placeholder="jane@example.com"
-                          className="border-[#E8DED4] focus:border-[#C45C3E] focus:ring-[#C45C3E]"
+                          className="border-goods-sand focus:border-goods-terracotta focus:ring-goods-terracotta"
                         />
                       </div>
                     </div>
@@ -190,7 +190,7 @@ export default function ContactPage() {
                           id="organization"
                           name="organization"
                           placeholder="Your organization name"
-                          className="border-[#E8DED4] focus:border-[#C45C3E] focus:ring-[#C45C3E]"
+                          className="border-goods-sand focus:border-goods-terracotta focus:ring-goods-terracotta"
                         />
                       </div>
                     )}
@@ -205,7 +205,7 @@ export default function ContactPage() {
                         name="phone"
                         type="tel"
                         placeholder="+61 4XX XXX XXX"
-                        className="border-[#E8DED4] focus:border-[#C45C3E] focus:ring-[#C45C3E]"
+                        className="border-goods-sand focus:border-goods-terracotta focus:ring-goods-terracotta"
                       />
                     </div>
 
@@ -220,7 +220,7 @@ export default function ContactPage() {
                         required
                         rows={5}
                         placeholder="Tell us more about your inquiry..."
-                        className="border-[#E8DED4] focus:border-[#C45C3E] focus:ring-[#C45C3E]"
+                        className="border-goods-sand focus:border-goods-terracotta focus:ring-goods-terracotta"
                       />
                     </div>
 
@@ -264,7 +264,7 @@ export default function ContactPage() {
                   <div className="space-y-3">
                     <Link
                       href="/shop"
-                      className="flex items-center gap-3 p-3 rounded-xl transition-colors hover:bg-[#FDF8F3]"
+                      className="flex items-center gap-3 p-3 rounded-xl transition-colors hover:bg-goods-cream"
                     >
                       <div
                         className="w-10 h-10 rounded-full flex items-center justify-center"
@@ -281,7 +281,7 @@ export default function ContactPage() {
                     </Link>
                     <Link
                       href="/sponsor"
-                      className="flex items-center gap-3 p-3 rounded-xl transition-colors hover:bg-[#FDF8F3]"
+                      className="flex items-center gap-3 p-3 rounded-xl transition-colors hover:bg-goods-cream"
                     >
                       <div
                         className="w-10 h-10 rounded-full flex items-center justify-center"
@@ -298,7 +298,7 @@ export default function ContactPage() {
                     </Link>
                     <Link
                       href="/about"
-                      className="flex items-center gap-3 p-3 rounded-xl transition-colors hover:bg-[#FDF8F3]"
+                      className="flex items-center gap-3 p-3 rounded-xl transition-colors hover:bg-goods-cream"
                     >
                       <div
                         className="w-10 h-10 rounded-full flex items-center justify-center"

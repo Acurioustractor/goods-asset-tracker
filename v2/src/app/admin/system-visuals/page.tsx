@@ -442,7 +442,7 @@ function Thumb({ src, caption, id }: { src: string; caption?: string; id: string
     <div className="w-40 shrink-0">
       <a
         href={`#${id}`}
-        className="flex h-32 w-40 items-center justify-center overflow-hidden rounded-lg border border-border bg-[#FDF8F3] cursor-zoom-in transition hover:border-border"
+        className="flex h-32 w-40 items-center justify-center overflow-hidden rounded-lg border border-border bg-goods-cream cursor-zoom-in transition hover:border-border"
       >
         {/* External/dynamic-path images from repo disk; next/image needs static
             dimensions this grid intentionally varies, so plain <img> is simplest. */}

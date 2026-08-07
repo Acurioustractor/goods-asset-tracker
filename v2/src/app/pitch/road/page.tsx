@@ -19,9 +19,7 @@ import { STAGE_RULE } from '@/lib/data/pathway-stages';
 import { NORTH_STAR } from '@/lib/data/content';
 import {
   ASK_INTRO,
-  ASK_NEXT_STEP,
   ASK_STATUS_ROWS,
-  CLOSING_TAIL,
   DOORS,
   FIRST_SITE_RULE,
   PATHWAY_ASKS,
@@ -29,7 +27,6 @@ import {
   VOICE_THE_LETTER,
   type EndingVoice,
 } from '@/lib/data/road-ending';
-import { LetterLines } from './letter-lines';
 
 export const metadata: Metadata = {
   title: { absolute: 'The road to ownership | Goods.' },
@@ -93,7 +90,7 @@ function EndingVoiceBlock({
           className="h-24 w-24 shrink-0 rounded-full object-cover sm:h-32 sm:w-32"
         />
       )}
-      <div className={voice.portrait ? '' : 'border-l-2 border-[#c45c3e] pl-5'}>
+      <div className={voice.portrait ? '' : 'border-l-2 border-goods-terracotta pl-5'}>
         {/* Quotes render verbatim (they are consent-cleared as approved wordings, never trimmed);
             the compression is typographic, so a long quote no longer costs most of a screen
             before the section's argument starts. */}
@@ -101,7 +98,7 @@ function EndingVoiceBlock({
           &quot;{voice.text}&quot;
         </blockquote>
         <figcaption
-          className={`mt-4 text-sm leading-5 ${dark ? 'text-[#a8a196]' : 'text-[#7a7363]'}`}
+          className={`mt-4 text-sm leading-5 ${dark ? 'text-[#a8a196]' : 'text-goods-sub'}`}
         >
           {voice.attribution}
         </figcaption>
@@ -117,7 +114,7 @@ function StatusChip({ label, dark = false }: { label: string; dark?: boolean }) 
   return (
     <span
       className={`font-mono text-[9px] uppercase tracking-[0.16em] ${
-        dark ? 'text-[#a8a196]' : 'text-[#7a7363]'
+        dark ? 'text-[#a8a196]' : 'text-goods-sub'
       }`}
     >
       {label}
@@ -151,20 +148,20 @@ function ClaimChips({ slide, dark = false }: { slide?: DeckSlide; dark?: boolean
     <dl
       className={`grid border-y ${
         dark
-          ? 'divide-y divide-[#f1ece4]/20 border-[#f1ece4]/20 sm:divide-x sm:divide-y-0'
-          : 'divide-y divide-[#2b2a26]/20 border-[#2b2a26]/20 sm:divide-x sm:divide-y-0'
+          ? 'divide-y divide-goods-cream-muted/20 border-goods-cream-muted/20 sm:divide-x sm:divide-y-0'
+          : 'divide-y divide-goods-ink/20 border-goods-ink/20 sm:divide-x sm:divide-y-0'
       } sm:grid-flow-col sm:auto-cols-fr`}
     >
       {slide.chips.map((chip) => (
         <div key={`${chip.label}-${chip.value}`} className="py-3 sm:px-4 sm:first:pl-0 sm:last:pr-0">
           <dt
             className={`font-mono text-[9px] uppercase tracking-[0.16em] ${
-              dark ? 'text-[#a8a196]' : 'text-[#7a7363]'
+              dark ? 'text-[#a8a196]' : 'text-goods-sub'
             }`}
           >
             {chip.label}
           </dt>
-          <dd className={`mt-1 text-sm leading-5 ${dark ? 'text-[#f1ece4]' : 'text-[#2b2a26]'}`}>
+          <dd className={`mt-1 text-sm leading-5 ${dark ? 'text-goods-cream-muted' : 'text-goods-ink'}`}>
             {chip.value}
           </dd>
         </div>
@@ -184,8 +181,8 @@ function DeepLinks({ slide, dark = false }: { slide: DeckSlide; dark?: boolean }
           href={link.href}
           className={`inline-flex items-center gap-2 border-b pb-1 text-sm ${
             dark
-              ? 'border-[#d97a59] text-[#fbf8f1] hover:text-[#d97a59]'
-              : 'border-[#c45c3e] text-[#2b2a26] hover:text-[#c45c3e]'
+              ? 'border-goods-terracotta-light text-goods-cream hover:text-goods-terracotta-light'
+              : 'border-goods-terracotta text-goods-ink hover:text-goods-terracotta'
           }`}
         >
           {link.label}
@@ -216,13 +213,13 @@ export default function RoadPitchPage() {
   };
 
   return (
-    <article className="road-pitch-scroll overflow-x-hidden bg-[#fbf8f1] text-[#2b2a26]">
+    <article className="road-pitch-scroll overflow-x-hidden bg-goods-cream text-goods-ink">
       {/* Chrome (the opener + the bar) sits ABOVE the cover since 2026-08-06: "If you read
           nothing else" is the skim spine's first rung, so it must be the first thing a skimming
           funder meets, not screen two. */}
       <PitchChrome />
 
-      <header id="cover" data-pitch-panel="cover" className="relative min-h-screen overflow-hidden bg-[#171714] text-[#fbf8f1]">
+      <header id="cover" data-pitch-panel="cover" className="relative min-h-screen overflow-hidden bg-goods-ink text-goods-cream">
         <div data-road-media="cover.photo" className="absolute inset-y-0 right-0 w-full lg:w-[56%]">
           <Image
             src="/images/media-pack/lying-on-stretch-bed.jpg"
@@ -248,7 +245,7 @@ export default function RoadPitchPage() {
 
           <div className="flex flex-1 items-end pb-14 pt-28 md:pb-20 lg:items-center lg:pb-8">
             <div className="max-w-3xl lg:w-[44%] lg:max-w-none lg:pr-10">
-              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#d97a59]">
+              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-goods-terracotta-light">
                 The road to ownership · Updated {deckUpdated}
               </p>
               <h1 data-road-text="cover.headline" className="goods-pitch-display mt-7 max-w-3xl text-5xl leading-[0.98] md:text-7xl lg:text-[68px] xl:text-[76px]">
@@ -260,7 +257,7 @@ export default function RoadPitchPage() {
               <div className="mt-10 flex flex-wrap gap-3">
                 <a
                   href="#road"
-                  className="bg-[#c45c3e] px-6 py-3 text-sm font-semibold text-white hover:bg-[#d26a4a]"
+                  className="bg-goods-terracotta px-6 py-3 text-sm font-semibold text-white hover:bg-goods-terracotta"
                 >
                   Walk the road
                 </a>
@@ -269,24 +266,24 @@ export default function RoadPitchPage() {
                 <button
                   type="button"
                   data-opener-trigger
-                  className="border border-[#e88461]/60 px-6 py-3 text-sm font-semibold text-[#e88461] hover:border-[#e88461]"
+                  className="border border-goods-terracotta-light/60 px-6 py-3 text-sm font-semibold text-goods-terracotta-light hover:border-goods-terracotta-light"
                 >
                   Read this first
                 </button>
                 <a
                   href="?view=slides"
-                  className="border border-white/35 px-6 py-3 text-sm font-semibold text-white hover:border-white"
+                  className="hidden border border-white/35 px-6 py-3 text-sm font-semibold text-white hover:border-white sm:block"
                 >
                   Present as slides
                 </a>
               </div>
               <p className="mt-8 border-t border-white/20 pt-5 font-mono text-[10px] uppercase leading-6 tracking-[0.13em] text-white/55">
                 <span className="text-white">{CANONICAL_ASSETS.bedsDeployed}</span> beds
-                <span className="mx-2 text-[#d97a59]">·</span>
+                <span className="mx-2 text-goods-terracotta-light">·</span>
                 <span className="text-white">{CANONICAL_ASSETS.washersInCommunity}</span> washers
-                <span className="mx-2 text-[#d97a59]">·</span>
+                <span className="mx-2 text-goods-terracotta-light">·</span>
                 <span className="text-white">{CANONICAL_ASSETS.communitiesServed}</span> communities
-                <span className="mx-2 text-[#d97a59]">·</span>
+                <span className="mx-2 text-goods-terracotta-light">·</span>
                 <span className="text-white">1</span> production facility
               </p>
             </div>
@@ -294,18 +291,18 @@ export default function RoadPitchPage() {
         </div>
       </header>
 
-      <section id="road" data-pitch-panel="road" className="border-b border-[#e6dfd1] lg:h-[100svh] lg:min-h-[760px] lg:overflow-hidden">
+      <section id="road" data-pitch-panel="road" className="border-b border-goods-grid lg:h-[100svh] lg:min-h-[760px] lg:overflow-hidden">
         <div className="mx-auto flex h-full max-w-[1600px] flex-col px-6 py-10 md:px-10 lg:px-14 lg:py-8">
           <div className="grid gap-8 lg:grid-cols-2 lg:items-end">
             <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-goods-terracotta">
                 Seven stops
               </p>
               <h2 className="goods-pitch-display mt-3 max-w-3xl text-5xl leading-[0.98] md:text-6xl lg:text-[clamp(3.5rem,5.4vw,5.6rem)]">
                 Seven places changed what Goods is.
               </h2>
             </div>
-            <p className="max-w-2xl text-base leading-7 text-[#6d675c] lg:justify-self-end">
+            <p className="max-w-2xl text-base leading-7 text-goods-sub lg:justify-self-end">
               A bed carried inside. A question nobody had asked. A machine named in Warumungu.
               Follow the seven stops, then open the records behind them.
             </p>
@@ -317,7 +314,7 @@ export default function RoadPitchPage() {
                 <a
                   href={`#${stop.id}`}
                   data-road-media-mirror={`${stop.id}.photo`}
-                  className="group relative block h-full min-h-[300px] overflow-hidden bg-[#171714] text-white lg:min-h-0"
+                  className="group relative block h-full min-h-[220px] overflow-hidden bg-goods-ink text-white sm:min-h-[260px] lg:min-h-0"
                 >
                   <Image
                     src={stop.photo}
@@ -332,11 +329,11 @@ export default function RoadPitchPage() {
                   />
                   <span className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-black/5 transition-colors group-hover:via-black/20" />
                   <span className="absolute inset-0 flex flex-col justify-between p-6">
-                    <span className="goods-pitch-display text-5xl text-[#e88461]">
+                    <span className="goods-pitch-display text-5xl text-goods-terracotta-light">
                       {String(index + 1).padStart(2, '0')}
                     </span>
                     <span>
-                      <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-[#e88461]">
+                      <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-goods-terracotta-light">
                         Chapter {String(index + 1).padStart(2, '0')}
                       </span>
                       <span className="goods-pitch-display mt-2 block max-w-lg text-3xl leading-tight md:text-4xl">
@@ -368,14 +365,14 @@ export default function RoadPitchPage() {
               key={stop.id}
               id={stop.id}
               data-pitch-panel={stop.id}
-              className="border-b border-[#d9d1c3] bg-[#fbf8f1] px-5 py-7 md:px-8 md:py-9 lg:h-[100svh] lg:min-h-[720px] lg:overflow-hidden lg:px-10"
+              className="border-b border-goods-sand bg-goods-cream px-5 py-7 md:px-8 md:py-9 lg:h-[100svh] lg:min-h-[720px] lg:overflow-hidden lg:px-10"
             >
               <div className="mx-auto grid h-full max-w-[1700px] gap-5 lg:grid-rows-[auto_minmax(0,1fr)]">
                 <header className="grid gap-5 lg:grid-cols-[1.08fr_0.92fr] lg:items-end lg:gap-12">
                   <div>
                     <div className="flex items-center gap-4">
-                      <span className="goods-pitch-display text-6xl text-[#c45c3e]">{index + 1}</span>
-                      <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#c45c3e]">
+                      <span className="goods-pitch-display text-6xl text-goods-terracotta">{index + 1}</span>
+                      <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-goods-terracotta">
                         Maningrida and the farm
                       </p>
                     </div>
@@ -388,7 +385,7 @@ export default function RoadPitchPage() {
                   </div>
                   <p
                     data-road-text={`${stop.id}.body`}
-                    className="max-w-2xl text-base leading-7 text-[#6d675c] lg:pb-1 lg:text-lg lg:leading-8"
+                    className="max-w-2xl text-base leading-7 text-goods-sub lg:pb-1 lg:text-lg lg:leading-8"
                   >
                     {stop.body}
                   </p>
@@ -397,7 +394,7 @@ export default function RoadPitchPage() {
                 <div className="grid min-h-[580px] gap-3 sm:grid-cols-[0.72fr_1.28fr] lg:min-h-0">
                   <div
                     data-road-media={`${stop.id}.photo`}
-                    className="relative min-h-[300px] overflow-hidden bg-[#24231f] lg:min-h-0"
+                    className="relative min-h-[300px] overflow-hidden bg-goods-ink lg:min-h-0"
                   >
                     <Image
                       src={stop.photo}
@@ -407,7 +404,7 @@ export default function RoadPitchPage() {
                       className="object-cover"
                     />
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-5 pt-20 text-white md:p-7">
-                      <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#e88461]">
+                      <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-goods-terracotta-light">
                         01 · Make the parts
                       </p>
                       <p className="goods-pitch-display mt-2 text-3xl leading-tight">
@@ -421,7 +418,7 @@ export default function RoadPitchPage() {
 
                   <div
                     data-road-media={`${stop.id}.maningrida-photo`}
-                    className="relative min-h-[300px] overflow-hidden bg-[#24231f] lg:min-h-0"
+                    className="relative min-h-[300px] overflow-hidden bg-goods-ink lg:min-h-0"
                   >
                     <Image
                       src={maningridaPhoto}
@@ -431,7 +428,7 @@ export default function RoadPitchPage() {
                       className="object-cover"
                     />
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-5 pt-24 text-white md:p-7">
-                      <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#e88461]">
+                      <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-goods-terracotta-light">
                         02 · Build the beds
                       </p>
                       <p className="goods-pitch-display mt-2 max-w-3xl text-3xl leading-tight md:text-4xl">
@@ -454,8 +451,8 @@ export default function RoadPitchPage() {
           <section
             id={stop.id}
             data-pitch-panel={stop.id}
-            className={`border-b border-[#e6dfd1] lg:h-[100svh] lg:min-h-[680px] lg:overflow-hidden ${
-              index === 4 || index === 6 ? 'bg-[#22211e] text-[#fbf8f1]' : 'bg-[#fbf8f1]'
+            className={`border-b border-goods-grid lg:h-[100svh] lg:min-h-[680px] lg:overflow-hidden ${
+              index === 4 || index === 6 ? 'bg-goods-ink text-goods-cream' : 'bg-goods-cream'
             }`}
           >
             <div className="mx-auto grid h-full min-h-[680px] max-w-[1600px] lg:grid-cols-2">
@@ -508,8 +505,8 @@ export default function RoadPitchPage() {
               >
                 <div className="w-full max-w-xl lg:max-h-[calc(100svh-5rem)]">
                   <div className="flex items-center gap-4">
-                    <span className="goods-pitch-display text-6xl text-[#c45c3e]">{index + 1}</span>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#c45c3e]">
+                    <span className="goods-pitch-display text-6xl text-goods-terracotta">{index + 1}</span>
+                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-goods-terracotta">
                       {stop.eyebrow.replace(/^Stop \d+ · /, '')}
                     </p>
                   </div>
@@ -519,14 +516,14 @@ export default function RoadPitchPage() {
                   <p
                     data-road-text={`${stop.id}.body`}
                     className={`mt-5 text-base leading-7 lg:text-[clamp(1rem,1.25vw,1.2rem)] lg:leading-8 ${
-                      index === 4 || index === 6 ? 'text-[#cfc8bc]' : 'text-[#6d675c]'
+                      index === 4 || index === 6 ? 'text-[#cfc8bc]' : 'text-goods-sub'
                     }`}
                   >
                     {stop.body}
                   </p>
 
                   {voice && !stop.inlineVideo && (
-                    <figure className="mt-9 border-l-2 border-[#c45c3e] pl-5">
+                    <figure className="mt-9 border-l-2 border-goods-terracotta pl-5">
                       <blockquote className="goods-pitch-display text-2xl leading-snug md:text-3xl">
                         &quot;{voice.quote.text}&quot;
                       </blockquote>
@@ -542,7 +539,7 @@ export default function RoadPitchPage() {
                         )}
                         <span
                           className={`text-sm leading-5 ${
-                            index === 4 || index === 6 ? 'text-[#a8a196]' : 'text-[#7a7363]'
+                            index === 4 || index === 6 ? 'text-[#a8a196]' : 'text-goods-sub'
                           }`}
                         >
                           <span className="block font-semibold text-current">{voice.person.name}</span>
@@ -565,7 +562,7 @@ export default function RoadPitchPage() {
                       href={stop.video?.href ?? '#'}
                       className="mt-6 flex items-center gap-4 border-y border-current/15 py-3"
                     >
-                      <PlayCircle className="h-8 w-8 text-[#c45c3e]" aria-hidden="true" />
+                      <PlayCircle className="h-8 w-8 text-goods-terracotta" aria-hidden="true" />
                       <span>
                         <span className="block text-sm font-semibold">{stop.inlineVideo.label}</span>
                         <span className="mt-1 block text-xs opacity-60">Open the field story and film</span>
@@ -585,12 +582,12 @@ export default function RoadPitchPage() {
             <section
               id={resolvedProductSlide.id}
               data-pitch-panel={resolvedProductSlide.id}
-              className="border-b border-[#d9d1c3] bg-[#fbf8f1] px-6 py-8 md:min-h-screen md:px-10 md:py-10 lg:px-14"
+              className="border-b border-goods-sand bg-goods-cream px-6 py-8 md:min-h-screen md:px-10 md:py-10 lg:px-14"
             >
               <div className="mx-auto flex max-w-[1600px] flex-col justify-center md:min-h-[calc(100vh-5rem)]">
                 <div className="grid gap-6 md:grid-cols-[0.82fr_1.18fr] md:items-end">
                   <div>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-goods-terracotta">
                       {resolvedProductSlide.eyebrow}
                     </p>
                     <h2
@@ -603,7 +600,7 @@ export default function RoadPitchPage() {
                   <div>
                     <p
                       data-road-text={`${resolvedProductSlide.id}.body`}
-                      className="max-w-2xl text-base leading-6 text-[#6d675c] lg:text-lg lg:leading-7"
+                      className="max-w-2xl text-base leading-6 text-goods-sub lg:text-lg lg:leading-7"
                     >
                       {resolvedProductSlide.body}
                     </p>
@@ -616,7 +613,7 @@ export default function RoadPitchPage() {
                 <div className="mt-6 grid gap-3 md:grid-cols-[0.6fr_1.4fr]">
                   <div
                     data-road-media={`${resolvedProductSlide.id}.photo`}
-                    className="relative aspect-[4/3] min-h-[320px] overflow-hidden border border-[#d9d1c3] bg-[#f1ece4] md:min-h-0"
+                    className="relative h-[260px] w-full overflow-hidden border border-goods-sand bg-goods-cream-muted sm:h-auto sm:aspect-[4/3] md:min-h-0"
                   >
                     <Image
                       src={resolvedProductSlide.photo}
@@ -627,7 +624,7 @@ export default function RoadPitchPage() {
                     />
                   </div>
 
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                     {[
                       {
                         number: '01',
@@ -647,9 +644,9 @@ export default function RoadPitchPage() {
                     ].map((component) => (
                       <div
                         key={component.label}
-                        className="grid min-h-32 grid-rows-[1fr_auto] overflow-hidden border border-[#d9d1c3] bg-[#f1ece4]"
+                        className="grid min-w-0 grid-cols-[110px_minmax(0,1fr)] overflow-hidden border border-goods-sand bg-goods-cream-muted sm:min-h-32 sm:grid-cols-1 sm:grid-rows-[1fr_auto]"
                       >
-                        <div className="relative aspect-[3/2] min-h-24">
+                        <div className="relative min-h-24 sm:aspect-[3/2]">
                           <Image
                             src={component.image}
                             alt={component.label}
@@ -658,11 +655,11 @@ export default function RoadPitchPage() {
                             className="object-contain"
                           />
                         </div>
-                        <div className="flex items-end gap-3 border-t border-[#d9d1c3] bg-[#fbf8f1] p-4">
-                          <span className="goods-pitch-display text-3xl text-[#e88461] lg:text-4xl">
+                        <div className="flex items-end gap-3 border-t border-goods-sand bg-goods-cream p-4">
+                          <span className="goods-pitch-display text-3xl text-goods-terracotta-light lg:text-4xl">
                             {component.number}
                           </span>
-                          <span className="pb-1 text-xs font-semibold leading-4 text-[#2b2a26] lg:text-sm lg:leading-5">
+                          <span className="pb-1 text-xs font-semibold leading-4 text-goods-ink lg:text-sm lg:leading-5">
                             {component.label}
                           </span>
                         </div>
@@ -671,9 +668,9 @@ export default function RoadPitchPage() {
                   </div>
                 </div>
 
-                <div className="mt-5 grid border-y border-[#d9d1c3] md:grid-cols-[0.72fr_1fr_1fr_1fr]">
+                <div className="mt-5 grid border-y border-goods-sand md:grid-cols-[0.72fr_1fr_1fr_1fr]">
                   <div className="py-3 md:pr-6">
-                    <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#c45c3e]">
+                    <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-goods-terracotta">
                       Moving the making
                     </p>
                     <p className="goods-pitch-display mt-1 text-xl">More of the value stays.</p>
@@ -681,9 +678,9 @@ export default function RoadPitchPage() {
                   {resolvedProductSlide.steps?.map((step, stepIndex) => (
                     <div
                       key={step}
-                      className="border-t border-[#d9d1c3] py-3 md:border-l md:border-t-0 md:px-5"
+                      className="border-t border-goods-sand py-3 md:border-l md:border-t-0 md:px-5"
                     >
-                      <span className="font-mono text-[9px] text-[#c45c3e]">
+                      <span className="font-mono text-[9px] text-goods-terracotta">
                         {String(stepIndex + 1).padStart(2, '0')}
                       </span>
                       <p className="mt-1 text-xs font-semibold leading-4 lg:text-sm lg:leading-5">{step}</p>
@@ -715,20 +712,20 @@ export default function RoadPitchPage() {
         );
       })}
 
-      <section id="map" data-pitch-panel="map" className="min-h-screen bg-[#171714] px-6 py-10 text-[#fbf8f1] md:px-10 md:py-12 lg:px-14">
+      <section id="map" data-pitch-panel="map" className="min-h-screen bg-goods-ink px-6 py-10 text-goods-cream md:px-10 md:py-12 lg:px-14">
         <div className="mx-auto max-w-[1500px]">
           <div className="mb-8 grid gap-5 sm:grid-cols-[0.9fr_1.1fr] sm:items-end">
             <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#d97a59]">
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-goods-terracotta-light">
                 Products and pathways
               </p>
               <h2 className="goods-pitch-display mt-3 max-w-3xl text-4xl leading-[1.02] md:text-5xl lg:text-6xl">
-                The products went everywhere. The making is asked for in four places.
+                Goods has delivered products across Australia. Four communities are exploring local production.
               </h2>
             </div>
             <p className="max-w-xl text-sm leading-6 text-[#b9b3a8] sm:justify-self-end lg:text-lg lg:leading-8">
-              Start with the whole national extent. Select a place to see delivered products,
-              cleared voices and whether a production pathway is open.
+              This map shows where Goods products have been delivered and the communities we are
+              working with on local production.
             </p>
           </div>
           <RoadPitchMap locations={communityLocations} />
@@ -738,9 +735,9 @@ export default function RoadPitchPage() {
       {/* Money at a glance (Ben, 2026-08-06): investors read a term-sheet strip, not
           paragraphs. Five numbers with their honesty grade; every panel after this is
           evidence for one of them. Figures render from canon/ask-surface imports only. */}
-      <section id="money-at-a-glance" data-pitch-panel="money-at-a-glance" className="border-b border-[#d9d1c3] bg-[#171714] px-6 py-14 text-[#fbf8f1] md:px-10 lg:min-h-[70svh] lg:px-14 lg:py-20">
+      <section id="money-at-a-glance" data-pitch-panel="money-at-a-glance" className="border-b border-goods-sand bg-goods-ink px-6 py-14 text-goods-cream md:px-10 lg:min-h-[70svh] lg:px-14 lg:py-20">
         <div className="mx-auto flex h-full max-w-[1600px] flex-col justify-center">
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#e88461]">
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-goods-terracotta-light">
             The money, in five numbers
           </p>
           <dl className="mt-8 grid gap-px border border-white/20 bg-white/20 sm:grid-cols-2 lg:grid-cols-5">
@@ -748,11 +745,11 @@ export default function RoadPitchPage() {
               { v: '$750', l: 'A bed sells for', chip: 'verified' },
               { v: '~$685', l: 'Costs to make + truck today', chip: 'verified' },
               { v: '~$426', l: 'Pressing our own legs', chip: 'modelled' },
-              { v: '$400K', l: 'The raise, signed by 31 Aug', chip: 'target' },
+              { v: '$300K', l: 'Annual funding Goods needs', chip: 'target' },
               { v: '$0', l: 'Signed today', chip: 'verified' },
             ].map((cell) => (
-              <div key={cell.l} className="bg-[#171714] p-6 lg:p-8">
-                <dd className={`goods-pitch-display text-5xl lg:text-6xl ${cell.v === '$0' ? 'text-[#e88461]' : ''}`}>
+              <div key={cell.l} className="bg-goods-ink p-6 lg:p-8">
+                <dd className={`goods-pitch-display text-5xl lg:text-6xl ${cell.v === '$0' ? 'text-goods-terracotta-light' : ''}`}>
                   {cell.v}
                 </dd>
                 <dt className="mt-3 text-sm leading-5 text-white/70">{cell.l}</dt>
@@ -762,10 +759,6 @@ export default function RoadPitchPage() {
               </div>
             ))}
           </dl>
-          <p className="mt-6 max-w-3xl text-sm leading-6 text-white/55">
-            Everything below this line is evidence for one of these five. Every figure carries its
-            status at <Link href="/register" className="underline decoration-[#c45c3e] underline-offset-2">/register</Link>.
-          </p>
         </div>
       </section>
 
@@ -773,77 +766,68 @@ export default function RoadPitchPage() {
           production facility costs to stand up and run, and the three ways in. Ranges match
           ask-surface/road-ending; the per-site annual figure is deliberately NOT printed here
           because it is an open decision (GOC-site-cost-decision.md). */}
-      <section id="the-facility" data-pitch-panel="the-facility" className="border-b border-[#d9d1c3] bg-[#f1ece4] px-6 py-14 md:px-10 lg:min-h-[80svh] lg:px-14 lg:py-20">
+      <section id="the-facility" data-pitch-panel="the-facility" className="border-b border-goods-sand bg-goods-cream-muted px-6 py-14 md:px-10 lg:min-h-[80svh] lg:px-14 lg:py-20">
         <div className="mx-auto flex h-full max-w-[1600px] flex-col justify-center">
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
-            The facility, simply
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-goods-terracotta">
+            What the funding pays for
           </p>
           <h2 className="goods-pitch-display mt-4 max-w-4xl text-4xl leading-[1.02] md:text-5xl">
-            The money stands up a production line, proves its numbers, and keeps the lights on
-            while beds start paying.
+            $300,000 a year keeps Goods making beds, working with communities and growing. Capital
+            for community production facilities is raised separately.
           </h2>
-          <div className="mt-10 grid gap-px border border-[#d9d1c3] bg-[#d9d1c3] md:grid-cols-3">
+          <div className="mt-10 grid gap-px border border-goods-sand bg-goods-sand md:grid-cols-3">
             {[
               {
-                step: '01 · Stand it up',
-                amount: '$112K to $222K',
-                chip: 'modelled',
-                line: 'Shredder, press, cutter, container, power. We have already put $110,046 of our own in; it sits beside this number, never subtracted.',
+                step: '01 · A community production facility',
+                amount: 'Up to $222K',
+                chip: 'capital per full facility',
+                line: 'A full production facility can be built for up to $222,000. A community can also start with a smaller set of modules, depending on what it wants to make, what it wants to own and what infrastructure it already has.',
               },
               {
-                step: '02 · Prove it',
-                amount: '$60K to $80K',
-                chip: 'target',
-                line: 'Fifty beds, timed and costed with receipts. Turns the $426 bed from modelled to measured. The beds go to communities that ordered them.',
+                step: '02 · Keep making beds now',
+                amount: '$100K a year',
+                chip: 'production funding',
+                line: 'Continue making beds at the farm and The Harvest so Goods can keep filling community orders while on-Country production facilities are developed.',
               },
               {
-                step: '03 · Run it',
-                amount: '~$109.5K a year',
-                chip: 'workpaper',
-                line: 'The block that keeps Goods running: shed, books, travel. What a community-owned site costs to run is being settled with the first community, so it is not printed here.',
+                step: '03 · Keep Goods working with communities',
+                amount: '$200K a year',
+                chip: 'organisation funding',
+                line: 'Keep visiting communities, developing products, building relationships and supporting community-led enterprises to grow and take on production.',
               },
             ].map((cell) => (
-              <div key={cell.step} className="bg-[#fbf8f1] p-6 lg:p-8">
-                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#c45c3e]">{cell.step}</p>
+              <div key={cell.step} className="bg-goods-cream p-6 lg:p-8">
+                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-goods-terracotta">{cell.step}</p>
                 <p className="goods-pitch-display mt-3 text-4xl">{cell.amount}</p>
                 <div className="mt-2"><StatusChip label={cell.chip} /></div>
-                <p className="mt-4 text-sm leading-6 text-[#6d675c]">{cell.line}</p>
+                <p className="mt-4 text-sm leading-6 text-goods-sub">{cell.line}</p>
               </div>
             ))}
           </div>
-          <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-[#d9d1c3] pt-6">
-            <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#7a7363]">Three ways in</p>
-            {DOORS.map((door) => (
-              <a key={door.verb} href="#the-letter" className="group text-base">
-                <span className="goods-pitch-display text-2xl text-[#c45c3e] group-hover:text-[#d26a4a]">{door.verb}</span>
-                <span className="ml-2 text-sm text-[#6d675c]">{door.entity}</span>
-              </a>
-            ))}
-          </div>
-          <p className="mt-4 text-sm leading-6 text-[#7a7363]">
-            The full working — every part price, the buy list, the cost chain — lives at{' '}
-            <Link href="/register" className="underline decoration-[#c45c3e] underline-offset-2">/register</Link>, each figure with its status.
+          <p className="mt-7 max-w-5xl text-lg leading-8 text-goods-sub">
+            Raising $300,000 a year lets Goods keep operating, innovating and growing while we
+            raise capital in different ways for the on-Country facilities each community chooses.
           </p>
         </div>
       </section>
 
-      <section id="model" data-pitch-panel="model" className="border-b border-[#d9d1c3] bg-[#f1ece4] px-6 py-12 md:px-10 lg:min-h-screen lg:px-14">
+      <section id="model" data-pitch-panel="model" className="border-b border-goods-sand bg-goods-cream-muted px-6 py-12 md:px-10 lg:min-h-screen lg:px-14">
         <div className="mx-auto flex max-w-[1500px] flex-col justify-center lg:min-h-[calc(100vh-6rem)]">
           <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
             <div className="max-w-3xl">
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-goods-terracotta">
                 {modelSlide?.eyebrow}
               </p>
               <h2 data-road-text="model.headline" className="goods-pitch-display mt-4 text-5xl leading-[1.02] md:text-6xl">
                 {modelSlide?.headline}
               </h2>
-              <p data-road-text="model.body" className="mt-7 text-lg leading-8 text-[#6d675c]">{modelSlide?.body}</p>
+              <p data-road-text="model.body" className="mt-7 text-lg leading-8 text-goods-sub">{modelSlide?.body}</p>
             </div>
             <ol className="grid gap-3 sm:grid-cols-2">
               {modelSlide?.steps?.map((step, index) => (
                 <li
                   key={step}
-                  className="group relative min-h-[230px] overflow-hidden bg-[#24231f] text-white lg:min-h-[290px]"
+                  className="group relative min-h-[230px] overflow-hidden bg-goods-ink text-white lg:min-h-[290px]"
                 >
                   <Image
                     src={principleImages[index]}
@@ -854,7 +838,7 @@ export default function RoadPitchPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 p-5 lg:p-6">
-                    <span className="font-mono text-[10px] tracking-[0.18em] text-[#e88461]">
+                    <span className="font-mono text-[10px] tracking-[0.18em] text-goods-terracotta-light">
                       {String(index + 1).padStart(2, '0')}
                     </span>
                     <p className="mt-2 max-w-sm text-lg font-semibold leading-7">{step}</p>
@@ -870,22 +854,19 @@ export default function RoadPitchPage() {
           2026-08-06 (Ben: "from here it gets super confusing, heaps of writing"). The five
           numbers + the facility panel now carry the money story; the full working lives at
           /register and the cost lab, linked from the facility panel. Data modules unchanged. */}
-      <section id="four-asks" data-pitch-panel="four-asks" className="border-b border-[#d9d1c3] bg-[#f1ece4]">
+      <section id="four-asks" data-pitch-panel="four-asks" className="border-b border-goods-sand bg-goods-cream-muted">
         <div className="mx-auto max-w-[1600px] px-6 py-14 md:px-10 lg:px-14 lg:py-20">
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c45c3e]">
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-goods-terracotta">
             Where they are, in what they asked for
           </p>
           <EndingVoiceBlock voice={VOICE_FOUR_ASKS} className="mt-8 max-w-4xl" />
-          <div className="mt-12 grid gap-8 border-t border-[#d9d1c3] pt-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
+          <div className="mt-12 grid gap-8 border-t border-goods-sand pt-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
             <h2 className="goods-pitch-display text-5xl leading-[0.99] md:text-6xl">
               Four communities asked for four different things.
             </h2>
-            <p className="max-w-2xl text-lg leading-8 text-[#6d675c]">
-              Nobody gets sold a facility. A community says what it would want to own first, we
-              price that, at that size, and where a partner already has the shed or the power we
-              take those lines out instead of assuming them. Each of these has a number against it
-              in our own planning. None of those numbers has gone to the community it belongs to,
-              so none of them is on this page.
+            <p className="max-w-2xl text-lg leading-8 text-goods-sub">
+              We do not arrive with a facility to sell. Each community decides what it wants to
+              make and own. We build the plan around what is already there and what is needed next.
             </p>
           </div>
         </div>
@@ -897,47 +878,44 @@ export default function RoadPitchPage() {
           {PATHWAY_ASKS.map((ask) => (
             <div
               key={ask.id}
-              className="grid gap-4 border-t border-[#d9d1c3] py-8 lg:grid-cols-[0.55fr_0.9fr_1fr] lg:gap-10"
+              className="grid gap-4 border-t border-goods-sand py-8 lg:grid-cols-[0.55fr_0.9fr_1fr] lg:gap-10"
             >
               <div>
                 <h3 className="goods-pitch-display text-3xl leading-none md:text-4xl">
                   {ask.place}
                 </h3>
-                <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.16em] text-[#7a7363]">
+                <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.16em] text-goods-sub">
                   {ask.country}
                 </p>
-                <p className="goods-pitch-display mt-4 text-2xl text-[#c45c3e]">{ask.size}</p>
+                <p className="goods-pitch-display mt-4 text-2xl text-goods-terracotta">{ask.size}</p>
               </div>
               <div>
-                <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-[#7a7363]">
+                <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-goods-sub">
                   {ask.field}
                 </p>
                 <p className="mt-3 text-base leading-7">{ask.body}</p>
               </div>
               <div>
-                <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-[#7a7363]">
-                  What we can say about the money
+                <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-goods-sub">
+                  Where it stands
                 </p>
-                <p className="mt-3 text-base leading-7 text-[#6d675c]">{ask.whatWeCanSay}</p>
-                <p className="mt-4 border-t border-[#d9d1c3] pt-3 text-xs leading-5 text-[#7a7363]">
-                  Whose call: {ask.whoseCall}
-                </p>
+                <p className="mt-3 text-base leading-7 text-goods-sub">{ask.whatWeCanSay}</p>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="border-t border-[#d9d1c3] bg-[#f1ece4]">
+        <div className="border-t border-goods-sand bg-goods-cream-muted">
           <div className="mx-auto max-w-[1600px] px-6 py-12 md:px-10 lg:px-14">
-            <p className="max-w-4xl text-lg leading-8 text-[#2b2a26]">{STAGE_RULE}</p>
-            <p className="mt-4 max-w-4xl text-base leading-7 text-[#6d675c]">{FIRST_SITE_RULE}</p>
+            <p className="max-w-4xl text-lg leading-8 text-goods-ink">{STAGE_RULE}</p>
+            <p className="mt-4 max-w-4xl text-base leading-7 text-goods-sub">{FIRST_SITE_RULE}</p>
           </div>
         </div>
       </section>
 
-      <section id="the-letter" data-pitch-panel="the-letter" className="bg-[#171714] px-6 py-16 text-[#fbf8f1] md:px-10 lg:px-14 lg:py-20">
+      <section id="the-letter" data-pitch-panel="the-letter" className="bg-goods-ink px-6 py-16 text-goods-cream md:px-10 lg:px-14 lg:py-20">
         <div className="mx-auto max-w-[1600px]">
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#e88461]">
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-goods-terracotta-light">
             The ask
           </p>
 
@@ -947,13 +925,9 @@ export default function RoadPitchPage() {
               <h2 className="goods-pitch-display mt-10 max-w-3xl text-5xl leading-[0.98] md:text-6xl">
                 {ASK_INTRO.headline}
               </h2>
-              <p className="goods-pitch-display mt-7 max-w-3xl text-3xl leading-tight text-[#e88461] md:text-4xl">
+              <p className="goods-pitch-display mt-7 max-w-3xl text-3xl leading-tight text-goods-terracotta-light md:text-4xl">
                 {ASK_HEADLINE.line}
               </p>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-[#cfc8bc]">{ASK_INTRO.body}</p>
-              <div className="mt-9">
-                <LetterLines />
-              </div>
             </div>
 
             <div>
@@ -966,7 +940,7 @@ export default function RoadPitchPage() {
                     <p
                       className={
                         row.value === '$0'
-                          ? 'goods-pitch-display mt-2 text-6xl text-[#e88461]'
+                          ? 'goods-pitch-display mt-2 text-6xl text-goods-terracotta-light'
                           : 'goods-pitch-display mt-2 text-3xl'
                       }
                     >
@@ -983,9 +957,9 @@ export default function RoadPitchPage() {
 
           <ol className="mt-14 grid gap-3 border-t border-white/20 pt-10 md:grid-cols-3">
             {DOORS.map((door) => (
-              <li key={door.verb} className="border-t-2 border-[#c45c3e] bg-[#22211e] p-6 lg:p-8">
+              <li key={door.verb} className="border-t-2 border-goods-terracotta bg-goods-ink p-6 lg:p-8">
                 <h3 className="goods-pitch-display text-3xl">{door.verb}</h3>
-                <p className="mt-3 text-sm font-semibold leading-5 text-[#e88461]">{door.entity}</p>
+                <p className="mt-3 text-sm font-semibold leading-5 text-goods-terracotta-light">{door.entity}</p>
                 <p className="mt-6 font-mono text-[9px] uppercase tracking-[0.16em] text-white/45">
                   What it pays for
                 </p>
@@ -1000,34 +974,10 @@ export default function RoadPitchPage() {
               </li>
             ))}
           </ol>
-
-          <div className="mt-12 grid gap-8 border-t border-white/20 pt-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <p className="max-w-2xl text-lg leading-8">{ASK_NEXT_STEP.sentence}</p>
-            <div className="flex flex-wrap items-center gap-4">
-              <Link
-                href={ASK_NEXT_STEP.primary.href}
-                className="bg-[#c45c3e] px-6 py-3 text-sm font-semibold text-white hover:bg-[#d26a4a]"
-              >
-                {ASK_NEXT_STEP.primary.label}
-              </Link>
-              <Link
-                href={ASK_NEXT_STEP.secondary.href}
-                className="border border-white/30 px-6 py-3 text-sm font-semibold hover:border-white"
-              >
-                {ASK_NEXT_STEP.secondary.label}
-              </Link>
-              <Link
-                href={ASK_NEXT_STEP.tertiary.href}
-                className="border-b border-[#d97a59] pb-1 text-sm text-white/70 hover:text-white"
-              >
-                {ASK_NEXT_STEP.tertiary.label}
-              </Link>
-            </div>
-          </div>
         </div>
       </section>
 
-      <footer id="closing" data-pitch-panel="closing" data-road-media="closing.photo" className="relative min-h-screen overflow-hidden bg-[#171714] text-white">
+      <footer id="closing" data-pitch-panel="closing" data-road-media="closing.photo" className="relative min-h-screen overflow-hidden bg-goods-ink text-white">
         <Image
           src={closingSlide?.photo ?? '/images/media-pack/lying-on-stretch-bed.jpg'}
           alt={closingSlide?.photoAlt ?? ''}
@@ -1035,10 +985,10 @@ export default function RoadPitchPage() {
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#171714] via-[#171714]/55 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-goods-ink via-goods-ink/55 to-transparent" />
         <div className="relative mx-auto flex min-h-screen max-w-[1500px] items-end px-6 py-16 md:px-10 lg:px-14">
           <div className="max-w-4xl">
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#d97a59]">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-goods-terracotta-light">
               The promise
             </p>
             <h2 data-road-text="closing.headline" className="goods-pitch-display mt-5 text-5xl leading-[1.01] md:text-7xl">
@@ -1046,12 +996,6 @@ export default function RoadPitchPage() {
             </h2>
             <p data-road-text="closing.body" className="mt-7 max-w-3xl text-xl leading-9 text-white/80 md:text-2xl">
               {NORTH_STAR.line}
-            </p>
-            <p className="mt-10 border-t border-white/25 pt-6 text-lg leading-8 text-[#e88461]">
-              {CLOSING_TAIL}
-            </p>
-            <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.14em] text-white/45">
-              Updated {deckUpdated} · every figure on this page carries its status at /register
             </p>
           </div>
         </div>

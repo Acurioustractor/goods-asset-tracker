@@ -35,7 +35,14 @@ interface CommunityMapProps {
   selectedCommunity?: string | null;
   onSelectCommunity?: (id: string | null) => void;
   heightClassName?: string;
+  showCaption?: boolean;
+  showNationalExtent?: boolean;
 }
+
+const AUSTRALIA_BOUNDS: L.LatLngBoundsExpression = [
+  [-44.5, 112],
+  [-9.5, 154],
+];
 
 // Brand-aligned palette pulled from globals.css so the map sits in the
 // same warm/cream/terracotta/sage register as the rest of the page.
@@ -54,6 +61,8 @@ export function CommunityMap({
   selectedCommunity,
   onSelectCommunity,
   heightClassName = 'h-[520px] md:h-[640px]',
+  showCaption = true,
+  showNationalExtent = false,
 }: CommunityMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
@@ -215,7 +224,9 @@ export function CommunityMap({
       });
     });
 
-    if (locations.length > 0) {
+    if (showNationalExtent) {
+      map.fitBounds(AUSTRALIA_BOUNDS, { padding: [28, 28], maxZoom: 4 });
+    } else if (locations.length > 0) {
       map.fitBounds(
         L.latLngBounds(locations.map((location) => [location.lat, location.lng] as [number, number])),
         { padding: [42, 42], maxZoom: 5 },
@@ -228,24 +239,32 @@ export function CommunityMap({
       map.remove();
       mapInstanceRef.current = null;
     };
-  }, [locations, storytellers, onSelectCommunity]);
+  }, [locations, storytellers, onSelectCommunity, showNationalExtent]);
 
   // Fly to a selected community, then return to the national extent when cleared.
   useEffect(() => {
     if (!mapInstanceRef.current) return;
     if (!selectedCommunity) {
-      if (locations.length === 0) return;
-      mapInstanceRef.current.fitBounds(
-        L.latLngBounds(locations.map((location) => [location.lat, location.lng] as [number, number])),
-        { padding: [42, 42], maxZoom: 5, animate: true },
-      );
+      if (showNationalExtent) {
+        mapInstanceRef.current.fitBounds(AUSTRALIA_BOUNDS, {
+          padding: [28, 28],
+          maxZoom: 4,
+          animate: true,
+        });
+      } else {
+        if (locations.length === 0) return;
+        mapInstanceRef.current.fitBounds(
+          L.latLngBounds(locations.map((location) => [location.lat, location.lng] as [number, number])),
+          { padding: [42, 42], maxZoom: 5, animate: true },
+        );
+      }
       return;
     }
     const loc = locations.find((l) => l.id === selectedCommunity);
     if (loc) {
       mapInstanceRef.current.flyTo([loc.lat, loc.lng], 7.5, { duration: 1 });
     }
-  }, [selectedCommunity, locations]);
+  }, [selectedCommunity, locations, showNationalExtent]);
 
   return (
     <div className="relative">
@@ -295,6 +314,16 @@ export function CommunityMap({
           color: rgba(64, 51, 41, 0.55);
           margin-top: 2px;
         }
+        @media (max-width: 639px) {
+          .community-tooltip-soft {
+            display: none !important;
+          }
+          .leaflet-control-zoom a {
+            width: 44px !important;
+            height: 44px !important;
+            line-height: 42px !important;
+          }
+        }
         .community-popup-soft .leaflet-popup-content-wrapper {
           background: rgba(252, 247, 240, 0.98);
           border-radius: 14px;
@@ -340,13 +369,11 @@ export function CommunityMap({
         className={`w-full overflow-hidden rounded-3xl shadow-[0_2px_20px_rgba(64,51,41,0.06)] ${heightClassName}`}
       />
 
-      {/* Quiet caption replaces the old boxed legend. The heatposts
-          and their inline labels carry the meaning; this just frames
-          how to read them. */}
-      <p className="mt-3 text-xs text-muted-foreground italic text-center">
-        Each glow marks a community Goods has delivered to. Tap a dot for the
-        story behind the number.
-      </p>
+      {showCaption && (
+        <p className="mt-3 text-center text-xs italic text-muted-foreground">
+          Each glow marks a community Goods has delivered to.
+        </p>
+      )}
     </div>
   );
 }

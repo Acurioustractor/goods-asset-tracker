@@ -99,7 +99,7 @@ export default async function MapHome() {
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-4 items-stretch">
         {/* Left: map + product tiles */}
         <div className="flex flex-col gap-4 min-w-0">
-          <div className="relative rounded-2xl border bg-[#FBF8F1] overflow-hidden" style={{ minHeight: 460 }}>
+          <div className="relative rounded-2xl border bg-goods-cream overflow-hidden" style={{ minHeight: 460 }}>
             <MapCard communities={communities} />
             <Link
               href="/admin/atlas"
@@ -165,7 +165,7 @@ export default async function MapHome() {
                   <Link href={`/admin/communities/${c.id}`} className="flex items-center justify-between gap-2 hover:text-primary transition-colors">
                     <span className="flex items-center gap-1.5 text-sm truncate">
                       {c.name}
-                      {c.washers > 0 && <span className="h-1.5 w-1.5 rounded-full bg-[#4E8F88]" aria-hidden />}
+                      {c.washers > 0 && <span className="h-1.5 w-1.5 rounded-full bg-goods-teal" aria-hidden />}
                     </span>
                     <span className="font-display text-sm font-bold tabular-nums" style={{ fontFamily: 'Georgia, serif' }}>{c.beds}</span>
                   </Link>

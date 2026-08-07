@@ -335,7 +335,7 @@ export default async function ProcessPage() {
                 as the next sheet. Same plastic, two or three more presses out of the same batch.
               </p>
             </div>
-            <div className="relative aspect-[3/2] w-full overflow-hidden rounded-3xl bg-[#FBFAF5] shadow-sm">
+            <div className="relative aspect-[3/2] w-full overflow-hidden rounded-3xl bg-goods-cream shadow-sm">
               <Image
                 src="/goods-plastic-journey.jpg"
                 alt="The recycled-plastic loop: collected waste plastic is shredded into chip, heat-pressed into sheet, cut into Stretch Bed legs, and off-cuts return to the shredder"
@@ -490,7 +490,7 @@ export default async function ProcessPage() {
             </div>
 
             {/* What's inside one container: shred, press, assemble. */}
-            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl bg-[#FBFAF5] shadow-sm mb-3">
+            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl bg-goods-cream shadow-sm mb-3">
               <Image
                 src="/goods-container-plant.png"
                 alt="Inside one shipping container: a shredder turns plastic to chip, a heat press presses it into sheet, and an X-trestle leg is assembled at a bench"
@@ -573,7 +573,7 @@ export default async function ProcessPage() {
                 <Link href="/sponsor">Sponsor a bed</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="bg-transparent text-background border-background/40 hover:bg-background/10">
-                <Link href="/partner">Partner with us</Link>
+                <Link href="/partners">Explore community partnerships</Link>
               </Button>
             </div>
           </div>

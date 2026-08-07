@@ -1,5 +1,21 @@
 <!doctype html>
-<!-- @dsCard group="Investment" name="Match progress meter" subtitle="Signed external capital toward the $400K match" viewport="700x240" -->
+<!-- @dsCard group="Investment" name="Raise progress meter" subtitle="Signed commitments toward the $400K raise, due 31 August" viewport="700x240" -->
+<!--
+  REBUILT 2026-08-05 against src/lib/data/ask-surface.ts. This card carried two figures that
+  ruling V (2026-08-01) struck, and both were the kind a funder quotes back at you:
+
+  1. "(1:1, repayable first)". The QBE money is CATALYTIC, never matching. There is no
+     dollar-for-dollar mechanism. What the published terms bind is the GRANT: it "must be at
+     least matched by signed external commitments", which is a coverage test on whatever QBE
+     decides to give, not a promise to match what we raise.
+  2. "$150K floor", drawn as a tick on the track and repeated in the legend. There is no floor.
+     Social Impact Hub says grants are "typically AU$150,000 to AU$400,000", a typical RANGE
+     over a discretionary award. Drawing it as a minimum turned an observation into a guarantee.
+
+  So the meter now measures OUR raise, which is the only thing we control: $400,000 of signed
+  commitments by 31 August, the same figure and gate as ASK_HEADLINE.line. QBE is shown as a
+  separate note, not a mark on our track.
+-->
 <html><head><meta charset="utf-8"><link rel="stylesheet" href="_base.css">
 <style>
   .card {
@@ -20,9 +36,7 @@
     font-size: 19px;
     color: var(--foreground);
   }
-  .meter-title strong {
-    font-weight: 400;
-  }
+  .meter-title strong { font-weight: 400; }
   .tag-contingent {
     display: inline-flex;
     align-items: center;
@@ -38,7 +52,8 @@
     padding: 3px 9px;
     white-space: nowrap;
   }
-  /* progress track: full width is the $400,000 target */
+  /* Full width is the $400,000 raise target. No intermediate ticks: every tick that
+     was here previously asserted a threshold that does not exist. */
   .track {
     position: relative;
     height: 26px;
@@ -47,7 +62,6 @@
     border-radius: 999px;
     overflow: visible;
   }
-  /* filled portion driven by --signed-pct (0 today). repayable-first, so terracotta. */
   .fill {
     position: absolute;
     top: 0;
@@ -57,29 +71,6 @@
     background: var(--primary);
     border-radius: 999px;
   }
-  /* floor tick at $150,000 of the $400,000 target = 37.5% */
-  .floor-tick {
-    position: absolute;
-    top: -7px;
-    bottom: -7px;
-    left: 37.5%;
-    width: 2px;
-    background: var(--chart-4);
-  }
-  .floor-label {
-    position: absolute;
-    top: -22px;
-    left: 37.5%;
-    transform: translateX(-50%);
-    font-family: var(--font-sans);
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--chart-4);
-    white-space: nowrap;
-  }
-  /* target end-cap label at the right of the track */
   .target-cap {
     position: absolute;
     top: 0;
@@ -118,45 +109,25 @@
     font-size: 22px;
     color: var(--foreground);
   }
-  .foot-figure .of {
-    color: var(--muted-foreground);
-    font-size: 15px;
-  }
-  .legend {
-    display: flex;
-    gap: 18px;
+  .foot-figure .of { color: var(--muted-foreground); font-size: 15px; }
+  .note {
     margin-top: 14px;
-    flex-wrap: wrap;
-  }
-  .legend span {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
     font-family: var(--font-sans);
-    font-size: 11px;
+    font-size: 11.5px;
+    line-height: 1.55;
     color: var(--muted-foreground);
   }
-  .dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 3px;
-    flex: 0 0 auto;
-  }
-  .dot.signed { background: var(--primary); }
-  .dot.floor { background: var(--chart-4); }
-  .dot.target { background: var(--foreground); }
+  .note strong { color: var(--foreground); font-weight: 600; }
 </style>
 </head><body>
   <div class="card" style="--signed-pct: 0%;">
     <div class="meter-head">
-      <div class="meter-title">QBE match target <strong>$400,000</strong> (1:1, repayable first)</div>
-      <span class="tag-contingent">Contingent, not secured</span>
+      <div class="meter-title">Our raise <strong>$400,000</strong> by 31 August, repayable preferred</div>
+      <span class="tag-contingent">$0 signed</span>
     </div>
 
     <div class="track">
       <div class="fill"></div>
-      <div class="floor-tick"></div>
-      <div class="floor-label">$150K floor</div>
       <div class="target-cap"></div>
     </div>
     <div class="scale">
@@ -165,14 +136,13 @@
     </div>
 
     <div class="meter-foot">
-      <div class="foot-label">Signed and match-eligible today</div>
+      <div class="foot-label">Signed commitments today</div>
       <div class="foot-figure">$0 <span class="of">of $400,000</span></div>
     </div>
 
-    <div class="legend">
-      <span><span class="dot signed"></span>Signed repayable, match-eligible</span>
-      <span><span class="dot floor"></span>$150K minimum floor</span>
-      <span><span class="dot target"></span>$400K target (QBE contingent)</span>
-    </div>
+    <p class="note"><strong>A QBE grant is not on this track.</strong> It is catalytic and
+      discretionary, typically $150K to $400K from a pool of up to $1.1M shared across ten
+      enterprises, and it sits on top of signed paper rather than matching it. There is no floor,
+      and signing does not oblige QBE.</p>
   </div>
 </body></html>

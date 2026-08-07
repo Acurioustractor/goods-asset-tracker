@@ -123,7 +123,7 @@ export default function ProductsPage() {
           {products.map((product) => (
             <Link
               key={product.slug}
-              href={`/wiki/products/${product.slug}`}
+              href={product.slug === 'basket-bed' ? '/basket-bed-plans' : `/wiki/products/${product.slug}`}
               className="group"
             >
               <Card className="h-full p-6 hover:shadow-lg transition-shadow">
@@ -232,7 +232,7 @@ export default function ProductsPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/support/contact"
+                href="/contact"
                 className="inline-block bg-white text-neutral-900 px-6 py-3 rounded font-semibold hover:bg-neutral-100 transition-colors"
               >
                 Contact Us

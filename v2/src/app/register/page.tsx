@@ -4,7 +4,6 @@ import {
   EXTERNAL_CLAIMS,
   ANTI_CLAIMS,
   CLAIMS_CHANGELOG,
-  DIFF_APPOINTMENT,
   type Claim,
   type ClaimStatus,
 } from '@/lib/data/claims-ledger';
@@ -21,7 +20,7 @@ import {
 export const metadata: Metadata = {
   title: 'The Claims Register: Goods on Country',
   description:
-    'Every number Goods on Country uses in public — what it is based on, whether it is measured or modelled, what it does not claim, and the date each claim is due to change.',
+    'Every number Goods on Country uses in public, what it is based on, what it means and what it does not mean.',
   alternates: { canonical: 'https://www.goodsoncountry.com/register' },
 };
 
@@ -32,29 +31,29 @@ const STATUS_META: Record<
   { label: string; chip: string; blurb: string }
 > = {
   verified: {
-    label: 'Verified',
+    label: 'Confirmed',
     chip: 'bg-accent/20 text-accent-foreground border-accent/40',
-    blurb: 'Measured and reconciled against a named source.',
+    blurb: 'Counted or measured from a named record.',
   },
   modelled: {
-    label: 'Modelled',
+    label: 'Estimate',
     chip: 'border-[color:var(--goods-gold)]/50 text-[color:var(--goods-gold)] bg-[color:var(--goods-gold)]/10',
-    blurb: 'Derived from stated assumptions. Not yet measured — and labelled so.',
+    blurb: 'Calculated from stated assumptions and not yet measured.',
   },
   interest: {
     label: 'Interest',
     chip: 'border-[color:var(--goods-clay)]/50 text-[color:var(--goods-clay)] bg-[color:var(--goods-clay)]/10',
-    blurb: 'Demand signals. Never counted as revenue.',
+    blurb: 'Requests or offers, not confirmed sales.',
   },
   future: {
-    label: 'Future',
+    label: 'Working towards',
     chip: 'border-[color:var(--goods-teal)]/50 text-[color:var(--goods-teal)] bg-[color:var(--goods-teal)]/10',
-    blurb: 'Promises with dates attached, published before they are met.',
+    blurb: 'Work that has started but is not complete.',
   },
   locked: {
-    label: 'Locked',
+    label: 'Waiting',
     chip: 'border-foreground/30 text-foreground bg-foreground/5',
-    blurb: 'Held until a human signs. We would rather show a lock than an unsigned number.',
+    blurb: 'Waiting for written confirmation before a number is published.',
   },
 };
 
@@ -84,7 +83,7 @@ function ClaimRow({ claim }: { claim: Claim }) {
             {claim.figure}
           </div>
         ) : claim.status === 'locked' ? (
-          <div className="text-2xl font-light tracking-widest text-muted-foreground" style={display} aria-label="Figure withheld pending sign-off">
+          <div className="text-2xl font-light tracking-widest text-muted-foreground" style={display} aria-label="Figure waiting for written confirmation">
             ·····
           </div>
         ) : null}
@@ -94,7 +93,7 @@ function ClaimRow({ claim }: { claim: Claim }) {
 
       {claim.ceiling && (
         <p className="mt-2 max-w-3xl text-sm italic leading-relaxed text-foreground/80">
-          <span className="not-italic text-[10px] font-medium uppercase tracking-wider text-muted-foreground">Ceiling — </span>
+          <span className="not-italic text-[10px] font-medium uppercase tracking-wider text-muted-foreground">This does not mean: </span>
           {claim.ceiling}
         </p>
       )}
@@ -112,7 +111,7 @@ function ClaimRow({ claim }: { claim: Claim }) {
         )}
         {claim.flip && (
           <span className="text-foreground/80">
-            <span className="font-medium">Flips {claim.flip.when}:</span> {claim.flip.how}
+            <span className="font-medium">Next update, {claim.flip.when}:</span> {claim.flip.how}
           </span>
         )}
       </div>
@@ -128,37 +127,20 @@ export default function RegisterPage() {
         The Register
       </p>
       <h1 className="max-w-3xl text-3xl font-light leading-tight text-foreground sm:text-5xl" style={display}>
-        Every number we use in public, audited in the open.
+        Every public number, with a clear source.
       </h1>
       <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
-        This page is the register behind every claim Goods on Country makes to funders and the
-        public: what each number is based on, whether it is measured or modelled, what it does{' '}
-        <span className="text-foreground">not</span> say, and the date it is promised to change.
-        If a number appears on a Goods surface and isn&rsquo;t in this register, tell us — we&rsquo;ll
-        either add it with its evidence or take it down.
+        This page shows the numbers Goods on Country uses in public, where each number came from,
+        whether it was counted or estimated, and what it does not mean. If we cannot show the
+        basis for a number, we do not publish it.
       </p>
       <div className="mt-6 flex flex-wrap items-center gap-4 text-sm">
         <Link
           href="/pitch/road"
           className="rounded-full bg-primary px-5 py-2.5 font-medium text-primary-foreground transition hover:opacity-90"
         >
-          See the investor deck
+          Read the Road to Ownership
         </Link>
-        <Link
-          href="/impact"
-          className="rounded-full border border-border px-5 py-2.5 font-medium text-foreground transition hover:bg-muted"
-        >
-          Impact evidence
-        </Link>
-      </div>
-
-      {/* ── The diff appointment ── */}
-      <div className="mt-10 rounded-xl border border-border bg-card p-5">
-        <p className="text-sm leading-relaxed text-foreground">
-          <span className="font-medium">Come back on {DIFF_APPOINTMENT} and diff this page.</span>{' '}
-          By then the 50-bed run should have turned the modelled cost into a measured one — and we
-          will publish the result either way. Every change lands in the dated changelog below.
-        </p>
       </div>
 
       {/* ── Anti-claims ── */}
@@ -204,7 +186,7 @@ export default function RegisterPage() {
       {/* ── Changelog ── */}
       <section className="mt-16">
         <h2 className="text-2xl font-light text-foreground sm:text-3xl" style={display}>
-          Changelog.
+          Updates.
         </h2>
         <ol className="mt-6 space-y-4">
           {CLAIMS_CHANGELOG.map((e) => (
@@ -219,13 +201,11 @@ export default function RegisterPage() {
       {/* ── Method ── */}
       <section className="mt-16 border-t border-border pt-8 text-sm leading-relaxed text-muted-foreground">
         <p>
-          <span className="font-medium text-foreground">How this register works.</span> Values are
-          never typed into this page — every figure is read from the canon registry
-          (stable fact ids with named sources, owners and reconciliation dates), which is
-          drift-checked against the live asset register. Figures render here only from facts
-          classed public-safe; anything awaiting sign-off renders as a lock. Voices and photos pass
-          a separate default-deny consent gate (32 cleared voices, OCAP®-aligned). The same rules
-          are enforced in code at build time — a claim that breaks them fails the build.
+          <span className="font-medium text-foreground">How this register works.</span> Every number
+          comes from a named record. We show whether it was counted, estimated, expressed as
+          interest, planned for the future or is still waiting for confirmation. Voices and photos
+          only appear after they are cleared for public use. When a source changes, this page is
+          updated too.
         </p>
       </section>
     </main>

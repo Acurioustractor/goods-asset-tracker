@@ -524,9 +524,9 @@ function Metric({
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-500">{label}</p>
-          <p className="mt-2 text-2xl font-semibold text-[#2B2A26]">{value}</p>
+          <p className="mt-2 text-2xl font-semibold text-goods-ink">{value}</p>
         </div>
-        <span className="rounded-md bg-[#F2E9DF] p-2 text-[#A8643F]">
+        <span className="rounded-md bg-goods-cream-muted p-2 text-goods-clay">
           <Icon className="h-4 w-4" />
         </span>
       </div>
@@ -594,7 +594,7 @@ function RangeControl({
         step={step}
         value={value}
         onChange={(event) => onChange(Number(event.target.value))}
-        className="mt-3 h-2 w-full cursor-pointer accent-[#A8643F]"
+        className="mt-3 h-2 w-full cursor-pointer accent-goods-clay"
       />
     </label>
   );
@@ -675,52 +675,52 @@ export function QbeSiteWorkspace() {
   }
 
   return (
-    <main className="min-h-screen bg-[#FDF8F3] text-[#2B2A26]">
-      <section className="border-b border-stone-800 bg-[#24211D] text-[#FDF8F3]">
+    <main className="min-h-screen bg-goods-cream text-goods-ink">
+      <section className="border-b border-stone-800 bg-goods-ink text-goods-cream">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-6 sm:px-6 lg:grid-cols-[1fr_420px] lg:px-8">
           <div className="flex min-h-[520px] flex-col justify-between gap-8">
             <div className="flex flex-wrap items-center gap-2">
-              <Badge className="border-[#BBA255]/30 bg-[#BBA255]/15 text-[#FDF8F3]">
+              <Badge className="border-goods-gold/30 bg-goods-gold/15 text-goods-cream">
                 <Sparkles className="h-3 w-3" />
                 Investor evidence site
               </Badge>
-              <Badge className="border-[#5C8A86]/30 bg-[#5C8A86]/20 text-[#FDF8F3]">
+              <Badge className="border-goods-teal/30 bg-goods-teal/20 text-goods-cream">
                 QBE capital pathway
               </Badge>
-              <Badge className="border-white/15 bg-white/10 text-[#FDF8F3]">
+              <Badge className="border-white/15 bg-white/10 text-goods-cream">
                 3 July 2026
               </Badge>
             </div>
 
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#BBA255]">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-goods-gold">
                 Goods on Country
               </p>
               <h1 className="mt-4 max-w-4xl text-4xl font-light leading-tight sm:text-5xl lg:text-6xl" style={{ fontFamily: 'Georgia, serif' }}>
                 QBE capital, costings and impact evidence in one investor site
               </h1>
-              <p className="mt-5 max-w-3xl text-base leading-7 text-[#E6DFD1] sm:text-lg">
+              <p className="mt-5 max-w-3xl text-base leading-7 text-goods-grid sm:text-lg">
                 The making belongs on Country. This page brings the QBE capital case, verified cost engine, brand proof and investor-readiness gates into one decision surface.
               </p>
             </div>
 
             <div className="grid gap-3 sm:grid-cols-3">
               <div className="rounded-lg border border-white/10 bg-white/5 p-4">
-                <p className="text-xs uppercase tracking-[0.2em] text-[#BBA255]">Catalytic ask</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-goods-gold">Catalytic ask</p>
                 <p className="mt-2 text-2xl font-semibold">~$400k</p>
-                <p className="mt-1 text-xs text-[#E6DFD1]">Signed match-eligible capital to close. QBE Stage 2 funds up to $400K, at least matched, not secured until awarded.</p>
-                <p className="mt-2 text-xs font-semibold text-[#FDF8F3]">$0 of $400K signed</p>
-                <p className="mt-1 text-xs text-[#E6DFD1]">Candidate asks are live in the CRM and move week to week, so no stack total is printed here. Centrecorp is a buyer, not a grant line (Ben, 2026-08-02).</p>
+                <p className="mt-1 text-xs text-goods-grid">Signed match-eligible capital to close. QBE Stage 2 funds up to $400K, at least matched, not secured until awarded.</p>
+                <p className="mt-2 text-xs font-semibold text-goods-cream">$0 of $400K signed</p>
+                <p className="mt-1 text-xs text-goods-grid">Candidate asks are live in the CRM and move week to week, so no stack total is printed here. Centrecorp is a buyer, not a grant line (Ben, 2026-08-02).</p>
               </div>
               <div className="rounded-lg border border-white/10 bg-white/5 p-4">
-                <p className="text-xs uppercase tracking-[0.2em] text-[#BBA255]">Cost unlock</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-goods-gold">Cost unlock</p>
                 <p className="mt-2 text-2xl font-semibold">$685 to $426</p>
-                <p className="mt-1 text-xs text-[#E6DFD1]">Marginal bed cost, Buy-Kit to factory path.</p>
+                <p className="mt-1 text-xs text-goods-grid">Marginal bed cost, Buy-Kit to factory path.</p>
               </div>
               <div className="rounded-lg border border-white/10 bg-white/5 p-4">
-                <p className="text-xs uppercase tracking-[0.2em] text-[#BBA255]">Break-even</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-goods-gold">Break-even</p>
                 <p className="mt-2 text-2xl font-semibold">1,679 to 338</p>
-                <p className="mt-1 text-xs text-[#E6DFD1]">Beds/year after the press is owned.</p>
+                <p className="mt-1 text-xs text-goods-grid">Beds/year after the press is owned.</p>
               </div>
             </div>
           </div>
@@ -756,8 +756,8 @@ export function QbeSiteWorkspace() {
                 />
               </div>
             </div>
-            <div className="rounded-lg border border-white/10 bg-white/5 p-4 text-sm leading-6 text-[#E6DFD1]">
-              <span className="font-semibold text-[#FDF8F3]">Verified frame:</span> $750 price, $684.79 current marginal cost, $425.74 factory marginal cost. QBE Stage 2 funding is up to $400,000, at least matched by external capital raised first, awarded at Steering Committee discretion.
+            <div className="rounded-lg border border-white/10 bg-white/5 p-4 text-sm leading-6 text-goods-grid">
+              <span className="font-semibold text-goods-cream">Verified frame:</span> $750 price, $684.79 current marginal cost, $425.74 factory marginal cost. QBE Stage 2 funding is up to $400,000, at least matched by external capital raised first, awarded at Steering Committee discretion.
             </div>
           </div>
         </div>
@@ -797,7 +797,7 @@ export function QbeSiteWorkspace() {
           <div className="border-b border-stone-200 bg-white p-5 sm:p-6">
             <div className="grid gap-4 lg:grid-cols-[1fr_auto] lg:items-center">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#5C8A86]">Scenario planner</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-goods-teal">Scenario planner</p>
                 <h2 className="mt-1 text-2xl font-semibold tracking-tight md:text-3xl">What changes when the press comes home</h2>
                 <p className="mt-2 max-w-2xl text-sm leading-6 text-stone-600">
                   Move the three levers and watch the case change: marginal cost, contribution, break-even and payback.
@@ -810,7 +810,7 @@ export function QbeSiteWorkspace() {
                     onClick={() => changeScenario(scenario.key)}
                     className={`flex-1 rounded-md px-4 py-2 text-sm font-medium transition sm:flex-none ${
                       scenario.key === scenarioKey
-                        ? 'bg-[#2B2A26] text-white shadow-sm'
+                        ? 'bg-goods-ink text-white shadow-sm'
                         : 'text-stone-600 hover:bg-white hover:text-stone-950'
                     }`}
                   >
@@ -821,7 +821,7 @@ export function QbeSiteWorkspace() {
             </div>
           </div>
 
-          <div className="grid gap-6 bg-[#FBF8F1] p-5 sm:p-6 lg:grid-cols-[340px_minmax(0,1fr)] lg:p-8">
+          <div className="grid gap-6 bg-goods-cream p-5 sm:p-6 lg:grid-cols-[340px_minmax(0,1fr)] lg:p-8">
             <div className="space-y-4">
               <RangeControl
                 label="Beds per year"
@@ -848,8 +848,8 @@ export function QbeSiteWorkspace() {
                 step={10}
                 onChange={setFreight}
               />
-              <div className="rounded-lg border border-[#D8CDBD] bg-white p-4 text-sm leading-6 text-stone-700 shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#A8643F]">Active path</p>
+              <div className="rounded-lg border border-goods-sand bg-white p-4 text-sm leading-6 text-stone-700 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-goods-clay">Active path</p>
                 <p className="mt-2 font-semibold text-stone-950">{activeScenario.description}</p>
                 <div className="mt-4 grid gap-2 border-t border-stone-100 pt-3 text-xs text-stone-600">
                   <div className="flex items-center justify-between gap-3">
@@ -874,20 +874,20 @@ export function QbeSiteWorkspace() {
                   label="Marginal cost"
                   value={fmt(model.selectedMarginal)}
                   sub="Cash cost of one more bed."
-                  className="bg-[#24211D] text-white"
-                  labelClassName="text-[#BBA255]"
+                  className="bg-goods-ink text-white"
+                  labelClassName="text-goods-gold"
                 />
                 <ScenarioStat
                   label="Contribution"
                   value={fmt(selectedMargin)}
                   sub="Sale price less marginal cost."
-                  className="bg-[#5C8A86] text-white"
+                  className="bg-goods-teal text-white"
                 />
                 <ScenarioStat
                   label="Break-even"
                   value={`${fmtInt(model.breakevenSelected)} beds`}
                   sub="Annual volume to clear the fixed block."
-                  className="bg-[#A8643F] text-white"
+                  className="bg-goods-clay text-white"
                 />
                 <ScenarioStat
                   label="Payback"
@@ -907,7 +907,7 @@ export function QbeSiteWorkspace() {
                         label={`${scenario.label} marginal`}
                         value={rowModel.selectedMarginal}
                         max={maxMarginal}
-                        color={scenario.key === 'today' ? 'bg-[#A8643F]' : scenario.key === 'factory' ? 'bg-[#5C8A86]' : 'bg-[#5E7A4C]'}
+                        color={scenario.key === 'today' ? 'bg-goods-clay' : scenario.key === 'factory' ? 'bg-goods-teal' : 'bg-[#5E7A4C]'}
                       />
                     ))}
                   </div>
@@ -921,7 +921,7 @@ export function QbeSiteWorkspace() {
                         label={`${scenario.label} break-even`}
                         value={rowModel.breakevenSelected}
                         max={maxBreakeven}
-                        color={scenario.key === 'today' ? 'bg-[#A8643F]' : scenario.key === 'factory' ? 'bg-[#5C8A86]' : 'bg-[#5E7A4C]'}
+                        color={scenario.key === 'today' ? 'bg-goods-clay' : scenario.key === 'factory' ? 'bg-goods-teal' : 'bg-[#5E7A4C]'}
                       />
                     ))}
                   </div>
@@ -929,15 +929,15 @@ export function QbeSiteWorkspace() {
               </div>
 
               <div className="grid gap-4 lg:grid-cols-[1fr_280px]">
-                <div className="rounded-lg border border-[#BBA255]/40 bg-[#FFF9EA] p-5 text-sm leading-6 text-stone-700">
+                <div className="rounded-lg border border-goods-gold/40 bg-goods-cream p-5 text-sm leading-6 text-stone-700">
                   <p className="font-semibold text-stone-950">What this proves</p>
                   <p className="mt-2">
                     The $1,780 figure is fixed-cost absorption at low pilot volume. The investor surface should lead with marginal cost, contribution, fixed block and break-even.
                   </p>
                 </div>
                 <div className="rounded-lg border border-stone-200 bg-white p-5 shadow-sm">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#5C8A86]">Capex prize</p>
-                  <p className="mt-2 text-2xl font-semibold text-[#2B2A26]">$194.05 / bed</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-goods-teal">Capex prize</p>
+                  <p className="mt-2 text-2xl font-semibold text-goods-ink">$194.05 / bed</p>
                   <p className="mt-2 text-xs leading-5 text-stone-600">
                     The in-house leg saving that turns the press into the capital case.
                   </p>
@@ -950,7 +950,7 @@ export function QbeSiteWorkspace() {
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
           <div className="rounded-lg border border-stone-200 bg-white p-5 shadow-sm">
             <div className="flex items-center gap-2">
-              <Layers3 className="h-5 w-5 text-[#A8643F]" />
+              <Layers3 className="h-5 w-5 text-goods-clay" />
               <h2 className="font-semibold">Capital unlock</h2>
             </div>
             <p className="mt-3 text-sm leading-6 text-stone-600">{QBE_PROGRAM.description}</p>
@@ -962,7 +962,7 @@ export function QbeSiteWorkspace() {
                       <p className="text-sm font-semibold">{layer.layer}</p>
                       <p className="mt-1 text-xs text-stone-600">{layer.source}</p>
                     </div>
-                    <span className="text-sm font-semibold text-[#A8643F]">{layer.amount}</span>
+                    <span className="text-sm font-semibold text-goods-clay">{layer.amount}</span>
                   </div>
                   <Badge variant="outline" className="mt-2 text-[11px]">
                     {layer.status}
@@ -974,13 +974,13 @@ export function QbeSiteWorkspace() {
 
           <div className="rounded-lg border border-stone-200 bg-white p-5 shadow-sm">
             <div className="flex items-center gap-2">
-              <PackageCheck className="h-5 w-5 text-[#5C8A86]" />
+              <PackageCheck className="h-5 w-5 text-goods-teal" />
               <h2 className="font-semibold">First funding priorities</h2>
             </div>
             <p className="mt-2 text-sm text-stone-600">{fmt(totalUseOfFunds)} working first tranche from the QBE unlock note.</p>
             <div className="mt-4 space-y-3">
               {useOfFunds.map((item) => (
-                <div key={item.label} className="rounded-lg border border-stone-200 bg-[#FBF8F1] p-3">
+                <div key={item.label} className="rounded-lg border border-stone-200 bg-goods-cream p-3">
                   <div className="flex items-start justify-between gap-3">
                     <p className="text-sm font-semibold">{item.label}</p>
                     <span className="whitespace-nowrap font-semibold text-[#5E7A4C]">{fmt(item.value)}</span>
@@ -993,12 +993,12 @@ export function QbeSiteWorkspace() {
         </div>
       </section>
 
-      <section className="border-y border-stone-200 bg-[#F6EFE6]">
+      <section className="border-y border-stone-200 bg-goods-cream">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
           <div className="grid gap-4 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1fr)] lg:items-end">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#5C8A86]">Story layer</p>
-              <h2 className="mt-2 max-w-3xl text-3xl font-semibold tracking-tight text-[#2B2A26] md:text-4xl" style={{ fontFamily: 'Georgia, serif' }}>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-goods-teal">Story layer</p>
+              <h2 className="mt-2 max-w-3xl text-3xl font-semibold tracking-tight text-goods-ink md:text-4xl" style={{ fontFamily: 'Georgia, serif' }}>
                 The QBE page should offer the proof in story, not only in numbers
               </h2>
             </div>
@@ -1021,16 +1021,16 @@ export function QbeSiteWorkspace() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1F1B17] via-[#1F1B17]/62 to-transparent" />
               <div className="relative flex min-h-[420px] flex-col justify-end p-5 sm:p-7">
-                <Badge className="w-fit border-[#BBA255]/35 bg-[#BBA255]/20 text-white">
+                <Badge className="w-fit border-goods-gold/35 bg-goods-gold/20 text-white">
                   {storySurfaceLinks[0].status}
                 </Badge>
                 <h3 className="mt-4 max-w-2xl text-3xl font-semibold leading-tight md:text-4xl" style={{ fontFamily: 'Georgia, serif' }}>
                   Alice Springs to Utopia Homelands
                 </h3>
-                <p className="mt-3 max-w-xl text-sm leading-6 text-[#F3E8D9]">
+                <p className="mt-3 max-w-xl text-sm leading-6 text-goods-sand">
                   {storySurfaceLinks[0].summary} This is the published field story for the deeper narrative: young builders, Oonchiumpa, Fred and Decon, the road, the households and the community-ownership path.
                 </p>
-                <span className="mt-5 inline-flex w-fit items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-semibold text-[#2B2A26] transition group-hover:bg-[#F2E2C5]">
+                <span className="mt-5 inline-flex w-fit items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-semibold text-goods-ink transition group-hover:bg-[#F2E2C5]">
                   Open Utopia story
                   <ArrowRight className="h-4 w-4" />
                 </span>
@@ -1042,7 +1042,7 @@ export function QbeSiteWorkspace() {
                 <Link
                   key={href}
                   href={href}
-                  className="group grid grid-cols-[112px_minmax(0,1fr)] overflow-hidden rounded-lg border border-stone-300 bg-white shadow-sm transition hover:border-[#A8643F]"
+                  className="group grid grid-cols-[112px_minmax(0,1fr)] overflow-hidden rounded-lg border border-stone-300 bg-white shadow-sm transition hover:border-goods-clay"
                 >
                   <div className="relative min-h-36 bg-stone-200">
                     <Image
@@ -1055,14 +1055,14 @@ export function QbeSiteWorkspace() {
                   </div>
                   <div className="p-4">
                     <div className="flex items-start justify-between gap-3">
-                      <span className="rounded-md bg-[#F2E9DF] p-2 text-[#A8643F]">
+                      <span className="rounded-md bg-goods-cream-muted p-2 text-goods-clay">
                         <Icon className="h-4 w-4" />
                       </span>
                       <Badge variant="outline" className="border-stone-200 text-[11px] text-stone-600">
                         {status}
                       </Badge>
                     </div>
-                    <h3 className="mt-3 text-base font-semibold text-[#2B2A26]">{label}</h3>
+                    <h3 className="mt-3 text-base font-semibold text-goods-ink">{label}</h3>
                     <p className="mt-1 text-xs leading-5 text-stone-600">{summary}</p>
                   </div>
                 </Link>
@@ -1073,8 +1073,8 @@ export function QbeSiteWorkspace() {
           <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {narrativeBeats.map((beat) => (
               <div key={beat.title} className="rounded-lg border border-stone-300 bg-white p-5 shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#A8643F]">{beat.kicker}</p>
-                <h3 className="mt-3 text-lg font-semibold text-[#2B2A26]">{beat.title}</h3>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-goods-clay">{beat.kicker}</p>
+                <h3 className="mt-3 text-lg font-semibold text-goods-ink">{beat.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-stone-600">{beat.body}</p>
               </div>
             ))}
@@ -1083,7 +1083,7 @@ export function QbeSiteWorkspace() {
           <div className="mt-6 grid gap-6 lg:grid-cols-[minmax(0,1fr)_380px]">
             <div>
               <div className="flex items-center gap-2">
-                <Camera className="h-5 w-5 text-[#5C8A86]" />
+                <Camera className="h-5 w-5 text-goods-teal" />
                 <h3 className="text-lg font-semibold">Photo proof to bring forward</h3>
               </div>
               <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -1108,7 +1108,7 @@ export function QbeSiteWorkspace() {
 
             <div className="rounded-lg border border-stone-300 bg-white p-5 shadow-sm">
               <div className="flex items-center gap-2">
-                <MapPin className="h-5 w-5 text-[#A8643F]" />
+                <MapPin className="h-5 w-5 text-goods-clay" />
                 <h3 className="text-lg font-semibold">Community entry points</h3>
               </div>
               <p className="mt-3 text-sm leading-6 text-stone-600">
@@ -1119,7 +1119,7 @@ export function QbeSiteWorkspace() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="block rounded-lg border border-stone-200 bg-[#FBF8F1] p-3 transition hover:border-[#5C8A86]"
+                    className="block rounded-lg border border-stone-200 bg-goods-cream p-3 transition hover:border-goods-teal"
                   >
                     <div className="flex items-center justify-between gap-3">
                       <p className="text-sm font-semibold">{item.label}</p>
@@ -1139,7 +1139,7 @@ export function QbeSiteWorkspace() {
           <div className="rounded-lg border border-stone-200 bg-white p-5 shadow-sm sm:p-6">
             <div className="grid gap-3 md:grid-cols-[minmax(0,0.72fr)_minmax(0,1fr)] md:items-end">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#5C8A86]">Investor evidence pathway</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-goods-teal">Investor evidence pathway</p>
                 <h2 className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">What this site gives an investor</h2>
               </div>
               <p className="text-sm leading-6 text-stone-600">
@@ -1152,17 +1152,17 @@ export function QbeSiteWorkspace() {
                 <Link
                   key={area}
                   href={href}
-                  className="group flex min-h-[250px] flex-col rounded-lg border border-stone-200 bg-[#FBF8F1] p-4 transition hover:border-[#A8643F] hover:bg-white"
+                  className="group flex min-h-[250px] flex-col rounded-lg border border-stone-200 bg-goods-cream p-4 transition hover:border-goods-clay hover:bg-white"
                 >
                   <div className="flex items-start justify-between gap-3">
-                    <span className="rounded-md bg-white p-2 text-[#A8643F] shadow-sm">
+                    <span className="rounded-md bg-white p-2 text-goods-clay shadow-sm">
                       <Icon className="h-4 w-4" />
                     </span>
                     <Badge variant="outline" className="border-stone-300 bg-white text-[11px] text-stone-600">
                       {status}
                     </Badge>
                   </div>
-                  <h3 className="mt-4 text-lg font-semibold text-[#2B2A26]">{area}</h3>
+                  <h3 className="mt-4 text-lg font-semibold text-goods-ink">{area}</h3>
                   <p className="mt-2 text-sm leading-6 text-stone-600">{purpose}</p>
                   <div className="mt-auto pt-4">
                     <div className="flex flex-wrap gap-2">
@@ -1172,7 +1172,7 @@ export function QbeSiteWorkspace() {
                         </span>
                       ))}
                     </div>
-                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#A8643F]">
+                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-goods-clay">
                       View evidence
                       <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
                     </span>
@@ -1182,24 +1182,24 @@ export function QbeSiteWorkspace() {
             </div>
           </div>
 
-          <aside className="rounded-lg border border-stone-200 bg-[#2B2A26] p-5 text-white shadow-sm sm:p-6">
+          <aside className="rounded-lg border border-stone-200 bg-goods-ink p-5 text-white shadow-sm sm:p-6">
             <div className="flex items-center gap-2">
-              <ClipboardList className="h-5 w-5 text-[#BBA255]" />
+              <ClipboardList className="h-5 w-5 text-goods-gold" />
               <h2 className="text-lg font-semibold">Evidence still to publish</h2>
             </div>
-            <p className="mt-3 text-sm leading-6 text-[#E6DFD1]">
+            <p className="mt-3 text-sm leading-6 text-goods-grid">
               The next public evidence work is to publish more of what is already real, with provenance and claim labels attached.
             </p>
             <div className="mt-5 space-y-3">
               {nextBuildQueue.map((item, index) => (
                 <div key={item.title} className="rounded-lg border border-white/10 bg-white/5 p-4">
                   <div className="flex items-start gap-3">
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#BBA255] text-xs font-bold text-[#24211D]">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-goods-gold text-xs font-bold text-goods-ink">
                       {index + 1}
                     </span>
                     <div>
                       <h3 className="text-sm font-semibold">{item.title}</h3>
-                      <p className="mt-1 text-xs leading-5 text-[#E6DFD1]">{item.detail}</p>
+                      <p className="mt-1 text-xs leading-5 text-goods-grid">{item.detail}</p>
                     </div>
                   </div>
                 </div>
@@ -1213,16 +1213,16 @@ export function QbeSiteWorkspace() {
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
           <div className="grid gap-6 lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)] lg:items-stretch">
             <div className="rounded-lg border border-stone-300 bg-white p-5 shadow-sm sm:p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#5C8A86]">Investor engagement alignment</p>
-              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[#2B2A26] md:text-4xl" style={{ fontFamily: 'Georgia, serif' }}>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-goods-teal">Investor engagement alignment</p>
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-goods-ink md:text-4xl" style={{ fontFamily: 'Georgia, serif' }}>
                 Make the raise about conversion, not discovery
               </h2>
               <p className="mt-4 text-sm leading-6 text-stone-700">
                 The most investable version of Goods is not a charity story and not a generic product story. It is a connected impact model: communities have named the need, the product exists, the cost-down path is visible, the asset register can track use, and catalytic capital converts that proof into owned production.
               </p>
-              <div className="mt-5 rounded-lg border border-[#BBA255]/40 bg-[#FFF9EA] p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#A8643F]">Plain investor thesis</p>
-                <p className="mt-2 text-xl font-light leading-8 text-[#2B2A26]" style={{ fontFamily: 'Georgia, serif' }}>
+              <div className="mt-5 rounded-lg border border-goods-gold/40 bg-goods-cream p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-goods-clay">Plain investor thesis</p>
+                <p className="mt-2 text-xl font-light leading-8 text-goods-ink" style={{ fontFamily: 'Georgia, serif' }}>
                   Goods turns household health problems, freight failure and plastic waste into a product system that communities can use, repair, track and eventually own.
                 </p>
               </div>
@@ -1232,14 +1232,14 @@ export function QbeSiteWorkspace() {
               {investorEngagementPillars.map(({ eyebrow, title, body, evidence, icon: Icon }) => (
                 <div key={title} className="rounded-lg border border-stone-300 bg-white p-5 shadow-sm">
                   <div className="flex items-start justify-between gap-3">
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#A8643F]">{eyebrow}</p>
-                    <span className="rounded-md bg-[#F2E9DF] p-2 text-[#A8643F]">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-goods-clay">{eyebrow}</p>
+                    <span className="rounded-md bg-goods-cream-muted p-2 text-goods-clay">
                       <Icon className="h-4 w-4" />
                     </span>
                   </div>
-                  <h3 className="mt-3 text-lg font-semibold leading-snug text-[#2B2A26]">{title}</h3>
+                  <h3 className="mt-3 text-lg font-semibold leading-snug text-goods-ink">{title}</h3>
                   <p className="mt-3 text-sm leading-6 text-stone-600">{body}</p>
-                  <p className="mt-4 rounded-md border border-stone-200 bg-[#FBF8F1] px-3 py-2 text-xs leading-5 text-stone-600">
+                  <p className="mt-4 rounded-md border border-stone-200 bg-goods-cream px-3 py-2 text-xs leading-5 text-stone-600">
                     <span className="font-semibold text-stone-800">Evidence to show: </span>
                     {evidence}
                   </p>
@@ -1249,15 +1249,15 @@ export function QbeSiteWorkspace() {
           </div>
 
           <div className="mt-6 grid gap-6 lg:grid-cols-[minmax(0,1.04fr)_minmax(360px,0.96fr)]">
-            <div className="rounded-lg border border-stone-300 bg-[#2B2A26] p-5 text-white shadow-sm sm:p-6">
+            <div className="rounded-lg border border-stone-300 bg-goods-ink p-5 text-white shadow-sm sm:p-6">
               <div className="grid gap-3 md:grid-cols-[minmax(0,0.78fr)_minmax(0,1fr)] md:items-end">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#BBA255]">What is innovative and connected</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-goods-gold">What is innovative and connected</p>
                   <h3 className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl" style={{ fontFamily: 'Georgia, serif' }}>
                     The product is the entry point. The system is the moat.
                   </h3>
                 </div>
-                <p className="text-sm leading-6 text-[#E6DFD1]">
+                <p className="text-sm leading-6 text-goods-grid">
                   Investors should see each piece reinforcing the next: health hardware creates demand, the press improves economics, buyer commitments de-risk capital, and story governance protects trust.
                 </p>
               </div>
@@ -1266,8 +1266,8 @@ export function QbeSiteWorkspace() {
                 {connectedInnovation.map((item) => (
                   <div key={item.move} className="grid gap-3 rounded-lg border border-white/10 bg-white/5 p-4 md:grid-cols-[170px_minmax(0,1fr)_minmax(0,0.9fr)]">
                     <p className="text-sm font-semibold text-white">{item.move}</p>
-                    <p className="text-sm leading-6 text-[#E6DFD1]">{item.why}</p>
-                    <p className="rounded-md border border-white/10 bg-black/15 p-3 text-xs leading-5 text-[#F3E8D9]">{item.investorRead}</p>
+                    <p className="text-sm leading-6 text-goods-grid">{item.why}</p>
+                    <p className="rounded-md border border-white/10 bg-black/15 p-3 text-xs leading-5 text-goods-sand">{item.investorRead}</p>
                   </div>
                 ))}
               </div>
@@ -1276,7 +1276,7 @@ export function QbeSiteWorkspace() {
             <div className="grid gap-4">
               <div className="rounded-lg border border-stone-300 bg-white p-5 shadow-sm">
                 <div className="flex items-center gap-2">
-                  <LineChart className="h-5 w-5 text-[#5C8A86]" />
+                  <LineChart className="h-5 w-5 text-goods-teal" />
                   <h3 className="text-lg font-semibold">Impact model to put forward</h3>
                 </div>
                 <p className="mt-3 text-sm leading-6 text-stone-600">
@@ -1284,8 +1284,8 @@ export function QbeSiteWorkspace() {
                 </p>
                 <div className="mt-4 space-y-3">
                   {impactModelRows.map((row) => (
-                    <div key={row.dimension} className="rounded-lg border border-stone-200 bg-[#FBF8F1] p-3">
-                      <p className="text-sm font-semibold text-[#2B2A26]">{row.dimension}</p>
+                    <div key={row.dimension} className="rounded-lg border border-stone-200 bg-goods-cream p-3">
+                      <p className="text-sm font-semibold text-goods-ink">{row.dimension}</p>
                       <p className="mt-1 text-xs leading-5 text-stone-600">
                         <span className="font-semibold text-stone-800">Proof: </span>
                         {row.proof}
@@ -1299,9 +1299,9 @@ export function QbeSiteWorkspace() {
                 </div>
               </div>
 
-              <div className="rounded-lg border border-amber-200 bg-[#FFF9EA] p-5 shadow-sm">
+              <div className="rounded-lg border border-amber-200 bg-goods-cream p-5 shadow-sm">
                 <div className="flex items-center gap-2">
-                  <ShieldAlert className="h-5 w-5 text-[#A8643F]" />
+                  <ShieldAlert className="h-5 w-5 text-goods-clay" />
                   <h3 className="text-lg font-semibold">Investor guardrails</h3>
                 </div>
                 <div className="mt-4 space-y-2">
@@ -1321,7 +1321,7 @@ export function QbeSiteWorkspace() {
       <section className="mx-auto grid max-w-7xl gap-6 px-4 pb-6 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:px-8">
         <div className="rounded-lg border border-stone-200 bg-white shadow-sm">
           <div className="border-b border-stone-200 p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#5C8A86]">Investor evidence register</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-goods-teal">Investor evidence register</p>
             <h2 className="mt-1 text-xl font-semibold">Numbers that can move into the site</h2>
           </div>
           <div className="divide-y divide-stone-100">
@@ -1342,7 +1342,7 @@ export function QbeSiteWorkspace() {
 
         <div className="rounded-lg border border-stone-200 bg-white shadow-sm">
           <div className="border-b border-stone-200 p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#5C8A86]">Investor readiness gates</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-goods-teal">Investor readiness gates</p>
             <h2 className="mt-1 text-xl font-semibold">What must be confirmed before external share</h2>
           </div>
           <div className="divide-y divide-stone-100">
@@ -1360,19 +1360,19 @@ export function QbeSiteWorkspace() {
       </section>
 
       <section className="mx-auto grid max-w-7xl gap-6 px-4 pb-10 sm:px-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:px-8">
-        <div className="rounded-lg border border-stone-200 bg-[#2B2A26] p-5 text-white shadow-sm">
+        <div className="rounded-lg border border-stone-200 bg-goods-ink p-5 text-white shadow-sm">
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="h-5 w-5 text-[#BBA255]" />
+            <CheckCircle2 className="h-5 w-5 text-goods-gold" />
             <h2 className="font-semibold">Decision line</h2>
           </div>
           <p className="mt-4 text-2xl font-light leading-snug" style={{ fontFamily: 'Georgia, serif' }}>
             Press our own legs and a set costs about $150 instead of $344. That saves about $194 a bed and drops break-even from about 1,679 beds to 338.
           </p>
-          <p className="mt-4 text-sm leading-6 text-[#E6DFD1]">
+          <p className="mt-4 text-sm leading-6 text-goods-grid">
             The site should make one question unavoidable: who signs the match-eligible capital that turns proven demand into an owned production path?
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
-            <Button asChild className="bg-[#BBA255] text-[#24211D] hover:bg-[#CBB56E]">
+            <Button asChild className="bg-goods-gold text-goods-ink hover:bg-[#CBB56E]">
               <Link href="/investors?skin=investment">
                 <Calculator className="h-4 w-4" />
                 Investor evidence
@@ -1388,7 +1388,7 @@ export function QbeSiteWorkspace() {
         </div>
 
         <div className="rounded-lg border border-stone-200 bg-white p-5 shadow-sm">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#5C8A86]">Evidence links</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-goods-teal">Evidence links</p>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             {routeLinks.map(({ label, href, icon: Icon }) => (
               <Button key={href} asChild variant="outline" className="justify-between">
@@ -1410,7 +1410,7 @@ export function QbeSiteWorkspace() {
                 href={doc.href}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-lg border border-stone-200 bg-stone-50 p-3 transition hover:border-[#A8643F]"
+                className="rounded-lg border border-stone-200 bg-stone-50 p-3 transition hover:border-goods-clay"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div>

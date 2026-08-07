@@ -131,17 +131,17 @@ export default function AtlasClient({ communities, canon }: { communities: Atlas
   }, [communities]);
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-[#FBF8F1]">
+    <div className="fixed inset-0 z-50 flex flex-col bg-goods-cream">
       {/* Top bar */}
-      <div className="flex items-center gap-4 border-b border-[#E5DCCB] bg-[#F5EEE4] px-5 py-3">
+      <div className="flex items-center gap-4 border-b border-goods-sand bg-goods-cream-muted px-5 py-3">
         <Link
           href="/admin"
-          className="flex items-center gap-2 rounded-lg border border-[#E0D5C2] px-3 py-1.5 text-sm text-[#6E645A] hover:bg-[#EAE0D0]"
+          className="flex items-center gap-2 rounded-lg border border-goods-sand px-3 py-1.5 text-sm text-goods-sub hover:bg-goods-sand"
           title="Back to admin (shows the menu again)"
         >
           <PanelLeftOpen className="h-4 w-4" /> Menu
         </Link>
-        <h1 className="font-display text-xl font-bold text-[#26201B]">Goods Atlas</h1>
+        <h1 className="font-display text-xl font-bold text-goods-ink">Goods Atlas</h1>
         <div className="relative flex max-w-md flex-1 items-center gap-2 rounded-xl bg-white/70 px-3 py-2">
           <Search className="h-4 w-4 text-[#A79C8C]" />
           <input
@@ -151,12 +151,12 @@ export default function AtlasClient({ communities, canon }: { communities: Atlas
             className="w-full bg-transparent text-sm outline-none placeholder:text-[#A79C8C]"
           />
           {matches && (
-            <div className="absolute left-0 top-full z-10 mt-1 max-h-64 w-full overflow-y-auto rounded-xl border border-[#E0D5C2] bg-white shadow-lg">
+            <div className="absolute left-0 top-full z-10 mt-1 max-h-64 w-full overflow-y-auto rounded-xl border border-goods-sand bg-white shadow-lg">
               {matches.length === 0 && <p className="px-3 py-2 text-sm text-[#A79C8C]">No matches</p>}
               {matches.map((c) => (
                 <button
                   key={c.id}
-                  className="block w-full px-3 py-2 text-left text-sm hover:bg-[#FBF8F1]"
+                  className="block w-full px-3 py-2 text-left text-sm hover:bg-goods-cream"
                   onClick={() => {
                     setSelectedId(c.id);
                     setQuery('');
@@ -173,8 +173,8 @@ export default function AtlasClient({ communities, canon }: { communities: Atlas
           onClick={() => setShowCountry((v) => !v)}
           className={`flex items-center gap-2 rounded-lg border px-3 py-1.5 text-sm transition-colors ${
             showCountry
-              ? 'border-[#4E8F88] bg-[#4E8F88]/10 text-[#2F6B65]'
-              : 'border-[#E0D5C2] text-[#6E645A] hover:bg-[#EAE0D0]'
+              ? 'border-goods-teal bg-goods-teal/10 text-goods-teal'
+              : 'border-goods-sand text-goods-sub hover:bg-goods-sand'
           }`}
           title="Show the Country name each community has told us, alongside the town name"
         >
@@ -191,7 +191,7 @@ export default function AtlasClient({ communities, canon }: { communities: Atlas
           ].map(([v, l]) => (
             <div key={String(l)} className="text-center">
               <div className="font-display text-lg font-bold leading-none text-[#B44D2B]">{v}</div>
-              <div className="text-[10px] text-[#8A7F72]">{l}</div>
+              <div className="text-[10px] text-goods-sub">{l}</div>
             </div>
           ))}
         </div>
@@ -347,15 +347,15 @@ export default function AtlasClient({ communities, canon }: { communities: Atlas
             })}
           </svg>
 
-          <div className="absolute bottom-4 left-4 flex items-center gap-4 rounded-xl border border-[#E5DCCB] bg-[#F5EEE4]/95 px-4 py-2 text-xs text-[#6E645A]">
+          <div className="absolute bottom-4 left-4 flex items-center gap-4 rounded-xl border border-goods-sand bg-goods-cream-muted/95 px-4 py-2 text-xs text-goods-sub">
             <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-[#A34523]" /> active</span>
             <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-[#3E7B74]" /> exploring</span>
-            <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rotate-45 rounded-[2px] bg-[#26201B]" /> the plant</span>
+            <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rotate-45 rounded-[2px] bg-goods-ink" /> the plant</span>
             <span className="flex items-center gap-1.5"><span className="inline-block h-0 w-5 border-t-2 border-[#B44D2B]/50" /> delivery run</span>
-            <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full border-2 border-dashed border-[#4E8F88]" /> facility interest</span>
+            <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full border-2 border-dashed border-goods-teal" /> facility interest</span>
           </div>
           {showCountry && (
-            <p className="absolute bottom-14 left-4 max-w-md rounded-lg bg-[#4E8F88]/10 px-3 py-1.5 text-[11px] text-[#2F6B65]">
+            <p className="absolute bottom-14 left-4 max-w-md rounded-lg bg-goods-teal/10 px-3 py-1.5 text-[11px] text-goods-teal">
               Country names as each community has told us. Language-group boundaries need an AIATSIS licence — a Ben/community decision, tracked on the QBE hub.
             </p>
           )}
@@ -364,13 +364,13 @@ export default function AtlasClient({ communities, canon }: { communities: Atlas
 
         {/* Drill panel */}
         {selected && (
-          <aside className="flex w-[400px] flex-col overflow-y-auto border-l border-[#E5DCCB] bg-white">
+          <aside className="flex w-[400px] flex-col overflow-y-auto border-l border-goods-sand bg-white">
             <div className="flex items-start justify-between gap-2 p-5 pb-3">
               <div>
                 <h2 className="font-display text-2xl font-bold">{selected.name}</h2>
-                {selected.traditionalName && <p className="text-sm italic text-[#8A7F72]">{selected.traditionalName} country</p>}
+                {selected.traditionalName && <p className="text-sm italic text-goods-sub">{selected.traditionalName} country</p>}
               </div>
-              <button onClick={() => setSelectedId(null)} className="rounded-lg p-1.5 text-[#A79C8C] hover:bg-[#F5EEE4]" aria-label="Close panel">
+              <button onClick={() => setSelectedId(null)} className="rounded-lg p-1.5 text-[#A79C8C] hover:bg-goods-cream-muted" aria-label="Close panel">
                 <X className="h-4 w-4" />
               </button>
             </div>
@@ -383,7 +383,7 @@ export default function AtlasClient({ communities, canon }: { communities: Atlas
                     <img key={i} src={src} alt="" className="aspect-square w-full object-cover" loading="lazy" />
                   ))}
                 </div>
-                <div className="mt-1.5 flex items-center justify-between text-[11px] text-[#8A7F72]">
+                <div className="mt-1.5 flex items-center justify-between text-[11px] text-goods-sub">
                   <span>
                     {selected.photoCount} photos{selected.videoCount > 0 ? ` · ${selected.videoCount} videos` : ''}
                   </span>
@@ -394,7 +394,7 @@ export default function AtlasClient({ communities, canon }: { communities: Atlas
               </div>
             )}
             {selected.photos.length === 0 && (
-              <p className="mx-5 rounded-lg bg-[#F5EEE4] px-3 py-2 text-xs text-[#8A7F72]">
+              <p className="mx-5 rounded-lg bg-goods-cream-muted px-3 py-2 text-xs text-goods-sub">
                 No community-tagged media yet — tag some in the <Link href="/admin/media-library" className="font-medium text-[#B44D2B] hover:underline">media library</Link>.
               </p>
             )}
@@ -429,7 +429,7 @@ export default function AtlasClient({ communities, canon }: { communities: Atlas
                       {v.portrait ? (
                         <img src={v.portrait} alt="" className="h-7 w-7 rounded-full object-cover" loading="lazy" />
                       ) : (
-                        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#F5EEE4] text-[10px] font-semibold text-[#8A7F72]">
+                        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-goods-cream-muted text-[10px] font-semibold text-goods-sub">
                           {v.name.slice(0, 1)}
                         </span>
                       )}
@@ -455,7 +455,7 @@ export default function AtlasClient({ communities, canon }: { communities: Atlas
                       {p.photoSrc ? (
                         <img src={p.photoSrc} alt="" className="h-7 w-7 rounded-full object-cover" loading="lazy" />
                       ) : (
-                        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#F5EEE4] text-[10px] font-semibold text-[#8A7F72]">
+                        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-goods-cream-muted text-[10px] font-semibold text-goods-sub">
                           {p.name.slice(0, 1)}
                         </span>
                       )}
@@ -480,7 +480,7 @@ export default function AtlasClient({ communities, canon }: { communities: Atlas
                       ) : (
                         <span className="font-medium">{p.name}</span>
                       )}
-                      <span className="text-xs text-[#8A7F72]">
+                      <span className="text-xs text-goods-sub">
                         {p.role ? ` · ${p.role}` : ''}{p.org ? ` · ${p.org}` : ''}
                       </span>
                       {p.note && <div className="text-[11px] text-[#A79C8C]">{p.note}</div>}
@@ -489,7 +489,7 @@ export default function AtlasClient({ communities, canon }: { communities: Atlas
                   {selected.procurement.map((p) => (
                     <li key={p.name} className="text-sm">
                       <span className="font-medium">{p.name}</span>
-                      <span className="ml-1.5 rounded-full bg-[#4E8F88]/15 px-1.5 py-0.5 text-[10px] font-semibold text-[#2F6B65]">procurement</span>
+                      <span className="ml-1.5 rounded-full bg-goods-teal/15 px-1.5 py-0.5 text-[10px] font-semibold text-goods-teal">procurement</span>
                       {p.note && <div className="text-[11px] text-[#A79C8C]">{p.note}</div>}
                     </li>
                   ))}
@@ -500,15 +500,15 @@ export default function AtlasClient({ communities, canon }: { communities: Atlas
             <div className="mt-auto space-y-2 p-5">
               <Link
                 href={`/admin/communities/${selected.id}`}
-                className="block rounded-xl bg-[#B44D2B] px-4 py-2.5 text-center text-sm font-semibold text-[#FBF8F1] hover:bg-[#8A4B26]"
+                className="block rounded-xl bg-[#B44D2B] px-4 py-2.5 text-center text-sm font-semibold text-goods-cream hover:bg-[#8A4B26]"
               >
                 Open full {selected.name} dashboard →
               </Link>
               <div className="flex gap-2 text-center text-xs">
-                <Link href="/admin/voice-impact" className="flex-1 rounded-lg border border-[#E0D5C2] px-2 py-1.5 text-[#6E645A] hover:bg-[#F5EEE4]">
+                <Link href="/admin/voice-impact" className="flex-1 rounded-lg border border-goods-sand px-2 py-1.5 text-goods-sub hover:bg-goods-cream-muted">
                   Voice impact
                 </Link>
-                <Link href="/admin/community-stories" className="flex-1 rounded-lg border border-[#E0D5C2] px-2 py-1.5 text-[#6E645A] hover:bg-[#F5EEE4]">
+                <Link href="/admin/community-stories" className="flex-1 rounded-lg border border-goods-sand px-2 py-1.5 text-goods-sub hover:bg-goods-cream-muted">
                   Stories
                 </Link>
               </div>
@@ -522,9 +522,9 @@ export default function AtlasClient({ communities, canon }: { communities: Atlas
 
 function Stat({ v, l, live, warn }: { v: number; l: string; live?: boolean; warn?: boolean }) {
   return (
-    <div className="rounded-xl bg-[#F5EEE4] px-3 py-2.5">
-      <div className={`font-display text-xl font-bold ${live ? 'text-emerald-700' : warn ? 'text-amber-700' : 'text-[#26201B]'}`}>{v}</div>
-      <div className="text-[10px] leading-tight text-[#8A7F72]">{l}</div>
+    <div className="rounded-xl bg-goods-cream-muted px-3 py-2.5">
+      <div className={`font-display text-xl font-bold ${live ? 'text-emerald-700' : warn ? 'text-amber-700' : 'text-goods-ink'}`}>{v}</div>
+      <div className="text-[10px] leading-tight text-goods-sub">{l}</div>
     </div>
   );
 }

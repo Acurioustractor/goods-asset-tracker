@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic';
 
 const STATUS_TONE: Record<string, string> = {
   flagship: 'bg-primary text-primary-foreground',
-  prototype: 'bg-[#4E8F88] text-white',
+  prototype: 'bg-goods-teal text-white',
   'open-source': 'bg-amber-200 text-amber-900',
   plant: 'bg-[#5C7048] text-white',
 };

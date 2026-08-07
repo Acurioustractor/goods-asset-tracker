@@ -465,7 +465,7 @@ function ImpactSection() {
           </div>
         </div>
         <Button size="lg" variant="secondary" asChild>
-          <Link href="/partner">Partner With Us</Link>
+          <Link href="/partners">Explore Community Partnerships</Link>
         </Button>
       </div>
     </section>
@@ -622,7 +622,7 @@ export default async function CommunityPage() {
                 <Link href="/stories">Read Their Stories</Link>
               </Button>
               <Button size="lg" variant="outline" className="text-background border-background/30 hover:bg-background/10" asChild>
-                <Link href="/partner">Partner With Us</Link>
+                <Link href="/partners">Explore Community Partnerships</Link>
               </Button>
             </div>
           </div>

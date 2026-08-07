@@ -78,7 +78,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
     status: 'verified',
     evidence: [
       { label: 'Impact evidence', href: '/impact' },
-      { label: 'Asset register (Supabase, drift-checked)', href: '/impact#register' },
+      { label: 'Asset register', href: '/impact#register' },
     ],
     asOf: canonFact('beds-deployed').asAt,
   },
@@ -95,7 +95,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
   {
     id: 'washers-in-community',
     headline: 'Washing machines in community',
-    statement: 'Pakkimjalki Kari washing machines in community — a curated, founder-confirmed count, not an auto-derived register number.',
+    statement: 'Pakkimjalki Kari washing machines in community. This count has been checked by the Goods team.',
     figure: greenFigure('washers-in-community'),
     factId: 'washers-in-community',
     status: 'verified',
@@ -106,7 +106,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
   {
     id: 'plastic-diverted',
     headline: 'Recycled HDPE diverted',
-    statement: 'Kilograms of recycled HDPE diverted into Stretch Bed legs (20kg per bed; Stretch Beds only — Basket Beds are not a plastic product).',
+    statement: 'Kilograms of recycled HDPE used in Stretch Bed legs. Each Stretch Bed uses 20kg. Basket Beds are not included.',
     figure: `${greenFigure('plastic-kg')}kg`,
     factId: 'plastic-kg',
     status: 'verified',
@@ -125,8 +125,8 @@ export const EXTERNAL_CLAIMS: Claim[] = [
   },
   {
     id: 'marginal-cost-today',
-    headline: 'Marginal cost per bed — today',
-    statement: 'Marginal cost per bed buying finished leg kits (engine-locked bill of materials).',
+    headline: 'Cost to make the next bed today',
+    statement: 'The current cost to make one more bed when we buy finished leg kits.',
     figure: greenFigure('marginal-buykit', aud),
     factId: 'marginal-buykit',
     status: 'verified',
@@ -136,7 +136,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
   {
     id: 'saving-per-bed',
     headline: 'Saving from pressing in-house',
-    statement: 'Saving per bed from pressing our own legs instead of buying finished kits — an 8.6× markup on the recycled-plastic leg. This is the capital case.',
+    statement: 'The saving on each bed when we press our own legs instead of buying finished kits. Finished legs cost 8.6 times the raw plastic.',
     figure: greenFigure('save-per-bed', aud),
     factId: 'save-per-bed',
     status: 'verified',
@@ -146,7 +146,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
   {
     id: 'centrecorp-107',
     headline: 'Centrecorp-funded deployment',
-    statement: 'Centrecorp funded a 107-bed deployment — institutional procurement proof, not a grant hand-out.',
+    statement: 'Centrecorp paid for 107 beds to be delivered to communities. This was a purchase, not a grant.',
     figure: '107 beds',
     factId: 'beds-deployed', // counted within the deployed total; green
     status: 'verified',
@@ -157,27 +157,27 @@ export const EXTERNAL_CLAIMS: Claim[] = [
   // ── Modelled — honest about what is not yet measured ──
   {
     id: 'marginal-cost-community',
-    headline: 'Marginal cost per bed — community scale',
-    statement: 'Modelled marginal cost per bed pressed in community, on a fair-wage band and free feedstock. Nobody has measured it yet — that is the point of the 50-bed run.',
+    headline: 'Estimated cost per bed in community',
+    statement: 'The estimated cost to make one more bed in community, using paid local labour and free waste plastic. This has not yet been measured in sustained production.',
     figure: greenFigure('marginal-community', aud),
     factId: 'marginal-community',
     status: 'modelled',
-    ceiling: 'MODELLED, not measured. Never grouped with the engine-locked figures.',
+    ceiling: 'This is an estimate, not a measured production cost.',
     evidence: [{ label: 'The cost story', href: '/cost-story' }],
     asOf: canonFact('marginal-community').asAt,
-    flip: { when: '2026-09-30', how: 'The 50-bed in-source run measures it; we publish the measured figure either way.' },
+    flip: { when: 'after a sustained production run', how: 'We will replace the estimate with the measured cost.' },
   },
   {
     id: 'breakeven-rate',
     headline: 'Break-even rate',
-    statement: 'Roughly 338 beds per year to break even, derived from the modelled unit economics above.',
+    statement: 'Roughly 338 beds per year to cover current operating costs, based on the estimated cost per bed above.',
     figure: '~338 beds/yr',
     factId: 'marginal-community', // derived from the modelled cost; inherits its label
     status: 'modelled',
-    ceiling: 'Inherits the modelled label of its inputs.',
+    ceiling: 'This uses the estimated cost above, so it is also an estimate.',
     evidence: [{ label: 'The cost story', href: '/cost-story' }],
     asOf: canonFact('marginal-community').asAt,
-    flip: { when: '2026-09-30', how: 'Recomputed from measured unit economics after the 50-bed run.' },
+    flip: { when: 'after a sustained production run', how: 'We will recalculate it using the measured cost per bed.' },
   },
 
   // ── Interest — demand signals, never revenue ──
@@ -194,7 +194,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
   {
     id: 'buyer-offers',
     headline: 'Unprompted buyer offers',
-    statement: 'Elder Dianne Stokes asked for twenty more beds and offered to self-fund; PICC offered to buy a plant outright.',
+    statement: 'Elder Dianne Stokes asked for twenty more beds and offered to fund them.',
     status: 'interest',
     ceiling: 'Offers on the record, not contracts.',
     evidence: [{ label: 'Community stories', href: '/stories' }],
@@ -205,25 +205,25 @@ export const EXTERNAL_CLAIMS: Claim[] = [
   {
     id: 'signed-lois',
     headline: 'Signed match-eligible commitments',
-    statement: 'Zero signed match-eligible commitments today. The QBE grant must be at least matched by signed external commitments, a dollar test with no LOI count attached; the target is AU$400,000 signed by our own internal gate of 31 August 2026, ahead of the application, which closes late September 2026. Match is judged on signed, verifiable paper (amount, instrument, funder legal name, a contact SIH can call). The first signed commitment is the deck’s own claim flipping from future to verified.',
+    statement: 'No external commitments are signed today. QBE requires signed commitments before we submit the application. Earlier commitments make the application stronger.',
     status: 'future',
     evidence: [{ label: 'Investor deck', href: '/deck' }],
     asOf: canonFact('signed-lois').asAt,
-    flip: { when: '2026-08-31', how: 'First signed match-eligible commitment lands and is recorded here.' },
+    flip: { when: 'when the first commitment is signed', how: 'We will record it here.' },
   },
   {
     id: 'community-ownership',
     headline: 'Community ownership of the plant',
     statement: 'Each plant is built to move into community hands, on the Supply Nation 51% First Nations-ownership path.',
     status: 'future',
-    ceiling: 'A pathway moving closer to community ownership — never claimed as complete. No Goods entity meets an Indigenous-ownership tier today.',
+    ceiling: 'Community ownership is the goal. It has not happened yet.',
     evidence: [{ label: 'The work', href: '/the-work' }],
     asOf: '2026-07-10',
   },
   {
     id: 'first-hires',
     headline: 'First hires beyond the founders',
-    statement: 'Zero hires and zero independent directors today. This round funds a trigger-gated GM and Business Development hire.',
+    statement: 'There are no employees or independent directors today. New roles will only be added when funding allows.',
     status: 'future',
     evidence: [{ label: 'Investor deck', href: '/deck' }],
     asOf: '2026-07-10',
@@ -238,12 +238,12 @@ export const EXTERNAL_CLAIMS: Claim[] = [
     // A gate that describes a discipline nobody follows is worse than no gate, because it reads
     // as assurance. What IS held is the word "signed". Statement stays digit-free so
     // assertLedgerSafe keeps protecting the locked class.
-    statement: 'A signed, accountant-certified Goods-only revenue figure does not exist yet. The prepared carve-out is shown on funder-facing surfaces with a workpaper label and its basis named. It is never presented as signed, and no surplus figure is published or implied anywhere.',
+    statement: 'There is no accountant-signed revenue figure for Goods alone yet. Any prepared figure is clearly labelled as unsigned and explains what records it uses.',
     status: 'locked',
     ceiling: 'No revenue figure is described as signed or certified until the accountant signs one. No surplus figure, ever.',
     evidence: [{ label: 'Reconciliation basis (internal, on request)' }],
     asOf: '2026-07-25',
-    flip: { when: 'on accountant sign-off (outstanding as at 2026-07-25; the ledger previously targeted mid-August 2026)', how: 'The signed figure and its basis are named here and the workpaper label comes off every surface.' },
+    flip: { when: 'when the accountant signs it', how: 'We will publish the signed figure and explain its basis.' },
   },
 ];
 
@@ -252,7 +252,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
 export const ANTI_CLAIMS: { statement: string; why: string }[] = [
   {
     statement: 'We do not claim health outcomes.',
-    why: 'Off-the-ground, washable sleep supports the conditions needed to interrupt the scabies→rheumatic-heart-disease pathway. That is the why we exist — it is never claimed as a measured outcome of our beds.',
+    why: 'Off-the-ground, washable sleep supports the conditions needed to interrupt the pathway from scabies to rheumatic heart disease. We do not claim our beds have produced a measured health outcome.',
   },
   {
     statement: 'We do not count demand as revenue.',
@@ -263,17 +263,17 @@ export const ANTI_CLAIMS: { statement: string; why: string }[] = [
     // unsigned revenue figure") while the figure rendered on eight surfaces. An integrity
     // commitment contradicted by practice is worse than no commitment.
     statement: 'We do not call a revenue figure signed until it is.',
-    why: 'The Goods-only carve-out is prepared with our accountant and not yet signed. It is shown with a workpaper label and its basis named, never as a certified number. See the locked row below.',
+    why: 'The Goods-only figure has been prepared with our accountant but is not signed. We label it as unsigned and explain which records it uses.',
   },
   {
     statement: 'We do not claim community ownership has happened.',
-    why: 'The plant is built to transfer. Until it does, we describe a pathway — moving closer to community ownership — not a completed handover.',
+    why: 'Community ownership is the goal. Until ownership is transferred, we describe the work as moving toward that goal.',
   },
   {
     statement: 'We do not use an uncleared voice or photo.',
     // Reads from canon rather than a hardcoded count, which had gone stale at "32" and was also
     // the WRONG TIER: 32 is the display-storyteller pool, a coverage queue, not a clearance list.
-    why: `Only the ${canonFact('cleared-voices').value} consent-cleared voices (the 2026-06-17 pass, plus Margaret Lloyd and Tanya Turner; default-deny, OCAP®-aligned) appear on external surfaces. If a name is not on the list, it does not render. Not to be confused with the broader website display-storyteller pool.`,
+    why: `Only the ${canonFact('cleared-voices').value} people cleared for public use appear in public stories. If a person has not been cleared, their words and photo are not published.`,
   },
 ];
 
@@ -282,11 +282,11 @@ export const ANTI_CLAIMS: { statement: string; why: string }[] = [
 export const CLAIMS_CHANGELOG: { date: string; note: string }[] = [
   { date: '2026-07-11', note: 'Claims Register published. Consolidated-revenue row LOCKED; the unsigned figure removed from /deck client JS (it had shipped in a risk row).' },
   { date: '2026-07-18', note: 'Maningrida delivery registered (+40 Stretch, +2 washers per INV-0303, Homeland School Company, farm-made; an interim +60 entry was corrected same day): 536 beds, 173 Stretch, 18 washers, 3,460kg HDPE (Stretch only, 173 x 20kg).' },
-  { date: '2026-07-10', note: 'Investor deck v1 shipped with label pills (verified / modelled / interest / future) on every claim.' },
-  { date: '2026-06-17', note: 'Consent pass: 32 voices cleared for external use; default-deny gate live in cleared-voices.ts.' },
+  { date: '2026-07-10', note: 'The investor deck began showing whether each claim was confirmed, estimated, an expression of interest or future work.' },
+  { date: '2026-06-17', note: 'Thirty-two voices were cleared for public use.' },
   { date: '2026-06-11', note: 'Washing-machine count curated to 16 in-community (founder-confirmed), superseding the raw register row count.' },
-  { date: '2026-06-03', note: 'Money facts restated after live-Xero reconcile. Consolidated figure held pending accountant sign-off.' },
-  { date: '2026-05-30', note: 'Asset facts reconciled against the live register: 496 beds, 9 communities, 2,660kg HDPE.' },
+  { date: '2026-06-03', note: 'Financial figures were checked against Xero. The combined revenue figure remains unpublished until the accountant signs it.' },
+  { date: '2026-05-30', note: 'Asset figures were checked against the register: 496 beds, 9 communities and 2,660kg of HDPE.' },
 ];
 
 /** The standing appointment: the date we have asked funders to come back and diff the register. */

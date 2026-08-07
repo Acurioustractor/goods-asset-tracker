@@ -41,16 +41,16 @@ export const metadata = {
 
 export default function PartnersPage() {
   return (
-    <main className="min-h-screen bg-[#fbf8f1]">
-      <section className="border-b border-[#e6dfd1] bg-[radial-gradient(circle_at_top_left,_#efe2cf_0,_#fbf8f1_46%,_#f4eee4_100%)]">
+    <main className="min-h-screen bg-goods-cream">
+      <section className="border-b border-goods-grid bg-[radial-gradient(circle_at_top_left,_#efe2cf_0,_#fbf8f1_46%,_#f4eee4_100%)]">
         <div className="container mx-auto max-w-6xl px-5 py-16 md:py-24">
-          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.24em] text-[#a64f35]">
+          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.24em] text-goods-clay">
             For delivery partners
           </p>
-          <h1 className="max-w-3xl font-display text-4xl leading-[1.06] text-[#2b2a26] md:text-6xl">
+          <h1 className="max-w-3xl font-display text-4xl leading-[1.06] text-goods-ink md:text-6xl">
             Nine modules. You take the ones that are yours.
           </h1>
-          <p className="mt-7 max-w-2xl text-lg leading-8 text-[#665f53]">
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-goods-sub">
             {MODULE_RULE}
           </p>
         </div>
@@ -58,21 +58,21 @@ export default function PartnersPage() {
 
       {/* The modules first. This is the lead, not a section. */}
       <section className="container mx-auto max-w-6xl px-5 py-16">
-        <h2 className="font-display text-2xl text-[#2b2a26] md:text-3xl">
+        <h2 className="font-display text-2xl text-goods-ink md:text-3xl">
           What a community can choose
         </h2>
         <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {MODULES.map((m) => (
             <li
               key={m.id}
-              className="rounded-lg border border-[#e6dfd1] bg-white p-5 shadow-[0_1px_0_rgba(0,0,0,0.02)]"
+              className="rounded-lg border border-goods-grid bg-white p-5 shadow-[0_1px_0_rgba(0,0,0,0.02)]"
             >
-              <p className="text-sm font-semibold text-[#2b2a26]">{m.label}</p>
-              <p className="mt-2 text-sm leading-relaxed text-[#665f53]">{m.what}</p>
+              <p className="text-sm font-semibold text-goods-ink">{m.label}</p>
+              <p className="mt-2 text-sm leading-relaxed text-goods-sub">{m.what}</p>
             </li>
           ))}
         </ul>
-        <p className="mt-8 max-w-2xl text-sm leading-relaxed text-[#665f53]">
+        <p className="mt-8 max-w-2xl text-sm leading-relaxed text-goods-sub">
           A partner might hold one of these, or several. Which ones are yours and which stay ours is
           a conversation, and it is the first one worth having. We will not quote you for a whole
           site when you are taking a single module.
@@ -80,24 +80,24 @@ export default function PartnersPage() {
       </section>
 
       {/* Transfer must never be left undefined for this reader. */}
-      <section className="border-y border-[#e6dfd1] bg-[#f4eee4]">
+      <section className="border-y border-goods-grid bg-[#f4eee4]">
         <div className="container mx-auto max-w-6xl px-5 py-16">
-          <h2 className="font-display text-2xl text-[#2b2a26] md:text-3xl">
+          <h2 className="font-display text-2xl text-goods-ink md:text-3xl">
             How the work moves, and who holds what
           </h2>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-[#665f53]">{STAGE_RULE}</p>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-goods-sub">{STAGE_RULE}</p>
           <ol className="mt-8 space-y-3">
             {PUBLIC_STAGES.map((s, i) => (
               <li
                 key={s.id}
-                className="flex flex-col gap-2 rounded-lg border border-[#e6dfd1] bg-white p-5 sm:flex-row sm:items-baseline sm:gap-6"
+                className="flex flex-col gap-2 rounded-lg border border-goods-grid bg-white p-5 sm:flex-row sm:items-baseline sm:gap-6"
               >
-                <span className="flex-shrink-0 text-xs font-semibold uppercase tracking-[0.18em] text-[#a64f35]">
+                <span className="flex-shrink-0 text-xs font-semibold uppercase tracking-[0.18em] text-goods-clay">
                   {i + 1}. {s.label}
                 </span>
-                <span className="flex-1 text-sm leading-relaxed text-[#2b2a26]">{s.line}</span>
-                <span className="flex-shrink-0 text-xs text-[#665f53]">
-                  Community holds: <span className="font-semibold text-[#2b2a26]">{s.holds}</span>
+                <span className="flex-1 text-sm leading-relaxed text-goods-ink">{s.line}</span>
+                <span className="flex-shrink-0 text-xs text-goods-sub">
+                  Community holds: <span className="font-semibold text-goods-ink">{s.holds}</span>
                 </span>
               </li>
             ))}
@@ -106,17 +106,17 @@ export default function PartnersPage() {
       </section>
 
       <section className="container mx-auto max-w-6xl px-5 py-16">
-        <h2 className="font-display text-2xl text-[#2b2a26] md:text-3xl">
+        <h2 className="font-display text-2xl text-goods-ink md:text-3xl">
           Agree the scope in writing
         </h2>
-        <p className="mt-4 max-w-2xl text-base leading-7 text-[#665f53]">
+        <p className="mt-4 max-w-2xl text-base leading-7 text-goods-sub">
           The next step is naming which modules are yours, which are ours, and who holds the
           enterprise at Transfer. That is a conversation and a written scope, not a proposal we
           arrive with.
         </p>
         <Link
           href="/contact"
-          className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-full bg-[#2b2a26] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#433f38]"
+          className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-full bg-goods-ink px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#433f38]"
         >
           Start that conversation <ArrowRight className="h-4 w-4" />
         </Link>

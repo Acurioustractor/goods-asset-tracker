@@ -68,7 +68,7 @@ function isExternal(href: string) {
 function SmallPill({ children, tone = 'sage' }: { children: React.ReactNode; tone?: 'sage' | 'clay' | 'ink' }) {
   const toneClass = {
     sage: 'border-[#b7c7bd] bg-[#ecf2ed] text-[#24423f]',
-    clay: 'border-[#ddb5a2] bg-[#f7e8df] text-[#8f3f27]',
+    clay: 'border-goods-terracotta-light bg-[#f7e8df] text-goods-clay',
     ink: 'border-[#2f4a46]/20 bg-[#2f4a46] text-white',
   }[tone];
 
@@ -210,7 +210,7 @@ export function InvestorLabClient() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f5f3ea] text-[#1f2623]">
+    <main className="min-h-screen bg-goods-cream text-[#1f2623]">
       <section className="border-b border-[#203833] bg-[#243d3a] text-white">
         <div className="mx-auto max-w-[1560px] px-4 py-8 md:px-6 md:py-12">
           <div className="mb-8 flex flex-wrap items-center gap-3">
@@ -243,7 +243,7 @@ export function InvestorLabClient() {
 
           <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
             <div>
-              <p className="mb-4 flex items-center gap-2 text-sm uppercase tracking-[0.22em] text-[#e09b6f]">
+              <p className="mb-4 flex items-center gap-2 text-sm uppercase tracking-[0.22em] text-goods-terracotta-light">
                 <Compass className="h-4 w-4" />
                 Investor narrative lab
               </p>
@@ -289,7 +289,7 @@ export function InvestorLabClient() {
         </div>
       </section>
 
-      <section className="sticky top-0 z-20 border-b border-[#d6ddd4] bg-[#fdfcf7]/95 backdrop-blur">
+      <section className="sticky top-0 z-20 border-b border-[#d6ddd4] bg-goods-cream/95 backdrop-blur">
         <div className="mx-auto flex max-w-[1560px] gap-2 overflow-x-auto px-4 py-3 md:px-6">
           {views.map((item) => {
             const Icon = item.icon;
@@ -379,7 +379,7 @@ export function InvestorLabClient() {
               <div className="grid gap-5 xl:grid-cols-[1fr_0.9fr]">
                 <section className="rounded-md border border-[#d6ddd4] bg-white p-5">
                   <h3 className="flex items-center gap-2 text-lg font-semibold text-[#1f2623]">
-                    <MessageSquareQuote className="h-5 w-5 text-[#a64f35]" />
+                    <MessageSquareQuote className="h-5 w-5 text-goods-clay" />
                     Proof the route needs
                   </h3>
                   <div className="mt-4">
@@ -397,8 +397,8 @@ export function InvestorLabClient() {
                 </section>
               </div>
 
-              <section className="rounded-md border border-[#d6ddd4] bg-[#fffaf2] p-5">
-                <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-[#8f3f27]">Watch point</h3>
+              <section className="rounded-md border border-[#d6ddd4] bg-goods-cream p-5">
+                <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-goods-clay">Watch point</h3>
                 <p className="mt-2 max-w-4xl text-sm leading-relaxed text-[#4f3b31]">{route.watchOut}</p>
               </section>
 
@@ -442,7 +442,7 @@ export function InvestorLabClient() {
 
             <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
               <section className="rounded-md border border-[#d6ddd4] bg-white p-5 md:p-7">
-                <p className="text-sm uppercase tracking-[0.18em] text-[#a64f35]">{lens.label}</p>
+                <p className="text-sm uppercase tracking-[0.18em] text-goods-clay">{lens.label}</p>
                 <h2
                   className="mt-3 max-w-4xl text-3xl font-light leading-tight md:text-5xl"
                   style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
@@ -487,8 +487,8 @@ export function InvestorLabClient() {
                     ) : null;
                   })}
                 </div>
-                <div className="mt-5 rounded-md border border-[#ddb5a2] bg-[#fffaf2] p-4">
-                  <p className="text-sm font-semibold text-[#8f3f27]">Watch point</p>
+                <div className="mt-5 rounded-md border border-goods-terracotta-light bg-goods-cream p-4">
+                  <p className="text-sm font-semibold text-goods-clay">Watch point</p>
                   <p className="mt-2 text-sm leading-relaxed text-[#4f3b31]">{lens.watchOut}</p>
                 </div>
               </section>
@@ -517,7 +517,7 @@ export function InvestorLabClient() {
                   <div className="mt-4 grid gap-3 md:grid-cols-2">
                     {placeReviewQuestions.map((question) => (
                       <div key={question} className="flex gap-2 text-sm leading-relaxed text-[#4f5f59]">
-                        <Circle className="mt-1 h-3 w-3 flex-shrink-0 text-[#a64f35]" />
+                        <Circle className="mt-1 h-3 w-3 flex-shrink-0 text-goods-clay" />
                         <span>{question}</span>
                       </div>
                     ))}
@@ -577,7 +577,7 @@ export function InvestorLabClient() {
                 ))}
                 {place.voices.map((voice) => (
                   <article key={`${place.id}-${voice.name}`} className="rounded-md border border-[#d6ddd4] bg-white p-4">
-                    <MessageSquareQuote className="h-5 w-5 text-[#a64f35]" />
+                    <MessageSquareQuote className="h-5 w-5 text-goods-clay" />
                     <p className="mt-3 text-sm leading-relaxed text-[#35423d]">&quot;{voice.line}&quot;</p>
                     <p className="mt-3 text-sm font-semibold text-[#1f2623]">{voice.name}</p>
                   </article>
@@ -630,7 +630,7 @@ export function InvestorLabClient() {
 
             <div className="space-y-6">
               <section className="rounded-md border border-[#d6ddd4] bg-white p-5 md:p-7">
-                <p className="text-sm uppercase tracking-[0.18em] text-[#a64f35]">{photoBank.label}</p>
+                <p className="text-sm uppercase tracking-[0.18em] text-goods-clay">{photoBank.label}</p>
                 <h2
                   className="mt-3 text-3xl font-light leading-tight md:text-5xl"
                   style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
@@ -670,7 +670,7 @@ export function InvestorLabClient() {
             <section className="rounded-md border border-[#d6ddd4] bg-white p-5 md:p-7">
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
-                  <p className="text-sm uppercase tracking-[0.18em] text-[#a64f35]">Decision queue</p>
+                  <p className="text-sm uppercase tracking-[0.18em] text-goods-clay">Decision queue</p>
                   <h2
                     className="mt-3 text-3xl font-light leading-tight md:text-5xl"
                     style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
@@ -695,7 +695,7 @@ export function InvestorLabClient() {
                         'block w-full rounded-md border p-4 text-left transition-colors',
                         done
                           ? 'border-[#2f6f59] bg-[#ecf2ed]'
-                          : 'border-[#d6ddd4] bg-[#fdfcf7] hover:border-[#24423f]/40',
+                          : 'border-[#d6ddd4] bg-goods-cream hover:border-[#24423f]/40',
                       ].join(' ')}
                     >
                       <span className="flex items-start gap-3">
@@ -726,7 +726,7 @@ export function InvestorLabClient() {
             <aside className="space-y-5 xl:sticky xl:top-24 xl:self-start">
               <section className="rounded-md border border-[#d6ddd4] bg-[#243d3a] p-5 text-white">
                 <h3 className="flex items-center gap-2 text-lg font-semibold">
-                  <Replace className="h-5 w-5 text-[#e09b6f]" />
+                  <Replace className="h-5 w-5 text-goods-terracotta-light" />
                   Working deck stance
                 </h3>
                 <div className="mt-4 space-y-4 text-sm leading-relaxed text-white/75">

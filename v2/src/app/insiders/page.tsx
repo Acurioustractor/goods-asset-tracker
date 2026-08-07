@@ -21,7 +21,7 @@ export default function InsidersHome() {
   return (
     <div className="max-w-5xl mx-auto px-6 lg:px-10 py-12 lg:py-20">
       <div className="mb-16">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#C45C3E]">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-goods-terracotta">
           Insiders
         </p>
         <h1 className="mt-4 text-4xl lg:text-5xl font-serif tracking-tight text-stone-900">
@@ -43,14 +43,14 @@ export default function InsidersHome() {
             <Link
               key={folder.name}
               href={`/insiders/${folder.name}`}
-              className="group block rounded-lg border border-stone-200 bg-white p-6 transition-all hover:border-[#C45C3E]/40 hover:shadow-md"
+              className="group block rounded-lg border border-stone-200 bg-white p-6 transition-all hover:border-goods-terracotta/40 hover:shadow-md"
             >
               <div className="flex items-start justify-between">
                 <h2 className="text-lg font-serif font-semibold text-stone-900">
                   {folder.label}
                 </h2>
                 <ArrowRight
-                  className="h-4 w-4 text-stone-400 transition-all group-hover:text-[#C45C3E] group-hover:translate-x-0.5"
+                  className="h-4 w-4 text-stone-400 transition-all group-hover:text-goods-terracotta group-hover:translate-x-0.5"
                   strokeWidth={1.5}
                 />
               </div>

@@ -17,7 +17,7 @@ export function InsidersBacklinks({ backlinks }: { backlinks: WikiBacklink[] }) 
           <li key={bl.fromSlugPath}>
             <Link
               href={insidersHref(bl.fromSlugPath)}
-              className="text-sm text-stone-700 hover:text-[#C45C3E] transition-colors"
+              className="text-sm text-stone-700 hover:text-goods-terracotta transition-colors"
             >
               {bl.fromTitle}
             </Link>

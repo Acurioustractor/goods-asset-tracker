@@ -25,33 +25,36 @@ import {
   DEFAULT_PACK,
   OPENER_HEADING,
   OPENER_LINES,
-  PITCH_APPENDICES,
   PITCH_CHAPTERS,
-  PITCH_PACKS,
   panelsForPack,
-  pitchPack,
-  resolvePack,
-  type PitchPackId,
 } from '@/lib/data/pitch-chrome';
 
 type Mode = 'scroll' | 'slides';
 
 export function PitchChrome() {
-  const [pack, setPack] = useState<PitchPackId>(DEFAULT_PACK);
   const [mode, setMode] = useState<Mode>('scroll');
   const [index, setIndex] = useState(0);
   const [ready, setReady] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
   const [openerOpen, setOpenerOpen] = useState(false);
 
-  const panels = useMemo(() => panelsForPack(pack), [pack]);
+  const panels = useMemo(() => panelsForPack(DEFAULT_PACK), []);
 
   // Read the query string once on mount. Before this runs the page is the funder deck in scroll
   // mode, which is the correct no-JS result too.
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    setPack(resolvePack(params.get('for') ?? undefined));
-    setMode(params.get('view') === 'slides' ? 'slides' : 'scroll');
+    const canPresent = window.matchMedia('(min-width: 640px)').matches;
+    setMode(params.get('view') === 'slides' && canPresent ? 'slides' : 'scroll');
+    if (!canPresent) params.delete('view');
+    params.delete('for');
+    const query = params.toString();
+    const hash = window.location.hash;
+    window.history.replaceState(
+      null,
+      '',
+      query ? `${window.location.pathname}?${query}${hash}` : `${window.location.pathname}${hash}`,
+    );
     setReady(true);
   }, []);
 
@@ -59,13 +62,17 @@ export function PitchChrome() {
   useEffect(() => {
     if (!ready) return;
     const params = new URLSearchParams(window.location.search);
-    if (pack === DEFAULT_PACK) params.delete('for');
-    else params.set('for', pack);
+    params.delete('for');
     if (mode === 'slides') params.set('view', 'slides');
     else params.delete('view');
     const query = params.toString();
-    window.history.replaceState(null, '', query ? `?${query}` : window.location.pathname);
-  }, [pack, mode, ready]);
+    const hash = window.location.hash;
+    window.history.replaceState(
+      null,
+      '',
+      query ? `${window.location.pathname}?${query}${hash}` : `${window.location.pathname}${hash}`,
+    );
+  }, [mode, ready]);
 
   /** Apply pack and mode to the rendered panels. The only place display is touched. */
   useEffect(() => {
@@ -178,17 +185,17 @@ export function PitchChrome() {
           role="dialog"
           aria-modal="true"
           aria-label={OPENER_HEADING}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-[#171714]/97 px-6 py-10 text-[#fbf8f1] backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-goods-ink/97 px-6 py-10 text-goods-cream backdrop-blur-sm"
           onClick={() => setOpenerOpen(false)}
         >
           <div className="max-h-full w-full max-w-[1000px] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#e88461]">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-goods-terracotta-light">
               {OPENER_HEADING}
             </p>
             <ol className="mt-8 space-y-6">
               {OPENER_LINES.map((line, i) => (
                 <li key={line} className="flex gap-5 text-xl leading-9 md:text-2xl md:leading-10">
-                  <span className="goods-pitch-display text-2xl leading-9 text-[#e88461] md:text-3xl md:leading-10">{i + 1}</span>
+                  <span className="goods-pitch-display text-2xl leading-9 text-goods-terracotta-light md:text-3xl md:leading-10">{i + 1}</span>
                   <span>{line}</span>
                 </li>
               ))}
@@ -208,7 +215,7 @@ export function PitchChrome() {
           in slide mode where it is the transport. */}
       <div
         data-pitch-bar
-        className={`z-40 border-t border-white/15 bg-[#171714]/95 text-white backdrop-blur ${
+        className={`z-40 border-t border-white/15 bg-goods-ink/95 text-white backdrop-blur ${
           mode === 'slides' ? 'fixed inset-x-0 bottom-0' : 'sticky top-0 border-b border-t-0'
         }`}
       >
@@ -225,7 +232,7 @@ export function PitchChrome() {
                 type="button"
                 onClick={() => go(-1)}
                 disabled={index === 0}
-                className="border border-white/25 px-3 py-1 text-xs disabled:opacity-30"
+                className="min-h-11 border border-white/25 px-3 py-2 text-xs disabled:opacity-30"
               >
                 Prev
               </button>
@@ -233,7 +240,7 @@ export function PitchChrome() {
                 type="button"
                 onClick={() => go(1)}
                 disabled={index === panels.length - 1}
-                className="border border-white/25 px-3 py-1 text-xs disabled:opacity-30"
+                className="min-h-11 border border-white/25 px-3 py-2 text-xs disabled:opacity-30"
               >
                 Next
               </button>
@@ -245,7 +252,7 @@ export function PitchChrome() {
               <button
                 type="button"
                 onClick={() => setNavOpen((open) => !open)}
-                className="border border-white/25 px-3 py-1 text-xs"
+                className="min-h-11 border border-white/25 px-3 py-2 text-xs"
                 aria-expanded={navOpen}
               >
                 {navOpen ? 'Hide contents' : 'Contents'}
@@ -254,27 +261,10 @@ export function PitchChrome() {
           )}
 
           <span className="ml-auto flex items-center gap-2">
-            <label className="sr-only" htmlFor="pitch-pack">Reader</label>
-            <select
-              id="pitch-pack"
-              value={pack}
-              onChange={(event) => {
-                setPack(event.target.value as PitchPackId);
-                setIndex(0);
-              }}
-              className="border border-white/25 bg-transparent px-2 py-1 text-xs text-white [&>option]:text-black"
-              title={pitchPack(pack).blurb}
-            >
-              {PITCH_PACKS.map((entry) => (
-                <option key={entry.id} value={entry.id}>
-                  {entry.label}
-                </option>
-              ))}
-            </select>
             <button
               type="button"
               onClick={() => setOpenerOpen(true)}
-              className="border border-[#c45c3e] px-3 py-1 text-xs text-[#e88461] hover:border-[#e88461]"
+              className="min-h-11 border border-goods-terracotta px-3 py-2 text-xs text-goods-terracotta-light hover:border-goods-terracotta-light"
             >
               Read this first
             </button>
@@ -285,27 +275,20 @@ export function PitchChrome() {
                 setIndex(0);
                 window.scrollTo({ top: 0 });
               }}
-              className="border border-white/25 px-3 py-1 text-xs"
+              className="hidden min-h-11 border border-white/25 px-3 py-2 text-xs sm:block"
             >
               {mode === 'slides' ? 'Read as page' : 'Present'}
-            </button>
-            <button
-              type="button"
-              onClick={() => window.print()}
-              className="border border-white/25 px-3 py-1 text-xs"
-            >
-              PDF
             </button>
           </span>
         </div>
 
         {/* Contents, grouped by chapter so eighteen panels read as five parts. */}
         {navOpen && mode === 'scroll' && (
-          <div className="border-t border-white/15 px-6 pb-5 pt-4 md:px-10 lg:px-14">
+          <div className="max-h-[calc(100svh-5rem)] overflow-y-auto border-t border-white/15 px-6 pb-5 pt-4 md:px-10 lg:max-h-none lg:px-14">
             <div className="mx-auto grid max-w-[1600px] gap-5 sm:grid-cols-2 lg:grid-cols-5">
               {chapters.map((chapter) => (
                 <div key={chapter.id}>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#d97a59]">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-goods-terracotta-light">
                     {chapter.label}
                   </p>
                   <ul className="mt-2 space-y-1">
@@ -316,7 +299,7 @@ export function PitchChrome() {
                           <a
                             href={`#${panel.id}`}
                             onClick={() => setNavOpen(false)}
-                            className={`block truncate py-0.5 text-sm hover:text-white ${
+                            className={`flex min-h-11 items-center py-2 text-sm hover:text-white sm:min-h-0 sm:py-0.5 ${
                               panel.id === current?.id ? 'text-white' : 'text-white/55'
                             }`}
                           >
@@ -327,27 +310,6 @@ export function PitchChrome() {
                   </ul>
                 </div>
               ))}
-            </div>
-
-            {/* Appendices. Named here so the supporting surfaces stay reachable FROM the deck
-                rather than competing with it as separate front doors. */}
-            <div className="mx-auto mt-5 max-w-[1600px] border-t border-white/15 pt-4">
-              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#d97a59]">
-                Appendices
-              </p>
-              <ul className="mt-2 flex flex-wrap gap-x-6 gap-y-1">
-                {PITCH_APPENDICES.map((appendix) => (
-                  <li key={appendix.href}>
-                    <a
-                      href={appendix.href}
-                      title={appendix.answers}
-                      className="text-sm text-white/55 underline-offset-4 hover:text-white hover:underline"
-                    >
-                      {appendix.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
         )}
