@@ -260,7 +260,7 @@ export default function ContactPage() {
               {/* Quick Links */}
               <Card className="border-0 shadow-sm bg-white">
                 <CardContent className="p-6">
-                  <h3 className="font-medium mb-4" style={{ color: '#2E2E2E' }}>Quick Links</h3>
+                  <h3 className="font-medium mb-4" style={{ color: '#2E2E2E' }}>Find the right door</h3>
                   <div className="space-y-3">
                     <Link
                       href="/shop"
@@ -297,7 +297,7 @@ export default function ContactPage() {
                       </div>
                     </Link>
                     <Link
-                      href="/about"
+                      href="/communities"
                       className="flex items-center gap-3 p-3 rounded-xl transition-colors hover:bg-[#FDF8F3]"
                     >
                       <div
@@ -305,12 +305,46 @@ export default function ContactPage() {
                         style={{ backgroundColor: '#C45C3E' }}
                       >
                         <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
                       </div>
                       <div>
-                        <p className="font-medium" style={{ color: '#2E2E2E' }}>Our Story</p>
-                        <p className="text-sm" style={{ color: '#5E5E5E' }}>Learn about our mission</p>
+                        <p className="font-medium" style={{ color: '#2E2E2E' }}>For communities</p>
+                        <p className="text-sm" style={{ color: '#5E5E5E' }}>Where Goods works, and the pathway</p>
+                      </div>
+                    </Link>
+                    <Link
+                      href="/press"
+                      className="flex items-center gap-3 p-3 rounded-xl transition-colors hover:bg-[#FDF8F3]"
+                    >
+                      <div
+                        className="w-10 h-10 rounded-full flex items-center justify-center"
+                        style={{ backgroundColor: '#8B9D77' }}
+                      >
+                        <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="font-medium" style={{ color: '#2E2E2E' }}>Media &amp; press</p>
+                        <p className="text-sm" style={{ color: '#5E5E5E' }}>Photos, facts and the press kit</p>
+                      </div>
+                    </Link>
+                    <Link
+                      href="/partner"
+                      className="flex items-center gap-3 p-3 rounded-xl transition-colors hover:bg-[#FDF8F3]"
+                    >
+                      <div
+                        className="w-10 h-10 rounded-full flex items-center justify-center"
+                        style={{ backgroundColor: '#C45C3E' }}
+                      >
+                        <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="font-medium" style={{ color: '#2E2E2E' }}>Backing the work</p>
+                        <p className="text-sm" style={{ color: '#5E5E5E' }}>Partnering and funding pathways</p>
                       </div>
                     </Link>
                   </div>
