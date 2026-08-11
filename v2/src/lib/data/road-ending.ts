@@ -27,6 +27,7 @@
  * pathways), storyteller-registry.ts (every quote, verbatim).
  */
 import type { Solidity } from './cost-story';
+import { OFFERS, PAYMENT_DOORS } from './offers';
 
 // ---------------------------------------------------------------------------
 // Voices. Every quote below was read verbatim out of storyteller-registry.ts on
@@ -155,13 +156,13 @@ export interface BuyRow {
 export const THE_BUY_LIST: BuyRow[] = [
   {
     n: '01',
-    name: 'The machines',
-    amount: '$112,000 to $222,000',
-    label: 'modelled',
+    name: 'A complete community production facility',
+    amount: OFFERS.completeFacility.publicPrice,
+    label: 'target',
     sentence:
-      'A press line, a shredder, a CNC router and the benches around them. This band is what a new set costs at market. The price list further up is what one of each actually cost us, mostly bought second hand. We have already put $110,046 of our own into the gear and we can show bills for about $43,700 of that so far, with nothing taken off this line for it.',
-    low: 112000,
-    high: 222000,
+      'Equipment, a container or workspace setup, commissioning and initial support. The final scope depends on location, what a community already has, freight and any site-specific civil works.',
+    low: OFFERS.completeFacility.lowAud,
+    high: OFFERS.completeFacility.highAud,
   },
   {
     n: '02',
@@ -176,32 +177,32 @@ export const THE_BUY_LIST: BuyRow[] = [
   {
     n: '03',
     name: 'The gap between making beds and getting paid',
-    amount: null,
-    label: null,
+    amount: OFFERS.workingCapital.publicPrice,
+    label: 'modelled',
     sentence:
-      'Beds get built months before the invoice gets paid, and that gap ties up cash. We do not know how much until we have run the fifty. The line stays empty until then.',
-    low: null,
-    high: null,
+      'Revolving working capital pays for materials, wages and delivery before customer invoices are paid. It is investor-diligence capital, not another annual operating cost.',
+    low: OFFERS.workingCapital.lowAud,
+    high: OFFERS.workingCapital.highAud,
   },
   {
     n: '04',
-    name: 'The months before the beds pay for it',
-    amount: '$110,000 to $165,000',
+    name: 'Goods network support',
+    amount: OFFERS.goodsNetwork.publicPrice,
     label: 'workpaper',
     sentence:
-      'Twelve to eighteen months of the $109,500 a year it takes to run Goods, while bed numbers climb.',
-    low: 110000,
-    high: 165000,
+      'Founder leadership and salaries, head office and administration, marketing and communications, and field travel. The current model basis is $290,200; a separate consulting and accounting provision stays outside until overlap is reconciled.',
+    low: OFFERS.goodsNetwork.lowAud,
+    high: OFFERS.goodsNetwork.highAud,
   },
   {
     n: '05',
-    name: 'Servicing, and a first look at a site On Country',
-    amount: '$5,000 to $8,000 a year',
+    name: 'Governance and initial community scoping',
+    amount: OFFERS.governanceScoping.publicPrice,
     label: 'modelled',
     sentence:
-      'Parts and servicing every year, once the machines are running. Plus the time and travel to work out what a first site On Country would need.',
-    low: 5000,
-    high: 8000,
+      'Listening, governance design, needs assessment, facility scope, budget and a pathway brief before anybody decides what should be built.',
+    low: OFFERS.governanceScoping.lowAud,
+    high: OFFERS.governanceScoping.highAud,
   },
 ];
 
@@ -346,7 +347,7 @@ export interface Door {
 export const DOORS: Door[] = [
   {
     verb: 'Give',
-    entity: 'The Butterfly Movement Ltd, the charity',
+    entity: PAYMENT_DOORS.give.receivingEntity,
     does:
       'Pays for the work no bed sale covers: sitting down and listening before anything is built, training the people who will run the machines, and keeping the doors open while bed numbers climb. It never buys a share of the company.',
     // Ruling J: the DGR endorsement is verified since Jan 2012, but whose name goes on the
@@ -358,7 +359,7 @@ export const DOORS: Door[] = [
   },
   {
     verb: 'Lend',
-    entity: 'A Curious Tractor Pty Ltd, selling as Goods.',
+    entity: PAYMENT_DOORS.lend.receivingEntity,
     does:
       'Buys the press, the shredder and the machine that cuts the legs, and covers the gap between building beds and getting paid for them. They are the same machines a community can take one at a time.',
     returns:
@@ -367,8 +368,8 @@ export const DOORS: Door[] = [
   },
   {
     verb: 'Buy beds',
-    entity: 'A Curious Tractor Pty Ltd, selling as Goods.',
-    does: '$750 a bed. A community asks for beds, we make them, and they arrive.',
+    entity: PAYMENT_DOORS.buy.receivingEntity,
+    does: `${OFFERS.stretchBed.publicLine} A community asks for beds, we make them, and they arrive.`,
     returns: 'Beds in community, and an invoice. Money we earn rather than money we are given.',
     match: 'Outside the QBE match.',
   },

@@ -129,15 +129,14 @@ describe('road-ending: no figure is stated without its status', () => {
     }
   });
 
-  it('exactly one buy-list row stays visibly unsized, and says why', () => {
-    // Found by its empty amount, never by its label: the row is deliberately
-    // named in plain words rather than "working capital", so asserting the
-    // accounting term here would re-import the register we just removed.
+  it('every buy-list row is now sized from an approved or planning offer', () => {
     const unsized = THE_BUY_LIST.filter((r) => r.amount === null);
-    expect(unsized).toHaveLength(1);
-    expect(unsized[0].low).toBeNull();
-    expect(unsized[0].high).toBeNull();
-    expect(unsized[0].sentence.toLowerCase()).toContain('do not know');
+    expect(unsized).toHaveLength(0);
+    for (const row of THE_BUY_LIST) {
+      expect(row.low).toBeTypeOf('number');
+      expect(row.high).toBeTypeOf('number');
+      expect(row.label).not.toBeNull();
+    }
   });
 });
 
@@ -151,8 +150,8 @@ describe('road-ending: the arithmetic a funder checks with a calculator', () => 
   });
 
   it('the buy-list total is computed from its rows, never typed', () => {
-    expect(BUY_LIST_TOTAL.low).toBe(287000);
-    expect(BUY_LIST_TOTAL.high).toBe(475000);
+    expect(BUY_LIST_TOTAL.low).toBe(605200);
+    expect(BUY_LIST_TOTAL.high).toBe(795000);
   });
 });
 
