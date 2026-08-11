@@ -30,6 +30,19 @@ export const dynamic = 'force-dynamic';
  */
 
 const CACHE_AFFECTING_EVENTS = new Set([
+  // What Empathy Ledger actually sends, per its published contract.
+  //
+  // Verified against the live endpoint 2026-08-08: a real `content_revoked`
+  // returned 202 revalidated:false — heard, deliberately not acted on. The
+  // sender counts any 2xx as delivered and shows the storyteller "this site has
+  // taken it down", so a withdrawal was being reported as landed while this
+  // site kept serving the copy for its full 300 second window. The dotted names
+  // below were written against an earlier draft and are kept so nothing that
+  // used to work stops.
+  'content_revoked',
+  'content_updated',
+  'consent_approved',
+  'consent_denied',
   'consent.revoked',
   'consent.granted',
   'content.updated',
@@ -43,7 +56,11 @@ const CACHE_AFFECTING_EVENTS = new Set([
 ]);
 
 function signatureMatches(raw: string, header: string, secret: string): boolean {
-  const expected = `sha256=${createHmac('sha256', secret).update(raw).digest('hex')}`;
+  // Empathy Ledger sends a BARE lowercase hex digest; this expected a `sha256=`
+  // prefix, which is the GitHub convention and not theirs. Accept either: same
+  // HMAC over the same raw bytes, the same proof written two ways.
+  const digest = createHmac('sha256', secret).update(raw).digest('hex');
+  const expected = header.startsWith('sha256=') ? `sha256=${digest}` : digest;
   const a = Buffer.from(header);
   const b = Buffer.from(expected);
   // timingSafeEqual throws when lengths differ, so compare lengths first.
@@ -61,7 +78,12 @@ export async function POST(request: NextRequest) {
   }
 
   const raw = await request.text();
-  const provided = request.headers.get('x-webhook-signature');
+  // Empathy Ledger's canonical header is X-Empathy-Ledger-Signature. This read
+  // only x-webhook-signature, so every real withdrawal was refused 401 before
+  // the signature was even compared.
+  const provided =
+    request.headers.get('x-empathy-ledger-signature') ??
+    request.headers.get('x-webhook-signature');
 
   if (!provided) {
     return NextResponse.json({ error: 'Missing signature' }, { status: 401 });

@@ -47,6 +47,7 @@ const ALLOWED_APP_PREFIXES = [
   'invest', // the structural how-to-back-Goods page: renders ENTITY_DOORS from ask-surface.ts
   //          (import-locked, carries the $750 list price); all other money is <MoneyPointer />
   'wiki/products/washing-machine', // the sourced "$3M/yr of washers" story fact
+  'onepagers/stretch-bed', // the printed product sheet: the one $750 price a buyer acts on
   'pathways/', // consent-shaped per-community numbers; its own rules live in that module
   'field-notes/', // trip stories quote real invoices with consent-cleared context
 ];

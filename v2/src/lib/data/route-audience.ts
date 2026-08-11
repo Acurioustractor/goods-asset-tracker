@@ -1515,6 +1515,52 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     verdict: 'keep',
   },
   {
+    route: '/onepagers',
+    audience: 'partner',
+    access: 'open',
+    // 2026-08-06 (Ben): the printable one-pager shelf. Screen chrome suppressed; each sheet
+    // lands on one A4 page. Investor money stays with /pitch/onepager, linked not duplicated.
+    leadsWithNow: {
+      heading: 'One-pagers',
+      eyebrow: 'Print and go',
+      body: 'Each of these lands on a single A4 page from your browser’s print dialog (Cmd+P).',
+    },
+    verdict: 'keep',
+  },
+  {
+    route: '/onepagers/goods',
+    audience: 'partner',
+    access: 'open',
+    leadsWithNow: {
+      heading: 'Plastic in, beds out, and the making moving On Country.',
+      eyebrow: 'How it works · one page',
+      body: 'Goods builds essential health hardware with remote First Nations communities.',
+    },
+    verdict: 'keep',
+  },
+  {
+    route: '/onepagers/stretch-bed',
+    audience: 'buyer',
+    access: 'open',
+    leadsWithNow: {
+      heading: 'The Stretch Bed',
+      eyebrow: 'The Stretch Bed · one page',
+      body: 'A flat-packable, washable bed made from recycled plastic, heavy-duty canvas, and galvanised steel.',
+    },
+    verdict: 'keep',
+  },
+  {
+    route: '/onepagers/facility',
+    audience: 'partner',
+    access: 'open',
+    leadsWithNow: {
+      heading: 'A factory that fits in shipping containers.',
+      eyebrow: 'The production facility · one page',
+      body: 'Waste plastic goes in one end, bed legs come out the other.',
+    },
+    verdict: 'keep',
+  },
+  {
     route: '/pitch/document',
     audience: 'funder',
     access: 'open',
