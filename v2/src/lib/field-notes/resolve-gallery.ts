@@ -21,6 +21,22 @@ const EL_KEY = process.env.EMPATHY_LEDGER_SUPABASE_KEY || '';
 const EL_PROJECT_ID =
   process.env.EMPATHY_LEDGER_PROJECT_ID || '6bd47c8a-e676-456f-aa25-ddcbb5a31047';
 
+// EL rows sometimes store site-relative URLs (`/api/media/by-path/file?bucket=…&path=…`)
+// that only resolve on empathyledger.com. Rendered verbatim on the Goods site they 404
+// against goodsoncountry.com, so map them straight to the Supabase public object URL.
+// Any other root-relative URL gets the EL site host prefixed.
+function normalizeElUrl(url: string | null | undefined): string {
+  if (!url) return '';
+  if (!url.startsWith('/')) return url;
+  if (url.startsWith('/api/media/by-path/file?')) {
+    const q = new URLSearchParams(url.slice(url.indexOf('?') + 1));
+    const bucket = q.get('bucket');
+    const path = q.get('path');
+    if (bucket && path) return `${EL_URL}/storage/v1/object/public/${bucket}/${path}`;
+  }
+  return `https://www.empathyledger.com${url}`;
+}
+
 interface UnifiedRow {
   id: string;
   title: string;
@@ -123,8 +139,8 @@ async function fetchStoriesGalleryRows(
       id: r.id,
       title: r.title || '(untitled)',
       caption: r.excerpt || undefined,
-      poster: r.story_image_url || '',
-      src: r.media_url || '',
+      poster: normalizeElUrl(r.story_image_url),
+      src: normalizeElUrl(r.media_url),
       isPublic: r.is_public,
       orientation: meta?.orientation,
       durationSeconds: meta?.duration_seconds,
@@ -162,8 +178,8 @@ async function fetchMediaAssetsVideoRows(
       id: r.id,
       title: baseName || '(untitled)',
       caption: r.caption || r.description || undefined,
-      poster: r.thumbnail_url || '',
-      src: r.cdn_url || '',
+      poster: normalizeElUrl(r.thumbnail_url),
+      src: normalizeElUrl(r.cdn_url),
       isPublic: (r.visibility || 'public') === 'public',
       orientation: orientationFromAspect(r.aspect_ratio, r.width, r.height),
       durationSeconds: r.duration ?? undefined,
@@ -206,8 +222,8 @@ async function fetchMediaAssetsPhotoRows(
       id: r.id,
       title: baseName || '(untitled)',
       caption: r.caption || r.description || undefined,
-      poster: r.cdn_url || r.thumbnail_url || '',
-      src: r.cdn_url || '',
+      poster: normalizeElUrl(r.cdn_url || r.thumbnail_url),
+      src: normalizeElUrl(r.cdn_url),
       isPublic: (r.visibility || 'public') === 'public',
       orientation: orientationFromAspect(r.aspect_ratio, r.width, r.height),
       createdAt: r.uploaded_at || r.created_at,
@@ -341,7 +357,7 @@ async function fetchPhotosByIds(
   for (const id of idList) {
     const r = byId.get(id);
     if (!r) continue;
-    const src = r.story_image_url || r.media_url;
+    const src = normalizeElUrl(r.story_image_url || r.media_url);
     if (!src) continue;
     out.push({
       id: r.id,
