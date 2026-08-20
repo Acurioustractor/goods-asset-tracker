@@ -1,7 +1,7 @@
 {
-  "asOf": "2026-07-18",
+  "asOf": "2026-08-20",
   "filled": 40,
-  "total": 41,
+  "total": 42,
   "resolved": {
     "cover-hero": {
       "label": "Cover / hero",
@@ -495,6 +495,19 @@
       "path": "v2/public/video/community-desktop.mp4",
       "consent": "public",
       "status": "canon"
+    },
+    "video-maningrida-case-study": {
+      "label": "Maningrida case-study film",
+      "group": "Video",
+      "type": "video",
+      "dataClass": "green",
+      "areas": [
+        "02"
+      ],
+      "source": "seed",
+      "path": "v2/public/video/maningrida-case-study-desktop.mp4",
+      "consent": "public",
+      "status": "seed"
     },
     "area-05-risk": {
       "label": "Area 05 — Risk",
