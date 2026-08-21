@@ -22,6 +22,9 @@ const navigation: NavItem[] = [
   { name: 'How it’s made', href: '/process' },
   { name: 'Communities', href: '/communities' },
   { name: 'Our story', href: '/story' },
+  // Field notes sit beside Our story on purpose: origin, then what is happening
+  // now. They were linked from 30 files and reachable from no page's nav.
+  { name: 'Field notes', href: '/field-notes' },
   { name: 'Back the work', href: '/partner' },
   { name: 'Contact', href: '/contact' },
 ];

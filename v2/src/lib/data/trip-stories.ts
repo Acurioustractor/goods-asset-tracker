@@ -1103,8 +1103,9 @@ const utopia: TripStory = {
 //   - No quote in this story is new. The only voice card is Shayne Bloomfield,
 //     already cleared and already public elsewhere.
 //
-// Starts life as published:false + unlisted:true — URL-reachable for review,
-// hidden from every listing surface, noindex. Flip both when Ben has seen it.
+// Published 2026-08-21. Shipped first as published:false + unlisted:true so it
+// could be read at its URL without appearing anywhere; that soft-launch window
+// is closed.
 const MIMG = '/images/stories/maningrida';
 
 const maningrida: TripStory = {
@@ -1113,8 +1114,9 @@ const maningrida: TripStory = {
   summary:
     'Homeland School Company asked for beds for their young people and a washing machine for the school. We pressed the parts at our own facility and sent them north, and community assembled every bed. It is the biggest build we have done in one place.',
   dateline: 'Maningrida and the Gamardi homeland, Manayingkarírra, Arnhem Land NT · July 2026',
-  published: false,
-  unlisted: true,
+  // Published 2026-08-21 on Ben's word. Consent for both HSC voices confirmed the
+  // same day; the 12 gallery frames are is_public in EL.
+  published: true,
   blocks: [
     {
       kind: 'masthead',
