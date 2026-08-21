@@ -1488,6 +1488,21 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     verdict: 'keep',
   },
   {
+    route: '/case-studies',
+    audience: 'partner',
+    access: 'open',
+    // 2026-08-21: the index the [slug] route never had. Added once a SECOND proven run
+    // (Alice Springs) published, because the comparison is the argument: Maningrida proves
+    // the making, Alice proves the work. Same two readers as the packs. Counts derive from
+    // COMMUNITY_BED_CANON; no dollar figures.
+    leadsWithNow: {
+      heading: 'How the runs actually worked',
+      eyebrow: 'Case studies',
+      body: 'One pack per proven run, told so another community can follow it.',
+    },
+    verdict: 'keep',
+  },
+  {
     route: '/case-studies/[slug]',
     audience: 'partner',
     access: 'open',

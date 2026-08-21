@@ -6,6 +6,7 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { communityLocations, communityPartnerships } from '@/lib/data/content';
 import { tripStories } from '@/lib/data/trip-stories';
+import { CASE_STUDIES } from '@/lib/data/case-studies';
 import type { TripStory } from '@/lib/data/trip-stories';
 import { PLASTIC_KG_PER_BED } from '@/lib/data/products';
 import { communityMedia } from '@/lib/data/community-media';
@@ -156,6 +157,9 @@ export default async function CommunityPage({ params }: PageProps) {
   ]);
 
   const fieldNotes = findFieldNotesForCommunity(community);
+  // Match on the COMMUNITY_BED_CANON id the case study already declares, not on
+  // name text, so a rename cannot silently break the link.
+  const caseStudy = CASE_STUDIES.find((c) => c.published && c.communityId === slug) ?? null;
   // Quotes from the compendium, consent-gated the same way as everywhere else.
   const voices = getCommunityVoices({ name: community.name, aliases: [] }).filter((v) =>
     isClearedForExternal(v.name),
@@ -381,6 +385,23 @@ export default async function CommunityPage({ params }: PageProps) {
               </li>
             ))}
           </ul>
+        </section>
+      )}
+
+      {/* Case study — the "how we did it" pack for this community, when one exists.
+          A community with a published case study about itself should link to it;
+          until now nothing on this page did. */}
+      {caseStudy && (
+        <section className="mb-10">
+          <h2 className="mb-4 text-sm font-medium uppercase tracking-wider text-stone-500">Case study</h2>
+          <Link
+            href={`/case-studies/${caseStudy.slug}`}
+            className="block rounded-lg border border-stone-200 bg-white p-4 transition-colors hover:border-amber-300 hover:bg-amber-50/40"
+          >
+            <div className="font-display text-lg font-medium">{caseStudy.title}</div>
+            <p className="mt-1 text-sm text-stone-600">{caseStudy.standfirst}</p>
+            <p className="mt-2 text-xs text-stone-400">How it worked, step by step</p>
+          </Link>
         </section>
       )}
 
