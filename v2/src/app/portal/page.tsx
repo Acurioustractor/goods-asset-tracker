@@ -1,9 +1,12 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { MODULES } from '@/lib/data/pathway-stages';
+import { TRANSFER_NOTE, WHOSE_MODULE_RULE, PORTAL_MODULE_FOCUS } from '@/lib/data/portal-modules';
 
 export const metadata: Metadata = {
   title: 'Partner Portal | Goods on Country',
-  description: 'Your community enterprise support system.',
+  description:
+    'Nine modules. Which are yours and which are ours is agreed with your community, in writing, including what happens at Transfer. The portal is where the ones you have taken get run.',
 };
 
 const pillars = [
@@ -57,18 +60,58 @@ const pillars = [
   },
 ];
 
+/** The module label behind a portal screen, so each card is named in the same nine terms. */
+function moduleLabelFor(href: string): string {
+  const focus = PORTAL_MODULE_FOCUS.find((f) => f.route === href);
+  if (!focus) return '';
+  return MODULES.find((m) => m.id === focus.module)?.label ?? '';
+}
+
 export default function PortalHomePage() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-8">
-      {/* Welcome */}
-      <div className="text-center mb-8">
+      {/* Welcome.
+          Was "G'day, partner / Your enterprise support system. What do you need?" until
+          2026-08-21, which never named a module — partner.leadWith is "which of the nine
+          modules is theirs, and which is ours", so the route stood as a rewrite. The split
+          itself is not asserted here: it is agreed per community (MODULE_RULE) and this is a
+          public portal with no community loaded. What it can say is the menu, that the split
+          is written down, and what Transfer means. */}
+      <div className="text-center mb-6">
         <h1 className="text-3xl font-bold text-stone-900 mb-2">
-          G&apos;day, partner
+          Nine modules. Some are yours, some are ours.
         </h1>
         <p className="text-stone-600 text-lg">
-          Your enterprise support system. What do you need?
+          {WHOSE_MODULE_RULE}
         </p>
       </div>
+
+      {/* The nine, named */}
+      <div className="mb-8 rounded-xl border border-stone-200 bg-white p-5">
+        <ol className="grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
+          {MODULES.map((m, i) => (
+            <li key={m.id} className="flex gap-3">
+              <span className="text-xs font-bold text-stone-400 pt-0.5 w-4 flex-shrink-0">
+                {i + 1}
+              </span>
+              <div className="min-w-0">
+                <p className="text-sm font-bold text-stone-900">{m.label}</p>
+                <p className="text-xs text-stone-600">{m.what}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+        <p className="mt-5 border-t border-stone-100 pt-4 text-xs text-stone-500">
+          At Transfer: {TRANSFER_NOTE.toLowerCase()}.{' '}
+          <Link href="/partners" className="font-medium text-green-700 underline">
+            The six stages and the full module menu
+          </Link>
+        </p>
+      </div>
+
+      <p className="mb-4 text-sm font-bold text-stone-700">
+        Running the modules you have taken on
+      </p>
 
       {/* Four big buttons */}
       <div className="grid grid-cols-1 gap-4">
@@ -82,9 +125,12 @@ export default function PortalHomePage() {
               {pillar.icon}
             </div>
             <div className="min-w-0">
-              <div className="flex items-baseline gap-2">
+              <div className="flex items-baseline gap-2 flex-wrap">
                 <h2 className="text-lg font-bold text-stone-900">{pillar.title}</h2>
                 <span className="text-sm text-stone-500">{pillar.subtitle}</span>
+                <span className="text-xs uppercase tracking-widest text-stone-400">
+                  {moduleLabelFor(pillar.href)}
+                </span>
               </div>
               <p className="text-sm text-stone-600 mt-0.5">{pillar.description}</p>
             </div>

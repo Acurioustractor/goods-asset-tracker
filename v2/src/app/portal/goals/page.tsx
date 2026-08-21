@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { ModuleLine } from '@/components/portal/module-line';
 
 interface Goal {
   id: string;
@@ -179,6 +180,8 @@ export default function GoalsPage() {
           New Goal
         </button>
       </div>
+
+      <ModuleLine route="/portal/goals" />
 
       {/* New goal form */}
       {showNew && (

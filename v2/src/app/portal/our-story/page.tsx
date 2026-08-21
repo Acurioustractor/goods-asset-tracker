@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { ModuleLine } from '@/components/portal/module-line';
 
 interface ReportContent {
   id: string;
@@ -302,6 +303,8 @@ export default function OurStoryPage() {
           New Report
         </button>
       </div>
+
+      <ModuleLine route="/portal/our-story" />
 
       {/* New report form */}
       {showNewReport && (
