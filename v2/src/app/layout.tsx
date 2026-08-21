@@ -16,6 +16,8 @@ import { CartDrawer } from '@/components/cart';
 // routes, so without it every community, case study and field note is its own
 // unlabelled row instead of rolling up.
 import { Analytics } from '@vercel/analytics/next';
+// Core Web Vitals, reported against the same route patterns as Analytics above.
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import Script from 'next/script';
 import { OrganizationJsonLd, WebSiteJsonLd } from '@/components/seo';
 
@@ -131,6 +133,7 @@ export default function RootLayout({
           <CartDrawer />
         </CartProvider>
         <Analytics />
+        <SpeedInsights />
         {/* Google Analytics 4. Inert until NEXT_PUBLIC_GA_ID (G-XXXXXXX) is set.
             Vercel Analytics above stays on in parallel. */}
         {process.env.NEXT_PUBLIC_GA_ID && (
