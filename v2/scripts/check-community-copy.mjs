@@ -61,8 +61,13 @@ const ALLOWED_FILES = new Set([
 const ALLOWED_LINES = [
   {
     file: 'src/lib/data/claims-ledger.ts',
-    match: /Asset facts reconciled against the live register/,
-    why: 'A dated ledger note recording what was reconciled on 2026-05-30. Quoting the superseded numbers is the entire point of the entry.',
+    // Matches the QUOTED FIGURES, not the sentence around them. The previous
+    // regex keyed off the wording ("Asset facts reconciled against the live
+    // register"), a prose sweep later reworded the note, and the exemption
+    // silently stopped matching — which is how this guard went red on main.
+    // The figures are the stable part of a dated ledger entry.
+    match: /496 beds, 9 communities/,
+    why: 'A dated ledger note recording what was reconciled on 2026-05-30. Quoting the superseded numbers is the entire point of the entry, so the count must NOT be updated to canon.',
   },
   {
     file: 'src/lib/data/pitch-control-room.ts',

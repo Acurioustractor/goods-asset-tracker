@@ -228,7 +228,7 @@ export const CANON: CanonFact[] = [
     reconcilesWith: ['display-storyteller-pool'],
   },
   {
-    id: 'display-storyteller-pool', label: 'Website storyteller pool (display tier)', value: 32, unit: 'voices',
+    id: 'display-storyteller-pool', label: 'Website storyteller pool (display tier)', value: 34, unit: 'voices',
     domain: 'story', claimLabel: 'internal-only', dataClass: 'red',
     source: 'check-story-coverage.mjs computed pool (curated-quotes.ts ∪ trip-stories.ts cleared VoiceCards); mirror of wiki/canon/story-coverage.md. Flipped to check: auto on 2026-07-25 — that script computed this number all along and knew when the fact disagreed, but only wrote a warning into a markdown report. It now exits 1 on a mismatch and prints the correct value.', check: 'auto', asAt: '2026-06-16', owner: 'Ben',
     definition: 'Named voices live on the website via a public curated quote or a cleared trip VoiceCard (incl. partners/board). A coverage queue, NOT the external-clearance list — use cleared-voices for any external/funder claim. Mirrors the Loop E computed pool; re-confirm each run (Loop E warns if this drifts from the computed count).',

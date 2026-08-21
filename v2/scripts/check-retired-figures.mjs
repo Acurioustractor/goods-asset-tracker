@@ -139,13 +139,13 @@ const PHRASE_EXEMPT = [
  * direction of the alternative is worse: a guard with false positives gets muted, and a muted
  * guard catches nothing at all.
  */
-const NEGATED = /\b(not|never|no longer|retired|banned|instead of|rather than|do not|don't|avoid|stop using|is wrong)\b/i;
+const NEGATED = /\b(not|never|no longer|there (?:is|are|was|were) no|retired|banned|instead of|rather than|do not|don't|avoid|stop using|is wrong)\b/i;
 
 /**
  * Ownership language is compliant when it names itself as a pathway. Ruling D and the standing
  * ceiling forbid claiming ownership COMPLETE, not discussing ownership.
  */
-const PATHWAY_QUALIFIED = /\b(still ahead|not yet|destination|over time|toward|towards|pathway|will be|closer to|moving)\b/i;
+const PATHWAY_QUALIFIED = /\b(still ahead|not yet|destination|over time|toward|towards|pathway|will be|closer to|moving|move[sd]? to|can move)\b/i;
 
 /** "co-design" as a ThemeId key or label is data, not prose. Migration is tracked separately. */
 const CODESIGN_AS_KEY = /(theme|themes|id)\s*:|['"`]co-design['"`]\s*[:,\]]|\|\s*'co-design'/;
