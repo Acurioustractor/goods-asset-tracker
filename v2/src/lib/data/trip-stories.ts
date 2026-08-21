@@ -1111,7 +1111,7 @@ const maningrida: TripStory = {
   slug: 'maningrida-july-2026',
   title: 'Forty beds, and a washing machine at the school',
   summary:
-    'A homeland school company asked for beds for their young people and a washing machine for the school. We pressed the parts at our own facility and sent them north, and community assembled every bed. It is the biggest build we have done in one place.',
+    'Homeland School Company asked for beds for their young people and a washing machine for the school. We pressed the parts at our own facility and sent them north, and community assembled every bed. It is the biggest build we have done in one place.',
   dateline: 'Maningrida and the Gamardi homeland, Manayingkarírra, Arnhem Land NT · July 2026',
   published: false,
   unlisted: true,
@@ -1123,7 +1123,10 @@ const maningrida: TripStory = {
       standfirst:
         'The ask came from Maningrida, not from us. Homeland School Company wanted their young people off the floor and a machine at the school that could wash what they slept on. Forty Stretch Beds were pressed at our facility, sent north, and built in community by the people who would sleep on them.',
       dateline: 'Manayingkarírra, Arnhem Land, Northern Territory · July 2026',
-      media: { image: `${MIMG}/10-drone-whole-run.jpg` },
+      media: {
+        image: `${MIMG}/10-drone-whole-run.jpg`,
+        fromTag: { all: ['community:maningrida', 'use:hero'] },
+      },
       links: [{ label: 'The full case study', href: '/case-studies/maningrida' }],
     },
     {
@@ -1142,10 +1145,27 @@ const maningrida: TripStory = {
       actmark: 'The road in',
       title: 'A long way from where the truck starts.',
       standfirst: 'Everything on this run travelled by road into Arnhem Land.',
-      media: { image: `${MIMG}/02-aerial-over-country.jpg` },
+      media: {
+        image: `${MIMG}/02-aerial-over-country.jpg`,
+        fromTag: { all: ['community:maningrida', 'use:establishing'] },
+      },
       mobileLayout: 'stacked',
     },
+    {
+      kind: 'el-gallery',
+      heading: 'Getting there',
+      sub: 'The kits arriving, and the country they crossed to get here.',
+      tagQuery: { all: ['community:maningrida', 'use:establishing'] },
+      limit: 6,
+    },
     { kind: 'health-facts', focus: 'rhd-prevention' },
+    {
+      kind: 'hero-photo',
+      actmark: 'The school',
+      quote: 'A good night’s sleep means the kids are fresh and ready for school the next day.',
+      attribution: 'Tehmineh Mason · Principal, Homeland School Company',
+      media: { image: `${MIMG}/01-bed-run-outside-school.jpg` },
+    },
     {
       kind: 'read',
       tag: 'Act two · the material',
@@ -1155,7 +1175,10 @@ const maningrida: TripStory = {
         'You can see the whole history of the material in the finished panel: the speckle is the bottle caps and the jerry cans, still visible in the surface. Twenty kilograms of HDPE goes into each bed and stays out of the ground.',
         'The parts for these forty beds were pressed and packed at our own production facility, not bought in. The canvas was sewn by a family business in Alice Springs.',
       ],
-      media: { image: `${MIMG}/04-hdpe-panel-macro.jpg` },
+      media: {
+        image: `${MIMG}/04-hdpe-panel-macro.jpg`,
+        fromTag: { all: ['community:maningrida', 'use:material'] },
+      },
       links: [{ label: 'How it is made', href: '/process' }],
     },
     {
@@ -1165,6 +1188,7 @@ const maningrida: TripStory = {
       media: { image: `${MIMG}/06-hdpe-panel-unrolled.jpg` },
       mobileLayout: 'stacked',
     },
+    { kind: 'goods-facts' },
     {
       kind: 'canon-video',
       slot: 'video-maningrida-case-study',
@@ -1185,6 +1209,18 @@ const maningrida: TripStory = {
       media: { image: `${MIMG}/11-build-day-wide.jpg` },
     },
     {
+      kind: 'el-gallery',
+      heading: 'Build day',
+      sub: 'Kids and adults, side by side, learning it as they went.',
+      tagQuery: { all: ['community:maningrida', 'use:assembly'] },
+      limit: 8,
+    },
+    {
+      kind: 'bleedquote',
+      text: 'We can take it with us anywhere, like funeral or ceremony. You can fold it, wash it, pack and unpack it and then we go.',
+      media: { image: `${MIMG}/15-carrying-bed-through-community.jpg` },
+    },
+    {
       kind: 'read',
       tag: 'Act four · the loop',
       heading: 'The bed and the machine are one system',
@@ -1198,6 +1234,13 @@ const maningrida: TripStory = {
     },
     { kind: 'health-facts', focus: 'washing-machine-cycle' },
     {
+      kind: 'hero-photo',
+      actmark: 'On country',
+      quote: 'Nic show us how to put all things together, so yeah, we know how to pack it and unpack.',
+      attribution: 'Eric Pascoe · On Country Learning Coordinator, Homeland School Company',
+      media: { image: `${MIMG}/14-eric-on-bed-in-bush.jpg` },
+    },
+    {
       kind: 'stats',
       lead: 'What is on the ground at Maningrida.',
       items: [
@@ -1208,22 +1251,26 @@ const maningrida: TripStory = {
       ],
     },
     {
-      kind: 'read',
-      tag: 'The partner',
-      heading: 'Homeland School Company held this run',
-      paragraphs: [
-        'A delivery like this one needs a local organisation to hold it, and here that was Homeland School Company, a community-controlled homeland education organisation. They made the ask, they chose where the beds went, and their people ran the build day.',
-        'What Maningrida asks for next belongs to Maningrida to say. When they say it, it will be here.',
-      ],
-      media: { image: `${MIMG}/14-eric-on-bed-in-bush.jpg` },
-    },
-    {
       kind: 'voices',
       heading: 'In their words',
-      sub: 'Cleared voices only. More from this run will be added as consent is confirmed.',
+      sub: 'Consent confirmed with Homeland School Company, August 2026.',
       cards: [
         {
-          quote: 'This partnership could go a long way. I feel it\'s got a long, long path ahead.',
+          quote: 'This is a great project, and it will definitely have lasting effects on the students and families out here.',
+          who: 'Tehmineh Mason',
+          community: 'Principal, Homeland School Company',
+          consent: 'cleared',
+          storytellerSlug: 'tehmineh-mason',
+        },
+        {
+          quote: 'Yo, I want to say thank you to Goods on Country.',
+          who: 'Eric Pascoe',
+          community: 'On Country Learning Coordinator, Homeland School Company',
+          consent: 'cleared',
+          storytellerSlug: 'eric-pascoe',
+        },
+        {
+          quote: 'This partnership could go a long way. I feel it’s got a long, long path ahead.',
           who: 'Shayne Bloomfield',
           community: 'On working with Goods',
           consent: 'cleared',
@@ -1231,11 +1278,42 @@ const maningrida: TripStory = {
       ],
     },
     {
+      kind: 'el-gallery',
+      heading: 'The whole run',
+      sub: 'Frames from the film, which is the only photography of this build.',
+      tagQuery: { all: ['community:maningrida'] },
+      limit: 12,
+    },
+    {
+      kind: 'read',
+      tag: 'The partner',
+      heading: 'Homeland School Company held this run',
+      paragraphs: [
+        'A delivery like this one needs a local organisation to hold it, and here that was Homeland School Company, a community-controlled homeland education organisation. They made the ask, they chose where the beds went, and their people ran the build day.',
+        'What Maningrida asks for next belongs to Maningrida to say. When they say it, it will be here.',
+      ],
+      media: { image: `${MIMG}/12-billabong.jpg` },
+    },
+    {
       kind: 'live-map',
       heading: 'Where the beds are',
       intro: 'Counts come from the register, not from this page.',
       caveat: 'Numbers update as deliveries are recorded. Communities appear here only where the story is cleared to be told.',
       scope: { community: 'maningrida' },
+    },
+    {
+      kind: 'pullquote',
+      kicker: 'The dream for the future',
+      quote: 'The community can collect the plastic that is harming the country, shred it down, and make the next beds here. Jobs for young people, and part of the curriculum.',
+      attribution: 'What this run is a step toward',
+    },
+    {
+      kind: 'close',
+      title: 'Forty beds in a circle on the sand, Gamardi.',
+      media: {
+        image: `${MIMG}/13-drone-bed-arc.jpg`,
+        fromTag: { all: ['community:maningrida', 'use:closing'] },
+      },
     },
     {
       kind: 'capture',
@@ -1270,11 +1348,6 @@ const maningrida: TripStory = {
         },
       ],
       link: { label: 'Read the full case study', href: '/case-studies/maningrida' },
-    },
-    {
-      kind: 'close',
-      title: 'Forty beds in a circle on the sand, Gamardi.',
-      media: { image: `${MIMG}/13-drone-bed-arc.jpg` },
     },
     {
       kind: 'portal',

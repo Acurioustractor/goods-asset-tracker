@@ -53,6 +53,10 @@ const CLEARED_VOICES_EXTERNAL: string[] = [
   'Margaret Lloyd',
   'Tanya Turner',
   'Jahvan Oui', 'Jahvan',
+  // Homeland School Company, Maningrida. Full consent confirmed by Ben 2026-08-21;
+  // EL profiles carry consent_given=true from the same date.
+  'Eric Pascoe',
+  'Tehmineh Mason',
 ];
 
 function normaliseVoiceName(name: string): string {

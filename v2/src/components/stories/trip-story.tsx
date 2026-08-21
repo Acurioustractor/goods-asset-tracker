@@ -931,6 +931,9 @@ function renderBlock(block: TripBlock, blockIndex: number, internal: boolean, cu
                 so a reader who scrolls past downloads nothing. */}
             <video controls preload="none" playsInline poster={film.poster ?? undefined}>
               <source src={videoUrl(film.desktopFile)} type="video/mp4" />
+              {film.captions && (
+                <track kind="captions" srcLang="en" label="English" src={film.captions} default />
+              )}
             </video>
             {block.caption && (
               <figcaption>
