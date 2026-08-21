@@ -23,8 +23,19 @@ defaults:
 jobs:
   checks:
     name: Drift guards + tests (hermetic)
-    # Hermetic: no secrets, no external services. Runs on PRs and pushes.
-    if: github.event_name != 'schedule'
+    # Hermetic: no secrets, no external services. Runs on EVERY trigger,
+    # including the daily schedule.
+    #
+    # This used to carry `if: github.event_name != 'schedule'`, on the reasoning
+    # that hermetic checks cannot drift on their own between pushes. They can,
+    # because the CONTENT they guard changes: an allowlist keyed to a sentence
+    # dies when a prose sweep rewords that sentence. On 2026-08-21 check:drift:ci
+    # had been failing on main and nobody knew, because the only recent runs on
+    # main were the 19:00 cron — which skipped this job and reported green.
+    #
+    # A daily green tick that does not test the gate is worse than no tick: it
+    # reads as assurance. Running it on the schedule costs ~2 minutes a day and
+    # surfaces a red main the morning it happens rather than at the next push.
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
