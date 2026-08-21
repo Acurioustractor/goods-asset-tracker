@@ -1405,6 +1405,64 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
     notes:
       'Cleared by Ben 2026-07-26: main Goods member with approval, the maker/ownership voice for Palm Island. Quotes are verbatim from the "Final Video Jahvan" transcript (descript-videos.ts viewId 6hVl3CzxdqR), pasted by Ben 2026-07-26; Ben confirmed Speaker 24 is Jahvan, so both delivery-day lines are usable. The unnamed washing-machine recipients (Speakers 22/23) are NOT cleared and none of their words may be quoted. Partner of Ebony Oui, who is NOT yet cleared as her own voice. Portrait supplied by Ben 2026-07-26.',
   },
+  {
+    slug: 'eric-pascoe',
+    name: 'Eric Pascoe',
+    role: 'On Country Learning Coordinator, Homeland School Company',
+    community: 'Maningrida',
+    tier: 'external',
+    turns: '3',
+    quotes: [
+      {
+        text: 'Nic show us how to put all things together, so yeah, we know how to pack it and unpack.',
+        context: 'Learning the build at Maningrida',
+        status: 'primary',
+      },
+      {
+        text: 'We can take it with us anywhere, like funeral or ceremony. You can fold it, wash it, pack and unpack it and then we go.',
+        context: 'Why the bed suits life on the homelands',
+        status: 'approved',
+        note: 'Spoken in language; text is the film\'s own burned-in subtitle over Eric\'s interview shot (3:20-3:29). Not from the English SRT.',
+      },
+      {
+        text: 'Yo, I want to say thank you to Goods on Country.',
+        context: 'Closing the film',
+        status: 'approved',
+        note: 'The SRT continues "and Namaleia", which is an unresolved ASR reading of a name or place. Deliberately not reproduced until confirmed.',
+      },
+    ],
+    portrait: null,
+    notes:
+      'Cleared by Ben 2026-08-21 (full consent from Homeland School Company). Speaks on camera in the approved Maningrida film (cut 17 Aug 2026), lower-third at 1:36; he is "Speaker 5" in the Descript SRT. EL storyteller 4d0a6939-9264-4cc8-8587-5851817b0f89, org Homeland School Company, consent_given=true. Portrait is a frame from the film held in EL (profile-images/storytellers/eric-pascoe.jpg), not in this repo.',
+  },
+  {
+    slug: 'tehmineh-mason',
+    name: 'Tehmineh Mason',
+    role: 'Principal, Homeland School Company',
+    community: 'Maningrida',
+    tier: 'external',
+    turns: '3',
+    quotes: [
+      {
+        text: 'A good night\'s sleep means the kids are fresh and ready for school the next day.',
+        context: 'Why the school asked for beds',
+        status: 'primary',
+      },
+      {
+        text: 'We had some really good conversations around healthy sleep and healthy lifestyles.',
+        context: 'The build day at Maningrida',
+        status: 'approved',
+      },
+      {
+        text: 'This is a great project, and it will definitely have lasting effects on the students and families out here.',
+        context: 'Closing the film',
+        status: 'approved',
+      },
+    ],
+    portrait: null,
+    notes:
+      'Cleared by Ben 2026-08-21 (full consent from Homeland School Company). HSC School Principal; five years living and working in Maningrida with her family. Speaks on camera in the approved Maningrida film, lower-third at 2:16; she is "Speaker 2" in the Descript SRT. NOTE: the closing line was briefly mis-attributed to Eric Pascoe from a Whisper pass before the real SRT arrived; it is hers. EL storyteller 49fb2140-c862-4e45-a5dc-1d8fc828b2e3, consent_given=true. Portrait is a film frame held in EL (profile-images/storytellers/tehmineh-mason.jpg), not in this repo.',
+  },
 ];
 
 // ── Lookup helpers ──────────────────────────────────────────────────────────

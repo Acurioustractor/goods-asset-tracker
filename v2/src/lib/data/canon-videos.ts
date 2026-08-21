@@ -12,6 +12,8 @@ export interface CanonVideoEntry {
   desktopFile: string;
   mobileFile: string;
   poster: string | null;
+  /** WebVTT caption track served from /public/video, or null if none produced. */
+  captions: string | null;
   consent: string;
   dataClass: string;
   status: string;

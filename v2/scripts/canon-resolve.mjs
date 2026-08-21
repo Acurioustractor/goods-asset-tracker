@@ -68,11 +68,16 @@ for (const [key, r] of Object.entries(resolved)) {
   const variant = (suf, ext) => desktopFile.replace(/-desktop\.(mp4|webm)$/, `-${suf}.${ext}`);
   const mobileFile = variant('mobile', 'mp4');
   const posterFile = variant('poster', 'jpg');
+  // WebVTT caption track, if one has been produced. Named <base>.en.vtt beside the
+  // video (e.g. maningrida-case-study.en.vtt). Unlike the mp4s, .vtt files ARE
+  // git-tracked and served from /public, so they are same-origin for the <track>.
+  const captionFile = desktopFile.replace(/-desktop\.(mp4|webm)$/, '.en.vtt');
   videos[key] = {
     label: r.label,
     desktopFile,
     mobileFile: fs.existsSync(path.join(REPO, VIDEODIR, mobileFile)) ? mobileFile : desktopFile,
     poster: fs.existsSync(path.join(REPO, VIDEODIR, posterFile)) ? '/video/' + posterFile : null,
+    captions: fs.existsSync(path.join(REPO, VIDEODIR, captionFile)) ? '/video/' + captionFile : null,
     consent: r.consent || 'public',
     dataClass: r.dataClass,
     status: r.status,

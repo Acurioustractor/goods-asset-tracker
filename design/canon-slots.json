@@ -502,6 +502,19 @@
       "seed": "v2/public/video/community-desktop.mp4"
     },
     {
+      "key": "video-maningrida-case-study",
+      "label": "Maningrida case-study film",
+      "group": "Video",
+      "type": "video",
+      "dataClass": "green",
+      "areas": [
+        "02"
+      ],
+      "use": "the four-minute film of the Maningrida run",
+      "note": "Approved release cut, 17 Aug 2026, 4:00. Read by /case-studies/maningrida (film slot) and by homeFeatureVideo() in home.ts. Green because the cut itself is cleared for public release. Separate gate: named on-screen voices are Nicholas Marchesi (Goods co-founder) and Eric Pascoe (On Country Learning Coordinator, Homeland School Company) — Pascoe is NOT yet in storyteller-registry.ts, so his words may not be lifted into page copy. Stills pulled from this film that show identifiable children carry their own consent question.",
+      "seed": "v2/public/video/maningrida-case-study-desktop.mp4"
+    },
+    {
       "key": "area-05-risk",
       "label": "Area 05 — Risk",
       "group": "QBE area visuals",

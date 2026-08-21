@@ -130,6 +130,9 @@ export default async function CaseStudyPage({ params }: Props) {
           {film ? (
             <video controls preload="none" poster={film.poster ?? undefined} className="mt-6 w-full">
               <source src={videoUrl(film.desktopFile)} type="video/mp4" />
+              {film.captions && (
+                <track kind="captions" srcLang="en" label="English" src={film.captions} default />
+              )}
             </video>
           ) : (
             <div className="mt-6 flex min-h-[240px] items-center justify-center border border-dashed border-white/30">

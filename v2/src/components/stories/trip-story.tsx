@@ -6,6 +6,8 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { MediaSwapZone, AddPhotoToManualGallery } from '@/components/admin/media-swap-picker';
 import { communityLocations } from '@/lib/data/content';
+import { canonVideo } from '@/lib/data/canon-videos';
+import { videoUrl } from '@/lib/data/media';
 import type { TripStory as TripStoryData, TripBlock, MediaRef, NavLink } from '@/lib/data/trip-stories';
 import { tripStories } from '@/lib/data/trip-stories';
 import {
@@ -898,6 +900,51 @@ function renderBlock(block: TripBlock, blockIndex: number, internal: boolean, cu
           {block.attribution && <p className="ts-pq-attr ts-reveal d2">{block.attribution}</p>}
         </section>
       );
+    case 'canon-video': {
+      // A produced, cleared film resolved from a canon-videos slot. Unlike the
+      // `videos` case above this is public: a slot only fills once the cut has
+      // passed review, so there is no second consent gate to hold here.
+      const film = canonVideo(block.slot);
+      if (!film) {
+        // Slot not filled yet. Public sees nothing; an author sees why.
+        if (!internal) return null;
+        return (
+          <section className="ts-videos ts-videos--cinema">
+            {block.heading && <h2 className="ts-vh ts-reveal">{block.heading}</h2>}
+            <figure
+              className="ts-vid ts-vid--cinema ts-reveal d2"
+              style={{ minHeight: 200, display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px dashed rgba(255,255,255,0.2)' }}
+            >
+              <span style={{ color: 'rgba(245,239,226,0.5)', fontSize: 13, textAlign: 'center', padding: '2rem' }}>
+                Canon video slot <code>{block.slot}</code> is empty. Hidden in public.
+              </span>
+            </figure>
+          </section>
+        );
+      }
+      return (
+        <section className="ts-videos ts-videos--cinema">
+          {block.heading && <h2 className="ts-vh ts-reveal">{block.heading}</h2>}
+          {block.sub && <p className="ts-vsub ts-reveal d1">{block.sub}</p>}
+          <figure className="ts-vid ts-vid--cinema ts-reveal d2">
+            {/* preload="none": a produced edit has sound and is click-to-play,
+                so a reader who scrolls past downloads nothing. */}
+            <video controls preload="none" playsInline poster={film.poster ?? undefined}>
+              <source src={videoUrl(film.desktopFile)} type="video/mp4" />
+              {film.captions && (
+                <track kind="captions" srcLang="en" label="English" src={film.captions} default />
+              )}
+            </video>
+            {block.caption && (
+              <figcaption>
+                <b>{film.label}</b>
+                {block.caption}
+              </figcaption>
+            )}
+          </figure>
+        </section>
+      );
+    }
     case 'el-video-gallery': {
       // Video gallery sourced from EL by tag, populated by the server
       // resolver. Internal preview shows every match; public shows only

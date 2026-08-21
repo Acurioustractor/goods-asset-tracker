@@ -103,6 +103,76 @@ export const CASE_STUDIES: CaseStudy[] = [
     videoKey: 'video-maningrida-case-study',
     published: true,
   },
+  {
+    // ALICE SPRINGS — the second proven run, and the one that proves a different thing.
+    // Maningrida proves the MAKING (parts pressed at our facility, shipped, assembled in
+    // community). Alice proves the WORK: young people paid to build, with a community-
+    // controlled organisation holding the program and choosing where the beds went.
+    //
+    // Counts: COMMUNITY_BED_CANON has alice-springs at 1 Basket / 15 Stretch = 16, which is
+    // what STAYED in Alice. The same build also produced the 87 beds that went out to the
+    // Utopia homelands — those are counted against Utopia, not here, and the copy below is
+    // careful not to claim them twice.
+    //
+    // videoKey points at a slot that is deliberately EMPTY. There is Oonchiumpa build
+    // footage in Empathy Ledger, but the only resolved build slot (video-build) is
+    // dataClass red / consent gated, so wiring it here would put gated footage on a public
+    // page. The empty slot renders the honest "being cut" card instead, exactly as
+    // Maningrida's did until its film cleared.
+    slug: 'alice-springs',
+    communityId: 'alice-springs',
+    place: 'Alice Springs',
+    country: 'Mparntwe, Central Australia NT',
+    title: 'Young people built the beds, and got paid to do it',
+    standfirst:
+      'Oonchiumpa brought young people in for two days out the back of their office in Alice Springs. They built Stretch Beds from flat-pack, kept one each, and loaded the rest onto the truck. It is the run that proves the work, not just the product.',
+    hero: {
+      src: '/images/community/alice-springs/oonchiumpa-team-red-bed.jpg',
+      alt: 'The Oonchiumpa team with a finished red Stretch Bed in Alice Springs',
+    },
+    partner: {
+      name: 'Oonchiumpa Consultancy',
+      role: 'an Aboriginal-owned consultancy and youth service in Alice Springs',
+      // Named publicly on /partners/oonchiumpa, which carries the partnership story.
+      nameCleared: true,
+    },
+    steps: [
+      {
+        title: 'Oonchiumpa held the program',
+        body: 'Who got picked up each morning, what the room felt like, which households the beds would go to: all of that was Oonchiumpa. They are an Aboriginal-owned organisation already working with these young people, so the build sat inside a relationship that existed long before Goods turned up.',
+        photo: { src: '/images/community/alice-springs/oonchiumpa-office-joy.jpg', alt: 'The Oonchiumpa office in Alice Springs' },
+      },
+      {
+        title: 'Two days, and every builder kept one',
+        body: 'Young men and young women built Stretch Beds from flat-pack over two days, supported by Oonchiumpa workers. Every young person who built a bed kept a bed. That is the part that changes the room: it is not a work experience placement, it is your bed, and you made it.',
+        photo: { src: '/images/community/alice-springs/frame-build-camp.jpg', alt: 'Building a Stretch Bed frame' },
+      },
+      {
+        title: 'The rest went out on the truck',
+        body: 'Oonchiumpa chose where the remaining beds went and local teams led the runs out to the homelands the next morning. Sixteen beds stayed in Alice Springs. The materials were paid for by Centrecorp Foundation, an Aboriginal Trust in the Northern Territory.',
+        photo: { src: '/images/community/alice-springs/stretch-bed-two-generations.jpg', alt: 'Two generations with a Stretch Bed' },
+      },
+      {
+        title: 'The work carried on after the truck left',
+        body: 'The build became paid work for some of the young people involved, and the skills stayed with them. A bed that assembles in about five minutes with no tools is a bed that can be taught in a day and taught again by the person who learned it.',
+        photo: { src: '/images/community/alice-springs/stretch-bed-kids-pile.jpg', alt: 'Kids on a finished Stretch Bed' },
+      },
+    ],
+    voiceNames: ['Kristy Bloomfield', 'Fred Campbell'],
+    momentum: [
+      'Paid roles are already standing up through Oonchiumpa, which is what a pathway to owning the work looks like at the start of it.',
+      'The young people who built beds here are the same cohort who could teach the next build, in Alice or further out.',
+      'A conversation about community ownership of the making is open with Oonchiumpa; where it lands is theirs to say.',
+    ],
+    forCommunities: [
+      'It starts with a local organisation that already holds relationships with the young people, not with a bed order.',
+      'Two days is enough to teach the build; the flat-pack is designed so no tools and no trade background are needed.',
+      'Every builder keeping their own bed is not a nice extra, it is the thing that makes the room work.',
+      'Who the remaining beds go to should be decided by the organisation that knows the households, not by us.',
+    ],
+    videoKey: 'video-alice-build-case-study',
+    published: true,
+  },
 ];
 
 export function caseStudy(slug: string): CaseStudy | null {
