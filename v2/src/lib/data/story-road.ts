@@ -122,6 +122,48 @@ export const storySource =
  * road", and its job is to refuse the arrives-carrying-the-answer frame before any
  * place is named.
  */
+/**
+ * THE LEAD — what a supporter meets before the essay starts.
+ *
+ * /story is the supporter front door (audience.ts, frontDoor: '/story'), and the
+ * supporter contract is exact: leadWith "One face, one voice, one place", and
+ * needsToSee "A specific thing their money did". mustNeverSee is "Aggregate
+ * impact language in place of a person."
+ *
+ * The essay below this used to open the page. It is good writing and it stays,
+ * but it opened on a thesis — "This is not a story in which Goods on Country
+ * arrives carrying the answer" — over a generic product photo. No face, no
+ * voice, no place, which is what route-audience flagged it for.
+ *
+ * So a person leads and the argument follows. The voice resolves through the
+ * storyteller registry at render time exactly like every other voice on this
+ * page: if Fred's tier ever stops being `external`, this block renders without
+ * the quote rather than reaching around the gate.
+ *
+ * The money line is the canonical one from offers.ts (OFFERS.stretchBed,
+ * status: approved), not a number typed here. No deductibility claim appears:
+ * supporter.mustNeverSee forbids one until the receipting mechanics are
+ * confirmed, and they are not.
+ */
+export const storyLead = {
+  eyebrow: 'Alice Springs, Northern Territory',
+  /** Resolved through storyteller-registry at render. Registry is the gate. */
+  voiceName: 'Fred Campbell',
+  /** Shown under the quote, naming what the reader is looking at. */
+  place: 'Fred Campbell is a youth case worker with Oonchiumpa in Alice Springs. He is talking about Xavier, one of the young people who built a bed and took it home.',
+  /** The specific thing, told small. Every fact here is already on the site. */
+  didThis: {
+    heading: 'What that took',
+    body: 'Two days out the back of the Oonchiumpa office. Young men and young women built Stretch Beds from flat-pack, and every young person who built one kept one. The rest went out on the truck to the homelands the next morning. Centrecorp Foundation paid for the materials.',
+  },
+  /** nextAction for this audience is "Donate, or join the list". Both, in that order. */
+  cta: {
+    line: 'Sponsoring a bed is the same thing at one remove: you choose the community, and we send you a photo of where it landed.',
+    primary: { label: 'Sponsor a bed', href: '/sponsor' },
+    secondary: { label: 'Or just stay close to the work', href: '/field-notes' },
+  },
+};
+
 export const storyOpening = {
   headline: 'This is not a story in which Goods on Country arrives carrying the answer.',
   chapters: [

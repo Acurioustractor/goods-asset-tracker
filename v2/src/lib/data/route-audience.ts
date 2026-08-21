@@ -1914,13 +1914,17 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     route: '/story',
     audience: 'supporter',
     access: 'open',
+    // 2026-08-21: rewritten. NOTE the record above was also stale — it described a
+    // heading ("Built with communities, not for them") that /story had already
+    // stopped using; the live page opened on the road-spine thesis instead. Both
+    // failed the same contract, so the fix stands either way.
     leadsWithNow: {
-      heading: 'Built with communities, not for them.',
-      eyebrow: 'A good bed is health hardware, not furniture.',
-      body: 'Beds, washing machines, and essential goods designed with remote Indigenous communities. Manufactured sustainably, eventually owned by them.',
+      heading: 'He was so proud showing them that he can build it.',
+      eyebrow: 'Alice Springs, Northern Territory',
+      body: 'Fred Campbell on Xavier, who built his own bed and took it home. Then what that took, and what a bed costs.',
     },
-    verdict: 'rewrite',
-    why: 'supporter.mustNeverSee: "Aggregate impact language in place of a person." Leads "Built with communities, not for them / Beds, washing machines, and essential goods designed with remote Indigenous communities." No face, no voice, no place.',
+    verdict: 'keep',
+    why: 'supporter.leadWith is "One face, one voice, one place" and needsToSee "A specific thing their money did". The page now opens on Fred Campbell, his portrait, Alice Springs, and the two days at Oonchiumpa that produced the bed — before the essay begins. The quote resolves through the storyteller registry, so the consent gate still owns it. No deductibility claim appears anywhere (mustNeverSee, until receipting is confirmed).',
   },
   {
     route: '/story/road',

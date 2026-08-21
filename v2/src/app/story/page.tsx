@@ -24,6 +24,7 @@ import Link from 'next/link';
 import {
   storyStops,
   storyOpening,
+  storyLead,
   storyUpdated,
   type StoryStop,
   type StoryFigure,
@@ -32,6 +33,7 @@ import {
   type StoryVideo,
 } from '@/lib/data/story-road';
 import { getStoryteller, type StorytellerRecord } from '@/lib/data/storyteller-registry';
+import { OFFERS } from '@/lib/data/offers';
 
 export const metadata: Metadata = {
   title: 'The Work That Stays',
@@ -265,6 +267,70 @@ export default async function StoryRoadPage({
         <p className="text-sm uppercase tracking-[0.14em] text-muted-foreground">
           The Work That Stays
         </p>
+        {/* THE LEAD. /story is the supporter front door and the contract is
+            "one face, one voice, one place" plus "a specific thing their money
+            did". The essay below opens on a thesis, which is what got this route
+            flagged. Voice resolves through the same registry gate as every other
+            voice here — no quote is written in this file. */}
+        {(() => {
+          const lead = resolveVoice(storyLead.voiceName);
+          if (!lead) return null;
+          return (
+            <section className="mb-14 border-b border-border pb-12">
+              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--goods-terracotta,#B7593F)]">
+                {storyLead.eyebrow}
+              </p>
+              <figure className="mt-6">
+                <blockquote className="font-serif text-3xl leading-snug text-foreground md:text-4xl">
+                  {lead.quote}
+                </blockquote>
+                <figcaption className="mt-6 flex items-center gap-4">
+                  {lead.person.portrait && (
+                    <Image
+                      src={lead.person.portrait}
+                      alt=""
+                      width={56}
+                      height={56}
+                      priority
+                      className="h-14 w-14 rounded-full object-cover"
+                    />
+                  )}
+                  <span className="text-sm leading-5">
+                    <span className="font-medium text-foreground">{lead.person.name}</span>
+                    {lead.person.role && (
+                      <span className="block text-muted-foreground">{lead.person.role}</span>
+                    )}
+                  </span>
+                </figcaption>
+              </figure>
+              <p className="mt-6 max-w-2xl text-base leading-7 text-muted-foreground">
+                {storyLead.place}
+              </p>
+
+              <div className="mt-8 max-w-2xl border-l-2 border-border pl-6">
+                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
+                  {storyLead.didThis.heading}
+                </p>
+                <p className="mt-3 text-base leading-7 text-foreground/90">{storyLead.didThis.body}</p>
+                <p className="mt-4 text-base leading-7 text-foreground/90">
+                  {OFFERS.stretchBed.publicLine} {storyLead.cta.line}
+                </p>
+                <div className="mt-6 flex flex-wrap items-center gap-4">
+                  <Link
+                    href={storyLead.cta.primary.href}
+                    className="bg-[var(--goods-terracotta,#B7593F)] px-6 py-3 font-mono text-[11px] uppercase tracking-[0.14em] text-white"
+                  >
+                    {storyLead.cta.primary.label}
+                  </Link>
+                  <Link href={storyLead.cta.secondary.href} className="text-sm underline underline-offset-4">
+                    {storyLead.cta.secondary.label}
+                  </Link>
+                </div>
+              </div>
+            </section>
+          );
+        })()}
+
         <h1 className="mt-4 font-serif text-4xl md:text-6xl leading-[1.05] text-foreground">
           {storyOpening.headline}
         </h1>
