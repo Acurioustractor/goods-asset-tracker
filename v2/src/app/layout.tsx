@@ -10,7 +10,12 @@ import {
 import { CartProvider } from '@/lib/cart';
 import { CartDrawer } from '@/components/cart';
 
-import { Analytics } from '@vercel/analytics/react';
+// '/next', not '/react': the Next entrypoint reports the ROUTE PATTERN
+// (/case-studies/[slug]) via usePathname/useSearchParams/useParams, where the
+// react build only ever sees the raw URL. Most of this site lives on dynamic
+// routes, so without it every community, case study and field note is its own
+// unlabelled row instead of rolling up.
+import { Analytics } from '@vercel/analytics/next';
 import Script from 'next/script';
 import { OrganizationJsonLd, WebSiteJsonLd } from '@/components/seo';
 
