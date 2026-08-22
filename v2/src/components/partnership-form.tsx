@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { trackContactEvent } from '@/lib/analytics/contact';
 
 interface PartnershipFormProps {
   /** Pre-select a partnership type: used when arriving via a product page CTA */
@@ -88,6 +89,7 @@ export function PartnershipForm({ defaultType }: PartnershipFormProps = {}) {
 
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'Failed to submit');
+      trackContactEvent('contact_form_submitted', 'partnership', defaultType || 'partnership-inquiry');
 
       // Lead is captured. Offer the optional enrichment only if we have a row
       // to attach it to; otherwise we're already done.
@@ -101,6 +103,7 @@ export function PartnershipForm({ defaultType }: PartnershipFormProps = {}) {
     } catch (err) {
       setStatus('error');
       setError(err instanceof Error ? err.message : 'Failed to submit. Please try again.');
+      trackContactEvent('contact_form_failed', 'partnership', defaultType || 'partnership-inquiry');
     }
   };
 

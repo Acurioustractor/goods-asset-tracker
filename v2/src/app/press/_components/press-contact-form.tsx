@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { trackContactEvent } from '@/lib/analytics/contact';
 
 type State = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -35,10 +36,12 @@ export function PressContactForm() {
         throw new Error(body.error || 'Something went wrong');
       }
       setState('success');
+      trackContactEvent('contact_form_submitted', 'press');
       form.reset();
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong');
       setState('error');
+      trackContactEvent('contact_form_failed', 'press');
     }
   }
 
