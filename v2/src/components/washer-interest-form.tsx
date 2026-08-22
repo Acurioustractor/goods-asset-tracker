@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { trackContactEvent } from '@/lib/analytics/contact';
 
 const ROLE_OPTIONS = [
   { value: 'community', label: 'Community member / family' },
@@ -76,9 +77,11 @@ export function WasherInterestForm() {
       }
 
       setStatus('success');
+      trackContactEvent('contact_form_submitted', 'washer_interest');
     } catch (err) {
       setStatus('error');
       setError(err instanceof Error ? err.message : 'Failed to submit. Please try again.');
+      trackContactEvent('contact_form_failed', 'washer_interest');
     }
   };
 
