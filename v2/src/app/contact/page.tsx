@@ -1,12 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { trackContactEvent } from '@/lib/analytics/contact';
 
 const INQUIRY_TYPES = [
   { id: 'partnership', label: 'Partnership Inquiry', description: 'Explore collaboration opportunities' },
@@ -20,6 +21,10 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    trackContactEvent('contact_form_viewed', 'contact');
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -61,8 +66,10 @@ export default function ContactPage() {
       }
 
       setIsSubmitted(true);
+      trackContactEvent('contact_form_submitted', 'contact', inquiryType);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to send message. Please try again.');
+      trackContactEvent('contact_form_failed', 'contact', inquiryType);
     } finally {
       setIsSubmitting(false);
     }
