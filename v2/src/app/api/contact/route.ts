@@ -1,5 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ghl } from '@/lib/ghl';
+import {
+  recordContactSubmission,
+  sendSubmissionToInbox,
+  updateContactSubmission,
+} from '@/lib/contact-delivery';
 
 interface ContactFormData {
   name: string;
@@ -12,6 +17,7 @@ interface ContactFormData {
 }
 
 export async function POST(request: NextRequest) {
+  let submissionId: string | null = null;
   try {
     const body = (await request.json()) as ContactFormData;
 
@@ -31,6 +37,18 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+
+    // This is the source-of-truth receipt for the public form. It is written
+    // before GHL/email calls and retried by the cron if either destination is
+    // down, rather than silently treating a failed integration as a submission.
+    const submission = {
+      kind: 'contact' as const,
+      email: body.email,
+      name: body.name,
+      subject: body.subject || 'General Inquiry',
+      payload: body as unknown as Record<string, unknown>,
+    };
+    submissionId = await recordContactSubmission(submission);
 
     // Route to appropriate GHL method based on subject
     const isMediaRequest = body.subject === 'Media Pack Request';
@@ -116,11 +134,18 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Email notifications (team notify + sender acknowledgement) are owned by
-    // the GHL "Contact → Universal Inquiry" workflow, which triggers on the
-    // `act-inquiry` tag applied above. This route stays identify-and-tag + note
-    // only; it does NOT send email. (Don't reintroduce a sendEmail() call here —
-    // it would double-send the team notification once GHL sending is live.)
+    const ghlDelivered = Boolean(ghlResult.success && !ghlResult.simulated && ghlResult.contact?.id);
+    const inboxResult = await sendSubmissionToInbox(submission);
+    await updateContactSubmission(submissionId, {
+      ghlStatus: ghlDelivered ? 'delivered' : ghlResult.simulated ? 'disabled' : 'failed',
+      inboxStatus: inboxResult.success ? 'delivered' : 'failed',
+      error: [ghlResult.error, inboxResult.error].filter(Boolean).join(' | ') || undefined,
+      delivered: ghlDelivered || inboxResult.success,
+    });
+
+    // GHL owns the sender acknowledgement/workflow. The independent alert to
+    // hi@act.place above is deliberately operational: it is the fallback path
+    // that keeps a human-visible copy even when the GHL workflow is unhealthy.
 
     // Log the inquiry with full GHL result for debugging
     console.log('[Contact Form]', {
@@ -135,6 +160,13 @@ export async function POST(request: NextRequest) {
       ghlContactId: ghlResult.contact?.id,
     });
 
+    // A durable receipt is enough to acknowledge the enquiry: the retry job
+    // continues until the independent team inbox has it. If persistence and
+    // both immediate channels failed, tell the visitor to retry instead.
+    if (!submissionId && !ghlDelivered && !inboxResult.success) {
+      return NextResponse.json({ error: 'We could not safely receive your message. Please email hi@act.place.' }, { status: 503 });
+    }
+
     return NextResponse.json({
       success: true,
       message: 'Your message has been received. We will get back to you soon.',
@@ -142,6 +174,7 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error('Contact form error:', error);
+    await updateContactSubmission(submissionId, { ghlStatus: 'failed', inboxStatus: 'failed', error: error instanceof Error ? error.message : 'Unknown contact error' });
     return NextResponse.json(
       { error: 'Failed to process your request. Please try again.' },
       { status: 500 }
