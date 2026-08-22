@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/server';
 import { ghl } from '@/lib/ghl';
+import { recordContactSubmission, sendSubmissionToInbox, updateContactSubmission } from '@/lib/contact-delivery';
 
 interface PartnershipFormData {
   organizationName: string;
@@ -17,6 +18,7 @@ interface PartnershipFormData {
 }
 
 export async function POST(request: NextRequest) {
+  let submissionId: string | null = null;
   try {
     const body = (await request.json()) as PartnershipFormData;
 
@@ -36,6 +38,15 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+
+    const deliverySubmission = {
+      kind: 'partnership' as const,
+      email: body.contactEmail,
+      name: body.contactName,
+      subject: body.partnershipType === 'washer-interest' ? 'Washing Machine Interest' : 'Partnership Inquiry',
+      payload: body as unknown as Record<string, unknown>,
+    };
+    submissionId = await recordContactSubmission(deliverySubmission);
 
     const supabase = createServiceClient();
 
@@ -162,6 +173,19 @@ export async function POST(request: NextRequest) {
       inquiryId: inquiry?.id,
     });
 
+    const ghlDelivered = Boolean(ghlResult.success && !ghlResult.simulated && ghlResult.contact?.id);
+    const inboxResult = await sendSubmissionToInbox(deliverySubmission);
+    await updateContactSubmission(submissionId, {
+      ghlStatus: ghlDelivered ? 'delivered' : ghlResult.simulated ? 'disabled' : 'failed',
+      inboxStatus: inboxResult.success ? 'delivered' : 'failed',
+      error: [ghlResult.error, inboxResult.error].filter(Boolean).join(' | ') || undefined,
+      delivered: ghlDelivered || inboxResult.success,
+    });
+
+    if (!submissionId && !ghlDelivered && !inboxResult.success) {
+      return NextResponse.json({ error: 'We could not safely receive your enquiry. Please email hi@act.place.' }, { status: 503 });
+    }
+
     return NextResponse.json({
       success: true,
       message: 'Thank you for your partnership inquiry. Our team will be in touch soon.',
@@ -169,6 +193,7 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error('Partnership form error:', error);
+    await updateContactSubmission(submissionId, { ghlStatus: 'failed', inboxStatus: 'failed', error: error instanceof Error ? error.message : 'Unknown partnership error' });
     return NextResponse.json(
       { error: 'Failed to process your request. Please try again.' },
       { status: 500 }
