@@ -4,6 +4,13 @@ import { COMMUNITY_BED_CANON } from '@/lib/data/community-canonical';
 import { COMMUNITY_NEED, COMMUNITY_NEED_GAPS, NEED_SOURCE, NEED_SOURCE_URL } from '@/lib/data/community-need';
 import { SUPPLY_FACTS, PLASTIC_KG_PER_BED } from '@/lib/data/supply-context';
 import { communityLocations } from '@/lib/data/content';
+import {
+  COMMUNITY_HEALTH,
+  COMMUNITY_HEALTH_GAPS,
+  HEALTH_SOURCE_LGA,
+  HEALTH_SOURCE_LGA_URL,
+  HEALTH_SOURCE_ILOC,
+} from '@/lib/data/community-health';
 import { DataMap, type PlaceRead } from './data-map';
 
 /** canon id -> communityLocations id, where they differ. */
@@ -229,6 +236,107 @@ export default function DataPage() {
               diverted is derived: Stretch Beds × {PLASTIC_KG_PER_BED}kg, a workpaper figure until the
               measured run weighs it. Delivered counts are the register&rsquo;s, ruled per
               community; washers are the settled per-community ruling.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── The health setting ─────────────────────────────────── */}
+      <section className="py-14 md:py-20">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-5xl">
+            <p className="mb-3 text-xs uppercase tracking-[0.25em] text-goods-terracotta">
+              The health setting · measured, regional
+            </p>
+            <h2 className="mb-3 text-2xl font-bold md:text-3xl" style={displayFont}>
+              Why a bed is health hardware here.
+            </h2>
+            <p className="mb-8 max-w-3xl text-sm leading-relaxed text-goods-sub">
+              Two measured layers, at two grains. The region each community sits in (its local
+              government area, which is bigger than the community, and named so the two are
+              never confused): median age at death, and hospital admissions for conditions that
+              should not need a hospital, as a ratio against Australia at 100. Then, where the
+              Census measures it at community grain, what people themselves reported living
+              with. None of this is an outcome of this work. It is the setting the work
+              happens in.
+            </p>
+
+            <div className="overflow-x-auto rounded-2xl border border-goods-grid bg-goods-card">
+              <table className="w-full min-w-[820px] text-left text-sm">
+                <thead>
+                  <tr className="border-b border-goods-grid text-[11px] uppercase tracking-wider text-goods-sub">
+                    <th className="p-4 font-medium">Community · its LGA</th>
+                    <th className="p-4 text-right font-medium">Median age at death</th>
+                    <th className="w-[32%] p-4 font-medium">Preventable admissions vs Australia (=1.0)</th>
+                    <th className="p-4 font-medium">Reported conditions · community grain</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[...COMMUNITY_HEALTH]
+                    .sort((a, b) => b.pphSr - a.pphSr)
+                    .map((h) => (
+                      <tr key={h.communityId} className="border-b border-goods-grid/60 align-top last:border-0">
+                        <td className="p-4">
+                          <p className="font-semibold">
+                            {COMMUNITY_BED_CANON.find((c) => c.id === h.communityId)?.registerName}
+                          </p>
+                          <p className="text-xs text-goods-sub">LGA: {h.lgaName}</p>
+                        </td>
+                        <td className="p-4 text-right">
+                          <p className="font-semibold tabular-nums">{h.medianAgeDeath} years</p>
+                          <p className="text-xs tabular-nums text-goods-sub">{h.deaths.toLocaleString()} deaths, 2019-2023</p>
+                        </td>
+                        <td className="p-4">
+                          <div className="flex items-center gap-3">
+                            <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-goods-sand/60">
+                              <div
+                                className="h-full rounded-full bg-goods-clay"
+                                style={{ width: `${Math.min(100, (100 * h.pphSr) / 949)}%` }}
+                                title={`Standardised ratio ${h.pphSr} vs Australia = 100 (2020/21)`}
+                              />
+                            </div>
+                            <span className="w-12 shrink-0 text-right font-semibold tabular-nums">
+                              {(h.pphSr / 100).toFixed(1)}x
+                            </span>
+                          </div>
+                        </td>
+                        <td className="p-4 text-xs leading-relaxed text-goods-sub">
+                          {h.iloc ? (
+                            <>
+                              Of {h.iloc.personsCounted.toLocaleString()} Aboriginal and Torres Strait
+                              Islander people counted in {h.iloc.ilocName}: {h.iloc.heartDisease} living
+                              with heart disease, {h.iloc.kidneyDisease} with kidney disease,{' '}
+                              {h.iloc.diabetes} with diabetes. Median age {h.iloc.medianAge}.
+                            </>
+                          ) : (
+                            h.ilocGapReason ?? 'Community-grain Census data not available.'
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  {COMMUNITY_HEALTH_GAPS.map((g) => (
+                    <tr key={g.communityId} className="border-b border-goods-grid/60 align-top last:border-0">
+                      <td className="p-4 font-semibold">
+                        {COMMUNITY_BED_CANON.find((c) => c.id === g.communityId)?.registerName}
+                      </td>
+                      <td colSpan={3} className="p-4 text-xs leading-snug text-goods-sub">
+                        {g.reason}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <p className="mt-3 max-w-3xl text-xs leading-relaxed text-goods-sub">
+              Across Australia the median age at death is in the early 80s. Bars share one
+              scale (longest = Barkly at 9.5x). Regional data:{' '}
+              <a href={HEALTH_SOURCE_LGA_URL} target="_blank" rel="noreferrer" className="underline underline-offset-2">
+                {HEALTH_SOURCE_LGA}
+              </a>
+              . Community-grain conditions: {HEALTH_SOURCE_ILOC} — self-reported, small counts
+              randomly adjusted by the ABS. This section measures the setting, never an outcome
+              of this work.
             </p>
           </div>
         </div>
