@@ -3,7 +3,7 @@
  *
  * Source: ABS Census 2021 Indigenous Profile DataPack, table I16 (Housing Suitability,
  * CNOS "requiring one or more extra bedrooms" — the standard overcrowding proxy), ILOC
- * geography, NT pack, ingested 2026-08-24. The full 189-ILOC dataset lives in CivicGraph
+ * geography; NT pack ingested 2026-08-24, QLD + WA packs 2026-08-25. The full 189-ILOC dataset lives in CivicGraph
  * (`abs_nt_iloc_overcrowding`); the rows here are the served communities' extract, each
  * carrying its ILOC and any geography caveat. persons/dwelling is derived I02/I16 and
  * approximate.
@@ -89,14 +89,49 @@ export const COMMUNITY_NEED: readonly CommunityNeed[] = [
     personsPerDwelling: 2.4,
     caveat: 'Central Darwin ILOC only, not greater Darwin.',
   },
+  {
+    communityId: 'palm-island',
+    ilocCode: '31000901',
+    ilocName: 'Palm Island',
+    occupiedDwellings: 491,
+    need1plus: 134,
+    need1plusPct: 27.3,
+    personsPerDwelling: 4.27,
+  },
+  {
+    communityId: 'kalgoorlie',
+    ilocCode: '50300301',
+    ilocName: 'Kalgoorlie',
+    occupiedDwellings: 9974,
+    need1plus: 233,
+    need1plusPct: 2.3,
+    personsPerDwelling: 2.91,
+    caveat: 'Whole-town ILOC, not the specific camps and households Goods works with.',
+  },
+  {
+    communityId: 'kununurra',
+    ilocCode: '50400601',
+    ilocName: 'Kununurra exc. Town Camps',
+    occupiedDwellings: 1361,
+    need1plus: 97,
+    need1plusPct: 7.1,
+    personsPerDwelling: 3.34,
+    caveat: 'ILOC excludes town camps.',
+  },
+  {
+    communityId: 'mount-isa',
+    ilocCode: '30400402',
+    ilocName: 'Mount Isa exc. Camooweal',
+    occupiedDwellings: 6376,
+    need1plus: 293,
+    need1plusPct: 4.6,
+    personsPerDwelling: 3.13,
+    caveat: 'Whole-town ILOC excluding Camooweal.',
+  },
 ];
 
 /** Served communities the ABS ILOC pack cannot honestly cover yet, with the reason. */
 export const COMMUNITY_NEED_GAPS: readonly CommunityNeedGap[] = [
-  { communityId: 'palm-island', reason: 'Queensland: the ILOC pack ingested so far covers the NT only.' },
-  { communityId: 'kalgoorlie', reason: 'Western Australia: the ILOC pack ingested so far covers the NT only.' },
-  { communityId: 'kununurra', reason: 'Western Australia: the ILOC pack ingested so far covers the NT only.' },
-  { communityId: 'mount-isa', reason: 'Queensland: the ILOC pack ingested so far covers the NT only.' },
   { communityId: 'canberra', reason: 'ACT: outside the remote-community frame this measure describes.' },
   { communityId: 'alice-springs', reason: 'Urban multi-ILOC area: no single honest ILOC mapping.' },
 ];

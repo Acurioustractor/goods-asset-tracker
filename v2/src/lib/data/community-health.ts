@@ -7,7 +7,7 @@
  *    standardised ratio vs Australia = 100). An LGA is bigger than a community — the row
  *    names the LGA so nobody reads West Arnhem's number as Maningrida's alone.
  *  - ILOC grain (ABS Census 2021 IP DataPack I12): self-reported long-term conditions for
- *    Aboriginal and/or Torres Strait Islander persons, community grain, NT only.
+ *    Aboriginal and/or Torres Strait Islander persons, community grain; NT pack ingested 2026-08-24, QLD + WA 2026-08-25.
  *
  * Values verified against CivicGraph reference tables (phidu_lga_health,
  * abs_nt_iloc_health) 2026-08-25. ABS small-cell randomisation applies to ILOC counts.
@@ -93,12 +93,19 @@ export const COMMUNITY_HEALTH: readonly CommunityHealthSetting[] = [
   },
   {
     communityId: 'palm-island',
-    ilocGapReason: 'Queensland: the ILOC pack ingested so far covers the NT only.',
     lgaCode: '35790',
     lgaName: 'Palm Island',
     medianAgeDeath: 61,
     deaths: 83,
     pphSr: 359,
+    iloc: {
+      ilocName: 'Palm Island',
+      personsCounted: 1918,
+      heartDisease: 83,
+      kidneyDisease: 23,
+      diabetes: 145,
+      medianAge: 26,
+    },
   },
   {
     communityId: 'alice-springs',
@@ -111,12 +118,19 @@ export const COMMUNITY_HEALTH: readonly CommunityHealthSetting[] = [
   },
   {
     communityId: 'kalgoorlie',
-    ilocGapReason: 'Western Australia: the ILOC pack ingested so far covers the NT only.',
     lgaCode: '54280',
     lgaName: 'Kalgoorlie-Boulder',
     medianAgeDeath: 69,
     deaths: 761,
     pphSr: 151,
+    iloc: {
+      ilocName: 'Kalgoorlie (whole town)',
+      personsCounted: 2228,
+      heartDisease: 65,
+      kidneyDisease: 41,
+      diabetes: 178,
+      medianAge: 34,
+    },
   },
   {
     communityId: 'katherine',
@@ -129,12 +143,19 @@ export const COMMUNITY_HEALTH: readonly CommunityHealthSetting[] = [
   },
   {
     communityId: 'mount-isa',
-    ilocGapReason: 'Queensland: the ILOC pack ingested so far covers the NT only.',
     lgaCode: '35300',
     lgaName: 'Mount Isa',
     medianAgeDeath: 69,
     deaths: 497,
     pphSr: 345,
+    iloc: {
+      ilocName: 'Mount Isa exc. Camooweal',
+      personsCounted: 3939,
+      heartDisease: 172,
+      kidneyDisease: 64,
+      diabetes: 313,
+      medianAge: 31,
+    },
   },
   {
     communityId: 'darwin',
@@ -147,12 +168,19 @@ export const COMMUNITY_HEALTH: readonly CommunityHealthSetting[] = [
   },
   {
     communityId: 'kununurra',
-    ilocGapReason: 'Western Australia: the ILOC pack ingested so far covers the NT only.',
     lgaCode: '59340',
     lgaName: 'Wyndham-East Kimberley',
     medianAgeDeath: 61,
     deaths: 204,
     pphSr: 523,
+    iloc: {
+      ilocName: 'Kununurra exc. Town Camps',
+      personsCounted: 1149,
+      heartDisease: 37,
+      kidneyDisease: 19,
+      diabetes: 70,
+      medianAge: 33,
+    },
   },
 ];
 
