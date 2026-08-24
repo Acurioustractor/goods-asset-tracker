@@ -5,6 +5,7 @@ import { fetchBuildPhotos } from '@/lib/process/el-build-photos';
 import { getStoryOverrides } from '@/lib/field-notes/overrides';
 import { createClient } from '@/lib/supabase/server';
 import { MediaSwapZone, type SwapFolder } from '@/components/admin/media-swap-picker';
+import { SUPPLY_FACTS, SUPPLY_PARAGRAPH } from '@/lib/data/supply-context';
 
 const OVERRIDE_SLUG = 'process';
 
@@ -165,6 +166,14 @@ const PLANT_GALLERY = [
 
 // Site display face (matches the rest of the marketing pages).
 const displayFont = { fontFamily: 'Georgia, serif' } as const;
+
+/** The four supply/need facts this page shows, in order. Resolved from supply-context. */
+const WHY_FACT_IDS = [
+  'nt-plastics-recycled',
+  'plastic-per-bed',
+  'nt-overcrowding-very-remote',
+  'nt-appropriately-housed',
+] as const;
 
 // A real, consent-cleared community voice to break up the process.
 // Quotes come from the public display-cleared set in curated-quotes.ts;
@@ -344,6 +353,60 @@ export default async function ProcessPage() {
                 className="object-contain"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+         WHY PLASTIC, WHY BEDS: the verified supply and need facts.
+         Values render from supply-context.ts, never typed here; each card
+         carries its solidity label and primary source. Claim ceiling:
+         household conditions are the why, health outcomes are never claimed.
+         ============================================================ */}
+      <section className="bg-goods-cream py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto max-w-5xl">
+            <div className="mx-auto max-w-2xl text-center mb-10">
+              <p className="text-xs uppercase tracking-[0.25em] text-accent mb-3">
+                Why plastic, why beds
+              </p>
+              <h2
+                className="text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight"
+                style={displayFont}
+              >
+                The supply is measured. So is the need.
+              </h2>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {WHY_FACT_IDS.map((id) => {
+                const f = SUPPLY_FACTS.find((x) => x.id === id)!;
+                return (
+                  <div key={f.id} className="rounded-2xl bg-background p-6 shadow-sm">
+                    <div className="flex items-baseline justify-between gap-3">
+                      <p className="text-2xl font-bold text-foreground" style={displayFont}>
+                        {f.value}
+                      </p>
+                      <span className="shrink-0 rounded-full border border-current/20 px-2 py-0.5 text-[10px] uppercase tracking-wider text-muted-foreground">
+                        {f.solidity}
+                      </span>
+                    </div>
+                    <p className="mt-1 text-sm font-medium text-foreground">{f.label}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.means}</p>
+                    <a
+                      href={f.sourceUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-3 inline-block text-xs text-accent underline underline-offset-2"
+                    >
+                      Source: {f.source.split(',')[0]}
+                    </a>
+                  </div>
+                );
+              })}
+            </div>
+            <p className="mx-auto mt-10 max-w-2xl text-center text-lg leading-relaxed text-muted-foreground">
+              {SUPPLY_PARAGRAPH}
+            </p>
           </div>
         </div>
       </section>
