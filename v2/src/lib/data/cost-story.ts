@@ -10,8 +10,10 @@
  *
  * Every figure carries an honesty label. NEVER quote a `workpaper` figure as
  * exact ("about" it), never present `modelled` as measured, and never lead
- * with a `target`. The two `conflict` rows are unresolved — quote the range
- * and say so. The retired $600/bed figure gets redirected, not repeated.
+ * with a `target`. No `conflict` rows remain (plastic-per-bed resolved to 20kg
+ * by Ben ruling 2026-08-24; the capex nesting question lives in COST_OPEN_ITEMS).
+ * If a new conflict appears, quote the range and say so. The retired $600/bed
+ * figure gets redirected, not repeated.
  */
 
 export type Solidity =
@@ -292,11 +294,11 @@ export const COST_CHAPTERS: CostChapter[] = [
       },
       {
         label: 'Plastic in one bed',
-        value: '20kg vs 25kg',
-        solidity: 'conflict',
-        means: 'How much recycled HDPE goes into one bed’s legs.',
-        watchOut: 'Canon says ~20kg; the Envirobank brief said ~25kg. Pick one and fix it everywhere.',
-        source: 'Product spec vs Envirobank correspondence',
+        value: '20kg',
+        solidity: 'workpaper',
+        means: 'How much recycled HDPE goes into one bed’s legs. Ben ruling 2026-08-24: 20kg; the Envirobank brief’s ~25kg is retired. Becomes measured when the measured run weighs batches per run (material_traceability_schema).',
+        watchOut: 'One tonne of clean HDPE ≈ 50 leg-sets. Never use 45kg/bed or anything derived from it — see research/nt-plastics-overcrowding-facts-2026-08-24.md.',
+        source: 'Product spec; Ben ruling 2026-08-24, superseding Envirobank correspondence',
       },
     ],
   },
@@ -348,6 +350,5 @@ export const COST_OPEN_ITEMS = [
   'Confirm the 7.2-year reconstruction and volume scenario with the advisors — Q4.',
   'Three vendor quotes (shredder, hot press, CNC) land → replace the 3–5% maintenance placeholder and the $112–222K range — Q9.',
   'Capex conflict: $110,046 confirmed vs $112–222K range — accountant to confirm how they nest.',
-  'Plastic per bed: 20kg (canon) vs 25kg (Envirobank brief) — pick one, sweep everywhere.',
   'Approval for advisors to contact other plastic producers (Replas, Plastic Forests) — Q10.',
 ] as const;
