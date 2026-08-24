@@ -39,6 +39,14 @@
 import { CANONICAL_ASSETS } from './asset-canonical';
 import { NORTH_STAR } from './content';
 import { canonFact } from './canon';
+import { SUPPLY_FACTS } from './supply-context';
+
+/** Resolve a verified supply/need fact from supply-context.ts. Never type one into a slide. */
+function supplyValue(id: string): string {
+  const f = SUPPLY_FACTS.find((x) => x.id === id);
+  if (!f) throw new Error(`Unknown supply fact "${id}".`);
+  return f.value;
+}
 import {
   CAPITAL_GROSS_LOW,
   CAPITAL_GROSS_HIGH,
@@ -357,6 +365,7 @@ export const deckSlides: DeckSlide[] = [
     voiceNames: ['Shayne Bloomfield', 'Fred Campbell'],
     chips: [
       { label: 'Delivered · the run', value: '40 Stretch Beds' },
+      { label: 'Verified · the supply', value: `${supplyValue('nt-plastics-recycled')} of plastic recycled in the NT in a year; one bed's legs take about 20kg` },
       { label: 'Modelled · the ratio', value: '8.6x the raw shred cost (about $40) to buy legs finished' },
       { label: 'Verified · marginal, buying legs', value: aud(Number(marginalBuyKit)) },
       { label: 'Modelled · marginal, pressing our own', value: aud(Number(marginalFactory)) },
@@ -415,7 +424,7 @@ export const deckSlides: DeckSlide[] = [
     kind: 'gap',
     eyebrow: 'The gap',
     headline: 'Nine years, eleven communities, 540 beds. Nobody owns the making.',
-    body: 'The products have reached communities. The production equipment, contracts, systems and margin have not. Goods now has four live community pathways, each asking for a different part of the making.',
+    body: 'The products have reached communities. The production equipment, contracts, systems and margin have not. And the need is measured, not asserted: the Census counts 2,761 very remote NT households short at least a bedroom, half of all of them. Goods now has four live community pathways, each asking for a different part of the making.',
     photo: '/images/qbe/communities-screen.png',
     photoAlt: 'The eleven communities served, on the map',
     place: 'Every stop on the road so far',
@@ -424,11 +433,12 @@ export const deckSlides: DeckSlide[] = [
       { label: 'Delivered · communities', value: `${CANONICAL_ASSETS.communitiesServed}` },
       { label: 'Delivered · washing machines', value: `${CANONICAL_ASSETS.washersInCommunity}` },
       { label: 'Delivered · plastic diverted', value: `${CANONICAL_ASSETS.plasticKg.toLocaleString()}kg` },
+      { label: 'The need · ABS 2021, very remote NT', value: `${supplyValue('nt-overcrowding-very-remote')} short a bedroom` },
       { label: 'The gap', value: 'Community-owned production sites: 0' },
     ],
     goDeeper: [{ label: 'Every number, audited', href: '/register' }],
     script:
-      'Here is the road added up: nine years, eleven communities, 540 beds, twenty two washing machines and three and a half tonnes of plastic diverted through Stretch Bed production. There are still zero community-owned production sites. The next part of the deck shows the practical pathway we built to change that number.',
+      'Here is the road added up: nine years, eleven communities, 540 beds, twenty two washing machines and three and a half tonnes of plastic diverted through Stretch Bed production. Against that, the Census counts two thousand seven hundred and sixty one very remote Territory households short at least a bedroom. There are still zero community-owned production sites. The next part of the deck shows the practical pathway we built to change that number.',
     note: 'Ruling F: the model and the ask arrive HERE and only here. Every figure reads from CANONICAL_ASSETS. The "0" is the honest headline and it is stated as a gap, not spun. This slide deliberately carries no voice: pitch-cockpit records the model and framing slides as voices: [], and that is by design so nobody "fills" it with a person.',
   },
 

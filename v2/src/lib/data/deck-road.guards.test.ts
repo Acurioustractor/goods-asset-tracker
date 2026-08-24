@@ -18,6 +18,7 @@ import { DECK_ROAD, deckFigures, deckProse, deckAssertions, STAYS_BUY_KIT, STAYS
 import { ROAD_STOPS, THE_GAP, SPINE_RULES, roadVoices, roadStop } from '@/lib/data/road-spine';
 import { isClearedForExternal } from '@/lib/data/cleared-voices';
 import { canonFact } from '@/lib/data/canon';
+import { SUPPLY_FACTS } from '@/lib/data/supply-context';
 
 describe('the spine', () => {
   it('is the seven ruled stops, in order', () => {
@@ -89,7 +90,7 @@ describe('the road leads and the model follows (rulings C and F)', () => {
 describe('no figure is typed', () => {
   it('every figure resolves to a real canon fact with the same value', () => {
     for (const f of deckFigures()) {
-      if (f.canonId.startsWith('derived:')) continue;
+      if (f.canonId.startsWith('derived:') || f.canonId.startsWith('supply:')) continue;
       const c = canonFact(f.canonId);
       expect(String(c.value), `${f.canonId} drifted`).toBe(
         f.value.replace(/[$,]/g, '').replace(/kg$/, ''),
@@ -99,8 +100,21 @@ describe('no figure is typed', () => {
 
   it('every figure carries its claim label from canon, not a nicer one', () => {
     for (const f of deckFigures()) {
-      if (f.canonId.startsWith('derived:')) continue;
+      if (f.canonId.startsWith('derived:') || f.canonId.startsWith('supply:')) continue;
       expect(f.claim).toBe(canonFact(f.canonId).claimLabel);
+    }
+  });
+
+  it('supply figures resolve to supply-context with the same value and solidity', () => {
+    // Same never-type-a-figure rule as canon, different source of truth.
+    // supply-context.guards.test.ts already enforces provenance on the source side.
+    const supplied = deckFigures().filter((f) => f.canonId.startsWith('supply:'));
+    expect(supplied.length).toBeGreaterThan(0);
+    for (const f of supplied) {
+      const s = SUPPLY_FACTS.find((x) => `supply:${x.id}` === f.canonId);
+      expect(s, `${f.canonId} has no supply fact`).toBeDefined();
+      expect(f.value, f.canonId).toBe(s!.value);
+      expect(f.claim, f.canonId).toBe(s!.solidity);
     }
   });
 

@@ -455,7 +455,7 @@ export const storyStops: StoryStop[] = [
     photo: null,
     figures: [
       { value: String(BASKET_BEDS), label: 'Basket Beds, archived and open-sourced', claim: 'verified' },
-      { value: '20kg', label: 'recycled HDPE per Stretch Bed', claim: 'verified' },
+      { value: '20kg', label: 'recycled HDPE per Stretch Bed', claim: 'workpaper' },
     ],
     videos: [
       {
@@ -516,7 +516,7 @@ export const storyStops: StoryStop[] = [
     headline: 'The numbers become useful when their status stays attached.',
     chapters: [
       'The Goods model can be read as three linked shifts, and the economic one is the least understood.',
-      'A material shift. Remote communities carry a high cost for imported goods and a high cost when those goods fail. Plastic and broken products accumulate locally while value leaves through freight and replacement. Goods turns one part of that waste stream into durable product components. The purpose is not only diversion. It is to create a local input that can become a paid collection stream, a production skill and a useful product.',
+      'A material shift. Remote communities carry a high cost for imported goods and a high cost when those goods fail. Plastic and broken products accumulate locally while value leaves through freight and replacement. Goods turns one part of that waste stream into durable product components. The purpose is not only diversion. It is to create a local input that can become a paid collection stream, a production skill and a useful product. The supply is not in question: the NT recycled 4,933 tonnes of plastic in 2023-24 and sent far more to landfill, while one bed\'s legs take about 20kg. Feedstock will never be the constraint. The making is.',
       'An economic shift. Today, Goods can buy completed recycled-plastic components from an external supplier and assemble the bed. That keeps production simple, but it captures very little contribution at the current price. Pressing components through the Goods facility is expected to reduce marginal cost materially. In a community-production path, free local feedstock and a fair local wage are designed into the economics. The wage is not a trade-off against viability: in the model it fits inside a lower total cost, because the city-factory markup and duplicated freight fall away.',
       'A story and authority shift. The old story says an outside organisation designed a product and delivered it to people in need. The Goods story says something more precise: people named the need, changed the product, tested it, built it, ordered it and now have the opportunity to hold the productive asset.',
       'The model identifies a particular cost leak. A finished recycled-plastic leg kit costs about $344 bought from a city factory. The raw shredded-plastic input is about $40. Labour, energy, yield and processing still have to be paid, but bringing the process in-house removes a large markup and a freight loop.',
@@ -529,6 +529,8 @@ export const storyStops: StoryStop[] = [
       { value: '$425.74', label: 'marginal cost, central production', claim: 'modelled' },
       { value: '$420.74', label: 'marginal cost, community production', claim: 'modelled' },
       { value: '$109,500', label: 'annual fixed production block', claim: 'modelled' },
+      { value: '4,933 tonnes', label: 'plastic recycled in the NT, 2023-24 (WRINT material flow)', claim: 'verified' },
+      { value: '2,761 — 51.3%', label: 'very remote NT households short at least a bedroom (ABS 2021)', claim: 'verified' },
     ],
     note: 'EVERY figure here wears its status, and the statuses are not decorative: bought-in is workpaper (engine-locked), both cost-down figures are MODELLED with the 60-bed run ledger still open. The break-even figures from the Notion source (1,679 beds bought-in, 333-338 cost-down) are deliberately omitted: they are computed against a fixed block that the July model work re-cut into three pots, and the honest denominator is now a BAND. Do not reinstate a single break-even number here; read lib/cost-model/engine. The retired "75-100 beds/yr" figure must never reappear on any surface.',
   },
