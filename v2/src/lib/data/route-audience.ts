@@ -960,17 +960,6 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     verdict: 'keep',
   },
   {
-    route: '/communities',
-    audience: 'community',
-    access: 'open',
-    leadsWithNow: {
-      heading: 'Communities',
-      eyebrow: 'Where the beds have gone',
-      body: 'Every community where Goods on Country beds and washing machines are in homes.',
-    },
-    verdict: 'keep',
-  },
-  {
     route: '/communities/[slug]',
     audience: 'community',
     access: 'open',
@@ -1006,7 +995,7 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
   },
   {
     route: '/contact',
-    audience: 'supporter',
+    audience: 'community',
     access: 'open',
     leadsWithNow: {
       heading: 'Contact Us',
@@ -1900,17 +1889,6 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     access: 'open',
     leadsWithNow: null,
     whyUnread: 'no server-rendered heading inside <main> (client-rendered)',
-    verdict: 'keep',
-  },
-  {
-    route: '/stories',
-    audience: 'supporter',
-    access: 'open',
-    leadsWithNow: {
-      heading: 'Community Stories',
-      eyebrow: 'Community Voices',
-      body: '“We’ve never been asked at what sort of house we’d like to live in.”',
-    },
     verdict: 'keep',
   },
   {

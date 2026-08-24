@@ -104,14 +104,8 @@ export default async function StorytellersIndex() {
       {/* Related */}
       <footer className="mt-16 border-t pt-6 text-sm">
         <div className="flex flex-wrap gap-4">
-          <Link href="/communities" className="text-amber-700 hover:underline">
-            → Browse communities
-          </Link>
           <Link href="/field-notes" className="text-amber-700 hover:underline">
             → Field notes
-          </Link>
-          <Link href="/stories" className="text-amber-700 hover:underline">
-            → All stories
           </Link>
         </div>
       </footer>

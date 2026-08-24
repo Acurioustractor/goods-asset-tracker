@@ -187,7 +187,7 @@ export default async function CommunityPage({ params }: PageProps) {
       {/* Header */}
       <header className="mb-8">
         <p className="text-xs uppercase tracking-widest text-amber-700">
-          <Link href="/communities" className="hover:underline">Communities</Link>
+          <Link href="/field-notes" className="hover:underline">Field notes</Link>
           {' · '}
           {community.region}
         </p>
@@ -466,8 +466,8 @@ export default async function CommunityPage({ params }: PageProps) {
         <section className="mb-10 rounded-lg border border-dashed border-stone-300 bg-stone-50 p-6 text-center text-sm text-stone-600">
           <p>
             More stories from {community.name} will appear here as they&apos;re shared — always with
-            consent. In the meantime, see the wider story across all{' '}
-            <Link href="/communities" className="text-amber-700 hover:underline">communities</Link>.
+            consent. In the meantime, see the wider story in{' '}
+            <Link href="/field-notes" className="text-amber-700 hover:underline">field notes</Link>.
           </p>
         </section>
       )}
@@ -570,8 +570,8 @@ export default async function CommunityPage({ params }: PageProps) {
 
       {/* Footer */}
       <footer className="mt-12 border-t pt-6 text-sm">
-        <Link href="/communities" className="text-amber-700 hover:underline">
-          ← All communities
+        <Link href="/field-notes" className="text-amber-700 hover:underline">
+          ← All field notes
         </Link>
       </footer>
     </article>

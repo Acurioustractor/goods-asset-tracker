@@ -51,11 +51,6 @@ export const NEWS_ISSUES: NewsIssue[] = [
         href: '/field-notes/utopia-may-2026',
         photo: { src: '/images/utopia/utopia-01.jpg', alt: 'Delivery across the Utopia homelands' },
       },
-      {
-        title: 'Every community, one page each',
-        line: 'The communities index now carries all twelve communities on the register, with the washing machines that were never on the page.',
-        href: '/communities',
-      },
     ],
     people: [
       {

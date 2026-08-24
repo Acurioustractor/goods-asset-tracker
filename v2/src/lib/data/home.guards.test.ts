@@ -97,12 +97,12 @@ describe('homepage guards', () => {
     const hrefs = HOME_DOORS.map((d) => d.cta.href);
     expect(hrefs).toContain('/shop/stretch-bed-single'); // buyer
     expect(hrefs).toContain('/sponsor'); // supporter
-    expect(hrefs).toContain('/communities'); // community
+    expect(hrefs).toContain('/contact'); // community
     expect(hrefs).toContain('/pitch/road'); // funder
   });
 
   it('the community door proposes nothing and carries no price; the funder door no figures', () => {
-    const community = HOME_DOORS.find((d) => d.cta.href === '/communities');
+    const community = HOME_DOORS.find((d) => d.cta.href === '/contact');
     expect(community?.body).not.toMatch(/\$\s?\d/);
     expect(community?.body).not.toMatch(/facility proposal|cost model/i);
     const funder = HOME_DOORS.find((d) => d.cta.href === '/pitch/road');

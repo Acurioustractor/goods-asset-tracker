@@ -619,7 +619,7 @@ export default async function CommunityPage() {
             </p>
             <div className="flex gap-4 mt-8">
               <Button size="lg" asChild>
-                <Link href="/stories">Read Their Stories</Link>
+                <Link href="/storytellers">Meet the Storytellers</Link>
               </Button>
               <Button size="lg" variant="outline" className="text-background border-background/30 hover:bg-background/10" asChild>
                 <Link href="/partners">Explore Community Partnerships</Link>

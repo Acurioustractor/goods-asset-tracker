@@ -153,7 +153,7 @@ export const AUDIENCES: Audience[] = [
     ],
     nextAction: 'A yarn, with nothing proposed.',
     door: null,
-    frontDoor: '/communities',
+    frontDoor: '/contact',
     alsoReachedVia: ['a person they already know'],
   },
   {

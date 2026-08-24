@@ -73,7 +73,7 @@ const SPECS: BlockSpec[] = [
   // scope: { community: 'Utopia Homelands' },  // optional — filters to one
   caveat: 'Optional caveat text under the map.',
   links: [
-    { label: 'Browse all communities', href: '/communities' },
+    { label: 'Impact and reach', href: '/story#impact' },
   ],
 },`,
   },
@@ -257,7 +257,7 @@ const SPECS: BlockSpec[] = [
   heading: 'This story is one piece of the project',
   sub: 'A few ways in. Each is a different way to learn the work or take part.',
   anchors: [
-    { label: 'Where the beds have gone (map)', href: '/communities' },
+    { label: 'Impact and reach', href: '/story#impact' },
     { label: 'How we got here (origin story)', href: '/story' },
     { label: 'The model and impact', href: '/impact' },
     { label: 'The Stretch Bed', href: '/shop/stretch-bed-single' },

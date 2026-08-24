@@ -384,7 +384,7 @@ export default async function PressPage() {
             ))}
           </div>
           <p className="mt-8 text-sm">
-            <Link href="/stories" className="underline">Browse all stories</Link>
+            <Link href="/storytellers" className="underline">Meet the storytellers</Link>
           </p>
         </div>
       </section>

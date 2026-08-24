@@ -171,8 +171,8 @@ export const HOME_DOORS = [
   },
   {
     title: 'Want this where you are?',
-    body: 'See the communities the beds have gone to, and how each one set its own pace. It starts with a yarn, nothing proposed.',
-    cta: { label: 'The communities', href: '/communities' },
+    body: 'Start with a yarn about what would be useful where you are. Nothing proposed.',
+    cta: { label: 'Talk to Goods', href: '/contact' },
     tone: 'sage' as const,
   },
   {

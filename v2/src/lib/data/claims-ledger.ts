@@ -89,7 +89,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
     figure: greenFigure('communities-served'),
     factId: 'communities-served',
     status: 'verified',
-    evidence: [{ label: 'Communities', href: '/communities' }],
+    evidence: [{ label: 'Impact evidence', href: '/story#impact' }],
     asOf: canonFact('communities-served').asAt,
   },
   {
@@ -197,7 +197,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
     statement: 'Elder Dianne Stokes asked for twenty more beds and offered to fund them.',
     status: 'interest',
     ceiling: 'Offers on the record, not contracts.',
-    evidence: [{ label: 'Community stories', href: '/stories' }],
+    evidence: [{ label: 'Storytellers', href: '/storytellers' }],
     asOf: '2026-07-10',
   },
 

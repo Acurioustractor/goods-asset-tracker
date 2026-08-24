@@ -168,7 +168,7 @@ export const deckSlides: DeckSlide[] = [
     photoAlt: 'A Stretch Bed set up in a remote community home',
     place: `${CANONICAL_ASSETS.bedsDeployed} beds · ${CANONICAL_ASSETS.communitiesServed} communities · nine years`,
     goDeeper: [
-      { label: 'The communities', href: '/communities' },
+      { label: 'Field notes from the road', href: '/field-notes' },
       { label: 'Every number, audited', href: '/register' },
     ],
     script:
@@ -211,7 +211,7 @@ export const deckSlides: DeckSlide[] = [
     place: 'Tennant Creek, NT',
     voiceNames: ['Linda Turner'],
     voiceAlternates: ['Tanya Turner'],
-    goDeeper: [{ label: 'The communities', href: '/communities' }],
+    goDeeper: [{ label: 'Tennant Creek', href: '/communities/tennant-creek' }],
     script:
       'We kept returning to Tennant Creek. People tested the beds, changed the height, asked for different colours and ordered more. Goods delivered more than one hundred Basket Beds there. Then Linda Turner gave us the sentence that explained why time mattered: "We\'ve never been asked what sort of house we\'d like to live in." From then on, asking could not be a workshop before the real work. It had to be able to change the product, the order and what happened next.',
     note: 'Ruling F gives Tennant Creek two stops because it taught two different things and it is where the deepest relationship is. This is the first. Ben reframed the body on 2026-07-30 around deep time and the delivery of more than 100 Basket Beds; the canonical Tennant Creek total is 160 beds. Linda Turner registry PRIMARY, verified at source; the registry marks this turn as "could open the whole deck". No Tennant Creek photography exists in the repo, so the stop is portrait-led. Language rule: the design happens IN community, led by community; the facilitated-joint-process word for that is banned by check-voice.mjs and must not appear on any surface.',

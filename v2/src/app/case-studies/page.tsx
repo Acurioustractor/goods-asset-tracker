@@ -99,10 +99,10 @@ export default function CaseStudiesIndex() {
               Start a conversation
             </Link>
             <Link
-              href="/communities"
+              href="/story#impact"
               className="border border-goods-ink px-6 py-3 font-mono text-[11px] uppercase tracking-[0.14em]"
             >
-              Where the beds have gone
+              Impact and reach
             </Link>
           </div>
         </div>

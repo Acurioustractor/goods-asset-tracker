@@ -179,7 +179,7 @@ export function ThemeSpotlight({
             className="text-background border-background/30 hover:bg-background/10"
             asChild
           >
-            <Link href="/stories">Explore All Stories</Link>
+            <Link href="/field-notes">Explore Field Notes</Link>
           </Button>
         </div>
       </div>

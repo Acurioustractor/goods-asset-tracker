@@ -353,7 +353,7 @@ export default function InsightsPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" asChild>
-              <Link href="/stories">Read All Stories</Link>
+              <Link href="/storytellers">Meet the Storytellers</Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
               <Link href="/gallery">View Gallery</Link>

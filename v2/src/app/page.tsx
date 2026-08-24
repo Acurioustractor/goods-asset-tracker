@@ -9,7 +9,6 @@ import { brand } from '@/lib/data/content';
 import { PLASTIC_KG_PER_BED, STRETCH_BED } from '@/lib/data/products';
 import { videoUrl } from '@/lib/data/media';
 import { canonVideoSrc } from '@/lib/data/canon-videos';
-import { FeaturedStories } from '@/components/empathy-ledger/featured-stories';
 import { FieldNotesTile } from '@/components/marketing/field-notes-tile';
 import { getStoryOverrides } from '@/lib/field-notes/overrides';
 import { createClient } from '@/lib/supabase/server';
@@ -283,7 +282,6 @@ export default async function HomePage() {
 
       <ImpactStats />
       <FieldNotesTile />
-      <FeaturedStories title="Community Voices" subtitle="32 storytellers across remote Australia have shaped and validated the Goods approach" maxStories={3} />
 
       <section className="bg-accent py-16 md:py-20">
         <div className="container mx-auto px-4 text-center">

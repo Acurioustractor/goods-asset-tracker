@@ -223,7 +223,7 @@ const routeLinks = [
   { label: 'Investor evidence hub', href: '/investors?skin=investment', icon: LockKeyhole },
   { label: 'Pitch page', href: '/pitch', icon: FileText },
   { label: 'Pitch document', href: '/pitch/document', icon: ClipboardList },
-  { label: 'Community proof', href: '/communities', icon: MapPin },
+  { label: 'Community proof', href: '/field-notes', icon: MapPin },
   { label: 'Production pathway', href: '/process', icon: PackageCheck },
 ];
 
@@ -245,12 +245,12 @@ const storySurfaceLinks = [
     summary: 'The Aboriginal-led program behind the build, the design work and the youth pathway.',
   },
   {
-    label: 'Communities map',
-    href: '/communities',
-    status: 'Public proof surface',
+    label: 'Field notes',
+    href: '/field-notes',
+    status: 'Published proof surface',
     icon: MapPin,
     image: '/images/stories/utopia/region-map.png',
-    summary: 'Where beds have gone, with community pages for Utopia, Palm Island, Tennant Creek and more.',
+    summary: 'Published notes from deliveries, local builds and the road between places.',
   },
   {
     label: 'Impact and origin',
@@ -344,11 +344,11 @@ const siteArchitecture = [
   },
   {
     area: 'Community proof',
-    href: '/communities',
+    href: '/field-notes',
     status: 'Live proof',
     icon: MapPin,
     purpose: 'Place-by-place evidence of where beds have landed, what communities have asked for and what the next production move could unlock.',
-    offers: ['Community map', 'Place pages', 'Demand and delivery context'],
+    offers: ['Published field notes', 'Place evidence', 'Demand and delivery context'],
   },
   {
     area: 'Production pathway',

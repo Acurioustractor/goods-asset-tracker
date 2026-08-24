@@ -96,7 +96,7 @@ export default async function StoryDetailPage({ params }: Props) {
               This story has been removed at the storyteller&apos;s request or is no longer available for display.
             </p>
             <Button variant="outline" asChild>
-              <Link href="/stories">Back to Stories</Link>
+              <Link href="/storytellers">Meet the Storytellers</Link>
             </Button>
           </div>
         </section>
@@ -319,7 +319,7 @@ export default async function StoryDetailPage({ params }: Props) {
               Written by <span className="font-medium text-foreground">{displayName}</span>
             </div>
             <Button variant="outline" size="sm" asChild>
-              <Link href="/stories">Back to Stories</Link>
+              <Link href="/storytellers">Meet the Storytellers</Link>
             </Button>
           </div>
           <div className="max-w-[65ch] mx-auto mt-8 pt-6 border-t border-border/50">

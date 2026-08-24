@@ -224,16 +224,16 @@ export default function WikiPage() {
             </Link>
 
             <Link
-              href="/stories"
+              href="/field-notes"
               className="block p-6 bg-white border border-gray-200 rounded-lg hover:shadow-lg transition-shadow"
             >
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                📖 Impact Stories
+                📖 Field Notes
               </h3>
               <p className="text-gray-600 text-sm mb-4">
-                Real stories from communities, powered by Empathy Ledger.
+                Updates from the road, deliveries and local making.
               </p>
-              <span className="text-green-600 text-sm font-medium">Read stories →</span>
+              <span className="text-green-600 text-sm font-medium">Read field notes →</span>
             </Link>
 
           </div>

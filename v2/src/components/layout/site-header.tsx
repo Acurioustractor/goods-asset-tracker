@@ -20,7 +20,6 @@ type NavItem = { name: string; href: string; subtitle?: string };
 const navigation: NavItem[] = [
   { name: 'The Stretch Bed', href: '/shop/stretch-bed-single' },
   { name: 'How it’s made', href: '/process' },
-  { name: 'Communities', href: '/communities' },
   { name: 'Our story', href: '/story' },
   { name: 'Back the work', href: '/partner' },
   { name: 'Contact', href: '/contact' },
@@ -31,7 +30,6 @@ const navigation: NavItem[] = [
 const menuDoors = [
   { name: 'Buy a bed', href: '/shop/stretch-bed-single', color: 'var(--goods-terracotta)', text: '#FFFFFF' },
   { name: 'Sponsor a bed', href: '/sponsor', color: 'var(--goods-gold)', text: 'var(--goods-ink)' },
-  { name: 'Want this where you are?', href: '/communities', color: 'var(--goods-sage)', text: 'var(--goods-ink)' },
   { name: 'Back the work', href: '/partner', color: 'var(--goods-teal)', text: '#FFFFFF' },
 ];
 

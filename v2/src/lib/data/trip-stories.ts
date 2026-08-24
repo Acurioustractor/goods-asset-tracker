@@ -667,7 +667,7 @@ const utopia: TripStory = {
         'Arlparra was where most of the beds landed, and where we slept. The local friends we met there led the deliveries. We followed people who knew which house was which.',
       media: { image: `${IMG}/06-delivery.jpg` },
       links: [
-        { label: 'Where the beds have gone', href: '/communities' },
+        { label: 'Impact and reach', href: '/story#impact' },
       ],
     },
     // Overlay (no-sound, full-bleed, autoplay-loop) of the bed-build
@@ -747,7 +747,7 @@ const utopia: TripStory = {
         fromTag: { all: ['community:arawerr', 'use:atmosphere', 'placement:overlay-fullscreen'] },
       },
       links: [
-        { label: 'Where the beds have gone', href: '/communities' },
+        { label: 'Impact and reach', href: '/story#impact' },
       ],
     },
     {
@@ -1004,7 +1004,6 @@ const utopia: TripStory = {
       caveat:
         'Numbers come from the Goods QR-tagged asset register: each bed is scanned into its home and the count is updated live. Includes the 107-bed Centrecorp Foundation pathway delivered on this trip.',
       links: [
-        { label: 'Browse all communities', href: '/communities' },
         { label: 'Utopia Homelands', href: '/communities/utopia-homelands' },
       ],
     },
@@ -1069,7 +1068,7 @@ const utopia: TripStory = {
       heading: 'This story is one piece of the project',
       sub: 'A few ways in.',
       anchors: [
-        { label: 'Where the beds have gone (map)', href: '/communities' },
+        { label: 'Impact and reach', href: '/story#impact' },
         { label: 'How we got here (origin story)', href: '/story' },
         { label: 'The model and impact', href: '/impact' },
         { label: 'The Stretch Bed', href: '/shop/stretch-bed-single' },
@@ -1354,7 +1353,7 @@ const maningrida: TripStory = {
       heading: 'This story is one piece of the project',
       sub: 'A few ways in.',
       anchors: [
-        { label: 'Where the beds have gone (map)', href: '/communities' },
+        { label: 'Impact and reach', href: '/story#impact' },
         { label: 'How we got here (origin story)', href: '/story' },
         { label: 'The model and impact', href: '/impact' },
         { label: 'The Stretch Bed', href: '/shop/stretch-bed-single' },

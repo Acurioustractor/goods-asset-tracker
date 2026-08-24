@@ -489,11 +489,11 @@ function SponsorContent() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
-              href="/stories"
+              href="/field-notes"
               className="inline-flex items-center justify-center rounded-xl px-6 py-3 text-base font-semibold transition"
               style={{ border: `1px solid ${CREAM}66`, color: CREAM }}
             >
-              Read community stories
+              Read field notes
             </Link>
             <Link
               href="/shop/stretch-bed-single"
