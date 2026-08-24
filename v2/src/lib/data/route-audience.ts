@@ -1743,6 +1743,17 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     why: 'Buyer surface leading with the making story rather than the specification.',
   },
   {
+    route: '/data',
+    audience: 'funder',
+    access: 'open',
+    leadsWithNow: {
+      heading: 'Every number, with its status and its source.',
+      eyebrow: 'The data',
+      body: 'Register-verified delivered totals, measured ABS overcrowding beside each community served, and the recycled-plastic supply, each figure carrying its solidity label and primary source.',
+    },
+    verdict: 'keep',
+  },
+  {
     route: '/production',
     audience: 'operator',
     access: 'gated',
