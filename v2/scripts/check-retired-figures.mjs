@@ -58,6 +58,19 @@ const RETIRED = [
   { value: '475K', what: 'the old lead stack', now: '$607.5K grants / $710K repayable', context: /stack|sefa|snow|centrecorp/i, ruling: 'stack rebuilt 2026-07-25 from all 67 CRM rows' },
   { value: '150K', what: 'per-site plant capital band', now: 'priced per site by the module model', context: /per site|a site|plant capital/i, ruling: 'DECISIONS.md ruling O' },
   { value: '403,901', what: 'the "surplus"', now: 'never cited; the entity P&L is a net loss', context: /surplus|profit|revenue/i, ruling: 'DECISIONS.md ruling H' },
+
+  // SUPPLY MATH. Added 2026-08-24 with ruling T (20kg/bed). An external analysis assumed
+  // 45kg/bed and derived a scenario family from it (22 beds/t, 17,700 beds, 109,600 beds);
+  // the ~800t/yr CDS figure has no primary source (NT EPA: ~530t PET). Demolition with
+  // citations: research/nt-plastics-overcrowding-facts-2026-08-24.md. The typed facts these
+  // replace live in supply-context.ts.
+  { value: '45kg', what: 'plastic per bed (invented)', now: '20kg (ruling T)', context: /bed|plastic|hdpe/i, ruling: 'DECISIONS.md ruling T' },
+  { value: '45 kg', what: 'plastic per bed (invented)', now: '20kg (ruling T)', context: /bed|plastic|hdpe/i, ruling: 'DECISIONS.md ruling T' },
+  { value: '25kg', what: 'plastic per bed (Envirobank brief)', now: '20kg (ruling T)', context: /bed(?!s? per bench)/i, ruling: 'DECISIONS.md ruling T' },
+  { value: '109,600', what: 'beds-possible from NT plastics', now: 'never derive beds-possible from supply; demand ceiling is 2,761 very-remote overcrowded households', context: /bed|plastic/i, ruling: 'DECISIONS.md ruling T' },
+  { value: '17,700', what: 'beds-possible from CDS plastic', now: 'never derive beds-possible from supply', context: /bed|plastic|cds/i, ruling: 'DECISIONS.md ruling T' },
+  { value: '800 tonnes', what: 'NT CDS plastic per year (unsupported)', now: '~530 tonnes PET (NT EPA annual report 2023-24)', context: /cds|container|deposit/i, ruling: 'DECISIONS.md ruling T' },
+  { value: '800t', what: 'NT CDS plastic per year (unsupported)', now: '~530 tonnes PET (NT EPA annual report 2023-24)', context: /cds|container|deposit/i, ruling: 'DECISIONS.md ruling T' },
 ];
 
 /**
