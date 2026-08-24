@@ -549,11 +549,16 @@ async function findContact(emailOrPhone: string): Promise<{ id: string } | null>
     const isEmail = emailOrPhone.includes('@');
     const query = isEmail ? `email=${encodeURIComponent(emailOrPhone)}` : `phone=${encodeURIComponent(emailOrPhone)}`;
 
-    const response = await ghlRequest<{ contacts: Array<{ id: string }> }>(
+    const response = await ghlRequest<{
+      // The duplicate endpoint returns a single `contact`; older responses may
+      // still carry a `contacts` array, so accept both shapes.
+      contact?: { id: string } | null;
+      contacts?: Array<{ id: string }>;
+    }>(
       `/contacts/search/duplicate?locationId=${GHL_LOCATION_ID}&${query}`
     );
 
-    return response.contacts?.[0] || null;
+    return response.contact || response.contacts?.[0] || null;
   } catch (error) {
     console.error('[GHL] Error finding contact:', error);
     return null;
@@ -585,7 +590,10 @@ async function createOrUpdateContact(data: ContactData): Promise<GHLResponse> {
 
   try {
     // Try to find existing contact
-    const duplicateKey = phone || email;
+    // Public contact forms require email. Prefer it here because GHL's
+    // duplicate endpoint accepts email reliably, while phone support differs
+    // between API versions.
+    const duplicateKey = email || phone;
     console.log('[GHL] Searching for existing contact:', duplicateKey || '(none)');
     const existingContact = duplicateKey ? await findContact(duplicateKey) : null;
     console.log('[GHL] Existing contact search result:', existingContact ? `Found: ${existingContact.id}` : 'Not found');
