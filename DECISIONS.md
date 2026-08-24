@@ -19,6 +19,30 @@
 
 ---
 
+## 2026-08-24 — plastic per bed
+
+### T. Plastic per Stretch Bed is 20kg. The Envirobank ~25kg is retired.
+
+**Ben ruling 2026-08-24**, closing the 20-vs-25 conflict `cost-story.ts` had carried since the
+Envirobank brief. Canon already derived `plastic-kg` (3,540kg diverted) from 20kg; that
+derivation is now unambiguous. The figure stays **workpaper**, not verified: nothing has been
+weighed at production rate. The measured run converts it to measured — the material-batch
+traceability design (`supabase/material_traceability_schema.sql`) makes kg-per-bed fall out of
+`run_batch_inputs ÷ units_produced` instead of being asserted.
+
+**Supersedes:** the Envirobank brief's ~25kg wherever quoted; the `conflict` row in
+`cost-story.ts` and its COST_OPEN_ITEMS line.
+
+**Sweep:** `cost-story.ts` conflict row → 20kg workpaper (done this date) · COST_OPEN_ITEMS
+line removed (done) · header "two conflict rows" comment corrected (done) · `products.ts`
+"25kg per bench" checked and left — it is a bench, not a bed. Derived honest math: one tonne
+of clean HDPE ≈ 50 leg-sets. **Never use 45kg/bed or its descendants (22 beds/t, 109,600-bed
+scenarios)** — sourced demolition in `research/nt-plastics-overcrowding-facts-2026-08-24.md`,
+which also corrects the circulated "~800t/yr NT CDS plastic" to ~530t (NT EPA annual report
+2023-24).
+
+---
+
 ## 2026-07-31 — the pitch ending, and the four communities
 
 Ben rulings, taken while rebuilding the ending of `/pitch/road`.
