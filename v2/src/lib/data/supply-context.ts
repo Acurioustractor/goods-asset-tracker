@@ -46,7 +46,7 @@ export const SUPPLY_FACTS: SupplyFact[] = [
     label: 'Plastics recycled in the NT, 2023-24',
     value: '4,933 tonnes',
     solidity: 'verified',
-    means: 'The NT recycled 4,933 tonnes of plastic in a year — 8% of everything recycled in the Territory.',
+    means: 'The NT recycled 4,933 tonnes of plastic in a year, 8% of everything recycled in the Territory.',
     watchOut:
       'This is plastic RECYCLED, not collected — more again sits in the 275,190t landfill stream. Usable HDPE/PP after sorting is a fraction of it. One sentence, then move on: supply is not the constraint.',
     source: 'WRINT/AEAS, Economic Contribution of the Waste and Recycling Industry to the NT Economy 2023-24, §6 Material Flow Analysis',
@@ -78,9 +78,9 @@ export const SUPPLY_FACTS: SupplyFact[] = [
   {
     id: 'nt-overcrowding-very-remote',
     label: 'Very remote NT: First Nations households needing at least one more bedroom',
-    value: '2,761 households — 51.3%',
+    value: '2,761 households (51.3%)',
     solidity: 'verified',
-    means: 'In very remote NT, half of all First Nations households — 2,761 of 5,377 — need at least one more bedroom.',
+    means: 'In very remote NT, half of all First Nations households, 2,761 of 5,377, need at least one more bedroom.',
     watchOut:
       'ABS measures "requiring one or more extra bedrooms" (CNOS) — the standard overcrowding proxy. Say "overcrowded" with that footnote available. This is the demand-side fact; it, not tonnage, sizes the work.',
     source: 'ABS Census 2021, Aboriginal and Torres Strait Islander QuickStats, Very Remote Australia (NT)',
@@ -90,7 +90,7 @@ export const SUPPLY_FACTS: SupplyFact[] = [
   {
     id: 'nt-overcrowding-statewide',
     label: 'NT-wide: First Nations households needing at least one more bedroom',
-    value: '4,385 households — 28.7%',
+    value: '4,385 households (28.7%)',
     solidity: 'verified',
     means: 'Across the whole NT, 4,385 First Nations households need at least one more bedroom.',
     source: 'ABS Census 2021, Aboriginal and Torres Strait Islander QuickStats, Northern Territory',
@@ -100,9 +100,9 @@ export const SUPPLY_FACTS: SupplyFact[] = [
   {
     id: 'nt-appropriately-housed',
     label: 'First Nations people in appropriately sized housing, NT',
-    value: '43.4% — the lowest of any jurisdiction',
+    value: '43.4%, the lowest of any jurisdiction',
     solidity: 'verified',
-    means: 'Fewer than half of First Nations people in the NT live in appropriately sized housing — the lowest result in the country, against 81.4% nationally.',
+    means: 'Fewer than half of First Nations people in the NT live in appropriately sized housing, the lowest result in the country, against 81.4% nationally.',
     source: 'ABS, Housing Statistics for Aboriginal and Torres Strait Islander Peoples, 2021, Graph 15',
     sourceUrl: 'https://www.abs.gov.au/statistics/people/aboriginal-and-torres-strait-islander-peoples/housing-statistics-aboriginal-and-torres-strait-islander-peoples/2021',
     asAt: '2021-08-10',
@@ -122,7 +122,7 @@ export const SUPPLY_FACTS: SupplyFact[] = [
     label: 'Recycled HDPE in one Stretch Bed',
     value: `${PLASTIC_KG_PER_BED}kg`,
     solidity: 'workpaper',
-    means: `A Stretch Bed's pressed legs carry about ${PLASTIC_KG_PER_BED}kg of recycled HDPE — one tonne of clean plastic is roughly ${LEG_SETS_PER_TONNE} beds' legs.`,
+    means: `A Stretch Bed's pressed legs carry about ${PLASTIC_KG_PER_BED}kg of recycled HDPE; one tonne of clean plastic is roughly ${LEG_SETS_PER_TONNE} beds' legs.`,
     watchOut:
       'Ben ruling 2026-08-24 (DECISIONS.md T); Envirobank\'s ~25kg retired. Workpaper until the measured run weighs batches per run. Never 45kg/bed or anything derived from it.',
     source: 'Product spec; Ben ruling 2026-08-24; canon plastic-kg derivation',
@@ -138,7 +138,7 @@ export const SUPPLY_FACTS: SupplyFact[] = [
 export const SUPPLY_PARAGRAPH =
   `The NT recycled 4,933 tonnes of plastic last year, and more again went to landfill. ` +
   `A Stretch Bed's pressed legs take about ${PLASTIC_KG_PER_BED}kg of it, so one tonne of clean plastic ` +
-  `is roughly ${LEG_SETS_PER_TONNE} beds' legs — and the Census counts 2,761 very remote NT households ` +
+  `is roughly ${LEG_SETS_PER_TONNE} beds' legs, and the Census counts 2,761 very remote NT households ` +
   `short at least a bedroom. Feedstock will never be the constraint. What the money buys is the part ` +
   `that is: a community that can collect the plastic, make the goods, and come to own the making.`;
 

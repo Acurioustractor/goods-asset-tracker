@@ -42,6 +42,7 @@
  */
 
 import { canonFact } from './canon';
+import { SUPPLY_FACTS } from './supply-context';
 import { CANONICAL_ASSETS } from './asset-canonical';
 import { ROAD_STOPS, THE_GAP, type StopId } from './road-spine';
 import { ownershipClaimLine } from './ownership-test';
@@ -67,6 +68,17 @@ function fig(id: string, format?: (v: number | string) => string): Figure {
 }
 
 const aud = (v: number | string) => `$${Number(v).toLocaleString()}`;
+
+/**
+ * A figure resolved from supply-context.ts (the verified NT waste + overcrowding facts)
+ * rather than canon. Same never-type-a-figure rule, different source of truth: the guards
+ * verify `supply:` figures against SUPPLY_FACTS the way canon figures verify against canon.
+ */
+function supplyFig(id: string): Figure {
+  const f = SUPPLY_FACTS.find((x) => x.id === id);
+  if (!f) throw new Error(`Unknown supply fact "${id}".`);
+  return { value: f.value, label: f.label, claim: f.solidity, canonId: `supply:${f.id}` };
+}
 
 /**
  * A figure DERIVED from canon rather than stored in it. `from` names the canon ids it is computed
@@ -141,11 +153,12 @@ export const DECK_ROAD: Slide[] = [
     kind: 'gap',
     eyebrow: 'The gap',
     headline: THE_GAP.taught,
-    body: 'Seven places, nine years, and a product that works. What has not happened anywhere is the transfer. This is the honest position, and it is the reason for the ask.',
+    body: 'Seven places, nine years, and a product that works. What has not happened anywhere is the transfer. And the need is not abstract: the Census counts 2,761 very remote NT households short at least a bedroom, half of all of them. Nine years of this work has delivered 540 beds. This is the honest position, and it is the reason for the ask.',
     figures: [
       fig('communities-served'),
       fig('beds-deployed'),
       fig('plastic-kg', (v) => `${Number(v).toLocaleString()}kg`),
+      supplyFig('nt-overcrowding-very-remote'),
     ],
     neverSay:
       'Never present the gap as failure. It is the thing the money is for, and stating it plainly is what makes the rest credible.',
@@ -164,12 +177,13 @@ export const DECK_ROAD: Slide[] = [
     kind: 'economics',
     eyebrow: 'The economics',
     headline: 'We pay 8.6 times the raw material cost to buy legs finished.',
-    body: 'That ratio is the whole investment case. Buying legs finished, most of the sale price leaves with the supplier. Pressing them ourselves, roughly five times as much stays. The capability is proven: forty beds were pressed and assembled end to end. What is not measured is the per-bed cost at a sustained rate, and the first thing this money buys is the run that measures it.',
+    body: 'That ratio is the whole investment case. Buying legs finished, most of the sale price leaves with the supplier. Pressing them ourselves, roughly five times as much stays. The capability is proven: forty beds were pressed and assembled end to end. What is not measured is the per-bed cost at a sustained rate, and the first thing this money buys is the run that measures it. Feedstock will never be the constraint: the NT recycled 4,933 tonnes of plastic last year, and one bed\'s legs take about 20kg of it.',
     figures: [
       fig('stretch-price', aud),
       STAYS_BUY_KIT,
       STAYS_PRESSED,
       fig('save-per-bed', aud),
+      supplyFig('plastic-per-bed'),
     ],
     neverSay:
       'Never present a modelled cost as measured, and never put a bed number in front of anyone as a threshold.',
