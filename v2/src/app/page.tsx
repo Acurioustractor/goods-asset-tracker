@@ -231,13 +231,13 @@ export default async function HomePage() {
               </div>
               <p className="mb-4 text-sm uppercase tracking-widest text-accent">Designed in community</p>
               <h2 className="mb-5 text-3xl font-light leading-snug text-foreground md:text-4xl" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>
-                Two years around the fire with the Bloomfield family.
+                Learning alongside the Bloomfield family
               </h2>
               <p className="mb-4 text-lg leading-relaxed text-muted-foreground">
-                Oonchiumpa Consultancy is a 100% Aboriginal-owned business in Alice Springs. The Stretch Bed and Pakkimjalki Kari washing machine were both designed there, in community, with Elders and young people pulling apart prototypes and putting them back together.
+                Oonchiumpa Consultancy is a 100% Aboriginal-owned business in Alice Springs. Over time, Elders, young people and the Goods team have worked together on Stretch Bed prototypes—pulling them apart, testing what works and making changes along the way.
               </p>
               <p className="mb-7 text-lg leading-relaxed text-muted-foreground">
-                What started as a design partnership is becoming an enterprise: a production facility in Alice Springs, young people building beds, and a pipeline from local knowledge to local jobs.
+                This work is creating room to explore what local making could look like in Alice Springs: young people building beds, practical skills growing over time, and decisions remaining with the people closest to the work.
               </p>
               <blockquote className="mb-7 border-l-4 pl-5 text-lg italic leading-relaxed text-foreground/85" style={{ borderColor: 'var(--color-accent, #8B9D77)', fontFamily: 'Georgia, serif' }}>
                 “We want to create a safe space for our young people. There’s a lack of housing, which leads to a lack of sleep, which leads to low school attendance.”
