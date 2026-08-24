@@ -3,6 +3,11 @@ import { CANONICAL_ASSETS, WASHERS_IN_COMMUNITY_BY_COMMUNITY } from '@/lib/data/
 import { COMMUNITY_BED_CANON } from '@/lib/data/community-canonical';
 import { COMMUNITY_NEED, COMMUNITY_NEED_GAPS, NEED_SOURCE, NEED_SOURCE_URL } from '@/lib/data/community-need';
 import { SUPPLY_FACTS, PLASTIC_KG_PER_BED } from '@/lib/data/supply-context';
+import { communityLocations } from '@/lib/data/content';
+import { DataMap, type PlaceRead } from './data-map';
+
+/** canon id -> communityLocations id, where they differ. */
+const LOCATION_ID: Record<string, string> = { utopia: 'utopia-homelands' };
 
 /**
  * /data — every public Goods number in one place, wearing its status and source.
@@ -53,6 +58,34 @@ export default function DataPage() {
     { v: String(CANONICAL_ASSETS.washersInCommunity), l: 'washing machines', s: 'Pakkimjalki Kari, in community' },
     { v: `${CANONICAL_ASSETS.plasticKg.toLocaleString()}kg`, l: 'recycled HDPE diverted', s: `Stretch only, ${PLASTIC_KG_PER_BED}kg per bed` },
   ];
+
+  const reads: PlaceRead[] = COMMUNITY_BED_CANON.map((c) => {
+    const need = needById.get(c.id);
+    const gap = gapById.get(c.id);
+    return {
+      locationId: LOCATION_ID[c.id] ?? c.id,
+      name: c.registerName,
+      beds: c.basketBeds + c.stretchBeds,
+      bedsSplit: [
+        c.stretchBeds > 0 ? `${c.stretchBeds} Stretch` : '',
+        c.basketBeds > 0 ? `${c.basketBeds} Basket` : '',
+      ]
+        .filter(Boolean)
+        .join(' · '),
+      washers: WASHERS_IN_COMMUNITY_BY_COMMUNITY[c.id] ?? 0,
+      plasticKg: c.stretchBeds * PLASTIC_KG_PER_BED,
+      need: need
+        ? {
+            pct: need.need1plusPct,
+            short: need.need1plus,
+            occupied: need.occupiedDwellings,
+            ilocName: need.ilocName,
+            caveat: need.caveat,
+          }
+        : null,
+      gapReason: gap?.reason,
+    };
+  });
 
   return (
     <main className="bg-background text-foreground">
@@ -110,6 +143,9 @@ export default function DataPage() {
             <p className="mb-3 text-xs uppercase tracking-[0.25em] text-goods-terracotta">
               Community by community
             </p>
+            <div className="mb-10">
+              <DataMap locations={communityLocations} reads={reads} />
+            </div>
             <h2 className="mb-3 text-2xl font-bold md:text-3xl" style={displayFont}>
               The setting each delivery landed in.
             </h2>
