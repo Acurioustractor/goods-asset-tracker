@@ -310,9 +310,9 @@ export const storyStops: StoryStop[] = [
     place: 'The farm, and Maningrida homelands, NT · July 2026',
     chapters: [
       'The next proof arrived at the farm. Goods had invested in a containerised recycled-plastic production facility: shredding, heating and pressing material into sheets, cutting components, preparing the frame and canvas, assembling, checking and packing the finished bed.',
-      'The facility turned the production story from a diagram into work. The July 2026 Maningrida homelands batch was made there: 60 Stretch Beds, accompanied by two washing machines, delivered with Homeland School Company.',
-      'This moment changes the investment case. The next proof is no longer whether Goods can make beds through its own production facility. It has. The next proof is what those 60 beds actually cost to make, and whether the line can repeat the result safely, reliably and at a cost that supports local wages and future transfer.',
-      'The current cost model remains a model until the Maningrida run ledger is closed. The materials, labour hours, electricity, yield, rejected components, maintenance, packaging, freight and support cost need to be reconciled against the 60 finished beds. A real production run is proof of capability. A closed run ledger is proof of economics.',
+      'The facility turned the production story from a diagram into work. The July 2026 Maningrida homelands batch was made there: 40 Stretch Beds, accompanied by two washing machines, delivered with Homeland School Company.',
+      'This moment changes the investment case. The next proof is no longer whether Goods can make beds through its own production facility. It has. The next proof is what those 40 beds actually cost to make, and whether the line can repeat the result safely, reliably and at a cost that supports local wages and future transfer.',
+      'The current cost model remains a model until the Maningrida run ledger is closed. The materials, labour hours, electricity, yield, rejected components, maintenance, packaging, freight and support cost need to be reconciled against the 40 finished beds. A real production run is proof of capability. A closed run ledger is proof of economics.',
       'The Maningrida story also shows the model\'s two-sided demand. Homeland School Company did not ask for an abstract circular-economy demonstration. It needed beds and machines across homelands. The production facility did not make a showcase object. It made a batch with a destination.',
     ],
     photo: {
@@ -350,7 +350,7 @@ export const storyStops: StoryStop[] = [
       },
     ],
     figures: [
-      { value: '60', label: 'Stretch Beds in the first in-house run', claim: 'verified' },
+      { value: '40', label: 'Stretch Beds in the first in-house run', claim: 'verified' },
       { value: 'pending', label: 'run ledger closed', claim: 'target' },
     ],
     videos: [
@@ -435,7 +435,7 @@ export const storyStops: StoryStop[] = [
         embedUrl: 'https://share.descript.com/embed/YQwAcYfxzkn',
       },
     ],
-    note: 'Xavier is NARRATED BY Fred Campbell and must never be given a borrowed first-person quote, however much cleaner the slide would read; the registry records him as narratedBy. The 45-60 young people and 30 beds/week are PROPOSAL figures, not outcomes, and the Notion source says so explicitly. Ownership is a pathway, never claimed complete.',
+    note: 'RUN SIZE: the Notion source says 60 beds; the register holds exactly 40 Maningrida Stretch Bed rows (supply_date 2026-07-18, INV-0303) and canon/CONTEXT.md agree, so 40 is used and 60 is guarded in check-retired-figures. Xavier is NARRATED BY Fred Campbell and must never be given a borrowed first-person quote, however much cleaner the slide would read; the registry records him as narratedBy. The 45-60 young people and 30 beds/week are PROPOSAL figures, not outcomes, and the Notion source says so explicitly. Ownership is a pathway, never claimed complete.',
   },
 
   // ────────────────────────────────────────────────────────── the gap
@@ -520,7 +520,7 @@ export const storyStops: StoryStop[] = [
       'An economic shift. Today, Goods can buy completed recycled-plastic components from an external supplier and assemble the bed. That keeps production simple, but it captures very little contribution at the current price. Pressing components through the Goods facility is expected to reduce marginal cost materially. In a community-production path, free local feedstock and a fair local wage are designed into the economics. The wage is not a trade-off against viability: in the model it fits inside a lower total cost, because the city-factory markup and duplicated freight fall away.',
       'A story and authority shift. The old story says an outside organisation designed a product and delivered it to people in need. The Goods story says something more precise: people named the need, changed the product, tested it, built it, ordered it and now have the opportunity to hold the productive asset.',
       'The model identifies a particular cost leak. A finished recycled-plastic leg kit costs about $344 bought from a city factory. The raw shredded-plastic input is about $40. Labour, energy, yield and processing still have to be paid, but bringing the process in-house removes a large markup and a freight loop.',
-      'The capital case in one sentence: the first facility has produced a real 60-bed batch. The next job is to close the run ledger, prove the cost-down, and build enough purchase-backed volume to support transfer.',
+      'The capital case in one sentence: the first facility has produced a real 40-bed batch. The next job is to close the run ledger, prove the cost-down, and build enough purchase-backed volume to support transfer.',
     ],
     photo: null,
     figures: [
@@ -532,7 +532,7 @@ export const storyStops: StoryStop[] = [
       { value: '4,933 tonnes', label: 'plastic recycled in the NT, 2023-24 (WRINT material flow)', claim: 'verified' },
       { value: '2,761 — 51.3%', label: 'very remote NT households short at least a bedroom (ABS 2021)', claim: 'verified' },
     ],
-    note: 'EVERY figure here wears its status, and the statuses are not decorative: bought-in is workpaper (engine-locked), both cost-down figures are MODELLED with the 60-bed run ledger still open. The break-even figures from the Notion source (1,679 beds bought-in, 333-338 cost-down) are deliberately omitted: they are computed against a fixed block that the July model work re-cut into three pots, and the honest denominator is now a BAND. Do not reinstate a single break-even number here; read lib/cost-model/engine. The retired "75-100 beds/yr" figure must never reappear on any surface.',
+    note: 'EVERY figure here wears its status, and the statuses are not decorative: bought-in is workpaper (engine-locked), both cost-down figures are MODELLED with the 40-bed run ledger still open. The break-even figures from the Notion source (1,679 beds bought-in, 333-338 cost-down) are deliberately omitted: they are computed against a fixed block that the July model work re-cut into three pots, and the honest denominator is now a BAND. Do not reinstate a single break-even number here; read lib/cost-model/engine. The retired "75-100 beds/yr" figure must never reappear on any surface.',
   },
 
   // ────────────────────────────────────────────────────────── money
@@ -547,7 +547,7 @@ export const storyStops: StoryStop[] = [
       'Grant funding paid for work a young product business could not responsibly place on community buyers: listening, design, failed prototypes, repeated travel, community participation, first-batch risk, evidence systems and the cost of learning how ownership might transfer.',
       'Snow Foundation was an early anchor partner. The Funding Network\'s Healthy People, Healthy Planet event in September 2025 raised about $130,000 toward the On-Country production facility. Centrecorp Foundation backed the Central Australian and Utopia pathway and helped move the work from a request into beds on Country. AMP Spark and other philanthropic partners supported design, delivery, evidence and operating work.',
       'Goods has also invested about $110,046 in verified facility and press capital. That is the cleanest skin-in-the-game figure in the record.',
-      'The next capital should not be described as money to scale impact. That phrase hides the work. The money has jobs: close the economics on the 60-bed run, make the facility repeatable, carry purchase-backed working capital, build the first transfer with Oonchiumpa, and build the shared support layer.',
+      'The next capital should not be described as money to scale impact. That phrase hides the work. The money has jobs: close the economics on the 40-bed run, make the facility repeatable, carry purchase-backed working capital, build the first transfer with Oonchiumpa, and build the shared support layer.',
       'You are not funding another prototype. You are funding the bridge between a working product and a community-held production enterprise: the measured cost, the first order book, the first paid roles, the first transfer agreement and the first set of keys.',
     ],
     photo: null,

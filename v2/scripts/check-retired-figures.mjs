@@ -71,6 +71,8 @@ const RETIRED = [
   { value: '17,700', what: 'beds-possible from CDS plastic', now: 'never derive beds-possible from supply', context: /bed|plastic|cds/i, ruling: 'DECISIONS.md ruling T' },
   { value: '800 tonnes', what: 'NT CDS plastic per year (unsupported)', now: '~530 tonnes PET (NT EPA annual report 2023-24)', context: /cds|container|deposit/i, ruling: 'DECISIONS.md ruling T' },
   { value: '800t', what: 'NT CDS plastic per year (unsupported)', now: '~530 tonnes PET (NT EPA annual report 2023-24)', context: /cds|container|deposit/i, ruling: 'DECISIONS.md ruling T' },
+  { value: '60 Stretch', what: 'Maningrida in-house run size (Notion source)', now: '40 (register-verified 2026-08-24; INV-0303)', context: /bed/i, ruling: 'CONTEXT.md pressed-run entry; regressed once from the Notion source' },
+  { value: '60-bed', what: 'Maningrida in-house run size (Notion source)', now: '40-bed (register-verified 2026-08-24; INV-0303)', context: /run|batch|ledger/i, ruling: 'CONTEXT.md pressed-run entry' },
 ];
 
 /**

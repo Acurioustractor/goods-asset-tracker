@@ -231,7 +231,7 @@ export default function OurStoryPage() {
               onChange={(e) => setAddContent(e.target.value)}
               placeholder={
                 addingType === 'quote' ? 'What did they say?'
-                  : addingType === 'stat' ? 'e.g. "60 beds delivered"'
+                  : addingType === 'stat' ? 'e.g. "540 beds delivered"'
                   : addingType === 'milestone' ? 'What was achieved?'
                   : 'Describe the photo'
               }
