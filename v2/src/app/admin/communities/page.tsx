@@ -3,6 +3,7 @@ import { createServiceClient } from '@/lib/supabase/server';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { expansionTargets } from '@/lib/data/expansion-targets';
+import { EXPANSION_NEED, EXPANSION_NEED_GAPS, EXPANSION_NEED_SOURCE } from '@/lib/data/expansion-need';
 import { COMMUNITY_OS, FACILITY_LABEL } from '@/lib/data/community-os';
 
 export const dynamic = 'force-dynamic';
@@ -549,6 +550,7 @@ export default async function CommunitiesPage() {
                 <th className="py-2 px-3 font-medium">Community</th>
                 <th className="py-2 px-3 font-medium">State</th>
                 <th className="py-2 px-3 font-medium text-right">Pop.</th>
+                <th className="py-2 px-3 font-medium text-right">Overcrowded</th>
                 <th className="py-2 px-3 font-medium">Why</th>
                 <th className="py-2 px-3 font-medium">Housing Body</th>
               </tr>
@@ -562,12 +564,21 @@ export default async function CommunitiesPage() {
                     <Badge variant="outline" className="text-xs">{t.state}</Badge>
                   </td>
                   <td className="py-2 px-3 text-right font-mono">~{fmt(t.pop)}</td>
+                  <td className="py-2 px-3 text-right font-mono text-xs" title={EXPANSION_NEED.find((n) => n.community === t.community)?.caveat ?? EXPANSION_NEED_GAPS.find((g) => g.community === t.community)?.reason}>
+                    {EXPANSION_NEED.find((n) => n.community === t.community)?.need1plusPct != null
+                      ? `${EXPANSION_NEED.find((n) => n.community === t.community)!.need1plusPct}%`
+                      : '—'}
+                  </td>
                   <td className="py-2 px-3 text-muted-foreground text-xs max-w-[320px]">{t.reason}</td>
                   <td className="py-2 px-3 text-muted-foreground text-xs">{t.housingBody}</td>
                 </tr>
               ))}
             </tbody>
           </table>
+          <p className="px-3 py-2 text-xs text-muted-foreground">
+            Overcrowded = dwellings needing 1+ extra bedrooms. {EXPANSION_NEED_SOURCE}. Measures the
+            place at ILOC grain, never Goods demand or impact; — means no single honest ILOC (hover for why).
+          </p>
         </div>
       </section>
     </div>
