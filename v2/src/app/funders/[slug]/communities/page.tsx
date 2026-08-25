@@ -9,6 +9,7 @@ import {
   getDemandTotal,
 } from '@/lib/data/compendium';
 import { expansionTargets, getExpansionTargetTotals } from '@/lib/data/expansion-targets';
+import { EXPANSION_NEED, EXPANSION_NEED_GAPS, EXPANSION_NEED_SOURCE } from '@/lib/data/expansion-need';
 import { getGrantscopeCommunities, type GrantscopeCommunityProof } from '@/lib/grantscope/client';
 import { getFunderPage } from '@/lib/data/funder-pages';
 import { FunderMap } from '../funder-map';
@@ -250,6 +251,7 @@ export default async function FunderCommunitiesPage({ params }: PageProps) {
                     <th className="text-left p-3 font-medium">Community</th>
                     <th className="text-left p-3 font-medium">State</th>
                     <th className="text-left p-3 font-medium">Population</th>
+                    <th className="text-left p-3 font-medium">Measured overcrowding</th>
                     <th className="text-left p-3 font-medium">Need rationale</th>
                     <th className="text-left p-3 font-medium">Procurement contact</th>
                   </tr>
@@ -261,6 +263,21 @@ export default async function FunderCommunitiesPage({ params }: PageProps) {
                       <td className="p-3 font-medium">{t.community}</td>
                       <td className="p-3" style={{ color: '#5E5E5E' }}>{t.state}</td>
                       <td className="p-3 font-medium">{t.pop.toLocaleString()}</td>
+                      <td className="p-3 text-xs leading-relaxed">
+                        {(() => {
+                          const need = EXPANSION_NEED.find((n) => n.community === t.community);
+                          if (need) {
+                            return (
+                              <>
+                                <span className="font-medium">{need.need1plusPct}%</span> of {need.occupiedDwellings.toLocaleString()} dwellings need more bedrooms
+                                {need.caveat ? <span className="block mt-0.5" style={{ color: '#8B8B8B' }}>{need.caveat}</span> : null}
+                              </>
+                            );
+                          }
+                          const gap = EXPANSION_NEED_GAPS.find((g) => g.community === t.community);
+                          return <span style={{ color: '#8B8B8B' }}>{gap ? gap.reason : 'Not measured'}</span>;
+                        })()}
+                      </td>
                       <td className="p-3 text-xs leading-relaxed" style={{ color: '#5E5E5E' }}>{t.reason}</td>
                       <td className="p-3 text-xs" style={{ color: '#5E5E5E' }}>{t.housingBody}</td>
                     </tr>
@@ -269,6 +286,10 @@ export default async function FunderCommunitiesPage({ params }: PageProps) {
               </table>
             </div>
           </div>
+          <p className="mt-2 text-xs leading-relaxed" style={{ color: '#8B8B8B' }}>
+            Measured overcrowding: {EXPANSION_NEED_SOURCE}. It measures the place, not Goods demand
+            and not impact; each figure belongs to the named ABS Indigenous Location only.
+          </p>
         </section>
 
         {/* Grantscope Live Feed (optional) */}
