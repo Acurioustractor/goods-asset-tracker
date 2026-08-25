@@ -42,7 +42,7 @@ describe('the numbers hold together', () => {
     }
   });
 
-  it('ILOC codes are NT (7-prefix, 8 digits)', () => {
-    for (const n of COMMUNITY_NEED) expect(n.ilocCode, n.communityId).toMatch(/^7\d{7}$/);
+  it('ILOC codes are 8-digit ABS codes with a real state prefix (3=QLD, 5=WA, 7=NT)', () => {
+    for (const n of COMMUNITY_NEED) expect(n.ilocCode, n.communityId).toMatch(/^[357]\d{7}$/);
   });
 });
