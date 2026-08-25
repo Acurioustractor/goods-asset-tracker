@@ -17,8 +17,11 @@
  *
  * CLAIM CEILING, non-negotiable: this measures the SETTING. It is the why behind beds as
  * health hardware; it is never an outcome of the work and never a causal claim. Where no
- * honest mapping exists (Utopia homelands straddle LGA boundaries; Canberra is outside
- * the frame) the community carries a stated gap, never a guessed number.
+ * honest mapping exists (Canberra is outside the frame) the community carries a stated
+ * gap, never a guessed number. Utopia's LGA was ruled 2026-08-25 by convergent public
+ * evidence: Barkly Regional Council's own communities page (Arlparra is one of its
+ * elected local authorities), Wikipedia Utopia NT, Urapuntja Health Service. Its Barkly
+ * figures are shared with Tennant Creek — same region, named on both rows.
  */
 
 export interface CommunityHealthSetting {
@@ -89,6 +92,22 @@ export const COMMUNITY_HEALTH: readonly CommunityHealthSetting[] = [
       kidneyDisease: 62,
       diabetes: 126,
       medianAge: 35,
+    },
+  },
+  {
+    communityId: 'utopia',
+    lgaCode: '70420',
+    lgaName: 'Barkly',
+    medianAgeDeath: 59,
+    deaths: 252,
+    pphSr: 949,
+    iloc: {
+      ilocName: 'Utopia - Arawerr - Arlparra',
+      personsCounted: 372,
+      heartDisease: 4,
+      kidneyDisease: 5,
+      diabetes: 17,
+      medianAge: 28,
     },
   },
   {
@@ -185,10 +204,5 @@ export const COMMUNITY_HEALTH: readonly CommunityHealthSetting[] = [
 ];
 
 export const COMMUNITY_HEALTH_GAPS: readonly CommunityHealthGap[] = [
-  {
-    communityId: 'utopia',
-    reason:
-      'The homelands straddle LGA boundaries; no single LGA honestly describes them. Community-grain Census data exists (ILOC Utopia - Arawerr - Arlparra) and can carry this row once a placement ruling lands.',
-  },
   { communityId: 'canberra', reason: 'Outside the remote-community frame this measure describes.' },
 ];
