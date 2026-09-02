@@ -1649,11 +1649,11 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     audience: 'partner',
     access: 'open',
     leadsWithNow: {
-      heading: 'G\'day, partner',
-      body: 'Your enterprise support system. What do you need?',
+      heading: 'Nine modules. Some are yours, some are ours.',
+      body: 'Which modules are yours and which are ours is decided with your community and written into your agreement, along with what happens at Transfer.',
     },
-    verdict: 'rewrite',
-    why: 'partner.leadWith is "which of the nine modules is theirs, and which is ours". Leads "G\'day, partner / Your enterprise support system. What do you need?" The modules are never named.',
+    verdict: 'keep',
+    why: 'Was a rewrite: it led "G\'day, partner / Your enterprise support system. What do you need?" and never named a module. Now leads on the nine, lists all of them from MODULES in pathway-stages.ts, states that whose module is whose is agreed per community and in writing, and defines Transfer from the operating step rather than restating it. Each of the four portal cards carries its own module label. It does NOT assert a split for any partner: this portal is public and carries no community, and MODULE_RULE puts that decision with the community, so publishing one would be inventing it. The named split lives in the agreement and in /partners/[slug]/dashboard. Guards: portal-modules.guards.test.ts.',
   },
   {
     route: '/portal/ask-goods',
@@ -1671,8 +1671,8 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
       heading: 'Where We\'re Heading',
       body: 'Your community\'s goals and aspirations',
     },
-    verdict: 'rewrite',
-    why: 'Partner surface that never names which of the nine modules is theirs.',
+    verdict: 'keep',
+    why: 'Was a rewrite: a partner surface that never named a module. The heading is unchanged, because partners know this screen by its name, and a ModuleLine now sits directly under it naming this screen as the Enterprise module, 1 of 9, with the standing sentence that whose module is whose is agreed with the community and written down, and what happens at Transfer. Mapping and guards: portal-modules.ts and portal-modules.guards.test.ts.',
   },
   {
     route: '/portal/our-story',
@@ -1682,8 +1682,8 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
       heading: 'Our Story',
       body: 'Build your enterprise report',
     },
-    verdict: 'rewrite',
-    why: 'Partner surface that never names which of the nine modules is theirs.',
+    verdict: 'keep',
+    why: 'Was a rewrite: a partner surface that never named a module. The heading is unchanged, because partners know this screen by its name, and a ModuleLine now sits directly under it naming this screen as the Story + evidence module, 1 of 9, with the standing sentence that whose module is whose is agreed with the community and written down, and what happens at Transfer. Mapping and guards: portal-modules.ts and portal-modules.guards.test.ts.',
   },
   {
     route: '/portal/projects',
@@ -1693,8 +1693,8 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
       heading: 'Walk Together',
       body: 'Your enterprise projects and milestones',
     },
-    verdict: 'rewrite',
-    why: 'Partner surface that never names which of the nine modules is theirs.',
+    verdict: 'keep',
+    why: 'Was a rewrite: a partner surface that never named a module. The heading is unchanged, because partners know this screen by its name, and a ModuleLine now sits directly under it naming this screen as the Systems module, 1 of 9, with the standing sentence that whose module is whose is agreed with the community and written down, and what happens at Transfer. Mapping and guards: portal-modules.ts and portal-modules.guards.test.ts.',
   },
   {
     route: '/press',

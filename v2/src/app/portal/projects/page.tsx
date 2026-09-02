@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { ModuleLine } from '@/components/portal/module-line';
 
 type ProjectStatus = 'getting-started' | 'underway' | 'wrapping-up' | 'done';
 
@@ -322,6 +323,8 @@ export default function ProjectsPage() {
           New Project
         </button>
       </div>
+
+      <ModuleLine route="/portal/projects" />
 
       {/* New project template picker */}
       {showNew && (
