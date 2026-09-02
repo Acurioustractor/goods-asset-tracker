@@ -1,6 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { canonValue } from '@/lib/data/canon';
+import { SHOP_ANSWERS } from '@/lib/data/shop';
+import { STRETCH_BED } from '@/lib/data/products';
 import { fetchBuildPhotos } from '@/lib/process/el-build-photos';
 import { getStoryOverrides } from '@/lib/field-notes/overrides';
 import { createClient } from '@/lib/supabase/server';
@@ -40,7 +43,7 @@ const GOODS_PHOTO_FOLDERS: SwapFolder[] = [
 export const metadata = {
   title: "How It's Made",
   description:
-    'From recycled plastic to a Stretch Bed in a remote home: collection, pressing, CNC cutting, leg-forming, community assembly, on-country delivery.',
+    'The Stretch Bed: spec, price, lead time, freight and who fixes it, then every step of how it gets made, from collected plastic to a bed in a remote home.',
   alternates: {
     canonical: 'https://www.goodsoncountry.com/process',
   },
@@ -278,20 +281,69 @@ export default async function ProcessPage() {
               How it&rsquo;s made
             </p>
             <h1 className="text-4xl md:text-6xl font-bold leading-[1.05] mb-6">
-              From recycled plastic to a bed in a remote home.
+              What you&rsquo;re buying, and how it gets made.
             </h1>
             <p className="text-lg md:text-xl text-background/85 mb-8 leading-relaxed max-w-2xl">
-              Plastic gathered on Country. Pressed and cut inside a shipping-container factory.
-              Built in five minutes by the family who&rsquo;ll sleep on it.
+              ${String(canonValue('stretch-price'))} a bed. {STRETCH_BED.specs.dimensions},{' '}
+              {STRETCH_BED.specs.weight}, supports {STRETCH_BED.specs.loadCapacity}. Recycled HDPE
+              X-trestle legs, two galvanised steel poles, heavy-duty Australian canvas, up in{' '}
+              {STRETCH_BED.specs.assemblyTime} with no tools. Made in batches on Country, and this
+              page walks every step of it.
             </p>
             <div className="flex flex-wrap gap-3">
               <Button asChild size="lg" variant="secondary">
-                <Link href="#step-5">Watch the build &darr;</Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="bg-transparent text-background border-background/40 hover:bg-background/10">
                 <Link href="/shop/stretch-bed-single">Shop the Stretch Bed</Link>
               </Button>
+              <Button asChild size="lg" variant="outline" className="bg-transparent text-background border-background/40 hover:bg-background/10">
+                <Link href="#step-5">Watch the build &darr;</Link>
+              </Button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+         THE STRAIGHT ANSWERS
+         The buyer's questions sit above the making story, not below it.
+         /process is a buyer surface (route-audience.ts) and buyer.mustNeverSee
+         is "the impact story ahead of the spec" — the making story is that
+         story in another coat. Same SHOP_ANSWERS constant /shop renders, so
+         the two surfaces cannot drift apart.
+         ============================================================ */}
+      <section className="py-16 md:py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl">
+            <p className="text-xs uppercase tracking-[0.25em] text-accent mb-3">
+              Before the making story
+            </p>
+            <h2
+              className="text-3xl md:text-4xl font-bold text-foreground leading-tight"
+              style={displayFont}
+            >
+              The straight answers.
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-2 max-w-5xl">
+            {SHOP_ANSWERS.map((item) => (
+              <div key={item.question} className="border-t border-border pt-5">
+                <h3 className="text-sm uppercase tracking-widest text-accent mb-2">
+                  {item.question}
+                </h3>
+                <p className="leading-relaxed text-foreground">{item.answer}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 flex flex-wrap gap-4">
+            <Button asChild size="lg">
+              <Link href="/shop/stretch-bed-single">
+                Buy the Stretch Bed &middot; ${String(canonValue('stretch-price'))}
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <Link href="/contact">Ask about freight or bulk orders</Link>
+            </Button>
           </div>
         </div>
       </section>

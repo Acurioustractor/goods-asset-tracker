@@ -1724,12 +1724,12 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     audience: 'buyer',
     access: 'open',
     leadsWithNow: {
-      heading: 'From recycled plastic to a bed in a remote home.',
+      heading: 'What you’re buying, and how it gets made.',
       eyebrow: 'How it’s made',
-      body: 'Plastic gathered on Country. Pressed and cut inside a shipping-container factory. Built in five minutes by the family who’ll sleep on it.',
+      body: '$750 a bed. 188 × 92 × 25cm, 26kg, supports 200kg. Recycled HDPE X-trestle legs, two galvanised steel poles, heavy-duty Australian canvas, up in ~5 minutes with no tools. Made in batches on Country, and this page walks every step of it.',
     },
-    verdict: 'rewrite',
-    why: 'Buyer surface leading with the making story rather than the specification.',
+    verdict: 'keep',
+    why: 'Was a rewrite: a buyer surface that led with the making story, which is buyer.mustNeverSee ("the impact story ahead of the spec") wearing a different coat. Fixed the way /shop was on 2026-08-02, not by deleting anything. The hero now leads with price and spec, the Shop button comes before "Watch the build", and a "Before the making story / The straight answers" band renders SHOP_ANSWERS (the same constant /shop uses, so the two cannot drift) above the six making steps. The making story is not cut; it starts one screen later and runs in full. VERIFY AFTER DEPLOY: re-run scripts/read-route-leads.mjs, because leadsWithNow is production truth and this record was written from the branch.',
   },
   {
     route: '/data',
