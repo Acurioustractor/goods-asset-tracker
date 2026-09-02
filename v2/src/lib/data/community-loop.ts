@@ -38,7 +38,7 @@ export const POOL = {
   beds: 200,
   /** The cost of the beds in one pool. A cost, never income. */
   costAud: 200 * BED_PRICE_AUD,
-  label: 'proposed' as Solidity,
+  label: 'target'as Solidity,
 } as const;
 
 export const FACILITY_BAND = {
@@ -110,9 +110,9 @@ export interface LoopStep {
 }
 
 export const LOOP_STEPS: readonly LoopStep[] = [
-  { n: 1, title: '200 beds arrive', body: 'Cost $150,000. Useful stock that lasts, held locally.', label: 'proposed' },
-  { n: 2, title: 'The community sets the mix', body: 'Give some to meet immediate need. Sell some to pay local work.', label: 'proposed' },
-  { n: 3, title: 'Sales money stays local', body: SALES_SENTENCE, label: 'proposed' },
+  { n: 1, title: '200 beds arrive', body: 'Cost $150,000. Useful stock that lasts, held locally.', label: 'target'},
+  { n: 2, title: 'The community sets the mix', body: 'Give some to meet immediate need. Sell some to pay local work.', label: 'target'},
+  { n: 3, title: 'Sales money stays local', body: SALES_SENTENCE, label: 'target'},
   { n: 4, title: 'The community decides what comes next', body: FACILITY_SENTENCE, label: 'modelled' },
   { n: 5, title: 'Making moves closer', body: MARGIN_SENTENCE, label: 'modelled' },
 ];

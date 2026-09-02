@@ -88,7 +88,8 @@ export const PROGRAM = {
   /** Bed money makes beds. This raise funds none of the block. */
   twoPots:
     'On the kit path a delivered bed costs about $685, so the pool leaves roughly $65 a bed and funds none of the network block. Bed money makes beds. Philanthropy buys the block.',
-  label: 'proposed' as Solidity,
+  /** A future state, not yet agreed with any community: 'target' in the canon vocabulary. */
+  label: 'target' as Solidity,
   source: 'deliverables/goods-deck-diagram-system-2026-08-26.md; Ben Notion note 2026-09-02',
   asAt: '2026-09-02',
 } as const;
