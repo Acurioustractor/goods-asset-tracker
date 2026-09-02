@@ -19,6 +19,26 @@
 
 ---
 
+## 2026-08-28 — one operating home
+Ben ruling, made while correcting the Goods on Country governance model and LGANT story.
+### X. Goods on Country owns and runs the whole model. The separate "Goods." layer is retired.
+The products, IP, assets, contracts, making, sales, delivery, capital, governance and evidence are
+transferred into, owned by and run through **Goods on Country**. There is no longer a separate
+"Goods." maker-and-seller layer in the current model or public story.
+Community partners retain the decisions that belong in place: how beds are used, who is paid and
+what is made next. This ruling does not turn the pathway to community ownership into a completed
+claim.
+**Supersedes** ruling K wherever it describes "Goods." as the current maker and seller. The
+verified register fact remains: Goods on Country is a registered business name of The Butterfly
+Movement Ltd. Historic invoices, records and archived material may still carry the old Goods.
+name; they remain historical records, not the current operating model.
+
+**Sweep.** The open Pencil deck's governance and model slides, the `/lgant` landing page and its
+route-audience record, `CLAUDE.md`, `CONTEXT.md` and the entity section of `STRATEGY.md`. Any older
+surface that still presents Goods. as a current operating entity is stale and must not be reused.
+
+---
+
 ## 2026-08-24 — plastic per bed
 
 ### T. Plastic per Stretch Bed is 20kg. The Envirobank ~25kg is retired.

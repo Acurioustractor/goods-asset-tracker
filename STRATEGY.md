@@ -266,17 +266,18 @@ accept as match paper? Ben to Jay, early August.
 
 ---
 
-## 6 · The entities
+## 6 · The entity
 
-| | Who | What |
+| Who | Legal home | What it holds |
 |---|---|---|
-| **Goods.** | Inside A Curious Tractor Pty Ltd, ABN 36 697 347 676 | The **maker and seller** |
-| **Goods on Country** | The Butterfly Movement Ltd, ABN 22 155 132 684 | The **charity**. Business name registered 23 July 2026 |
+| **Goods on Country** | The Butterfly Movement Ltd, ABN 22 155 132 684 | The products, IP, assets, contracts, making, sales, delivery, capital, governance and evidence |
 
-Verified on ABN Lookup. **A Curious Tractor Pty Ltd holds no registered business names at all**, so
-"t/a Goods" is a brand usage, not a registered trading name. Canon and the public website had this
-backwards; the Notion business plan had it right; the brand kit carried both marks before the
-register caught up.
+**Ruling X, Ben 2026-08-28:** Goods on Country is the single operating and public identity. The
+separate **Goods.** maker-and-seller layer is retired. Historic records may retain the old name,
+but current decks, pages and funder stories must not recreate the split.
+
+Verified on ABN Lookup: Goods on Country is a registered business name of The Butterfly Movement
+Ltd from 23 July 2026.
 
 Butterfly has been **DGR-endorsed since 17 January 2012** and ACNC-registered since 3 December 2012.
 It was never pending. The open question is the receipting mechanics and whose name is on the
@@ -288,20 +289,16 @@ Aboriginal director.
 
 ### The distinction that must never blur
 
-> **Aboriginal directors on the charity is NOT 51% First Nations ownership of the entity that
-> sells.** Supply Nation, IPP, IBA and First Australians Capital all test **the supplier**, which is
-> the company. If that ever reaches a funder document as though the charity's board satisfies the
-> ownership test, it ends the relationship.
+> **One operating home does not make every eligibility claim true.** Supply Nation, IPP, IBA and
+> First Australians Capital claims must be checked against Goods on Country's actual legal and
+> control position. Board composition alone is not proof.
 
 **51% is decoupled from the AGM.** It never depended on it. That sequencing was an assumption, and
 it cost roughly seven weeks and the 1 July Supply Nation threshold.
 
-**The direction to test, not a decision:** the **community production entity is the seller** in the
-procurement lane, with Goods. as its supplier and service provider. Under that reading 51% stops
-being a governance concession and becomes the handover executing. It also answers what Goods. is
-**for** after a handover: design, quality, training, equipment, working capital, back office.
-Oonchiumpa has not been asked. It moves revenue off A Curious Tractor's P&L, which changes what an
-investor underwrites.
+Goods on Country owns and runs the whole model. Community partners decide how beds are used, who is
+paid and what is made next. Any later transfer of ownership stays a pathway that a community must
+choose; it is never claimed complete in advance.
 
 ---
 

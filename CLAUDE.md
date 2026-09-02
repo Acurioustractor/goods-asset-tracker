@@ -1,10 +1,13 @@
-# Goods
+# Goods on Country
 
-**Goods.** is the maker and seller, a social enterprise delivering quality furniture to remote
-Indigenous communities across Australia. The flagship product is the **Stretch Bed**.
-**Goods on Country** is the charity, a registered business name of The Butterfly Movement Ltd.
-They are two different things and conflating them reaches funder documents (ruling K, verified on
-ABN Lookup 2026-07-25).
+**Goods on Country** is the single operating and public identity for this work. The products, IP,
+assets, contracts, making, sales, delivery, capital, governance and evidence are transferred into,
+owned by and run through Goods on Country, a registered business name of The Butterfly Movement
+Ltd. **Do not present "Goods." as a separate maker, seller or operating layer.** It is retired from
+the current model (ruling X, Ben 2026-08-28).
+
+Community partners still make the local decisions: how beds are used, who is paid and what is made
+next. Community ownership remains a pathway, not a completed claim.
 
 **▶ Read `/STRATEGY.md` first for the whole picture.** It carries the north star, the road, the
 model, the economics, the raise and what is open, and it names which file wins when two disagree:
