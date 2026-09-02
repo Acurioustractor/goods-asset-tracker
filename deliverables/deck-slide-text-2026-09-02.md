@@ -146,3 +146,31 @@ file on these nodes. Everything else is unchanged.
 No text containing "gross sales" or "Homeschool" remains anywhere in the file. Slide 07's status
 strip, slide 10 (from 08B), and the renumbered 11 and 12 wait on Ben's decisions on TFFF and the
 named communities.
+
+## Two slides added on 2 September 2026, after Ben's go
+
+Both are new top-level frames placed below slide 08 on the canvas, built as editable layers in
+the deck's own tokens (cream, ink, terracotta, sand; Playfair Display and Inter). Every figure
+on them is read from `v2/src/lib/data/community-loop.ts` and `raise-stack.ts`.
+
+### 08C The loop, in one drawing (`JCreO`)
+
+- THE MODEL, ONE COMMUNITY, ONE LOOP, SHOWN ×5. One catalyst starts five loops a community controls.
+- The funder acts once. The Goods on Country board holds the rules. Each community decides what is given, what is sold, who is paid and what the sales money builds next.
+- THE CATALYST, ONCE. A funder backs 1,000 beds ($750,000 is the cost of the beds at $750 each; not sales, not community income). The Goods on Country board holds the rules (purpose, shared assets, appointments, reinvestment; Indigenous-led today; ownership stays a pathway). Five community pools of 200 beds, each held by a community partner under rules agreed before any bed moves. ×5 into the loop.
+- ONE COMMUNITY LOOP. 1 200 beds arrive (cost $150,000). 2 The community sets the mix (give some, sell some). 3 Sales money stays local (up to $150,000 if all 200 sell at $750; less when beds are given; a design number until the rules are agreed). 4 The community decides what comes next (more beds, a shredder or a press, the washer; a full facility is $150,000 to $220,000, so one pool sold in full reaches the bottom of that band and no further). 5 Making moves closer (about $324 stays on a bed pressed locally against about $65 on a kit; modelled, not yet measured). Then the community decides again; the return arrow stays inside the community, never back to the funder.
+- FOUR GATES BEFORE THE LOOP IS REAL. Buyers (who is buying the sold beds, named). Rules (allocation, sales money, resale and stock, agreed and signed). An operator and a place (who runs the line, where, and who pays them). A measured cost (fifty beds pressed at production rate, timed and costed).
+- Working proposal. The rules for sales money, resale and who holds the beds are being agreed with each community. Until they are, the numbers are a design, not a promise.
+
+### 09C What changes, and how we know (`qD5SQ`)
+
+- IMPACT, WHAT CHANGES, AND HOW WE KNOW. Four things change. Each one is counted, and each one has a voice.
+- Numbers prove scale and voices prove meaning. No number without a voice, no voice reduced to a number. Scabies and rheumatic heart disease are the reason the hardware matters; they are never claimed as an outcome.
+- WHAT CHANGES. Access to health hardware (beds off the ground, washable and repairable, in homes where 51.3% of very remote NT First Nations households need another bedroom; counted per bed and per washer). Paid local work (assembly, delivery, repair and recycling; counted in hours and roles, not promised in headcounts). Local enterprise and control (a community partner holds a pool, sets the rules, keeps the sales money; tested at month six: keys, payroll, who invoices, half of production, partial counts as no). Plastic kept in use (about 20kg of recycled HDPE in every frame; a design figure today, weighed batch by batch in the measured run).
+- HOW WE KNOW. The register (540 beds across 11 communities, a product passport per unit as the pools move). The voices (Empathy Ledger interviews, theme-coded and consented quote by quote; thirty-seven people cleared to speak externally). The measured run (fifty beds at production rate: hours, energy, plastic used and wasted, cost per bed). The month-six control test (four binary questions, partial counts as no; the test that lets the ownership claim fail).
+- EVERY FIGURE CARRIES ITS LABEL. Verified, workpaper, modelled, target.
+
+**Rendering note.** After the first batch of inserts this session, Pencil stopped rendering
+newly inserted nodes (updates to existing nodes still render). Both frames hold all their
+children in the document, and the .pen on disk was last saved 31 Aug 15:16, so the deck needs a
+save and reopen in Pencil before the two slides can be screenshotted.

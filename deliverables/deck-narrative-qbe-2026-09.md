@@ -54,3 +54,13 @@ never gets a price.
 
 One slide per `execute` call, text only, a screenshot of each changed slide for Ben before
 anything goes to Jay.
+
+## Added 2 September, evening: two drawn slides
+
+| Frame | Slide | What it does |
+|---|---|---|
+| `JCreO` | 08C The loop, in one drawing | The catalyst column (funder, board, five pools) feeding one community loop shown ×5: beds arrive, the mix is set, sales money stays local, the community decides what comes next, making moves closer, then decides again. Four gates along the bottom. Every figure from `community-loop.ts` |
+| `qD5SQ` | 09C What changes, and how we know | The impact model for Q10 and Q11: four things that change, each counted and each with a voice; four instruments (register, voices, measured run, month-six control test); the claim-label legend |
+
+Suggested order for the QBE cut: 08 (first capital becomes local choice), then 08C (the loop
+drawn), then 09 (one governed pool), then 09C (impact) before the capital and decision slides.
