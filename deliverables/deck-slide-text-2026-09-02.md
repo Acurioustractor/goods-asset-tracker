@@ -130,3 +130,19 @@ the record the deck brief is written against; it is not the deck.
 - MODEL 04 One Indigenous-led home. The assets and responsibility are transferred into Goods on Country.
 - MODEL 05 Every dollar has one job. The bed price pays for the bed. Shared product support and community work need their own budgets.
 - MODEL 06 Test whether control moved. Six months in, who controls the work?
+
+## Edits applied on 2 September 2026, after the export above
+
+Text-only changes made through Pencil after Ben's go, so the export above now differs from the
+file on these nodes. Everything else is unchanged.
+
+- Slides 05 (`mvrUQ`, node `OMS61`) and the duplicate `TXZhn` (`B0ZkST`): "The Homeschool Company" is now "Homeland School Company".
+- Slide 06 (`hBFFe`): no partner name to fix; the "Gamardi School" caption is unchanged and still to be confirmed.
+- Slide 08 (`BzO2h`, nodes `II3bo`, `TSt8I`) and its duplicate `SuLP5` (`tKOha`): the $750K metric now reads "the cost of 1,000 beds at $750"; the footnote now carries the honesty sentence and "not community income".
+- Slide 09 (`slq40`, node `d1wAq5`) and its duplicate `rnPk5` (`J1G6RI`): "Up to $150K gross sales value at $750 each" is now "Held under rules the community agrees first."
+- Slide 09B (`u09Eoy`, nodes `mGXsR`, `H47iMm`): "Up to $750K gross sales activity" is now "Five community pools of 200 beds"; the footnote now reads "Bed counts are the program design, not confirmed community income."
+- 08E (`HVMBc`, nodes `xziVy`, `f2OzZc`) and its duplicates (`aE9di`, `wmupw`): the same metric and footnote corrections.
+
+No text containing "gross sales" or "Homeschool" remains anywhere in the file. Slide 07's status
+strip, slide 10 (from 08B), and the renumbered 11 and 12 wait on Ben's decisions on TFFF and the
+named communities.
