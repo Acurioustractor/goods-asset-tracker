@@ -64,3 +64,14 @@ anything goes to Jay.
 
 Suggested order for the QBE cut: 08 (first capital becomes local choice), then 08C (the loop
 drawn), then 09 (one governed pool), then 09C (impact) before the capital and decision slides.
+
+## Added 2 September, late: the unit slide
+
+| Frame | Slide | What it does |
+|---|---|---|
+| `mX9er` | 10C One bed, four things, any amount | The unit card (a bed off the ground; 20kg of plastic, fifty beds is a tonne; about 6.5 modelled hours of local work, 3.5 of them CNC; up to $750 that stays local if sold) and the scale table at $150K, $250K, $400K and $750K: beds, pools, tonnes, hours, money that stays local. The unlock panel says what a catalytic grant buys that nothing else in the stack does: the proof. Every figure from `bed-ratio.ts` |
+
+Ben's direction (2 Sep, late): the ask does not have to be $750K or $400K. A $250K QBE ask
+that buys one governed pool and the proof block is easier to say and easier to grant, and the
+ratio slide lets any amount be read the same way. Every other funder's dollar buys beds at the
+same ratio.

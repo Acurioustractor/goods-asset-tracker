@@ -174,3 +174,12 @@ on them is read from `v2/src/lib/data/community-loop.ts` and `raise-stack.ts`.
 newly inserted nodes (updates to existing nodes still render). Both frames hold all their
 children in the document, and the .pen on disk was last saved 31 Aug 15:16, so the deck needs a
 save and reopen in Pencil before the two slides can be screenshotted.
+
+### 10C One bed, four things, any amount (`mX9er`)
+
+- THE UNIT, ONE BED, FOUR THINGS, ANY AMOUNT. Every dollar buys beds. Every bed does four things. Any amount scales the same way.
+- The unit is one bed at $750. Fifty beds is one tonne of recycled plastic. Two hundred is a community pool. The ratios turn any grant into beds, work, plastic and local money, and every figure keeps its label.
+- ONE BED, $750. A bed off the ground (washable, repairable, about five minutes to assemble; verified product). 20kg of recycled plastic (fifty beds is one tonne; workpaper, weighed batch by batch in the measured run). About 6.5 hours of local work (modelled, not yet timed; 3.5 of those hours are CNC and the stopwatch decides). Up to $750 that stays local (if the community sells the bed; given beds meet need instead).
+- THE SAME RATIO AT ANY AMOUNT. $150,000: 200 beds, 1 pool, 4t, 1,300 h, up to $150,000. $250,000: 333 beds, 1.7 pools, 6.7t, 2,170 h, up to $250,000. $400,000: 533 beds, 2.7 pools, 10.7t, 3,470 h, up to $400,000. $750,000: 1,000 beds, 5 pools, 20t, 6,500 h, up to $750,000.
+- Unlock panel: What one grant starts that nothing else in the stack does. Every other dollar in the stack buys beds or keeps the organisation standing. A catalytic grant is the only money that buys the proof. Without it the pools are a gift. With it they are the first step of an enterprise, and the equipment loan behind them can be written.
+- Working proposal. Ratios are per bed and scale in a straight line; real sites do not.

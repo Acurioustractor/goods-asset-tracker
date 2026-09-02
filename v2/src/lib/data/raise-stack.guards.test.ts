@@ -127,8 +127,8 @@ describe('the stack', () => {
     expect(bedsFunded(lineById('alive'))).toBe(100);
     expect(POOL_BEDS_IF_ALL_LAND).toBeLessThan(PROGRAM.beds);
     expect(POOL_SHORTFALL_BEDS).toBe(PROGRAM.beds - POOL_BEDS_IF_ALL_LAND);
-    // 400 + 133 + 133 + 133 + 66 + 100. Dusseldorp's $50,000 rounds down to 66 beds.
-    expect(POOL_BEDS_IF_ALL_LAND).toBe(965);
+    // 200 (QBE pool share) + 133 + 133 + 133 + 66 + 100. Dusseldorp's $50,000 rounds down to 66 beds.
+    expect(POOL_BEDS_IF_ALL_LAND).toBe(765);
   });
 
   it('puts no community name next to a pool line', () => {
@@ -143,22 +143,26 @@ describe('the stack', () => {
 });
 
 describe('the QBE ask', () => {
-  it('has two tiers whose beds follow from the price', () => {
+  it('has three tiers whose beds follow from the price, with $250,000 as the ask', () => {
+    expect(QBE_ASK.recommended.aud).toBe(250_000);
     expect(QBE_ASK.full.aud).toBe(400_000);
-    expect(QBE_ASK.smaller.aud).toBe(200_000);
-    for (const t of [QBE_ASK.full, QBE_ASK.smaller]) {
+    expect(QBE_ASK.smaller.aud).toBe(150_000);
+    for (const t of [QBE_ASK.recommended, QBE_ASK.full, QBE_ASK.smaller]) {
       expect(t.poolAud + t.proofsAud).toBe(t.aud);
       expect(t.beds).toBe(t.poolAud / BED_PRICE_AUD);
       expect(Number.isInteger(t.beds)).toBe(true);
+      expect(t.proofsAud).toBeGreaterThanOrEqual(75_000);
     }
+    expect(QBE_ASK.recommended.beds).toBe(200);
     expect(QBE_ASK.full.beds).toBe(400);
-    expect(QBE_ASK.smaller.beds).toBe(200);
+    expect(QBE_ASK.smaller.beds).toBe(100);
+    expect(QBE_ASK.full.buys).toMatch(/ceiling, not the plan/);
   });
 
-  it('matches the QBE line in the stack', () => {
+  it('carries the recommended ask as the QBE line in the stack', () => {
     const qbe = lineById('qbe');
-    expect(qbe.amountAud).toBe(QBE_ASK.full.aud);
-    expect(qbe.split?.poolAud).toBe(QBE_ASK.full.poolAud);
+    expect(qbe.amountAud).toBe(QBE_ASK.recommended.aud);
+    expect(qbe.split?.poolAud).toBe(QBE_ASK.recommended.poolAud);
   });
 
   it('never describes QBE as doubling, triggering or guaranteeing anything', () => {

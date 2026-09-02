@@ -92,7 +92,7 @@ proof a lender can read.
 
 | Block | Funder | Amount | Beds | Status |
 |---|---|---|---|---|
-| Pools 1 and 2, the measured run, the rules work | QBE Stage 2 | $400K ($300K beds, $100K proofs) | 400 | The ask |
+| Pool 1, the measured run, the rules work | QBE Stage 2 | $250K ($150K beds, $100K proofs); $400K is the ceiling | 200 | The ask (Ben, 2 Sep evening) |
 | Pool 3, youth-led | BMDF | $100K | 133 | Invited, due 25 Sep |
 | Pool 4 | Snow | $100K to $150K | 133 to 200 | Ask made |
 | Pool 5 | Minderoo | $100K | 133 | Ask made |
@@ -102,9 +102,10 @@ proof a lender can read.
 | Equipment and working capital, after the measured run | SEFA, White Box | $300K + $150K repayable | 0 | Blocked on entity |
 | Related, separate, disclosed | REAL (Oonchiumpa) | ~$2M | 0 | Oonchiumpa's grant |
 
-With every line landing the pool reaches 965 beds (beds round down at $750 each, and the module
-computes this rather than typing it). If QBE gives $200,000 and nothing else lands it reaches
-565. The fifth pool waits for the next yes. Saying that plainly is stronger than a
+With every line landing at the $250,000 ask the pool reaches 765 beds (beds round down at $750
+each, and the module computes this rather than typing it); at the $400,000 ceiling, 965. If QBE
+gives $150,000 and nothing else lands it reaches 665. The remaining pools wait for the next yes,
+and the ratio slide lets any funder see exactly what their amount buys. Saying that plainly is stronger than a
 stack that only works at the maximum.
 
 No community is named against a pool in this table, and none will be until it has seen its pool.
@@ -116,12 +117,33 @@ unfunded again. That is his call, made with Katie's email open.
 
 ## 4. The QBE application, in the order the form asks
 
-**Amount (Q5): $400,000.** Inside their range, and the form invites the full request. Every
-surface carries ruling V's caveat: discretionary, a shared pool, never matching.
+**Amount (Q5): $250,000** (Ben, 2 September, evening; this replaces the $400,000 written earlier
+in the day). One governed pool (200 beds, $150,000) and the proof block ($100,000: the measured
+run, the rules agreements, traceability and the accounting repair). It does not have to be the
+maximum. It is inside their range, above the 2025 average, easier to say and easier to grant,
+and every dollar any funder adds buys beds at the same ratio. $400,000 stays the ceiling and is
+never presented as the plan (ruling V).
 
-**Smaller amount (Q7): $200,000.** The first pool (200 beds, $150,000) plus the measured run and
-the rules work for that one community ($50,000). One community loop proven end to end instead of
-two. The proofs survive the cut; the second pool does not.
+**Smaller amount (Q7): $150,000.** The proof block ($75,000) and the first hundred beds. The loop
+is proven on half a pool; the second half waits for the next funder.
+
+**The unit, so any amount reads the same way.** One bed at $750 does four things: a bed off the
+ground (verified); 20kg of recycled plastic, so fifty beds is one tonne (workpaper); about 6.5
+hours of local work when made locally (modelled, 3.5 of them CNC, the measured run decides) and
+about $130 of fair-wage labour in the community cost state (modelled); and up to $750 that stays
+local if the community sells it (target). `bed-ratio.ts` holds the ratio; slide 10C draws it.
+
+| Amount | Beds | Pools | Plastic | Local work, modelled | Stays local if all sold |
+|---|---|---|---|---|---|
+| $150,000 | 200 | 1 | 4t | 1,300 hours | up to $150,000 |
+| $250,000 | 333 | 1.7 | 6.7t | 2,170 hours | up to $250,000 |
+| $400,000 | 533 | 2.7 | 10.7t | 3,470 hours | up to $400,000 |
+| $750,000 | 1,000 | 5 | 20t | 6,500 hours | up to $750,000 |
+
+**Without this grant, said plainly.** Every other dollar in the stack buys beds or keeps the
+organisation standing. A catalytic grant is the only money that buys the proof: the first fifty
+beds pressed and timed, and the rules each pool runs on. Without it the pools are a gift. With
+it they are the first step of an enterprise, and the equipment loan behind them can be written.
 
 **Use of funds (Q6).**
 
