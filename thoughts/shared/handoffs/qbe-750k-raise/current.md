@@ -10,7 +10,7 @@ status: active
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
 **Updated:** 2026-09-03T03:30:00Z
-**Goal:** The QBE Stage 2 application (closes Fri 25 Sep 12pm AEST) and the deck carry one model: the $250K ask buys one governed pool and the proof; the unit is one bed; every figure is derived and guarded. Done when Ben has answered the four decisions, the Zoho form answers exist, and the deck's money slides match `raise-stack.ts`.
+**Goal:** The QBE Stage 2 application (closes Fri 25 Sep 12pm AEST) and the deck carry one model: the money buys beds, $400K = 533 beds (ruling Y, 3 Sep), $250K the smaller amount; every figure is derived and guarded; the prose is in the founders' words. Done when Ben has answered the four decisions, the Zoho form answers exist, and the deck's money slides match `raise-stack.ts`.
 **Branch:** feat/raise-stack-and-ruling-x (worktree `/Users/benknight/Code/goods-raise-wt`, PR #234 open, NOT merged)
 **Test:** cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci
 
@@ -47,6 +47,8 @@ status: active
 - **3 Sep, Ben: the QBE money buys beds, full stop.** $250K = 333 beds, $150K = 200, $400K = 533. The "$150K pool + $100K proof block" split is RETIRED from prose, diagrams and `raise-stack.ts`; the measured cost of the first fifty beds comes with the first pool, not as a budget line. Written from the 2 Sep transcript, in the founders' words.
 - **3 Sep, Ben: "nine years on the road" is wrong, two years max.** Fixed on the page and the repo copy; `CONTEXT.md` road spine and deck slide 03 still carry nine and need the sweep.
 - SUPERSEDED (2 Sep evening): $250K as one pool plus the proof block.
+- **3 Sep, Ben, mid-session: "it's actually $400,000".** The ask is $400K = 533 beds; $250K = 333 is the smaller amount. Ruling Y in DECISIONS.md. Code, page, diagrams updated.
+- **3 Sep, Ben (via /straight, 'yes do all'):** the written piece uses around $200 a bed for the snowball (five plants, ~5,000 beds/yr, ~$1M/yr); the modelled $324 pressed margin stays in the model and is cited as 'the model says'. Reader = Jay, then the Steerco, then the foundation boards; they decide whether $250K gets more than 1:1 and whether Goods covers inclusion and climate resilience. Never: proof block, governed pool, stack, catalytic chain, operating home.
 - TFFF recommended to fund the block, not beds: Katie's invitation names the resilience of organisations; $100K/yr for three years is almost exactly the minimum network block. Ben has not yet ruled.
 - The Butterfly Movement Ltd (Goods on Country) recommended as QBE applicant: every external dollar lands there under ruling X; ACT as related entity; fallback ACT with the unsigned inter-entity agreement, said to be weaker.
 - $750K is only ever the cost of the beds, never sales or income; no community is named beside a price; QBE is never described as doubling anything; debt is repaid from Goods' margin on buyer orders, never from a community's pool.

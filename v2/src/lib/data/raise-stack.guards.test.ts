@@ -119,16 +119,16 @@ describe('the stack', () => {
     }
   });
 
-  it('derives beds from the price and lands below 1,000 with everything in', () => {
+  it('derives beds from the price and covers the thousand with everything in', () => {
     for (const l of POOL_LINES) {
       const poolAud = l.split ? l.split.poolAud : (l.amountAud ?? 0);
       expect(bedsFunded(l)).toBe(Math.floor(poolAud / BED_PRICE_AUD));
     }
     expect(bedsFunded(lineById('alive'))).toBe(100);
-    expect(POOL_BEDS_IF_ALL_LAND).toBeLessThan(PROGRAM.beds);
-    expect(POOL_SHORTFALL_BEDS).toBe(PROGRAM.beds - POOL_BEDS_IF_ALL_LAND);
-    // 333 (QBE) + 133 + 133 + 133 + 66 + 100. Dusseldorp's $50,000 rounds down to 66 beds.
-    expect(POOL_BEDS_IF_ALL_LAND).toBe(898);
+    expect(POOL_BEDS_IF_ALL_LAND).toBeGreaterThanOrEqual(PROGRAM.beds);
+    expect(POOL_SHORTFALL_BEDS).toBe(0);
+    // 533 (QBE) + 133 + 133 + 133 + 66 + 100. Dusseldorp's $50,000 rounds down to 66 beds.
+    expect(POOL_BEDS_IF_ALL_LAND).toBe(1098);
   });
 
   it('puts no community name next to a pool line', () => {
@@ -143,20 +143,20 @@ describe('the stack', () => {
 });
 
 describe('the QBE ask', () => {
-  it('has three tiers whose beds follow from the price, with $250,000 as the ask', () => {
-    expect(QBE_ASK.recommended.aud).toBe(250_000);
+  it('has three tiers whose beds follow from the price, with $400,000 as the ask', () => {
+    expect(QBE_ASK.recommended.aud).toBe(400_000);
     expect(QBE_ASK.full.aud).toBe(400_000);
-    expect(QBE_ASK.smaller.aud).toBe(150_000);
+    expect(QBE_ASK.smaller.aud).toBe(250_000);
     for (const t of [QBE_ASK.recommended, QBE_ASK.full, QBE_ASK.smaller]) {
       expect(t.poolAud + t.proofsAud).toBe(t.aud);
       expect(t.beds).toBe(Math.floor(t.poolAud / BED_PRICE_AUD));
       expect(Number.isInteger(t.beds)).toBe(true);
       expect(t.proofsAud).toBe(0); // the money buys beds (Ben, 3 Sep 2026)
     }
-    expect(QBE_ASK.recommended.beds).toBe(333);
+    expect(QBE_ASK.recommended.beds).toBe(533);
     expect(QBE_ASK.full.beds).toBe(533);
-    expect(QBE_ASK.smaller.beds).toBe(200);
-    expect(QBE_ASK.full.buys).toMatch(/ceiling, not the plan/);
+    expect(QBE_ASK.smaller.beds).toBe(333);
+    expect(QBE_ASK.full.buys).toMatch(/smaller amount/);
   });
 
   it('carries the recommended ask as the QBE line in the stack', () => {

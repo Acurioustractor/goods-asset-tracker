@@ -195,9 +195,9 @@ const out = {};
   const cols = ['Amount', 'Beds', 'Pools', 'Plastic', 'Local work', 'Stays local if all sold'];
   const cw = [150, 100, 100, 110, 150, 240];
   const rows = [
-    ['$150,000', '200', '1', '4 t', '1,300 h', 'up to $150,000', 'the smaller amount, Q7'],
-    ['$250,000', '333', '1.7', '6.7 t', '2,170 h', 'up to $250,000', 'the ask, Q5'],
-    ['$400,000', '533', '2.7', '10.7 t', '3,470 h', 'up to $400,000', 'the ceiling, never the plan'],
+    ['$150,000', '200', '1', '4 t', '1,300 h', 'up to $150,000', 'one community\'s pool'],
+    ['$250,000', '333', '1.7', '6.7 t', '2,170 h', 'up to $250,000', 'the smaller amount, Q7'],
+    ['$400,000', '533', '2.7', '10.7 t', '3,470 h', 'up to $400,000', 'the ask, Q5'],
     ['$750,000', '1,000', '5', '20 t', '6,500 h', 'up to $750,000', 'the whole program'],
   ];
   let y = ty + 40;
@@ -207,13 +207,13 @@ const out = {};
   b += `<line x1="${tx}" y1="${y}" x2="${tx + tw}" y2="${y}" stroke="${C.ink}" stroke-width="1.5"/>`;
   rows.forEach((r, ri) => {
     const rh = 74;
-    if (ri === 1) b += box(tx, y + 2, tw, rh - 4, { fill: C.sand, stroke: C.terra, sw: 2, r: 4 });
+    if (ri === 2) b += box(tx, y + 2, tw, rh - 4, { fill: C.sand, stroke: C.terra, sw: 2, r: 4 });
     let xx = tx;
     r.slice(0, 6).forEach((cell, i) => {
       b += text(xx + 10, y + 34, cell, { size: i === 0 ? 20 : 18, font: i === 0 ? F.display : F.body, weight: i === 0 ? 600 : 400 });
       xx += cw[i];
     });
-    b += text(tx + 10, y + 58, r[6], { size: 12, font: F.mono, fill: ri === 1 ? C.terra : C.mute, ls: 0.5 });
+    b += text(tx + 10, y + 58, r[6], { size: 12, font: F.mono, fill: ri === 2 ? C.terra : C.mute, ls: 0.5 });
     y += rh;
     b += `<line x1="${tx}" y1="${y}" x2="${tx + tw}" y2="${y}" stroke="${C.line}" stroke-width="1"/>`;
   });
@@ -221,10 +221,10 @@ const out = {};
   const py = y + 30;
   b += box(tx, py, tw, 760 - py, { fill: C.sage, stroke: C.sage });
   b += kicker(tx + 20, py + 30, 'What going first does');
-  b += para(tx + 20, py + 60, 'QBE\'s beds go in first, into the first community. That community sells what it decides to sell and keeps the money. The first fifty go through our own press and get costed, so the lenders have a measured number. Every other funder\'s beds follow at the same ratio.', { size: 14.5, width: tw - 40, lh: 1.45 }).svg;
+  b += para(tx + 20, py + 60, 'QBE\'s beds go in first, into the first two communities. Each sells what it decides to sell and keeps the money. The first fifty go through our own press and get costed, so the lenders have a measured number. Every other funder\'s beds follow at the same ratio.', { size: 14.5, width: tw - 40, lh: 1.45 }).svg;
 
   out['02-the-unit'] = frame({
-    page: 'Form Q5, Q6, Q7. Figures from bed-ratio.ts. The ask buys beds; $250,000 is 333',
+    page: 'Form Q5, Q6, Q7. Figures from bed-ratio.ts. The ask buys beds; $400,000 is 533',
     title: 'One bed, four things, any amount',
     sub: 'Every dollar buys beds. Every bed does four things. Any amount scales the same way, and every figure keeps its label.',
     body: b,
@@ -301,18 +301,18 @@ const out = {};
   let b = '';
   const y = 200, h = 470, gap = 20, w = (1460 - 2 * gap) / 3;
   const colsD = [
-    { k: 'Bed money', t: 'Gifts and purchases that buy beds into pools', lines: [
-      ['QBE Catalysing Impact, the ask', '$250,000', 'ask made'],
+    { k: 'Money that buys beds', t: 'Gifts and purchases that buy beds into pools', lines: [
+      ['QBE Catalysing Impact, the ask', '$400,000', 'ask made'],
       ['Brian M. Davis Charitable Foundation', '$100,000', 'invited'],
       ['Snow Foundation', '$100,000', 'ask made'],
       ['Minderoo Foundation', '$100,000', 'ask made'],
       ['Dusseldorp Forum', '$50,000', 'target'],
       ['ALIVE National Centre, 100 beds', '$92,000', 'paid'],
-    ], note: 'If every line lands at the $250K ask, 898 beds; at the $400K ceiling the thousand is covered. The rest waits for the next yes.' },
-    { k: 'Block money', t: 'Three years of network support, the organisation\'s resilience', lines: [
+    ], note: 'If every line lands, the thousand is covered with room to spare (1,098). At $250K from QBE the count is 898 and the last pool waits.' },
+    { k: 'Money that runs the organisation', t: 'Three years of support, the organisation\'s resilience', lines: [
       ['Tim Fairfax Family Foundation, three years', '$300,000', 'invited'],
     ], note: 'About $109,500 a year runs Goods on Country before a bed is made; about $300,000 a year is the public network ask. Bed money never funds this. Katie Norman named the resilience of organisations as the reason for the invitation, so this is the block in the funder\'s own words. Recommended: the block, not beds. Ben has not yet ruled.' },
-    { k: 'Repayable finance', t: 'Equipment and working capital, after the measured run', lines: [
+    { k: 'Money we borrow for the plants', t: 'Equipment and working capital, once the cost is measured', lines: [
       ['SEFA', '$300,000', 'target'],
       ['White Box SELF', '$150,000', 'target'],
     ], note: 'Cannot be written today: the pressed cost is modelled and the borrower is unsettled. Repaid from Goods on Country\'s margin on buyer orders, never from a community\'s pool. At the pressed margin (about $324, modelled) $450,000 needs about 460 buyer-bought beds a year for three years; at the kit margin (about $65) it cannot be repaid.' },
@@ -393,11 +393,11 @@ const out = {};
 {
   let b = '';
   const links = [
-    { t: 'QBE\'s beds go in first', d: '333 beds into the first community. The first fifty go through our own press and get costed, so the cost of a locally made bed is measured.', s: 'the ask, $250,000' },
-    { t: 'That first pool produces what a lender can read', d: 'A community selling beds under agreed rules, a measured cost per bed, and buyer paper. The modelled $426 pressed-path cost becomes a measured one.', s: 'follows link 1' },
-    { t: 'Three invitations already in hand', d: 'Tim Fairfax $300,000 for the block (due 9 Oct). Brian M. Davis $100,000 for pool three (due 25 Sep). Snow, ask made and a catch-up booked. Minderoo and Dusseldorp in conversation.', s: '$0 signed today' },
-    { t: 'After the measured run, the equipment finance', d: 'SEFA $300,000 and White Box $150,000 for equipment and working capital. Neither can proceed while the cost is modelled and the borrower is unsettled.', s: 'gated on link 2' },
-    { t: 'Demand already paying', d: 'ALIVE National Centre bought 100 beds up front ($92,000, paid). Centrecorp holds a 130-bed quote, deferred pending community feedback. More than 200 requests in each of Tennant Creek and Mparntwe.', s: 'verified purchase' },
+    { t: 'QBE\'s beds go in first', d: '533 beds into the first two communities. The first fifty go through our own press and get costed, so the cost of a locally made bed is measured.', s: 'the ask, $400,000' },
+    { t: 'The first pools give the lenders something to read', d: 'Communities selling beds under signed rules, a cost per bed, buyer paper. The modelled $426 pressed-path cost becomes a measured one.', s: 'follows link 1' },
+    { t: 'Three foundations have already asked us to apply', d: 'Tim Fairfax $300,000 over three years (due 9 Oct). Brian M. Davis up to $100,000 (due 25 Sep). Snow, catch-up booked. Minderoo and Dusseldorp in conversation.', s: '$0 signed today' },
+    { t: 'Then the plant money', d: 'SEFA $300,000 and White Box $150,000 for equipment and working capital, once the cost is measured and the borrower is settled.', s: 'after link 2' },
+    { t: 'Buyers are already paying', d: 'ALIVE National Centre bought 100 beds up front ($92,000, paid). Centrecorp has 130 on quote, waiting on community feedback. More than 200 requests each in Tennant Creek and Mparntwe.', s: 'verified purchase' },
   ];
   const gap = 18, w = (1460 - 4 * gap) / 5, y = 200, h = 400;
   links.forEach((l, i) => {

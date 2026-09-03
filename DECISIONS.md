@@ -19,6 +19,32 @@
 
 ---
 
+## 2026-09-03 — the QBE ask
+
+### Y. The QBE money buys beds. The ask is $400,000, the smaller amount $250,000.
+
+**Ben ruling 2026-09-03**, made while re-voicing the Stage 2 form on the play-space page. Every
+dollar of the Catalysing Impact grant buys beds at $750: $400,000 is 533 beds (the first two
+communities' pools and a start on the third), $250,000 is 333 (Q7). The "$150K pool + $100K proof
+block" split of 2 September evening is retired everywhere: the measured cost of the first fifty beds
+comes with the first pool and is never a budget line to a funder. QBE's beds go in first; the
+foundations' beds fill the thousand.
+
+**Supersedes** the 2 Sep evening $250,000 ask, and the reading of ruling V under which $400,000 was
+"the ceiling, never the plan": the top of the range is the ask. Ruling V's other half stands: QBE is
+never described as matching, doubling, triggering or guaranteeing anything.
+
+Same day, same session: the written piece uses "around $200 a bed" for the snowball (five plants,
+about 5,000 beds a year, about $1M a year reinvested); the modelled $324 pressed margin stays in
+the model and is cited as "the model says". And "nine years on the road" is wrong; two years, max.
+`CONTEXT.md`'s road spine and deck slide 03 still carry nine.
+
+**Sweep.** `raise-stack.ts` (done), `bed-ratio.ts` (done), the play-space page and its repo copy
+(done), diagrams 02/04/06 (done), the Pencil deck slides 10C, 12 and 08C (open), `CONTEXT.md`
+raise answer (open).
+
+---
+
 ## 2026-08-28 — one operating home
 Ben ruling, made while correcting the Goods on Country governance model and LGANT story.
 ### X. Goods on Country owns and runs the whole model. The separate "Goods." layer is retired.
