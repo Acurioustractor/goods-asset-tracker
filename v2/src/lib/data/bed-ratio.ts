@@ -114,7 +114,7 @@ export function scale(amountAud: number): ScaleRow {
   };
 }
 
-/** The four amounts the deck shows. The ask sits at $250,000; $400,000 is the ceiling. */
+/** The four amounts the deck shows. The ask is $400,000; $250,000 is the smaller amount (Ben, 3 Sep 2026). */
 export const SCALE_AMOUNTS = [150_000, 250_000, 400_000, 750_000] as const;
 export const SCALE_ROWS: readonly ScaleRow[] = SCALE_AMOUNTS.map(scale);
 
