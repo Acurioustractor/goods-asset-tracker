@@ -9,13 +9,14 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-03T03:30:00Z
+**Updated:** 2026-09-04T00:30:00Z
 **Goal:** The QBE Stage 2 application (closes Fri 25 Sep 12pm AEST) and the deck carry one model: the money buys beds, $400K = 533 beds (ruling Y, 3 Sep), $250K the smaller amount; every figure is derived and guarded; the prose is in the founders' words. Done when Ben has answered the four decisions, the Zoho form answers exist, and the deck's money slides match `raise-stack.ts`.
 **Branch:** feat/raise-stack-and-ruling-x (worktree `/Users/benknight/Code/goods-raise-wt`, PR #234 open, NOT merged)
 **Test:** cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci
 
 ### Now
-[->] Ben reads the one document on the Notion play-space page (3d0ebcf981cf806b918fceff46528300): every Q1 to Q25 answer drafted and marked READY / SUBJECT TO JAY / NEEDS BEN / NEEDS ELOISE, the model in ten sections with seven diagrams. Jay's answers at 2pm change the Q1, Q2, Q8 wording; Eloise's papers close Q4, Q20, Q22. Then the deck's money slides from Part 5 of that page.
+[->] Ben has been editing the Notion page directly (renamed 'QBE final Phase - Simple and clean'); it is the master. Next: Jay's answers (entity), Eloise's papers (ASIC extract, three statements, constitution), the Q13 confirmations, the exports in Part 3, the deck save in Pencil, and delete the six old diagram image blocks on the page. Then the /straight skill for any further prose.
+[x] Earlier: Ben reads the one document on the Notion play-space page (3d0ebcf981cf806b918fceff46528300): every Q1 to Q25 answer drafted and marked READY / SUBJECT TO JAY / NEEDS BEN / NEEDS ELOISE, the model in ten sections with seven diagrams. Jay's answers at 2pm change the Q1, Q2, Q8 wording; Eloise's papers close Q4, Q20, Q22. Then the deck's money slides from Part 5 of that page.
 
 ### This Session
 - [x] 3 Sep: ruling Y swept everywhere (see DECISIONS.md Y). Deck text updated live through Pencil across all nine copies of the sequence; needs a save in Pencil (gitignored file).
@@ -32,6 +33,7 @@ status: active
 - [x] Gates green: tsc, 616 tests, check:drift:ci, production build.
 
 ### Next
+- [ ] Push `feat/raise-stack-and-ruling-x` (PR #234) only on Ben's word; it now carries ruling Y, the one document, diagrams, CONTEXT/STRATEGY/app sweeps. Separate branch `feat/canvas-print-qr` (worktree ../goods-qr-wt) holds the canvas QR/iron-on pack, also unpushed.
 - [ ] Ben: Q1 contact, Q13 confirmation with every director, Q16 contacts, the Q20 cover note, the exports for Q9/Q11/Q23 (Part 3 of the page).
 - [ ] Eloise: ASIC extract and post-AGM board for Q4; Butterfly's three statements; constitution, resolutions, member register.
 - [ ] Slide 07 status strip and applicant footer after Jay; slide 10 'three kinds of money' from the redrawn diagram 04 (QBE 03 frame already carries the words).
