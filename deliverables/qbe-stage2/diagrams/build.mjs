@@ -130,7 +130,7 @@ const out = {};
   b += kicker(hx + 20, hy + 30, 'Goods on Country holds the work');
   b += para(hx + 20, hy + 62, 'One operating home', { size: 22, width: hw - 40, font: F.display, weight: 600 }).svg;
   const holds = [
-    'The board governs purpose, shared assets, appointments and reinvestment. Indigenous-led today: Kristy Bloomfield and Audrey Deemal appointed. Ownership stays a pathway.',
+    'The board governs purpose, shared assets, appointments and reinvestment. Directors: Kristy Bloomfield, Audrey Deemal, Jeremy Donovan. Indigenous-led. Ownership stays a pathway.',
     'It holds the products, IP, contracts, making, sales, delivery, capital, register and evidence.',
     'It buys the beds, agrees the rules with each community, runs the measured run, and reports.',
     'It repays any equipment debt from its own margin on buyer orders. Never from a community pool. No equity is sold.',
@@ -353,7 +353,7 @@ const out = {};
   let b = '';
   const x = 70, w = 1000;
   const layers = [
-    { k: 'Layer 1, governs', t: 'An Indigenous-led board', d: 'Purpose, shared assets, appointments and reinvestment. Kristy Bloomfield and Audrey Deemal appointed as directors of The Butterfly Movement Ltd (June and July 2026). The stated aim is full Indigenous directorship. The chair will be an Aboriginal director.', fill: C.white, stroke: C.terra },
+    { k: 'Layer 1, governs', t: 'An Indigenous-led board', d: 'Purpose, shared assets, appointments and reinvestment. Directors of The Butterfly Movement Ltd: Kristy Bloomfield, Audrey Deemal and Jeremy Donovan; Kristy and Audrey appointed June and July 2026. The stated aim is full Indigenous directorship. The chair will be an Aboriginal director.', fill: C.white, stroke: C.terra },
     { k: 'Layer 2, holds', t: 'Goods on Country', d: 'The charity, the brand, the product system, the IP, fundraising, shared services, the register and the evidence. It agrees the rules with each community, buys the beds, runs the measured run, and reports once against one set of numbers.', fill: C.white, stroke: C.line },
     { k: 'Layer 3, decides', t: 'Each community partner', d: 'Allocation, local sales, local work, where the sales money goes, and whether and when to move toward production. Independent local decision-makers, not departments inside the charity.', fill: C.sage, stroke: C.sage },
   ];

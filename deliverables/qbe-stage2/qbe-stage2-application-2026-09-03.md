@@ -113,7 +113,7 @@ The test of catalytic, as `CONTEXT.md` defines it, is what remains after the fir
 ### 1.6 Who decides what
 ![Who decides what. Three layers: the board governs, Goods on Country holds, each community decides. The month-six control test and the advisory committee beside them.](diagrams/05-who-decides-what.svg)
 Three layers, never three organisations in a row and never a tree with communities beneath the charity.
-- **An Indigenous-led board governs** purpose, shared assets, appointments and reinvestment. Kristy Bloomfield consented on 6 July and Audrey Deemal on 11 June 2026; the 20 July board meeting minuted both as appointed to casual vacancies under the constitution. The stated aim is full Indigenous directorship. The chair will be an Aboriginal director. The AGM is tentatively Monday 14 September, when the continuing directors resign and the incoming board is appointed.
+- **An Indigenous-led board governs** purpose, shared assets, appointments and reinvestment. The directors are Kristy Bloomfield, Audrey Deemal and Jeremy Donovan. Kristy consented on 6 July and Audrey on 11 June 2026; the 20 July board meeting minuted both as appointed to casual vacancies under the constitution. The stated aim is full Indigenous directorship. The chair will be an Aboriginal director. The AGM is tentatively Monday 14 September, when the continuing directors resign and the incoming board is appointed.
 - **Goods on Country holds** the charity, the brand, the product system, the IP, fundraising, shared services, the register and the evidence. It agrees the rules with each community, buys the beds, runs the measured run, and reports once against one set of numbers.
 - **Each community partner decides** allocation, local sales, local work, where the sales money goes, and whether and when to move toward production. Independent local decision-makers, not departments inside the charity.
 **The test that lets the ownership claim fail.** Six months in at a site, four binary questions: who holds the keys, who runs the payroll, who invoices the buyer, and is at least half of production done locally. Partial counts as no. Ownership stays a pathway wherever it is not legally complete, and no surface says otherwise.
@@ -173,8 +173,8 @@ Every figure on every surface carries one of six labels, defined in `cost-story.
 </tr>
 <tr>
 <td>Q4 Directors of every entity</td>
-<td>NEEDS BEN, NEEDS ELOISE</td>
-<td>ASIC extracts for Butterfly and A Curious Tractor</td>
+<td>READY, CONFIRM ASIC</td>
+<td>Butterfly: Kristy Bloomfield, Audrey Deemal, Jeremy Donovan (Ben). Eloise confirms the ASIC extract; A Kind Tractor directors still to list</td>
 </tr>
 <tr>
 <td>Q5 Amount</td>
@@ -296,11 +296,11 @@ Capital raised elsewhere supports the enterprise in two ways. The Real Innovatio
 **READY.** Attach diagram 01, "The entity, and how the money moves". It shows the three entities in a dated line, the one operating home, the money doors, and the five community partners drawn as independent organisations rather than subsidiaries.
 ### Q4. Directors of every entity
 **NEEDS BEN, NEEDS ELOISE.** Names must come from the ASIC and ACNC registers, not from memory, because the form exists to run them against the banned and disqualified register. What the record supports today:
-- **The Butterfly Movement Ltd.** Kristy Bloomfield (consent 6 July 2026) and Audrey Deemal (consent 11 June 2026), minuted as appointed to casual vacancies at the 20 July 2026 board meeting. The continuing directors from the TABOO Foundation period remain until the AGM, tentatively Monday 14 September, when all directors resign and the incoming board is appointed. Eloise to supply the current ASIC extract and the intended post-AGM board. If the form is submitted after 14 September, list the post-AGM board and say so.
+- **The Butterfly Movement Ltd.** Kristy Bloomfield, Audrey Deemal and Jeremy Donovan (Ben, 3 September 2026). Kristy and Audrey were minuted as appointed to casual vacancies at the 20 July 2026 board meeting. Eloise to confirm the ASIC extract shows the same three, and whether any TABOO-period director remains on the register until the AGM on 14 September; if so, list them too.
 - **A Curious Tractor Pty Ltd.** Benjamin Knight and Nicholas Marchesi OAM, per the ACT core facts record. Confirm against the ASIC extract.
 - **Nicholas Marchesi, sole trader.** Not a company; Nicholas Marchesi.
 - **A Kind Tractor Ltd.** Dormant. List its registered directors from ASIC for completeness.
-Two names on the record are unconfirmed and must not go on the form until they are: "Jeremy as a Director?" on Ben's note, and Alexandra Savas, recorded in the site's people data as a Butterfly director from July research with no register source.
+One name on the record is unconfirmed and must not go on the form: Alexandra Savas, recorded in the site's people data as a Butterfly director from July research with no register source. Ben's earlier note "Jeremy as a Director?" is resolved: Jeremy Donovan is a director.
 ### Q5. Amount requested
 **READY.** `250000`
 One governed pool of 200 beds ($150,000) and the proof block ($100,000). Inside the program's typical range, above the 2025 average, easier to say and easier to grant. $400,000 stays the ceiling and is never presented as the plan.
@@ -445,7 +445,7 @@ Why this would not proceed the same way without QBE. The foundations can and wil
 We do not describe the grant as matching, doubling or guaranteeing any other funding. Leverage here is a chain, not a total, and $0 of it is signed today.
 ### Q19. Readiness to maximise impact with the funding
 **READY.** Written to be true rather than reassuring.
-**Governance.** The Butterfly Movement Ltd has been a registered charity since 2012 with a clean, small balance sheet, and is mid-way through a stewardship transition to an Indigenous-led board: two Aboriginal directors, Kristy Bloomfield and Audrey Deemal, have been appointed, the AGM that completes the handover is tentatively 14 September, and the chair will be an Aboriginal director. An eleven-member advisory committee meets monthly and brings First Nations leadership, manufacturing depth, social enterprise operating experience and long-term funder judgement; it advises and does not govern, and we say so. A scored risk register of fourteen risks with named owners exists in founder-review draft. Community data is handled under a consent practice in which every quote and photo used externally is cleared by the person, and can be withdrawn.
+**Governance.** The Butterfly Movement Ltd has been a registered charity since 2012 with a clean, small balance sheet, and is mid-way through a stewardship transition to an Indigenous-led board: two Aboriginal directors, Kristy Bloomfield and Audrey Deemal, and Jeremy Donovan have been appointed, the AGM that completes the handover is tentatively 14 September, and the chair will be an Aboriginal director. An eleven-member advisory committee meets monthly and brings First Nations leadership, manufacturing depth, social enterprise operating experience and long-term funder judgement; it advises and does not govern, and we say so. A scored risk register of fourteen risks with named owners exists in founder-review draft. Community data is handled under a consent practice in which every quote and photo used externally is cleared by the person, and can be withdrawn.
 **Team capacity.** Two founders work on this full time and are the load-bearing capacity; no hires have been made, and the role map funds a general manager and a business development lead from the network block, each released by a trigger, with no date attached. Through this program we have drawn on QBE's skilled-volunteer team and on Social Impact Hub's advisory sessions, including the financial model built with Matt Allen and closed on 1 September. Community delivery capacity is real and already demonstrated with Oonchiumpa and Homeland School Company.
 **Financial systems.** Xero, a live asset register with a unit record per bed, and a figure discipline in which every published number is computed from one source and checked by automated guards. The weakness is stated in Q21: the historic books carry no cost of goods sold line and no gross margin, and repairing that is inside this application.
 **Readiness to deploy.** Bed kits are available from our current supplier, so the first pool can be ordered within thirty days of funds landing and the first beds can move as soon as the first community's rules agreement is signed, which we would not skip. The measured run happens in the first quarter after funds land at our existing facility, which has already pressed forty beds. The honest constraint is scale: one thousand beds in a quarter would be about eight times our largest run, the kit path can move that fast only if the supplier can, and the pressed path cannot yet. That is why the first pool is one community and why the measured run comes first.
@@ -526,7 +526,7 @@ Five files per slot, ten megabytes each. Anything larger goes to jay@socialimpac
 - [ ] The exports in Part 3, and the deck's money slides brought to this page before Q23 is uploaded.
 ### For Eloise, today
 - [ ] Butterfly's FY26 profit and loss, balance sheet and cashflow, audited if ready.
-- [ ] The current ASIC extract for Butterfly and the intended post-AGM board, so Q4 is register-true.
+- [ ] The current ASIC extract for Butterfly, to confirm it shows Kristy Bloomfield, Audrey Deemal and Jeremy Donovan and nobody else.
 - [ ] Constitution, ACNC registration, 1 June and 20 July resolutions and minutes, member register.
 - [ ] Confirm the AGM date and whether the form should be submitted before or after it.
 ### For Nic
