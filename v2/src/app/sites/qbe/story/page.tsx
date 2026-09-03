@@ -8,7 +8,7 @@ import { QbeStory } from './qbe-story';
  */
 export const metadata: Metadata = {
   title: { absolute: 'The whole story, working copy | Goods on Country for QBE' },
-  description: 'We buy beds. Communities sell them. The money stays with them and builds the next thing. The working copy, with the deck map, the form map and every line by name.',
+  description: 'The first money buys beds for a community. The community sells them, and the money stays there to build the next thing. The working copy, with the deck map, the form map and every line by name.',
   robots: { index: false, follow: false },
 };
 

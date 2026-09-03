@@ -5,7 +5,7 @@ source: regenerated FROM the Notion page (3d0ebcf981cf806b918fceff46528300), whi
 ---
 
 ## The crux
-We buy beds. Communities sell them. The money stays with them and builds the next thing.
+The first money buys beds for a community. The community sells them, and the money stays there to build the next thing.
 One thousand Stretch Beds at $750 is $750,000. 
 Five communities, 200 beds each. Each community decides how many go to families who need a bed tonight and how many are sold. Every bed sold puts up to $750 in the community's hands. Sell the lot and that is $150,000, enough to start on a production plant. With a plant a bed costs about $426 to make against $685 to buy in, so the next thousand carry a real margin. Then the same again with washing machines.
 Where it goes if it works: five plants, twenty beds a week each, about 5,000 beds a year, around $1 million a year in margin that communities reinvest. That is the direction. We are not promising ten-year numbers. Communities build the muscle to run an enterprise, and where it branches from there is their call.

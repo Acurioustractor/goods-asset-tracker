@@ -80,7 +80,7 @@ export interface StoryChapter {
 }
 
 export const STORY_CHAPTERS: readonly StoryChapter[] = [
-  { id: 'crux', part: 'the-story', label: 'The crux', kicker: 'If you read nothing else', title: 'We buy beds. Communities sell them. The money stays with them and builds the next thing.', audience: 'all', deckSlides: ['01 cgjeR', '11 o35by'], formQuestions: ['Q6'] },
+  { id: 'crux', part: 'the-story', label: 'The crux', kicker: 'If you read nothing else', title: 'The first money buys beds for a community. The community sells them, and the money stays there to build the next thing.', audience: 'all', deckSlides: ['01 cgjeR', '11 o35by'], formQuestions: ['Q6'] },
   { id: 'problem', part: 'the-story', label: 'The problem', kicker: 'The problem we are answering', title: 'Remote communities import the goods and export the value.', audience: 'all', deckSlides: ['02 cJl95'], formQuestions: [] },
   { id: 'road', part: 'the-story', label: 'The road', kicker: 'Seven places that changed how we work', title: 'Delivery was the easy part.', audience: 'all', deckSlides: ['03 tWgC6', '04 h7RSm'], formQuestions: ['Q10'] },
   { id: 'bed', part: 'the-model', label: 'One bed', kicker: 'One bed, four things, any amount', title: 'Every dollar buys beds, so any amount reads the same way.', audience: 'all', deckSlides: ['10C mX9er', '04 h7RSm'], formQuestions: ['Q5', 'Q6', 'Q7'] },
@@ -115,7 +115,7 @@ export function chaptersFor(audience: StoryAudience): StoryChapter[] {
 const aud = (n: number) => `$${n.toLocaleString('en-AU')}`;
 
 const CRUX_OPEN: readonly string[] = [
-  'We buy beds. Communities sell them. The money stays with them and builds the next thing.',
+  'The first money buys beds for a community. The community sells them, and the money stays there to build the next thing.',
   `One thousand Stretch Beds at ${aud(BED_PRICE_AUD)} is ${aud(PROGRAM.costAud)}.`,
   `Five communities, ${POOL.beds} beds each. Each community decides how many go to families who need a bed tonight and how many are sold. Every bed sold puts up to ${aud(BED_PRICE_AUD)} in the community's hands. Sell the lot and that is ${aud(POOL.costAud)}, enough to start on a production plant. With a plant a bed costs about ${aud(PRESSED_COST_AUD)} to make against ${aud(KIT_COST_AUD)} to buy in, so the next thousand carry a real margin. Then the same again with washing machines.`,
   'Where it goes if it works: five plants, twenty beds a week each, about 5,000 beds a year, around $1 million a year in margin that communities reinvest. That is the direction. We are not promising ten-year numbers. Communities build the muscle to run an enterprise, and where it branches from there is their call.',
@@ -274,7 +274,7 @@ export const SNOWBALL_MARGIN_PER_YEAR_AUD = SNOWBALL_BEDS_PER_YEAR * SNOWBALL.ma
 
 /** The four steps of the snowball, from the 2 September call. */
 export const SNOWBALL_STEPS: readonly { title: string; body: string }[] = [
-  { title: 'We buy beds', body: `${POOL.beds} beds into a community, at ${aud(BED_PRICE_AUD)} each.` },
+  { title: 'The first money buys beds', body: `${POOL.beds} beds into a community, at ${aud(BED_PRICE_AUD)} each.` },
   { title: 'The community sells them', body: `Up to ${aud(POOL.costAud)} stays in the community if all ${POOL.beds} sell. Less when beds are given.` },
   { title: 'They start on a plant', body: `A full plant is ${FACILITY_BAND.publicPrice}. One pool sold in full reaches the bottom of that range.` },
   { title: 'The next thousand carry a margin', body: `About ${aud(PRESSED_COST_AUD)} to make against ${aud(KIT_COST_AUD)} to buy in. Then the same again with washing machines.` },

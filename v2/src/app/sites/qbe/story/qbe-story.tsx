@@ -146,7 +146,7 @@ export function QbeStory({ audience }: { audience: StoryAudience }) {
           <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-goods-terracotta-light">
             {working ? 'Goods on Country · QBE Catalysing Impact, Stage 2 · the working copy' : 'Goods on Country · the model, in full'}
           </p>
-          <h1 className="goods-pitch-display mt-5 max-w-5xl text-4xl leading-[1.05] md:text-7xl">We buy beds. Communities sell them. The money stays with them and builds the next thing.</h1>
+          <h1 className="goods-pitch-display mt-5 max-w-5xl text-4xl leading-[1.05] md:text-7xl">The first money buys beds for a community. The community sells them, and the money stays there to build the next thing.</h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-goods-cream/85">
             This is how we work, in full: every drawing, every number and where it comes from, the places that taught us, and the questions people keep asking us.
             {working ? ' The deck is cut from this page.' : ''}

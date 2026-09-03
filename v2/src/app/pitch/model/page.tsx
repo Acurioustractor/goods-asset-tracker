@@ -8,7 +8,7 @@ import { QbeStory } from '@/app/sites/qbe/story/qbe-story';
  */
 export const metadata: Metadata = {
   title: { absolute: 'The model, in full | Goods on Country' },
-  description: 'We buy beds. Communities sell them. The money stays with them and builds the next thing. How it works, drawn, with the numbers and the questions people ask us.',
+  description: 'The first money buys beds for a community. The community sells them, and the money stays there to build the next thing. How it works, drawn, with the numbers and the questions people ask us.',
 };
 
 export default function ModelPage() {
