@@ -14,7 +14,7 @@ import { describe, expect, it } from 'vitest';
 import { BED_PRICE_AUD, KIT_COST_AUD, POOL, PRESSED_COST_AUD, STAYS_PRESSED_AUD } from './community-loop';
 import { PROGRAM, QBE_ASK, SIGNED_TOTAL_AUD, STACK, UNVERIFIED_LINE_IDS, bedsFunded } from './raise-stack';
 import { SCALE_ROWS } from './bed-ratio';
-import { FAQ, FAQ_OPEN_COUNT } from './qbe-faq';
+import { FAQ, FAQ_OPEN_COUNT, faqFor } from './qbe-faq';
 import {
   BUYERS,
   CALENDAR,
@@ -34,8 +34,10 @@ import {
   STORY_PARTS,
   THREE_DOORS,
   WHO_SELLS,
+  chaptersFor,
+  cruxFor,
 } from './qbe-story';
-import { QBE_DIAGRAMS } from '../diagrams/qbe-diagrams';
+import { QBE_DIAGRAMS, diagramsFor } from '../diagrams/qbe-diagrams';
 
 const aud = (n: number) => `$${n.toLocaleString('en-AU')}`;
 
@@ -202,7 +204,7 @@ describe('the FAQ', () => {
 describe('the drawings', () => {
   it('every diagram renders to a 16:9 SVG with its title', () => {
     for (const d of QBE_DIAGRAMS) {
-      const svg = d.svg();
+      const svg = d.svg('working');
       expect(svg.startsWith('<svg'), d.id).toBe(true);
       expect(svg, d.id).toContain('viewBox="0 0 1600 900"');
       expect(svg, d.id).toContain('</svg>');
@@ -217,7 +219,7 @@ describe('the drawings', () => {
   });
 
   it('the unit drawing carries the ask row and the price from the modules', () => {
-    const svg = QBE_DIAGRAMS.find((d) => d.id === 'the-unit')!.svg();
+    const svg = QBE_DIAGRAMS.find((d) => d.id === 'the-unit')!.svg('working');
     expect(svg).toContain(`One bed, ${aud(BED_PRICE_AUD)}`);
     expect(svg).toContain(aud(QBE_ASK.recommended.aud));
     expect(svg).toContain(String(QBE_ASK.recommended.beds));
@@ -225,7 +227,7 @@ describe('the drawings', () => {
   });
 
   it('the three-jobs drawing sums the pool lines the way raise-stack does', () => {
-    const svg = QBE_DIAGRAMS.find((d) => d.id === 'three-jobs')!.svg();
+    const svg = QBE_DIAGRAMS.find((d) => d.id === 'three-jobs')!.svg('working');
     const poolLines = STACK.filter((l) => (l.job === 'pool' || l.job === 'demand') && l.status !== 'excluded' && !UNVERIFIED_LINE_IDS.includes(l.id));
     const beds = poolLines.reduce((s, l) => s + bedsFunded(l), 0);
     expect(svg).toContain(`(${beds.toLocaleString('en-AU')})`);
@@ -235,15 +237,88 @@ describe('the drawings', () => {
 
   it('a drawing never says QBE doubles, triggers or guarantees', () => {
     for (const d of QBE_DIAGRAMS) {
-      const svg = d.svg();
+      const svg = d.svg('working');
       expect(svg, d.id).not.toMatch(/QBE (doubles|triggers|guarantees)/i);
       expect(svg, d.id).not.toMatch(/dollar-for-dollar/i);
     }
   });
 
   it('the loop drawing keeps the return arrow inside the community', () => {
-    const svg = QBE_DIAGRAMS.find((d) => d.id === 'the-loop')!.svg();
+    const svg = QBE_DIAGRAMS.find((d) => d.id === 'the-loop')!.svg('working');
     expect(svg).toContain('never back to the funder');
     expect(svg.toLowerCase()).toContain('four gates');
+  });
+});
+
+// ---------------------------------------------------------------------------
+// The public surface: first person, no internal notes, no named foundation or lender
+
+/** Names, files and process words that must never reach /pitch/model. */
+const INTERNAL = [
+  /\bBen\b/, /\bNic\b/, /\bJay\b/, /\bEloise\b/, /\bKatie\b/, /\bMiranda\b/, /\bSally\b/, /\bRachel\b/, /Matt Allen/,
+  /Social Impact Hub/, /Notion/, /HighLevel/, /Pencil/, /Zoho/, /\bXero\b/,
+  /\.ts\b/, /\.mjs\b/, /\bQ\d{1,2}\b/, /ruling [A-Z]\b/, /\bguards?\b/,
+  /Tim Fairfax/, /Brian M\. Davis/, /Snow Foundation/, /\bSnow\b/, /Minderoo/, /Dusseldorp/, /\bSEFA\b/, /White Box/, /\bFRRR\b/, /EV Fleet/,
+  /has not (yet )?ruled/i, /recommendation:/i, /subject to/i, /fallback/i, /cohort/i,
+];
+
+function publicProse(): string[] {
+  const out: string[] = [];
+  out.push(...cruxFor('public'));
+  out.push(...chaptersFor('public').flatMap((c) => [c.kicker, c.title]));
+  out.push(...faqFor('public').flatMap((f) => [f.question, f.answer]));
+  out.push(...HONEST_RULES.map((r) => r.rule));
+  out.push(...PROOF_RUNS.flatMap((r) => [r.body, r.proves]), ...BUYERS.map((b) => b.what), WHO_SELLS, ...THREE_DOORS.map((d) => d.does));
+  out.push(MEASURED_RUN.claim, MEASURED_RUN.test, MEASURED_RUN.open, SNOWBALL.direction, SNOWBALL.honesty);
+  out.push(...OUTCOMES.map((o) => o.body), ...HOW_WE_KNOW.map((h) => h.body));
+  return out;
+}
+
+describe('the public surface', () => {
+  it('carries no internal name, file, form question or named foundation', () => {
+    for (const p of publicProse()) {
+      for (const re of INTERNAL) expect(p, `${re} in: ${p.slice(0, 90)}`).not.toMatch(re);
+    }
+  });
+
+  it('every public drawing is clean too', () => {
+    for (const d of diagramsFor('public')) {
+      const svg = d.svg('public');
+      for (const re of INTERNAL) expect(svg, `${re} in drawing ${d.id}`).not.toMatch(re);
+      expect(svg, d.id).toContain('viewBox="0 0 1600 900"');
+    }
+  });
+
+  it('the calendar and the deck map exist only on the working copy', () => {
+    expect(chaptersFor('public').map((c) => c.id)).not.toContain('calendar');
+    expect(chaptersFor('public').map((c) => c.id)).not.toContain('deck');
+    expect(chaptersFor('working').map((c) => c.id)).toContain('deck');
+    expect(diagramsFor('public').map((d) => d.id)).not.toContain('the-calendar');
+  });
+
+  it('the public FAQ hides working entries and swaps in public answers', () => {
+    const ids = faqFor('public').map((f) => f.id);
+    expect(ids).not.toContain('which-entity');
+    expect(ids).not.toContain('open-questions');
+    expect(ids).not.toContain('what-qbe-buys');
+    expect(ids).toContain('where-selling');
+    expect(ids).toContain('what-money-buys');
+    const cat = faqFor('public').find((f) => f.id === 'how-catalytic')!;
+    expect(cat.answer).not.toMatch(/SEFA|White Box/);
+  });
+
+  it('the public crux still says the cost, the ratio and that nothing is signed', () => {
+    const crux = cruxFor('public').join(' ');
+    expect(crux).toContain(aud(PROGRAM.costAud));
+    expect(crux).toContain('Nothing else is signed today');
+    expect(crux).not.toMatch(/Tim Fairfax|Brian M\. Davis|Minderoo|Dusseldorp/);
+    expect(crux).toContain('ALIVE');
+  });
+
+  it('speaks as we, never about Goods on Country in the third person doing the work', () => {
+    for (const p of publicProse()) {
+      expect(p, p.slice(0, 90)).not.toMatch(/Goods on Country (buys|agrees|runs|holds|repays|reports|makes)\b/);
+      expect(p, p.slice(0, 90)).not.toMatch(/\bthe founders\b/i);
+    }
   });
 });

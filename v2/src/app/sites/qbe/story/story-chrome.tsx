@@ -8,16 +8,15 @@
  * rendered with its images, maps and video.
  */
 import { useCallback, useEffect, useState } from 'react';
-import { STORY_CHAPTERS, STORY_PARTS } from '@/lib/data/qbe-story';
+import { STORY_PARTS, type StoryChapter } from '@/lib/data/qbe-story';
 
 type Mode = 'scroll' | 'slides';
 
-export function StoryChrome() {
+export function StoryChrome({ chapters }: { chapters: readonly StoryChapter[] }) {
   const [mode, setMode] = useState<Mode>('scroll');
   const [index, setIndex] = useState(0);
   const [ready, setReady] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
-  const chapters = STORY_CHAPTERS;
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);

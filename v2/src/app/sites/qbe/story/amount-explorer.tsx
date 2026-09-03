@@ -3,20 +3,26 @@
 /**
  * Any amount, the same ratio. A slider over `bed-ratio.scale()`: move it and the beds, pools,
  * plastic, hours and money-that-stays-local move with it. The four preset amounts are the ones the
- * deck shows; the ask is marked. Every label on the four things comes from BED_UNIT.
+ * deck shows; on the working copy the ask and the smaller amount are marked. Every label on the
+ * four things comes from BED_UNIT.
  */
 import { useState } from 'react';
 import { BED_PRICE_AUD, BED_UNIT, POOL_BEDS, RATIO_NOTE, SCALE_AMOUNTS, scale } from '@/lib/data/bed-ratio';
 import { QBE_ASK } from '@/lib/data/raise-stack';
+import type { StoryAudience } from '@/lib/data/qbe-story';
 import { SolidityChip } from './solidity-chip';
 
 const aud = (n: number) => `$${Math.round(n).toLocaleString('en-AU')}`;
 const num = (n: number, dp = 0) => n.toLocaleString('en-AU', { maximumFractionDigits: dp });
 
-export function AmountExplorer() {
-  const [amount, setAmount] = useState<number>(QBE_ASK.recommended.aud);
+export function AmountExplorer({ audience }: { audience: StoryAudience }) {
+  const [amount, setAmount] = useState<number>(audience === 'working' ? QBE_ASK.recommended.aud : 150_000);
   const row = scale(amount);
   const step = BED_PRICE_AUD * 10;
+  const presetNote = (a: number) => {
+    if (audience !== 'working') return a === 150_000 ? ' · one pool' : a === 750_000 ? ' · the thousand' : '';
+    return a === QBE_ASK.recommended.aud ? ' · the ask' : a === QBE_ASK.smaller.aud ? ' · smaller' : '';
+  };
 
   return (
     <div className="rounded-md border border-goods-grid bg-white p-5 md:p-7">
@@ -38,7 +44,7 @@ export function AmountExplorer() {
               }`}
             >
               {aud(a)}
-              {a === QBE_ASK.recommended.aud ? ' · the ask' : a === QBE_ASK.smaller.aud ? ' · smaller' : ''}
+              {presetNote(a)}
             </button>
           ))}
         </div>

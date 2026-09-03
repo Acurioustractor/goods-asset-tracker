@@ -1,9 +1,10 @@
 'use client';
 
 /**
- * One model drawing on the page: the SVG inline, a caption, the Pencil frame it feeds, and two
- * downloads (SVG, PNG at 2x) so the slide is the same drawing. The SVG string arrives from the
- * server, rendered by `lib/diagrams`; this component only shows it and hands it over.
+ * One model drawing on the page: the SVG inline, a caption, and two downloads (SVG, PNG at 2x) so
+ * the slide is the same drawing. The Pencil frame it feeds shows only on the working copy. The SVG
+ * string arrives from the server, rendered by `lib/diagrams`; this component only shows it and
+ * hands it over.
  */
 import { useCallback, useRef } from 'react';
 
@@ -11,7 +12,8 @@ interface Props {
   id: string;
   title: string;
   caption: string;
-  slide: string;
+  /** The Pencil frame. Omitted on the public surface. */
+  slide?: string;
   svg: string;
 }
 
@@ -34,7 +36,7 @@ export function DiagramFigure({ id, title, caption, slide, svg }: Props) {
   }, []);
 
   const saveSvg = useCallback(() => {
-    download(new Blob([fileSvg()], { type: 'image/svg+xml' }), `goods-qbe-${id}.svg`);
+    download(new Blob([fileSvg()], { type: 'image/svg+xml' }), `goods-model-${id}.svg`);
   }, [download, fileSvg, id]);
 
   const savePng = useCallback(() => {
@@ -49,7 +51,7 @@ export function DiagramFigure({ id, title, caption, slide, svg }: Props) {
       if (!ctx) return;
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
       canvas.toBlob((png) => {
-        if (png) download(png, `goods-qbe-${id}.png`);
+        if (png) download(png, `goods-model-${id}.png`);
         URL.revokeObjectURL(url);
       }, 'image/png');
     };
@@ -63,7 +65,7 @@ export function DiagramFigure({ id, title, caption, slide, svg }: Props) {
         <span className="font-semibold text-goods-ink">{title}.</span>
         <span>{caption}</span>
         <span className="ml-auto flex items-center gap-2 print:hidden">
-          <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-goods-sub">Deck: {slide}</span>
+          {slide && <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-goods-sub">Deck: {slide}</span>}
           <button type="button" onClick={saveSvg} className="border border-goods-grid px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-goods-ink hover:border-goods-terracotta">
             SVG
           </button>

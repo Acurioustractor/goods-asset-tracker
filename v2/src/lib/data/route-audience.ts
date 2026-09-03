@@ -1883,9 +1883,19 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     whyUnread: 'proxy-gated, the public response is the login page',
     verdict: 'keep',
   },
+  // The model, in full, for anyone: the same chapters as /sites/qbe/story with no internal notes,
+  // no named foundation or lender, no calendar. An appendix of /pitch/road (PITCH_APPENDICES).
   {
-    // The long-form QBE story: the model drawn from the guarded modules, the live explorers, the FAQ.
-    // The deck is cut from it. Gated with /sites/qbe because it prints the funder lines with amounts.
+    route: '/pitch/model',
+    audience: 'funder',
+    access: 'open',
+    leadsWithNow: null,
+    whyUnread: 'new route, not yet on production; read after the first deploy',
+    verdict: 'keep',
+  },
+  // The working copy of the story of the model: the deck map, the form map, every funder line by
+  // name. Gated with /sites/qbe because it prints those lines with amounts.
+  {
     route: '/sites/qbe/story',
     audience: 'funder',
     access: 'gated',
