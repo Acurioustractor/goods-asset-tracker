@@ -122,7 +122,6 @@ export const STACK: readonly StackLine[] = [
     id: 'qbe',
     funder: 'QBE Foundation, Catalysing Impact Stage 2',
     amountAud: 250_000,
-    split: { poolAud: 150_000, proofsAud: 100_000 },
     instrument: 'catalytic-grant',
     status: 'ask-made',
     legalHome: 'TBC',
@@ -130,7 +129,7 @@ export const STACK: readonly StackLine[] = [
     label: 'target',
     source: 'Jay Boolkin to the cohort, 24 Aug 2026; wiki/investor/20-qbe-program-economics.md',
     asAt: '2026-09-02',
-    note: 'Typically $150,000 to $400,000 from a pool of up to $1.1 million across ten enterprises. Discretionary. It sits on top of signed external commitments and does not double them. The ask is $250,000: one pool and the proof block (Ben, 2 Sep evening); $400,000 stays the ceiling. Applicant entity to be settled with Jay on 3 Sep. Form closes Fri 25 Sep 12pm AEST; review meeting Wed 7 Oct.',
+    note: 'Typically $150,000 to $400,000 from a pool of up to $1.1 million across ten enterprises. Discretionary. It sits on top of signed external commitments and does not double them. The ask is $250,000: 333 beds at $750, the first community\'s pool of 200 and a start on the second. The money buys beds; the measured cost of the first fifty comes with the pool (Ben, 3 Sep). $400,000 stays the ceiling. Applicant entity to be settled with Jay on 3 Sep. Form closes Fri 25 Sep 12pm AEST; review meeting Wed 7 Oct.',
   },
   {
     id: 'bmdf',
@@ -334,37 +333,38 @@ export interface AskTier {
 
 function tier(aud: number, poolAud: number, buys: string): AskTier {
   const proofsAud = aud - poolAud;
-  return { aud, poolAud, proofsAud, beds: poolAud / BED_PRICE_AUD, buys };
+  return { aud, poolAud, proofsAud, beds: Math.floor(poolAud / BED_PRICE_AUD), buys };
 }
 
 export const QBE_ASK = {
   /**
-   * The ask (Ben, 2 Sep 2026, evening): one governed pool and the proof block. It does not
-   * have to be the maximum. It is easier to say, easier to grant, and every dollar above it
-   * buys beds at the same ratio (bed-ratio.ts). Form Q5.
+   * The ask (Ben, 3 Sep 2026): the money buys beds, a straight ratio at $750 a bed. It does not
+   * have to be the maximum. Every dollar any funder adds buys beds at the same ratio
+   * (bed-ratio.ts). The measured cost of the first fifty beds comes with the first pool; it is
+   * not a separate budget line. Form Q5.
    */
   recommended: tier(
     250_000,
-    150_000,
-    'One community pool (200 beds) and the proof block: the first fifty beds pressed at the farm at production rate, timed and costed with receipts; the rules agreements the pools run on; product traceability and the accounting repair that gives Goods on Country a gross margin on paper.',
+    250_000,
+    "333 beds at $750: the first community's pool of 200 and a start on the second. The first fifty go through our own press and get costed, so the cost of a locally made bed is measured; the rules with each community are agreed before its beds move.",
   ),
-  /** The ceiling, never the plan (ruling V): two pools and the proofs. */
+  /** The ceiling, never the plan (ruling V). */
   full: tier(
     400_000,
-    300_000,
-    'Two community pools (400 beds) and the proof block. The top of the typical range and 36% of the whole pool; carried as the ceiling, not the plan.',
+    400_000,
+    '533 beds. The top of the typical range and 36% of the whole pool; carried as the ceiling, not the plan.',
   ),
   /** Form Q7. */
   smaller: tier(
     150_000,
-    75_000,
-    'The proof block and the first hundred beds. The loop is proven on half a pool; the second half waits for the next funder.',
+    150_000,
+    "200 beds: the first community's pool, whole. The second community waits for the next funder.",
   ),
   framing:
     'A discretionary Catalysing Impact grant, typically $150,000 to $400,000 from a pool of up to $1.1 million across ten enterprises. It sits on top of signed external commitments and does not double them. $0 is signed today.',
   leverageChain: [
-    'QBE funds the first pool and the proofs. Every other dollar in the stack buys beds at the same ratio or keeps the organisation standing; nothing else buys the proof.',
-    'That work produces community agreements, a measured cost, buyer paper and a governed pool.',
+    "QBE's beds go in first: 333 beds into the first community, the first fifty through our own press so the cost of a locally made bed is measured.",
+    'That first pool produces what a lender can read: a community selling beds under agreed rules, a measured cost per bed, buyer paper.',
     'Three invitations are already in hand: TFFF $300,000 for the block, BMDF $100,000 for pool three, and a Snow letter for pool four. Minderoo and Dusseldorp are in conversation.',
     'After the measured run, SEFA $300,000 and White Box $150,000 for equipment and working capital, which cannot proceed while the cost is modelled and the borrower is unsettled.',
     'Demand already paying: ALIVE bought 100 beds up front; Centrecorp\'s 130-bed quote is deferred pending community feedback.',

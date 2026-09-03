@@ -121,10 +121,10 @@ export const SCALE_ROWS: readonly ScaleRow[] = SCALE_AMOUNTS.map(scale);
 export const RATIO_NOTE =
   'Beds at $750 each. Plastic at 20kg a bed. Local work at about 6.5 modelled hours a bed when made locally, about $130 of fair-wage labour a bed in the community cost state. Money that stays local is gross sales at $750 and only for beds the community chooses to sell. None of it is community income until the rules are agreed.';
 
-/** What a catalytic grant starts that no other dollar in the stack does. */
+/** What QBE's beds going first start. */
 export const UNLOCK = {
-  title: 'What one grant starts that nothing else in the stack does',
-  body: 'Every other dollar in the stack buys beds or keeps the organisation standing. A catalytic grant is the only money that buys the proof: the first fifty beds pressed and timed, and the rules each pool runs on. Without it the pools are a gift. With it they are the first step of an enterprise, and the equipment loan behind them can be written.',
+  title: 'What going first does',
+  body: "QBE's beds go in first, into the first community. That community sells what it decides to sell and keeps the money. The first fifty go through our own press and get costed, so the lenders have a measured number. Every other funder's beds follow at the same ratio.",
 } as const;
 
 export const RATIO_GUARDRAIL =

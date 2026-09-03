@@ -44,7 +44,9 @@ status: active
 - [ ] Merge PR #234 only on Ben's explicit word.
 
 ### Decisions
-- $250K is the QBE ask, $400K the ceiling, $150K the smaller amount (Ben, 2 Sep evening): one pool plus the proof block is easier to say and to grant; every dollar above buys beds at the same ratio.
+- **3 Sep, Ben: the QBE money buys beds, full stop.** $250K = 333 beds, $150K = 200, $400K = 533. The "$150K pool + $100K proof block" split is RETIRED from prose, diagrams and `raise-stack.ts`; the measured cost of the first fifty beds comes with the first pool, not as a budget line. Written from the 2 Sep transcript, in the founders' words.
+- **3 Sep, Ben: "nine years on the road" is wrong, two years max.** Fixed on the page and the repo copy; `CONTEXT.md` road spine and deck slide 03 still carry nine and need the sweep.
+- SUPERSEDED (2 Sep evening): $250K as one pool plus the proof block.
 - TFFF recommended to fund the block, not beds: Katie's invitation names the resilience of organisations; $100K/yr for three years is almost exactly the minimum network block. Ben has not yet ruled.
 - The Butterfly Movement Ltd (Goods on Country) recommended as QBE applicant: every external dollar lands there under ruling X; ACT as related entity; fallback ACT with the unsigned inter-entity agreement, said to be weaker.
 - $750K is only ever the cost of the beds, never sales or income; no community is named beside a price; QBE is never described as doubling anything; debt is repaid from Goods' margin on buyer orders, never from a community's pool.
