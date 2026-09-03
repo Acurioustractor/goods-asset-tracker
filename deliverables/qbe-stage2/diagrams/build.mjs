@@ -1,3 +1,7 @@
+// SUPERSEDED 4 Sep 2026. The same seven drawings, plus two new ones, are now rendered from the
+// guarded modules by v2/src/lib/diagrams/qbe-diagrams.ts and shown on /sites/qbe/story, where each
+// downloads as SVG or PNG for the deck. Figures here were typed by hand; there they are read. Keep
+// this file only as the record of the 3 September application build.
 // QBE Stage 2 model diagrams. Brand tokens from the Pencil deck: cream, ink, terracotta, sand, sage.
 // Every figure here is copied from raise-stack.ts, community-loop.ts, bed-ratio.ts and canon.ts.
 import { writeFileSync, mkdirSync } from 'node:fs';

@@ -1884,6 +1884,16 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     verdict: 'keep',
   },
   {
+    // The long-form QBE story: the model drawn from the guarded modules, the live explorers, the FAQ.
+    // The deck is cut from it. Gated with /sites/qbe because it prints the funder lines with amounts.
+    route: '/sites/qbe/story',
+    audience: 'funder',
+    access: 'gated',
+    leadsWithNow: null,
+    whyUnread: 'proxy-gated, the public response is the login page',
+    verdict: 'keep',
+  },
+  {
     route: '/sponsor',
     audience: 'supporter',
     access: 'open',
