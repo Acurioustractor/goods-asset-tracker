@@ -153,7 +153,7 @@ export const DECK_ROAD: Slide[] = [
     kind: 'gap',
     eyebrow: 'The gap',
     headline: THE_GAP.taught,
-    body: 'Seven places, two years, and a product that works. What has not happened anywhere is the transfer. And the need is not abstract: the Census counts 2,761 very remote NT households short at least a bedroom, half of all of them. Nine years of this work has delivered 540 beds. This is the honest position, and it is the reason for the ask.',
+    body: 'Seven places, two years, and a product that works. What has not happened anywhere is the transfer. And the need is not abstract: the Census counts 2,761 very remote NT households short at least a bedroom, half of all of them. Two years of this work has delivered 540 beds. This is the honest position, and it is the reason for the ask.',
     figures: [
       fig('communities-served'),
       fig('beds-deployed'),
