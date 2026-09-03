@@ -1,30 +1,33 @@
 ---
 title: QBE Stage 2, the one document
 date: 2026-09-03
-source: repo copy of the Notion page "QBE final // Play space" (3d0ebcf981cf806b918fceff46528300). Figures from raise-stack.ts, community-loop.ts, bed-ratio.ts, canon.ts. Diagrams built by diagrams/build.mjs.
+source: regenerated FROM the Notion page "QBE final // Play space" (3d0ebcf981cf806b918fceff46528300), which Ben edits directly and which is the master. Figures from raise-stack.ts, community-loop.ts, bed-ratio.ts, canon.ts. Diagrams built by diagrams/build.mjs.
 ---
 
-# QBE Stage 2: the one document
-> **What this is.** Every answer to the Catalysing Impact 2026 Stage 2 form, the model behind them explained once and drawn, and the list of what only Ben, Jay, Eloise or Nic can settle. Built 3 September 2026 from the strategy note, the guarded figure modules and the 2 September planning session. **Figures come from the repo** (`raise-stack.ts`, `community-loop.ts`, `bed-ratio.ts`, `canon.ts`) and are copied here; if this page and the repo disagree, the repo wins. The same document lives at `deliverables/qbe-stage2/qbe-stage2-application-2026-09-03.md` on the raise branch, with the diagram sources beside it.
->
-> **Status on 3 September.** The ask is $250,000. $0 is signed. The applicant entity is recommended, not confirmed: Jay answers at 2pm today. The form closes **Friday 25 September, 12pm AEST**. Every answer below carries one of four marks: **READY** (lift it into the form), **READY, SUBJECT TO JAY** (the entity question changes the wording), **NEEDS BEN** (a decision or a detail only Ben holds), **NEEDS ELOISE** (Butterfly's books and papers).
 ## The crux
 We buy beds. Communities sell them. The money stays with them and builds the next thing.
-One thousand Stretch Beds at $750 is $750,000. Five communities, 200 beds each. Each community decides how many go to families who need a bed tonight and how many are sold. Every bed sold puts up to $750 in the community's hands. Sell the lot and that is $150,000, enough to start on a production plant. With a plant a bed costs about $426 to make against $685 to buy in, so the next thousand carry a real margin. Then the same again with washing machines.
-Where it goes if it works: five plants, twenty beds a week each, about 5,000 beds a year, around $1 million a year in margin that communities reinvest. That is the direction. Nobody is promising ten-year numbers. Communities build the muscle to run an enterprise, and where it branches from there is their call.
+One thousand Stretch Beds at $750 is $750,000. 
+Five communities, 200 beds each. Each community decides how many go to families who need a bed tonight and how many are sold. Every bed sold puts up to $750 in the community's hands. Sell the lot and that is $150,000, enough to start on a production plant. With a plant a bed costs about $426 to make against $685 to buy in, so the next thousand carry a real margin. Then the same again with washing machines.
+Where it goes if it works: five plants, twenty beds a week each, about 5,000 beds a year, around $1 million a year in margin that communities reinvest. That is the direction. We are not promising ten-year numbers. Communities build the muscle to run an enterprise, and where it branches from there is their call.
 We are asking QBE for $250,000. That buys 333 beds. It is a straight ratio: every bed is $750 and every bed does the same four things, so $150,000 is 200 beds, $400,000 is 533 and $750,000 is the full thousand. QBE's beds go in first, into the first community. The rest of the thousand comes from the funders who have already asked us to apply, Tim Fairfax, Brian M. Davis, Snow, Minderoo and Dusseldorp, and from the 100 beds ALIVE has already paid for.
-We call it catalytic community investing. We are trusting communities to take the beds, sell them and build their own future with the money. The funder acts once. After that the money goes round inside the community.
-The question we get asked most is where they are selling. Mparntwe (Alice Springs) first, with Oonchiumpa, who have already built and delivered beds with their young people. Buyers are already paying: ALIVE bought 100 beds up front, Centrecorp has 130 on quote, and there are more than 200 requests each in Tennant Creek and Mparntwe.
-The rules on sales money, resale and who holds the beds are being agreed with each community now. Until they are signed, the numbers are a design.
-## Part 1. The model, explained once
+We see this as catalytic community investing. We are trusting communities to take the beds, sell them and build their own future with the money. The funder acts once. After that the money goes round inside the community.
+The question we get asked most is where they are selling. Mparntwe (Alice Springs) first, with Oonchiumpa, who have already built and delivered beds with their young people. Buyers are already paying: ALIVE bought 100 beds up front, Centrecorp bought 130 and there are more than 200 requests each in Tennant Creek and Mparntwe.
+The rules on sales money, resale and who holds the beds are being agreed with each community now.
+## Part 1. The model
 ### 1.1 The problem the model answers
-Remote communities import the goods and export the value. The current supply system brings products in, creates little local work or ownership, and the used plastic still goes to landfill. Four figures carry it: 51.3% of First Nations households in very remote NT needed at least one extra bedroom in 2021; 3.1% of employed First Nations people in the NT managed their own business in 2021, the lowest share of any jurisdiction; First Nations employment was 38.1% in very remote Australia against 68.0% in major cities in 2022 to 23; the NT sent 275,190 tonnes of waste to landfill in 2023 to 24 and recycled 12.7%. Sources: ABS 2021 Census; AIHW; NT Government waste report 2023 to 24.
-Twenty-three of the twenty-nine people whose Empathy Ledger interviews were analysed in July described the broken supply chain without being asked about it: freight, price, products that fail. The problem statement is community-authored.
-Two years on the road taught the team that delivery was the easy part. The beds reached Kalgoorlie, Palm Island, Tennant Creek, the Utopia homelands, Maningrida, Mparntwe. Each delivery showed the work still to do on repair, washing and local access. The Basket Bed taught what had to become simpler and stronger. Elder Dianne Stokes named the washing machine Pakkimjalki Kari in Warumungu. The Stretch Bed combined years of feedback into a washable, repairable design whose recycled-plastic frames can be made closer to community. The next bed should be made on Country. That is the whole ambition, and the model is how the making and the decisions move there.
+Remote communities import the goods and export the value. The current supply system brings products in, creates little local work or ownership, and the used plastic still goes to landfill. 
+Four figures:
+- 51.3% of First Nations households in very remote NT needed at least one extra bedroom in 2021
+- 3.1% of employed First Nations people in the NT managed their own business in 2021, the lowest share of any jurisdiction
+- First Nations employment was 38.1% in very remote Australia against 68.0% in major cities in 2022 to 23
+- The NT sent 275,190 tonnes of waste to landfill in 2023 to 24 and recycled 12.7%. 
+	- Sources: ABS 2021 Census; AIHW; NT Government waste report 2023 to 24.
+Twenty-three of the twenty-nine people whose Empathy Ledger interviews were analysed in July described the broken supply chain without being asked about it: freight, price, products that fail. 
+The beds have reached Kalgoorlie, Palm Island, Tennant Creek, the Utopia homelands, Maningrida, Mparntwe. Each delivery showed the work still to do on repair, washing and local access. The Basket Bed taught what had to become simpler and stronger. Elder Dianne Stokes named the washing machine Pakkimjalki Kari in Warumungu. The Stretch Bed combined years of feedback into a washable, repairable design whose recycled-plastic frames can be made closer to community. The next bed should be made on Country. That is the whole ambition, and the model is how the making and the decisions move there.
 ![The Stretch Bed. Two galvanised steel poles thread through the canvas sleeves and the top holes of two crossed recycled-HDPE X-legs; tension makes the canvas structural. About five minutes to assemble, washable, repairable.](../../v2/public/images/product/stretch-bed-hero.jpg)
 ### 1.2 The unit: one bed, four things, any amount
 Ben's direction on 2 September: the ask does not have to be $750,000 or $400,000. Make the unit one bed, show what one bed does, and let any grant scale the same way. That is what the diagram below draws and what `bed-ratio.ts` computes.
-![One bed, four things, any amount. The unit card and the scale table at $150,000, $250,000, $400,000 and $750,000.](diagrams/02-the-unit.svg)
+![One bed, four things, any amount. The unit card and the scale table at $150,000, $250,000, $400,000 and $750,000. The captionless copy under this one is the earlier drawing; delete it.](diagrams/02-the-unit.svg)
 One bed at $750 does four things, and each carries its label.
 - **A bed off the ground.** Washable, repairable, about five minutes to assemble. Verified product, 540 beds delivered.
 - **20kg of recycled plastic.** Fifty beds is one tonne of HDPE kept in use. Workpaper today (ruling T, 24 August); weighed batch by batch once the traceability schema runs in the measured run.
@@ -81,7 +84,7 @@ Ratios are per bed and scale in a straight line. Real sites do not. The straight
 ### 1.3 One catalyst, five loops a community controls
 The visual thesis from the 26 August diagram brief governs every drawing of the model: **one governed catalyst branches into five locally controlled loops.** The funder acts once. The Goods on Country board protects the purpose and the agreed rules. Each community controls the balance between immediate access and local enterprise, then decides what follows. Giving and selling are two uses of one bed pool, not two program types. The return arrow belongs inside each community's loop, never back to the investor. The unresolved money rules stay visible as a guardrail, never hidden in the picture.
 ![One catalyst starts five loops a community controls. The catalyst row, the five-step loop shown once and run five times, the return arrow, and the four gates.](diagrams/03-one-catalyst-five-loops.svg)
-**The loop, step by step, with every figure from `community-loop.ts`.**
+**The loop, step by step, with every figure from ****`community-loop.ts`****.**
 1. **200 beds arrive.** Cost $150,000. Useful stock that lasts, held locally. (target)
 2. **The community sets the mix.** Give some to meet immediate need. Sell some to pay local work. (target)
 3. **Sales money stays local.** Up to $150,000 if all 200 sell at $750. Less when beds are given. A design number until the rules are agreed. Gross sales are gross: nothing has been deducted, and only sold beds create them. (target)
@@ -311,6 +314,10 @@ One name on the record is unconfirmed and must not go on the form: Alexandra Sav
 **READY.**
 Every dollar buys beds. $250,000 is 333 Stretch Beds at $750: the first community's pool of 200 and a start on the second. Each community decides how many go to families who need a bed now and how many are sold. Sales money stays in the community and goes to local work and, when there is enough of it, a production plant. The first pool is proposed for Mparntwe (Alice Springs) with Oonchiumpa, who have already built and delivered beds with the young people they work with, once they have seen and agreed the design. The rules on who gets beds, who sells, who is paid and where the money goes are agreed with each community before the beds move.
 What one bed does: a person off the floor tonight; 20kg of recycled plastic kept out of the dump; about 6.5 hours of local work when it is made locally; up to $750 that stays in the community if it is sold. So $250,000 is 333 people off the floor, about 6.7 tonnes of plastic, about 2,170 hours of local work, and up to $250,000 that stays in communities if every bed is sold. The plastic and the hours are design figures today. The first fifty beds go through our own press and get costed properly, so the cost of a locally made bed becomes a measured number, which is what our lenders need before they finance the plants.
+1.
+2.
+3.
+4.
 What the grant changes beyond unlocking other money. The first community has 200 beds in homes in the first quarter of 2027, with that community deciding the give and sell mix. The cost of a locally made bed is measured a year earlier than if we waited for a lender. And at month six we can ask four straight questions about who controls the work at the site: who holds the keys, who runs the payroll, who invoices the buyer, and whether at least half the production is local.
 ### Q7. If the full amount were not available
 **READY.** `150000`
@@ -462,7 +469,7 @@ The applicant's own statements are complete and small, because the enterprise ha
 ### Q24, Q25. Declarations
 **NEEDS BEN.** The solvency declaration is made for the applicant entity, whose position is small and clean. Sign it only after Q20 and Q21 are on the form as written above, so that nothing declared is contradicted by a document attached.
 ## Part 3. Attachments to assemble, slot by slot
-Five files per slot, ten megabytes each. Anything larger goes to jay@socialimpacthub.org and adam@socialimpacthub.org by email.
+Five files per slot, ten megabytes each. Anything larger goes to [jay@socialimpacthub.org](mailto:jay@socialimpacthub.org) and [adam@socialimpacthub.org](mailto:adam@socialimpacthub.org) by email.
 <table header-row="true">
 <tr>
 <td>Slot</td>
