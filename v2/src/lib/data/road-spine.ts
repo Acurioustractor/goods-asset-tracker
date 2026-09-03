@@ -114,7 +114,7 @@ export const ROAD_STOPS: RoadStop[] = [
 export const THE_GAP = {
   taught: 'Nobody owns the making',
   /** Figures are pulled from canon at render time. This is the shape of the sentence, not the numbers. */
-  line: 'Eleven communities. Nine years. Nobody owns the making.',
+  line: 'Eleven communities. Two years. Nobody owns the making.',
 } as const;
 
 export const SPINE_RULES = [

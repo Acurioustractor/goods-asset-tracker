@@ -166,7 +166,7 @@ export const deckSlides: DeckSlide[] = [
     body: NORTH_STAR.line,
     photo: '/images/product/stretch-bed-community.jpg',
     photoAlt: 'A Stretch Bed set up in a remote community home',
-    place: `${CANONICAL_ASSETS.bedsDeployed} beds · ${CANONICAL_ASSETS.communitiesServed} communities · nine years`,
+    place: `${CANONICAL_ASSETS.bedsDeployed} beds · ${CANONICAL_ASSETS.communitiesServed} communities · two years`,
     goDeeper: [
       { label: 'Field notes from the road', href: '/field-notes' },
       { label: 'Every number, audited', href: '/register' },
@@ -423,7 +423,7 @@ export const deckSlides: DeckSlide[] = [
     id: 'gap',
     kind: 'gap',
     eyebrow: 'The gap',
-    headline: 'Nine years, eleven communities, 540 beds. Nobody owns the making.',
+    headline: 'Two years, eleven communities, 540 beds. Nobody owns the making.',
     body: 'The products have reached communities. The production equipment, contracts, systems and margin have not. And the need is measured, not asserted: the Census counts 2,761 very remote NT households short at least a bedroom, half of all of them. Goods now has four live community pathways, each asking for a different part of the making.',
     photo: '/images/qbe/communities-screen.png',
     photoAlt: 'The eleven communities served, on the map',
@@ -438,7 +438,7 @@ export const deckSlides: DeckSlide[] = [
     ],
     goDeeper: [{ label: 'Every number, audited', href: '/register' }],
     script:
-      'Here is the road added up: nine years, eleven communities, 540 beds, twenty two washing machines and three and a half tonnes of plastic diverted through Stretch Bed production. Against that, the Census counts two thousand seven hundred and sixty one very remote Territory households short at least a bedroom. There are still zero community-owned production sites. The next part of the deck shows the practical pathway we built to change that number.',
+      'Here is the road added up: two years, eleven communities, 540 beds, twenty two washing machines and three and a half tonnes of plastic diverted through Stretch Bed production. Against that, the Census counts two thousand seven hundred and sixty one very remote Territory households short at least a bedroom. There are still zero community-owned production sites. The next part of the deck shows the practical pathway we built to change that number.',
     note: 'Ruling F: the model and the ask arrive HERE and only here. Every figure reads from CANONICAL_ASSETS. The "0" is the honest headline and it is stated as a gap, not spun. This slide deliberately carries no voice: pitch-cockpit records the model and framing slides as voices: [], and that is by design so nobody "fills" it with a person.',
   },
 
