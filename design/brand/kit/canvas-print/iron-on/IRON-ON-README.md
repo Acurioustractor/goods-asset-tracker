@@ -8,7 +8,7 @@ All artwork is #FFFFFF on nothing. It only shows on a dark canvas.
 | ironon-qr-white-200mm-cut.svg | Reference / preview of the cut file | 200 mm |
 | ironon-qr-white-200mm-cut-MIRRORED.svg | Heat-transfer vinyl (HTV) cutting: load this one, it is already mirrored | 200 mm, 4.9 mm modules |
 | ironon-logo-white-500mm-300dpi.png | DTF transfer of the Goods on Country mark, trimmed, 500 mm wide | 500 x 182 mm at 300 dpi |
-| ironon-logo-white.svg | Vector mark for HTV; mirror it in the cutter software | scale to 500 mm wide |
+| ironon-logo-white.svg | Vector mark for HTV, already trimmed to the mark and sized; mirror it in the cutter software | 500 x 181.6 mm |
 
 Notes
 - Code points at https://www.goodsoncountry.com/ and was decode-tested composited on ink (inverted), 1400/700/420 px.
