@@ -9,7 +9,7 @@ We buy beds. Communities sell them. The money stays with them and builds the nex
 One thousand Stretch Beds at $750 is $750,000. 
 Five communities, 200 beds each. Each community decides how many go to families who need a bed tonight and how many are sold. Every bed sold puts up to $750 in the community's hands. Sell the lot and that is $150,000, enough to start on a production plant. With a plant a bed costs about $426 to make against $685 to buy in, so the next thousand carry a real margin. Then the same again with washing machines.
 Where it goes if it works: five plants, twenty beds a week each, about 5,000 beds a year, around $1 million a year in margin that communities reinvest. That is the direction. We are not promising ten-year numbers. Communities build the muscle to run an enterprise, and where it branches from there is their call.
-We are asking QBE for $250,000. That buys 333 beds. It is a straight ratio: every bed is $750 and every bed does the same four things, so $150,000 is 200 beds, $400,000 is 533 and $750,000 is the full thousand. QBE's beds go in first, into the first community. The rest of the thousand comes from the funders who have already asked us to apply, Tim Fairfax, Brian M. Davis, Snow, Minderoo and Dusseldorp, and from the 100 beds ALIVE has already paid for.
+We are asking QBE for $400,000. That buys 533 beds. It is a straight ratio: every bed is $750 and every bed does the same four things, so $250,000 is 333 beds and $750,000 is the full thousand. QBE's beds go in first, into the first two communities. The rest of the thousand comes from the funders who have already asked us to apply, Tim Fairfax, Brian M. Davis, Snow, Minderoo and Dusseldorp, and from the 100 beds ALIVE has already paid for.
 We see this as catalytic community investing. We are trusting communities to take the beds, sell them and build their own future with the money. The funder acts once. After that the money goes round inside the community.
 The question we get asked most is where they are selling. Mparntwe (Alice Springs) first, with Oonchiumpa, who have already built and delivered beds with their young people. Buyers are already paying: ALIVE bought 100 beds up front, Centrecorp bought 130 and there are more than 200 requests each in Tennant Creek and Mparntwe.
 The rules on sales money, resale and who holds the beds are being agreed with each community now.
@@ -26,13 +26,13 @@ Twenty-three of the twenty-nine people whose Empathy Ledger interviews were anal
 The beds have reached Kalgoorlie, Palm Island, Tennant Creek, the Utopia homelands, Maningrida, Mparntwe. Each delivery showed the work still to do on repair, washing and local access. The Basket Bed taught what had to become simpler and stronger. Elder Dianne Stokes named the washing machine Pakkimjalki Kari in Warumungu. The Stretch Bed combined years of feedback into a washable, repairable design whose recycled-plastic frames can be made closer to community. The next bed should be made on Country. That is the whole ambition, and the model is how the making and the decisions move there.
 ![The Stretch Bed. Two galvanised steel poles thread through the canvas sleeves and the top holes of two crossed recycled-HDPE X-legs; tension makes the canvas structural. About five minutes to assemble, washable, repairable.](../../v2/public/images/product/stretch-bed-hero.jpg)
 ### 1.2 The unit: one bed, four things, any amount
-Ben's direction on 2 September: the ask does not have to be $750,000 or $400,000. Make the unit one bed, show what one bed does, and let any grant scale the same way. That is what the diagram below draws and what `bed-ratio.ts` computes.
-![One bed, four things, any amount. The unit card and the scale table at $150,000, $250,000, $400,000 and $750,000. The captionless copy under this one is the earlier drawing; delete it.](diagrams/02-the-unit.svg)
-One bed at $750 does four things, and each carries its label.
-- **A bed off the ground.** Washable, repairable, about five minutes to assemble. Verified product, 540 beds delivered.
-- **20kg of recycled plastic.** Fifty beds is one tonne of HDPE kept in use. Workpaper today (ruling T, 24 August); weighed batch by batch once the traceability schema runs in the measured run.
-- **About 6.5 hours of local work when made locally.** Collect, shred, press, cut, assemble, deliver. Modelled across seven production stages, not yet time-studied; 3.5 of those hours are CNC and the stopwatch decides. About $130 of fair-wage labour a bed in the community cost state, also modelled.
-- **Up to $750 that stays local.** Only if the community sells the bed. Given beds meet need instead. The mix is the community's call, and none of it is income until the rules are agreed.
+Every dollar buys beds, so any amount reads the same way. One bed is $750. Fifty beds is a tonne of plastic. Two hundred is a community's pool.
+![One bed, four things, any amount. The $400,000 row is the ask; $250,000 is the smaller amount.](diagrams/02-the-unit.svg)
+What one bed does:
+- **A person off the floor tonight.** Washable, repairable, five minutes to put together. 540 delivered so far.
+- **20kg of plastic out of the dump.** Fifty beds is a tonne. We weigh it properly when we press the first fifty.
+- **About six and a half hours of local work** when it is made locally. Nobody has timed it yet. The first fifty beds through our press will.
+- **Up to $750 that stays in the community** if they sell it. Give it away and it meets a need instead. Their call.
 <table header-row="true">
 <tr>
 <td>Amount</td>
@@ -50,7 +50,7 @@ One bed at $750 does four things, and each carries its label.
 <td>4 t</td>
 <td>1,300 hours</td>
 <td>up to $150,000</td>
-<td>The smaller amount, Q7</td>
+<td>200 beds, one community's pool</td>
 </tr>
 <tr>
 <td>$250,000</td>
@@ -59,7 +59,7 @@ One bed at $750 does four things, and each carries its label.
 <td>6.7 t</td>
 <td>2,170 hours</td>
 <td>up to $250,000</td>
-<td>The ask, Q5</td>
+<td>The smaller amount, Q7</td>
 </tr>
 <tr>
 <td>$400,000</td>
@@ -68,7 +68,7 @@ One bed at $750 does four things, and each carries its label.
 <td>10.7 t</td>
 <td>3,470 hours</td>
 <td>up to $400,000</td>
-<td>The ceiling, never the plan (ruling V)</td>
+<td>The ask, Q5</td>
 </tr>
 <tr>
 <td>$750,000</td>
@@ -80,69 +80,69 @@ One bed at $750 does four things, and each carries its label.
 <td>The whole program</td>
 </tr>
 </table>
-Ratios are per bed and scale in a straight line. Real sites do not. The straight line is the funder's way in, not a forecast. The measured run replaces the modelled hours and the design plastic figure with measured ones.
+The table scales in a straight line. Real places do not, and the last two columns are what the model says until the first fifty beds are timed and weighed.
 ### 1.3 One catalyst, five loops a community controls
-The visual thesis from the 26 August diagram brief governs every drawing of the model: **one governed catalyst branches into five locally controlled loops.** The funder acts once. The Goods on Country board protects the purpose and the agreed rules. Each community controls the balance between immediate access and local enterprise, then decides what follows. Giving and selling are two uses of one bed pool, not two program types. The return arrow belongs inside each community's loop, never back to the investor. The unresolved money rules stay visible as a guardrail, never hidden in the picture.
+The funder puts money in once. Five communities each get 200 beds. From there it is theirs: what to give, what to sell, who to pay, what to build next. The money goes round inside the community. The drawing shows one community's loop, run five times.
 ![One catalyst starts five loops a community controls. The catalyst row, the five-step loop shown once and run five times, the return arrow, and the four gates.](diagrams/03-one-catalyst-five-loops.svg)
 **The loop, step by step, with every figure from ****`community-loop.ts`****.**
-1. **200 beds arrive.** Cost $150,000. Useful stock that lasts, held locally. (target)
-2. **The community sets the mix.** Give some to meet immediate need. Sell some to pay local work. (target)
-3. **Sales money stays local.** Up to $150,000 if all 200 sell at $750. Less when beds are given. A design number until the rules are agreed. Gross sales are gross: nothing has been deducted, and only sold beds create them. (target)
-4. **The community decides what comes next.** More beds, a shredder or a press, the washer. A complete facility is $150,000 to $220,000, so one pool sold in full reaches the bottom of that band and no further. The site floor, an operator and working stock sit on top. (modelled)
-5. **Making moves closer.** About $324 stays on a bed pressed locally against about $65 on a kit bed. Modelled from verified part prices, not yet measured. The measured run is what proves it. (modelled)
-Then the community decides again: the next pool, the next product, the next decision.
-**The four gates.** Nothing in the loop is real until these four are true at a named site: buyers, named; rules on allocation, sales money, resale and stock, agreed and signed; an operator and a place, with someone paying them; and a measured cost, fifty beds pressed at production rate, timed and costed.
-**The proof that the making and the work already exist.** The loop is a design, but two of its steps have been run.
+1. **200 beds arrive.** $150,000 worth of stock that lasts, sitting in the community.
+2. **The community sets the mix.** Some beds go to families who need one tonight. Some are sold.
+3. **The sales money stays.** Up to $150,000 if all 200 sell at $750, less when beds are given. A design number until the rules are signed.
+4. **The community decides what to build.** More beds, a shredder, a press, the washer. A full plant is $150,000 to $220,000, so one pool sold in full gets to the bottom of that range and no further.
+5. **Making moves closer.** A bed made locally leaves around $200 in the community's hands, and the model says it could be about $324, against about $65 on a bought-in kit. Nobody has measured it. The first fifty beds through our press will.
+Then they decide again: the next pool, the next product, washers.
+**Four things have to be true before any of this is real in a place.** Someone is buying the sold beds, and we can name them. The rules are signed: who gets beds, who sells, who is paid, where the money goes. Someone runs the work, somewhere, and gets paid to. And the cost of a locally made bed has been measured.
+**Two of the five steps have already happened.**
 ![Build day at Gamardi, Maningrida. Forty Stretch Beds pressed at the farm, sent north, and assembled by young people with Homeland School Company. The run that proves the making.](../../v2/public/images/community/maningrida/gamardi-build-day-wide.jpg)
-In Maningrida, Homeland School Company, a community-controlled homeland education organisation, asked for beds and washing machines for homeland families. The team pressed the recycled-plastic stock at the farm, routed the X-frame legs, packed forty complete kits, and young people assembled every bed in community. Of the 177 Stretch Beds deployed, those forty are the only ones farm-pressed; the rest used kits from Defy Design. Maningrida is the proof of the making, and it is why "kit path is today's default" is an honest sentence.
+In Maningrida, Homeland School Company asked for beds and washing machines for homeland families. We pressed the plastic at the farm, packed forty kits, sent them north, and young people put every bed together in community. Those forty are the only beds we have pressed ourselves; the other 137 Stretch Beds used kits from Defy Design. Maningrida is the proof we can make them.
 ![The Oonchiumpa team in Alice Springs. Young people built Stretch Beds from flat-pack over two days out the back of the Oonchiumpa office, kept one each, and loaded the rest for the homelands. The run that proves the work.](../../v2/public/images/community/alice-springs/oonchiumpa-team-red-bed.jpg)
-In Mparntwe, Oonchiumpa, an Aboriginal-owned organisation already working with these young people, chose who was picked up each morning, which households the beds went to, and who led the runs to the homelands. The build became paid work for some of the young people involved. The materials were paid for by Centrecorp Foundation. Sixteen beds stayed in Alice Springs. Oonchiumpa is the proof of the work, and it is why the first pool is recommended to go there, with Kristy Bloomfield, once she has seen the design.
-**On timing, honestly.** One thousand beds in a quarter is about eight times the largest run to date. The kit path can move that fast only if the supplier can. The pressed path cannot yet, and saying so is the point of the measured run.
+In Mparntwe, Oonchiumpa picked the young people, ran two days of building out the back of the office, chose which households got beds and who drove them out to the homelands. Some of the young people were paid for the work. Centrecorp Foundation paid for the materials. Sixteen beds stayed in town. Oonchiumpa is the proof of the work, and why the first pool goes there once Kristy has seen it.
+**On speed.** A thousand beds in a quarter is eight times our biggest run. Kits can move that fast if Defy can. Our own press cannot yet, and that is what the first fifty beds will tell us.
 ### 1.4 Capital with three jobs
-Money enters through three doors, and each kind of money does one job. This is the discipline that every earlier version of the raise broke, when one number did two jobs and $750,000 appeared once as the cost of the beds and once as gross sales.
-![Capital with three jobs. Bed money, block money and repayable finance, each line with its status, and the measured cost beneath.](diagrams/04-capital-three-jobs.svg)
-**Bed money** is gifts and purchases that buy beds into pools. It is QBE's $250,000, the Brian M. Davis invitation of up to $100,000, the Snow Foundation ask, the Minderoo ask, the Dusseldorp target, and the ALIVE National Centre purchase of 100 beds, already paid. On today's kit path a delivered bed costs about $685, so the pool leaves roughly $65 a bed and funds none of the network block. Bed money makes beds.
-**Block money** is three years of network support: the organisation's resilience. About $109,500 a year runs Goods on Country before a bed is made; about $300,000 a year is the public network ask. Tim Fairfax Family Foundation invited The Butterfly Movement on 31 August to apply for $300,000 over three years, and Katie Norman named the resilience of organisations doing good work as the reason. That is the block, in the funder's own words. **Recommended: TFFF funds the block, not beds. Ben has not yet ruled.** If TFFF's first year goes into the bed pool instead, the pool reaches 1,000 and the block is unfunded again.
-**Repayable finance** is equipment and working capital after the measured run: SEFA at $300,000 and White Box SELF at $150,000, both targets. Neither can be written today because the pressed cost is modelled and the borrower is unsettled. It is repaid from Goods on Country's margin on buyer orders, never from a community's pool. The fragility is stated: at the pressed margin of about $324, $450,000 of repayable finance needs about 460 buyer-bought beds a year for three years; at the kit margin of about $65 it cannot be repaid.
-**The measured cost** comes with the first pool. The first fifty beds go through our own press and get costed properly, and that number is what the lenders need.
-Totals, computed in `raise-stack.ts`: with every pool line landing at the $250,000 ask, 898 beds; at the $400,000 ceiling the thousand is covered. $0 is signed today. Two lines on Ben's note, FRRR Palm $20,000 and Luke EV Fleet $20,000, have no second source and are not summed.
+Three kinds of money, and each does one job. Money that buys beds. Money that runs the organisation. Money we borrow for the plants. One number never does two jobs: $750,000 is the cost of the beds and nothing else.
+![Three kinds of money, each with one job, and the measured cost beneath.](diagrams/04-capital-three-jobs.svg)
+**Money that buys beds.** QBE's $400,000, Brian M. Davis up to $100,000, Snow, Minderoo, Dusseldorp, and the 100 beds ALIVE has already paid for. A bought-in kit costs about $685 delivered, so $750 leaves about $65 on a bed. Bed money makes beds and nothing else.
+**Money that runs the organisation.** About $109,500 a year runs Goods on Country before a bed is made; about $300,000 a year is what we ask for publicly. Tim Fairfax invited The Butterfly Movement on 31 August to apply for $300,000 over three years, and Katie Norman said the reason is the resilience of organisations doing good work. That is this money, in her words. **Recommendation: TFFF runs the organisation and does not buy beds.** Ben has not ruled. If year one goes to beds instead, the organisation is unfunded again.
+**Money we borrow for the plants.** SEFA at $300,000 and White Box at $150,000, both still conversations. Neither can be written until a locally made bed has a measured cost and the borrower is settled. It is paid back from what Goods on Country makes on buyer orders, never out of a community's pool. The catch: at around $300 a bed it takes about 460 buyer-bought beds a year for three years; at $65 a bed it cannot be repaid.
+**The measured cost** comes with the first pool. The first fifty beds go through our press and get costed properly. That number is what the lenders are waiting for.
+If every line lands, the thousand is covered with room to spare: 533 from QBE, 133 each from Brian M. Davis, Snow and Minderoo, 66 from Dusseldorp, 100 from ALIVE. If QBE gives $250,000 the count is 898 and the last pool waits. $0 is signed today. Two lines on Ben's note, FRRR Palm $20,000 and Luke EV Fleet $20,000, have no second source and are not counted.
 ### 1.5 How the grant is catalytic
 Jay's read on the 2 September call: this year the Steering Committee wants to prove that corporate philanthropy can unlock investment, capital of any kind is looked on more favourably than philanthropy alone, more than one-to-one is what they want to see, and the further from $400,000 the ask sits the more likely it is. Leverage is the metric the program publishes: $1.02M of grants leveraged $2.75M in 2025, 3.7x. Last year one enterprise asked for $400,000, showed $1.1M unlocked and received $350,000.
-The honest shape is a chain with a release condition on every link, never a total, and QBE is never described as doubling, triggering or guaranteeing anything.
-![How the grant is catalytic: a chain with a release condition on every link.](diagrams/06-the-catalytic-chain.svg)
-1. **QBE's beds go in first.** 333 beds into the first community, and the first fifty through our own press so the cost of a locally made bed is measured.
-2. **That first pool produces what a lender can read.** A community selling beds under agreed rules, a measured cost per bed, and buyer paper.
-3. **Three invitations are already in hand.** Tim Fairfax $300,000 for the block, due 9 October. Brian M. Davis up to $100,000 for pool three, due 25 September. Snow, ask made, a catch-up booked by Sally Grimsley-Ballard. Minderoo and Dusseldorp in conversation. $0 signed today, stated first.
-4. **After the measured run, the equipment finance.** SEFA $300,000 and White Box $150,000, which cannot proceed while the cost is modelled and the borrower is unsettled.
-5. **Demand already paying.** ALIVE bought 100 beds up front. Centrecorp holds a 130-bed quote, deferred pending community feedback. More than 200 requests in each of Tennant Creek and Mparntwe.
-The test of catalytic, as `CONTEXT.md` defines it, is what remains after the first spend. After this money is spent, five communities hold beds, paid assembly and delivery work, sales money where they chose to sell, and the right to decide the next step. The lenders hold a measured cost, so the plants can be financed.
+So the answer to "what does QBE unlock" is a sequence. We never say QBE doubles, triggers or guarantees anything.
+![What follows, in order, once QBE's beds go in first.](diagrams/06-the-catalytic-chain.svg)
+1. **QBE's beds go in first.** 533 beds into the first two communities, the first fifty through our own press so a locally made bed finally has a measured cost.
+2. **The first pools give the lenders something to read.** Communities selling beds under signed rules, a cost per bed, buyer paper.
+3. **Three foundations have already asked us to apply.** Tim Fairfax $300,000 over three years, due 9 October. Brian M. Davis up to $100,000, due 25 September. Snow, catch-up booked. Minderoo and Dusseldorp in conversation. $0 signed today.
+4. **Then the plant money.** SEFA $300,000 and White Box $150,000 for equipment and working capital, once the cost is measured and the borrower is settled.
+5. **Buyers are already paying.** ALIVE bought 100 beds up front. Centrecorp has 130 on quote, waiting on community feedback. More than 200 requests each in Tennant Creek and Mparntwe.
+What is left after the money is spent is the test. Five communities holding beds, paid work assembling and delivering them, sales money where they chose to sell, and the say over what comes next. And a measured cost, so the plants can be financed.
 ### 1.6 Who decides what
 ![Who decides what. Three layers: the board governs, Goods on Country holds, each community decides. The month-six control test and the advisory committee beside them.](diagrams/05-who-decides-what.svg)
-Three layers, never three organisations in a row and never a tree with communities beneath the charity.
-- **An Indigenous-led board governs** purpose, shared assets, appointments and reinvestment. The directors are Kristy Bloomfield, Audrey Deemal and Jeremy Donovan. Kristy consented on 6 July and Audrey on 11 June 2026; the 20 July board meeting minuted both as appointed to casual vacancies under the constitution. The stated aim is full Indigenous directorship. The chair will be an Aboriginal director. The AGM is tentatively Monday 14 September, when the continuing directors resign and the incoming board is appointed.
-- **Goods on Country holds** the charity, the brand, the product system, the IP, fundraising, shared services, the register and the evidence. It agrees the rules with each community, buys the beds, runs the measured run, and reports once against one set of numbers.
-- **Each community partner decides** allocation, local sales, local work, where the sales money goes, and whether and when to move toward production. Independent local decision-makers, not departments inside the charity.
-**The test that lets the ownership claim fail.** Six months in at a site, four binary questions: who holds the keys, who runs the payroll, who invoices the buyer, and is at least half of production done locally. Partial counts as no. Ownership stays a pathway wherever it is not legally complete, and no surface says otherwise.
-**Alongside, advice not authority.** An eleven-member advisory committee meets monthly and brings First Nations leadership, manufacturing depth, social enterprise operating experience and long-term funder judgement close to the work. It holds no fiduciary authority and is never called a board.
+Three layers.
+- **The board governs.** Purpose, shared assets, who is appointed, what gets reinvested. The directors are Kristy Bloomfield, Audrey Deemal and Jeremy Donovan. Kristy consented on 6 July and Audrey on 11 June 2026; the 20 July board meeting minuted both. The chair will be an Aboriginal director. The AGM is tentatively Monday 14 September.
+- **Goods on Country holds the work.** The charity, the brand, the product, the IP, the fundraising, the shared services, the register and the evidence. It agrees the rules with each community, buys the beds, runs the first fifty through the press, and reports once a year against one set of numbers.
+- **Each community decides.** Who gets beds, what is sold, who is paid, where the money goes, and whether and when to build. They are partners with their own boards. They are not part of the charity.
+**Six months in, four questions.** Who holds the keys to the site. Who runs the payroll. Who invoices the buyer. Is at least half the production local. Partial counts as no. Until the answers are yes, ownership is a pathway and every page says so.
+**The advisory committee** meets monthly, eleven people, and brings First Nations leadership, manufacturing, social enterprise and funder experience close to the work. It advises. It is never called a board.
 ### 1.7 The entity, and how the money moves
-Ruling X (Ben, 28 August) moved the whole model into Goods on Country, a registered business name of The Butterfly Movement Ltd from 23 July 2026. Every external dollar in the stack already lands there: TFFF invited Butterfly, Brian M. Davis invited Goods On Country, Snow's grants land in Butterfly. The cohort entrant in March was A Curious Tractor Pty Ltd, now the historic maker in transition. FY26 trading sits in the books of Nicholas Marchesi, sole trader.
+Since 28 August everything Goods sits in Goods on Country, a business name of The Butterfly Movement Ltd since 23 July 2026. Every funder's money already lands there: Tim Fairfax invited Butterfly, Brian M. Davis invited Goods On Country, Snow's grants go to Butterfly. A Curious Tractor entered the QBE cohort in March and is the historic maker, moving its assets across. The FY26 trading sits in Nic's sole trader books.
 ![The entity, and how the money moves. Three entities in a dated line, one operating home, five community partners. Recommended route, subject to Social Impact Hub confirming.](diagrams/01-entity-and-money.svg)
-**Recommended route, subject to Jay today.** The Butterfly Movement Ltd, trading as Goods on Country, applies and receives. A Curious Tractor Pty Ltd is listed as the related entity: cohort entrant, holder of the historic trading record, transferring assets under ruling X, delivering nothing under the grant after transfer. Nicholas Marchesi, sole trader, is listed as the historic trading vehicle whose books carry FY26. A Kind Tractor Ltd is dormant and has no role.
-**Fallback if Jay says the cohort entrant must apply.** A Curious Tractor applies and receives the grant, the external commitments land in Butterfly, and the answers to Q2 and Q8 rest on the inter-entity agreement, which is not yet signed. That route needs MinterEllison and a signature before 13 November. It is weaker, and the application should say so rather than hide it.
-Either way, "not a charity simply seeking donations" is answered by the trading facts: beds sold at $750 to buyers, ALIVE's paid order, the Centrecorp quote, and a repayable equipment raise that follows the measured run.
+**Recommended, subject to Jay today.** The Butterfly Movement Ltd, trading as Goods on Country, applies and receives. A Curious Tractor is listed as the related entity: cohort entrant, historic maker, moving its assets across, delivering nothing under the grant. Nicholas Marchesi, sole trader, is listed as the historic trading vehicle whose books carry FY26. A Kind Tractor Ltd is dormant and has no role.
+**Fallback if Jay says the cohort entrant must apply.** A Curious Tractor applies and receives, the foundations' money lands in Butterfly, and Q2 and Q8 rest on the agreement between the two, which is not signed. That needs MinterEllison and a signature before 13 November. It is weaker, and we say so.
+Either way, this is a trading enterprise and the form should read like one: beds sold at $750, ALIVE's paid order, Centrecorp's quote, and plant finance that follows the measured cost.
 ### 1.8 The calendar
 ![The calendar: three applications inside fourteen days.](diagrams/07-the-calendar.svg)
 Three applications close inside fourteen days to three funders who all want the same program described the same way. One strategy, three cuts. The timing fault to raise with Jay: both foundation boards decide after QBE's 13 November pre-condition date.
 ### 1.9 The four gates and the measured run
 ![The production facility at the farm, Witta. Shred, heat, press, CNC cut, assemble. Forty beds have come off this press for Maningrida; fifty at production rate, timed and costed, is the measured run.](../../v2/public/images/process/factory-panorama.jpg)
-There is one number the whole plan leans on and nobody has earned yet. A bed pressed locally is modelled at about $426 against about $685 for a kit bed, from real part invoices, and the forty Maningrida beds came off the farm press. Believing is not measuring. Nobody has stood at that press for fifty beds straight with a stopwatch and kept the receipts.
-The measured run counts, for every bed and for the run: the plastic in kilograms and its landed cost; press time per sheet at 180 degrees and the metered power; CNC hours per bed, believed to be about 3.5 and the biggest cost hiding in the process; operator hours at the day rate, kept separate from founder time; the scrap, which the model currently pretends does not exist; assembly and freight; and what breaks, so the maintenance reserve stops being a guess. If the number comes in at $426 or under, the label changes from modelled to measured and every page, deck and database updates from one chain. If it comes in over, it is published anyway and the break-even maths is redone in the open. The honesty is the asset; the number is just the number.
-Open, and worth deciding before the form: should the fifty beds be a real order for a real community rather than a batch for the shed, so one run is the measurement and the delivery at once. Ben picks the community. Nic sets the window once the equipment is finished.
+One number carries the plan and nobody has earned it. We say a bed pressed locally costs about $426 against $685 for a kit. The part prices are real invoices and the forty Maningrida beds came off our press. Nobody has made fifty in a row at working pace and kept the receipts.
+So the first fifty beds of the first pool get counted properly: kilos of plastic and what it cost, press time and power, CNC hours (we think about 3.5 a bed, and we think that is where the cost hides), operator hours kept separate from founder time, scrap, freight, and what breaks. If it comes in at $426 or under, the model is right. If it comes in over, we publish it anyway and redo the maths in the open.
+Open: the fifty should be a real order for a real community, so one run is the measurement and the delivery. Ben picks the community. Nic sets the window once the equipment is ready.
 ### 1.10 What is honest to say, and what is not
 Every figure on every surface carries one of six labels, defined in `cost-story.ts`: **verified** (invoice, signed document, live register), **workpaper** (our arithmetic, checkable), **modelled** (built from verified inputs, not demonstrated), **target** (a future state), **conflict** (two figures coexist), **retired** (do not use). The rules that follow are enforced by guards that fail the build.
 - $750,000 is only ever the cost of the beds. Never sales, never income, never community income.
 - $0 is signed today, derived from status, and it is stated first. A line is signed only when a letter names the amount, the instrument, the funder's legal name and a person SIH can call.
-- QBE is discretionary and sits on top of signed external paper. It does not match, double, trigger or guarantee anything (ruling V). $400,000 is the ceiling, never the plan.
+- QBE is discretionary and sits on top of signed external paper. It does not match, double, trigger or guarantee anything (ruling V). $400,000 is the ask and the top of the range (Ben, 3 Sep); $250,000 is the smaller amount.
 - No community is named beside a price or a pool until it has seen the design (ruling S cleared four communities to be named with what each asked for; nobody has asked for 200 beds).
 - The pressed cost of about $426 and the local margin of about $324 are modelled until the measured run. "$426 is modelled from verified part prices; the first thing your money buys is the measured run that proves it."
 - Plastic is 20kg a bed, workpaper, never 25kg or 45kg.
@@ -185,7 +185,7 @@ Every figure on every surface carries one of six labels, defined in `cost-story.
 <tr>
 <td>Q5 Amount</td>
 <td>READY</td>
-<td>250000</td>
+<td>400000</td>
 </tr>
 <tr>
 <td>Q6 Use of funds</td>
@@ -195,7 +195,7 @@ Every figure on every surface carries one of six labels, defined in `cost-story.
 <tr>
 <td>Q7 Smaller amount</td>
 <td>READY</td>
-<td>150000</td>
+<td>250000</td>
 </tr>
 <tr>
 <td>Q8 Funded activity and related entities</td>
@@ -308,20 +308,20 @@ Capital raised elsewhere supports the enterprise in two ways. The Real Innovatio
 - **A Kind Tractor Ltd.** Dormant. List its registered directors from ASIC for completeness.
 One name on the record is unconfirmed and must not go on the form: Alexandra Savas, recorded in the site's people data as a Butterfly director from July research with no register source. Ben's earlier note "Jeremy as a Director?" is resolved: Jeremy Donovan is a director.
 ### Q5. Amount requested
-**READY.** `250000`
-333 Stretch Beds at $750: the first community's pool of 200 and a start on the second. Inside the program's typical range and above the 2025 average. $400,000 stays the ceiling and is never presented as the plan.
+**READY.** `400000`
+533 Stretch Beds at $750: the first two communities' pools of 200 each and a start on the third. The top of the program's range, and 36% of a pool shared by ten enterprises, which is why the smaller amount in Q7 matters.
 ### Q6. Proposed use of funds
 **READY.**
-Every dollar buys beds. $250,000 is 333 Stretch Beds at $750: the first community's pool of 200 and a start on the second. Each community decides how many go to families who need a bed now and how many are sold. Sales money stays in the community and goes to local work and, when there is enough of it, a production plant. The first pool is proposed for Mparntwe (Alice Springs) with Oonchiumpa, who have already built and delivered beds with the young people they work with, once they have seen and agreed the design. The rules on who gets beds, who sells, who is paid and where the money goes are agreed with each community before the beds move.
-What one bed does: a person off the floor tonight; 20kg of recycled plastic kept out of the dump; about 6.5 hours of local work when it is made locally; up to $750 that stays in the community if it is sold. So $250,000 is 333 people off the floor, about 6.7 tonnes of plastic, about 2,170 hours of local work, and up to $250,000 that stays in communities if every bed is sold. The plastic and the hours are design figures today. The first fifty beds go through our own press and get costed properly, so the cost of a locally made bed becomes a measured number, which is what our lenders need before they finance the plants.
+Every dollar buys beds. $400,000 is 533 Stretch Beds at $750: the first two communities' pools of 200 each and a start on the third. Each community decides how many go to families who need a bed now and how many are sold. Sales money stays in the community and goes to local work and, when there is enough of it, a production plant. The first pool is proposed for Mparntwe (Alice Springs) with Oonchiumpa, who have already built and delivered beds with the young people they work with, once they have seen and agreed the design. The rules on who gets beds, who sells, who is paid and where the money goes are agreed with each community before the beds move.
+What one bed does: a person off the floor tonight; 20kg of recycled plastic kept out of the dump; about 6.5 hours of local work when it is made locally; up to $750 that stays in the community if it is sold. So $400,000 is 533 people off the floor, about 10.7 tonnes of plastic, about 3,470 hours of local work, and up to $400,000 that stays in communities if every bed is sold. The plastic and the hours are design figures today. The first fifty beds go through our own press and get costed properly, so the cost of a locally made bed becomes a measured number, which is what our lenders need before they finance the plants.
 1.
 2.
 3.
 4.
-What the grant changes beyond unlocking other money. The first community has 200 beds in homes in the first quarter of 2027, with that community deciding the give and sell mix. The cost of a locally made bed is measured a year earlier than if we waited for a lender. And at month six we can ask four straight questions about who controls the work at the site: who holds the keys, who runs the payroll, who invoices the buyer, and whether at least half the production is local.
+What the grant changes beyond unlocking other money. The first two communities have their pools in homes by the first quarter of 2027, each deciding its own give and sell mix. The cost of a locally made bed is measured a year earlier than if we waited for a lender. And at month six we can ask four straight questions about who controls the work at the site: who holds the keys, who runs the payroll, who invoices the buyer, and whether at least half the production is local.
 ### Q7. If the full amount were not available
-**READY.** `150000`
-With $150,000 we would buy 200 beds: the first community's pool, whole. The community still sets its give and sell mix, the sales money still stays local, and the first fifty beds still go through our own press so the cost of a locally made bed gets measured. What changes is that the second community waits for the next funder. Every dollar between $150,000 and $250,000 buys beds at the same ratio, one bed for $750.
+**READY.** `250000`
+With $250,000 we would buy 333 beds: the first community's pool, whole, and a start on the second. The community still sets its give and sell mix, the sales money still stays local, and the first fifty beds still go through our own press so the cost of a locally made bed gets measured. What changes is that the second community waits longer for the rest of its pool. Every dollar between $250,000 and $400,000 buys beds at the same ratio, one bed for $750.
 ### Q8. How the funded activity touches related entities
 **READY, SUBJECT TO JAY.**
 All funded activity sits in the applicant. Goods on Country buys the beds, agrees the rules with each community, runs the measured run, keeps the register and the product passport, and reports.
@@ -450,10 +450,10 @@ Why it would not go the same way without QBE. The foundations are buying beds fo
 We do not describe the grant as matching, doubling or guaranteeing any other funding. $0 of the rest is signed today.
 ### Q19. Readiness to maximise impact with the funding
 **READY.** Written to be true rather than reassuring.
-**Governance.** The Butterfly Movement Ltd has been a registered charity since 2012 with a clean, small balance sheet, and is mid-way through a stewardship transition to an Indigenous-led board: two Aboriginal directors, Kristy Bloomfield and Audrey Deemal, and Jeremy Donovan have been appointed, the AGM that completes the handover is tentatively 14 September, and the chair will be an Aboriginal director. An eleven-member advisory committee meets monthly and brings First Nations leadership, manufacturing depth, social enterprise operating experience and long-term funder judgement; it advises and does not govern, and we say so. A scored risk register of fourteen risks with named owners exists in founder-review draft. Community data is handled under a consent practice in which every quote and photo used externally is cleared by the person, and can be withdrawn.
-**Team capacity.** Two founders work on this full time and are the load-bearing capacity; no hires have been made, and the role map funds a general manager and a business development lead from the network block, each released by a trigger, with no date attached. Through this program we have drawn on QBE's skilled-volunteer team and on Social Impact Hub's advisory sessions, including the financial model built with Matt Allen and closed on 1 September. Community delivery capacity is real and already demonstrated with Oonchiumpa and Homeland School Company.
-**Financial systems.** Xero, a live asset register with a unit record per bed, and a figure discipline in which every published number is computed from one source and checked by automated guards. The weakness is stated in Q21: the historic books carry no cost of goods sold line and no gross margin, and repairing that is inside this application.
-**Readiness to deploy.** Bed kits are available from our current supplier, so the first pool can be ordered within thirty days of funds landing and the first beds can move as soon as the first community's rules agreement is signed, which we would not skip. The measured run happens in the first quarter after funds land at our existing facility, which has already pressed forty beds. The honest constraint is scale: one thousand beds in a quarter would be about eight times our largest run, the kit path can move that fast only if the supplier can, and the pressed path cannot yet. That is why the first pool is one community and why the measured run comes first.
+**Governance.** The Butterfly Movement Ltd has been a registered charity since 2012 with a small, clean balance sheet. Its directors are Kristy Bloomfield, Audrey Deemal and Jeremy Donovan; the AGM that completes the handover from the previous board is tentatively 14 September, and the chair will be an Aboriginal director. An eleven-member advisory committee meets monthly. It advises and does not govern. A risk register of fourteen risks with named owners exists in draft. Every quote and photo we use externally has been cleared by the person, and can be withdrawn.
+**Team.** Two founders, full time, and no hires yet. The next two roles, a general manager and someone on sales, are funded from the money that runs the organisation and start when the work triggers them. QBE's volunteer team and Social Impact Hub's sessions, including the financial model built with Matt Allen and closed on 1 September, have carried a lot this year. On the ground, Oonchiumpa and Homeland School Company have already delivered with us.
+**Financial systems.** Xero, a live register with a record per bed, and every published number computed from one source and checked automatically. The weakness is in Q21: the historic books have no cost of goods sold line and no gross margin, and fixing that is part of moving the enterprise into the charity.
+**How fast.** Kits are available from Defy Design, so the first pool can be ordered within thirty days of the money landing. The first beds move as soon as the first community has signed its rules, and we would not skip that. The first fifty go through our own press in the first quarter after funding. The limit is scale: a thousand beds in a quarter is eight times our biggest run, kits can move that fast if Defy can, and our press cannot yet. That is why the pools go one community at a time.
 ### Q20. Financials
 **NEEDS ELOISE, NEEDS BEN.** Upload, with a one-page cover note that says what each file is:
 1. The Butterfly Movement Ltd: FY2025-26 profit and loss, balance sheet and cashflow. Small and clean per the 20 July board: about $4,000 cash, insurance prepayment netting to a matching liability, no stock, no outstanding ATO items. Audit targeted for 30 August; if the audited statements are ready, upload those.
