@@ -34,9 +34,18 @@ import {
   STORY_PARTS,
   THREE_DOORS,
   WHO_SELLS,
+  BUYING_STORY,
+  BUYING_STORY_LINE,
+  LENDERS,
+  LENDERS_LINE,
+  OTHER_LENDER_OPTIONS,
+  PLAN_B,
+  SUPPORTERS_OF_THE_ASK,
+  buyingStoryFor,
   chaptersFor,
   cruxFor,
 } from './qbe-story';
+import { DECK_APPENDICES, DECK_PLAN, FORM_NARRATIVE_QUESTIONS } from './deck-plan';
 import { QBE_DIAGRAMS, diagramsFor } from '../diagrams/qbe-diagrams';
 
 const aud = (n: number) => `$${n.toLocaleString('en-AU')}`;
@@ -271,6 +280,7 @@ function publicProse(): string[] {
   out.push(...PROOF_RUNS.flatMap((r) => [r.body, r.proves]), ...BUYERS.map((b) => b.what), WHO_SELLS, ...THREE_DOORS.map((d) => d.does));
   out.push(MEASURED_RUN.claim, MEASURED_RUN.test, MEASURED_RUN.open, SNOWBALL.direction, SNOWBALL.honesty);
   out.push(...OUTCOMES.map((o) => o.body), ...HOW_WE_KNOW.map((h) => h.body));
+  out.push(BUYING_STORY_LINE, ...buyingStoryFor('public').flatMap((b) => [b.who, b.what]), LENDERS_LINE, ...PLAN_B.lines);
   return out;
 }
 
@@ -320,5 +330,59 @@ describe('the public surface', () => {
       expect(p, p.slice(0, 90)).not.toMatch(/Goods on Country (buys|agrees|runs|holds|repays|reports|makes)\b/);
       expect(p, p.slice(0, 90)).not.toMatch(/\bthe founders\b/i);
     }
+  });
+});
+
+describe('the twelve-slide plan and the four overviews', () => {
+  it('is twelve slides, numbered in order, each cut from a chapter that exists and carrying a real drawing or none', () => {
+    expect(DECK_PLAN.length).toBe(12);
+    DECK_PLAN.forEach((sl, i) => expect(sl.n).toBe(i + 1));
+    const chapters = new Set(STORY_CHAPTERS.map((c) => c.id));
+    const drawings = new Set(QBE_DIAGRAMS.map((d) => d.id));
+    for (const sl of [...DECK_PLAN, ...DECK_APPENDICES]) {
+      expect(chapters.has(sl.chapter), sl.title).toBe(true);
+      if (sl.drawing) expect(drawings.has(sl.drawing), sl.title).toBe(true);
+    }
+  });
+
+  it('answers every narrative question on the form at least once', () => {
+    for (const q of FORM_NARRATIVE_QUESTIONS) expect(DECK_PLAN.some((sl) => sl.answers.includes(q)), q).toBe(true);
+  });
+
+  it('the ask sits on the last slide and the crux on the first', () => {
+    expect(DECK_PLAN[0].title).toContain('The first money buys beds');
+    expect(DECK_PLAN[11].says).toContain(aud(QBE_ASK.recommended.aud));
+    expect(DECK_PLAN[11].says).toContain(String(QBE_ASK.recommended.beds));
+  });
+
+  it('the buying story rests on invoices, and the public copy hides the unnamed buyer', () => {
+    for (const b of BUYING_STORY) expect(b.paper, b.who).toMatch(/^(INV|QU)-\d{4}/);
+    expect(BUYING_STORY.some((b) => b.paper.startsWith('INV-0303'))).toBe(true);
+    expect(BUYING_STORY.some((b) => b.paper.startsWith('INV-0342'))).toBe(true);
+    expect(buyingStoryFor('public').some((b) => b.working)).toBe(false);
+    expect(buyingStoryFor('working').length).toBe(BUYING_STORY.length);
+  });
+
+  it('who has said yes is derived from the stack, never typed, and never counts QBE or an unverified line', () => {
+    const names = SUPPORTERS_OF_THE_ASK.map((f) => f.who);
+    expect(names.some((n) => /QBE/.test(n))).toBe(false);
+    expect(names.some((n) => /FRRR|EV Fleet/.test(n))).toBe(false);
+    expect(names).toContain('Tim Fairfax Family Foundation');
+    expect(SUPPORTERS_OF_THE_ASK.every((f) => f.status !== 'signed')).toBe(true);
+  });
+
+  it('the lenders come from the stack and the other options never claim an amount is offered', () => {
+    expect(LENDERS.map((l) => l.who)).toEqual(['SEFA', 'White Box SELF']);
+    for (const o of OTHER_LENDER_OPTIONS) expect(o.what).not.toMatch(/offered|committed|signed/i);
+  });
+
+  it('plan B is arithmetic from the stack: the count without QBE, and the paid floor', () => {
+    const poolLines = STACK.filter((l) => (l.job === 'pool' || l.job === 'demand') && l.status !== 'excluded' && !UNVERIFIED_LINE_IDS.includes(l.id));
+    const withQbe = poolLines.reduce((s, l) => s + bedsFunded(l), 0);
+    expect(PLAN_B.bedsWithoutQbe).toBe(withQbe - QBE_ASK.recommended.beds);
+    expect(PLAN_B.bedsPaidToday).toBe(100);
+    expect(PLAN_B.label).toBe('target');
+    expect(PLAN_B.lines.join(' ')).toMatch(/plants wait/i);
+    expect(PLAN_B.lines.join(' ')).not.toMatch(/Tim Fairfax|Brian M\. Davis|Snow|Minderoo|Dusseldorp/);
   });
 });

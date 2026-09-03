@@ -25,7 +25,7 @@
  */
 import { CANONICAL_ASSETS } from './asset-canonical';
 import { BED_PRICE_AUD, KIT_COST_AUD, PRESSED_COST_AUD, STAYS_PRESSED_AUD, POOL, FACILITY_BAND } from './community-loop';
-import { PROGRAM, QBE_ASK, KEY_DATES, lineById } from './raise-stack';
+import { PROGRAM, QBE_ASK, KEY_DATES, STACK, UNVERIFIED_LINE_IDS, bedsFunded, lineById, type StackLine } from './raise-stack';
 import { SCALE_ROWS } from './bed-ratio';
 import type { Solidity } from './cost-story';
 
@@ -419,4 +419,96 @@ export const STORY_FIGURES = {
   bedsDeployed: CANONICAL_ASSETS.bedsDeployed,
   communities: CANONICAL_ASSETS.communitiesServed,
   scaleRows: SCALE_ROWS,
+} as const;
+
+// ---------------------------------------------------------------------------
+// The buying story: every buyer who has paid, on an invoice (Ben, 4 Sep: "tell the buying story")
+
+export interface BuyingLine {
+  who: string;
+  when: string;
+  what: string;
+  /** Xero invoice or quote number. */
+  paper: string;
+  label: Solidity;
+  /** Working copy only when true: a buyer not yet named on a public surface. */
+  working?: boolean;
+}
+
+export const BUYING_STORY: readonly BuyingLine[] = [
+  { who: 'Mala\'la Health Service Aboriginal Corporation, Maningrida', when: 'October 2025', what: '13 Basket Beds, the first beds into Maningrida.', paper: 'INV-0283, paid', label: 'verified', working: true },
+  { who: 'Centrecorp Foundation', when: 'November 2025', what: '107 Stretch Beds for the Utopia homelands, built by young people with Oonchiumpa in Mparntwe.', paper: 'INV-0291, paid', label: 'verified' },
+  { who: 'Homeland School Company, Maningrida', when: 'May 2026', what: '40 Stretch Beds and two washing machines for homeland families. The forty we pressed ourselves.', paper: 'INV-0303, paid', label: 'verified' },
+  { who: 'Centrecorp Foundation', when: 'May 2026', what: '130 Stretch Beds quoted, waiting on community feedback.', paper: 'QU-0014, quote open', label: 'verified' },
+  { who: 'ALIVE National Centre, University of Melbourne', when: 'August 2026', what: `${alive.beds} Stretch Beds bought up front, ${aud(alive.amountAud ?? 0)} ex GST.`, paper: 'INV-0342, paid', label: 'verified' },
+];
+
+export const BUYING_STORY_LINE =
+  'Four organisations have bought beds from us on invoices. Two towns hold more than 200 requests each. That is the demand we can name today; each community sells its own pool to whoever it chooses.';
+
+export function buyingStoryFor(audience: StoryAudience): BuyingLine[] {
+  return BUYING_STORY.filter((b) => audience === 'working' || !b.working);
+}
+
+// ---------------------------------------------------------------------------
+// Who has said yes so far (Ben, 4 Sep). Working copy only: the lines are named in raise-stack.
+
+export interface Supporter {
+  who: string;
+  amount: string;
+  status: string;
+  what: string;
+}
+
+const statusWord = (s: StackLine['status']) => (s === 'ask-made' ? 'ask made' : s);
+
+export const SUPPORTERS_OF_THE_ASK: readonly Supporter[] = STACK.filter(
+  (l) => (l.job === 'pool' || l.job === 'block' || l.job === 'demand') && l.status !== 'excluded' && !UNVERIFIED_LINE_IDS.includes(l.id) && l.id !== 'qbe',
+).map((l) => ({
+  who: l.funder,
+  amount: l.amountAud ? aud(l.amountAud) + (l.id === 'tfff' ? ' over three years' : '') : 'no amount yet',
+  status: statusWord(l.status),
+  what: l.job === 'block' ? 'Runs the organisation for three years.' : l.job === 'demand' ? `${l.beds} beds, paid. Demand, not a commitment.` : `${bedsFunded(l)} beds at ${aud(BED_PRICE_AUD)} if it lands.`,
+}));
+
+// ---------------------------------------------------------------------------
+// The plant money: the lenders we are talking to, and the other options in the record
+
+export const LENDERS: readonly Supporter[] = STACK.filter((l) => l.job === 'equipment').map((l) => ({
+  who: l.funder,
+  amount: l.amountAud ? aud(l.amountAud) : 'no amount yet',
+  status: statusWord(l.status),
+  what: l.note,
+}));
+
+/** From the June 2026 funder landscape (wiki/outputs/2026-06-20-qbe-funder-landscape). Working copy only. */
+export const OTHER_LENDER_OPTIONS: readonly { who: string; what: string }[] = [
+  { who: 'Bank Australia', what: 'Senior debt, no ownership gate. A fill behind the anchor lender.' },
+  { who: 'Aboriginal Investment NT', what: 'A grant of $300,000 to $1 million in a single cheque, for the plant rather than the beds.' },
+  { who: 'Indigenous Business Australia, First Australians Capital, the NAB and IBA guarantee', what: 'Each gates on the borrower being at least half First Nations owned. Open once the ownership decision is made, so a community-controlled production entity could borrow for its own plant.' },
+];
+
+export const LENDERS_LINE =
+  'Plant money is borrowed, not granted, and it cannot be written until a locally made bed has a measured cost. It is repaid from what we make on buyer orders, never from a community\'s pool.';
+
+// ---------------------------------------------------------------------------
+// If the funds do not come (Ben, 4 Sep: "what we will do if we don't get the funds")
+
+const poolLinesWithoutQbe = STACK.filter(
+  (l) => (l.job === 'pool' || l.job === 'demand') && l.status !== 'excluded' && !UNVERIFIED_LINE_IDS.includes(l.id) && l.id !== 'qbe',
+);
+
+export const PLAN_B = {
+  /** Beds if every other line lands and QBE gives nothing. */
+  bedsWithoutQbe: poolLinesWithoutQbe.reduce((s, l) => s + bedsFunded(l), 0),
+  /** The floor: beds already paid for today. */
+  bedsPaidToday: STACK.filter((l) => l.status === 'paid').reduce((s, l) => s + bedsFunded(l), 0),
+  poolsWithoutQbe: poolLinesWithoutQbe.reduce((s, l) => s + bedsFunded(l), 0) / POOL.beds,
+  lines: [
+    'The first pool still starts. ALIVE has already paid for 100 beds, and the foundations that asked us to apply buy beds at the same ratio, so the beds go in as each grant lands.',
+    'The measured run still happens, with the first pool, whoever paid for it. It happens later: about a year later than with a first grant that goes in now.',
+    'The plants wait. No lender writes plant finance against a modelled cost, so the shredder and the press stay at the farm until the cost is measured.',
+    'The thousand takes longer, and it stays the direction. Every dollar that arrives buys beds at $750, and no community is promised a pool before its rules are agreed.',
+  ],
+  label: 'target' as Solidity,
 } as const;

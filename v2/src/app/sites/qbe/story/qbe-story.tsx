@@ -13,17 +13,21 @@ import { KIT_COST_AUD, LOOP_GATES, LOOP_STEPS, POOL, STAYS_KIT_AUD, STAYS_PRESSE
 import { ENTITY_ROUTE, PROGRAM, QBE_ASK, SIGNED_TOTAL_AUD, THE_BLOCK, lineById } from '@/lib/data/raise-stack';
 import {
   BUYERS,
+  BUYING_STORY_LINE,
   CALENDAR,
   CALENDAR_FAULT,
-  DECK_MAP,
   FOUR_TRUE,
   HEALTH_RULE,
   HONEST_RULES,
   HOW_WE_KNOW,
   IMPACT_RULE,
+  LENDERS,
+  LENDERS_LINE,
   MEASURED_RUN,
   MONTH_SIX_QUESTIONS,
+  OTHER_LENDER_OPTIONS,
   OUTCOMES,
+  PLAN_B,
   PROBLEM_FIGURES,
   PROBLEM_INTRO,
   PROBLEM_ROAD,
@@ -32,8 +36,10 @@ import {
   SNOWBALL,
   SNOWBALL_STEPS,
   SPEED_NOTE,
+  SUPPORTERS_OF_THE_ASK,
   THREE_DOORS,
   WHO_SELLS,
+  buyingStoryFor,
   chaptersFor,
   cruxFor,
   storyChapter,
@@ -41,6 +47,7 @@ import {
   type StoryChapterId,
 } from '@/lib/data/qbe-story';
 import { faqFor } from '@/lib/data/qbe-faq';
+import { DECK_APPENDICES, DECK_PLAN } from '@/lib/data/deck-plan';
 import { diagramById, diagramsFor } from '@/lib/diagrams/qbe-diagrams';
 
 import { ImpactStats } from '@/components/marketing/impact-stats';
@@ -348,6 +355,25 @@ export function QbeStory({ audience }: { audience: StoryAudience }) {
           <p>{crux[6]}</p>
           <p>{WHO_SELLS}</p>
         </Prose>
+        <div className="mt-10">
+          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-goods-terracotta-light">The buying story: every buyer who has paid</p>
+          <p className="mt-3 max-w-3xl text-base leading-7 text-goods-cream/90">{BUYING_STORY_LINE}</p>
+          <ol className="mt-5 divide-y divide-white/15 border-y border-white/15">
+            {buyingStoryFor(audience).map((b) => (
+              <li key={`${b.who}-${b.when}`} className="grid gap-x-6 gap-y-1 py-3 md:grid-cols-[140px_1fr_auto]">
+                <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-white/50">{b.when}</span>
+                <span>
+                  <span className="goods-pitch-display text-lg">{b.who}</span>
+                  <span className="block text-sm leading-6 text-goods-cream/80">{b.what}</span>
+                </span>
+                <span className="flex items-start gap-2">
+                  {working && <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-white/40">{b.paper}</span>}
+                  <SolidityChip label={b.label} dark />
+                </span>
+              </li>
+            ))}
+          </ol>
+        </div>
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_1fr]">
           <ul className="divide-y divide-white/15 border-y border-white/15">
             {BUYERS.map((b) => (
@@ -419,6 +445,63 @@ export function QbeStory({ audience }: { audience: StoryAudience }) {
             </p>
           </div>
         </div>
+        <div className="mt-12 grid gap-8 lg:grid-cols-2">
+          {working ? (
+            <div className="rounded-md border border-goods-grid bg-white p-6">
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-goods-terracotta">Who has said yes so far</p>
+              <p className="mt-2 text-sm leading-6 text-goods-sub">Every line by name and status. Nothing is signed; invited means a written invitation to apply for a named amount, from a person the program can call.</p>
+              <ul className="mt-4 divide-y divide-goods-grid">
+                {SUPPORTERS_OF_THE_ASK.map((f) => (
+                  <li key={f.who} className="flex flex-wrap items-baseline gap-x-4 gap-y-1 py-3">
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-sm font-semibold">{f.who}</span>
+                      <span className="block text-xs leading-5 text-goods-sub">{f.what}</span>
+                    </span>
+                    <span className="text-sm font-semibold">{f.amount}</span>
+                    <SolidityChip label={f.status} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : (
+            <div className="rounded-md border border-goods-grid bg-white p-6">
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-goods-terracotta">Who has said yes so far</p>
+              <p className="mt-3 text-base leading-7">
+                Three foundations have asked us to apply for named amounts, each from a person the funder can call. One of them has invited us to apply for three years of the money that runs the organisation. ALIVE has paid for {alive.beds} beds. Nothing else is signed today, and we say so first.
+              </p>
+            </div>
+          )}
+          <div className="rounded-md border border-goods-grid bg-white p-6">
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-goods-terracotta">The plant money: lenders</p>
+            <p className="mt-2 text-sm leading-6 text-goods-sub">{LENDERS_LINE}</p>
+            {working ? (
+              <>
+                <ul className="mt-4 divide-y divide-goods-grid">
+                  {LENDERS.map((l) => (
+                    <li key={l.who} className="flex flex-wrap items-baseline gap-x-4 gap-y-1 py-3">
+                      <span className="min-w-0 flex-1">
+                        <span className="block text-sm font-semibold">{l.who}</span>
+                        <span className="block text-xs leading-5 text-goods-sub">{l.what}</span>
+                      </span>
+                      <span className="text-sm font-semibold">{l.amount}</span>
+                      <SolidityChip label={l.status} />
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.18em] text-goods-sub">Other options in the record</p>
+                <ul className="mt-2 space-y-2">
+                  {OTHER_LENDER_OPTIONS.map((o) => (
+                    <li key={o.who} className="text-sm leading-6">
+                      <span className="font-semibold">{o.who}.</span> {o.what}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <p className="mt-3 text-base leading-7">Two lenders are in conversation with us for equipment and working capital, and the record holds a few more options behind them, including ones that open once the ownership decision is made. None can be written against a modelled cost.</p>
+            )}
+          </div>
+        </div>
         {working && (
           <div className="mt-12">
             <StackExplorer />
@@ -452,6 +535,34 @@ export function QbeStory({ audience }: { audience: StoryAudience }) {
         <Prose className="mt-10">
           <p>What is left after the money is spent is the test. Five communities holding beds, paid work assembling and delivering them, sales money where they chose to sell, and the say over what comes next. And a measured cost, so the plants can be financed.</p>
         </Prose>
+        <div className="mt-12 rounded-md border border-goods-grid bg-white p-6 md:p-8">
+          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-goods-terracotta">If the first grant does not come</p>
+          <div className="mt-4 grid gap-6 lg:grid-cols-[1fr_1.4fr]">
+            <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+              <div className="border-t-2 border-goods-terracotta pt-3">
+                <dt className="text-sm font-semibold">Beds already paid for today</dt>
+                <dd className="goods-pitch-display mt-1 text-3xl">{PLAN_B.bedsPaidToday}</dd>
+                <dd className="mt-1 text-xs text-goods-sub">the floor, on an invoice</dd>
+              </div>
+              <div className="border-t-2 border-goods-terracotta pt-3">
+                <dt className="text-sm font-semibold">Beds if every other line lands and QBE gives nothing</dt>
+                <dd className="goods-pitch-display mt-1 text-3xl">{PLAN_B.bedsWithoutQbe.toLocaleString('en-AU')}</dd>
+                <dd className="mt-1 text-xs text-goods-sub">about {PLAN_B.poolsWithoutQbe.toFixed(1)} pools of {POOL.beds}. Nothing is signed.</dd>
+                <dd className="mt-2">
+                  <SolidityChip label={PLAN_B.label} />
+                </dd>
+              </div>
+            </dl>
+            <ol className="space-y-3">
+              {PLAN_B.lines.map((l, i) => (
+                <li key={l.slice(0, 30)} className="flex gap-4 text-base leading-7">
+                  <NumberedDot n={i + 1} />
+                  <span>{l}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
       </Chapter>
 
       {/* The snowball */}
@@ -699,28 +810,63 @@ export function QbeStory({ audience }: { audience: StoryAudience }) {
         <Chapter id="deck" audience={audience}>
           <Prose>
             <p>
-              The Pencil deck already follows the spine: ambition, problem, road, product, making, proof, governance, program, mechanism, decision. What this page adds is the drawn model and the live numbers. Each drawing maps to a slide, and the copy on the slide should be the copy on this page so that no figure does two jobs. Every drawing above downloads as SVG or PNG from its caption.
+              Twelve slides, each a conclusion, each cut from a chapter above and answering a question on the form. The review of the current deck is in <code>deliverables/deck-review-2026-09.md</code>; this table is the plan the rebuild works from. Every drawing above downloads as SVG or PNG from its caption.
             </p>
           </Prose>
           <div className="mt-10 overflow-x-auto">
-            <table className="w-full min-w-[720px] text-left text-sm">
+            <table className="w-full min-w-[960px] text-left text-sm">
               <thead>
                 <tr className="border-b border-goods-ink font-mono text-[10px] uppercase tracking-[0.14em] text-goods-sub">
-                  <th className="py-2 pr-4">Slide</th>
-                  <th className="py-2 pr-4">What it carries</th>
-                  <th className="py-2">Source on this page</th>
+                  <th className="py-2 pr-4">#</th>
+                  <th className="py-2 pr-4">The slide says</th>
+                  <th className="py-2 pr-4">It carries</th>
+                  <th className="py-2 pr-4">Form</th>
+                  <th className="py-2 pr-4">Cut from</th>
+                  <th className="py-2 pr-4">Frame</th>
+                  <th className="py-2">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-goods-grid">
-                {DECK_MAP.map((r) => (
-                  <tr key={r.slide}>
-                    <td className="py-3 pr-4 font-semibold">{r.slide}</td>
-                    <td className="py-3 pr-4 leading-6">{r.carries}</td>
-                    <td className="py-3 leading-6 text-goods-sub">{r.source}</td>
+                {DECK_PLAN.map((sl) => (
+                  <tr key={sl.n} className="align-top">
+                    <td className="py-3 pr-4 font-mono text-xs">{String(sl.n).padStart(2, '0')}</td>
+                    <td className="py-3 pr-4">
+                      <span className="block font-semibold">{sl.title}</span>
+                      <span className="block text-xs leading-5 text-goods-sub">{sl.says}</span>
+                    </td>
+                    <td className="py-3 pr-4 text-xs leading-5">
+                      {sl.carries}
+                      {sl.drawing && (
+                        <a href={`#diagram-${sl.drawing}`} className="ml-1 underline decoration-goods-grid underline-offset-4">
+                          drawing
+                        </a>
+                      )}
+                    </td>
+                    <td className="py-3 pr-4 font-mono text-[10px] uppercase tracking-[0.12em] text-goods-sub">{sl.answers.join(' ')}</td>
+                    <td className="py-3 pr-4 text-xs">
+                      <a href={`#${sl.chapter}`} className="underline decoration-goods-grid underline-offset-4">
+                        {storyChapter(sl.chapter).label}
+                      </a>
+                    </td>
+                    <td className="py-3 pr-4 font-mono text-[10px] text-goods-sub">{sl.frame ?? 'new'}</td>
+                    <td className="py-3">
+                      <SolidityChip label={sl.status} />
+                      <span className="mt-1 block text-[11px] leading-4 text-goods-sub">{sl.note}</span>
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
+          </div>
+          <div className="mt-8">
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-goods-terracotta">After the twelve, for the review meeting</p>
+            <ul className="mt-3 space-y-1 text-sm">
+              {DECK_APPENDICES.map((a) => (
+                <li key={a.title}>
+                  <span className="font-semibold">{a.title}.</span> <span className="text-goods-sub">{a.note}</span>
+                </li>
+              ))}
+            </ul>
           </div>
           <div className="mt-10">
             <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-goods-terracotta">The drawings, and the frame each one feeds</p>
