@@ -18,6 +18,7 @@ status: active
 [->] Ben reads the one document on the Notion play-space page (3d0ebcf981cf806b918fceff46528300): every Q1 to Q25 answer drafted and marked READY / SUBJECT TO JAY / NEEDS BEN / NEEDS ELOISE, the model in ten sections with seven diagrams. Jay's answers at 2pm change the Q1, Q2, Q8 wording; Eloise's papers close Q4, Q20, Q22. Then the deck's money slides from Part 5 of that page.
 
 ### This Session
+- [x] 3 Sep: ruling Y swept everywhere (see DECISIONS.md Y). Deck text updated live through Pencil across all nine copies of the sequence; needs a save in Pencil (gitignored file).
 - [x] 3 Sep: the one document built. Notion play-space page rewritten at the top (crux, Part 1 model with seven diagrams and four real photos, Part 2 the form answered, Part 3 attachments per slot, Part 4 what only people can close, Part 5 diagram-to-slide map); original form and notes kept below a divider.
 - [x] 3 Sep: `deliverables/qbe-stage2/qbe-stage2-application-2026-09-03.md` and `deliverables/qbe-stage2/diagrams/build.mjs` (seven SVGs in deck tokens) committed as 2e3daa2 on this branch, not pushed.
 - [x] Ruling X (28 Aug) carried into git for the first time, above ruling T, with the CONTEXT/STRATEGY/CLAUDE patches and nine August documents (PR #234).
@@ -33,7 +34,7 @@ status: active
 ### Next
 - [ ] Ben: Q1 contact, Q13 confirmation with every director, Q16 contacts, the Q20 cover note, the exports for Q9/Q11/Q23 (Part 3 of the page).
 - [ ] Eloise: ASIC extract and post-AGM board for Q4; Butterfly's three statements; constitution, resolutions, member register.
-- [ ] Redraw slides 07, 10, 10C, 12 from the page's diagrams once Jay and Ben have answered; PNGs regenerate with `rsvg-convert -w 2400` from the SVGs.
+- [ ] Slide 07 status strip and applicant footer after Jay; slide 10 'three kinds of money' from the redrawn diagram 04 (QBE 03 frame already carries the words).
 - [ ] Thu 3 Sep 2pm Sydney, Jay's check-in: the five questions in `raise-stack.ts` JAY_QUESTIONS, entity first.
 - [ ] Thu 3 Sep, Eloise: Butterfly's P&L, balance sheet, cashflow (form Q20); the accountant's letter remains the blocker.
 - [ ] After Ben decides: slide 10 "Capital with three jobs" from 08B, slide 07 status strip and applicant footer, renumber 11/12 with the decision copy (`deck-narrative-qbe-2026-09.md` has the exact copy).

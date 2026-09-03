@@ -39,9 +39,12 @@ about 5,000 beds a year, about $1M a year reinvested); the modelled $324 pressed
 the model and is cited as "the model says". And "nine years on the road" is wrong; two years, max.
 `CONTEXT.md`'s road spine and deck slide 03 still carry nine.
 
-**Sweep.** `raise-stack.ts` (done), `bed-ratio.ts` (done), the play-space page and its repo copy
-(done), diagrams 02/04/06 (done), the Pencil deck slides 10C, 12 and 08C (open), `CONTEXT.md`
-raise answer (open).
+**Sweep (all done 3 Sep).** `raise-stack.ts`, `bed-ratio.ts`, the play-space page and its repo copy,
+diagrams 02/04/06, `CONTEXT.md` (road spine, the ask, the raise answer), `STRATEGY.md` spine table,
+`road-spine.ts`, `deck.ts`, `deck-road.ts`, and the Pencil deck: slide 03 (two years, all nine
+copies), 09 (one pool), 10C (going first, the ask named), 11/12 decision copy ($400,000 = 533 beds,
+$250,000 = 333), 08C step 5 (around $200 a bed), QBE 02/03/04 review frames, MODEL 06 and SIMPLE 02.
+The .pen is gitignored: Ben saves it in Pencil.
 
 ---
 
