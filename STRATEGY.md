@@ -75,7 +75,7 @@ each stop, because each stop is a person saying something. (Rulings C and F.)
 | 5 | **Utopia** | Arrival is not the ending |
 | 6 | **Maningrida and the farm** (Fred Campbell on Xavier) | **Economics land here** |
 | 7 | **Oonchiumpa** (Karen Liddle, Kristy Bloomfield) | The first transfer |
-| 8 | **The gap** | Eleven communities, 540 beds, nine years, **nobody owns the making**. The model and the ask arrive here |
+| 8 | **The gap** | Eleven communities, 540 beds, two years, **nobody owns the making**. The model and the ask arrive here |
 
 **Money never gets its own section again.** Every dead deck bolted money blocks onto story stops,
 and the money slides migrated every time (8-9-11 in one version, the middle in another, the end in
