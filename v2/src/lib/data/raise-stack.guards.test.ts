@@ -127,8 +127,8 @@ describe('the stack', () => {
     expect(bedsFunded(lineById('alive'))).toBe(100);
     expect(POOL_BEDS_IF_ALL_LAND).toBeLessThan(PROGRAM.beds);
     expect(POOL_SHORTFALL_BEDS).toBe(PROGRAM.beds - POOL_BEDS_IF_ALL_LAND);
-    // 200 (QBE pool share) + 133 + 133 + 133 + 66 + 100. Dusseldorp's $50,000 rounds down to 66 beds.
-    expect(POOL_BEDS_IF_ALL_LAND).toBe(765);
+    // 333 (QBE) + 133 + 133 + 133 + 66 + 100. Dusseldorp's $50,000 rounds down to 66 beds.
+    expect(POOL_BEDS_IF_ALL_LAND).toBe(898);
   });
 
   it('puts no community name next to a pool line', () => {
@@ -149,20 +149,20 @@ describe('the QBE ask', () => {
     expect(QBE_ASK.smaller.aud).toBe(150_000);
     for (const t of [QBE_ASK.recommended, QBE_ASK.full, QBE_ASK.smaller]) {
       expect(t.poolAud + t.proofsAud).toBe(t.aud);
-      expect(t.beds).toBe(t.poolAud / BED_PRICE_AUD);
+      expect(t.beds).toBe(Math.floor(t.poolAud / BED_PRICE_AUD));
       expect(Number.isInteger(t.beds)).toBe(true);
-      expect(t.proofsAud).toBeGreaterThanOrEqual(75_000);
+      expect(t.proofsAud).toBe(0); // the money buys beds (Ben, 3 Sep 2026)
     }
-    expect(QBE_ASK.recommended.beds).toBe(200);
-    expect(QBE_ASK.full.beds).toBe(400);
-    expect(QBE_ASK.smaller.beds).toBe(100);
+    expect(QBE_ASK.recommended.beds).toBe(333);
+    expect(QBE_ASK.full.beds).toBe(533);
+    expect(QBE_ASK.smaller.beds).toBe(200);
     expect(QBE_ASK.full.buys).toMatch(/ceiling, not the plan/);
   });
 
   it('carries the recommended ask as the QBE line in the stack', () => {
     const qbe = lineById('qbe');
     expect(qbe.amountAud).toBe(QBE_ASK.recommended.aud);
-    expect(qbe.split?.poolAud).toBe(QBE_ASK.recommended.poolAud);
+    expect(qbe.split).toBeUndefined();
   });
 
   it('never describes QBE as doubling, triggering or guaranteeing anything', () => {

@@ -220,11 +220,11 @@ const out = {};
   // Unlock panel
   const py = y + 30;
   b += box(tx, py, tw, 760 - py, { fill: C.sage, stroke: C.sage });
-  b += kicker(tx + 20, py + 30, 'What one catalytic grant starts that nothing else in the stack does');
-  b += para(tx + 20, py + 60, 'Every other dollar in the stack buys beds or keeps the organisation standing. A catalytic grant is the only money that buys the proof: the first fifty beds pressed and timed, and the rules each pool runs on. Without it the pools are a gift. With it they are the first step of an enterprise, and the equipment loan behind them can be written.', { size: 14.5, width: tw - 40, lh: 1.45 }).svg;
+  b += kicker(tx + 20, py + 30, 'What going first does');
+  b += para(tx + 20, py + 60, 'QBE\'s beds go in first, into the first community. That community sells what it decides to sell and keeps the money. The first fifty go through our own press and get costed, so the lenders have a measured number. Every other funder\'s beds follow at the same ratio.', { size: 14.5, width: tw - 40, lh: 1.45 }).svg;
 
   out['02-the-unit'] = frame({
-    page: 'Form Q5, Q6, Q7. Figures from bed-ratio.ts',
+    page: 'Form Q5, Q6, Q7. Figures from bed-ratio.ts. The ask buys beds; $250,000 is 333',
     title: 'One bed, four things, any amount',
     sub: 'Every dollar buys beds. Every bed does four things. Any amount scales the same way, and every figure keeps its label.',
     body: b,
@@ -302,13 +302,13 @@ const out = {};
   const y = 200, h = 470, gap = 20, w = (1460 - 2 * gap) / 3;
   const colsD = [
     { k: 'Bed money', t: 'Gifts and purchases that buy beds into pools', lines: [
-      ['QBE, pool share of the $250K ask', '$150,000', 'ask made'],
+      ['QBE Catalysing Impact, the ask', '$250,000', 'ask made'],
       ['Brian M. Davis Charitable Foundation', '$100,000', 'invited'],
       ['Snow Foundation', '$100,000', 'ask made'],
       ['Minderoo Foundation', '$100,000', 'ask made'],
       ['Dusseldorp Forum', '$50,000', 'target'],
       ['ALIVE National Centre, 100 beds', '$92,000', 'paid'],
-    ], note: 'If every line lands: 765 beds at the $250K ask, 965 at the $400K ceiling. The rest waits for the next yes.' },
+    ], note: 'If every line lands at the $250K ask, 898 beds; at the $400K ceiling the thousand is covered. The rest waits for the next yes.' },
     { k: 'Block money', t: 'Three years of network support, the organisation\'s resilience', lines: [
       ['Tim Fairfax Family Foundation, three years', '$300,000', 'invited'],
     ], note: 'About $109,500 a year runs Goods on Country before a bed is made; about $300,000 a year is the public network ask. Bed money never funds this. Katie Norman named the resilience of organisations as the reason for the invitation, so this is the block in the funder\'s own words. Recommended: the block, not beds. Ben has not yet ruled.' },
@@ -335,8 +335,8 @@ const out = {};
   // The proof band
   const py = y + h + 24, ph = 96;
   b += box(70, py, 1460, ph, { fill: C.sage, stroke: C.sage });
-  b += kicker(90, py + 30, 'The proof, and only a catalytic grant buys it');
-  b += para(90, py + 58, '$100,000 of the $250,000 QBE ask: the first fifty beds pressed at the farm at production rate, timed and costed with receipts; five community rules agreements; product traceability so kilograms per bed become a measurement; and the accounting repair that gives Goods on Country a gross margin on paper. This is the input every lender has asked for and nobody has.', { size: 14, width: 1420, lh: 1.4 }).svg;
+  b += kicker(90, py + 30, 'The measured cost, and it comes with the first pool');
+  b += para(90, py + 58, 'The first fifty beds go through our own press and get costed properly: plastic per bed, press time and power, CNC hours, operator hours, scrap. That gives a measured cost for a locally made bed, the number every lender has asked for and nobody has. The rules with each community are agreed before its beds move.', { size: 14, width: 1420, lh: 1.4 }).svg;
 
   out['04-capital-three-jobs'] = frame({
     page: 'Form Q14, Q18. Figures from raise-stack.ts, pulled 2 September 2026',
@@ -393,8 +393,8 @@ const out = {};
 {
   let b = '';
   const links = [
-    { t: 'QBE funds the first pool and the proofs', d: 'One governed pool of 200 beds and the proof block. Every other dollar in the stack buys beds at the same ratio or keeps the organisation standing. Nothing else buys the proof.', s: 'the ask, $250,000' },
-    { t: 'That work produces the paper a lender can read', d: 'Community agreements, a measured cost per bed, buyer paper and a governed pool. The modelled $426 pressed-path cost becomes a measured one.', s: 'released by link 1' },
+    { t: 'QBE\'s beds go in first', d: '333 beds into the first community. The first fifty go through our own press and get costed, so the cost of a locally made bed is measured.', s: 'the ask, $250,000' },
+    { t: 'That first pool produces what a lender can read', d: 'A community selling beds under agreed rules, a measured cost per bed, and buyer paper. The modelled $426 pressed-path cost becomes a measured one.', s: 'follows link 1' },
     { t: 'Three invitations already in hand', d: 'Tim Fairfax $300,000 for the block (due 9 Oct). Brian M. Davis $100,000 for pool three (due 25 Sep). Snow, ask made and a catch-up booked. Minderoo and Dusseldorp in conversation.', s: '$0 signed today' },
     { t: 'After the measured run, the equipment finance', d: 'SEFA $300,000 and White Box $150,000 for equipment and working capital. Neither can proceed while the cost is modelled and the borrower is unsettled.', s: 'gated on link 2' },
     { t: 'Demand already paying', d: 'ALIVE National Centre bought 100 beds up front ($92,000, paid). Centrecorp holds a 130-bed quote, deferred pending community feedback. More than 200 requests in each of Tennant Creek and Mparntwe.', s: 'verified purchase' },
@@ -413,7 +413,7 @@ const out = {};
   const py = y + h + 26;
   b += box(70, py, 1460, 130, { fill: C.sage, stroke: C.sage });
   b += kicker(90, py + 30, 'The test of catalytic, as CONTEXT.md defines it: what remains after the first spend');
-  b += para(90, py + 60, 'After this money is spent, five communities hold beds, paid assembly and delivery work, sales money where they chose to sell, and the right to decide the next step. The equipment loan behind them can be written, because the cost is measured and the pool is governed. Without the grant the pools are a gift. With it they are the first step of an enterprise.', { size: 14.5, width: 1420, lh: 1.42 }).svg;
+  b += para(90, py + 60, 'After this money is spent, five communities hold beds, paid assembly and delivery work, sales money where they chose to sell, and the right to decide the next step. The lenders hold a measured cost, so the plants can be financed.', { size: 14.5, width: 1420, lh: 1.42 }).svg;
 
   out['06-the-catalytic-chain'] = frame({
     page: 'Form Q14, Q18. Leverage is the metric the program publishes: 3.7x in 2025',
