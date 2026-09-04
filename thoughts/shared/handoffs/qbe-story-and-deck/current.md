@@ -17,6 +17,8 @@ status: active
 `https://app.notion.com/p/3d1ebcf981cf817598d8f15ee4f89c32`
 
 ### Now
+[->] **PASTE-PROMPT: `thoughts/shared/handoffs/qbe-story-and-deck/START-HERE.md`. Open that first.**
+
 [->] **Slide-by-slide copy pass. Slide 1 LOCKED. Slides 2 and 4 drafted and waiting on Ben.**
 Do slide 3, then 5 to 12, ONE AT A TIME. Ben says "go" between each.
 **Before any of that, read "The mentor call" below. It challenges the ask itself.**
