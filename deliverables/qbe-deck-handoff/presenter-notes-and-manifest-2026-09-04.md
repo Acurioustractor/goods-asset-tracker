@@ -9,6 +9,13 @@ was to see every slide against its content and strike anything that does not mea
 These notes are written so that pass can happen line by line. Slide 1 has already been through it
 and carries Ben's ruling; slides 2 to 12 have not.
 
+**Every slide renders correctly. That is not the same as the words being right.** The twelve were
+built from `deck-plan.ts` and the guarded modules, so the figures tie out and nothing is invented,
+but the copy has not had Ben's eye on it. Where this document calls a slide finished, it means the
+layout holds at presentation size, not that the sentence earns its place. Ben is rewriting the copy
+across all twelve, and the Pencil band will be rebuilt once from the settled set rather than slide by
+slide.
+
 ---
 
 ## Where everything is
@@ -272,18 +279,37 @@ are paid for. Today the deck does not answer that, because it is not decided.
   names individuals and internal scheduling; it is a working artifact, not a funder surface. The
   render script skips it by name.
 
-## Corrections applied to the drawings
+## The deck-safe guard
 
-Two strings in the working variant were internal and would have reached a funder. They are patched in
-a temp module at render time, and the patch asserts if either moves:
+Two strings in the working variant were internal and would have reached a funder:
 
 - "Katie Norman named the resilience of organisations as the reason for the invitation. Recommended:
-  the organisation, not beds. Ben has not yet ruled." → "The invitation names the resilience of
-  organisations as its reason. It points at the organisation rather than at beds; the allocation is
-  not settled."
-- "ruling X, 28 Aug" → "28 August 2026".
+  the organisation, not beds. Ben has not yet ruled."
+- "ruling X, 28 Aug"
 
-Worth fixing at source in `qbe-diagrams.ts` so the patch can be deleted.
+**Both are now fixed at source** in `qbe-diagrams.ts` on `feat/qbe-story`. The render script no longer
+patches anything. Instead it renders from the real module and then reads the rendered text back,
+failing the build if any of a list of phrases survives — "not yet ruled", "Recommended: the
+organisation", "ruling X", "ruling Y", "HighLevel", "NEEDS BEN", "SUBJECT TO JAY". Matching is
+case-insensitive, because the kicker line is uppercased when drawn and a case-sensitive scan misses
+every instance. If the guard fires, fix the wording in the module; do not add an exception.
+
+**Still open, reported as warnings.** Six of the whole-figure drawings cite module filenames in their
+kicker, and one names a person:
+
+| Drawing | Kicker |
+|---|---|
+| `the-unit` | FORM Q5, Q6, Q7. FIGURES FROM BED-RATIO.TS. … |
+| `the-loop` | THE MODEL. FIGURES FROM COMMUNITY-LOOP.TS |
+| `three-jobs` | FORM Q14, Q18. FIGURES FROM RAISE-STACK.TS |
+| `the-snowball` | THE CRUX, 3 SEPTEMBER 2026. FIGURES FROM QBE-STORY.TS AND COMMUNITY-LOOP.TS |
+| `who-buys` | THE QUESTION WE GET ASKED MOST. SOURCES: RAISE-STACK.TS, QU-0014, THE QBE PAGE (BEN, 3 SEP) |
+| `the-chain` | footer: "Statuses from raise-stack.ts: invited means a written invitation…" |
+
+**None of these reach the deck**, because the slides use the body-only renders and the body render
+strips the kicker. They are on the whole-figure PNGs, which are on disk and could be picked up by
+mistake. Worth rewriting the `page` strings in `qbe-diagrams.ts` for a reader who has never seen the
+repo — `who-buys` in particular puts "(BEN, 3 SEP)" on the face of a funder figure.
 
 ## Unresolved, needing a person
 
