@@ -1,5 +1,5 @@
 ---
-date: 2026-09-04T11:00:00Z
+date: 2026-09-04T11:20:00Z
 session_name: qbe-story-and-deck
 branch: feat/qbe-story
 status: active
@@ -9,14 +9,14 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-04T11:00:00Z
+**Updated:** 2026-09-04T11:20:00Z
 **Goal:** The story of the model is live as the public `/pitch/model` and the gated `/sites/qbe/story`; the Pencil deck is rebuilt to twelve slides that match it; every link on the site points at the right surface. Done when merged, live, deck saved and links green.
-**Branch:** `feat/qbe-story` in worktree `/Users/benknight/Code/goods-story-wt`, five commits, stacked on `feat/raise-stack-and-ruling-x` (PR #234, NOT merged), NOT pushed.
+**Branch:** `feat/qbe-story` in worktree `/Users/benknight/Code/goods-story-wt`, eight commits, stacked on `feat/raise-stack-and-ruling-x` (PR #234, NOT merged), NOT pushed.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
 **Map:** GitHub issue #236. Fifteen tickets. Open the map first, not this file.
 
 ### Now
-[->] Nothing is claimed. Four tickets sit on the frontier and three are Ben's: #237 read the crux and the public answers aloud, #238 land PR #234, #243 read the deck review table. Mine is #249, repoint the stale links.
+[->] #249 is done and committed, waiting on the merge chain. Nothing else is claimed. The frontier is now three of Ben's (#237 read the crux and the public answers aloud, #238 land PR #234, #243 read the deck review table) plus #250, one signed letter, which is also his to send. The next one that is mine is #248, wire the model page in, and it is BLOCKED: `PITCH_APPENDICES` still has no render site, so the public model page has no public inbound link.
 
 ### This Session
 - [x] `/pitch/model` (public) and `/sites/qbe/story` (gated) built from ONE component with an `audience` switch. Eighteen chapters on the working copy, fifteen public.
@@ -27,6 +27,7 @@ status: active
 - [x] The four overviews Ben asked for: the buying story (every buyer on an invoice), who has said yes, the lenders and other options, and plan B if the grant does not come.
 - [x] Wayfinder map #236 charted; #247 (link inventory) and #240 (deck review table) resolved and closed.
 - [x] `deliverables/deck-review-2026-09.md`: every frame of the .pen, one row each.
+- [x] #249 every link that sent a reader through a redirect. A full scan of `next.config.ts` sources found thirty-nine, not the inventory's eleven; eight were public evidence links on `/register`.
 - [x] Gates green: tsc, 661 tests, `check:drift:ci`, eslint, `next build`. Both routes verified at 200.
 
 ### Next
@@ -34,7 +35,7 @@ status: active
 - [ ] #238 Land PR #234 (ruling X + the three money modules) so the story can follow.
 - [ ] #243 Ben reads `deliverables/deck-review-2026-09.md` and rules keep, fix or cut per frame.
 - [ ] #250 One signed letter before the form closes. The single highest-value action available.
-- [ ] #249 Repoint the stale links (mine, unblocked).
+- [x] #249 Repoint the stale links. Thirty-nine resolved, seven retired, gates green (`a8c224b`). Open until merged.
 - [ ] Then: #239 story PR live, #244 rebuild frames 07 to 12, #245 export and guard, #246 PDF, #248 wire the model page in, #251 grill the ask against the fallback.
 
 ### Decisions
@@ -42,6 +43,9 @@ status: active
 - The crux line keeps its subject. "We buy beds" read as Goods being the customer and never said who pays or who receives. A summary line names who pays, who receives and who sells.
 - An answer can be finished and still improvable. That is not a gap. Two of my own guards caught this and the model was corrected, not the guards.
 - The LGANT frames in the same .pen are a second deck for a real event on 22 September. Out of scope for this map, unreviewed, and flagged so it is not lost.
+- A redirect stays even when the last link through it is gone. Bookmarks and anything already sent externally still need it; #249 removed the hops inside the app, not the safety net. Nothing was promoted to 308.
+- A link label that names a retired surface is itself a stale pointer. "The cost story" on `/register` became "The road to ownership", in `money-pointer.tsx`'s own words. Labels that still describe their destination were left alone.
+- The inventory was a floor, not a ceiling. Grepping `next.config.ts`'s redirect sources against `src/` found twenty-eight links the file-by-file read had missed. Do the machine scan first next time.
 
 ### Open Questions
 - UNCONFIRMED: whether the deck's `.pen` has been saved since 3 Sep 17:12. Other sessions have edited it; run `mcp__pencil__get_app_state` before any deck read.
@@ -49,6 +53,8 @@ status: active
 - UNCONFIRMED: whether `INVESTORS_PASSWORD` is set on Vercel. It is used by `/investors` already, so probably, but verify before claiming the gated route works in production.
 - OPEN: who runs the line at the first site and who pays them. The biggest single dial in the model, and one of the four gates.
 - OPEN: the accountant's letter, blocked on the cost-of-goods problem in the historic books.
+- OPEN: `src/components/shop/enterprise-opportunity.tsx` carries an invented testimonial attributed to "Community Enterprise Partner". No such speaker is in `cleared-voices`. The component is exported and rendered nowhere, so nothing is live, but it is one import away. Delete the component or clear a real quote. Found by #249.
+- OPEN: `conditional-chrome.tsx` still lists `/pitch/investor-lab`, `/pitch/miro-board` and `/deck` as standalone prefixes. All three are redirects. Dead but harmless; belongs with the `/pitch/model` chrome question.
 
 ### Workflow State
 pattern: wayfinder-map
@@ -91,6 +97,8 @@ Worktree `/Users/benknight/Code/goods-story-wt`, branch `feat/qbe-story`, five c
 | `a23f630` | The deck review table |
 | `69962ca` | The twelve-slide plan and the four overviews |
 | `08ed88e` | The form audit, question by question |
+| `925459f` | The continuity ledger for this stream |
+| `a8c224b` | Every stale link repointed or retired (#249) |
 
 Stacked on `feat/raise-stack-and-ruling-x` (worktree `../goods-raise-wt`, PR #234, seventeen commits, not merged) because it imports `raise-stack.ts`, `community-loop.ts` and `bed-ratio.ts` from there. **Neither branch is pushed.**
 
