@@ -1,6 +1,7 @@
-# START HERE — QBE deck, slide-by-slide
+# START HERE — QBE deck and the money
 
-Two prompts. The first is the normal one. The second only runs when Nic is in the room.
+Paste one of these. The first is the normal slide pass. The second only runs when Nic is in the
+room. The third is the money clean-up, which is now a thread of its own.
 
 ---
 
@@ -18,6 +19,9 @@ https://app.notion.com/p/3d1ebcf981cf817598d8f15ee4f89c32
 Slides 01 to 06 are built in Pencil, exported, and on the Notion page with the full
 section structure. Slide 07 is the loop, frame tkDpX.
 
+Before you touch 07: the ask decision is not settled, and 07, 10, 11 and 12 all
+encode ruling Y. If it is still open, say so and stop.
+
 Rules, all learned the hard way:
 - ONE SLIDE AT A TIME. I ask for slide N, you give me slide N and stop.
 - Findings go in the ledger, not in your reply to me.
@@ -27,6 +31,7 @@ Rules, all learned the hard way:
 - Every figure gets graded before it is printed. Only A goes on a slide uncaveated.
 - Build the frame, export it, and swap the Notion image. A rebuilt frame changes
   nothing on the page until the image is swapped, and I will notice.
+- Money figures come from money-lanes.ts. Never add a lane to another lane.
 ```
 
 ---
@@ -49,22 +54,80 @@ Nic's numbers on the call: two plants at $150K each plus $200K of beds is a $500
 raise. My note has 400 beds at $750 plus two plants, $600K. The deck says $400K and
 533 beds. None of them match.
 
-Also settle: do the two $100,000 philanthropic commitments exist on paper? The deck
-says $0 signed and the form says leverage is a core scoring criterion.
+Before we start, read money-lanes.ts back to us. Nothing is signed. The two
+$100,000 "commitments" are invitations to apply with board dates in November.
 
 Nothing gets written until we have ruled.
 ```
 
 ---
 
+## 3 · The money clean-up (paste this)
+
+```
+Money thread. Read v2/src/lib/data/money-lanes.ts first, then the "Money lanes",
+"Receivables restated" and "Revenue restated" sections of
+thoughts/shared/handoffs/qbe-story-and-deck/current.md.
+
+Every dollar sits in one of seven lanes and total() throws if you add lanes that
+must not be added. Do not invent a number outside that module.
+
+Four decisions are waiting on me. Put them to me one at a time, with what changes
+if I say yes:
+1. Do ALIVE INV-0342 $101,200 and Julalikari INV-0335 $15,000 go into revenue?
+   Both are Goods receipts paid after the 3 June baseline, same as Homeland was.
+   Fully current is $901,311 against the $785,111 that is there now.
+2. Re-pull the Goods carve-out. $713,827 is asAt 2026-06-02 and the drift guard
+   wants it refreshed before any external share.
+3. When I said "Bryan Foundation incoming", did I mean The Bryan Foundation
+   (26 May meeting, nothing in writing, potential) or Brian M. Davis (invited,
+   up to $100,000, board 19 November)?
+4. Rotary $82,500 is bad debt and fine for now. Tell me when that stops being true.
+
+The receivables figure lives in FOUR places and revenue in NINE. Move them
+together or check:drift:ci fails on a copy you did not know about.
+```
+
+---
+
 ## What is waiting
 
-- **Slides 01 to 06 built.** Ben has not formally ruled on 02 to 06.
-- **Slide 07 is next.** The loop, frame `tkDpX`.
-- **PR #253 open and unmerged**, carrying ruling Y, which had never reached main.
-  One commit ahead of origin: the Kalgoorlie fix.
-- **Parked on Ben's word:** "The bed learned in public", a product-evolution slide that
-  would make the 363 Basket Beds visible. Proposal is in slide 04's research section.
-- **`qbe-story.ts` still says four buyers.** The rendered who-buys diagram is disabled
-  until that is fixed and the diagram re-rendered.
-- **The ask decision blocks slides 07, 10, 11 and 12.** It is Ben and Nic's, not mine.
+**Money, and it is now clean.** `money-lanes.ts` classifies every dollar into seven lanes with a
+rule each, and `total()` throws rather than adding lanes that must not be added. Earned $273,966 ·
+owed $0 · bad debt $82,500 · invited $400,000 · asked $600,000 · potential $540,000 · excluded
+$1,995,000. Beds sold and paid: **$197,060 ex GST, 320 beds, four organisations.** Signed: **$0.**
+Recall surface: `deliverables/qbe-stage2/diagrams/08-money-lanes.svg`.
+
+**Settled on 5 September, all in code and guarded:**
+- Rotary INV-0222 is bad debt, not a buyer. It adds to nothing.
+- Palm Island INV-0317 never happened. Retired, and `check-retired-figures` holds it out.
+- Receivables **$143,000 → $82,500**, all of it bad debt, **$0 collectable**.
+- Revenue **$741,111 → $785,111**. Commercial and buyer receipts $61,449 → $105,449.
+- The two invitations are invitations. TFFF $300,000 over three years, board late November.
+  Brian M. Davis up to $100,000, board 19 November. **Nic told the mentor these were commitments.
+  Somebody has to correct that**, because the QBE form scores leverage.
+
+**Open and mine to fix once Ben rules:** ALIVE $101,200 and Julalikari $15,000 into revenue
+($901,311); the stale carve-out; Bryan against Brian.
+
+**Open and Ben's alone:**
+- **The ask decision.** Blocks 07, 10, 11 and 12.
+- **Slide 05 needs a second pass.** Its headline says six organisations have paid; five bought,
+  four paid, and the sixth rested on the invoice that never happened. Centrecorp INV-0259 (60 beds,
+  paid, August 2025) is still missing from the frame. The module and the drawing are already right.
+- **"The bed learned in public"**, the product-evolution slide that would make the 363 Basket Beds
+  visible. Proposal is in slide 04's research section.
+- Ben has not formally ruled on slides 02 to 06.
+
+**Branch state.** `feat/qbe-story` in `/Users/benknight/Code/goods-story-wt`, **eight commits ahead
+of origin and NOT pushed.** Two predate this session (`53b7193` the Kalgoorlie fix, `07af900` slides
+01 to 06). Six are the money work: `08f3acb` buyers derived from the paper · `574ca86` money lanes ·
+`cddf5ed` INV-0317 retired · `b2a0052` receivables $82,500 · `6de744a` revenue $785,111 · `22e839d`
+these prompts. PR #253 open and unmerged. Gates green: tsc,
+690 tests, `check:drift:ci` in lockstep, `check:retired-figures` (32 figures), `next build`.
+
+**Dates.** BMDF closes **25 September**. QBE closes **25 September, 12pm AEST**. TFFF closes
+**9 October, 5pm AEST**, board late November. Brian M. Davis board **19 November**.
+
+**Do not** re-render the QBE drawings without `deliverables/qbe-deck-handoff/scripts/render-all.sh`:
+it reads the rendered output back and refuses to rasterise anything that leaks internal state.
