@@ -9,7 +9,7 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-05T00:10:00Z
+**Updated:** 2026-09-05T07:15:00Z
 **Goal:** Thirteen slides, each built in Pencil and each carrying a full evidence-graded section in Notion. Then the QBE form. Done when Ben has ruled on all thirteen and the PDF is under 10MB.
 **Branch:** `feat/qbe-story`, PR #253, pushed, CI green. Worktree `/Users/benknight/Code/goods-story-wt`.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
@@ -387,9 +387,65 @@ reconcile them.
 
 The test line stays exactly as written and is the register the rest of the deck should sound like.
 
+### The buyers fixed at source, and what Xero actually says, 5 September
+
+`qbe-story.ts` said four buyers, so the rendered `who-buys` drawing was disabled. Rather than type
+six over the four, the count is now derived: `BUYING_STORY` is the ledger of paper, `buyersFor()`
+groups it one row per organisation, and `buyingSummary()` / `buyingStoryLine()` compute every number
+a surface prints. Three guards fail the build if anybody types a count again. Drawing re-rendered,
+deck-safe guard clean, so it is no longer blocked.
+
+**Every row was read off Xero contact by contact, against the aged receivables report of the same
+date. Three things came out of that reading and two of them contradict the built slide.**
+
+1. **Centrecorp INV-0259 was in no module and on no slide.** 11 August 2025, 60 Basket Beds v1.3 at
+   \$370 plus two build workshops, \$37,620 including GST, PAID. A paid sixty-bed sale that the
+   buying story simply did not have. It is in now.
+2. **Rotary eClub INV-0222 is real and it is not paid.** \$82,500 including GST, 200 beds at \$350
+   plus a \$5,000 project, authorised, overdue since 24 April 2025, sitting in the 3+ month bucket
+   at 29.4% of all outstanding receivables. It belongs in the buying record with the status said out
+   loud, which is what the row now does.
+3. **Palm Island Community Company's INV-0317 is not in Xero.** \$36,300, 40 Stretch Beds at \$750
+   plus \$3,000 delivery. It is absent from the aged receivables as at 5 Sep 2026 and absent from
+   every invoice on the PICC contact, paid or unpaid. The other four Palm Island contacts hold no
+   invoices at all. **VERIFIED absent. INFERRED voided or deleted; nobody has confirmed which.**
+   PICC has paid \$436,700 across five invoices and not one of them has a bed on it: storytelling,
+   photo studio, living annual report, working bee. It is kept out of the buying story and a guard
+   holds it out until somebody produces the document.
+
+**So slide 05's headline is wrong twice over.** It reads "Six organisations have paid for beds." The
+sixth organisation is Palm Island, resting on INV-0317. And two of its seven rows are not paid,
+which its own sub-line admits in the next breath ("Two are still owed"). What the paper supports is
+**five organisations have bought beds, 520 beds in all, and four of them have paid**, with Centrecorp
+appearing three times and 130 more on an open quote. That is what the module and the drawing now
+say. **The slide has not been changed: it is Ben's to rule, and it needs INV-0259 added and the
+Palm Island row pulled.**
+
+**Two smaller corrections carried into the module.** ALIVE INV-0342 is dated 2 July 2026, so the row
+now says July where it said August; every other row already followed the invoice date. And the
+\$92,000 ex GST is 100 beds at \$800 plus four shared visits at \$3,000, not \$92,000 of beds, so the
+row names the visits. Note ALIVE paid \$800 a bed while the model runs on \$750.
+
+**Two stale figures found in passing, neither touched.**
+- `canon.ts:134` defines accounts receivable as "Rotary INV-0222 \$82,500 + Homeland INV-0303
+  \$44,000 + Regional Arts INV-0302 \$16,500 (all live authorised in Xero)". **Homeland INV-0303 is
+  PAID.** Rotary and Regional Arts are still live. Canon is Ben's to move.
+- `compendium.ts:287` carries `recv-picc` as an authorised \$36,300 receivable. It feeds
+  `/admin/pitch-cockpit` only, which is gated, so nothing public is printing it. Same chase as (3).
+
+**Cross-session, not mine:** `deliverables/qbe-review-2026-09-05/` appeared untracked in the main
+working tree at 06:51 this morning, carrying a deck review and a scrape of the Notion master. Left
+alone.
+
 ### Next
+- [ ] **Ben: slide 05 needs a second pass.** Headline to "Five organisations have bought beds. Four
+      have paid.", add Centrecorp INV-0259 (60 beds, paid), pull the Palm Island row until INV-0317
+      is produced. Copy is settled in the module; the Pencil frame `p7GoP` has not been touched.
+- [ ] **Chase INV-0317 with Eloise or the PICC contact (ratkinson@picc.com.au).** If the document
+      exists, Palm Island goes back in and the count moves to six. If it was voided, `compendium.ts`
+      and four wiki outputs need the receivable retired.
 - [ ] Ben rules on 02, 03, 04, 05 and 06, all built and on the page.
-- [ ] `qbe-story.ts` still says four buyers. Fix it so the who-buys diagram can be re-rendered.
+- [x] `qbe-story.ts` said four buyers. Derived from the paper now, drawing re-rendered, unblocked.
 - [ ] Parked on Ben's word: "The bed learned in public", the product-evolution slide that
       would make the 363 Basket Beds visible. Proposal sits in slide 4's research section.
 - [ ] Ben rules on 03 (drafted, all four figures verified to primary source).

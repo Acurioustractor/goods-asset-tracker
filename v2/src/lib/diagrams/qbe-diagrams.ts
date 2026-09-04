@@ -42,7 +42,9 @@ import {
   type StackLine,
 } from '@/lib/data/raise-stack';
 import {
-  BUYERS,
+  BUYING_AS_AT,
+  buyersFor,
+  buyingSummary,
   CALENDAR,
   CALENDAR_FAULT,
   MONTH_SIX_QUESTIONS,
@@ -518,21 +520,22 @@ export function theSnowball(audience: StoryAudience): string {
 
 export function whoBuys(audience: StoryAudience): string {
   let b = '';
-  const lx = MX, ly = 195, lw = 760;
-  b += kicker(lx, ly, 'Buyers we can name today');
-  let y = ly + 20;
-  BUYERS.forEach((buyer) => {
-    const h = 96;
-    b += box(lx, y, lw, h, { fill: buyer.label === 'verified' ? C.white : C.cream, stroke: buyer.label === 'verified' ? C.terra : C.line, sw: buyer.label === 'verified' ? 2 : 1.5 });
-    b += text(lx + 20, y + 32, buyer.who, { size: 19, font: F.display, weight: 600 });
-    b += para(lx + 20, y + 56, buyer.what, { size: 13, width: lw - 200, lh: 1.38 }).svg;
-    b += chip(lx + lw - 20 - chipWidth(buyer.status), y + 30, buyer.status, { fill: chipFill(buyer.status) });
-    b += chip(lx + lw - 20 - chipWidth(buyer.label), y + 56, buyer.label, { fill: chipFill(buyer.label) });
-    y += h + 12;
+  const lx = MX, ly = 188, lw = 760;
+  const buyers = buyersFor(audience);
+  b += kicker(lx, ly, `Buyers we can name today, as at ${BUYING_AS_AT}`);
+  let y = ly + 18;
+  buyers.forEach((buyer) => {
+    const h = 92;
+    b += box(lx, y, lw, h, { fill: C.white, stroke: buyer.status === 'owed' ? C.line : C.terra, sw: buyer.status === 'owed' ? 1.5 : 2 });
+    b += text(lx + 20, y + 30, buyer.who, { size: 18, font: F.display, weight: 600 });
+    b += para(lx + 20, y + 52, buyer.what, { size: 13, width: lw - 230, lh: 1.34 }).svg;
+    b += chip(lx + lw - 20 - chipWidth(buyer.status), y + 28, buyer.status, { fill: chipFill(buyer.status) });
+    b += chip(lx + lw - 20 - chipWidth(buyer.label), y + 54, buyer.label, { fill: chipFill(buyer.label) });
+    y += h + 8;
   });
   const rx = 870, rw = 660;
   b += kicker(rx, ly, 'Three ways to back the work');
-  let ry = ly + 20;
+  let ry = ly + 18;
   THREE_DOORS.forEach((d, i) => {
     const h = 104;
     b += box(rx, ry, rw, h, { fill: C.white, stroke: C.line });
@@ -541,16 +544,19 @@ export function whoBuys(audience: StoryAudience): string {
     b += para(rx + 20, ry + 68, d.does, { size: 13, width: rw - 40, lh: 1.38 }).svg;
     ry += h + 12;
   });
-  b += box(rx, ry + 4, rw, 120, { fill: C.sage, stroke: C.sage });
+  b += box(rx, ry + 4, rw, 148, { fill: C.sage, stroke: C.sage });
   b += kicker(rx + 20, ry + 34, 'Who sells the pool');
-  b += para(rx + 20, ry + 60, 'Each community sells its own pool under its own rules, to whoever it chooses. Who is buying the sold beds is the first of the four gates, named per place before any bed moves.', { size: 13.5, width: rw - 40, lh: 1.4 }).svg;
+  b += para(rx + 20, ry + 60, 'Each community sells its own pool under its own rules, to whoever it chooses. Who is buying the sold beds is the first of the four gates, named per place before any bed moves. No community is named beside a price until it has seen the design.', { size: 13.5, width: rw - 40, lh: 1.4 }).svg;
+
+  const s = buyingSummary(audience);
+  const word = (n: number) => ['zero', 'one', 'two', 'three', 'four', 'five', 'six'][n] ?? String(n);
 
   return frame({
-    page: audience === 'working' ? 'The question we get asked most. Sources: raise-stack.ts, QU-0014, the QBE page (Ben, 3 Sep)' : 'The question we get asked most',
+    page: audience === 'working' ? `The question we get asked most. Every row read off Xero, ${BUYING_AS_AT}` : 'The question we get asked most',
     title: 'Where are they selling?',
-    sub: `Two buyers have paid or quoted. Two towns hold more than 200 requests each. From there, each community's pool sells under its own rules at ${aud(BED_PRICE_AUD)} a bed.`,
+    sub: `${s.organisationsWord} organisations have bought ${s.bedsText} beds from us on invoices. From there, each community's pool sells under its own rules at ${aud(BED_PRICE_AUD)} a bed.`,
     body: b,
-    footer: 'Requests are as we count them today and are not yet tied to a request register; they carry the workpaper label until they are. No community is named beside a price. Which community sells first is agreed with that community, once it has seen the design.',
+    footer: `Every row is an invoice or a quote${audience === 'working' ? ' in Xero' : ''} as at ${BUYING_AS_AT}${s.owedCount ? `, and ${word(s.owedCount)} is still owed` : ''}. Bed requests are not counted here: no register exists, so the number would be ours and not a document.`,
     stamp: STAMP[audience],
   });
 }

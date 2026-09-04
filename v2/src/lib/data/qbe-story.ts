@@ -214,36 +214,43 @@ export interface Buyer {
 
 const alive = lineById('alive');
 
-export const BUYERS: readonly Buyer[] = [
-  {
-    who: alive.funder,
-    what: `${alive.beds} beds, ${aud(alive.amountAud ?? 0)} ex GST, bought up front.`,
-    status: 'paid',
-    label: 'verified',
-    source: alive.source,
-  },
-  {
-    who: 'Centrecorp Foundation',
-    what: '130 beds on quote, waiting on community feedback.',
-    status: 'quote open',
-    label: 'verified',
-    source: 'Xero quote QU-0014, May 2026; raise-stack.ts',
-  },
-  {
-    who: 'Tennant Creek',
-    what: 'More than 200 requests for beds.',
-    status: 'requests',
-    label: 'workpaper',
-    source: 'Ben, QBE page, 3 Sep 2026',
-  },
-  {
-    who: 'Mparntwe (Alice Springs)',
-    what: 'More than 200 requests for beds. We have proposed the first pool here, with Oonchiumpa, once they have seen and agreed the design.',
-    status: 'requests',
-    label: 'workpaper',
-    source: 'Ben, QBE page, 3 Sep 2026',
-  },
-];
+/**
+ * Who buys, one row per organisation, derived from the paper ledger further down this file.
+ *
+ * It was a hand-typed list of four while the ledger held six, and the rendered `who-buys` drawing
+ * had to be pulled from the deck because of it (5 Sep 2026). Deriving it means the count on a
+ * slide cannot disagree with the invoices again.
+ *
+ * Bed requests are deliberately absent. Tennant Creek and Mparntwe sat here as "more than 200
+ * requests each" and came off slide 05 for the reason they come off here: no request register
+ * exists, the count is our own, and it puts interest alongside revenue on a surface where every
+ * other row is a document.
+ */
+export function buyersFor(audience: StoryAudience): Buyer[] {
+  const order: string[] = [];
+  const byOrg = new Map<string, BuyingLine[]>();
+  for (const row of buyingStoryFor(audience)) {
+    const rows = byOrg.get(row.who);
+    if (rows) rows.push(row);
+    else {
+      byOrg.set(row.who, [row]);
+      order.push(row.who);
+    }
+  }
+  return order.map((who) => {
+    const rows = byOrg.get(who) ?? [];
+    const note = BUYER_NOTE[who];
+    const owed = rows.some((r) => r.status === 'owed');
+    const onlyQuoted = rows.every((r) => r.status === 'quote open');
+    return {
+      who,
+      what: note ? `${bedsSentence(rows)} ${note}` : bedsSentence(rows),
+      status: owed ? 'owed' : onlyQuoted ? 'quote open' : 'paid',
+      label: 'verified' as Solidity,
+      source: rows.map((r) => r.paper).join('; '),
+    };
+  });
+}
 
 /** Three ways to back the work, from deck frame 10A. Who pays, and what each kind of money does. */
 export const THREE_DOORS: readonly { who: string; does: string }[] = [
@@ -424,32 +431,110 @@ export const STORY_FIGURES = {
 } as const;
 
 // ---------------------------------------------------------------------------
-// The buying story: every buyer who has paid, on an invoice (Ben, 4 Sep: "tell the buying story")
+// The buying story: every piece of paper with beds on it (Ben, 4 Sep: "tell the buying story")
+//
+// Read straight off Xero on 5 September 2026, contact by contact, against the aged receivables
+// report of the same date. Three things came out of that reading and all three are now in the rows
+// below rather than in a handoff note:
+//
+//   1. Centrecorp INV-0259 (60 Basket Beds, August 2025, paid) was in no module and on no slide.
+//   2. Rotary eClub INV-0222 (200 beds, $82,500) is real, authorised and unpaid since 24 April
+//      2025. It belongs in the buying record with its status said out loud, not left out.
+//   3. Palm Island Community Company INV-0317 (40 Stretch Beds, $36,300) is NOT here on purpose.
+//      `compendium.ts` and several wiki outputs still carry it as an authorised receivable, and
+//      slide 05 printed it. It is absent from Xero's aged receivables as at 5 Sep 2026 and absent
+//      from every invoice on the PICC contact, paid or unpaid. Until somebody produces the
+//      document, we cannot count Palm Island as a bed buyer. See the ledger for the chase.
+//
+// `beds` counts beds and nothing else. Washing machines, workshops, freight and trip support are
+// on some of these invoices and are described in words, never added to a bed count.
 
 export interface BuyingLine {
   who: string;
   when: string;
   what: string;
-  /** Xero invoice or quote number. */
+  /** Xero invoice or quote number, and what Xero says about it today. */
   paper: string;
+  /** Beds on the document. Washers, workshops and freight are excluded. */
+  beds: number;
+  /** Where the money actually is, as at `BUYING_AS_AT`. */
+  status: 'paid' | 'owed' | 'quote open';
   label: Solidity;
   /** Working copy only when true: a buyer not yet named on a public surface. */
   working?: boolean;
 }
 
-export const BUYING_STORY: readonly BuyingLine[] = [
-  { who: 'Mala\'la Health Service Aboriginal Corporation, Maningrida', when: 'October 2025', what: '13 Basket Beds, the first beds into Maningrida.', paper: 'INV-0283, paid', label: 'verified', working: true },
-  { who: 'Centrecorp Foundation', when: 'November 2025', what: '107 Stretch Beds for the Utopia homelands, built by young people with Oonchiumpa in Mparntwe.', paper: 'INV-0291, paid', label: 'verified' },
-  { who: 'Homeland School Company, Maningrida', when: 'May 2026', what: '40 Stretch Beds and two washing machines for homeland families. The forty we pressed ourselves.', paper: 'INV-0303, paid', label: 'verified' },
-  { who: 'Centrecorp Foundation', when: 'May 2026', what: '130 Stretch Beds quoted, waiting on community feedback.', paper: 'QU-0014, quote open', label: 'verified' },
-  { who: 'ALIVE National Centre, University of Melbourne', when: 'August 2026', what: `${alive.beds} Stretch Beds bought up front, ${aud(alive.amountAud ?? 0)} ex GST.`, paper: 'INV-0342, paid', label: 'verified' },
-];
+/** The date the rows below were read off Xero. Say it whenever the ledger is printed. */
+export const BUYING_AS_AT = '5 September 2026';
 
-export const BUYING_STORY_LINE =
-  'Four organisations have bought beds from us on invoices. Two towns hold more than 200 requests each. That is the demand we can name today; each community sells its own pool to whoever it chooses.';
+export const BUYING_STORY: readonly BuyingLine[] = [
+  { who: 'Rotary eClub Outback Australia', when: 'April 2025', beds: 200, what: '200 crate beds at $350 and a $5,000 project, $82,500 including GST.', paper: 'INV-0222, authorised, overdue since 24 April 2025', label: 'verified', status: 'owed' },
+  { who: 'Centrecorp Foundation', when: 'August 2025', beds: 60, what: '60 Basket Beds at $370, with two build workshops in community.', paper: 'INV-0259, paid', label: 'verified', status: 'paid' },
+  { who: 'Mala\'la Health Service Aboriginal Corporation, Maningrida', when: 'October 2025', beds: 13, what: '13 Basket Beds, the first beds into Maningrida.', paper: 'INV-0283, paid', label: 'verified', status: 'paid', working: true },
+  { who: 'Centrecorp Foundation', when: 'November 2025', beds: 107, what: '107 Stretch Beds for the Utopia homelands, built by young people with Oonchiumpa in Mparntwe.', paper: 'INV-0291, paid', label: 'verified', status: 'paid' },
+  { who: 'Homeland School Company, Maningrida', when: 'May 2026', beds: 40, what: '40 Stretch Beds and two washing machines for homeland families. The forty we pressed ourselves.', paper: 'INV-0303, paid', label: 'verified', status: 'paid' },
+  { who: 'Centrecorp Foundation', when: 'May 2026', beds: 130, what: '130 Stretch Beds quoted, waiting on community feedback.', paper: 'QU-0014, quote open', label: 'verified', status: 'quote open' },
+  { who: alive.funder, when: 'July 2026', beds: alive.beds ?? 100, what: `${alive.beds} Stretch Beds and four shared community visits, ${aud(alive.amountAud ?? 0)} ex GST, bought up front.`, paper: 'INV-0342, paid', label: 'verified', status: 'paid' },
+];
 
 export function buyingStoryFor(audience: StoryAudience): BuyingLine[] {
   return BUYING_STORY.filter((b) => audience === 'working' || !b.working);
+}
+
+const COUNT_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+const word = (n: number) => COUNT_WORDS[n] ?? n.toLocaleString('en-AU');
+const openingWord = (n: number) => {
+  const w = word(n);
+  return w.charAt(0).toUpperCase() + w.slice(1);
+};
+const count = (n: number) => n.toLocaleString('en-AU');
+
+/** One line per organisation on the drawings and the page, so a note can carry the colour. */
+const BUYER_NOTE: Record<string, string> = {
+  'Rotary eClub Outback Australia': 'Owed since April 2025 and carried as a receivable.',
+  'Centrecorp Foundation': 'The Utopia homelands, built by young people with Oonchiumpa in Mparntwe.',
+  'Mala\'la Health Service Aboriginal Corporation, Maningrida': 'The first beds into Maningrida.',
+  'Homeland School Company, Maningrida': 'Two washing machines with them. The forty we pressed ourselves.',
+  [alive.funder]: 'Four shared community visits with them, paid up front.',
+};
+
+function bedsSentence(rows: BuyingLine[]): string {
+  const invoiced = rows.filter((r) => r.status !== 'quote open');
+  const quotedBeds = rows.filter((r) => r.status === 'quote open').reduce((t, r) => t + r.beds, 0);
+  const invoicedBeds = invoiced.reduce((t, r) => t + r.beds, 0);
+  const parts: string[] = [];
+  if (invoicedBeds) parts.push(`${count(invoicedBeds)} beds on ${invoiced.length === 1 ? 'one invoice' : `${word(invoiced.length)} invoices`}`);
+  if (quotedBeds) parts.push(`${count(quotedBeds)} more on an open quote`);
+  return `${parts.join(', ')}.`;
+}
+
+/** Everything a surface needs to describe the buying record without typing a number. */
+export function buyingSummary(audience: StoryAudience) {
+  const rows = buyingStoryFor(audience);
+  const invoiced = rows.filter((r) => r.status !== 'quote open');
+  const organisations = new Set(invoiced.map((r) => r.who)).size;
+  const paid = new Set(invoiced.filter((r) => r.status === 'paid').map((r) => r.who)).size;
+  const owed = invoiced.filter((r) => r.status === 'owed');
+  return {
+    organisations,
+    organisationsWord: openingWord(organisations),
+    beds: invoiced.reduce((t, r) => t + r.beds, 0),
+    bedsText: count(invoiced.reduce((t, r) => t + r.beds, 0)),
+    paid,
+    paidWord: word(paid),
+    owedCount: owed.length,
+    owedBeds: owed.reduce((t, r) => t + r.beds, 0),
+    quotedBeds: rows.filter((r) => r.status === 'quote open').reduce((t, r) => t + r.beds, 0),
+  };
+}
+
+export function buyingStoryLine(audience: StoryAudience): string {
+  const s = buyingSummary(audience);
+  const owed = s.owedCount
+    ? ` ${openingWord(s.owedCount)} ${s.owedCount === 1 ? 'invoice is' : 'invoices are'} still owed and ${s.owedCount === 1 ? 'is' : 'are'} carried as a receivable in the accounts.`
+    : '';
+  const quoted = s.quotedBeds ? ` Another ${count(s.quotedBeds)} beds sit on an open quote.` : '';
+  return `${s.organisationsWord} organisations have bought beds from us on invoices, ${s.bedsText} beds in all, and ${s.paidWord} of them have paid.${owed}${quoted} Each community sells its own pool to whoever it chooses.`;
 }
 
 // ---------------------------------------------------------------------------

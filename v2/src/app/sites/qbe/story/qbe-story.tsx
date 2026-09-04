@@ -12,8 +12,8 @@ import { BED_PRICE_AUD, BED_UNIT } from '@/lib/data/bed-ratio';
 import { KIT_COST_AUD, LOOP_GATES, LOOP_STEPS, POOL, STAYS_KIT_AUD, STAYS_PRESSED_AUD, TIMELINE_TARGETS } from '@/lib/data/community-loop';
 import { ENTITY_ROUTE, PROGRAM, QBE_ASK, SIGNED_TOTAL_AUD, THE_BLOCK, lineById } from '@/lib/data/raise-stack';
 import {
-  BUYERS,
-  BUYING_STORY_LINE,
+  buyersFor,
+  buyingStoryLine,
   CALENDAR,
   CALENDAR_FAULT,
   FOUR_TRUE,
@@ -358,7 +358,7 @@ export function QbeStory({ audience }: { audience: StoryAudience }) {
         </Prose>
         <div className="mt-10">
           <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-goods-terracotta-light">The buying story: every buyer who has paid</p>
-          <p className="mt-3 max-w-3xl text-base leading-7 text-goods-cream/90">{BUYING_STORY_LINE}</p>
+          <p className="mt-3 max-w-3xl text-base leading-7 text-goods-cream/90">{buyingStoryLine(audience)}</p>
           <ol className="mt-5 divide-y divide-white/15 border-y border-white/15">
             {buyingStoryFor(audience).map((b) => (
               <li key={`${b.who}-${b.when}`} className="grid gap-x-6 gap-y-1 py-3 md:grid-cols-[140px_1fr_auto]">
@@ -377,7 +377,7 @@ export function QbeStory({ audience }: { audience: StoryAudience }) {
         </div>
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_1fr]">
           <ul className="divide-y divide-white/15 border-y border-white/15">
-            {BUYERS.map((b) => (
+            {buyersFor(audience).map((b) => (
               <li key={b.who} className="flex flex-wrap items-start gap-x-6 gap-y-2 py-4">
                 <div className="min-w-0 flex-1">
                   <p className="goods-pitch-display text-xl">{b.who}</p>

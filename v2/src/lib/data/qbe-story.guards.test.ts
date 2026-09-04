@@ -16,7 +16,9 @@ import { PROGRAM, QBE_ASK, SIGNED_TOTAL_AUD, STACK, UNVERIFIED_LINE_IDS, bedsFun
 import { SCALE_ROWS } from './bed-ratio';
 import { FAQ, FAQ_OPEN_COUNT, faqFor } from './qbe-faq';
 import {
-  BUYERS,
+  BUYING_AS_AT,
+  buyersFor,
+  buyingSummary,
   CALENDAR,
   CRUX,
   DECK_MAP,
@@ -35,7 +37,7 @@ import {
   THREE_DOORS,
   WHO_SELLS,
   BUYING_STORY,
-  BUYING_STORY_LINE,
+  buyingStoryLine,
   LENDERS,
   LENDERS_LINE,
   OTHER_LENDER_OPTIONS,
@@ -57,7 +59,7 @@ function allProse(): string[] {
   out.push(...CRUX);
   out.push(...PROBLEM_FIGURES.map((f) => f.text));
   out.push(...PROOF_RUNS.flatMap((r) => [r.body, r.proves, r.alt]));
-  out.push(...BUYERS.flatMap((b) => [b.what]));
+  out.push(...buyersFor('working').flatMap((b) => [b.what]));
   out.push(...THREE_DOORS.map((d) => d.does), WHO_SELLS);
   out.push(SNOWBALL.direction, SNOWBALL.honesty, ...SNOWBALL_STEPS.flatMap((s) => [s.title, s.body]));
   out.push(MEASURED_RUN.claim, MEASURED_RUN.test, MEASURED_RUN.open, ...MEASURED_RUN.counts);
@@ -278,10 +280,10 @@ function publicProse(): string[] {
   out.push(...chaptersFor('public').flatMap((c) => [c.kicker, c.title]));
   out.push(...faqFor('public').flatMap((f) => [f.question, f.answer]));
   out.push(...HONEST_RULES.map((r) => r.rule));
-  out.push(...PROOF_RUNS.flatMap((r) => [r.body, r.proves]), ...BUYERS.map((b) => b.what), WHO_SELLS, ...THREE_DOORS.map((d) => d.does));
+  out.push(...PROOF_RUNS.flatMap((r) => [r.body, r.proves]), ...buyersFor('public').map((b) => b.what), WHO_SELLS, ...THREE_DOORS.map((d) => d.does));
   out.push(MEASURED_RUN.claim, MEASURED_RUN.test, MEASURED_RUN.open, SNOWBALL.direction, SNOWBALL.honesty);
   out.push(...OUTCOMES.map((o) => o.body), ...HOW_WE_KNOW.map((h) => h.body));
-  out.push(BUYING_STORY_LINE, ...buyingStoryFor('public').flatMap((b) => [b.who, b.what]), LENDERS_LINE, ...PLAN_B.lines);
+  out.push(buyingStoryLine('public'), ...buyingStoryFor('public').flatMap((b) => [b.who, b.what]), LENDERS_LINE, ...PLAN_B.lines);
   return out;
 }
 
@@ -362,6 +364,45 @@ describe('the twelve-slide plan and the four overviews', () => {
     expect(BUYING_STORY.some((b) => b.paper.startsWith('INV-0342'))).toBe(true);
     expect(buyingStoryFor('public').some((b) => b.working)).toBe(false);
     expect(buyingStoryFor('working').length).toBe(BUYING_STORY.length);
+  });
+
+  // The drawing and the slide both said four organisations while the ledger held six, and the
+  // rendered who-buys figure had to come out of the deck (5 Sep 2026). Nothing about the count is
+  // typed any more, and these guards fail the build if anybody types it again.
+  it('who buys is derived from the paper, one row per organisation, never a typed count', () => {
+    for (const audience of ['public', 'working'] as const) {
+      const rows = buyingStoryFor(audience);
+      const buyers = buyersFor(audience);
+      expect(buyers.map((b) => b.who)).toEqual([...new Set(rows.map((r) => r.who))]);
+      expect(buyers.length, audience).toBe(buyingSummary(audience).organisations);
+      for (const b of buyers) expect(b.status, b.who).toMatch(/^(paid|owed|quote open)$/);
+    }
+    // Centrecorp bought twice and quoted once, so it is one row carrying three documents.
+    const centrecorp = buyersFor('working').filter((b) => b.who === 'Centrecorp Foundation');
+    expect(centrecorp).toHaveLength(1);
+    expect(centrecorp[0].source.split(';')).toHaveLength(3);
+  });
+
+  it('the buying line counts what the ledger counts, and says the money is still owed', () => {
+    const s = buyingSummary('working');
+    expect(s.organisations).toBe(5);
+    expect(s.paid).toBe(4);
+    expect(s.beds).toBe(BUYING_STORY.filter((b) => b.status !== 'quote open').reduce((t, b) => t + b.beds, 0));
+    expect(s.owedCount).toBeGreaterThan(0);
+    const line = buyingStoryLine('working');
+    expect(line).toContain(s.organisationsWord);
+    expect(line).toContain(s.bedsText);
+    expect(line).toMatch(/still owed/);
+    expect(line).not.toMatch(/\bFour organisations\b/);
+  });
+
+  // Palm Island Community Company's INV-0317 is absent from Xero's aged receivables and from every
+  // invoice on the PICC contact as at 5 Sep 2026, and `compendium.ts` still carries it as an
+  // authorised $36,300 receivable. It stays out of the buying story until somebody produces it.
+  it('no bed buyer rests on a document Xero cannot show', () => {
+    expect(BUYING_STORY.some((b) => b.paper.includes('INV-0317'))).toBe(false);
+    expect(buyersFor('working').some((b) => /Palm Island/.test(b.who))).toBe(false);
+    expect(BUYING_AS_AT).toBe('5 September 2026');
   });
 
   it('who has said yes is derived from the stack, never typed, and never counts QBE or an unverified line', () => {
