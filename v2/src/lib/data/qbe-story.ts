@@ -51,6 +51,7 @@ export type StoryChapterId =
   | 'calendar'
   | 'honest'
   | 'faq'
+  | 'form'
   | 'deck';
 
 export type StoryPart = 'the-story' | 'the-model' | 'the-money' | 'the-proof' | 'the-questions';
@@ -96,6 +97,7 @@ export const STORY_CHAPTERS: readonly StoryChapter[] = [
   { id: 'calendar', part: 'the-proof', label: 'The calendar', kicker: 'Three applications inside fourteen days', title: 'One strategy, three cuts.', audience: 'working', deckSlides: [], formQuestions: [] },
   { id: 'honest', part: 'the-questions', label: 'What is honest', kicker: 'What is honest to say, and what is not', title: 'Every figure we publish carries its label.', audience: 'all', deckSlides: ['09C qD5SQ (footer)'], formQuestions: ['Q12', 'Q21'] },
   { id: 'faq', part: 'the-questions', label: 'Questions', kicker: 'Questions people ask us', title: 'What we get asked, and what we say.', audience: 'all', deckSlides: [], formQuestions: [] },
+  { id: 'form', part: 'the-questions', label: 'The form', kicker: 'The form, question by question', title: 'What each question is really testing, and what we hold.', audience: 'working', deckSlides: [], formQuestions: [] },
   { id: 'deck', part: 'the-questions', label: 'To the deck', kicker: 'From this page to the deck', title: 'Each drawing is a slide. The copy on the slide is the copy here.', audience: 'working', deckSlides: [], formQuestions: ['Q23'] },
 ];
 

@@ -48,6 +48,7 @@ import {
 } from '@/lib/data/qbe-story';
 import { faqFor } from '@/lib/data/qbe-faq';
 import { DECK_APPENDICES, DECK_PLAN } from '@/lib/data/deck-plan';
+import { ATTACHMENT_SLOTS, CRITICAL_PATH, DECISIVE_QUESTIONS, FORM_QUESTIONS } from '@/lib/data/qbe-form';
 import { diagramById, diagramsFor } from '@/lib/diagrams/qbe-diagrams';
 
 import { ImpactStats } from '@/components/marketing/impact-stats';
@@ -804,6 +805,97 @@ export function QbeStory({ audience }: { audience: StoryAudience }) {
           <FaqList audience={audience} />
         </div>
       </Chapter>
+
+      {/* The form, question by question: working copy only */}
+      {working && (
+        <Chapter id="form" audience={audience}>
+          <Prose>
+            <p>
+              Twenty-five questions. Five of them decide the outcome ({DECISIVE_QUESTIONS.join(', ')}), because the program says the catalytic effect is a core criterion and reads it out of the amount, the use of funds, the fallback and the other funders. Every row below names what the assessor is actually testing, what we hold today, and the one person who closes the gap.
+            </p>
+          </Prose>
+          <div className="mt-10 overflow-x-auto">
+            <table className="w-full min-w-[1040px] text-left text-sm">
+              <thead>
+                <tr className="border-b border-goods-ink font-mono text-[10px] uppercase tracking-[0.14em] text-goods-sub">
+                  <th className="py-2 pr-4">Q</th>
+                  <th className="py-2 pr-4">It asks</th>
+                  <th className="py-2 pr-4">What it is really testing</th>
+                  <th className="py-2 pr-4">What we hold</th>
+                  <th className="py-2 pr-4">The gap</th>
+                  <th className="py-2 pr-4">Who</th>
+                  <th className="py-2">Carried by</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-goods-grid">
+                {FORM_QUESTIONS.map((q) => {
+                  const decisive = (DECISIVE_QUESTIONS as readonly string[]).includes(q.id);
+                  return (
+                    <tr key={q.id} className={`align-top ${decisive ? 'bg-goods-sand/40' : ''}`}>
+                      <td className="py-3 pr-4 font-mono text-xs font-semibold">{q.id}</td>
+                      <td className="py-3 pr-4 text-xs leading-5">{q.asks}</td>
+                      <td className="py-3 pr-4 text-xs leading-5">{q.reallyTesting}</td>
+                      <td className="py-3 pr-4 text-xs leading-5 text-goods-sub">{q.weHold || '—'}</td>
+                      <td className="py-3 pr-4 text-xs leading-5">{q.gap || <span className="text-goods-sub">done</span>}</td>
+                      <td className="py-3 pr-4">
+                        <SolidityChip label={q.owner === 'done' ? 'ready' : q.owner} />
+                      </td>
+                      <td className="py-3 text-[11px] leading-4 text-goods-sub">
+                        {q.slide ? `Slide ${q.slide}` : ''}
+                        {q.slide && q.chapter ? ' · ' : ''}
+                        {q.chapter ? storyChapter(q.chapter).label : ''}
+                        {q.attachment ? <span className="block">{q.attachment}</span> : null}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="mt-12 grid gap-8 lg:grid-cols-[1.3fr_1fr]">
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-goods-terracotta">Where an assessor pushes, and what we say</p>
+              <ol className="mt-4 space-y-4">
+                {FORM_QUESTIONS.filter((q) => q.pressure).map((q) => (
+                  <li key={q.id} className="border-l-2 border-goods-terracotta pl-4">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-goods-sub">{q.id} · {q.asks}</p>
+                    <p className="mt-1 text-sm leading-6">{q.pressure}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-goods-terracotta">The order it has to happen in</p>
+              <ol className="mt-4 space-y-4">
+                {CRITICAL_PATH.map((step, i) => (
+                  <li key={step.what.slice(0, 30)} className="flex gap-4">
+                    <NumberedDot n={i + 1} />
+                    <div>
+                      <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-goods-sub">
+                        {step.when} · {step.owner}
+                      </p>
+                      <p className="mt-1 text-sm leading-6">{step.what}</p>
+                      <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-goods-terracotta">Unblocks {step.unblocks.join(', ')}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+              <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.18em] text-goods-terracotta">The attachment run</p>
+              <ul className="mt-3 space-y-1 text-sm">
+                {ATTACHMENT_SLOTS.map((a) => (
+                  <li key={a.id} className="flex items-baseline justify-between gap-4 border-b border-goods-grid py-1.5">
+                    <span>
+                      <span className="font-mono text-xs">{a.id}</span> {a.slot}
+                    </span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-goods-sub">{a.ready ? 'ready' : a.owner}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Chapter>
+      )}
 
       {/* To the deck: working copy only */}
       {working && (

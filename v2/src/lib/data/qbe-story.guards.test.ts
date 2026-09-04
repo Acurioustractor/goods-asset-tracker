@@ -46,6 +46,7 @@ import {
   cruxFor,
 } from './qbe-story';
 import { DECK_APPENDICES, DECK_PLAN, FORM_NARRATIVE_QUESTIONS } from './deck-plan';
+import { ATTACHMENT_SLOTS, CRITICAL_PATH, DECISIVE_QUESTIONS, FORM_QUESTIONS, OPEN_QUESTIONS, questionsFor } from './qbe-form';
 import { QBE_DIAGRAMS, diagramsFor } from '../diagrams/qbe-diagrams';
 
 const aud = (n: number) => `$${n.toLocaleString('en-AU')}`;
@@ -384,5 +385,102 @@ describe('the twelve-slide plan and the four overviews', () => {
     expect(PLAN_B.label).toBe('target');
     expect(PLAN_B.lines.join(' ')).toMatch(/plants wait/i);
     expect(PLAN_B.lines.join(' ')).not.toMatch(/Tim Fairfax|Brian M\. Davis|Snow|Minderoo|Dusseldorp/);
+  });
+});
+
+describe('the form audit', () => {
+  it('covers every numbered question once, in order, with no duplicate id', () => {
+    const ids = FORM_QUESTIONS.map((q) => q.id);
+    expect(new Set(ids).size).toBe(ids.length);
+    expect(ids[0]).toBe('Q1');
+    expect(ids[ids.length - 1]).toBe('Q25');
+    // The form numbers 25 questions, and Q1 asks two separate things (the contact, and every
+    // related entity), so the audit carries 26 rows across 25 numbers.
+    const numbers = new Set(ids.map((id) => id.replace(/[a-z]$/, '')));
+    expect(numbers.size).toBe(25);
+    expect(FORM_QUESTIONS.length).toBe(26);
+    for (let n = 1; n <= 25; n++) expect(numbers.has(`Q${n}`), `Q${n}`).toBe(true);
+  });
+
+  it('an answer that is ready is submittable: no owner, no gap, and any remaining upside is named as upside', () => {
+    for (const q of FORM_QUESTIONS) {
+      if (q.state !== 'ready') continue;
+      expect(q.owner, q.id).toBe('done');
+      expect(q.gap, q.id).toBe('');
+      if (q.improvedBy) expect(q.improvedBy.length, q.id).toBeGreaterThan(30);
+    }
+  });
+
+  it('every question names what it is really testing, and every unfinished one names an owner', () => {
+    for (const q of FORM_QUESTIONS) {
+      expect(q.reallyTesting.length, q.id).toBeGreaterThan(30);
+      if (q.state === 'ready') expect(q.owner, q.id).toBe('done');
+      else expect(q.owner, q.id).not.toBe('done');
+      if (q.owner === 'done') expect(q.gap, q.id).toBe('');
+      else expect(q.gap.length, q.id).toBeGreaterThan(10);
+    }
+  });
+
+  it('the five decisive questions are the ones the program weights, and each is answered', () => {
+    expect([...DECISIVE_QUESTIONS]).toEqual(['Q5', 'Q6', 'Q7', 'Q14', 'Q18']);
+    for (const id of DECISIVE_QUESTIONS) {
+      const q = FORM_QUESTIONS.find((x) => x.id === id)!;
+      expect(q.state, id).toBe('ready');
+      expect(q.slide, id).toBeTypeOf('number');
+    }
+  });
+
+  it('every slide a question points at exists in the twelve-slide plan, and every chapter exists', () => {
+    const slides = new Set(DECK_PLAN.map((s) => s.n));
+    const chapters = new Set(STORY_CHAPTERS.map((c) => c.id));
+    for (const q of FORM_QUESTIONS) {
+      if (q.slide) expect(slides.has(q.slide), q.id).toBe(true);
+      if (q.chapter) expect(chapters.has(q.chapter), q.id).toBe(true);
+    }
+  });
+
+  it('the amount and the fallback carry the figures from raise-stack, never typed', () => {
+    const q5 = FORM_QUESTIONS.find((q) => q.id === 'Q5')!;
+    const q7 = FORM_QUESTIONS.find((q) => q.id === 'Q7')!;
+    expect(q5.weHold).toContain(QBE_ASK.recommended.aud.toLocaleString('en-AU'));
+    expect(q5.weHold).toContain(String(QBE_ASK.recommended.beds));
+    expect(q7.weHold).toContain(QBE_ASK.smaller.aud.toLocaleString('en-AU'));
+    expect(q7.weHold).toContain(String(QBE_ASK.smaller.beds));
+  });
+
+  it('never says the grant matches, doubles or guarantees anything (ruling V)', () => {
+    const prose = FORM_QUESTIONS.flatMap((q) => [q.reallyTesting, q.weHold, q.gap, q.pressure ?? '']).join(' ');
+    expect(prose).not.toMatch(/\b(match(es|ing)?|doubles?|guarantees?)\b.{0,20}\b(the grant|QBE|funding)\b/i);
+    expect(prose).not.toMatch(/dollar[- ]for[- ]dollar/i);
+  });
+
+  it('the audit names no funder and no first name: it is a working surface but it travels', () => {
+    const prose = FORM_QUESTIONS.flatMap((q) => [q.asks, q.reallyTesting, q.weHold, q.gap, q.pressure ?? '']).join(' ');
+    for (const re of [/Tim Fairfax/, /Brian M\. Davis/, /Minderoo/, /Dusseldorp/, /\bSEFA\b/, /White Box/, /\bJay\b/, /\bKatie\b/, /\bMiranda\b/]) {
+      expect(prose, String(re)).not.toMatch(re);
+    }
+  });
+
+  it('the critical path unblocks only questions that exist, and covers every owner with open work', () => {
+    const ids = new Set(FORM_QUESTIONS.map((q) => q.id));
+    for (const step of CRITICAL_PATH) {
+      expect(step.unblocks.length, step.what).toBeGreaterThan(0);
+      for (const u of step.unblocks) expect(ids.has(u), u).toBe(true);
+    }
+    for (const owner of ['Ben', 'Eloise', 'Social Impact Hub'] as const) {
+      expect(questionsFor(owner).length, owner).toBeGreaterThan(0);
+      expect(CRITICAL_PATH.some((s) => s.owner === owner), owner).toBe(true);
+    }
+  });
+
+  it('every attachment slot has an owner, and the open list is derived', () => {
+    for (const a of ATTACHMENT_SLOTS) expect(a.slot.startsWith(a.id), a.id).toBe(true);
+    expect(OPEN_QUESTIONS.length).toBe(FORM_QUESTIONS.filter((q) => q.state !== 'ready').length);
+    expect(OPEN_QUESTIONS.length).toBeGreaterThan(0);
+  });
+
+  it('the form chapter is on the working copy only', () => {
+    expect(chaptersFor('working').map((c) => c.id)).toContain('form');
+    expect(chaptersFor('public').map((c) => c.id)).not.toContain('form');
   });
 });
