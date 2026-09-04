@@ -94,11 +94,22 @@ const RETIRED = [
   // REVENUE RESTATED 2026-09-05 (Ben: "yes restate revenue to $785,111"). The 3 June 2026 reconcile
   // baseline was $741,111 and Homeland INV-0303 $44,000 was paid after it, leaving the money in
   // neither revenue nor receivables. Commercial receipts move $61,449 -> $105,449.
-  { value: '741,111', what: 'funding received since inception', now: '$785,111', context: /receiv|revenue|funding|investment/i, ruling: 'Ben 2026-09-05' },
-  { value: '741_111', what: 'funding received since inception', now: '$785,111', context: /receiv|revenue|funding|investment/i, ruling: 'Ben 2026-09-05' },
-  { value: '741.1K', what: 'funding received since inception', now: '$785.1K', context: /receiv|revenue|accrec/i, ruling: 'Ben 2026-09-05' },
-  { value: '61,449', what: 'commercial and buyer receipts', now: '$105,449 (adds Homeland INV-0303)', context: /commercial|buyer|receipt/i, ruling: 'Ben 2026-09-05' },
-  { value: '61_449', what: 'commercial and buyer receipts', now: '$105,449 (adds Homeland INV-0303)', context: /commercial|buyer|receipt/i, ruling: 'Ben 2026-09-05' },
+  { value: '741,111', what: 'funding received since inception', now: '$901,311 (via $785,111 earlier the same day)', context: /receiv|revenue|funding|investment/i, ruling: 'Ben 2026-09-05' },
+  { value: '741_111', what: 'funding received since inception', now: '$901,311 (via $785,111 earlier the same day)', context: /receiv|revenue|funding|investment/i, ruling: 'Ben 2026-09-05' },
+  { value: '741.1K', what: 'funding received since inception', now: '$901.3K', context: /receiv|revenue|accrec/i, ruling: 'Ben 2026-09-05' },
+  { value: '61,449', what: 'commercial and buyer receipts', now: '$221,649 (adds Homeland INV-0303, ALIVE INV-0342, Julalikari INV-0335)', context: /commercial|buyer|receipt/i, ruling: 'Ben 2026-09-05' },
+  { value: '61_449', what: 'commercial and buyer receipts', now: '$221,649 (adds Homeland INV-0303, ALIVE INV-0342, Julalikari INV-0335)', context: /commercial|buyer|receipt/i, ruling: 'Ben 2026-09-05' },
+
+  // REVENUE RESTATED AGAIN 2026-09-05 (Ben: ALIVE and Julalikari "are sales which showcase how we can
+  // sell beds and how communities can as well, and washing machines, same as the Centrecorp sales").
+  // ALIVE INV-0342 $101,200 and Julalikari INV-0335 $15,000 were paid after the 3 June baseline too.
+  // Funding received $785,111 -> $901,311; commercial and buyer receipts $105,449 -> $221,649.
+  { value: '785,111', what: 'funding received since inception', now: '$901,311', context: /receiv|revenue|funding|investment/i, ruling: 'Ben 2026-09-05' },
+  { value: '785_111', what: 'funding received since inception', now: '$901,311', context: /receiv|revenue|funding|investment/i, ruling: 'Ben 2026-09-05' },
+  { value: '785.1K', what: 'funding received since inception', now: '$901.3K', context: /receiv|revenue|accrec/i, ruling: 'Ben 2026-09-05' },
+  { value: '105,449', what: 'commercial and buyer receipts', now: '$221,649 (adds ALIVE INV-0342 and Julalikari INV-0335)', context: /commercial|buyer|receipt/i, ruling: 'Ben 2026-09-05' },
+  { value: '105_449', what: 'commercial and buyer receipts', now: '$221,649 (adds ALIVE INV-0342 and Julalikari INV-0335)', context: /commercial|buyer|receipt/i, ruling: 'Ben 2026-09-05' },
+  { value: '105.4K', what: 'commercial and buyer receipts', now: '$221.6K', context: /commercial|buyer|receipt/i, ruling: 'Ben 2026-09-05' },
 ];
 
 /**
@@ -210,6 +221,11 @@ const ALLOWED = [
     file: 'lib/data/cost-story.ts',
     match: /never the \$403,901/i,
     why: 'A watchOut instructing us NEVER to cite this figure. The rule has to name the number it bans.',
+  },
+  {
+    file: 'lib/data/canon.ts',
+    match: /Was \$785,111:/,
+    why: 'The canon definition records what funding received WAS and why it moved a second time on 2026-09-05. Same reason as the receivables row below.',
   },
   {
     file: 'lib/data/canon.ts',

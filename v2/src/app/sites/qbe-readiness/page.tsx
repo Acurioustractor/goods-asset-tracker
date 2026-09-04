@@ -90,7 +90,7 @@ const METRICS: Array<{ value: string; label: string; sub: string; tier: Tier }> 
     label: 'Goods-only received',
     // RULING G/H 2026-07-25: there is NO signed accountant document. The figure stays, the
     // adjective and the badge come off. Getting it signed is the next action.
-    sub: 'Goods-only carve-out, prepared with our accountant but not yet signed. Within AU$785,111 all-sources received.',
+    sub: 'Goods-only carve-out, prepared with our accountant but not yet signed. Within AU$901,311 all-sources received.',
     tier: 'Workpaper',
   },
   {
@@ -250,7 +250,7 @@ const ROWS: Row[] = [
     from: '4',
     to: '7',
     priority: true,
-    line: 'About 89% grant-funded today. The path off grants: in-source plastic, shift buyers to procurement.',
+    line: 'About 75% grant-funded today. The path off grants: in-source plastic, shift buyers to procurement.',
   },
   {
     number: 4,

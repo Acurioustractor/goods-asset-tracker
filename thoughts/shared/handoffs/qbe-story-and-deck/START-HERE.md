@@ -72,19 +72,22 @@ thoughts/shared/handoffs/qbe-story-and-deck/current.md.
 Every dollar sits in one of seven lanes and total() throws if you add lanes that
 must not be added. Do not invent a number outside that module.
 
-Four decisions are waiting on me. Put them to me one at a time, with what changes
+Three decisions are waiting on me. Put them to me one at a time, with what changes
 if I say yes:
-1. Do ALIVE INV-0342 $101,200 and Julalikari INV-0335 $15,000 go into revenue?
-   Both are Goods receipts paid after the 3 June baseline, same as Homeland was.
-   Fully current is $901,311 against the $785,111 that is there now.
-2. Re-pull the Goods carve-out. $713,827 is asAt 2026-06-02 and the drift guard
-   wants it refreshed before any external share.
-3. When I said "Bryan Foundation incoming", did I mean The Bryan Foundation
+1. Re-pull the Goods carve-out. $713,827 is asAt 2026-06-02 and the drift guard
+   wants it refreshed before any external share. The Xero ACT-GD paid cut
+   ($650,910.79, asAt 2026-06-01) is stale the same way.
+2. When I said "Bryan Foundation incoming", did I mean The Bryan Foundation
    (26 May meeting, nothing in writing, potential) or Brian M. Davis (invited,
    up to $100,000, board 19 November)?
-4. Rotary $82,500 is bad debt and fine for now. Tell me when that stops being true.
+3. Rotary $82,500 is bad debt and fine for now. Tell me when that stops being true.
 
-The receivables figure lives in FOUR places and revenue in NINE. Move them
+Settled 5 Sep: ALIVE $101,200 and Julalikari $15,000 are in funding received, which
+is $901,311. Still open from the same Xero check: are Oonchiumpa INV-0344 $41,250
+and INV-0346 $1,000 Goods receipts, and is Centrecorp a buyer or philanthropy in
+the funding-received composition.
+
+The receivables figure lives in FOUR places and revenue in ELEVEN. Move them
 together or check:drift:ci fails on a copy you did not know about.
 ```
 
@@ -93,9 +96,9 @@ together or check:drift:ci fails on a copy you did not know about.
 ## What is waiting
 
 **Money, and it is now clean.** `money-lanes.ts` classifies every dollar into seven lanes with a
-rule each, and `total()` throws rather than adding lanes that must not be added. Earned $273,966 ·
+rule each, and `total()` throws rather than adding lanes that must not be added. Earned $288,966 ·
 owed $0 · bad debt $82,500 · invited $400,000 · asked $600,000 · potential $540,000 · excluded
-$1,995,000. Beds sold and paid: **$197,060 ex GST, 320 beds, four organisations.** Signed: **$0.**
+$1,995,000. Beds sold and paid: **$197,060 ex GST, 320 beds, four organisations.** Signed: **$0.** Funding received, all sources: **$901,311** (Ben, 5 Sep).
 Recall surface: `deliverables/qbe-stage2/diagrams/08-money-lanes.svg`.
 
 **Settled on 5 September, all in code and guarded:**
@@ -107,8 +110,10 @@ Recall surface: `deliverables/qbe-stage2/diagrams/08-money-lanes.svg`.
   Brian M. Davis up to $100,000, board 19 November. **Nic told the mentor these were commitments.
   Somebody has to correct that**, because the QBE form scores leverage.
 
-**Open and mine to fix once Ben rules:** ALIVE $101,200 and Julalikari $15,000 into revenue
-($901,311); the stale carve-out; Bryan against Brian.
+**Open and mine to fix once Ben rules:** the stale carve-out (and the equally stale Xero ACT-GD paid
+cut); Bryan against Brian; the two Oonchiumpa receipts (INV-0344 $41,250, INV-0346 $1,000); whether
+Centrecorp counts as a buyer in the funding-received composition. **Done 5 Sep:** ALIVE and Julalikari
+are in, funding received is $901,311, Julalikari sits in the earned lane.
 
 **Open and Ben's alone:**
 - **The ask decision.** Blocks 07, 10, 11 and 12.
@@ -119,12 +124,13 @@ Recall surface: `deliverables/qbe-stage2/diagrams/08-money-lanes.svg`.
   visible. Proposal is in slide 04's research section.
 - Ben has not formally ruled on slides 02 to 06.
 
-**Branch state.** `feat/qbe-story` in `/Users/benknight/Code/goods-story-wt`, **eight commits ahead
+**Branch state.** `feat/qbe-story` in `/Users/benknight/Code/goods-story-wt`, **ten commits ahead
 of origin and NOT pushed.** Two predate this session (`53b7193` the Kalgoorlie fix, `07af900` slides
 01 to 06). Six are the money work: `08f3acb` buyers derived from the paper · `574ca86` money lanes ·
 `cddf5ed` INV-0317 retired · `b2a0052` receivables $82,500 · `6de744a` revenue $785,111 · `22e839d`
-these prompts. PR #253 open and unmerged. Gates green: tsc,
-690 tests, `check:drift:ci` in lockstep, `check:retired-figures` (32 figures), `next build`.
+these prompts. Second session, 5 Sep: `cc45164` the Xero re-check of decision 1, then the
+restatement to $901,311 with Julalikari in the earned lane. PR #253 open and unmerged. Gates green: tsc,
+692 tests, `check:drift:ci` in lockstep, `check:retired-figures` (32 figures), `next build`.
 
 **Dates.** BMDF closes **25 September**. QBE closes **25 September, 12pm AEST**. TFFF closes
 **9 October, 5pm AEST**, board late November. Brian M. Davis board **19 November**.

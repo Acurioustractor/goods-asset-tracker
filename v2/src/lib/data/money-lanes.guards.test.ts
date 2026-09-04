@@ -143,6 +143,26 @@ describe('the lanes stay tied to their sources', () => {
     expect(homeland[0].lane).toBe('earned');
   });
 
+  // Ben, 5 Sep (second ruling): ALIVE and Julalikari "are sales which showcase how we can sell beds
+  // and how communities can as well, and washing machines, same as the Centrecorp sales".
+  it('a paid washers-only sale reaches the earned lane even though the beds ledger cannot carry it', () => {
+    const julalikari = linesIn('earned').find((l) => /INV-0335/.test(l.paper));
+    expect(julalikari, 'Julalikari INV-0335 must be in earned').toBeDefined();
+    expect(julalikari?.amountAud).toBe(15_000);
+    expect(julalikari?.instrument).toBe('purchase');
+    expect(BUYING_STORY.some((b) => /Julalikari/.test(b.who)), 'the beds ledger stays beds').toBe(false);
+    expect(total(['earned'])).toBe(BEDS_SOLD.documentsIncGstAud + 15_000);
+  });
+
+  it('canon, the compendium and the grant content agree on funding received, and the lines sum to it', () => {
+    expect(verifiedFinancials.revenueReceived).toBe(901_311);
+    expect(fundingHistory.totalReceived).toBe(verifiedFinancials.revenueReceived);
+    expect(fundingHistory.received.reduce((t, r) => t + r.amount, 0)).toBe(fundingHistory.totalReceived);
+    // The two receipts Ben ruled in on 5 Sep sit inside the commercial and buyer line.
+    const commercial = fundingHistory.received.find((r) => /Commercial/.test(r.source));
+    expect(commercial?.amount).toBe(221_649);
+  });
+
   it('canon, the compendium and the grant content agree on what is receivable', () => {
     expect(verifiedFinancials.accountsReceivable).toBe(82_500);
     expect(fundingHistory.totalReceivables).toBe(verifiedFinancials.accountsReceivable);

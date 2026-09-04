@@ -22,7 +22,8 @@
  * Sources. Invoice lines are read from Xero contact by contact against the aged receivables report
  * of 5 September 2026. Funder lines come from `raise-stack.ts`, which carries the email each
  * invitation arrived in. Nothing here is typed twice: the bed invoices live in `qbe-story.ts` and
- * the funder lines in `raise-stack.ts`, and this module classifies them.
+ * the funder lines in `raise-stack.ts`, and this module classifies them. The one exception is a
+ * washers-only sale, which no other module carries, so it is typed once here and nowhere else.
  */
 import { STACK, type Instrument, type StackLine } from './raise-stack';
 import { BUYING_AS_AT, BUYING_STORY } from './qbe-story';
@@ -157,6 +158,35 @@ const BED_LINES: MoneyLine[] = BUYING_STORY.filter((b) => b.status === 'paid').m
 }));
 
 /**
+ * Machines sold on their own, without beds.
+ *
+ * The bed invoices come from `BUYING_STORY`, which is the buyers ledger behind slide 05 and is beds
+ * by definition. A paid invoice for washing machines alone never reaches it, so until 5 September it
+ * never reached this lane either, although the lane's own rule says "beds and machines". Julalikari
+ * Council bought two washing machines for Tennant Creek in June 2026 and paid.
+ *
+ * RULED (Ben, 5 September 2026): ALIVE and Julalikari "are sales which showcase how we can sell beds
+ * and how communities can as well, and washing machines, same as the Centrecorp sales". So it is
+ * earned, it is inside the funding-received figure, and it is typed here because no other module can
+ * carry it without turning the buyers ledger into something it is not.
+ */
+const MACHINE_LINES: MoneyLine[] = [
+  {
+    id: 'machine-inv-0335',
+    who: 'Julalikari Council Aboriginal Corporation',
+    what: 'Two washing machines and delivery for Tennant Creek, $13,540 ex GST.',
+    amountAud: 15_000,
+    gst: 'inc',
+    lane: 'earned',
+    instrument: 'purchase',
+    paper: 'INV-0335, paid, issued 19 June 2026',
+    when: 'June 2026',
+    label: 'verified',
+    source: `Xero, read ${BUYING_AS_AT}`,
+  },
+];
+
+/**
  * Rotary eClub Outback Australia, and why it is not a buyer.
  *
  * INV-0222, 10 April 2025, 200 crate beds at $350 plus a $5,000 project, $82,500 including GST.
@@ -268,7 +298,7 @@ const RELATIONSHIPS: MoneyLine[] = [
   },
 ];
 
-export const MONEY_LINES: readonly MoneyLine[] = [...BED_LINES, ...OWED, ...BAD_DEBT, ...FUNDER_LINES, ...RELATIONSHIPS];
+export const MONEY_LINES: readonly MoneyLine[] = [...BED_LINES, ...MACHINE_LINES, ...OWED, ...BAD_DEBT, ...FUNDER_LINES, ...RELATIONSHIPS];
 
 /** Debt is not philanthropy. Every repayable line, whatever lane it sits in. */
 export const REPAYABLE_LINES = MONEY_LINES.filter((l) => l.instrument === 'repayable');

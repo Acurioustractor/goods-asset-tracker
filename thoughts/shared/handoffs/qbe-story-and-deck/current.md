@@ -9,7 +9,7 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-04T22:57:13Z
+**Updated:** 2026-09-04T23:17:36Z
 **Goal:** Thirteen slides, each built in Pencil and each carrying a full evidence-graded section in Notion. Then the QBE form. Done when Ben has ruled on all thirteen and the PDF is under 10MB.
 **Branch:** `feat/qbe-story`, PR #253, pushed, CI green. Worktree `/Users/benknight/Code/goods-story-wt`.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
@@ -452,8 +452,8 @@ guards. The recall surface is a drawing in the existing pipeline,
 
 | Lane | Today | Means |
 |---|---|---|
-| Earned | \$273,966 inc GST, 5 invoices | Made it, sold it, the money is in. The only revenue lane. |
-| Owed | \$16,500, 1 | Invoiced and collectable. Real, not money. |
+| Earned | \$288,966 inc GST, 6 invoices (was \$273,966 until Julalikari went in, 5 Sep) | Made it, sold it, the money is in. The only revenue lane. |
+| Owed | \$0, empty since the receivables restatement below | Invoiced and collectable. Real, not money. |
 | Bad debt | \$82,500, 1 | Rotary. Adds to nothing. |
 | Invited | \$400,000, 2 | The funder wrote naming an amount and the date they decide. |
 | Asked | \$600,000, 3 | Our ask is with them, nothing back with a number on it. |
@@ -595,6 +595,62 @@ every per-dollar stat on the public pages falls about 12.9%: Ben must see those 
 Commercial share of everything received moves from 13.4% to 24.6%. As with Homeland, the
 aggregate moves and no new `received` rows go into the public `funding` list that `/press` renders.
 
+### Decision 1 applied: ALIVE and Julalikari are in, 5 September
+
+**Ben:** "ALIVE and Julalikari go into funding received? they are beds that are bought so they are
+sales which showcase how we can sell beds and how communities can as well and washing machines, same
+as the Centrecorp sales."
+
+Funding received is **\$901,311**. Commercial and buyer receipts \$105,449 to \$221,649. Both invoices
+were re-read as PAID on Xero before anything moved. Eleven copies moved together, and the gates are
+green: tsc clean, 692 tests, `check:drift:ci` in lockstep, `check:retired-figures` (38 figures),
+`next build`.
+
+- `canon.ts` `revenue-received`: value, source, definition (with a "Was \$785,111" line the
+  retired-figures guard ALLOWS, as it does for the receivables row), and the carve-out definition
+  that cites it.
+- `compendium.ts` `verifiedFinancials.revenueReceived` and its note, which now also names the two
+  Oonchiumpa receipts still outside.
+- `grant-content.ts` `totalReceived`, the commercial line, and the `whatAreYourFinancials` prose
+  (~\$901.3K, ~\$221.6K).
+- `check-canon-drift.mjs` mirror, and `wiki/canon/needs-signoff.md`, which that script regenerates.
+- `impact-model.ts`: the two denominator comments, and the "~89% grant-funded" label and source note,
+  now ~75% and ~25%. Those percentages were already wrong at \$785,111 (\$679,662 of grant and
+  philanthropic receipts over the total) and the retired-figures regex cannot guard a percentage,
+  because its lookahead rejects a value followed by "%". Fixed by hand; watch it.
+- `/sites/qbe-readiness/page.tsx`: "Within AU\$901,311 all-sources received" and "About 75%
+  grant-funded today" (was 89%).
+- `playbook-content.ts`, and the wiki playbook it is generated from (see below).
+- `check-retired-figures.mjs`: "785,111", "785_111", "\$785.1K", "105,449", "105_449" and "\$105.4K"
+  retired; the `now` fields on the \$741,111 and \$61,449 entries brought forward.
+- `money-lanes.ts`: `MACHINE_LINES` carries Julalikari INV-0335 in the earned lane, typed once because
+  no other module can hold a washers-only sale. `BUYING_STORY` untouched, so slide 05 keeps four
+  organisations and 320 beds. Earned is **\$288,966 inc GST across six lines**. Two new guards: the
+  washers-only sale reaches earned, and canon, compendium and grant content agree on funding
+  received with the lines summing to it.
+- `08-money-lanes.svg` re-rendered from the module through `render-diagrams-full.mjs` (public
+  variant, as the committed file was). `09-who-buys.svg` compared against a fresh working render:
+  identical, untouched.
+- `STRATEGY.md` still said "\$741,111 is valid only when the basis is named": moved to \$901,311.
+
+**The wiki playbook was stale against its own generated copy.** `playbook-content.ts` says it is
+generated from `wiki/outputs/2026-06-05-cost-lab-playbook.md`, but the TypeScript had been
+hand-corrected in six places the wiki never received: QBE "typically \$150,000 to \$400,000 from a
+pool of up to \$1.1M shared across ten enterprises", 540 beds in 11 communities, and no "\$400K
+signed + \$400K QBE match" line. Regenerating from the wiki would have put retired claims back into
+`src/`. The corrected TypeScript content was written back into the wiki body under its header, the
+round trip was asserted, and regeneration is safe again.
+
+**Public surfaces changed and Ben has not seen them.** The impact-per-dollar denominator rose 14.8%,
+so every per-dollar stat on the public impact pages fell about 12.9%. The QBE readiness page's two
+lines and the grant answer prose changed. PR #253 carries them.
+
+**One thing Ben's words raise that was not acted on.** He called ALIVE and Julalikari "the same as
+the Centrecorp sales". In `grant-content.ts` Centrecorp's \$123,332 is its own received line and the
+prose counts it inside "grant/philanthropic receipts", while the buyers ledger and slide 05 count
+Centrecorp as a buyer of 167 beds. If Centrecorp is a buyer in this composition too, commercial and
+buyer receipts are \$344,981 and the grant share is 62%, not 75%. Left as it is. Ben's call, in Next.
+
 ### Next
 - [ ] **Ben: slide 05 needs a second pass.** Headline to "Five organisations have bought beds. Four
       have paid.", add Centrecorp INV-0259 (60 beds, paid), pull the Palm Island row until INV-0317
@@ -606,15 +662,18 @@ aggregate moves and no new `received` rows go into the public `funding` list tha
       May and are outside the guard's scan of `src/`; left as history, flagged here.
 - [x] Receivables restated to \$82,500 on Ben's three rulings. Lockstep green.
 - [x] Revenue restated to \$785,111 on Ben's word. Nine locations, lockstep green.
-- [ ] **Ben: do ALIVE \$101,200 and Julalikari \$15,000 go in too?** Both PAID on Xero,
-      re-checked 5 Sep (second session). Put to Ben as decision 1 of the money thread. Fully
-      current would be **\$901,311**, or more if either Oonchiumpa invoice below is Goods.
+- [x] **ALIVE \$101,200 and Julalikari \$15,000 are in.** Ben, 5 Sep: "they are sales which
+      showcase how we can sell beds and how communities can as well, same as the Centrecorp sales".
+      Funding received \$901,311, eleven copies, gates green.
+- [ ] **Ben: is Centrecorp a buyer or a philanthropic receipt in the funding-received composition?**
+      His words put it with the sales. The prose puts its \$123,332 under grant/philanthropic. If it
+      moves, commercial and buyer receipts are \$344,981 and the grant share is 62%.
 - [ ] **Ben: are Oonchiumpa INV-0344 \$41,250 (Atnarpa build) and INV-0346 \$1,000 ("wages for
       the Goods Project") Goods receipts?** Both paid after the baseline, in no figure and no lane.
-- [ ] Julalikari is in no lane: the earned lane is built from `BUYING_STORY`, which is beds only.
-      Machine line in `money-lanes.ts` on a yes to decision 1; `BUYING_STORY` untouched.
+- [x] Julalikari was in no lane. `MACHINE_LINES` in `money-lanes.ts` carries it now; `BUYING_STORY` untouched.
 - [ ] **Re-pull the Goods carve-out (\$713,827, asAt 2026-06-02).** 94 days old; the drift guard
-      asks for it before any external share.
+      asks for it before any external share. The Xero ACT-GD paid cut (\$650,910.79, asAt
+      2026-06-01) is stale the same way. Decision 2 of the money thread; next up.
 - [ ] **Ben: does "Bryan Foundation" mean The Bryan Foundation (May meeting, nothing in writing) or
       Brian M. Davis (invited, up to $100,000, board 19 Nov)? Both are in the lanes; only one is
       new money.**

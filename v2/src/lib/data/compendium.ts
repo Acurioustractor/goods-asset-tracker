@@ -328,13 +328,17 @@ export const verifiedFinancials = {
   //
   // RESTATED 2026-09-05 (Ben: "yes restate revenue to $785,111"). The 3 June baseline was
   // $741,111; Homeland School Company INV-0303 $44,000 was paid after it and had fallen out of
-  // both revenue and receivables, so the commercial line moves $61,449 -> $105,449.
+  // both revenue and receivables, so the commercial line moved $61,449 -> $105,449.
   //
-  // KNOWN EXCLUSIONS, not yet ruled on: two further Goods receipts also landed after the 3 June
-  // baseline and are still outside this figure. ALIVE INV-0342 $101,200 (100 beds, paid July 2026)
-  // and Julalikari INV-0335 $15,000 (two washing machines, paid June 2026). Bringing the baseline
-  // fully current for Goods would make this $901,311.
-  revenueReceived: 785_111,
+  // RESTATED AGAIN 2026-09-05 (Ben: ALIVE and Julalikari "are sales which showcase how we can sell
+  // beds and how communities can as well, and washing machines, same as the Centrecorp sales").
+  // ALIVE INV-0342 $101,200 (100 beds, PAID July 2026) and Julalikari INV-0335 $15,000 (two washing
+  // machines, PAID June 2026) were also paid after the baseline, and were re-read as PAID on Xero
+  // the same day. Commercial and buyer line $105,449 -> $221,649. Total $785,111 -> $901,311.
+  //
+  // STILL OUTSIDE, not yet ruled on: Oonchiumpa INV-0344 $41,250 (Atnarpa homestead build, PAID
+  // 12 Aug 2026) and INV-0346 $1,000 ("wages for the Goods Project", PAID 28 Aug 2026).
+  revenueReceived: 901_311,
   // Accounts receivable, restated 2026-09-05 against Xero's aged receivables of the same date,
   // on three rulings from Ben. It was $143,000 and it is $82,500, all of which is bad debt:
   //   Rotary INV-0222 $82,500   BAD DEBT. "Just overdue and fucked." Due 24 Apr 2025.

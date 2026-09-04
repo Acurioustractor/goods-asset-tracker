@@ -40,7 +40,7 @@ const today = new Date();
 
 // Mirror of the money facts in src/lib/data/canon.ts (the registry of record).
 const MONEY_CANON = {
-  revenueReceived: { value: 785_111, asAt: '2026-09-05' }, // 3 Jun baseline + Homeland INV-0303 $44,000 (Ben, 5 Sep).
+  revenueReceived: { value: 901_311, asAt: '2026-09-05' }, // 3 Jun baseline + Homeland INV-0303 $44,000 + ALIVE INV-0342 $101,200 + Julalikari INV-0335 $15,000 (Ben, 5 Sep).
   accountsReceivable: { value: 82_500, asAt: '2026-09-05' }, // Rotary alone, and it is bad debt. $0 collectable.
   xeroPaid: { value: 650_910.79, asAt: '2026-06-01', label: 'ACT-GD receivables paid (Xero cut)' },
   carveOut: { value: 713_827, asAt: '2026-06-02', label: 'Goods revenue carve-out' },
