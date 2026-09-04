@@ -120,7 +120,7 @@ export function entityAndMoney(audience: StoryAudience): string {
   }
   b += panel(600, ry, 400, rh, { k: working ? 'Related entity, cohort entrant' : 'The company we started', t: 'A Curious Tractor Pty Ltd', b: working ? 'ABN 36 697 347 676. Entered the 2026 cohort; historic maker; transferring assets. Delivers nothing under the grant after transfer.' : 'The historic maker and seller of the beds. Moving the products, IP and equipment across to Goods on Country.', fill: C.sand, stroke: C.sand, tsize: 17, bsize: 13 });
   b += arrow(1008, ry + rh / 2, 1120, ry + rh / 2);
-  b += text(1064, ry + rh / 2 - 10, working ? 'ruling X, 28 Aug' : '28 August 2026', { size: 11, font: F.mono, fill: C.mute, anchor: 'middle' });
+  b += text(1064, ry + rh / 2 - 10, '28 August 2026', { size: 11, font: F.mono, fill: C.mute, anchor: 'middle' });
   b += panel(1130, ry, 400, rh, { k: working ? 'Applicant and recipient' : 'Where the money lands', t: 'The Butterfly Movement Ltd, trading as Goods on Country', b: `${working ? `ABN ${ENTITY_ROUTE.recommended.abn}. ` : ''}Company limited by guarantee. Registered charity since 2012, deductible gift recipient since 17 Jan 2012. Business name from 23 Jul 2026.`, fill: C.white, stroke: C.terra, tsize: 17, bsize: 13 });
 
   const y2 = 418;
@@ -334,7 +334,7 @@ export function threeJobs(audience: StoryAudience): string {
             k: 'Money that runs the organisation',
             t: "Three years of support, the organisation's resilience",
             lines: blockLines.map((l) => ({ name: `${l.funder}, three years`, amount: aud(l.amountAud ?? 0), status: statusWord(l.status) })),
-            note: `${THE_BLOCK.line} Bed money never funds this. Katie Norman named the resilience of organisations as the reason for the invitation. Recommended: the organisation, not beds. Ben has not yet ruled.`,
+            note: `${THE_BLOCK.line} Bed money never funds this. The invitation is for three years of support for the organisation itself, and the allocation is not settled.`,
           },
           {
             k: 'Money we borrow for the plants',
