@@ -53,7 +53,7 @@ status: active
 - UNCONFIRMED: whether `INVESTORS_PASSWORD` is set on Vercel. It is used by `/investors` already, so probably, but verify before claiming the gated route works in production.
 - OPEN: who runs the line at the first site and who pays them. The biggest single dial in the model, and one of the four gates.
 - OPEN: the accountant's letter, blocked on the cost-of-goods problem in the historic books.
-- OPEN: `src/components/shop/enterprise-opportunity.tsx` carries an invented testimonial attributed to "Community Enterprise Partner". No such speaker is in `cleared-voices`. The component is exported and rendered nowhere, so nothing is live, but it is one import away. Delete the component or clear a real quote. Found by #249.
+- OPEN: an invented testimonial attributed to "Community Enterprise Partner" sits in `src/components/shop/enterprise-opportunity.tsx`. No such speaker is in `cleared-voices`, the component is rendered nowhere, and it is one import away from a public surface. Filed as #252 for Ben; found by #249.
 - OPEN: `conditional-chrome.tsx` still lists `/pitch/investor-lab`, `/pitch/miro-board` and `/deck` as standalone prefixes. All three are redirects. Dead but harmless; belongs with the `/pitch/model` chrome question.
 
 ### Workflow State
