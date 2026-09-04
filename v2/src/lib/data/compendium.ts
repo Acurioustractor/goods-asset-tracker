@@ -284,7 +284,11 @@ export const funding: FundingRecord[] = [
   // INV-0321 Snow $132K: PAID — absorbed into the $493,129.79 3yr total ($0 outstanding, 2026-06-09 reconciliation)
   { id: 'recv-shed-plant-1', source: 'Our Community Shed', amount: 163900, status: 'receivable', notes: 'QU-0011 DRAFT $163,900 (inc GST), Plant Part 1: shredding. 12mo @ $12K/mo + $5K transport.' },
   { id: 'recv-shed-plant-2', source: 'Our Community Shed', amount: 93498, status: 'receivable', notes: 'QU-0012 DRAFT $93,498 (inc GST), Plant Part 2: moulding. 6mo @ $13.3K/mo + $5K transport.' },
-  { id: 'recv-picc', source: 'PICC (Palm Island)', amount: 36300, status: 'receivable', notes: 'INV-0317 AUTHORISED $36,300: 40 Stretch Beds @ $750 + $3K delivery' },
+  // RETIRED 2026-09-05 (Ben: "remove this one, didn't happen"). PICC INV-0317, $36,300, 40 Stretch
+  // Beds at $750 plus $3,000 delivery, was carried here as an authorised receivable from May 2026.
+  // It is absent from Xero's aged receivables of 5 Sep 2026 and from every invoice on the PICC
+  // contact, paid or unpaid. Palm Island has paid $436,700 across five invoices and not one of them
+  // has a bed on it. The order was never placed. check-retired-figures guards the figure.
   { id: 'recv-rotary', source: 'Rotary Eclub Outback Australia', amount: 82500, status: 'receivable', notes: 'INV-0222 OVERDUE $82,500 (inc GST): 200 Basket Beds v1 @ $350 + $5K project. Due 24 Apr 2025. 11 MONTHS OVERDUE.' },
   { id: 'recv-homeland', source: 'Homeland School Company', amount: 44000, status: 'receivable', notes: 'INV-0303 AUTHORISED $44,000, Awaiting Payment. Sent 18 May 2026, due 30 Jun 2026. Line items (verified via Xero 2026-07-13): 2x Indestructible Washing Machine v1.1 ($9,000), 40x Stretch Bed ($30,000), 1x program support trip ($8,000), delivery ex BNE-DRW-MNG ($5,900), less $14,190 in-kind partnership credit.' },
 ];

@@ -405,13 +405,14 @@ date. Three things came out of that reading and two of them contradict the built
    plus a \$5,000 project, authorised, overdue since 24 April 2025, sitting in the 3+ month bucket
    at 29.4% of all outstanding receivables. It belongs in the buying record with the status said out
    loud, which is what the row now does.
-3. **Palm Island Community Company's INV-0317 is not in Xero.** \$36,300, 40 Stretch Beds at \$750
-   plus \$3,000 delivery. It is absent from the aged receivables as at 5 Sep 2026 and absent from
-   every invoice on the PICC contact, paid or unpaid. The other four Palm Island contacts hold no
-   invoices at all. **VERIFIED absent. INFERRED voided or deleted; nobody has confirmed which.**
-   PICC has paid \$436,700 across five invoices and not one of them has a bed on it: storytelling,
-   photo studio, living annual report, working bee. It is kept out of the buying story and a guard
-   holds it out until somebody produces the document.
+3. **Palm Island Community Company's INV-0317 never happened. RULED (Ben, 5 Sep): "remove this
+   one, didn't happen."** \$36,300, 40 Stretch Beds at \$750 plus \$3,000 delivery. Absent from
+   the aged receivables of 5 Sep 2026 and from every invoice on the PICC contact, paid or unpaid;
+   the other four Palm Island contacts hold no invoices at all. PICC has paid \$436,700 across five
+   invoices and not one of them has a bed on it: storytelling, photo studio, living annual report,
+   working bee. **Retired at source.** `recv-picc` is gone from `compendium.ts`, and INV-0317,
+   "36,300" and "36300" are registered in `check-retired-figures` (24 figures guarded), proven to
+   fire on a reintroduction. `getFundingSummary()` had no consumers, so no surface moved.
 
 **So slide 05's headline is wrong twice over.** It reads "Six organisations have paid for beds." The
 sixth organisation is Palm Island, resting on INV-0317. And two of its seven rows are not paid,
@@ -489,9 +490,14 @@ cannot be read as philanthropy just because it shares a lane with grants.
 - [ ] **Ben: slide 05 needs a second pass.** Headline to "Five organisations have bought beds. Four
       have paid.", add Centrecorp INV-0259 (60 beds, paid), pull the Palm Island row until INV-0317
       is produced. Copy is settled in the module; the Pencil frame `p7GoP` has not been touched.
-- [ ] **Chase INV-0317 with Eloise or the PICC contact (ratkinson@picc.com.au).** If the document
-      exists, Palm Island goes back in and the count moves to six. If it was voided, `compendium.ts`
-      and four wiki outputs need the receivable retired.
+- [x] INV-0317 retired on Ben's ruling. Five dated wiki outputs still name it as a live \$36,300
+      order (`2026-05-30-tier1-6week-action-calendar`, `2026-05-12-financial-model-day5`,
+      `2026-05-30-goods-expanded-capital-universe`, `2026-07-11-narrative-foundation`,
+      `funder-discovery/01-warm-dormant-pipeline`). They are dated records of what was believed in
+      May and are outside the guard's scan of `src/`; left as history, flagged here.
+- [ ] **`compendium.ts` still calls Homeland INV-0303 an authorised \$44,000 receivable and Xero
+      says PAID.** Same class of staleness, and `verifiedFinancials.accountsReceivable` (\$143,000)
+      and `FUNDING_CANON.totalReceivables` both include it. Canon is Ben's to move, so untouched.
 - [ ] **Ben: does "Bryan Foundation" mean The Bryan Foundation (May meeting, nothing in writing) or
       Brian M. Davis (invited, up to $100,000, board 19 Nov)? Both are in the lanes; only one is
       new money.**

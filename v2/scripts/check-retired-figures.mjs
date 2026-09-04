@@ -73,6 +73,15 @@ const RETIRED = [
   { value: '800t', what: 'NT CDS plastic per year (unsupported)', now: '~530 tonnes PET (NT EPA annual report 2023-24)', context: /cds|container|deposit/i, ruling: 'DECISIONS.md ruling T' },
   { value: '60 Stretch', what: 'Maningrida in-house run size (Notion source)', now: '40 (register-verified 2026-08-24; INV-0303)', context: /bed/i, ruling: 'CONTEXT.md pressed-run entry; regressed once from the Notion source' },
   { value: '60-bed', what: 'Maningrida in-house run size (Notion source)', now: '40-bed (register-verified 2026-08-24; INV-0303)', context: /run|batch|ledger/i, ruling: 'CONTEXT.md pressed-run entry' },
+
+  // PALM ISLAND'S 40-BED ORDER NEVER HAPPENED. Ben, 2026-09-05: "remove this one, didn't happen."
+  // INV-0317 was carried in compendium.ts as an authorised $36,300 receivable from May 2026 and
+  // reached slide 05 of the QBE deck as a sixth bed buyer. On 5 Sep 2026 it is absent from Xero's
+  // aged receivables and from every invoice on the PICC contact, paid or unpaid. Palm Island has
+  // paid $436,700 across five invoices and none of them has a bed on it.
+  { value: 'INV-0317', what: "Palm Island's 40-bed order", now: 'nothing; the order was never placed', ruling: "Ben 2026-09-05, \"didn't happen\"" },
+  { value: '36,300', what: "Palm Island's 40-bed order", now: 'nothing; the order was never placed', context: /picc|palm island|receivable|bed/i, ruling: 'Ben 2026-09-05' },
+  { value: '36300', what: "Palm Island's 40-bed order", now: 'nothing; the order was never placed', context: /picc|palm island|receivable|bed/i, ruling: 'Ben 2026-09-05' },
 ];
 
 /**

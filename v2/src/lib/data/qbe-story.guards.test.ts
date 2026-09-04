@@ -47,6 +47,7 @@ import {
   chaptersFor,
   cruxFor,
 } from './qbe-story';
+import { funding } from './compendium';
 import { DECK_APPENDICES, DECK_PLAN, FORM_NARRATIVE_QUESTIONS } from './deck-plan';
 import { ATTACHMENT_SLOTS, CRITICAL_PATH, DECISIVE_QUESTIONS, FORM_QUESTIONS, OPEN_QUESTIONS, questionsFor } from './qbe-form';
 import { QBE_DIAGRAMS, diagramsFor } from '../diagrams/qbe-diagrams';
@@ -399,13 +400,15 @@ describe('the twelve-slide plan and the four overviews', () => {
     expect(line).not.toMatch(/still owed/);
   });
 
-  // Palm Island Community Company's INV-0317 is absent from Xero's aged receivables and from every
-  // invoice on the PICC contact as at 5 Sep 2026, and `compendium.ts` still carries it as an
-  // authorised $36,300 receivable. It stays out of the buying story until somebody produces it.
+  // Palm Island's INV-0317 never happened (Ben, 5 Sep: "remove this one, didn't happen"). It is
+  // absent from Xero's aged receivables and from every invoice on the PICC contact, it has been
+  // retired from compendium.ts, and check-retired-figures holds the figure out of src/.
   it('no bed buyer rests on a document Xero cannot show', () => {
     expect(BUYING_STORY.some((b) => b.paper.includes('INV-0317'))).toBe(false);
     expect(buyersFor('working').some((b) => /Palm Island/.test(b.who))).toBe(false);
     expect(BUYING_AS_AT).toBe('5 September 2026');
+    // and it must not creep back in through the funding compendium either
+    expect(funding.some((f) => /picc|palm island/i.test(f.source) && f.status === 'receivable')).toBe(false);
   });
 
   it('who has said yes is derived from the stack, never typed, and never counts QBE or an unverified line', () => {

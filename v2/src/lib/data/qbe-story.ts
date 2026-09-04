@@ -442,11 +442,12 @@ export const STORY_FIGURES = {
 //      2025. RULED (Ben, 5 Sep): "just overdue and fucked". A 500-day-overdue debtor is not
 //      evidence of demand, so it is not a buyer. It lives in `money-lanes.ts` as bad debt, where
 //      it stays visible and is counted toward nothing.
-//   3. Palm Island Community Company INV-0317 (40 Stretch Beds, $36,300) is NOT here on purpose.
-//      `compendium.ts` and several wiki outputs still carry it as an authorised receivable, and
-//      slide 05 printed it. It is absent from Xero's aged receivables as at 5 Sep 2026 and absent
-//      from every invoice on the PICC contact, paid or unpaid. Until somebody produces the
-//      document, we cannot count Palm Island as a bed buyer. See the ledger for the chase.
+//   3. Palm Island Community Company INV-0317 (40 Stretch Beds, $36,300) NEVER HAPPENED.
+//      RULED (Ben, 5 Sep): "remove this one, didn't happen." It had been carried in
+//      `compendium.ts` as an authorised receivable since May 2026 and reached slide 05 as a sixth
+//      bed buyer. It is absent from Xero's aged receivables of 5 Sep 2026 and from every invoice
+//      on the PICC contact, paid or unpaid. Palm Island has paid $436,700 across five invoices
+//      and not one has a bed on it. Retired at source; `check-retired-figures` holds it out.
 //
 // `beds` counts beds and nothing else. Washing machines, workshops, freight and trip support are
 // on some of these invoices and are described in words, never added to a bed count.
