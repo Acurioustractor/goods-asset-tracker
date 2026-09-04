@@ -61,7 +61,7 @@ export const ROAD_STOPS: RoadStop[] = [
     place: 'Kalgoorlie',
     voice: 'Gloria Turner',
     taught: 'The bed disappeared',
-    what: 'A bed arrived, and within a year it was gone. Not stolen and not neglected. Built for a house with one family in it, put into a house with fourteen.',
+    what: 'The first bed went together outside the tent, and it was gone when the team came back. It was inside, with four women sleeping on it. Gloria Turner was the first person to use a Goods bed.',
   },
   {
     id: 'tennant-creek',

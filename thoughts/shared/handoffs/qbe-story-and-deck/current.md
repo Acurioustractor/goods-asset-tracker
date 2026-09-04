@@ -9,7 +9,7 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-04T13:10:00Z
+**Updated:** 2026-09-04T16:20:00Z
 **Goal:** Twelve slides whose copy Ben has ruled on, one at a time, in Notion. Then build once in Pencil. Then the QBE form. Done when Ben has said yes to all twelve and the PDF is under 10MB.
 **Branch:** `feat/qbe-story`, PR #253, pushed, CI green. Worktree `/Users/benknight/Code/goods-story-wt`.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
@@ -19,8 +19,8 @@ status: active
 ### Now
 [->] **PASTE-PROMPT: `thoughts/shared/handoffs/qbe-story-and-deck/START-HERE.md`. Open that first.**
 
-[->] **Slide-by-slide copy pass. Slide 1 LOCKED. Slides 2 and 4 drafted and waiting on Ben.**
-Do slide 3, then 5 to 12, ONE AT A TIME. Ben says "go" between each.
+[->] **Slide-by-slide copy pass. Slide 1 LOCKED. Slides 2, 3 and 4 drafted and waiting on Ben.**
+Do 5 to 12, ONE AT A TIME. Ben says "go" between each.
 **Before any of that, read "The mentor call" below. It challenges the ask itself.**
 
 ### The mentor call, 4 September — READ FIRST
@@ -103,9 +103,49 @@ beds and the plants.
       funder contact's private reasoning and "Ben has not yet ruled" onto a page bound for QBE.
       Peer's render scripts committed.
 
+### Slide 3 findings, 4 September (not raised with Ben; they live here)
+
+**`road-spine.ts` carries the wrong Kalgoorlie story, and it inverts the meaning.** Stop 1 reads
+"A bed arrived, and within a year it was gone. Not stolen and not neglected. Built for a house with
+one family in it, put into a house with fourteen." That sentence is not Kalgoorlie. It is the
+generic illustration of the import loop from `_archive/2026-07-26/FOUNDATION.md` §1, near enough
+word for word, and at some point it was attached to the Kalgoorlie stop. The real Ninga Mia story
+is in `story-road.ts` stop 1 (`v2/src/lib/data/story-road.ts:141`), sourced from Notion: the crate
+bed went together outside Gloria Turner's tent, it was gone in the morning, and it had been pulled
+inside so the family could sleep around it. The proof was choice. So the built slide has a failure
+story standing where the first proof belongs. **The fix is in `road-spine.ts`, not only on the
+slide** — anything importing the spine inherits it. The FOUNDATION line is still good copy; it
+belongs on slide 2 or on the missing product-failure slide.
+**Ben confirmed the real story on 4 Sep**, in his words: "it was just that we tried the bed, it was
+gone but was in the tent with 4 ladies sleeping on it with Gloria Turner, the first Goods bed
+participants." Stop 1 has been rewritten to that and inserted at the top of the Notion master.
+**RULED 4 Sep: four.** Applied in `road-spine.ts` (stop 1 rewritten off the FOUNDATION line) and
+`story-road.ts` (chapter 4 now says four women on the bed; the two-records paragraph is deleted and
+the note records that Ben's ruling supersedes it). `deck-road.ts` renders `stop.what` straight from
+the spine, so `/story/road` picks the correction up with no further edit. Gates green: tsc, 669
+tests, check:drift:ci. Superseded, for the record: The contemporaneous field recording in
+`story-road.ts` says six people in the tent with three on the first mattress; the later team
+retelling says six women on it together, and the module keeps the discrepancy deliberately. Ben was
+there so the deck follows him, but the pack cannot say six on one surface and four on another.
+Waiting on his word to set four everywhere or drop the count from the slide.
+
+**Two of the seven road voices are attached to stops they did not carry.** `road-spine.ts` gives
+Utopia to Dorrie Jones, while `story-road.ts` stop 5 says in its own note that Margaret Lloyd
+carries that stop. It gives Maningrida to Fred Campbell, who is Oonchiumpa in Alice Springs and
+narrates Xavier there; the cleared Maningrida voices are Eric Pascoe and Tehmineh Mason. Not a
+consent breach (all seven are on `cleared-voices.ts`), an accuracy one. The slide 3 draft solves it
+by only naming a person where their own words are on the slide.
+
+**Only two of the seven stops can carry a real quote today.** Linda Turner and Alfred Johnson have
+cleaned public quotes in `curated-quotes.ts`. Dorrie Jones has one in `trip-stories.ts` ("Good for
+me and comfy… easy to put together", Arlparra 22 May). Karen Liddle has a cleared video and no text
+quote anywhere in the repo. So "give every stop a real quote" is not available without recording
+more, which is why the draft names three people and narrates the rest.
+
 ### Next
-- [ ] Ben rules on slide 2 and slide 4.
-- [ ] Slides 3, 5, 6, 7, 8, 9, 10, 11, 12, one at a time.
+- [ ] Ben rules on slides 2, 3 and 4.
+- [ ] Slides 5, 6, 7, 8, 9, 10, 11, 12, one at a time.
+- [ ] Fix the Kalgoorlie stop in `road-spine.ts` once Ben has ruled on slide 3 copy.
 - [ ] **The ask decision.** Ruling Y against the advisor's plant-first framing. Ben and Nic.
       Nothing downstream is safe until it is settled: slides 6, 7, 10, 11 and 12 all encode ruling Y.
 - [ ] Check whether the two $100,000 commitments exist on paper.
