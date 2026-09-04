@@ -486,6 +486,39 @@ beds, every one of them paid. The bad debt stays visible in its own lane and rea
 **Also fixed:** repayable money (SEFA \$300K, White Box \$150K) now carries its instrument, so debt
 cannot be read as philanthropy just because it shares a lane with grants.
 
+### Receivables restated, 5 September: \$143,000 becomes \$82,500, and none of it is collectable
+
+Three rulings from Ben in one message, all applied and all in lockstep across canon, the compendium
+and the grant content:
+
+- **Homeland School Company INV-0303 \$44,000: "this has been paid."** Xero says PAID. It had been
+  carried as authorised and awaiting payment since 18 May 2026. Removed from receivables. It did NOT
+  go into the public `funding` list as a `received` row, because `/press` renders those and Ben has
+  not seen that change; the row is gone with the reason recorded where it sat.
+- **Regional Arts Australia INV-0302 \$16,500: "a different project and related to the Harvest."**
+  Not a Goods receivable. Out of the compendium, out of the grant content, out of `money-lanes`.
+- **Rotary \$82,500 bad debt: "fine for now."** Stays exactly where it is.
+
+**So Goods has \$0 of collectable receivables and \$82,500 of bad debt.** The `owed` lane in
+`money-lanes.ts` is now empty, and the module says why in full: of the \$281,048.84 across twelve
+invoices on Xero's aged receivables, not one dollar is a collectable Goods receivable. The rest is
+Sonas, Tandanya, Social Impact Hub, Berry Obsession, Brodie Germaine, Joy House and Jenn Brazier.
+
+Moved together so the drift guard stays green: `canon.ts` (`accounts-receivable`, now asAt
+2026-09-05 with the supersession written into the definition), `compendium.ts`
+(`verifiedFinancials.accountsReceivable`), `grant-content.ts` (`fundingHistory.totalReceivables`,
+the receivables array and the `whatAreYourFinancials` prose), and the mirror in
+`check-canon-drift.mjs` which is a fourth copy of the number and would otherwise have failed CI.
+"\$143,000", "143_000" and "\$143K" are now retired figures (27 guarded), with the canon
+definition's own "Was \$143,000" line explicitly ALLOWED so a canon row can still say what it
+superseded.
+
+**\$44,000 is now in no revenue figure.** `verifiedFinancials.revenueReceived` (\$741,111) is the
+2026-06-03 reconcile baseline and Homeland was paid after it. The receivable is gone and the receipt
+has not been added, so anyone adding received plus receivable sees the total fall by \$44,000 even
+though we were paid. **Restating revenue to \$785,111 needs Ben's word**; the comment in
+`compendium.ts` says so at the line.
+
 ### Next
 - [ ] **Ben: slide 05 needs a second pass.** Headline to "Five organisations have bought beds. Four
       have paid.", add Centrecorp INV-0259 (60 beds, paid), pull the Palm Island row until INV-0317
@@ -495,9 +528,9 @@ cannot be read as philanthropy just because it shares a lane with grants.
       `2026-05-30-goods-expanded-capital-universe`, `2026-07-11-narrative-foundation`,
       `funder-discovery/01-warm-dormant-pipeline`). They are dated records of what was believed in
       May and are outside the guard's scan of `src/`; left as history, flagged here.
-- [ ] **`compendium.ts` still calls Homeland INV-0303 an authorised \$44,000 receivable and Xero
-      says PAID.** Same class of staleness, and `verifiedFinancials.accountsReceivable` (\$143,000)
-      and `FUNDING_CANON.totalReceivables` both include it. Canon is Ben's to move, so untouched.
+- [x] Receivables restated to \$82,500 on Ben's three rulings. Lockstep green.
+- [ ] **Ben: does `revenueReceived` move from \$741,111 to \$785,111?** Homeland's \$44,000 was
+      paid after the 3 June baseline, so it is currently in neither receivables nor revenue.
 - [ ] **Ben: does "Bryan Foundation" mean The Bryan Foundation (May meeting, nothing in writing) or
       Brian M. Davis (invited, up to $100,000, board 19 Nov)? Both are in the lanes; only one is
       new money.**

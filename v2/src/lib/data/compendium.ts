@@ -290,7 +290,11 @@ export const funding: FundingRecord[] = [
   // contact, paid or unpaid. Palm Island has paid $436,700 across five invoices and not one of them
   // has a bed on it. The order was never placed. check-retired-figures guards the figure.
   { id: 'recv-rotary', source: 'Rotary Eclub Outback Australia', amount: 82500, status: 'receivable', notes: 'INV-0222 OVERDUE $82,500 (inc GST): 200 Basket Beds v1 @ $350 + $5K project. Due 24 Apr 2025. 11 MONTHS OVERDUE.' },
-  { id: 'recv-homeland', source: 'Homeland School Company', amount: 44000, status: 'receivable', notes: 'INV-0303 AUTHORISED $44,000, Awaiting Payment. Sent 18 May 2026, due 30 Jun 2026. Line items (verified via Xero 2026-07-13): 2x Indestructible Washing Machine v1.1 ($9,000), 40x Stretch Bed ($30,000), 1x program support trip ($8,000), delivery ex BNE-DRW-MNG ($5,900), less $14,190 in-kind partnership credit.' },
+  // PAID. Ben, 2026-09-05: "this has been paid". Homeland School Company INV-0303 $44,000 shows
+  // PAID in Xero as at 5 Sep 2026 and is absent from the aged receivables. It had been carried
+  // here as authorised and awaiting payment since 18 May 2026. Its 40 Stretch Beds and two washing
+  // machines are in the earned lane in money-lanes.ts. NOTE: verifiedFinancials.revenueReceived
+  // ($741,111) is the 2026-06-03 reconcile baseline and does NOT yet include this $44,000.
 ];
 
 export function getFundingSummary() {
@@ -322,10 +326,14 @@ export const verifiedFinancials = {
   // Must match FUNDING_CANON.totalReceived in grant-content.ts.
   // See wiki/outputs/2026-06-03-cluster2-xero-reconciliation.md.
   revenueReceived: 741_111,
-  // Accounts receivable, restated 2026-06-03: Rotary INV-0222 $82,500 + Homeland INV-0303
-  // $44,000 + Regional Arts INV-0302 $16,500 (all live authorised in Xero).
+  // Accounts receivable, restated 2026-09-05 against Xero's aged receivables of the same date,
+  // on three rulings from Ben. It was $143,000 and it is $82,500, all of which is bad debt:
+  //   Rotary INV-0222 $82,500   BAD DEBT. "Just overdue and fucked." Due 24 Apr 2025.
+  //   Homeland INV-0303 $44,000 PAID. Out.
+  //   Regional Arts INV-0302    A Harvest project receivable, not Goods. Out.
+  // COLLECTABLE GOODS RECEIVABLES ARE $0. Never present this figure as money we expect.
   // Must match FUNDING_CANON.totalReceivables in grant-content.ts.
-  accountsReceivable: 143_000,
+  accountsReceivable: 82_500,
   // Accounts payable: ~$0 owed. Authorised-but-unpaid bills are a Xero payment-
   // matching gap (paid from ACT business accounts, payment never applied to the
   // bill), NOT debt. No director loan.
@@ -344,7 +352,7 @@ export const verifiedFinancials = {
  * the old field names onto the verified figures so any un-migrated consumer reads
  * correct numbers. `tradeRevenue` now points at cash received; `productionPlant-
  * Investment` at verified capex; `outstandingReceivables` at the restated AR total
- * (Rotary + Homeland + Regional Arts).
+ * (Rotary only, and it is bad debt; Homeland is paid and Regional Arts is a Harvest receivable).
  */
 export const financialSnapshot = {
   lastUpdated: verifiedFinancials.lastUpdated,

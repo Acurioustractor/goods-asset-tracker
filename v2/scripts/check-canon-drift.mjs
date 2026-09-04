@@ -41,7 +41,7 @@ const today = new Date();
 // Mirror of the money facts in src/lib/data/canon.ts (the registry of record).
 const MONEY_CANON = {
   revenueReceived: { value: 741_111, asAt: '2026-06-03' },
-  accountsReceivable: { value: 143_000, asAt: '2026-06-03' },
+  accountsReceivable: { value: 82_500, asAt: '2026-09-05' }, // Rotary alone, and it is bad debt. $0 collectable.
   xeroPaid: { value: 650_910.79, asAt: '2026-06-01', label: 'ACT-GD receivables paid (Xero cut)' },
   carveOut: { value: 713_827, asAt: '2026-06-02', label: 'Goods revenue carve-out' },
 };

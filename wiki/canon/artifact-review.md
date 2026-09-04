@@ -56,7 +56,7 @@ None. Every citesCanon id resolves to a canon fact.
   - plastic-kg (canon 2026-05-30 > verified 2026-05-29)
   - stretch-price (canon 2026-07-25 > verified 2026-05-29)
   - revenue-received (canon 2026-06-03 > verified 2026-05-29)
-  - accounts-receivable (canon 2026-06-03 > verified 2026-05-29)
+  - accounts-receivable (canon 2026-09-05 > verified 2026-05-29)
 - **Asset register + bed records (/bed)**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-06)
 - **Centrecorp + Utopia impact reports**
@@ -76,6 +76,7 @@ None. Every citesCanon id resolves to a canon fact.
 - **SEFA Loan Fund application brief (DRAFT)**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-27)
   - stretch-price (canon 2026-07-25 > verified 2026-06-27)
+  - accounts-receivable (canon 2026-09-05 > verified 2026-06-27)
   - marginal-factory (canon 2026-07-31 > verified 2026-06-27)
   - marginal-community (canon 2026-07-25 > verified 2026-06-27)
   - save-per-bed (canon 2026-07-31 > verified 2026-06-27)
@@ -94,6 +95,7 @@ None. Every citesCanon id resolves to a canon fact.
 - **Investment deck (16 slides, rendered)**
   - beds-deployed (canon 2026-07-18 > verified 2026-07-01)
   - washers-in-community (canon 2026-07-21 > verified 2026-07-01)
+  - accounts-receivable (canon 2026-09-05 > verified 2026-07-01)
   - stretch-price (canon 2026-07-25 > verified 2026-07-01)
   - marginal-factory (canon 2026-07-31 > verified 2026-07-01)
   - save-per-bed (canon 2026-07-31 > verified 2026-07-01)

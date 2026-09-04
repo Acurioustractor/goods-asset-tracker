@@ -18,6 +18,8 @@ import {
 } from './money-lanes';
 import { BUYING_STORY } from './qbe-story';
 import { STACK } from './raise-stack';
+import { verifiedFinancials } from './compendium';
+import { fundingHistory } from './grant-content';
 
 describe('the lanes', () => {
   it('every lane has a rule and every line sits in one', () => {
@@ -126,6 +128,27 @@ describe('the lanes stay tied to their sources', () => {
     expect(bryan?.amountAud).toBeNull();
     expect(davis?.lane).toBe('invited');
     expect(davis?.amountAud).toBe(100_000);
+  });
+
+  // Ben, 5 Sep: Homeland "has been paid", Regional Arts "is a different project and related to
+  // the Harvest", Rotary bad debt "is fine for now".
+  it('Goods has no collectable receivable, and the one that is left is bad debt', () => {
+    expect(linesIn('owed')).toHaveLength(0);
+    expect(total(['owed'])).toBe(0);
+    expect(total(['bad-debt'])).toBe(82_500);
+    expect(MONEY_LINES.some((l) => /Regional Arts/.test(l.who))).toBe(false);
+    // Homeland is paid, so it belongs in earned and nowhere else.
+    const homeland = MONEY_LINES.filter((l) => /Homeland/.test(l.who));
+    expect(homeland).toHaveLength(1);
+    expect(homeland[0].lane).toBe('earned');
+  });
+
+  it('canon, the compendium and the grant content agree on what is receivable', () => {
+    expect(verifiedFinancials.accountsReceivable).toBe(82_500);
+    expect(fundingHistory.totalReceivables).toBe(verifiedFinancials.accountsReceivable);
+    expect(fundingHistory.totalReceivables).toBe(total(['bad-debt']));
+    expect(fundingHistory.receivables).toHaveLength(1);
+    expect(fundingHistory.receivables[0].notes).toMatch(/BAD DEBT/);
   });
 
   it('repayable money is never read as philanthropy', () => {

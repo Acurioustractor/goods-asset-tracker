@@ -185,25 +185,22 @@ const BAD_DEBT: MoneyLine[] = [
 ];
 
 /**
- * Receivables that are not beds and are still collectable. Read off the aged receivables report of
- * 5 September 2026, which totals $281,048.84 across twelve invoices with 99.7% of it overdue.
- * Only the lines that belong to Goods are here; the rest sit against other ACT work.
+ * Receivables that are not beds and are still collectable.
+ *
+ * THIS LANE IS EMPTY, and that is the finding. Xero's aged receivables of 5 September 2026 total
+ * $281,048.84 across twelve invoices with 99.7% of it overdue, and once the rulings of that day are
+ * applied not one dollar of it is a collectable Goods receivable:
+ *
+ *   Homeland INV-0303  $44,000  PAID (Ben: "this has been paid"). It is in the earned lane.
+ *   Regional Arts INV-0302      A Harvest project receivable, not Goods (Ben, 5 Sep).
+ *   Rotary INV-0222    $82,500  Bad debt, below.
+ *   Everything else             Other ACT work: Sonas, Tandanya, Social Impact Hub, Berry
+ *                               Obsession, Brodie Germaine, Joy House, Jenn Brazier.
+ *
+ * So the honest sentence is that Goods has $0 of collectable receivables and $82,500 of bad debt.
+ * Leave the lane in place: the next invoice that goes out lands here.
  */
-const OWED: MoneyLine[] = [
-  {
-    id: 'regional-arts-inv-0302',
-    who: 'Regional Arts Australia',
-    what: 'Invoice 3 of 3. Not beds.',
-    amountAud: 16_500,
-    gst: 'inc',
-    lane: 'owed',
-    instrument: 'purchase',
-    paper: 'INV-0302, authorised, due 30 June 2026',
-    when: 'December 2025',
-    label: 'verified',
-    source: `Xero aged receivables, ${BUYING_AS_AT}`,
-  },
-];
+const OWED: MoneyLine[] = [];
 
 // ---------------------------------------------------------------------------
 // The funders, classified off what they have actually put in writing

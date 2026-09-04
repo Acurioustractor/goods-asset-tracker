@@ -127,11 +127,11 @@ export const CANON: CanonFact[] = [
     reconcilesWith: ['revenue-xero-paid', 'revenue-carveout'],
   },
   {
-    id: 'accounts-receivable', label: 'Accounts receivable', value: 143_000, unit: 'AUD',
+    id: 'accounts-receivable', label: 'Accounts receivable', value: 82_500, unit: 'AUD',
     domain: 'money', claimLabel: 'verified', dataClass: 'amber',
     source: 'verifiedFinancials.accountsReceivable (compendium.ts) === fundingHistory.totalReceivables (grant-content.ts)',
-    check: 'manual', asAt: '2026-06-03', owner: 'Ben/accountant',
-    definition: 'Rotary INV-0222 $82,500 + Homeland INV-0303 $44,000 + Regional Arts INV-0302 $16,500 (all live authorised in Xero).',
+    check: 'manual', asAt: '2026-09-05', owner: 'Ben/accountant',
+    definition: 'Rotary INV-0222 $82,500 alone, and it is BAD DEBT (Ben, 2026-09-05: "just overdue and fucked"), due 24 April 2025. COLLECTABLE RECEIVABLES ARE $0, so never present this as money we expect. Was $143,000: Homeland INV-0303 $44,000 has been paid (Ben, 2026-09-05; Xero PAID) and Regional Arts INV-0302 $16,500 is a Harvest project receivable, not Goods (Ben, 2026-09-05).',
   },
   {
     id: 'revenue-xero-paid', label: 'ACT-GD receivables paid (Xero cut)', value: 650_910.79, unit: 'AUD',

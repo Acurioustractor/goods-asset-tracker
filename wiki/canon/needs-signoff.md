@@ -16,6 +16,5 @@ None. Money figures are in lockstep across canon.ts, compendium.ts, grant-conten
 
 ## Staleness warnings
 - revenueReceived (revenueReceived) is 93 days old (asAt 2026-06-03). Re-pull Xero and reconcile before any external share.
-- accountsReceivable (accountsReceivable) is 93 days old (asAt 2026-06-03). Re-pull Xero and reconcile before any external share.
 - xeroPaid (ACT-GD receivables paid (Xero cut)) is 95 days old (asAt 2026-06-01). Re-pull Xero and reconcile before any external share.
 - carveOut (Goods revenue carve-out) is 94 days old (asAt 2026-06-02). Re-pull Xero and reconcile before any external share.

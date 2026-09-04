@@ -82,6 +82,14 @@ const RETIRED = [
   { value: 'INV-0317', what: "Palm Island's 40-bed order", now: 'nothing; the order was never placed', ruling: "Ben 2026-09-05, \"didn't happen\"" },
   { value: '36,300', what: "Palm Island's 40-bed order", now: 'nothing; the order was never placed', context: /picc|palm island|receivable|bed/i, ruling: 'Ben 2026-09-05' },
   { value: '36300', what: "Palm Island's 40-bed order", now: 'nothing; the order was never placed', context: /picc|palm island|receivable|bed/i, ruling: 'Ben 2026-09-05' },
+
+  // RECEIVABLES RESTATED 2026-09-05 against Xero's aged receivables of the same date, on three
+  // rulings from Ben: Homeland INV-0303 $44,000 "has been paid"; Regional Arts INV-0302 $16,500
+  // "is a different project and related to the Harvest"; Rotary $82,500 bad debt "is fine for now".
+  // $143,000 was the 3 June composition of all three. Collectable Goods receivables are now $0.
+  { value: '143,000', what: 'accounts receivable', now: '$82,500, all of it Rotary bad debt; $0 collectable', context: /receivable/i, ruling: 'Ben 2026-09-05' },
+  { value: '143_000', what: 'accounts receivable', now: '$82,500, all of it Rotary bad debt; $0 collectable', context: /receivable/i, ruling: 'Ben 2026-09-05' },
+  { value: '143K', what: 'accounts receivable', now: '$82.5K, all of it Rotary bad debt; $0 collectable', context: /receivable|outstanding/i, ruling: 'Ben 2026-09-05' },
 ];
 
 /**
@@ -193,6 +201,11 @@ const ALLOWED = [
     file: 'lib/data/cost-story.ts',
     match: /never the \$403,901/i,
     why: 'A watchOut instructing us NEVER to cite this figure. The rule has to name the number it bans.',
+  },
+  {
+    file: 'lib/data/canon.ts',
+    match: /Was \$143,000:/,
+    why: 'The canon definition records what the figure WAS and why it moved on 2026-09-05. A canon row that cannot say what it superseded is a canon row nobody can audit.',
   },
 ];
 
