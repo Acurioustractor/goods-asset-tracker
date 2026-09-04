@@ -17,11 +17,11 @@ None. Every citesCanon id resolves to a canon fact.
   - save-per-bed (canon 2026-07-31 > verified 2026-06-02)
 - **Pencil designed deck**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-02)
-  - revenue-received (canon 2026-06-03 > verified 2026-06-02)
+  - revenue-received (canon 2026-09-05 > verified 2026-06-02)
   - save-per-bed (canon 2026-07-31 > verified 2026-06-02)
 - **Pitch Page and Documents (Notion)**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-02)
-  - revenue-received (canon 2026-06-03 > verified 2026-06-02)
+  - revenue-received (canon 2026-09-05 > verified 2026-06-02)
   - save-per-bed (canon 2026-07-31 > verified 2026-06-02)
 - **Public pitch page + document (/pitch/road)**
   - beds-deployed (canon 2026-07-18 > verified 2026-05-30)
@@ -33,6 +33,7 @@ None. Every citesCanon id resolves to a canon fact.
 - **Investor cockpit (/investors)**
   - marginal-factory (canon 2026-07-31 > verified 2026-06-05)
   - stretch-price (canon 2026-07-25 > verified 2026-06-05)
+  - revenue-received (canon 2026-09-05 > verified 2026-06-05)
 - **The money, on the road (/pitch/road#model)**
   - save-per-bed (canon 2026-07-31 > verified 2026-06-02)
   - stretch-price (canon 2026-07-25 > verified 2026-06-02)
@@ -49,13 +50,14 @@ None. Every citesCanon id resolves to a canon fact.
 - **Impact page (/impact)**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-03)
   - washers-in-community (canon 2026-07-21 > verified 2026-06-03)
+  - revenue-received (canon 2026-09-05 > verified 2026-06-03)
 - **Canonical numbers sheet**
   - beds-deployed (canon 2026-07-18 > verified 2026-05-29)
   - stretch-beds-deployed (canon 2026-05-30 > verified 2026-05-29)
   - communities-served (canon 2026-05-30 > verified 2026-05-29)
   - plastic-kg (canon 2026-05-30 > verified 2026-05-29)
   - stretch-price (canon 2026-07-25 > verified 2026-05-29)
-  - revenue-received (canon 2026-06-03 > verified 2026-05-29)
+  - revenue-received (canon 2026-09-05 > verified 2026-05-29)
   - accounts-receivable (canon 2026-09-05 > verified 2026-05-29)
 - **Asset register + bed records (/bed)**
   - beds-deployed (canon 2026-07-18 > verified 2026-06-06)
@@ -95,6 +97,7 @@ None. Every citesCanon id resolves to a canon fact.
 - **Investment deck (16 slides, rendered)**
   - beds-deployed (canon 2026-07-18 > verified 2026-07-01)
   - washers-in-community (canon 2026-07-21 > verified 2026-07-01)
+  - revenue-received (canon 2026-09-05 > verified 2026-07-01)
   - accounts-receivable (canon 2026-09-05 > verified 2026-07-01)
   - stretch-price (canon 2026-07-25 > verified 2026-07-01)
   - marginal-factory (canon 2026-07-31 > verified 2026-07-01)
@@ -104,8 +107,10 @@ None. Every citesCanon id resolves to a canon fact.
 - **Investment machine review (Notion + design surfaces)**
   - beds-deployed (canon 2026-07-18 > verified 2026-07-02)
   - washers-in-community (canon 2026-07-21 > verified 2026-07-02)
+  - revenue-received (canon 2026-09-05 > verified 2026-07-02)
   - stretch-price (canon 2026-07-25 > verified 2026-07-02)
 - **Investment machine blueprint (GHL + Notion operating system)**
+  - revenue-received (canon 2026-09-05 > verified 2026-07-02)
   - cleared-voices (canon 2026-08-01 > verified 2026-07-02)
 - **New outreach drafts (LendForGood, Metro, Tripple)**
   - beds-deployed (canon 2026-07-18 > verified 2026-07-02)

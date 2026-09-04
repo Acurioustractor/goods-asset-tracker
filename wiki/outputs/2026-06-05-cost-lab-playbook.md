@@ -36,7 +36,7 @@ These are the strongest one each across the lenses. Use them with each other to 
 
 ### Buying the ute outright instead of leasing forever (the QBE match)
 - **One-liner:** QBE money would be like a mate offering to chip in on the ute, but only if we put in at least as much ourselves, and it is not a yes yet.
-- **Maps to:** QBE Catalysing Impact Stage 2 is up to $400,000 from a $1M shared pool, must be at least matched by signed external capital, repayable finance prioritised, applied Sept 2026, outcomes Nov 2026, not secured until awarded. The ute being bought is the factory: $112K-222K gross modelled, $110,046 already invested, net ask $2K-112K. Verified receipts to date are $741,111 across 496 beds in 9 communities.
+- **Maps to:** QBE Catalysing Impact Stage 2 is up to $400,000 from a $1M shared pool, must be at least matched by signed external capital, repayable finance prioritised, applied Sept 2026, outcomes Nov 2026, not secured until awarded. The ute being bought is the factory: $112K-222K gross modelled, $110,046 already invested, net ask $2K-112K. Verified receipts to date are $785,111 across 496 beds in 9 communities.
 - **Cost Lab play:** Set the capex dial to the factory range and watch the net ask drop once you subtract the $110,046 already invested, leaving $2K-112K. Then talk through the match rule out loud: every QBE dollar needs at least one signed dollar of our own beside it. The model can show the ute fully paid, it cannot sign the cheque.
 - **Caution:** Do not say QBE is locked in. It is up to $400,000, possibly repayable, and not secured until awarded in Nov 2026. The match has to be signed external capital, so dreaming up a number does not count. Buying the ute outright still leaves the running costs: the about $109,500/yr block does not disappear because the asset is paid off.
 
@@ -89,7 +89,7 @@ These are the strongest one each across the lenses. Use them with each other to 
 
 ## 6. Honesty rails
 
-- **Modelled versus verified.** The only hard numbers are $110,046 already invested and verified receipts of $741,111 across 496 beds in 9 communities. All factory capex ($112K-222K gross, $2K-112K net ask), the compounding timeline, and per-container economics are modelled pending vendor quotes. Say "modelled" out loud when you lean on them.
+- **Modelled versus verified.** The only hard numbers are $110,046 already invested and verified receipts of $785,111 across 496 beds in 9 communities. All factory capex ($112K-222K gross, $2K-112K net ask), the compounding timeline, and per-container economics are modelled pending vendor quotes. Say "modelled" out loud when you lean on them.
 - **Contribution is not profit.** Every contribution figure (about $65 kit, about $324 factory, about $329 community) still has to fund the about $109,500/yr fixed block before a dollar is surplus. That is exactly why break-even is about 338 beds, not zero.
 - **QBE is not secured.** Up to $400,000, at least matched by signed external capital, repayable finance prioritised, decided Nov 2026 at the earliest. Never model it as cash in hand, and never let the $400K headline imply the press is funded.
 - **The analogies share three failure modes.** They can make contribution sound like spare cash (it is not), they can make modelled capex sound like a settled price tag (it is not), and they can make the free community plastic sound like zero effort (it is real collection and sorting labour, which is why the $130/bed fair wage sits inside the community cost).

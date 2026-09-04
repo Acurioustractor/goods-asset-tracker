@@ -138,16 +138,19 @@ export const fundingHistory = {
   // total ($493,130, now includes the 2024 receipts the earlier window excluded). PICC $436,700
   // EXCLUDED (ACT / Palm Island). The large mixed-ledger contacts (SMART Recovery, Sonas/Harvest,
   // Cassidy/tiny-home, HipCamp, Just Reinvest/JusticeHub) are all other Marchesi projects, EXCLUDED;
-  // commercial line $61,449 confirmed NOT understated. totalReceived $741,111 is FINAL.
+  // commercial line $61,449 confirmed NOT understated for the window it covered.
   // See wiki/outputs/2026-06-03-cluster2-xero-reconciliation.md.
-  totalReceived: 741_111,
+  // RESTATED 2026-09-05 (Ben): + Homeland INV-0303 $44,000, paid after the 3 June baseline.
+  // Still excluded pending a ruling: ALIVE INV-0342 $101,200 and Julalikari INV-0335 $15,000,
+  // both Goods receipts paid after the baseline. Fully current would be $901,311.
+  totalReceived: 785_111,
   received: [
     { source: 'Snow Foundation', amount: 493_130, when: '2023-2026' },
     { source: 'Centrecorp Foundation', amount: 123_332, when: '2025-2026' },
     { source: 'Vincent Fairfax Family Foundation', amount: 50_000, when: '2025' },
     { source: 'QIC', amount: 12_000, when: '2026' },
     { source: 'The John Villiers Trust', amount: 1_200, when: '2026' },
-    { source: 'Commercial and buyer receipts', amount: 61_449, when: '2024-2026' },
+    { source: 'Commercial and buyer receipts', amount: 105_449, when: '2024-2026' },
   ],
   // TFN, FRRR and AMP have been founder-confirmed in prior work, but were not in the
   // live ACT-GD open/paid ACCREC set used for this QBE-alignment pass.
@@ -213,7 +216,7 @@ export const grantAnswers = {
   },
   whoDoYouWorkWith: 'We work with 9 remote Indigenous communities across QLD, NT, WA, and SA. Core community partners include Oonchiumpa Consultancy, Wilya Janta, and Palm Island Community Company. Health partners include Anyinginyi Health, Miwatj Health, Purple House, and Red Dust.',
   howDoYouMeasureImpact: 'We track impact through: (1) Asset Register — 603 asset rows with QR-coded lifecycle monitoring. (2) Telemetry — 22 washing machines in community, with fleet telemetry not yet fleet-wide. (3) Community feedback — 500+ minutes recorded, 15+ verified storytellers via Empathy Ledger. (4) Environmental metrics — 3,540kg+ plastic diverted (177 Stretch beds x 20kg HDPE, Stretch only; Basket Beds are not a plastic product). (5) Health outcomes — tracking with health partners.',
-  whatAreYourFinancials: `~$741.1K ACT-GD ACCREC paid to date, comprising ~$679.7K grant/philanthropic receipts and ~$61.4K commercial/buyer receipts. $82.5K remains outstanding (Rotary eClub INV-0222), and it is bad debt roughly 500 days overdue rather than money we expect; collectable receivables are $0. $100K invested in the production facility. Demand materially exceeds current production capacity. Figures are Xero management data, not audited.`,
+  whatAreYourFinancials: `~$785.1K ACT-GD ACCREC paid to date, comprising ~$679.7K grant/philanthropic receipts and ~$105.4K commercial/buyer receipts. $82.5K remains outstanding (Rotary eClub INV-0222), and it is bad debt roughly 500 days overdue rather than money we expect; collectable receivables are $0. $100K invested in the production facility. Demand materially exceeds current production capacity. Figures are Xero management data, not audited.`,
   howWillYouUseThisFunding: {
     beds: 'Each $600–850 funds one Stretch Bed deployed to a remote community, diverting 20kg of plastic and providing a 10+ year sleeping surface.',
     production: '$100K funds a containerised production facility deployment to a community for ~2 months, producing roughly 20 beds/week at current throughput.',

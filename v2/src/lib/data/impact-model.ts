@@ -445,7 +445,7 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
         confidence: 'verified',
         name: 'Total Revenue Received (cumulative since inception, ~89% grant-funded)',
         unit: '$',
-        current: verifiedFinancials.revenueReceived, // 741,111 — total received since inception (grant + commercial), restated 2026-06-03 live-Xero reconcile
+        current: verifiedFinancials.revenueReceived, // 785,111 — total received since inception (grant + commercial), 2026-06-03 reconcile restated 2026-09-05
         targets: { year1: 1_100_000, year3: 4_000_000, vision2030: 15_000_000 }, // Year-1 TOTAL-revenue target across all 7 segments (not commercial-only)
         source: 'xero',
         sourceDetail:
@@ -592,7 +592,7 @@ export const PRODUCTION_EFFICIENCY_METRICS: ImpactMetric[] = [
 
 export const FINANCIAL_SUMMARY = {
   // Single source of truth: verifiedFinancials (Xero workpaper, verified not audited).
-  totalInvestment: verifiedFinancials.revenueReceived, // 741,111 — denominator for public impact-per-dollar (restated 2026-06-03)
+  totalInvestment: verifiedFinancials.revenueReceived, // 785,111 — denominator for public impact-per-dollar (restated 2026-09-05)
   tradeRevenue: verifiedFinancials.revenueReceived,
   productionPlantInvestment: verifiedFinancials.capexInvested, // 110,046
   currentCostPerUnit: CANONICAL_BUYKIT_DIRECT_COST, // 534.79 — Buy-Kit DIRECT cost (materials+assembly, MODELLED); NOT the $685 canon marginal (which adds ~$150 freight)

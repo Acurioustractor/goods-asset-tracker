@@ -293,8 +293,8 @@ export const funding: FundingRecord[] = [
   // PAID. Ben, 2026-09-05: "this has been paid". Homeland School Company INV-0303 $44,000 shows
   // PAID in Xero as at 5 Sep 2026 and is absent from the aged receivables. It had been carried
   // here as authorised and awaiting payment since 18 May 2026. Its 40 Stretch Beds and two washing
-  // machines are in the earned lane in money-lanes.ts. NOTE: verifiedFinancials.revenueReceived
-  // ($741,111) is the 2026-06-03 reconcile baseline and does NOT yet include this $44,000.
+  // machines are in the earned lane in money-lanes.ts. The $44,000 was folded into
+  // verifiedFinancials.revenueReceived on 2026-09-05 (Ben: "yes restate revenue to $785,111").
 ];
 
 export function getFundingSummary() {
@@ -325,7 +325,16 @@ export const verifiedFinancials = {
   // $1,200 + commercial $61,449. PICC and other Marchesi-project contacts excluded.
   // Must match FUNDING_CANON.totalReceived in grant-content.ts.
   // See wiki/outputs/2026-06-03-cluster2-xero-reconciliation.md.
-  revenueReceived: 741_111,
+  //
+  // RESTATED 2026-09-05 (Ben: "yes restate revenue to $785,111"). The 3 June baseline was
+  // $741,111; Homeland School Company INV-0303 $44,000 was paid after it and had fallen out of
+  // both revenue and receivables, so the commercial line moves $61,449 -> $105,449.
+  //
+  // KNOWN EXCLUSIONS, not yet ruled on: two further Goods receipts also landed after the 3 June
+  // baseline and are still outside this figure. ALIVE INV-0342 $101,200 (100 beds, paid July 2026)
+  // and Julalikari INV-0335 $15,000 (two washing machines, paid June 2026). Bringing the baseline
+  // fully current for Goods would make this $901,311.
+  revenueReceived: 785_111,
   // Accounts receivable, restated 2026-09-05 against Xero's aged receivables of the same date,
   // on three rulings from Ben. It was $143,000 and it is $82,500, all of which is bad debt:
   //   Rotary INV-0222 $82,500   BAD DEBT. "Just overdue and fucked." Due 24 Apr 2025.

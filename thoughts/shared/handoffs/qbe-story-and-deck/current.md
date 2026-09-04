@@ -519,6 +519,40 @@ has not been added, so anyone adding received plus receivable sees the total fal
 though we were paid. **Restating revenue to \$785,111 needs Ben's word**; the comment in
 `compendium.ts` says so at the line.
 
+### Revenue restated to \$785,111, 5 September
+
+Ben: "yes restate revenue to \$785,111." Done, and the drift guard reports canon, compendium and
+grant-content in lockstep with the `received[]` array summing to the same figure across six items.
+The commercial and buyer line carries the change: \$61,449 becomes \$105,449.
+
+**It is stored in nine places and all nine moved.** `canon.ts` (value, source, definition, asAt, and
+the carve-out definition that cites it), `compendium.ts`, `grant-content.ts` (the total, the
+`received[]` array and the `whatAreYourFinancials` prose), the mirror in `check-canon-drift.mjs`,
+two comments in `impact-model.ts` where it is the public impact-per-dollar denominator,
+`/sites/qbe-readiness`, `playbook-content.ts` and the wiki source it mirrors. "\$741,111",
+"741_111", "\$741.1K", "\$61,449" and "61_449" are retired figures now (32 guarded).
+
+**The guard caught one I missed.** `canon.ts:126`, the `revenue-received` definition, still listed
+the old composition ending "commercial \$61,449" after the value above it had moved. Exactly the
+failure the retired-figure guard was written for.
+
+**TWO MORE GOODS RECEIPTS SIT OUTSIDE THIS FIGURE, and Ben has not ruled on them.** The 3 June
+baseline excluded everything paid after it, and Homeland was not the only one:
+
+| Invoice | What | Paid | Amount |
+|---|---|---|---|
+| ALIVE INV-0342 | 100 Stretch Beds and four shared visits | July 2026 | \$101,200 |
+| Julalikari INV-0335 | Two Indestructible Washing Machines and delivery, Tennant Creek | June 2026 | \$15,000 |
+
+**Bringing the baseline fully current for Goods would make it \$901,311.** The exclusion is written
+into `compendium.ts`, `grant-content.ts` and the canon `source` field so nobody has to rediscover it.
+ALIVE matters most: the deck's own buyers slide leads on ALIVE having paid for 100 beds up front,
+and that \$101,200 is not in the revenue figure beside it.
+
+**Also flagged by the drift run, untouched:** the Goods-only carve-out (\$713,827, asAt 2026-06-02)
+is 94 days old and the guard asks for a Xero re-pull before any external share. It did not move with
+this restatement because it is a different scope on a different basis.
+
 ### Next
 - [ ] **Ben: slide 05 needs a second pass.** Headline to "Five organisations have bought beds. Four
       have paid.", add Centrecorp INV-0259 (60 beds, paid), pull the Palm Island row until INV-0317
@@ -529,8 +563,12 @@ though we were paid. **Restating revenue to \$785,111 needs Ben's word**; the co
       `funder-discovery/01-warm-dormant-pipeline`). They are dated records of what was believed in
       May and are outside the guard's scan of `src/`; left as history, flagged here.
 - [x] Receivables restated to \$82,500 on Ben's three rulings. Lockstep green.
-- [ ] **Ben: does `revenueReceived` move from \$741,111 to \$785,111?** Homeland's \$44,000 was
-      paid after the 3 June baseline, so it is currently in neither receivables nor revenue.
+- [x] Revenue restated to \$785,111 on Ben's word. Nine locations, lockstep green.
+- [ ] **Ben: do ALIVE \$101,200 and Julalikari \$15,000 go in too?** Both are Goods receipts paid
+      after the 3 June baseline, same as Homeland. Fully current would be **\$901,311**. ALIVE is
+      the awkward one: the deck leads on their 100 beds paid up front.
+- [ ] **Re-pull the Goods carve-out (\$713,827, asAt 2026-06-02).** 94 days old; the drift guard
+      asks for it before any external share.
 - [ ] **Ben: does "Bryan Foundation" mean The Bryan Foundation (May meeting, nothing in writing) or
       Brian M. Davis (invited, up to $100,000, board 19 Nov)? Both are in the lanes; only one is
       new money.**

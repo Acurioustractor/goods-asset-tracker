@@ -119,11 +119,11 @@ export const CANON: CanonFact[] = [
 
   // ── Money (MANUAL: never auto-written by a loop; reconciliation is a P0 human gate) ──
   {
-    id: 'revenue-received', label: 'Funding received (site figure)', value: 741_111, unit: 'AUD',
+    id: 'revenue-received', label: 'Funding received (site figure)', value: 785_111, unit: 'AUD',
     domain: 'money', claimLabel: 'verified', dataClass: 'amber',
-    source: 'verifiedFinancials.revenueReceived (compendium.ts) === fundingHistory.totalReceived (grant-content.ts); restated 2026-06-03 live-Xero reconcile',
-    check: 'manual', asAt: '2026-06-03', owner: 'Ben/accountant',
-    definition: 'Cash received since inception, Goods-scoped. Snow $493,130 + Centrecorp $123,332 + VFFF $50,000 + QIC $12,000 + Villiers $1,200 + commercial $61,449. PICC and other Marchesi-project contacts excluded.',
+    source: 'verifiedFinancials.revenueReceived (compendium.ts) === fundingHistory.totalReceived (grant-content.ts); 2026-06-03 live-Xero reconcile, restated 2026-09-05 (Ben) to add Homeland INV-0303 $44,000 paid after that baseline. Still excludes ALIVE INV-0342 $101,200 and Julalikari INV-0335 $15,000, also paid after it; fully current would be $901,311.',
+    check: 'manual', asAt: '2026-09-05', owner: 'Ben/accountant',
+    definition: 'Cash received since inception, Goods-scoped. Snow $493,130 + Centrecorp $123,332 + VFFF $50,000 + QIC $12,000 + Villiers $1,200 + commercial and buyer receipts $105,449. PICC and other Marchesi-project contacts excluded. The commercial line grew by Homeland INV-0303 $44,000 on 2026-09-05, which was paid after the 3 June reconcile and had fallen out of both revenue and receivables.',
     reconcilesWith: ['revenue-xero-paid', 'revenue-carveout'],
   },
   {
@@ -147,7 +147,7 @@ export const CANON: CanonFact[] = [
     // flagged as an overclaim rendering in front of funders.
     domain: 'money', claimLabel: 'workpaper', dataClass: 'amber',
     source: 'Goods carve-out workpaper, prepared with the accountant (NOT signed); pitch blueprint A3', check: 'manual', asAt: '2026-06-02', owner: 'Ben/accountant',
-    definition: 'Goods-only FY26 carve-out, prepared with the accountant but NOT YET SIGNED (Ben ruling 2026-07-25, DECISIONS.md ruling G). Cite the figure; never the word signed, until a signed letter exists and is named in this source field. Obtaining one is an open action, promised in the claims ledger before mid-August 2026. No surplus claimed: connected entity runs an FY26 net loss. Use alongside revenue-received ($741,111 all-sources) with the basis named.',
+    definition: 'Goods-only FY26 carve-out, prepared with the accountant but NOT YET SIGNED (Ben ruling 2026-07-25, DECISIONS.md ruling G). Cite the figure; never the word signed, until a signed letter exists and is named in this source field. Obtaining one is an open action, promised in the claims ledger before mid-August 2026. No surplus claimed: connected entity runs an FY26 net loss. Use alongside revenue-received ($785,111 all-sources) with the basis named.',
     reconcilesWith: ['revenue-received'],
   },
 

@@ -90,6 +90,15 @@ const RETIRED = [
   { value: '143,000', what: 'accounts receivable', now: '$82,500, all of it Rotary bad debt; $0 collectable', context: /receivable/i, ruling: 'Ben 2026-09-05' },
   { value: '143_000', what: 'accounts receivable', now: '$82,500, all of it Rotary bad debt; $0 collectable', context: /receivable/i, ruling: 'Ben 2026-09-05' },
   { value: '143K', what: 'accounts receivable', now: '$82.5K, all of it Rotary bad debt; $0 collectable', context: /receivable|outstanding/i, ruling: 'Ben 2026-09-05' },
+
+  // REVENUE RESTATED 2026-09-05 (Ben: "yes restate revenue to $785,111"). The 3 June 2026 reconcile
+  // baseline was $741,111 and Homeland INV-0303 $44,000 was paid after it, leaving the money in
+  // neither revenue nor receivables. Commercial receipts move $61,449 -> $105,449.
+  { value: '741,111', what: 'funding received since inception', now: '$785,111', context: /receiv|revenue|funding|investment/i, ruling: 'Ben 2026-09-05' },
+  { value: '741_111', what: 'funding received since inception', now: '$785,111', context: /receiv|revenue|funding|investment/i, ruling: 'Ben 2026-09-05' },
+  { value: '741.1K', what: 'funding received since inception', now: '$785.1K', context: /receiv|revenue|accrec/i, ruling: 'Ben 2026-09-05' },
+  { value: '61,449', what: 'commercial and buyer receipts', now: '$105,449 (adds Homeland INV-0303)', context: /commercial|buyer|receipt/i, ruling: 'Ben 2026-09-05' },
+  { value: '61_449', what: 'commercial and buyer receipts', now: '$105,449 (adds Homeland INV-0303)', context: /commercial|buyer|receipt/i, ruling: 'Ben 2026-09-05' },
 ];
 
 /**
@@ -206,6 +215,21 @@ const ALLOWED = [
     file: 'lib/data/canon.ts',
     match: /Was \$143,000:/,
     why: 'The canon definition records what the figure WAS and why it moved on 2026-09-05. A canon row that cannot say what it superseded is a canon row nobody can audit.',
+  },
+  {
+    file: 'lib/data/compendium.ts',
+    match: /The 3 June baseline was/,
+    why: 'The restatement note has to name the figure it replaced (2026-09-05).',
+  },
+  {
+    file: 'lib/data/grant-content.ts',
+    match: /confirmed NOT understated for the window it covered/,
+    why: 'A dated record of what the 3 June reconcile concluded about the old commercial line.',
+  },
+  {
+    file: 'lib/data/claims-ledger.guards.test.ts',
+    match: /\$741,111/,
+    why: 'Guard-test fixtures assert on a sample figure; the value is arbitrary test data, not a claim.',
   },
 ];
 
