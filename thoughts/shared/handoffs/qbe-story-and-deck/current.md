@@ -9,7 +9,7 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-05T07:15:00Z
+**Updated:** 2026-09-04T22:57:13Z
 **Goal:** Thirteen slides, each built in Pencil and each carrying a full evidence-graded section in Notion. Then the QBE form. Done when Ben has ruled on all thirteen and the PDF is under 10MB.
 **Branch:** `feat/qbe-story`, PR #253, pushed, CI green. Worktree `/Users/benknight/Code/goods-story-wt`.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
@@ -553,6 +553,48 @@ and that \$101,200 is not in the revenue figure beside it.
 is 94 days old and the guard asks for a Xero re-pull before any external share. It did not move with
 this restatement because it is a different scope on a different basis.
 
+### Decision 1 re-checked against Xero, 5 September, second session
+
+Before ALIVE and Julalikari went to Ben as decision 1 of the money thread, every sales invoice
+issued from 15 May 2026 and paid was read off Xero (read-only `get_invoices`), because "fully
+current is \$901,311" is only true if those two are the only Goods receipts after the 3 June
+baseline. They are not quite.
+
+| Invoice | Who | Paid | What Xero says | Goods? |
+|---|---|---|---|---|
+| INV-0342 | ALIVE, UniMelb | \$101,200 | PAID. "Gathering the Parts" 100 Bed Delivery, issued 2 Jul 2026, \$92,000 ex GST | Yes. Decision 1 |
+| INV-0335 | Julalikari Council | \$15,000 | PAID. Issued 19 Jun 2026, \$13,540 ex GST | Yes. Decision 1 |
+| INV-0321 | Snow Foundation | \$132,000 | PAID, issued 22 May. The ten paid Snow invoices sum to exactly \$493,129.79, the baseline's Snow figure | Already inside the baseline |
+| INV-0344 | Oonchiumpa | \$41,250 | PAID 12 Aug. Atnarpa homestead and campground build: team, materials, "Goods covering freight ex Witta", accommodation | **Ben rules.** Reads as ACT build work, not Goods product |
+| INV-0346 | Oonchiumpa | \$1,000 | PAID 28 Aug. "Katrina Bloomfield wages for the Goods Project - 1 Week" | **Ben rules.** Labelled Goods |
+| INV-0334 | Mounty AYCS | \$22,000 | Ex-CONTAINED build container, sold as-is | No |
+| INV-0338 | Dusseldorp Forum | \$16,500 | CONTAINED Justice Hub mobile container artwork | No |
+| INV-0339 | Laverd Pty Ltd | \$7,700 | Vaccine backup generator and radiator, sold as-is | No |
+| INV-0343 | TABOO | \$2,200 | Global Impact Summit activation | No |
+| INV-0336, INV-0337 | Sonas Properties | \$96,338 | Other ACT work, as `money-lanes.ts` already says | No |
+| INV-0333 | Justice Reform Initiative | \$880 | Conference photography | No |
+
+So \$901,311 is fully current for Goods **unless** either Oonchiumpa invoice is Goods: \$902,311
+with the wages line, \$943,561 with both. Neither is in any figure or any lane today.
+
+**Julalikari is in no lane either.** The earned lane in `money-lanes.ts` is built from
+`BUYING_STORY`, which is beds, so a paid washers-only invoice never reaches it even though the
+lane's own definition says "beds and machines". On a yes to decision 1 it gets a machine line in
+`money-lanes.ts` without touching `BUYING_STORY`, so slide 05 keeps four organisations and 320
+beds. INV-0346 gets the same treatment if Ben calls it Goods.
+
+**What a yes to decision 1 changes, all together or `check:drift:ci` fails:** `canon.ts`
+(`revenue-received` value, source, definition, asAt, and the carve-out definition that cites it),
+`compendium.ts` (`revenueReceived` and its comment), `grant-content.ts` (`totalReceived`, the
+commercial line \$105,449 to \$221,649, `whatAreYourFinancials` prose), the mirror in
+`check-canon-drift.mjs`, two comments in `impact-model.ts`, `/sites/qbe-readiness/page.tsx:93`,
+`playbook-content.ts` and its wiki mirror, `wiki/canon/needs-signoff.md`, and
+`check-retired-figures.mjs` retiring "785,111", "785_111", "\$785.1K", "105,449" and "105_449".
+The public impact-per-dollar denominator (`impact-model.ts` `totalInvestment`) rises 14.8%, so
+every per-dollar stat on the public pages falls about 12.9%: Ben must see those before merge.
+Commercial share of everything received moves from 13.4% to 24.6%. As with Homeland, the
+aggregate moves and no new `received` rows go into the public `funding` list that `/press` renders.
+
 ### Next
 - [ ] **Ben: slide 05 needs a second pass.** Headline to "Five organisations have bought beds. Four
       have paid.", add Centrecorp INV-0259 (60 beds, paid), pull the Palm Island row until INV-0317
@@ -564,9 +606,13 @@ this restatement because it is a different scope on a different basis.
       May and are outside the guard's scan of `src/`; left as history, flagged here.
 - [x] Receivables restated to \$82,500 on Ben's three rulings. Lockstep green.
 - [x] Revenue restated to \$785,111 on Ben's word. Nine locations, lockstep green.
-- [ ] **Ben: do ALIVE \$101,200 and Julalikari \$15,000 go in too?** Both are Goods receipts paid
-      after the 3 June baseline, same as Homeland. Fully current would be **\$901,311**. ALIVE is
-      the awkward one: the deck leads on their 100 beds paid up front.
+- [ ] **Ben: do ALIVE \$101,200 and Julalikari \$15,000 go in too?** Both PAID on Xero,
+      re-checked 5 Sep (second session). Put to Ben as decision 1 of the money thread. Fully
+      current would be **\$901,311**, or more if either Oonchiumpa invoice below is Goods.
+- [ ] **Ben: are Oonchiumpa INV-0344 \$41,250 (Atnarpa build) and INV-0346 \$1,000 ("wages for
+      the Goods Project") Goods receipts?** Both paid after the baseline, in no figure and no lane.
+- [ ] Julalikari is in no lane: the earned lane is built from `BUYING_STORY`, which is beds only.
+      Machine line in `money-lanes.ts` on a yes to decision 1; `BUYING_STORY` untouched.
 - [ ] **Re-pull the Goods carve-out (\$713,827, asAt 2026-06-02).** 94 days old; the drift guard
       asks for it before any external share.
 - [ ] **Ben: does "Bryan Foundation" mean The Bryan Foundation (May meeting, nothing in writing) or
