@@ -1,5 +1,5 @@
 ---
-date: 2026-09-04T11:20:00Z
+date: 2026-09-04T13:10:00Z
 session_name: qbe-story-and-deck
 branch: feat/qbe-story
 status: active
@@ -9,155 +9,236 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-04T11:20:00Z
-**Goal:** The story of the model is live as the public `/pitch/model` and the gated `/sites/qbe/story`; the Pencil deck is rebuilt to twelve slides that match it; every link on the site points at the right surface. Done when merged, live, deck saved and links green.
-**Branch:** `feat/qbe-story` in worktree `/Users/benknight/Code/goods-story-wt`, eight commits, stacked on `feat/raise-stack-and-ruling-x` (PR #234, NOT merged), NOT pushed.
+**Updated:** 2026-09-04T13:10:00Z
+**Goal:** Twelve slides whose copy Ben has ruled on, one at a time, in Notion. Then build once in Pencil. Then the QBE form. Done when Ben has said yes to all twelve and the PDF is under 10MB.
+**Branch:** `feat/qbe-story`, PR #253, pushed, CI green. Worktree `/Users/benknight/Code/goods-story-wt`.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
-**Map:** GitHub issue #236. Fifteen tickets. Open the map first, not this file.
+**Map:** GitHub issue #236. **The Notion deck master is the working surface, not this file:**
+`https://app.notion.com/p/3d1ebcf981cf817598d8f15ee4f89c32`
 
 ### Now
-[->] #249 is done and committed, waiting on the merge chain. Nothing else is claimed. The frontier is now three of Ben's (#237 read the crux and the public answers aloud, #238 land PR #234, #243 read the deck review table) plus #250, one signed letter, which is also his to send. The next one that is mine is #248, wire the model page in, and it is BLOCKED: `PITCH_APPENDICES` still has no render site, so the public model page has no public inbound link.
+[->] **Slide-by-slide copy pass. Slide 1 LOCKED. Slides 2 and 4 drafted and waiting on Ben.**
+Do slide 3, then 5 to 12, ONE AT A TIME. Ben says "go" between each.
+**Before any of that, read "The mentor call" below. It challenges the ask itself.**
 
-### This Session
-- [x] `/pitch/model` (public) and `/sites/qbe/story` (gated) built from ONE component with an `audience` switch. Eighteen chapters on the working copy, fifteen public.
-- [x] `lib/diagrams/kit.ts` + `qbe-diagrams.ts`: one typed SVG renderer, nine drawings read from the guarded modules, each downloading as SVG or PNG for the deck. Supersedes `deliverables/qbe-stage2/diagrams/build.mjs`.
-- [x] `qbe-story.ts`, `qbe-faq.ts` (23 questions), `deck-plan.ts` (the twelve slides), `qbe-form.ts` (the form audit). All guarded by `qbe-story.guards.test.ts`.
-- [x] The crux line changed on Ben's ruling to "The first money buys beds for a community. The community sells them, and the money stays there to build the next thing." Swept through both pages, the repo copy of the QBE page, and the Notion page's first block.
-- [x] Four explorers: any amount, pool mix, the snowball, who pays.
-- [x] The four overviews Ben asked for: the buying story (every buyer on an invoice), who has said yes, the lenders and other options, and plan B if the grant does not come.
-- [x] Wayfinder map #236 charted; #247 (link inventory) and #240 (deck review table) resolved and closed.
-- [x] `deliverables/deck-review-2026-09.md`: every frame of the .pen, one row each.
-- [x] #249 every link that sent a reader through a redirect. A full scan of `next.config.ts` sources found thirty-nine, not the inventory's eleven; eight were public evidence links on `/register`.
-- [x] Gates green: tsc, 661 tests, `check:drift:ci`, eslint, `next build`. Both routes verified at 200.
+### The mentor call, 4 September — READ FIRST
+Ben and Nic met a business mentor. Summary, notes and transcript are in Ben's 4 Sep message and
+mirrored into the Notion master. It changes more than any single slide.
+
+**The advisor's central challenge, and it lands on ruling Y.** He named three different things a
+funder could be buying and said they are fundamentally different propositions:
+1. **Artificial customer.** The grant buys 1,000 beds to get revenue flowing. His words: it
+   "feels short term" for a philanthropic investor.
+2. **Subsidising operations** on a path to viability. His question: is it a pathway, or is it
+   loss-making forever, so the product dies the day the grant stops?
+3. **Investing in the plant** so communities manufacture independently. His verdict: *"it would
+   feel to me to be investing in the factories … proving the model that they could ultimately
+   become self-sufficient and then helping them get there."*
+
+Ruling Y (Ben, 3 Sep) is option 1. The whole deck encodes it: $400,000 = 533 beds, the money buys
+beds, full stop. **The advisor says option 1 is the weakest story for this audience.** That is not
+a defect in the deck. It is a decision Ben and Nic have to make again.
+
+**The alternative Nic floated, in his own numbers:** two production plants at $150,000 each is
+$300,000, plus $200,000 of beds, for a $500,000 raise. Ben's notes carry a second version: 400 beds
+at $750 is $300,000, two plants $300,000, $600,000 total. Neither matches the deck.
+
+**Facts said on the call that are NOT in the deck and should be:**
+- **Alice Springs Town Council has 20 tonnes of shredded HDPE sitting at the tip with nowhere to
+  go.** The best answer we have to "is there feedstock", specific to the first site. Nowhere in the
+  deck.
+- **A woman from Alice Springs was brought to the Sunshine Coast factory to train as factory lead**
+  and to find what has to be simplified for community production. Readiness evidence of exactly the
+  kind the form asks for. Nowhere.
+- **A production schedule exists.** First 100 beds in Alice Springs in November, nothing across
+  December and January, ~100 a month from February, new community in April, May, June, July. The
+  form asks for a staged delivery plan under readiness and the deck has no dates.
+- **Nic quoted the mentor ~$200 margin a bed**, against the $324 pressed figure in the model. Two
+  different margins told to two audiences. Reconcile before either goes near a funder again.
+- **Washing machines are being designed backwards from a $2,500 landed home price.** Today they
+  sell only to councils and schools. Slide 6 does not mention the roadmap.
+- **Phase 1 / 2 / 3** (make on the Sunshine Coast, then manufacturing into community hands, then
+  other products from the same panel, washing machines then fridges) is the clearest framing either
+  of them said out loud. The deck does not use it.
+
+**The $0-signed line may not be true.** Nic told the mentor: *"we've got funding commitment from
+two philanthropic organisations to contribute $100,000 each and we've got conversations open to get
+a letter in writing for that final $150,000."* The deck and `raise-stack.ts` both say $0 signed.
+**Do not promote a spoken claim into signed capital.** Someone has to check whether those two
+$100,000 commitments exist on paper. If they do, the leverage answer changes completely, and
+leverage is the criterion the form says the Steering Committee weights most.
+
+**QBE has signalled interest in returnable or repayable finance** for the $750,000 production
+phase. A different instrument from the grant we are applying for, and possibly the better door.
+
+**Ben's own note at the end, unresolved:** *"I think there's a slide missing which is why the
+product's fucked."* He wants a slide on why the products that arrive today fail: you cannot wash a
+mattress, it is expensive, it goes to landfill; washing machines are the wrong product and cost too
+much. Slide 2 is the closest thing and it does not do this.
+
+**And the question he left hanging:** *"either we explain more that the products pay for the beds,
+the products pay for the production plants, or do we actually [change the ask]"*.
+
+**Their action items:** share questions and documents in the morning; add cash flow to the model;
+Nicola to focus on getting communities running facilities; QBE skilled volunteers to complete the
+market viability and demand analysis; clarify the pitch so it explains how the products pay for the
+beds and the plants.
+
+### This session
+- [x] Merged PR #234, then found it carried only the first SEVEN of the raise branch's twenty
+      commits. The other thirteen had never been pushed, so **ruling Y had never reached main** and
+      `CONTEXT.md` and `deck-road.ts` still said "nine years". All 24 unmerged commits rebased onto
+      main, gates green, pushed as **PR #253**, CI green.
+- [x] #249 resolved: 39 stale links repointed or retired, seven of them internal admin tools linked
+      from an open funder page. #252 filed, an invented testimonial in an unrendered shop component.
+- [x] All twelve Pencil frames exported and placed in the Notion master under their slide heading,
+      plus the eight model diagrams beside the slides they belong to.
+- [x] Slide 1 rewritten, ruled by Ben, rebuilt in Pencil, re-exported, **LOCKED**.
+- [x] Slides 2 and 4 drafted in full in Notion, waiting on Ben.
+- [x] Every statistic we hold swept from five modules into one picker in Notion, graded A/B/C on
+      whether a funder can check it.
+- [x] Internal strings removed at source from `qbe-diagrams.ts`: the three-jobs drawing printed a
+      funder contact's private reasoning and "Ben has not yet ruled" onto a page bound for QBE.
+      Peer's render scripts committed.
 
 ### Next
-- [ ] #237 Ben reads the crux and the twenty-two public answers aloud, strikes anything he would not say.
-- [ ] #238 Land PR #234 (ruling X + the three money modules) so the story can follow.
-- [ ] #243 Ben reads `deliverables/deck-review-2026-09.md` and rules keep, fix or cut per frame.
-- [ ] #250 One signed letter before the form closes. The single highest-value action available.
-- [x] #249 Repoint the stale links. Thirty-nine resolved, seven retired, gates green (`a8c224b`). Open until merged.
-- [ ] Then: #239 story PR live, #244 rebuild frames 07 to 12, #245 export and guard, #246 PDF, #248 wire the model page in, #251 grill the ask against the fallback.
+- [ ] Ben rules on slide 2 and slide 4.
+- [ ] Slides 3, 5, 6, 7, 8, 9, 10, 11, 12, one at a time.
+- [ ] **The ask decision.** Ruling Y against the advisor's plant-first framing. Ben and Nic.
+      Nothing downstream is safe until it is settled: slides 6, 7, 10, 11 and 12 all encode ruling Y.
+- [ ] Check whether the two $100,000 commitments exist on paper.
+- [ ] The missing slide: why the products that arrive today fail.
+- [ ] Then Pencil, in ONE pass, from settled copy. The peer session is idle and waiting.
 
 ### Decisions
-- Ben, 4 Sep, eleven decisions in one round, all in the map's Notes. The load-bearing ones: land PR #234 first; the public page names no foundation or lender until a letter exists; `/pitch/model` stays noindex until after 25 Sep; one builder for the deck (this session), review table before any frame is edited; the deck keeps its spine and frames 07 to 12 take the page's drawings; Tim Fairfax runs the organisation, not beds; the first pool is written as "Mparntwe, with Oonchiumpa, once they have seen the design".
-- The crux line keeps its subject. "We buy beds" read as Goods being the customer and never said who pays or who receives. A summary line names who pays, who receives and who sells.
-- An answer can be finished and still improvable. That is not a gap. Two of my own guards caught this and the model was corrected, not the guards.
-- The LGANT frames in the same .pen are a second deck for a real event on 22 September. Out of scope for this map, unreviewed, and flagged so it is not lost.
-- A redirect stays even when the last link through it is gone. Bookmarks and anything already sent externally still need it; #249 removed the hops inside the app, not the safety net. Nothing was promoted to 308.
-- A link label that names a retired surface is itself a stale pointer. "The cost story" on `/register` became "The road to ownership", in `money-pointer.tsx`'s own words. Labels that still describe their destination were left alone.
-- The inventory was a floor, not a ceiling. Grepping `next.config.ts`'s redirect sources against `src/` found twenty-eight links the file-by-file read had missed. Do the machine scan first next time.
+- Slide 1 is locked in Ben's words. He kept "Better health" and "100% Indigenous Directors" after
+  I flagged both twice. **His call, and both are checkable claims.** "Better health" is a health
+  outcome and the standing ceiling says scabies to RHD is the why, never the result. "100%
+  Indigenous Directors" contradicts slide 9, which calls full Indigenous directorship the aim, and
+  canon records control still transferring from TABOO with the AGM on 14 September. Nic said it on
+  the mentor call, so it is not invented, but the form asks for every director's name so ASIC can
+  be checked against it.
+- **DGR Item 1 is correct.** ABN Lookup, extracted 6 May: The Butterfly Movement Ltd is an active
+  company, ACNC charity, PBI, GST registered, DGR Item 1 since 17 January 2012.
+- **Six organisations have bought beds on invoices, not four.** Palm Island Community Company
+  (INV-0317, 40 Stretch Beds, $36,300, authorised) and Rotary eClub Outback Australia (INV-0222,
+  200 Basket Beds, $82,500, overdue since 24 April 2025) sit in `compendium.ts` and canon and in no
+  slide, diagram or module. Slide 4 is rebuilt around all six.
+- The deck renders the `working` variant of every diagram deliberately, because the form asks for
+  funder names and amounts and the public variant is too thin. That is why internal strings could
+  leak, and why the source had to be fixed rather than the render patched.
 
 ### Open Questions
-- UNCONFIRMED: whether the deck's `.pen` has been saved since 3 Sep 17:12. Other sessions have edited it; run `mcp__pencil__get_app_state` before any deck read.
-- UNCONFIRMED: the applicant entity. Q1b, Q2 and Q8 have two versions until Social Impact Hub answers.
-- UNCONFIRMED: whether `INVESTORS_PASSWORD` is set on Vercel. It is used by `/investors` already, so probably, but verify before claiming the gated route works in production.
-- OPEN: who runs the line at the first site and who pays them. The biggest single dial in the model, and one of the four gates.
-- OPEN: the accountant's letter, blocked on the cost-of-goods problem in the historic books.
-- OPEN: an invented testimonial attributed to "Community Enterprise Partner" sits in `src/components/shop/enterprise-opportunity.tsx`. No such speaker is in `cleared-voices`, the component is rendered nowhere, and it is one import away from a public surface. Filed as #252 for Ben; found by #249.
-- OPEN: `conditional-chrome.tsx` still lists `/pitch/investor-lab`, `/pitch/miro-board` and `/deck` as standalone prefixes. All three are redirects. Dead but harmless; belongs with the `/pitch/model` chrome question.
+- OPEN, and now the biggest: **artificial customer, subsidy, or plant.** The advisor says plant.
+  Ruling Y says beds.
+- OPEN: do the two $100,000 philanthropic commitments exist in writing?
+- OPEN: $200 a bed or $324? Two different margins told to two audiences.
+- UNCONFIRMED: the applicant entity. Blocked on Social Impact Hub.
+- UNCONFIRMED: 100% Indigenous directorship, until the AGM on 14 September and an ASIC extract.
 
 ### Workflow State
-pattern: wayfinder-map
+pattern: slide-by-slide copy pass
 phase: 2
 total_phases: 3
-retries: 0
-max_retries: 3
 
-#### Resolved
-- goal: "Finish the story of the model, then the deck in Pencil, then align every link"
-- resource_allocation: aggressive
+---
 
-#### Unknowns
-- applicant_entity: UNKNOWN until Social Impact Hub answers
-- deck_frames_verdict: UNKNOWN until Ben reads the review table (#243)
-- snowball_in_deck: UNKNOWN, Ben's call in the reading
+## What worked this session, and what did not
 
-#### Last Failure
-(none)
+Written down because Ben asked for it, and because the next session will otherwise repeat all of it.
+
+### What did not work
+
+**I produced far more than was asked, repeatedly, and it cost the session its rhythm.** Ben said
+"stop fucking thinking so much", "hurry the fuck up" and "I just want to do one at a fucking time"
+inside twenty minutes. Each followed me shipping a large multi-part artifact when he had asked for
+one slide. **Next time: he asks for slide N, deliver slide N, stop.** No sweeps, no adjacent
+findings, no "while I was in there". Findings go in this ledger, not into his next message.
+
+**Building Pencil frames one at a time was the wrong order.** Copy first in Notion, all twelve,
+ruled by Ben, then one Pencil pass. Ben said so explicitly and he was right: a round trip through
+the peer session for a single slide is minutes of nothing happening.
+
+**Notion `update_content` search-and-replace is unreliable here, because Ben edits the page while
+you work.** Four calls failed on strings that were present when I read them. **Use `insert_content`
+with `position: start`; it always works.** Never build a plan that depends on matching text Ben
+might have touched. Multi-line matches across block boundaries fail even when the text is unchanged.
+
+**I flagged the "Goods." lockup as the retired brand. It is the approved lockup.**
+`src/app/brand/page.tsx` names `goods-on-country-grounded-primary` as the one to use when
+introducing the organisation to partners and funders. I raised it as a red finding in front of Ben
+before checking the brand page. **Check the asset before calling it a violation.**
+
+**I told Ben to strip the four statistics off slide 2. `supply-context.ts` had exact citations for
+most of them**, down to section and page number. I recommended deleting things that were one grep
+from being defensible. **Search before recommending removal.**
+
+**Two AskUserQuestion calls with four elaborate options each, while he was asking for speed.** The
+first was justified. The second was not.
+
+### What worked
+
+**Checking a claim against canon before it shipped.** The cover nearly read "540 beds on recycled
+plastic legs". 363 of the 540 are Basket Beds, which are baskets with zip ties. Caught in draft,
+then held structurally in the rebuild by keeping the two sentences in separate paragraphs.
+
+**Reading the git state rather than the PR board.** The board said #234 was green and mergeable. It
+was, and merging it moved a third of the work, because thirteen commits had never been pushed.
+Ruling Y had been "swept" on 3 September into a branch nobody pushed.
+
+**Counting the buyers instead of trusting the module.** `qbe-story.ts` says four. `compendium.ts`
+and `canon.ts` between them hold six. The two missing ones are real invoices with real money.
+
+**Telling the peer session what Ben actually said, verbatim.** It stopped building immediately,
+handed over its exports, and found six more leaks on its own once it knew the goal had changed.
+
+**Putting images in front of him.** Nothing moved until the twelve frames and the diagrams were
+visible in Notion. Every useful ruling came after that.
+
+### The pattern underneath it
+
+Ben is fast and the work goes slow when it is done as ceremony. The value this session added was
+almost entirely **four factual catches**: the unmerged ruling, the Basket Bed overclaim, the two
+missing buyers, and the internal strings on a funder page. Everything else was noise around them.
+**Next session: find the factual problem, say it in two sentences, fix it, move on.**
 
 ---
 
 ## Context
 
-### Start here
-
-1. Open the map: https://github.com/Acurioustractor/goods-asset-tracker/issues/236. It carries the destination, Ben's eleven settled decisions, the fog and what is out of scope. Do not relitigate anything in its Notes.
-2. Take the first frontier ticket that is not Ben's. Claim it by assigning it before any work.
-3. Resolve exactly one ticket, then stop. Research tickets are the exception.
-
 ### Where the work is
+Worktree `/Users/benknight/Code/goods-story-wt`, branch `feat/qbe-story`, **PR #253**, pushed, CI
+green.
 
-Worktree `/Users/benknight/Code/goods-story-wt`, branch `feat/qbe-story`, five commits:
+### The peer session
+`qbe presentation delivery`, session id `689fe545-1c59-41f5-954c-e8ac72602719`, addressable via
+SendMessage as "qbe presentation delivery". **Idle, holding, Pencil paused on Ben's instruction.**
+It owns the `.pen` and has built a new band at y=30000 with twelve frames plus a shell at y=36400.
+Send it the settled copy for all twelve in ONE message when the copy pass is done. Its exports and
+manifest live in `deliverables/qbe-deck-handoff/`.
 
-| Commit | What |
-|---|---|
-| `0ee258f` | The story page, the diagram kit, the FAQ, the first guards |
-| `14a4361` | First person, the public/working split, the audience switch |
-| `e8255ea` | The crux keeps its subject |
-| `a23f630` | The deck review table |
-| `69962ca` | The twelve-slide plan and the four overviews |
-| `08ed88e` | The form audit, question by question |
-| `925459f` | The continuity ledger for this stream |
-| `a8c224b` | Every stale link repointed or retired (#249) |
+### The deck files
+- `v2/public/strategy/Goods Final Deck.pen` — gitignored, saved 4 Sep.
+- `v2/public/strategy/exports/slide-01..12.png` and `goods-qbe-deck-2026-09-04.pdf` — gitignored.
+- `v2/public/strategy/diagrams/` — sixteen rendered PNGs, gitignored.
+- `deliverables/qbe-deck-handoff/scripts/render-all.sh` — committed. Reproduces every diagram from
+  the guarded modules with no dev server and no gate, and fails the build if an internal string
+  reaches the output. Skips the calendar drawing, which names individuals.
 
-Stacked on `feat/raise-stack-and-ruling-x` (worktree `../goods-raise-wt`, PR #234, seventeen commits, not merged) because it imports `raise-stack.ts`, `community-loop.ts` and `bed-ratio.ts` from there. **Neither branch is pushed.**
+### The real QBE form
+Ben pasted the actual application on 4 Sep. It is unnumbered, so the repo's "Q1 to Q25" shorthand
+does not map onto it. Quote the question text instead. Three facts from it govern everything:
+- **$400,000 is the stated maximum** and the pool is split across ten organisations. We are asking
+  for the ceiling.
+- **"The catalytic effect of the grant, how much additional funding it unlocks, is a core part of
+  the Steering Committee's assessment criteria."** The form's own words.
+- **Uploads: five files, 10MB each.** The deck PDF must come in under 10MB.
 
-### The shape of it
-
-One component renders both surfaces:
-
-- `v2/src/app/sites/qbe/story/qbe-story.tsx` takes `audience: 'public' | 'working'`.
-- `/pitch/model` is public, first person, no internal notes: no form questions, no deck frames, no named foundation or lender, no open decisions, no calendar, no form audit.
-- `/sites/qbe/story` is the working copy behind the investors gate, with all of it.
-- `cruxFor`, `chaptersFor`, `faqFor`, `diagramsFor` and every drawing take the audience. Guards assert the public surface carries no internal token.
-
-Data, all guarded by `v2/src/lib/data/qbe-story.guards.test.ts`:
-
-| Module | Holds |
-|---|---|
-| `qbe-story.ts` | Chapters, the crux, the problem, the proof runs, the buying story, who has said yes, the lenders, plan B, the outcomes, the honest rules, the calendar |
-| `qbe-faq.ts` | 23 questions with status, who asks, source; `working: true` hides one, `publicAnswer` swaps another |
-| `deck-plan.ts` | The twelve slides, each naming the form question, the chapter, the drawing, the existing frame and its verdict |
-| `qbe-form.ts` | The form audit: 26 rows across 25 numbers, what each is really testing, the gap, the owner, the upload slot |
-| `lib/diagrams/kit.ts` | The SVG renderer: frame, panel, chainRow, columns, layers, timeline, band |
-| `lib/diagrams/qbe-diagrams.ts` | Nine drawings, each a function of the audience |
-
-### Running it locally
-
-The gate password is not in `.env.local`, so the investors routes always redirect unless dev is started with it set:
-
-```
-cd /Users/benknight/Code/goods-story-wt/v2
-INVESTORS_PASSWORD=OnCountry-E1C4AC npx next dev -p 3010
-```
-
-Then `http://localhost:3010/pitch/model` (public) and `http://localhost:3010/sites/qbe/story` (cookie `investors_auth=OnCountry-E1C4AC`).
-
-### Traps this effort has already paid for
-
-- `check:audience` reads `git ls-files`, so a new route that is not staged fails as "no page.tsx". Stage before running the gates.
-- `check:qbe-guardrails` reads test titles. "QBE … doubles" on a line with no negation word fails, even inside an `it(...)`.
-- Never put an invoice id in a React key on a public page. It rides in the payload.
-- Pencil does not paint newly inserted nodes until the file is saved and reopened.
-- `Get(document, visit)` in Pencil visits the root's children at depth 0, not 1. A nested `Get` inside a visitor over 249 frames interrupts.
-- Other sessions have edited the same `.pen`. Check `get_app_state` before every deck read or edit.
-- The main working tree is on `codex/site-audience-alignment` with another session's ~280 modified files. Do not commit there.
-- The gates regenerate three files under `wiki/canon/`. Restore them before committing.
-
-### The deck, as it stands
-
-`v2/public/strategy/Goods Final Deck.pen`, gitignored, 249 top-level nodes. The review is in `deliverables/deck-review-2026-09.md`. Fifteen live frames (six keep, nine fix), seven optional, eleven MODEL, twenty frames another session added that contradict ruling Y and are cut, about 140 stacked copies and loose root nodes, and a separate 23-frame LGANT deck for the Darwin symposium on 22 September.
-
-Frame 02 no longer exists; a copy (`Yzth3`) must be rescued into the live row before the duplicates are deleted.
-
-The twelve-slide plan is `deck-plan.ts`. Slide to form question: 1 → Q6; 4 → Q10, Q14, Q19; 5 → Q19; 6 → Q5, Q6, Q7; 7 → Q6, Q8; 8 → Q10 to Q12; 9 → Q1b, Q2, Q3, Q4, Q22; 10 → Q14, Q16, Q18; 11 → Q7, Q18; 12 → Q5, Q7.
-
-### The form, in one paragraph
-
-Twenty-five questions, closing Friday 25 September at noon. Five decide the outcome: the amount, the use of funds, the smaller amount, the other funders, and how the grant is catalytic. Nothing is signed, and leverage is the program's core criterion, so one letter would move the answer they weight most (#250). The ask sits at the top of the range, which makes the fallback answer the mitigation (#251). The entity answer sits under two of the highest-weighted questions. The books are the standing blocker. The full audit renders at `/sites/qbe/story#form`.
-
-### Standing rules that govern every word here
-
-First person as Goods on Country. The crux line as ruled. The program cost is only ever the cost of the beds. Nothing is signed and it is said first. A grant never matches, doubles or guarantees (ruling V). No community beside a price (ruling S). Two years on the road, never nine. Ownership is a pathway. No health outcome claimed. Forty beds were pressed at the farm. "Designed in community".
-
-Write funder-facing prose from the transcript, not the repo. Run `/straight` before any funder or public prose, and `/act-voice` before anything a human reads.
+### Traps
+- `check:audience` reads `git ls-files`; stage new routes before running the gates.
+- The gates rewrite three files under `wiki/canon/`; restore them before committing.
+- The main working tree is on `codex/site-audience-alignment` with ~298 modified files from another
+  session. Never commit there.
+- Pencil does not paint newly inserted nodes until the file is saved and reopened; the peer builds
+  every slide as a Copy of a shell for that reason.
+- `INVESTORS_PASSWORD` is not in `.env.local`. Start dev with it set or the gated routes redirect.
