@@ -409,14 +409,14 @@ export default function MiroReadyBoardPage() {
         <div className="mx-auto flex max-w-[1800px] items-center justify-between gap-4 px-6 py-3">
           <div className="flex flex-wrap gap-2">
             <Link
-              href="/pitch/workshop"
+              href="/admin/pitch-workshop"
               className="inline-flex items-center gap-2 rounded-md border border-[#d9cdb8] bg-white px-3 py-2 text-sm font-semibold text-goods-ink"
             >
               <ArrowLeft className="h-4 w-4" />
               Workshop
             </Link>
             <Link
-              href="/pitch/investor-lab"
+              href="/admin/investor-lab"
               className="inline-flex items-center gap-2 rounded-md border border-[#d9cdb8] bg-white px-3 py-2 text-sm font-semibold text-goods-ink"
             >
               Investor lab
@@ -430,7 +430,7 @@ export default function MiroReadyBoardPage() {
               <ExternalLink className="h-4 w-4" />
             </Link>
             <Link
-              href="/pitch/photo-review"
+              href="/admin/deck-photo-review"
               className="inline-flex items-center gap-2 rounded-md border border-[#d9cdb8] bg-white px-3 py-2 text-sm font-semibold text-goods-ink"
             >
               Photo review

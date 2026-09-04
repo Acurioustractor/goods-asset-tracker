@@ -92,14 +92,14 @@ export function PitchWorkshopClient() {
         <div className="container mx-auto px-4 py-10 md:py-14">
           <div className="mb-8 flex flex-wrap items-center gap-3">
             <Link
-              href="/pitch"
+              href="/pitch/road"
               className="inline-flex items-center gap-2 rounded-md border border-background/15 px-3 py-2 text-sm text-background/70 transition-colors hover:bg-background/10 hover:text-background"
             >
               <ArrowLeft className="h-4 w-4" />
               Back to pitch
             </Link>
             <Link
-              href="/pitch/investor-lab"
+              href="/admin/investor-lab"
               className="inline-flex items-center gap-2 rounded-md border border-background/15 px-3 py-2 text-sm text-background/70 transition-colors hover:bg-background/10 hover:text-background"
             >
               Investor lab
@@ -113,7 +113,7 @@ export function PitchWorkshopClient() {
               <ExternalLink className="h-4 w-4" />
             </Link>
             <Link
-              href="/pitch/photo-review"
+              href="/admin/deck-photo-review"
               className="inline-flex items-center gap-2 rounded-md border border-background/15 px-3 py-2 text-sm text-background/70 transition-colors hover:bg-background/10 hover:text-background"
             >
               Photo review
@@ -490,7 +490,7 @@ export function PitchWorkshopClient() {
           </div>
           <div className="flex flex-wrap gap-2">
             <Link
-              href="/pitch/investor-lab"
+              href="/admin/investor-lab"
               className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-3 py-2 text-sm font-semibold transition-colors hover:border-primary/40"
             >
               Investor lab
@@ -502,13 +502,13 @@ export function PitchWorkshopClient() {
               Community narrative
             </Link>
             <Link
-              href="/pitch/photo-review"
+              href="/admin/deck-photo-review"
               className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-3 py-2 text-sm font-semibold transition-colors hover:border-primary/40"
             >
               Photo review
             </Link>
             <Link
-              href="/pitch/miro-board"
+              href="/admin/miro-board"
               className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-3 py-2 text-sm font-semibold transition-colors hover:border-primary/40"
             >
               Miro board

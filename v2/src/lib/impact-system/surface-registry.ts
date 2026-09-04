@@ -50,7 +50,9 @@ export const IMPACT_SURFACES: ImpactSurfaceDefinition[] = [
   },
   {
     id: 'story-road',
-    routeOrArtifact: '/story/road',
+    // /story/road folded into /story on 2026-08-02 (#182, one telling). The id is a stable
+    // slug and does not move; the route it names does.
+    routeOrArtifact: '/story',
     audience: ['public', 'funder', 'community'],
     purpose: 'Sequential place, voice, figure and evidence-gap narrative.',
     dataSources: ['story-road.ts', 'canonical Goods data', 'approved media'],
@@ -155,7 +157,9 @@ export const IMPACT_SURFACES: ImpactSurfaceDefinition[] = [
   },
   {
     id: 'cost-story',
-    routeOrArtifact: '/cost-story',
+    // /cost-story RETIRED 2026-08-06 (money is spoken in full in ONE place). The money half of
+    // the road carries what it did. The id is a stable slug; the route it names moved.
+    routeOrArtifact: '/pitch/road#model',
     audience: ['public', 'funder', 'operations'],
     purpose: 'Current and modelled economics with assumptions and sensitivity.',
     dataSources: ['cost model', 'supplier quotes', 'cost-story.ts'],

@@ -23,7 +23,7 @@ None. Every citesCanon id resolves to a canon fact.
   - beds-deployed (canon 2026-07-18 > verified 2026-06-02)
   - revenue-received (canon 2026-06-03 > verified 2026-06-02)
   - save-per-bed (canon 2026-07-31 > verified 2026-06-02)
-- **Public pitch page + document (/pitch)**
+- **Public pitch page + document (/pitch/road)**
   - beds-deployed (canon 2026-07-18 > verified 2026-05-30)
 - **Cost Lab (/sites/cost-lab)**
   - marginal-factory (canon 2026-07-31 > verified 2026-06-05)
@@ -33,7 +33,7 @@ None. Every citesCanon id resolves to a canon fact.
 - **Investor cockpit (/investors)**
   - marginal-factory (canon 2026-07-31 > verified 2026-06-05)
   - stretch-price (canon 2026-07-25 > verified 2026-06-05)
-- **Cost-story (/cost-story)**
+- **The money, on the road (/pitch/road#model)**
   - save-per-bed (canon 2026-07-31 > verified 2026-06-02)
   - stretch-price (canon 2026-07-25 > verified 2026-06-02)
 - **Cost model v6 engine**

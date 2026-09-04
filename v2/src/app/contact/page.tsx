@@ -304,7 +304,7 @@ export default function ContactPage() {
                       </div>
                     </Link>
                     <Link
-                      href="/about"
+                      href="/story"
                       className="flex items-center gap-3 p-3 rounded-xl transition-colors hover:bg-goods-cream"
                     >
                       <div

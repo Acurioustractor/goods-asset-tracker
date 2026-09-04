@@ -1,8 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import {
-  ArrowLeft,
-  ArrowRight,
   BookOpenText,
   CheckCircle2,
   CircleAlert,
@@ -225,28 +222,6 @@ export default function CommunityNarrativePage() {
       <OtherPitchSurfaceNotice note="This is the community-narrative cut." />
       <section className="border-b border-[#203833] bg-[#243d3a] text-white">
         <div className="mx-auto max-w-[1560px] px-4 py-8 md:px-6 md:py-12">
-          <div className="mb-8 flex flex-wrap items-center gap-3">
-            <Link
-              href="/pitch/investor-lab"
-              className="inline-flex items-center gap-2 rounded-md border border-white/15 px-3 py-2 text-sm font-semibold text-white/75 transition-colors hover:bg-white/10 hover:text-white"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Investor lab
-            </Link>
-            <Link
-              href="/pitch/workshop"
-              className="inline-flex items-center gap-2 rounded-md border border-white/15 px-3 py-2 text-sm font-semibold text-white/75 transition-colors hover:bg-white/10 hover:text-white"
-            >
-              Workshop
-            </Link>
-            <Link
-              href="/pitch/photo-review"
-              className="inline-flex items-center gap-2 rounded-md border border-white/15 px-3 py-2 text-sm font-semibold text-white/75 transition-colors hover:bg-white/10 hover:text-white"
-            >
-              Photo review
-            </Link>
-          </div>
-
           <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
             <div>
               <p className="mb-4 flex items-center gap-2 text-sm uppercase tracking-[0.22em] text-goods-terracotta-light">
@@ -560,29 +535,6 @@ export default function CommunityNarrativePage() {
                 Use one storyteller voice per proof point. Keep the person, place, and consent caveat attached.
                 Put final external material through Empathy Ledger or the canon board before sending.
               </p>
-              <div className="mt-4 grid gap-2">
-                <Link
-                  href="/pitch/investor-lab"
-                  className="inline-flex items-center justify-between rounded-md border border-white/15 px-3 py-2 text-sm font-semibold text-white/80 transition-colors hover:bg-white/10 hover:text-white"
-                >
-                  Investor lab
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  href="/pitch/photo-review"
-                  className="inline-flex items-center justify-between rounded-md border border-white/15 px-3 py-2 text-sm font-semibold text-white/80 transition-colors hover:bg-white/10 hover:text-white"
-                >
-                  Photo review
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  href="/pitch/miro-board"
-                  className="inline-flex items-center justify-between rounded-md border border-white/15 px-3 py-2 text-sm font-semibold text-white/80 transition-colors hover:bg-white/10 hover:text-white"
-                >
-                  Miro board
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
             </div>
           </div>
         </div>

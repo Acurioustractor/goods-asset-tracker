@@ -108,10 +108,10 @@
     },
     {
       "id": "public-pitch-pages",
-      "title": "Public pitch page + document (/pitch)",
+      "title": "Public pitch page + document (/pitch/road)",
       "pillar": "pitch",
       "type": "live route",
-      "location": "https://goodsoncountry.com/pitch",
+      "location": "https://goodsoncountry.com/pitch/road",
       "status": "live-public",
       "claimLabels": [
         "verified"
@@ -181,10 +181,10 @@
     },
     {
       "id": "cost-story",
-      "title": "Cost-story (/cost-story)",
+      "title": "The money, on the road (/pitch/road#model)",
       "pillar": "costing",
       "type": "live route",
-      "location": "https://goodsoncountry.com/cost-story",
+      "location": "https://goodsoncountry.com/pitch/road#model",
       "status": "live-public",
       "claimLabels": [
         "verified",

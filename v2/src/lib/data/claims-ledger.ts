@@ -110,7 +110,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
     figure: `${greenFigure('plastic-kg')}kg`,
     factId: 'plastic-kg',
     status: 'verified',
-    evidence: [{ label: 'The work', href: '/the-work' }],
+    evidence: [{ label: 'The work', href: '/story' }],
     asOf: canonFact('plastic-kg').asAt,
   },
   {
@@ -130,7 +130,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
     figure: greenFigure('marginal-buykit', aud),
     factId: 'marginal-buykit',
     status: 'verified',
-    evidence: [{ label: 'The cost story', href: '/cost-story' }],
+    evidence: [{ label: 'The road to ownership', href: '/pitch/road#model' }],
     asOf: canonFact('marginal-buykit').asAt,
   },
   {
@@ -140,7 +140,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
     figure: greenFigure('save-per-bed', aud),
     factId: 'save-per-bed',
     status: 'verified',
-    evidence: [{ label: 'The cost story', href: '/cost-story' }],
+    evidence: [{ label: 'The road to ownership', href: '/pitch/road#model' }],
     asOf: canonFact('save-per-bed').asAt,
   },
   {
@@ -163,7 +163,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
     factId: 'marginal-community',
     status: 'modelled',
     ceiling: 'This is an estimate, not a measured production cost.',
-    evidence: [{ label: 'The cost story', href: '/cost-story' }],
+    evidence: [{ label: 'The road to ownership', href: '/pitch/road#model' }],
     asOf: canonFact('marginal-community').asAt,
     flip: { when: 'after a sustained production run', how: 'We will replace the estimate with the measured cost.' },
   },
@@ -175,7 +175,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
     factId: 'marginal-community', // derived from the modelled cost; inherits its label
     status: 'modelled',
     ceiling: 'This uses the estimated cost above, so it is also an estimate.',
-    evidence: [{ label: 'The cost story', href: '/cost-story' }],
+    evidence: [{ label: 'The road to ownership', href: '/pitch/road#model' }],
     asOf: canonFact('marginal-community').asAt,
     flip: { when: 'after a sustained production run', how: 'We will recalculate it using the measured cost per bed.' },
   },
@@ -207,7 +207,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
     headline: 'Signed match-eligible commitments',
     statement: 'No external commitments are signed today. QBE requires signed commitments before we submit the application. Earlier commitments make the application stronger.',
     status: 'future',
-    evidence: [{ label: 'Investor deck', href: '/deck' }],
+    evidence: [{ label: 'Investor deck', href: '/pitch/road' }],
     asOf: canonFact('signed-lois').asAt,
     flip: { when: 'when the first commitment is signed', how: 'We will record it here.' },
   },
@@ -217,7 +217,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
     statement: 'Each plant is built to move into community hands, on the Supply Nation 51% First Nations-ownership path.',
     status: 'future',
     ceiling: 'Community ownership is the goal. It has not happened yet.',
-    evidence: [{ label: 'The work', href: '/the-work' }],
+    evidence: [{ label: 'The work', href: '/story' }],
     asOf: '2026-07-10',
   },
   {
@@ -225,7 +225,7 @@ export const EXTERNAL_CLAIMS: Claim[] = [
     headline: 'First hires beyond the founders',
     statement: 'There are no employees or independent directors today. New roles will only be added when funding allows.',
     status: 'future',
-    evidence: [{ label: 'Investor deck', href: '/deck' }],
+    evidence: [{ label: 'Investor deck', href: '/pitch/road' }],
     asOf: '2026-07-10',
   },
 

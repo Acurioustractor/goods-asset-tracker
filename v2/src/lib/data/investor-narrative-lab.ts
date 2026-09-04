@@ -30,17 +30,17 @@ export const investorLabSourceLinks = [
   },
   {
     label: 'Pitch workshop',
-    href: '/pitch/workshop',
+    href: '/admin/pitch-workshop',
     note: 'Complete why, what, how, proof, scale, and ask flow.',
   },
   {
     label: 'Photo review',
-    href: '/pitch/photo-review',
+    href: '/admin/deck-photo-review',
     note: 'Deck photo jobs, storyteller quotes, and consent checks.',
   },
   {
     label: 'Miro board',
-    href: '/pitch/miro-board',
+    href: '/admin/miro-board',
     note: 'Large strategy board for visual sorting and deck ideation.',
   },
 ];

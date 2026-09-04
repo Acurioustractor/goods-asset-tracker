@@ -90,14 +90,14 @@ const TURN_THEMES: TurnTheme[] = [
   {
     n: 1,
     title: 'The need is real, people name it themselves',
-    metricLabel: 'Cost story: the need',
-    metricHref: '/cost-story',
+    metricLabel: 'The money: the need',
+    metricHref: '/pitch/road#model',
   },
   {
     n: 2,
     title: 'The existing supply fails these places',
-    metricLabel: 'Cost story: supply failure',
-    metricHref: '/cost-story',
+    metricLabel: 'The money: supply failure',
+    metricHref: '/pitch/road#model',
   },
   {
     n: 3,
@@ -121,7 +121,7 @@ const TURN_THEMES: TurnTheme[] = [
     n: 6,
     title: 'What the capital does',
     metricLabel: 'AU$400K ask',
-    metricHref: '/pitch/deck',
+    metricHref: '/pitch/road',
   },
 ];
 
