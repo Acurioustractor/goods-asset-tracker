@@ -27,7 +27,27 @@
 
 The retired version read "It is a plant that belongs to the people sleeping on the beds." Two things were wrong with it. **RULING D:** the object is **infrastructure**, not "a plant"; of four live pathways only Oonchiumpa wants a whole plant, and infrastructure scales from a shredder up. And it put ownership with the people sleeping on the beds, where the model puts it with whichever community runs the site. "Come to own" also carries the over-time, which keeps the line inside the standing ceiling that ownership is a pathway, never claimed complete. Full reasoning: `/DECISIONS.md` D and E.
 
-**Brand naming direction (Ben, 2026-07-21)** — the master brand is **"Goods."** (the wordmark with the full stop); "Goods on Country" is the charity-arm name. Ben dislikes the current Goods-on-Country logo treatment; a rebuild is on the table. Cropped wordmarks now at `design/deck-photos/logo-goods-{white,black}.png` (cut from the full lockup). **Corrected by RULING K (2026-07-25), verified on ABN Lookup:** "Goods on Country" is a **registered business name of The Butterfly Movement Ltd** (ABN 22 155 132 684) from 23 July 2026. **A Curious Tractor Pty Ltd (ABN 36 697 347 676) holds no registered business names at all**, so "t/a Goods" is a brand usage, not a registered trading name. So: **Goods. is the maker and seller** inside A Curious Tractor Pty Ltd; **Goods on Country is the charity**. The brand kit already carried both marks before the register caught up. Open with MinterEllison and on the 3 Aug agenda: who is the contracting party and seller of record during migration, given beds are sold by the company on a domain named for the charity.
+**Catalytic capital**: money for a useful first step that leaves a community with more control of the work. The test is what remains after the first spend: useful assets, paid work, equipment, sales money or the right to decide what happens next. A grant, purchase or loan is only catalytic if it changes who can do the work and make the decisions.
+
+**Bed pool**: beds paid for up front, with local rules for who receives them, which are sold, who is paid for the work and where any sales money goes. Until those rules are agreed, the pool is neither a gift nor confirmed community income.
+
+**Goods network partner**: an organisation in an active Goods on Country relationship with one or more explicit capabilities. Use the organisation's real type and name; do not use “Goods enterprise” as a catch-all or call an organisation “the community”.
+
+**Capability agreement**: a dated agreement that gives an organisation specific Goods roles in a stated place or site, with scope, responsibilities, quality rules, permissions, review and exit. A partnership label alone does not grant authority, product rights or facility ownership.
+
+**Goods site**: a physical place where selected Goods work happens. Record the site, equipment or facility, owner and operator separately so a mobile facility can move and an operator can change without rewriting history.
+
+**Production site**: a Goods site where product components are made for sale. Assembling delivered kits is recorded as assembly, not silently promoted to production.
+
+**Product Passport**: the lifecycle record for one physical bed, washing machine or future Goods product: stable identity, product/version, build and QA, allocation and delivery, condition, support, repairs, transfers and retirement. It is a product record, not a person profile.
+
+**Support relationship**: the minimum governed link needed to care for a delivered product and fulfil repair, replacement, collection or assessment. It is not a public recipient register and must not become household surveillance.
+
+**Governed evidence reference**: a stable pointer from Empathy Ledger or a community impact cycle to a Goods fact or event, carrying source system, record ID, observed date, as-at date, version, privacy class and verification state. It is not a copy of operational data and never auto-approves a claim.
+
+**Community authority**: legitimate local or cultural authority for community-held knowledge and decisions. Keep it distinct from an organisation, funder, recipient, storyteller, site operator and Empathy Ledger consent record.
+
+**Brand and operating identity (RULING X, Ben 2026-08-28)** — **Goods on Country is the only current operating and public identity.** The products, IP, assets, contracts, making, sales, delivery, capital, governance and evidence are transferred into, owned by and run through Goods on Country. Do not present **Goods.** as a separate maker, seller or operating layer. It may appear only where a historical record or archived artifact must preserve its original name. The verified register fact remains: Goods on Country is a registered business name of The Butterfly Movement Ltd (ABN 22 155 132 684) from 23 July 2026.
 
 **The spine is THE ROAD (RULING C + F, Ben 2026-07-25, superseding the 2026-07-21 deck centre and all five narrative spines that were live at once)** — the narrative is seven stops and the gap, and **the model arrives near the END**, as what the road produced. Voices lead each stop, because each stop is a person saying something.
 
@@ -48,15 +68,15 @@ So the match is **short of paper, not short of candidates**, and grants paper fa
 
 **RULING M:** the "at least three signed LOIs by 31 Aug" gate **had no source** and is struck; the recorded terms state a dollar test with no count. What QBE accepts as match paper is a **letter** naming amount, instrument, funder legal name and a callable contact, not a facility agreement. First question for Jay, early August, and it is worth more than the rest of the sequencing put together.
 
-**The three doors (entity)** — Donate → The Butterfly Movement Ltd (DGR) · Buy/Order → A Curious Tractor Pty Ltd, selling as **Goods.** · Invest (repayable) → ACT Pty Ltd. Equity is not sold; gifts never fund the company. (Ruling K: the company holds no registered business name, so do not write "t/a".)
+**One operating home, distinct instruments (RULING X)** — gifts, orders and catalytic capital all run through Goods on Country using the agreement and accounting treatment appropriate to each. Do not recreate a Goods. operating layer to explain the money. Equity is not sold.
 
 **Donate door (corrected by RULING J, 2026-07-25, from the public register)** — Butterfly **DGR has been endorsed since 17 Jan 2012** and ACNC charity registration since 3 Dec 2012. It is not pending and never was "full endorsement FY2026-27". The open question was never the status, it is the **receipting mechanics and whose name goes on the receipt**, which is a much smaller question. ⚠ Still confirm those mechanics with the Butterfly side before printing "tax-deductible today" on donor-facing surfaces (a wrong deductibility claim is an ATO problem, not a copy problem).
 
-**The 51% question, and the distinction that must never blur (RULING J, 2026-07-25)** — **Aboriginal directors on the charity is NOT 51% First Nations ownership of the entity that sells.** Supply Nation, IPP, IBA and First Australians Capital all test **the supplier**, which is the company. If the charity's board ever reaches a funder document as though it satisfies the ownership test, it ends the relationship.
+**The supplier test (updated by RULING X)** — any Supply Nation, IPP, IBA or First Australians Capital claim must be tested against Goods on Country's actual legal and control position. Do not reuse the retired A Curious Tractor/Goods. split as the answer, and do not infer eligibility from board composition alone.
 
 The Butterfly transition is **executing, not blocking**: Kristy Bloomfield and Audrey Deemal are already directors, written acceptance and ASIC/ACNC registration complete; **AGM tentatively 14 September 2026** (21 days notice, gated on audited financials); chair will be an Aboriginal director, Ben's read is Kristy. **So 51% is DECOUPLED from the AGM.** It never depended on it; that sequencing was an assumption and it cost roughly seven weeks and the 1 July Supply Nation threshold. Every document that still says the entity work waits on the charity landing "~end July" is wrong as of 20 July.
 
-**DIRECTION to test, not a decision:** the **community production entity is the seller** in the procurement lane, with Goods. as its supplier and service provider. Oonchiumpa has not been asked. Goes to MinterEllison as a specific question and to Kristy as a conversation. Conflicts register needed if Kristy chairs, since she directs Oonchiumpa.
+**Retired direction (RULING X):** the earlier proposal that a community production entity sells while Goods. supplies is no longer the core model. Goods on Country owns and runs the whole model. Community partners make local decisions, and any later transfer of ownership remains a community-led pathway rather than a promise already completed.
 
 **Inter-entity agreement (status 2026-07-21)** — Butterfly ↔ ACT relationship documentation is aligned; completion meeting 2026-07-22; not yet signed. Until signed, all surfaces say "being formalised, completion in progress", never "documents" (present tense). Ben.
 

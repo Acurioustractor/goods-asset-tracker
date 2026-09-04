@@ -246,7 +246,7 @@ export const GROWTH_STAGES: GrowthStage[] = [
     stage: 'Break-even',
     beds: '~338 beds/yr',
     means: 'Legs pressed in-house at $426. ~$324 stays. Sales alone cover the $109.5K block.',
-    fundedBy: 'This raise: the stack + QBE match buy the equipment, the proof run and the ramp.',
+    fundedBy: 'This raise: the stack, with a catalytic QBE grant on top of signed paper, buys the equipment, the proof run and the ramp. The September 2026 bed-pool raise lives in raise-stack.ts.',
   },
   {
     stage: 'One facility, full',
