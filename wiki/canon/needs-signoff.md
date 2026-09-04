@@ -8,7 +8,7 @@ Do not force these cuts to equal each other. Quote the Goods-only carve-out when
 - Xero ACT-GD paid: $650,910.79 (asAt 2026-06-01)
 - Goods carve-out: $713,827 (asAt 2026-06-02)
 
-Current citable Goods-only figure: $713,827 accountant-signed carve-out.
+Current citable Goods-only figure: $713,827 Goods-only carve-out, a workpaper prepared with the accountant, NOT signed (ruling H). Getting it signed is the open action.
 Still check before sending: opening cash, AP matching clean-up, latest receipts, and whether the external page wants Goods-only or all-sources scope.
 
 ## Hard drift

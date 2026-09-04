@@ -123,7 +123,7 @@ console.log(`received[] sum ${fmt(sum(live.receivedItems))} (${(live.receivedIte
 console.log(`revenueBilled (different scope, do not compare): ${fmt(live.compRevenueBilled)}\n`);
 console.log('Revenue cuts (different bases, do not force-equal):');
 for (const [label, v, asAt] of cuts) console.log(`  ${label.padEnd(26)} ${fmt(v)}  (asAt ${asAt})`);
-console.log('  citable Goods-only figure: $713,827 accountant-signed carve-out');
+console.log('  citable Goods-only figure: $713,827 Goods-only carve-out, a workpaper prepared with the accountant, NOT signed (ruling H)');
 console.log('  basis conflict: NO — values differ by scope; name the basis when quoting');
 console.log('  (assets are checked by check-asset-drift.mjs; retired copy by check-qbe-guardrails.mjs)\n');
 
@@ -138,7 +138,7 @@ const signoff = [
   'Do not force these cuts to equal each other. Quote the Goods-only carve-out when a Goods-only figure is required, and quote the all-sources received figure only when the scope is explicitly all sources:',
   ...cuts.map(([label, v, asAt]) => `- ${label}: ${fmt(v)} (asAt ${asAt})`),
   '',
-  'Current citable Goods-only figure: $713,827 accountant-signed carve-out.',
+  'Current citable Goods-only figure: $713,827 Goods-only carve-out, a workpaper prepared with the accountant, NOT signed (ruling H). Getting it signed is the open action.',
   'Still check before sending: opening cash, AP matching clean-up, latest receipts, and whether the external page wants Goods-only or all-sources scope.',
   '',
   hardFails.length ? '## Hard drift (fix before any share)' : '## Hard drift\nNone. Money figures are in lockstep across canon.ts, compendium.ts, grant-content.ts.',

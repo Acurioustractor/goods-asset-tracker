@@ -247,13 +247,20 @@ const ALLOWED = [
     match: /\$741,111/,
     why: 'Guard-test fixtures assert on a sample figure; the value is arbitrary test data, not a claim.',
   },
+  {
+    file: 'lib/data/voice-impact-data.json',
+    match: /CANON CONTRADICTIONS:/,
+    why: 'An analysis note listing where a source article contradicts canon. Quoting the wrong numbers is the point, and it renders only on the admin voice-impact page.',
+  },
 ];
 
 const walk = (dir, out = []) => {
   for (const entry of readdirSync(dir)) {
     const p = join(dir, entry);
     if (statSync(p).isDirectory()) walk(p, out);
-    else if (/\.(ts|tsx)$/.test(entry) && !/\.test\.tsx?$/.test(entry)) out.push(p);
+    // .json is scanned too: qbe-areas.json carried "Accountant-signed" and "$741,111" for six weeks
+    // after both were retired, because only .ts/.tsx was walked (found 2026-09-05).
+    else if (/\.(ts|tsx|json)$/.test(entry) && !/\.test\.tsx?$/.test(entry)) out.push(p);
   }
   return out;
 };
