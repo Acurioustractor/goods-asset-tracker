@@ -1,5 +1,5 @@
 ---
-date: 2026-09-04T13:10:00Z
+date: 2026-09-05T00:00:00Z
 session_name: qbe-story-and-deck
 branch: feat/qbe-story
 status: active
@@ -9,8 +9,8 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-04T16:20:00Z
-**Goal:** Twelve slides whose copy Ben has ruled on, one at a time, in Notion. Then build once in Pencil. Then the QBE form. Done when Ben has said yes to all twelve and the PDF is under 10MB.
+**Updated:** 2026-09-05T00:10:00Z
+**Goal:** Thirteen slides, each built in Pencil and each carrying a full evidence-graded section in Notion. Then the QBE form. Done when Ben has ruled on all thirteen and the PDF is under 10MB.
 **Branch:** `feat/qbe-story`, PR #253, pushed, CI green. Worktree `/Users/benknight/Code/goods-story-wt`.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
 **Map:** GitHub issue #236. **The Notion deck master is the working surface, not this file:**
@@ -19,9 +19,34 @@ status: active
 ### Now
 [->] **PASTE-PROMPT: `thoughts/shared/handoffs/qbe-story-and-deck/START-HERE.md`. Open that first.**
 
-[->] **Slide-by-slide copy pass. Slide 1 LOCKED. Slides 2, 3 and 4 drafted and waiting on Ben.**
-Do 5 to 12, ONE AT A TIME. Ben says "go" between each.
-**Before any of that, read "The mentor call" below. It challenges the ask itself.**
+[->] **Use the `/deck-slide` skill. It is the whole method and it was written this session.**
+`.claude/skills/deck-slide/` (SKILL.md, EVIDENCE.md, PENCIL.md). `.claude/` is gitignored, so it
+lives only on this machine.
+
+[->] **Slides 01 to 06 are BUILT in Pencil, exported, and on the Notion page with the full section
+structure. Ben has not formally ruled on 02 to 06.** Next is **07**, the loop, frame `tkDpX`.
+Ben says "next" between each and expects one slide at a time.
+
+**The deck is now thirteen slides.** A new 03 was inserted, so everything from the old 03 moved
+down one. Frame ids did not move, only the numbers.
+
+| # | Slide | Frame | State |
+|---|---|---|---|
+| 01 | A recycled washable bed | `S1VrCQ` | Built, Ben's words, aligned |
+| 02 | You cannot wash a mattress | `Cduac` | Built |
+| 03 | 382 people | `U17nTq` | Built, all four figures grade A |
+| 04 | Delivery was the easy part | `L4AgY` | Built, seven-photograph timeline |
+| 05 | Six organisations have paid for beds | `p7GoP` | Built, seven-row ledger |
+| 06 | The making already works | `FF0af` | Built |
+| 07 | The loop | `tkDpX` | **NEXT** |
+| 08 | Evidence | `M3ppb` | Untouched |
+| 09 | Governance | `GVjkm` | Untouched |
+| 10 | Capital | `w3NJ6L` | Untouched |
+| 11 | Catalytic | `fs7ub` | Untouched |
+| 12 | Ask | `y61Ux` | Untouched |
+
+**Before any of that, read "The mentor call" below. It challenges the ask itself**, and slides 07,
+10, 11 and 12 all encode ruling Y.
 
 ### The mentor call, 4 September — READ FIRST
 Ben and Nic met a business mentor. Summary, notes and transcript are in Ben's 4 Sep message and
@@ -142,8 +167,236 @@ me and comfy… easy to put together", Arlparra 22 May). Karen Liddle has a clea
 quote anywhere in the repo. So "give every stop a real quote" is not available without recording
 more, which is why the draft names three people and narrates the rest.
 
+### Notion copy to Pencil: the loop works, 4 September
+
+Slide 1 (`S1VrCQ`) now carries Ben's Notion "On the slide" copy. Route: read the Notion block, read
+the frame's text nodes with `Get(id, visit, {resolveInstances:true})`, `Update` each node's
+`content`, reposition, `TakeScreenshot` to verify. No peer session round trip.
+
+**The paint gotcha, now pinned down.** `Insert` of a new node does NOT paint until the file is saved
+and reopened; the node is in the file and screenshots come back blank. `Copy` of an existing node
+paints immediately. So: to add a node to a built slide, `Copy` a sibling with the same type and
+override its properties in the same call. Never `Insert`. This is why the peer built every slide as
+a copy of a shell.
+
+**Frame ids are in `deliverables/qbe-deck-handoff/presenter-notes-and-manifest-2026-09-04.md`,**
+column 2, not column 4. Column 4 is the old frame the new one replaces. Slide 1 is `S1VrCQ`;
+`QiRll` is the archetype component.
+
+**Two calls made on slide 1, both flagged to Ben.** His headline is 68 characters and cannot set at
+72px in a 660px column, so it is two display lines: "A bed off the ground." at 72 and "A community
+enterprise backed by philanthropy." at 34. His four footer lines are joined with · separators in the
+existing single Stamp node rather than stacked. "creating job" corrected to "creating jobs".
+
+### Ben's structural ruling, 4 September: the problem splits into two slides
+
+The old slide 2 argued a system thesis with four population statistics and never showed the object.
+Ben ruled it into two:
+
+- **02 · You cannot wash a mattress.** The product failure. Price, lifespan, access, waste. Drafted
+  in Notion and waiting on him.
+- **03 · Health, employment, community enterprise.** The RHD figures (the why, never an outcome),
+  the employment figures, and the enterprise figure. Not yet drafted.
+
+**Everything after this shifts by one.** The road slide drafted earlier as 03 becomes 04. Twelve
+slides becomes thirteen unless something else merges. The Pencil frame ids in the manifest do not
+move; only the numbers on the slides do.
+
+**Statistic allocation, checked against the modules.** `supply-context.ts` holds two of the old
+four as verified with live URLs: `nt-overcrowding-very-remote` (2,761 of 5,377 households, 51.3%,
+ABS 2021 QuickStats) and `nt-waste-to-landfill` (275,190 t, WRINT/AEAS §6). The other two, 3.1%
+self-employment and 38.1% employment, exist only in `qbe-story.ts` with a bare publisher name and no
+module or link. Waste stays on 02 because the tip is the last step of the product's life.
+Overcrowding, employment and enterprise go to 03.
+
+The product-failure figures are in `compendium.ts` with an organisation and no page reference:
+\$1,200 mattress (AFSE research), 1 to 2 year washer lifespan against 10 to 15 (East Arnhem Spin
+Project), 59% of remote homes without a machine and 38% able to wash regularly (FRRR 2022). Good
+enough to present, not good enough to submit. One email each.
+
+Two figures held off the slide: the \$3M a year of Alice Springs washer sales (Ben-stated,
+`deck.ts` rules it spoken and never printed, because it is somebody else's revenue) and "beds
+replaced every 18 months" (`funder-shared-content.ts`, no source attached, asked Ben, unanswered).
+
+### References verified 4 September, and what the checking turned up
+
+Slide 3's four figures now have primary links that open. Housing: ABS Census 2021 QuickStats Very
+Remote NT, 2,761 of 5,377 (already in `supply-context.ts`). Health: AIHW *Acute rheumatic fever and
+rheumatic heart disease in Australia*, as at 31 Dec 2024, Figure 4.1, First Nations 1,696.7 per
+100,000 against 84.6 for all Australians at ages 35 to 44, so twenty times, like for like; Figure
+4.2 has the NT at 3,398.7, highest of the register jurisdictions. Employment: AIHW *Employment of
+First Nations people*, updated 16 Oct 2025, from the ABS NATSIHS 2022-23. Enterprise: ABS
+*Aboriginal and Torres Strait Islander people who managed their own business in 2021*, released
+3 Mar 2025, NT 3.1% and 382 people, lowest jurisdiction, national 6.9% (17,907 people).
+**Ben challenged the 382 and it holds, with a caveat.** Census variable SIEMP, status in
+employment, base employed persons 15+, owner managers of incorporated and unincorporated
+enterprises, MAIN JOB in the week before Census night only. It therefore measures INDIVIDUAL
+ownership and does not count Aboriginal corporations, community-controlled organisations, land
+councils, ranger groups or art centres. Never say "almost no Aboriginal enterprise in the NT";
+somebody in the room will know better. Say individual ownership is almost absent and the
+collective form is what the model builds. Slide and source line now carry the definition.
+
+**Three corrections.**
+1. The deck said 38.1% employment. AIHW publishes 38%. The decimal has no source.
+2. Two different employment instruments were being blurred. AIHW measure 2.07 gives 32% very remote
+   and 58% major cities from the 2021 Census; the 38/68 pair is the 2022-23 health survey. Name the
+   survey on the slide.
+3. `compendium.ts` carries "Remote laundries reduce scabies, 60% reduction, Sector research". The
+   FRRR page that circulates this says the laundries "should not only reduce disease", which is a
+   projected outcome. **We have a projection recorded as a measurement.** Fix or retire it.
+
+**Slide 2's remaining three are still weak.** 59% without a washing machine and 38% able to wash
+regularly both trace to an FRRR blog post of 10 November 2022 which states them with no attribution
+of its own. The \$1,200 mattress (AFSE) and the 1 to 2 year washer lifespan (East Arnhem Spin
+Project) have an organisation and nothing else, and were not chased. Only the waste figure on slide
+2 is citable to the page.
+
+**Not yet in any module:** the three new slide 3 figures. They should be typed alongside
+`supply-context.ts` so `check-retired-figures` can police them.
+
+### The evidence block: one repeatable structure per slide, 4 September
+
+Ben asked for the research writing confirmed and set up so it repeats across all thirteen slides.
+The standard is now on the Notion master: a five-part block (on the slide, held in reserve, retired,
+images, model and diagram) and a five-point grade (A primary and checkable to the page, B named but
+not page-level, C attributed to nobody or a projection, RETIRED, WORKPAPER). Only A goes on a slide
+without a caveat. Slide 02's block is filled in as the worked example.
+
+**Six grades moved and two figures were wrong.**
+- Scabies 33% in remote A&TSI children: B to **A**. Gramp P, Gramp D, *Scabies in remote Aboriginal
+  and Torres Strait Islander populations in Australia: a narrative review*, PLOS NTD 2021, 15(9),
+  e0009751. Third highest prevalence in the world.
+- Impetigo: B to **A**, and **the repo figure is wrong**. We say "1 in 2, Medical Journal of
+  Australia". It is **45%**, highest in the world, same PLOS paper. Fix `content.ts` and
+  `compendium.ts`.
+- New from the same paper: **89% of new RHD diagnoses in Australia 2015-2017 were Aboriginal and
+  Torres Strait Islander people.**
+- Remote laundries 60% reduction: C ("sector research, unnamed") to **B**. It is the Remote
+  Laundries Project, Aboriginal Investment Group, with a CSIRO Indigenous-led evaluation, reported
+  as an observed fall in clinic presentations. **This corrects what I told Ben earlier today**: the
+  FRRR page says the laundries "should" reduce disease, but the project itself reports a measured
+  fall, so it is a real claim by a named body, not a projection dressed up.
+- Enterprise 3.1% and employment 38/68: both B to **A** (see the references entry above).
+- FRRR 59% and 38%: B down to **C**. Both trace to an FRRR blog post of 10 Nov 2022 that states them
+  with no attribution of its own. Presentable, not submittable.
+
+**Retired.** "\$6 saved per \$1 of washing investment" (unnamed; the nearest real thing is the Remote
+Laundries five-year model, \$3.79M net for one laundry, which is a business case for laundries and
+not our ratio). "1 in 2 / MJA" as a pairing. "Beds replaced every 18 months" stays unusable until
+Ben answers where it came from.
+
+**Not in a guarded module:** the price, lifespan and access figures live in `compendium.ts` as loose
+rows, so `check-retired-figures` cannot police them. Same for the three new slide 3 figures. They
+should be typed beside `supply-context.ts`.
+
+### `/deck-slide` skill built, and the Notion page deduplicated, 4 September
+
+**The duplication trap, and it bit twice in one hour.** A slide lives in three places on the master:
+a canonical block at the top, a copy under "Slide-by-slide build brief", and older passes between
+them. I rewrote the top and the heading_1 sections and left the heading_2 copy under the build brief
+carrying retired copy and the old grade table, which is what Ben was reading. **Before saying a
+slide is updated, enumerate every block on the page and search for the old headline and the old
+figures.** Now rule 8 in the skill. The page is clean as of 17:05: "Remote communities import the
+goods and export the value" returns zero hits anywhere.
+
+**Skill:** `.claude/skills/deck-slide/` (SKILL.md, EVIDENCE.md, PENCIL.md). `.claude/` is gitignored,
+so it is local only. It carries the eight hard rules, the seven parts every slide gets, the A/B/C
+grading scale and verification procedure, and the whole Pencil mechanic: the manifest column-2 trap,
+`Copy` not `Insert`, the type scale as a table, the band geometry (y=30000, x=2080n, 1920x1080),
+image fills resolving against the MAIN tree, the renumber-on-insert loop, export at 1.5x, and the
+`ntn` upload-and-swap sequence with `--notion-version 2025-09-03`.
+
+**Notion:** three superseded sections deleted by block id, 40 blocks (the old "Every stat we hold"
+library, "Slide 02 · Every stat option, pick four", and the old "02 · Remote communities import the
+goods and export the value" block). Replaced by one corrected library at the top of the page: six
+areas, every row graded and cited, plus a retired list. Deleting by enumerated block id works where
+`update_content` search-and-replace does not.
+
+### Slides 1 to 4 aligned to one structure, 4 September
+
+Every slide section under "Slide-by-slide build brief" now carries the same eight parts: image,
+On the slide callout (one paragraph per line, lead bold, no em dashes), then toggleable heading_3
+sections for Why these words, Speaker notes, Evidence and sources, QBE application, Visual options
+and sources, and Research, related pages and media (blue, kept open for Ben), then a footer line
+and a build note.
+
+**Slide 4 rebuilt twice.** First to the drafted copy, then to a seven-photograph timeline on Ben's
+instruction that it should be one of the best slides in the deck. Each stop column now carries a
+370px photograph, the number and place, the lesson and the line. The old three-photograph row is
+disabled rather than deleted. Video links are recorded in the visual options section for the live
+presentation, since an uploaded PDF cannot play anything. A proposal for a partner slide, "05 · The
+bed learned in public" (crate bed, Basket Bed, Stretch Bed, Pakkimjalki Kari), sits in slide 4's
+research section awaiting Ben's word; it would make the 363 Basket Beds visible, which they are not
+anywhere in the deck today.
+
+**Original slide 4 rebuild** (`L4AgY`): four of the seven names came off, Linda Turner and Alfred
+Johnson stay as quotations, Dianne Stokes stays as the Elder who named the machine. Each stop column
+is now number and place at 14pt terracotta, the lesson at 22pt, the line at 15pt, with the Voice
+node moved below Taught. Gap statement dropped to 30pt so it clears the photograph row. Photographs
+kept as built (camp-visit, kids-carrying-orange-bed, oonchiumpa-team-red-bed) because changing an
+image fill on an existing node does not paint. Exported and swapped into Notion.
+
+**Two API traps found the hard way.**
+1. `PATCH /v1/blocks/<page>/children` returns more than the blocks it created, so
+   `results[0]["id"]` is not reliably the new block. Match the returned blocks against the
+   previously known sibling ids, or re-enumerate the section and look the heading up by name.
+   Getting this wrong once cloned content into the wrong parents and then deleted the source.
+2. Round-tripping a block for POST needs nulls stripped (`paragraph.icon: null` is rejected) and
+   table rows inlined as `table.children` in the same request. Both are in the clone helper at
+   `scratchpad/blocks_lib.py`.
+
+### Slide 05 built: the buyers ledger, 4 September
+
+`p7GoP`, renamed "05 · Six organisations have paid for beds". The built version said four
+organisations and named two; the slide now carries all seven pieces of paper as a ledger: buyer,
+what they bought, the document number, the status. ALIVE, Centrecorp x2, Homeland School Company,
+Mala'la, Palm Island Community Company, Rotary eClub. Outstanding rows in terracotta, the open quote
+in grey. Every row is grade A because every row is an invoice or a quote in Xero.
+
+**The rendered `who-buys` diagram is disabled, not deleted.** It is generated from modules that still
+say four organisations, so it would have to be re-rendered before it could be used. That is a real
+outstanding item: `qbe-story.ts` still says four.
+
+**Table-building in Pencil, since Insert does not paint.** Copy an existing frame to make a row
+template, restyle its children as cells, Copy one cell to add a fourth, then Copy the row once per
+line with `descendants` overrides and an absolute y. Disable the template afterwards. Eight rows,
+two execute calls.
+
+Tennant Creek and Mparntwe with "more than 200 requests each" came off the slide: no request
+register exists, it is our own count, and it mixes interest in with revenue on a slide where
+everything else is a document.
+
+### Slide 06 built: the making, 4 September
+
+`FF0af`. The strongest slide in the deck and it needed almost nothing structural. Three changes:
+
+1. **The claim label was doing two jobs and saying one.** It read MODELLED beside "$426 against
+   $685". Canon has $685 **verified** (engine-locked BOM, auto-checked) and $426 **modelled**,
+   regraded verified to modelled on 31 July 2026 exactly because a surface reading canon straight
+   was one import from printing "verified" beside $426 in front of a funder. The label now reads
+   "$426 MODELLED · $685 VERIFIED".
+2. **The factory lead went on.** A woman from Alice Springs trained at the plant as factory lead.
+   That is the readiness evidence the form asks for and it was nowhere in the deck. It is grade C
+   until it has a name, a date or something in writing.
+3. **Layout:** the measured-run band had a fixed height and was clipping the test line. Set to
+   fit_content, photographs to 300, captions and band moved up.
+
+**Do not reconcile $426 with $421.** $421 is the community build on a fair-wage band with free
+feedstock (engine field marginalCommunity); $426 is the factory build. Canon says explicitly not to
+reconcile them.
+
+The test line stays exactly as written and is the register the rest of the deck should sound like.
+
 ### Next
-- [ ] Ben rules on slides 2, 3 and 4.
+- [ ] Ben rules on 02, 03, 04, 05 and 06, all built and on the page.
+- [ ] `qbe-story.ts` still says four buyers. Fix it so the who-buys diagram can be re-rendered.
+- [ ] Parked on Ben's word: "The bed learned in public", the product-evolution slide that
+      would make the 363 Basket Beds visible. Proposal sits in slide 4's research section.
+- [ ] Ben rules on 03 (drafted, all four figures verified to primary source).
+- [ ] Type the three new figures into a guarded module.
+- [ ] Chase the slide 2 references: AFSE mattress price, East Arnhem Spin Project lifespan,
+      and a primary for the FRRR 59/38 pair.
+- [ ] Then photos and the Pencil design pass Ben wants on 02 and 03 together.
 - [ ] Slides 5, 6, 7, 8, 9, 10, 11, 12, one at a time.
 - [ ] Fix the Kalgoorlie stop in `road-spine.ts` once Ben has ruled on slide 3 copy.
 - [ ] **The ask decision.** Ruling Y against the advisor's plant-first framing. Ben and Nic.
