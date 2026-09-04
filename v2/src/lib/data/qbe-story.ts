@@ -439,7 +439,9 @@ export const STORY_FIGURES = {
 //
 //   1. Centrecorp INV-0259 (60 Basket Beds, August 2025, paid) was in no module and on no slide.
 //   2. Rotary eClub INV-0222 (200 beds, $82,500) is real, authorised and unpaid since 24 April
-//      2025. It belongs in the buying record with its status said out loud, not left out.
+//      2025. RULED (Ben, 5 Sep): "just overdue and fucked". A 500-day-overdue debtor is not
+//      evidence of demand, so it is not a buyer. It lives in `money-lanes.ts` as bad debt, where
+//      it stays visible and is counted toward nothing.
 //   3. Palm Island Community Company INV-0317 (40 Stretch Beds, $36,300) is NOT here on purpose.
 //      `compendium.ts` and several wiki outputs still carry it as an authorised receivable, and
 //      slide 05 printed it. It is absent from Xero's aged receivables as at 5 Sep 2026 and absent
@@ -457,6 +459,10 @@ export interface BuyingLine {
   paper: string;
   /** Beds on the document. Washers, workshops and freight are excluded. */
   beds: number;
+  /** The bed lines only, ex GST. What the beds themselves earned. Null on a quote. */
+  bedRevenueExGstAud: number | null;
+  /** The whole document including GST, washers, workshops and freight. Null on a quote. */
+  documentTotalIncGstAud: number | null;
   /** Where the money actually is, as at `BUYING_AS_AT`. */
   status: 'paid' | 'owed' | 'quote open';
   label: Solidity;
@@ -468,13 +474,12 @@ export interface BuyingLine {
 export const BUYING_AS_AT = '5 September 2026';
 
 export const BUYING_STORY: readonly BuyingLine[] = [
-  { who: 'Rotary eClub Outback Australia', when: 'April 2025', beds: 200, what: '200 crate beds at $350 and a $5,000 project, $82,500 including GST.', paper: 'INV-0222, authorised, overdue since 24 April 2025', label: 'verified', status: 'owed' },
-  { who: 'Centrecorp Foundation', when: 'August 2025', beds: 60, what: '60 Basket Beds at $370, with two build workshops in community.', paper: 'INV-0259, paid', label: 'verified', status: 'paid' },
-  { who: 'Mala\'la Health Service Aboriginal Corporation, Maningrida', when: 'October 2025', beds: 13, what: '13 Basket Beds, the first beds into Maningrida.', paper: 'INV-0283, paid', label: 'verified', status: 'paid', working: true },
-  { who: 'Centrecorp Foundation', when: 'November 2025', beds: 107, what: '107 Stretch Beds for the Utopia homelands, built by young people with Oonchiumpa in Mparntwe.', paper: 'INV-0291, paid', label: 'verified', status: 'paid' },
-  { who: 'Homeland School Company, Maningrida', when: 'May 2026', beds: 40, what: '40 Stretch Beds and two washing machines for homeland families. The forty we pressed ourselves.', paper: 'INV-0303, paid', label: 'verified', status: 'paid' },
-  { who: 'Centrecorp Foundation', when: 'May 2026', beds: 130, what: '130 Stretch Beds quoted, waiting on community feedback.', paper: 'QU-0014, quote open', label: 'verified', status: 'quote open' },
-  { who: alive.funder, when: 'July 2026', beds: alive.beds ?? 100, what: `${alive.beds} Stretch Beds and four shared community visits, ${aud(alive.amountAud ?? 0)} ex GST, bought up front.`, paper: 'INV-0342, paid', label: 'verified', status: 'paid' },
+  { who: 'Centrecorp Foundation', when: 'August 2025', beds: 60, what: '60 Basket Beds at $370, with two build workshops in community.', bedRevenueExGstAud: 22_200, documentTotalIncGstAud: 37_620, paper: 'INV-0259, paid', label: 'verified', status: 'paid' },
+  { who: 'Mala\'la Health Service Aboriginal Corporation, Maningrida', when: 'October 2025', beds: 13, what: '13 Basket Beds, the first beds into Maningrida.', bedRevenueExGstAud: 4_940, documentTotalIncGstAud: 5_434, paper: 'INV-0283, paid', label: 'verified', status: 'paid', working: true },
+  { who: 'Centrecorp Foundation', when: 'November 2025', beds: 107, what: '107 Stretch Beds for the Utopia homelands, built by young people with Oonchiumpa in Mparntwe.', bedRevenueExGstAud: 59_920, documentTotalIncGstAud: 85_712, paper: 'INV-0291, paid', label: 'verified', status: 'paid' },
+  { who: 'Homeland School Company, Maningrida', when: 'May 2026', beds: 40, what: '40 Stretch Beds and two washing machines for homeland families. The forty we pressed ourselves.', bedRevenueExGstAud: 30_000, documentTotalIncGstAud: 44_000, paper: 'INV-0303, paid', label: 'verified', status: 'paid' },
+  { who: 'Centrecorp Foundation', when: 'May 2026', beds: 130, what: '130 Stretch Beds quoted, waiting on community feedback.', bedRevenueExGstAud: null, documentTotalIncGstAud: null, paper: 'QU-0014, quote open', label: 'verified', status: 'quote open' },
+  { who: alive.funder, when: 'July 2026', beds: alive.beds ?? 100, what: `${alive.beds} Stretch Beds and four shared community visits, ${aud(alive.amountAud ?? 0)} ex GST, bought up front.`, bedRevenueExGstAud: 80_000, documentTotalIncGstAud: 101_200, paper: 'INV-0342, paid', label: 'verified', status: 'paid' },
 ];
 
 export function buyingStoryFor(audience: StoryAudience): BuyingLine[] {

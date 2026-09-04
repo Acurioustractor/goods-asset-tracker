@@ -437,6 +437,54 @@ row names the visits. Note ALIVE paid \$800 a bed while the model runs on \$750.
 working tree at 06:51 this morning, carrying a deck review and a scrape of the Notion master. Left
 alone.
 
+### Money lanes: what every dollar actually is, 5 September
+
+**Ben, 5 Sep:** "most of this stuff is wrong... we need a very specific way to know exactly what
+these are broken up into so that we can have a refined way to always recall this." He named the
+confusions himself: Rotary is "just overdue and fucked"; Fairfax and Bryan are new money coming in;
+Snow and the rest are potentials; and none of that is the same thing as beds we have sold.
+
+`v2/src/lib/data/money-lanes.ts` is now the one place that says what a dollar is. Seven lanes, each
+with a rule, and `total()` **throws** rather than adding lanes that must not be added. Sixteen
+guards. The recall surface is a drawing in the existing pipeline,
+`deliverables/qbe-stage2/diagrams/08-money-lanes.svg`.
+
+| Lane | Today | Means |
+|---|---|---|
+| Earned | \$273,966 inc GST, 5 invoices | Made it, sold it, the money is in. The only revenue lane. |
+| Owed | \$16,500, 1 | Invoiced and collectable. Real, not money. |
+| Bad debt | \$82,500, 1 | Rotary. Adds to nothing. |
+| Invited | \$400,000, 2 | The funder wrote naming an amount and the date they decide. |
+| Asked | \$600,000, 3 | Our ask is with them, nothing back with a number on it. |
+| Potential | \$540,000, 6 | A conversation. No application, no amount from them. |
+| Excluded | \$1,995,000, 1 | REAL. Never ours to count. |
+
+**Beds sold and paid for: \$197,060 ex GST, 320 beds, four organisations.** That is the bed lines
+only. The \$273,966 earned figure is the whole documents, carrying washers, workshops, freight and
+GST, and both numbers are on the drawing so they cannot be swapped for each other.
+
+**The two invitations, read out of the emails.** TFFF (Katie Norman, 31 Aug) invites **The Butterfly
+Movement** to apply for **\$300,000 over three years in three equal payments**, SmartyGrants
+MYGOS-FY27, due 9 Oct 5pm AEST, **board decides late November**. Brian M. Davis (Miranda Campbell,
+1 Sep) invites an application to the November round for **up to \$100,000 for 12 months**, with an
+option to extend, due **25 Sep**, Grants Committee October, **board 19 November**. Both are strong.
+Neither is money, and \$100,000 a year from TFFF plus up to \$100,000 from Brian M. Davis is
+almost certainly what became "two philanthropies have committed \$100,000 each" on the mentor call.
+`SIGNED_TODAY_AUD` is 0 and a guard holds it there until a letter exists.
+
+**THE BRYAN FOUNDATION IS NOT BRIAN M. DAVIS.** Two organisations, names that sound alike, and Ben
+named "Bryan Foundation" as incoming. The Bryan Foundation (Michael Cox; Matt Taylor at Bryan Family
+Group; introduced by Chris Titley at Sub11) met Ben and Nic on **26 May 2026** and nothing has been
+asked for or offered since. It was in no module at all. It is now a `potential` line with no amount,
+and a guard keeps the two apart. **If Ben meant Brian M. Davis when he said Bryan, the invited lane
+is right and the potential line is just a warm room worth chasing.**
+
+**Rotary came out of the buying story.** Slide 05 and the drawing now carry four organisations, 320
+beds, every one of them paid. The bad debt stays visible in its own lane and reaches no total.
+
+**Also fixed:** repayable money (SEFA \$300K, White Box \$150K) now carries its instrument, so debt
+cannot be read as philanthropy just because it shares a lane with grants.
+
 ### Next
 - [ ] **Ben: slide 05 needs a second pass.** Headline to "Five organisations have bought beds. Four
       have paid.", add Centrecorp INV-0259 (60 beds, paid), pull the Palm Island row until INV-0317
@@ -444,6 +492,11 @@ alone.
 - [ ] **Chase INV-0317 with Eloise or the PICC contact (ratkinson@picc.com.au).** If the document
       exists, Palm Island goes back in and the count moves to six. If it was voided, `compendium.ts`
       and four wiki outputs need the receivable retired.
+- [ ] **Ben: does "Bryan Foundation" mean The Bryan Foundation (May meeting, nothing in writing) or
+      Brian M. Davis (invited, up to $100,000, board 19 Nov)? Both are in the lanes; only one is
+      new money.**
+- [ ] **Tell Nic the two $100,000 "commitments" are invitations to apply.** The QBE form scores
+      leverage, and the deck's $0 signed is correct.
 - [ ] Ben rules on 02, 03, 04, 05 and 06, all built and on the page.
 - [x] `qbe-story.ts` said four buyers. Derived from the paper now, drawing re-rendered, unblocked.
 - [ ] Parked on Ben's word: "The bed learned in public", the product-evolution slide that

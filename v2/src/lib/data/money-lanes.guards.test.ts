@@ -1,0 +1,145 @@
+/**
+ * The lanes exist so that a number can never be built out of two things that are not the same
+ * thing. These guards are the enforcement.
+ */
+import { describe, expect, it } from 'vitest';
+import {
+  BANNED_FOR_UNSIGNED,
+  BEDS_SOLD,
+  LANES,
+  LANE_ORDER,
+  MONEY_LINES,
+  REPAYABLE_LINES,
+  SIGNED_TODAY_AUD,
+  linesIn,
+  theHonestAnswer,
+  total,
+  type MoneyLane,
+} from './money-lanes';
+import { BUYING_STORY } from './qbe-story';
+import { STACK } from './raise-stack';
+
+describe('the lanes', () => {
+  it('every lane has a rule and every line sits in one', () => {
+    expect(Object.keys(LANES).sort()).toEqual([...LANE_ORDER].sort());
+    for (const l of MONEY_LINES) expect(LANES[l.lane], `${l.id} has lane ${l.lane}`).toBeDefined();
+    for (const l of MONEY_LINES) expect(l.paper, `${l.id} must name a document or an email`).toBeTruthy();
+  });
+
+  it('earned is the only lane that is cash and the only lane that is revenue', () => {
+    const cash = LANE_ORDER.filter((l) => LANES[l].isCash);
+    const revenue = LANE_ORDER.filter((l) => LANES[l].isRevenue);
+    expect(cash).toEqual(['earned']);
+    expect(revenue).toEqual(['earned']);
+  });
+
+  // The mentor call, 4 September: two invitations were described out loud as commitments. This is
+  // the arithmetic that would have made that true, and it must not be available.
+  it('refuses to add money we have to money we have been invited to apply for', () => {
+    expect(() => total(['earned', 'invited'])).toThrow(/may not be added/);
+    expect(() => total(['earned', 'asked'])).toThrow(/may not be added/);
+    expect(() => total(['earned', 'potential'])).toThrow(/may not be added/);
+  });
+
+  it('bad debt adds to nothing, including itself in a pipeline', () => {
+    expect(LANES['bad-debt'].addsTo).toEqual([]);
+    expect(() => total(['bad-debt', 'earned'])).toThrow(/may not be added/);
+    expect(() => total(['bad-debt', 'invited'])).toThrow(/may not be added/);
+    expect(() => total(['bad-debt', 'owed'])).toThrow(/may not be added/);
+  });
+
+  it('excluded money can never be swept into a total', () => {
+    expect(LANES.excluded.addsTo).toEqual([]);
+    expect(() => total(['excluded', 'invited'])).toThrow(/may not be added/);
+  });
+
+  it('the three pipeline lanes may be added to each other and to nothing else', () => {
+    expect(() => total(['invited', 'asked', 'potential'])).not.toThrow();
+    expect(total(['invited', 'asked', 'potential'])).toBeGreaterThan(0);
+  });
+});
+
+describe('what is actually in each lane', () => {
+  // Ben, 5 September 2026: Rotary is "just overdue and fucked".
+  it('Rotary is bad debt, and it is not a buyer', () => {
+    const rotary = linesIn('bad-debt').find((l) => /Rotary/.test(l.who));
+    expect(rotary, 'Rotary must stay in the record as bad debt').toBeDefined();
+    expect(rotary?.amountAud).toBe(82_500);
+    expect(BUYING_STORY.some((b) => /Rotary/.test(b.who))).toBe(false);
+    expect(linesIn('earned').some((l) => /Rotary/.test(l.who))).toBe(false);
+  });
+
+  // TFFF and Brian M. Davis both wrote naming an amount and a board date. Neither is money.
+  it('the two invitations are invited, carry an amount and carry the date they decide', () => {
+    const invited = linesIn('invited');
+    const tfff = invited.find((l) => /Tim Fairfax/.test(l.who));
+    const bmdf = invited.find((l) => /Brian M\. Davis/.test(l.who));
+    expect(tfff?.amountAud).toBe(300_000);
+    expect(bmdf?.amountAud).toBe(100_000);
+    for (const l of [tfff, bmdf]) expect(l?.decisionDue, `${l?.who} must carry a decision date`).toMatch(/November 2026/);
+    for (const l of invited) expect(LANES[l.lane].isCash).toBe(false);
+  });
+
+  it('beds sold is four organisations of paid invoices, and the bed money is the bed lines only', () => {
+    expect(BEDS_SOLD.organisations).toBe(4);
+    expect(BEDS_SOLD.beds).toBe(320);
+    expect(BEDS_SOLD.bedRevenueExGstAud).toBe(197_060);
+    // The whole-document figure is larger because it carries washers, workshops, freight and GST.
+    expect(BEDS_SOLD.documentsIncGstAud).toBeGreaterThan(BEDS_SOLD.bedRevenueExGstAud);
+    expect(BEDS_SOLD.asAt).toBe('5 September 2026');
+  });
+
+  it('nothing is signed, and nothing may be called committed until something is', () => {
+    expect(SIGNED_TODAY_AUD).toBe(0);
+    expect(STACK.every((l) => l.status !== 'signed' || Boolean(l.evidence))).toBe(true);
+    const answer = theHonestAnswer();
+    for (const banned of BANNED_FOR_UNSIGNED) expect(answer.toLowerCase()).not.toContain(banned);
+    expect(answer).toContain('none of it is money');
+  });
+
+  it('the honest answer names every lane and never presents a single grand total', () => {
+    const answer = theHonestAnswer();
+    expect(answer).toContain('Beds sold and paid for');
+    expect(answer).toContain('Invited to apply');
+    expect(answer).toContain('Signed today: $0');
+  });
+});
+
+describe('the lanes stay tied to their sources', () => {
+  it('no funder line is duplicated between the stack and the invoice ledger', () => {
+    const ids = MONEY_LINES.map((l) => l.id);
+    expect(new Set(ids).size, `duplicate line ids: ${ids.join(', ')}`).toBe(ids.length);
+  });
+
+  it('every paid bed invoice reaches the earned lane, and quotes never do', () => {
+    const paid = BUYING_STORY.filter((b) => b.status === 'paid');
+    expect(linesIn('earned').filter((l) => l.id.startsWith('bed-'))).toHaveLength(paid.length);
+    expect(MONEY_LINES.some((l) => /QU-/.test(l.paper))).toBe(false);
+  });
+
+  // Ben named "Bryan Foundation" as incoming on 5 Sep. It is a different organisation from Brian
+  // M. Davis, and it is a May conversation with nothing in writing.
+  it('the Bryan Foundation and Brian M. Davis are two organisations in two different lanes', () => {
+    const bryan = MONEY_LINES.find((l) => l.who === 'The Bryan Foundation');
+    const davis = MONEY_LINES.find((l) => /Brian M\. Davis/.test(l.who));
+    expect(bryan?.lane).toBe('potential');
+    expect(bryan?.amountAud).toBeNull();
+    expect(davis?.lane).toBe('invited');
+    expect(davis?.amountAud).toBe(100_000);
+  });
+
+  it('repayable money is never read as philanthropy', () => {
+    const repayable = REPAYABLE_LINES.map((l) => l.who);
+    expect(repayable).toContain('SEFA');
+    expect(repayable).toContain('White Box SELF');
+    for (const l of REPAYABLE_LINES) expect(LANES[l.lane].isRevenue, l.who).toBe(false);
+  });
+
+  it('an invited line carries the amount the funder wrote, never one of ours', () => {
+    for (const l of linesIn('invited')) {
+      const stackLine = STACK.find((s) => s.id === l.id);
+      expect(stackLine?.status, `${l.who}`).toBe('invited');
+      expect(l.amountAud, `${l.who} must carry an amount`).not.toBeNull();
+    }
+  });
+});

@@ -41,6 +41,7 @@ import {
   lineById,
   type StackLine,
 } from '@/lib/data/raise-stack';
+import { BEDS_SOLD, LANES, LANE_ORDER, SIGNED_TODAY_AUD, linesIn, total } from '@/lib/data/money-lanes';
 import {
   BUYING_AS_AT,
   buyersFor,
@@ -562,8 +563,65 @@ export function whoBuys(audience: StoryAudience): string {
 }
 
 // ---------------------------------------------------------------------------
+// 10 The money lanes: what every dollar actually is (Ben, 5 Sep: "a refined way to always recall")
+
+export function moneyLanes(audience: StoryAudience): string {
+  let b = '';
+  const lx = MX, ly = 188, lw = 880;
+  b += kicker(lx, ly, `Every dollar, in its lane, as at ${BUYING_AS_AT}`);
+  let y = ly + 18;
+  for (const lane of LANE_ORDER) {
+    const rule = LANES[lane];
+    const lines = linesIn(lane);
+    if (!lines.length) continue;
+    const sum = total([lane]);
+    const solid = rule.isCash;
+    const dead = rule.addsTo.length === 0;
+    const h = 78;
+    b += box(lx, y, lw, h, { fill: solid ? C.white : C.cream, stroke: solid ? C.terra : C.line, sw: solid ? 2 : 1.5 });
+    b += text(lx + 20, y + 30, rule.label, { size: 19, font: F.display, weight: 600, fill: dead ? C.mute : C.ink });
+    b += text(lx + 20, y + 56, rule.means, { size: 12.5, fill: C.mute });
+    b += text(lx + lw - 20, y + 32, aud(sum), { size: 22, font: F.mono, weight: 700, anchor: 'end', fill: dead ? C.mute : C.ink });
+    const gst = lines.every((l) => l.gst === 'inc') ? ' inc GST' : '';
+    b += text(lx + lw - 20, y + 56, `${lines.length} ${lines.length === 1 ? 'line' : 'lines'}${gst}`, { size: 11, font: F.mono, anchor: 'end', fill: C.mute });
+    y += h + 8;
+  }
+
+  const rx = 990, rw = 540;
+  b += kicker(rx, ly, 'What may be added to what');
+  let ry = ly + 18;
+  const rules: { title: string; body: string; fill: string }[] = [
+    { title: 'Revenue', body: 'Earned, and nothing else. Beds and machines sold on an invoice that has been paid.', fill: C.white },
+    { title: 'Pipeline', body: 'Invited plus asked plus potential. Say the word pipeline every time, because none of it is money.', fill: C.white },
+    { title: 'Added to nothing', body: 'Bad debt and excluded money. They stay in the record so nobody chases them twice, and they never reach a total.', fill: C.cream },
+  ];
+  for (const r of rules) {
+    const p = para(rx + 20, ry + 58, r.body, { size: 13, width: rw - 40, lh: 1.36 });
+    const h = 44 + p.height;
+    b += box(rx, ry, rw, h, { fill: r.fill, stroke: C.line });
+    b += text(rx + 20, ry + 32, r.title, { size: 18, font: F.display, weight: 600 });
+    b += p.svg;
+    ry += h + 10;
+  }
+  b += box(rx, ry + 4, rw, 118, { fill: C.sage, stroke: C.sage });
+  b += kicker(rx + 20, ry + 34, 'The two numbers that get confused');
+  b += text(rx + 20, ry + 66, `Beds sold and paid: ${aud(BEDS_SOLD.bedRevenueExGstAud)}`, { size: 15, font: F.display, weight: 600 });
+  b += text(rx + 20, ry + 92, `Signed today: ${aud(SIGNED_TODAY_AUD)}`, { size: 15, font: F.display, weight: 600 });
+
+  return frame({
+    page: audience === 'working' ? `Money lanes. Invoices from Xero, funder lines from the invitation emails, ${BUYING_AS_AT}` : 'What every dollar actually is',
+    title: 'Every dollar, in its lane',
+    sub: `${BEDS_SOLD.beds} beds sold and paid for by ${BEDS_SOLD.organisations} organisations. Everything else is a pipeline, and a pipeline is not money.`,
+    body: b,
+    footer: `An invitation to apply names an amount and a date the funder decides. It is not a commitment and it is never added to money we hold. Nothing is signed today.`,
+    stamp: STAMP[audience],
+  });
+}
+
+// ---------------------------------------------------------------------------
 
 export const QBE_DIAGRAMS: readonly QbeDiagram[] = [
+  { id: 'money-lanes', title: 'Every dollar, in its lane', chapter: 'money', caption: 'The seven lanes, what is in each, and which of them may be added together.', slide: 'none yet', audience: 'all', svg: moneyLanes },
   { id: 'the-unit', title: 'One bed, four things, any amount', chapter: 'bed', caption: 'One bed, and the same ratio at any amount.', slide: '10C mX9er', audience: 'all', svg: theUnit },
   { id: 'the-loop', title: 'One catalyst starts five loops a community controls', chapter: 'loop', caption: 'The catalyst row, the five-step loop shown once and run five times, the return arrow, and the four gates.', slide: '08C JCreO', audience: 'all', svg: theLoop },
   { id: 'who-buys', title: 'Where are they selling?', chapter: 'buyers', caption: 'The buyers we can name, the three ways to back the work, and who sells the pool.', slide: '10A hJgxH', audience: 'all', svg: whoBuys },

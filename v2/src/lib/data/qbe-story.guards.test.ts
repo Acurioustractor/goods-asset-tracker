@@ -383,17 +383,20 @@ describe('the twelve-slide plan and the four overviews', () => {
     expect(centrecorp[0].source.split(';')).toHaveLength(3);
   });
 
-  it('the buying line counts what the ledger counts, and says the money is still owed', () => {
+  // Rotary came out of the buying story on Ben's ruling of 5 Sep ("just overdue and fucked") and
+  // lives in money-lanes as bad debt, so every buyer here is an organisation that has paid.
+  it('the buying line counts what the ledger counts, and every buyer in it has paid', () => {
     const s = buyingSummary('working');
-    expect(s.organisations).toBe(5);
-    expect(s.paid).toBe(4);
+    expect(s.organisations).toBe(4);
+    expect(s.paid).toBe(s.organisations);
+    expect(s.beds).toBe(320);
     expect(s.beds).toBe(BUYING_STORY.filter((b) => b.status !== 'quote open').reduce((t, b) => t + b.beds, 0));
-    expect(s.owedCount).toBeGreaterThan(0);
+    expect(s.owedCount).toBe(0);
+    expect(BUYING_STORY.every((b) => b.status === 'paid' || b.status === 'quote open')).toBe(true);
     const line = buyingStoryLine('working');
     expect(line).toContain(s.organisationsWord);
     expect(line).toContain(s.bedsText);
-    expect(line).toMatch(/still owed/);
-    expect(line).not.toMatch(/\bFour organisations\b/);
+    expect(line).not.toMatch(/still owed/);
   });
 
   // Palm Island Community Company's INV-0317 is absent from Xero's aged receivables and from every
