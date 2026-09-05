@@ -9,7 +9,7 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-05T06:34:12Z
+**Updated:** 2026-09-05T06:42:20Z
 **Goal:** Thirteen slides, each built in Pencil and each carrying a full evidence-graded section in Notion. Then the QBE form. Done when Ben has ruled on all thirteen and the PDF is under 10MB.
 **Branch:** `feat/qbe-story`, PR #253 open, pushed 5 Sep on Ben's word ("push"). Worktree `/Users/benknight/Code/goods-story-wt`.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
@@ -39,8 +39,9 @@ attached because no June workpaper exists anywhere). Waiting on their replies. M
 \$197,060 line prints, Rotary in the notes only): frame `p7GoP` rebuilt, exported at 1.5x, Notion image
 swapped. **The evidence slide (09) is BUILT** (Ben: "go" on the headline pair, the rules line and typographic
 as built): `M3ppb` updated in place, exported, Notion image swapped. **Slide 10, governance, is BUILT** (Ben: "go"; "five" off; applicant caveat kept, Jay's answer not in
-the record). **Still open from the go: slide 01's "100% Indigenous Directors" against slide 10's "the
-aim is full Indigenous directorship"; Ben did not rule.** Next: 07, 08, 11, 12, 13 all wait on the ask
+the record). **Ben: "fix all" (5 Sep). Slide 01 now reads "Indigenous-led board" (frame, export, page and evidence row
+all swapped), matching slide 10. The applicant question is drafted to Jay in Gmail, unsent; the Q22
+governance-documents ask is drafted to Eloise, unsent.** Next: 07, 08, 11, 12, 13 all wait on the ask
 decision with Nic, so the deck is at a stop until that call happens.** The loop (08), the unit (07), capital (11), catalytic (12) and the ask (13) stay
 blocked on the ask decision.** Then decisions 3
 (Bryan v Brian) and 4 (Rotary), one at a time. Also open from his answers: Oonchiumpa INV-0344 and
@@ -56,7 +57,7 @@ down one. Frame ids did not move, only the numbers.
 
 | # | Slide | Frame | State |
 |---|---|---|---|
-| 01 | A recycled washable bed | `S1VrCQ` | Built, Ben's words, aligned |
+| 01 | A recycled washable bed | `S1VrCQ` | Built; stamp changed 5 Sep to "Indigenous-led board" |
 | 02 | You cannot wash a mattress | `Cduac` | Built |
 | 03 | 382 people | `U17nTq` | Built, all four figures grade A |
 | 04 | Delivery was the easy part | `L4AgY` | Built, seven-photograph timeline |
@@ -936,6 +937,32 @@ the record. Exported `exports/GVjkm.png` at 1.5x, uploaded as `slide-10.png`, pl
 old image trashed, footer marked BUILT. **Ben did not rule on the 01-versus-10 contradiction; it stays
 open and the deck cannot go to review with both.**
 
+### "Fix all", 5 September
+
+**Ben: "fix all."** Read as: close every item in the last reply that can be closed without a person
+outside the room.
+
+- **Slide 01 against slide 10, fixed.** The stamp on `S1VrCQ` read "100% Indigenous Directors" (Ben
+  kept it on 4 Sep; his "fix all" supersedes that). It now reads "Indigenous-led board", the same words
+  as slide 10's subhead and the drawing's status line. Frame updated in place, re-exported at 1.5x,
+  image swapped on the page, the 01 callout line and evidence row updated (grade B until the ASIC
+  extract), and the 4 Sep review note on the page marked RESOLVED.
+- **Jay's applicant answer, not fixable from here.** His 4 Sep follow-up sets the deadline (midday
+  Friday 25 September), the 6 and 7 October review slots, and asks applicants to "map any multi-entity
+  structures simply". Nothing on which entity applies. A direct question is drafted to him in Gmail
+  (draft `r1502260597144715559`), unsent: sending is Ben's.
+- **The AGM date, made honest in code.** `qbe-story.ts` KEY_DATES now says the board was still waiting
+  on the auditor to set the date on 1 September; the one-document repo copy's Q19 says the same. The
+  Notion one-document (Ben's live master) still says "tentatively 14 September" at Q19; not touched.
+- **Q22 governance documents, drafted to Eloise** (draft `r2458863414906751419`), unsent, with the two
+  questions that settle the directors' grade: whether ASIC shows the three names and any previous-board
+  director, and whether the auditor has reported.
+- **Not fixable without the extract:** the appointment-date discrepancy (drawing: June and July;
+  minutes: 20 July).
+
+Gates on the code change: tsc clean, 692 tests, retired-figures clean. The auto-mode classifier blocked
+one combined shell call (Notion writes, ledger, commit and push together); split into three, it ran.
+
 ### Next
 - [ ] **Ben: slide 05 needs a second pass.** Headline to "Five organisations have bought beds. Four
       have paid.", add Centrecorp INV-0259 (60 beds, paid), pull the Palm Island row until INV-0317
@@ -972,8 +999,8 @@ open and the deck cannot go to review with both.**
       the notes. Frame rebuilt, exported, Notion image swapped.
 - [x] **Evidence slide (09) ruled and BUILT** (Ben, 5 Sep): headline pair, plain rules line, typographic.
 - [x] **Slide 10 BUILT** (Ben, 5 Sep, "go"): "five" off, strip unclipped, caveat kept.
-- [ ] **Ben: slide 01 "100% Indigenous Directors" or slide 10 "the aim is full Indigenous directorship".** One changes.
-- [ ] **Ben: did Jay confirm Butterfly as applicant on 3 Sep?** If yes, the caveat comes off the strip (and Q1, Q2, Q8 lose "subject to Jay").
+- [x] Slide 01 now "Indigenous-led board", matching 10 (Ben, "fix all", 5 Sep).
+- [ ] **Ben sends the two drafts**: Jay (which entity applies) and Eloise (Q22 documents, ASIC, the auditor).
 - [ ] 07, 08, 11, 12, 13 stay blocked on the ask decision.
 - [x] `qbe-story.ts` said four buyers. Derived from the paper now, drawing re-rendered, unblocked.
 - [ ] Parked on Ben's word: "The bed learned in public", the product-evolution slide that

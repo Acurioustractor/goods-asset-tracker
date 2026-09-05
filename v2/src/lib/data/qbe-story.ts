@@ -375,7 +375,7 @@ export interface CalendarEvent {
 export const CALENDAR: readonly CalendarEvent[] = [
   { date: KEY_DATES.checkIn, when: 'Thu 3 Sep', what: 'Final cohort check-in with Social Impact Hub, 2pm Sydney. Ben with Eloise on Butterfly\'s books.' },
   { date: '2026-09-09', when: '7 to 11 Sep', what: 'Philanthropy Australia conference, Brisbane. Miranda from Brian M. Davis sees a bed.' },
-  { date: '2026-09-14', when: 'Mon 14 Sep', what: 'Butterfly Movement AGM, tentative. Directors resign and are reappointed.' },
+  { date: '2026-09-14', when: 'Mon 14 Sep', what: 'Butterfly Movement AGM, tentative. The board was still waiting on the auditor to set the date on 1 September. Directors resign and are reappointed.' },
   { date: KEY_DATES.qbeClose, when: 'Fri 25 Sep, 12pm', what: 'QBE Stage 2 form closes. Brian M. Davis application closes the same day.', big: true },
   { date: KEY_DATES.qbeReview, when: 'Wed 7 Oct', what: 'QBE application review meeting, 9:45 Sydney, booked.' },
   { date: KEY_DATES.tfffClose, when: 'Fri 9 Oct, 5pm', what: 'Tim Fairfax Family Foundation application closes.' },
