@@ -9,7 +9,7 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-05T05:53:36Z
+**Updated:** 2026-09-05T06:02:15Z
 **Goal:** Thirteen slides, each built in Pencil and each carrying a full evidence-graded section in Notion. Then the QBE form. Done when Ben has ruled on all thirteen and the PDF is under 10MB.
 **Branch:** `feat/qbe-story`, PR #253 open, pushed 5 Sep on Ben's word ("push"). Worktree `/Users/benknight/Code/goods-story-wt`.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
@@ -35,8 +35,9 @@ money decision is closed.** Pushed 5 Sep on Ben's word. **Both asks SENT 5 Sep o
 statements) and Standard Ledger (the FY26 Goods carve-out on letterhead, signed, with a fresh Xero cut
 attached because no June workpaper exists anywhere). Waiting on their replies. Merge #253 only on his word.
 **Ben's next instruction: "move onto the important relevant part of this work", the deck.
-Slide 05's copy is rewritten in Notion (four organisations, 320 beds, \$197,060 ex GST, every invoice paid)
-and WAITING ON BEN before the Pencil build.** Slide 07 stays blocked on the ask decision. Then decisions 3
+**Slide 05 is BUILT** (Ben ruled 5 Sep: headline "Four organisations have paid for beds", the 320 beds and
+\$197,060 line prints, Rotary in the notes only): frame `p7GoP` rebuilt, exported at 1.5x, Notion image
+swapped. Slide 07 stays blocked on the ask decision. Next slide on Ben's word.** Then decisions 3
 (Bryan v Brian) and 4 (Rotary), one at a time. Also open from his answers: Oonchiumpa INV-0344 and
 INV-0346, and Centrecorp as buyer or philanthropy in the funding-received composition.
 
@@ -54,7 +55,7 @@ down one. Frame ids did not move, only the numbers.
 | 02 | You cannot wash a mattress | `Cduac` | Built |
 | 03 | 382 people | `U17nTq` | Built, all four figures grade A |
 | 04 | Delivery was the easy part | `L4AgY` | Built, seven-photograph timeline |
-| 05 | Six organisations have paid for beds | `p7GoP` | Built, seven-row ledger |
+| 05 | Four organisations have paid for beds | `p7GoP` | Built 5 Sep on Ben's ruling, six-row ledger, all paid |
 | 06 | The making already works | `FF0af` | Built |
 | 07 | The loop | `tkDpX` | **NEXT** |
 | 08 | Evidence | `M3ppb` | Untouched |
@@ -847,8 +848,15 @@ research bullets recording the Rotary and Palm Island rulings; both build notes.
 **Decisions for Ben, in the reply:** the headline wording; whether "320 beds sold, \$197,060 ex GST"
 prints on the slide; Rotary off the slide and in the notes.
 
-**Not done, deliberately.** The Pencil frame `p7GoP` is untouched and the image on the page is still the
-six-row export. Build after Ben rules: six rows by Copy, the second figure under the 540, export, swap.
+**Ben ruled, all three as recommended, and the frame is built.** `p7GoP` renamed "QBE 05 — Four
+organisations have paid for beds". Title and subhead updated in place; the six rows were made by
+repurposing the existing row frames by position (ALIVE, Centrecorp 107, Centrecorp 60, Homeland, Mala'la,
+the open quote) and disabling the seventh, so nothing was Inserted and everything painted. Every status
+reads Paid in ink; the quote in muted grey; no terracotta left on the slide. The 540 register figure stays
+as it was; the 320 beds and \$197,060 line is the subhead rather than a second figure, so the slide does
+not say the same thing twice. Bounds checked, no clipping. Exported `exports/p7GoP.png` (301KB at 1.5x),
+uploaded as `slide-05.png`, placed under the 05 heading, old image block trashed. Build note on the page
+updated to BUILT.
 
 **Two findings.** The older "04 · Buyers, rebuilt" pass (the "Drag into slide 4" section that said six)
 was already archived when the sweep reached it; somebody, most likely Ben, deleted it. The 4 September
@@ -889,8 +897,8 @@ hang unless stdin is closed, and reject `after` on append-children; both are in 
 - [ ] **Tell Nic the two $100,000 "commitments" are invitations to apply.** The QBE form scores
       leverage, and the deck's $0 signed is correct.
 - [ ] Ben rules on 02, 03, 04 and 06, all built and on the page.
-- [ ] **Ben rules on slide 05's rewritten copy** (four organisations; the \$197,060 line; Rotary in the notes).
-      Then the Pencil build of `p7GoP`, export, image swap.
+- [x] **Slide 05 ruled and BUILT** (Ben, 5 Sep): four organisations, the \$197,060 line prints, Rotary in
+      the notes. Frame rebuilt, exported, Notion image swapped.
 - [x] `qbe-story.ts` said four buyers. Derived from the paper now, drawing re-rendered, unblocked.
 - [ ] Parked on Ben's word: "The bed learned in public", the product-evolution slide that
       would make the 363 Basket Beds visible. Proposal sits in slide 4's research section.

@@ -121,9 +121,8 @@ share about 62%).
 
 **Open and Ben's alone:**
 - **The ask decision.** Blocks 07, 10, 11 and 12.
-- **Slide 05 needs a second pass.** Its headline says six organisations have paid; five bought,
-  four paid, and the sixth rested on the invoice that never happened. Centrecorp INV-0259 (60 beds,
-  paid, August 2025) is still missing from the frame. The module and the drawing are already right.
+- **Slide 05 DONE 5 Sep.** Ruled and rebuilt: four organisations, 320 beds, $197,060 ex GST, every
+  invoice paid, Centrecorp's sixty on, Rotary and Palm Island off. Image swapped on the page.
 - **"The bed learned in public"**, the product-evolution slide that would make the 363 Basket Beds
   visible. Proposal is in slide 04's research section.
 - Ben has not formally ruled on slides 02 to 06.
