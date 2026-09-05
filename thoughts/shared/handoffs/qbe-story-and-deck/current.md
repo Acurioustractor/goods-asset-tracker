@@ -9,7 +9,7 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-05T07:14:22Z
+**Updated:** 2026-09-05T07:53:56Z
 **Goal:** Thirteen slides, each built in Pencil and each carrying a full evidence-graded section in Notion. Then the QBE form. Done when Ben has ruled on all thirteen and the PDF is under 10MB.
 **Branch:** `feat/qbe-story`, PR #253 open, pushed 5 Sep on Ben's word ("push"). Worktree `/Users/benknight/Code/goods-story-wt`.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
@@ -44,7 +44,9 @@ over, lock it"). The Butterfly Movement Ltd is the applicant and recipient; Kris
 Deemal and Jeremy Donovan are the directors; the handover completes at the AGM. Every "subject to",
 "recommended", "proposed" and "B until the extract" is gone from the deck, the page, the one-document,
 the code and canon. Ben: "no, I don't want you to send anything, I want this all aligned in the deck and in the documents."
-Aligned, second pass: every surface swept (below). The two Gmail drafts stay unsent and are his to bin.** Next: 07, 08, 11, 12, 13 all wait on the ask
+Aligned, second pass: every surface swept. The two Gmail drafts stay unsent and are his to bin.
+Then "next": **slide 07, the unit, now has its full evidence section on the page. Its copy was ruled
+"leave it" on 4 September and the frame is built, so nothing needs rebuilding. Waiting on Ben.** Next: 07, 08, 11, 12, 13 all wait on the ask
 decision with Nic, so the deck is at a stop until that call happens.** The loop (08), the unit (07), capital (11), catalytic (12) and the ask (13) stay
 blocked on the ask decision.** Then decisions 3
 (Bryan v Brian) and 4 (Rotary), one at a time. Also open from his answers: Oonchiumpa INV-0344 and
@@ -66,7 +68,7 @@ down one. Frame ids did not move, only the numbers.
 | 04 | Delivery was the easy part | `L4AgY` | Built, seven-photograph timeline |
 | 05 | Four organisations have paid for beds | `p7GoP` | Built 5 Sep on Ben's ruling, six-row ledger, all paid |
 | 06 | The making already works | `FF0af` | Built |
-| 07 | One bed, four things, any amount | `J9I3PO` | Untouched, encodes the ask (blocked) |
+| 07 | One bed, four things, any amount | `J9I3PO` | Built; copy ruled 4 Sep, evidence section 5 Sep. Two ask-bearing lines only |
 | 08 | The loop | `tkDpX` | Untouched, encodes ruling Y (blocked) |
 | 09 | Evidence | `M3ppb` | Built 5 Sep on Ben's ruling |
 | 10 | Governance | `GVjkm` | Built 5 Sep; locked under ruling AA, no caveat on the strip |
@@ -1035,6 +1037,36 @@ deliverables, wiki canon and the two ledgers.
 
 Gates: tsc clean, 692 tests, check:drift:ci green.
 
+### Slide 07, the unit: evidence section built on settled copy, 5 September
+
+**I had this slide wrong.** The ledger and three of my replies said 07 was blocked on the ask decision.
+It is not. The unit is the unit at any amount, and that is the whole argument of the slide. **Two
+elements on it belong to the ask and nothing else does:** the table annotations naming $400,000 as the
+ask and $250,000 as the smaller amount, and the "what going first does" panel that says QBE's beds go
+in first. If the ask changes those two change; the four things a bed does, the labels and the arithmetic
+do not.
+
+**Copy was already ruled.** The 4 September pass says, in full: "Leave it. The claim labels are right
+and the ratio table is the clearest page in the deck." So this was an evidence build around settled
+copy, not a rewrite, and the frame `J9I3PO` was not touched.
+
+**On the page.** The build-brief section "06 · Amounts" is renamed "07 · One bed, four things, any
+amount" and now carries the seven parts: the callout reproducing the built slide (four things with
+their VERIFIED / WORKPAPER / MODELLED / TARGET labels, the four-row ratio table, the going-first panel,
+the guardrail); why these words, including the two ask-bearing elements named; speaker notes with three
+if-asked lines (are the hours real, is the money income, do the ratios hold at scale); a six-row grade
+table; the QBE table against the real wording of Q5, Q6 and Q7, read out of `qbe-form.ts`; visual
+options; research with the margin discrepancy ($200 told to the mentor against $324 in the model)
+recorded. Ben's spreadsheet link at the top of the section was left in place, and the nine flat notes
+from 3 September were deleted.
+
+**Grades.** One A that is auto-checked ($750, canon against the Supabase products row), one A for the
+product, one workpaper (20kg, ruling T), one modelled (6.5 hours), one target (up to $750 stays local),
+and the scale table as arithmetic on those. The slide grades itself in its own layout, which is why it
+survives scrutiny.
+
+**No build needed.** The frame is unchanged since 4 September and the image on the page is its export.
+
 ### Next
 - [ ] **Ben: slide 05 needs a second pass.** Headline to "Five organisations have bought beds. Four
       have paid.", add Centrecorp INV-0259 (60 beds, paid), pull the Palm Island row until INV-0317
@@ -1073,7 +1105,8 @@ Gates: tsc clean, 692 tests, check:drift:ci green.
 - [x] **Slide 10 BUILT** (Ben, 5 Sep, "go"): "five" off, strip unclipped, caveat kept.
 - [x] Slide 01 now "Indigenous-led board", matching 10 (Ben, "fix all", 5 Sep).
 - [ ] Ben sends the two drafts: Jay (heads-up: the charity applies) and Eloise (Q22 documents, the extracts).
-- [ ] 07, 08, 11, 12, 13 stay blocked on the ask decision.
+- [ ] **Ben rules on slide 07's evidence section** (copy unchanged, frame unchanged).
+- [ ] 08, 11, 12, 13 stay blocked on the ask decision. 07 is not: only two lines on it move.
 - [x] `qbe-story.ts` said four buyers. Derived from the paper now, drawing re-rendered, unblocked.
 - [ ] Parked on Ben's word: "The bed learned in public", the product-evolution slide that
       would make the 363 Basket Beds visible. Proposal sits in slide 4's research section.
