@@ -81,9 +81,8 @@ say yes:
 2. DONE 5 Sep, ruled and swept: the FY26 sentence. Net profit of about $168K before
    founder wages, no surplus claimed, everything moves into the charity. "FY26 net loss"
    is a guarded retired phrase now.
-3. When I said "Bryan Foundation incoming", did I mean The Bryan Foundation
-   (26 May meeting, nothing in writing, potential) or Brian M. Davis (invited,
-   up to $100,000, board 19 November)?
+3. DONE 5 Sep: "Bryan Foundation incoming" meant Brian M. Davis. Lanes were already
+   right. The Bryan Foundation stays a potential with nothing in writing.
 4. Rotary $82,500 is bad debt and fine for now. Tell me when that stops being true.
 
 Settled 5 Sep: ALIVE $101,200 and Julalikari $15,000 are in funding received, which
@@ -115,7 +114,7 @@ Recall surface: `deliverables/qbe-stage2/diagrams/08-money-lanes.svg`.
   Somebody has to correct that**, because the QBE form scores leverage.
 
 **Open and mine to fix once Ben rules:** the carve-out copies, once the accountant's letter lands (Ben
-said yes on 5 Sep; two Gmail drafts wait on his send); Bryan against Brian; the two Oonchiumpa receipts (INV-0344 $41,250, INV-0346 $1,000); whether
+said yes on 5 Sep; two Gmail drafts wait on his send); the two Oonchiumpa receipts (INV-0344 $41,250, INV-0346 $1,000); whether
 Centrecorp counts as a buyer in the funding-received composition. **Done 5 Sep:** ALIVE and Julalikari
 are in, funding received is $901,311, Julalikari sits in the earned lane.
 

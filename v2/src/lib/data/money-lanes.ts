@@ -275,7 +275,8 @@ const FUNDER_LINES: MoneyLine[] = STACK.filter((l) => l.status !== 'paid').map((
  * Relationships Ben names out loud that the raise stack has never carried.
  *
  * THE BRYAN FOUNDATION IS NOT BRIAN M. DAVIS. Two different organisations with names that sound
- * alike, and Ben named "Bryan Foundation" as incoming on 5 September. Brian M. Davis Charitable
+ * alike. When Ben said "Bryan Foundation incoming" on 5 September he meant Brian M. Davis, and
+ * confirmed it the same day. Brian M. Davis Charitable
  * Foundation (Melbourne, Miranda Campbell) has written an invitation to apply for up to $100,000
  * and sits in `invited`. The Bryan Foundation (Michael Cox, and Matt Taylor at Bryan Family Group,
  * introduced through Chris Titley at Sub11) met Ben and Nic on 26 May 2026 and nothing has been

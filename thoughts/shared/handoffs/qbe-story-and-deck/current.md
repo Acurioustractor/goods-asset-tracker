@@ -9,7 +9,7 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-05T04:15:14Z
+**Updated:** 2026-09-05T04:17:54Z
 **Goal:** Thirteen slides, each built in Pencil and each carrying a full evidence-graded section in Notion. Then the QBE form. Done when Ben has ruled on all thirteen and the PDF is under 10MB.
 **Branch:** `feat/qbe-story`, PR #253 open, **11 commits ahead of origin and NOT pushed** (push is Tier 2, Ben's word). Worktree `/Users/benknight/Code/goods-story-wt`.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
@@ -27,8 +27,9 @@ on his send: Standard Ledger (the FY26 Goods carve-out on letterhead, signed; AC
 balance sheet; the ACT-GD scope question) and Eloise (Butterfly FY26 P&L, balance sheet, cashflow).
 Nothing in code moves until the accountant's figure comes back. **The FY26 sentence is RULED and SWEPT**
 (Ben, 5 Sep: "we will move all to the new charity"; net profit before founder wages, no surplus claimed,
-everything Goods moves into Butterfly; "FY26 net loss" is now a guarded retired phrase). **With Ben
-now: decision 3, Bryan against Brian.** Then Rotary, the two Oonchiumpa receipts, Centrecorp.** Then decisions 3
+everything Goods moves into Butterfly; "FY26 net loss" is now a guarded retired phrase). **Decision 3 RULED:
+Brian M. Davis (Ben, 5 Sep), nothing moves. Rotary (4) is a standing instruction, not a decision. With
+Ben now: the two Oonchiumpa receipts, then Centrecorp.** Then decisions 3
 (Bryan v Brian) and 4 (Rotary), one at a time. Also open from his answers: Oonchiumpa INV-0344 and
 INV-0346, and Centrecorp as buyer or philanthropy in the funding-received composition.
 
@@ -755,6 +756,15 @@ Gates on the final code: tsc clean, 692 tests, `check:drift:ci` green. `next bui
 fix (the first run started on the broken files and still passed, which means its compile had not
 reached `canon.ts` before the fix landed).
 
+### Decision 3: Brian M. Davis, 5 September
+
+**Ben: "Brian M. Davis is right."** So "Bryan Foundation incoming" meant the Brian M. Davis Charitable
+Foundation invitation (up to \$100,000, due 25 September, board 19 November), which the invited lane
+already carried. Nothing moves. The Bryan Foundation line stays a `potential` with no amount, a warm
+room from 26 May and nothing in writing since. The `money-lanes.ts` docblock that recorded the name as
+open now records the answer. Rotary (decision 4) is a standing instruction: bad debt, fine for now,
+say when that stops being true.
+
 ### Next
 - [ ] **Ben: slide 05 needs a second pass.** Headline to "Five organisations have bought beds. Four
       have paid.", add Centrecorp INV-0259 (60 beds, paid), pull the Palm Island row until INV-0317
@@ -781,9 +791,7 @@ reached `canon.ts` before the fix landed).
       Then: the accountant's letter lands, the carve-out copies move together, ruling G closes.
 - [x] **The FY26 sentence: ruled and swept (Ben, 5 Sep, "we will move all to the new charity").**
       Net profit before founder wages, no surplus claimed, everything moves into Butterfly. Phrase guarded.
-- [ ] **Ben: does "Bryan Foundation" mean The Bryan Foundation (May meeting, nothing in writing) or
-      Brian M. Davis (invited, up to $100,000, board 19 Nov)? Both are in the lanes; only one is
-      new money.**
+- [x] **"Bryan Foundation incoming" = Brian M. Davis (Ben, 5 Sep).** Lanes already right; nothing moved.
 - [ ] **Tell Nic the two $100,000 "commitments" are invitations to apply.** The QBE form scores
       leverage, and the deck's $0 signed is correct.
 - [ ] Ben rules on 02, 03, 04, 05 and 06, all built and on the page.
