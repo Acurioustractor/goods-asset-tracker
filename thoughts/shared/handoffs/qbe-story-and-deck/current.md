@@ -9,7 +9,7 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-05T06:17:39Z
+**Updated:** 2026-09-05T06:29:21Z
 **Goal:** Thirteen slides, each built in Pencil and each carrying a full evidence-graded section in Notion. Then the QBE form. Done when Ben has ruled on all thirteen and the PDF is under 10MB.
 **Branch:** `feat/qbe-story`, PR #253 open, pushed 5 Sep on Ben's word ("push"). Worktree `/Users/benknight/Code/goods-story-wt`.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
@@ -62,7 +62,7 @@ down one. Frame ids did not move, only the numbers.
 | 07 | One bed, four things, any amount | `J9I3PO` | Untouched, encodes the ask (blocked) |
 | 08 | The loop | `tkDpX` | Untouched, encodes ruling Y (blocked) |
 | 09 | Evidence | `M3ppb` | Built 5 Sep on Ben's ruling |
-| 10 | Governance | `GVjkm` | Untouched, open |
+| 10 | Governance | `GVjkm` | Copy rewritten in Notion 5 Sep, waiting on Ben |
 | 11 | Capital | `w3NJ6L` | Untouched, encodes the ask (blocked) |
 | 12 | Catalytic | `fs7ub` | Untouched, encodes the ask (blocked) |
 | 13 | Ask | `y61Ux` | Untouched, encodes the ask (blocked) |
@@ -901,6 +901,34 @@ them", so the tail came off with the ruling). Title sets on one line at 54; no c
 `exports/M3ppb.png` at 1.5x, uploaded as `slide-09.png`, placed under the 09 heading, old image trashed,
 footer on the page marked BUILT.
 
+### Slide 10, governance, copy rewritten in Notion, 5 September
+
+**Ben: "do it."** Page section renamed "10 · One home for the work. Local decisions stay local." and
+rebuilt in the slide 01 pattern; the ten flat notes from 3 September deleted, the column list under the
+image left alone (it is not mine and may hold Ben's renders). The frame `GVjkm` is untouched.
+
+**What the slide says.** The built headline holds (the 4 Sep pass called it nearly right). The subhead
+loses "five": ruling S cleared four communities to be named. The who-decides drawing (body variant,
+rendered 4 Sep) is the image and prints the three directors, the eleven advisers, the month-six test
+and the status line. The entity strip prints three ABNs and "subject to confirmation with Social
+Impact Hub".
+
+**Grades.** Entities, ABNs, charity and DGR dates: A (ABN Lookup, canon). Directors' names and the
+"Indigenous-led today / the aim is full Indigenous directorship" line: B, named by Ben 3 Sep and minuted
+20 July, not yet checked against the ASIC extract; the ACNC register page timed out on 5 Sep. Advisers:
+B. Month-six test: workpaper. Three A, three B, one workpaper.
+
+**Three findings, all in the page's research toggle and here.** (1) Slide 01 prints "100% Indigenous
+Directors" (Ben kept it 4 Sep); this slide says the aim is full Indigenous directorship and the handover
+completes at the AGM. Both cannot stand on review day. (2) The AGM date is unconfirmed: Alexandra
+McGee's 1 Sep email says the board is waiting on the auditor before scheduling it, while memory and the
+Q19 answer say 14 September, tentative. (3) The drawing says Kristy and Audrey were appointed June and
+July; the Q4 answer says both were minuted at the 20 July meeting. Also: Jay's 3 Sep answer on the
+applicant route is nowhere in the record, and Q22's governance documents have not been asked for.
+
+**Build when ruled:** subhead text; the entity strip's two Body texts clip inside 52px cells (set the
+cells to fit_content); the applicant caveat comes off only if Jay confirmed.
+
 ### Next
 - [ ] **Ben: slide 05 needs a second pass.** Headline to "Five organisations have bought beds. Four
       have paid.", add Centrecorp INV-0259 (60 beds, paid), pull the Palm Island row until INV-0317
@@ -936,7 +964,9 @@ footer on the page marked BUILT.
 - [x] **Slide 05 ruled and BUILT** (Ben, 5 Sep): four organisations, the \$197,060 line prints, Rotary in
       the notes. Frame rebuilt, exported, Notion image swapped.
 - [x] **Evidence slide (09) ruled and BUILT** (Ben, 5 Sep): headline pair, plain rules line, typographic.
-- [ ] Next open slide: 10 Governance (`GVjkm`), on Ben's word. 07, 08, 11, 12, 13 stay blocked on the ask.
+- [ ] **Ben rules on slide 10's copy**: "five" off; 01 versus 10 on Indigenous directorship; Jay's applicant
+      answer. Then the build of `GVjkm` (strip cells to fit_content), export, image swap.
+- [ ] 07, 08, 11, 12, 13 stay blocked on the ask decision.
 - [x] `qbe-story.ts` said four buyers. Derived from the paper now, drawing re-rendered, unblocked.
 - [ ] Parked on Ben's word: "The bed learned in public", the product-evolution slide that
       would make the 363 Basket Beds visible. Proposal sits in slide 4's research section.
