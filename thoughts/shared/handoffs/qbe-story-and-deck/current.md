@@ -9,54 +9,51 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-05T07:58:31Z
+**Updated:** 2026-09-05T08:03:15Z
 **Goal:** Thirteen slides, each built in Pencil and each carrying a full evidence-graded section in Notion. Then the QBE form. Done when Ben has ruled on all thirteen and the PDF is under 10MB.
-**Branch:** `feat/qbe-story`, PR #253 open, pushed 5 Sep on Ben's word ("push"). Worktree `/Users/benknight/Code/goods-story-wt`.
+**Branch:** `feat/qbe-story`, PR #253 open and unmerged, pushed and level with origin. Worktree `/Users/benknight/Code/goods-story-wt`. Merge only on Ben's explicit word.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
 **Map:** GitHub issue #236. **The Notion deck master is the working surface, not this file:**
 `https://app.notion.com/p/3d1ebcf981cf817598d8f15ee4f89c32`
 
 ### Now
-[->] **Three threads, one paste-prompt file: `thoughts/shared/handoffs/qbe-story-and-deck/START-HERE.md`.
-Open that first.**
 
-[->] **The money thread is the live one (5 Sep, second session).** Decision 1 is DONE: ALIVE
-\$101,200 and Julalikari \$15,000 are sales (Ben's words), funding received is **\$901,311**, eleven
-copies in lockstep, Julalikari in the earned lane, gates green including `next build`. **Decision 2 (re-pull the carve-out) is RULED YES (Ben, 5 Sep, "yes."). Two Gmail drafts wait
-on his send: Standard Ledger (the FY26 Goods carve-out on letterhead, signed; ACT Pty Ltd FY26 P&L and
-balance sheet; the ACT-GD scope question) and Eloise (Butterfly FY26 P&L, balance sheet, cashflow).
-Nothing in code moves until the accountant's figure comes back. **The FY26 sentence is RULED and SWEPT**
-(Ben, 5 Sep: "we will move all to the new charity"; net profit before founder wages, no surplus claimed,
-everything Goods moves into Butterfly; "FY26 net loss" is now a guarded retired phrase). **Decision 3 RULED:
-Brian M. Davis (Ben, 5 Sep), nothing moves. Rotary (4) is a standing instruction, not a decision. Oonchiumpa RULED:
-both receipts out, \$901,311 is fully current. Centrecorp RULED a buyer
-(ruling Z): commercial and buyer receipts \$344,981, grant share about 62%, total unchanged. **Every
-money decision is closed.** Pushed 5 Sep on Ben's word. **Both asks SENT 5 Sep on Ben's word ("send")**: Eloise (Butterfly FY26
-statements) and Standard Ledger (the FY26 Goods carve-out on letterhead, signed, with a fresh Xero cut
-attached because no June workpaper exists anywhere). Waiting on their replies. Merge #253 only on his word.
-**Ben's next instruction: "move onto the important relevant part of this work", the deck.
-**Slide 05 is BUILT** (Ben ruled 5 Sep: headline "Four organisations have paid for beds", the 320 beds and
-\$197,060 line prints, Rotary in the notes only): frame `p7GoP` rebuilt, exported at 1.5x, Notion image
-swapped. **The evidence slide (09) is BUILT** (Ben: "go" on the headline pair, the rules line and typographic
-as built): `M3ppb` updated in place, exported, Notion image swapped. **Slide 10, governance, is BUILT** (Ben: "go"; "five" off; applicant caveat kept, Jay's answer not in
-the record). **RULING AA (Ben, 5 Sep: "the charity has started, that is the charity, we have directors, it's changing
-over, lock it"). The Butterfly Movement Ltd is the applicant and recipient; Kristy Bloomfield, Audrey
-Deemal and Jeremy Donovan are the directors; the handover completes at the AGM. Every "subject to",
-"recommended", "proposed" and "B until the extract" is gone from the deck, the page, the one-document,
-the code and canon. Ben: "no, I don't want you to send anything, I want this all aligned in the deck and in the documents."
-Aligned, second pass: every surface swept. The two Gmail drafts stay unsent and are his to bin.
-Then "next" twice: **slides 07 (the unit) and 08 (the loop) now have full evidence sections on the
-page. 07 needs no build. 08 needs one line changed on the frame: its headline still says "five loops"
-and that was ruled down to one on 4 September. Waiting on Ben for both.** Next: 07, 08, 11, 12, 13 all wait on the ask
-decision with Nic, so the deck is at a stop until that call happens.** The loop (08), the unit (07), capital (11), catalytic (12) and the ask (13) stay
-blocked on the ask decision.** Then decisions 3
-(Bryan v Brian) and 4 (Rotary), one at a time. Also open from his answers: Oonchiumpa INV-0344 and
-INV-0346, and Centrecorp as buyer or philanthropy in the funding-received composition.
+[->] **Paste-prompts: `thoughts/shared/handoffs/qbe-story-and-deck/START-HERE.md`. Open that first.
+Method: the `/deck-slide` skill (`.claude/skills/deck-slide/`, machine-local, gitignored).**
 
-[->] **Slide 07 (the loop, `tkDpX`) is BLOCKED on the ask decision**, which needs Nic in the room.
-Slides 01 to 06 are built in Pencil and on the Notion page; Ben has not formally ruled on 02 to 06.
-Use the `/deck-slide` skill (`.claude/skills/deck-slide/`, machine-local, gitignored) when slides
-resume.
+**Where this stands after 5 September.**
+
+**The money thread is closed.** Every decision ruled: funding received is **$901,311** and fully
+current (ALIVE and Julalikari in, both Oonchiumpa receipts out); receivables $82,500, all bad debt,
+$0 collectable; Centrecorp is a **buyer** (ruling Z), so commercial and buyer receipts are $344,981
+and the grant share is about 62%; the FY26 books show a **net profit of about $168K before founder
+wages**, never "net loss"; "Bryan Foundation incoming" meant Brian M. Davis. `money-lanes.ts` is the
+classifier and `total()` throws rather than adding lanes that must not be added.
+
+**Ruling AA (5 Sep) locked the entity and the board.** The Butterfly Movement Ltd, trading as Goods on
+Country, **is** the applicant and recipient. The directors **are** Kristy Bloomfield, Audrey Deemal and
+Jeremy Donovan; the handover completes at the AGM. No surface anywhere says "subject to", "recommended
+route", "proposed applicant" or "grade B until the extract" about any of that, and the guard blocks
+those phrases from returning. Jay is told the route, not asked.
+
+**Two emails were sent on 5 September** (Ben's word, before he changed his mind about sending): the
+carve-out ask to Standard Ledger with a fresh Xero cut attached, and the Butterfly FY26 financials ask
+to Eloise. **Two later drafts sit UNSENT and are Ben's to send or bin:** a heads-up to Jay that the
+charity applies, and the Q22 governance-documents ask to Eloise. **Ben, 5 Sep: "I don't want you to
+send anything."** Do not send without a fresh instruction.
+
+**The deck.** Slides 01, 05, 09 and 10 were built or corrected on 5 September and their images are
+swapped on the Notion page. Slides 07 and 08 have full evidence sections on the page and wait on Ben.
+**One build is queued and needs one line:** slide 08's frame is still titled "One catalyst starts five
+loops", which the 4 September pass ruled down to one loop; the drawing already says one loop, so the
+fix is the title text, an export and an image swap.
+
+**Blocked, and only these:** slides 11 (capital), 12 (catalytic) and 13 (the ask) carry the ask itself,
+so they wait on Ben and Nic. **07 and 08 are not blocked**, which three earlier replies got wrong: only
+the ask-bearing lines on them move if the ask changes.
+
+**Unreconciled and worth a person:** the margin. Slide 08 prints about $324 on a locally pressed bed;
+Nic told the business mentor about $200 on 4 September.
 
 **The deck is now thirteen slides.** A new 03 was inserted, so everything from the old 03 moved
 down one. Frame ids did not move, only the numbers.
@@ -64,14 +61,14 @@ down one. Frame ids did not move, only the numbers.
 | # | Slide | Frame | State |
 |---|---|---|---|
 | 01 | A recycled washable bed | `S1VrCQ` | Built; stamp changed 5 Sep to "Indigenous-led board" |
-| 02 | You cannot wash a mattress | `Cduac` | Built |
+| 02 | You cannot wash a mattress | `Cduac` | Built, full section, waiting on Ben |
 | 03 | 382 people | `U17nTq` | Built, all four figures grade A |
 | 04 | Delivery was the easy part | `L4AgY` | Built, seven-photograph timeline |
 | 05 | Four organisations have paid for beds | `p7GoP` | Built 5 Sep on Ben's ruling, six-row ledger, all paid |
-| 06 | The making already works | `FF0af` | Built |
+| 06 | The making already works | `FF0af` | Built, full section, waiting on Ben |
 | 07 | One bed, four things, any amount | `J9I3PO` | Built; copy ruled 4 Sep, evidence section 5 Sep. Two ask-bearing lines only |
 | 08 | The loop | `tkDpX` | Evidence section 5 Sep; headline still says "five loops", one-line fix waiting |
-| 09 | Evidence | `M3ppb` | Built 5 Sep on Ben's ruling |
+| 09 | What we count, and what we ask at six months | `M3ppb` | Built 5 Sep on Ben's ruling |
 | 10 | Governance | `GVjkm` | Built 5 Sep; locked under ruling AA, no caveat on the strip |
 | 11 | Capital | `w3NJ6L` | Untouched, encodes the ask (blocked) |
 | 12 | Catalytic | `fs7ub` | Untouched, encodes the ask (blocked) |
@@ -1097,63 +1094,41 @@ loop, the gates and the return arrow hold whatever the funder buys. That box is 
 `community-loop.ts`, so it changes by re-rendering, never by editing the frame.
 
 ### Next
-- [ ] **Ben: slide 05 needs a second pass.** Headline to "Five organisations have bought beds. Four
-      have paid.", add Centrecorp INV-0259 (60 beds, paid), pull the Palm Island row until INV-0317
-      is produced. Copy is settled in the module; the Pencil frame `p7GoP` has not been touched.
-- [x] INV-0317 retired on Ben's ruling. Five dated wiki outputs still name it as a live \$36,300
-      order (`2026-05-30-tier1-6week-action-calendar`, `2026-05-12-financial-model-day5`,
-      `2026-05-30-goods-expanded-capital-universe`, `2026-07-11-narrative-foundation`,
-      `funder-discovery/01-warm-dormant-pipeline`). They are dated records of what was believed in
-      May and are outside the guard's scan of `src/`; left as history, flagged here.
-- [x] Receivables restated to \$82,500 on Ben's three rulings. Lockstep green.
-- [x] Revenue restated to \$785,111 on Ben's word. Nine locations, lockstep green.
-- [x] **ALIVE \$101,200 and Julalikari \$15,000 are in.** Ben, 5 Sep: "they are sales which
-      showcase how we can sell beds and how communities can as well, same as the Centrecorp sales".
-      Funding received \$901,311, eleven copies, gates green.
-- [x] **Centrecorp is a buyer in the funding-received composition (Ben, 5 Sep, ruling Z).**
-      Commercial and buyer receipts \$344,981, grant share ~62%, total unchanged.
-- [x] **Oonchiumpa INV-0344 and INV-0346: both OUT (Ben, 5 Sep).** Program work through ACT, and a
-      reimbursement. \$901,311 fully current.
-- [x] Julalikari was in no lane. `MACHINE_LINES` in `money-lanes.ts` carries it now; `BUYING_STORY` untouched.
-- [x] **Decision 2: re-pull the Goods carve-out. Ben: yes (5 Sep).** Two Gmail drafts created,
-      see "Decision 2 applied" above.
-- [x] **Both asks sent 5 Sep** (Eloise; Standard Ledger with the Xero cut attached).
-- [ ] Standard Ledger replies with the FY26 Goods carve-out on letterhead: then the ~20 carve-out copies
-      move together, `revenue-carveout` drops NOT SIGNED and names the letter, ruling G closes.
-- [ ] Eloise replies with Butterfly's FY26 P&L, balance sheet and cashflow (Q20 item 1); Q22 documents
-      still to ask her for.
-- [x] **The FY26 sentence: ruled and swept (Ben, 5 Sep, "we will move all to the new charity").**
-      Net profit before founder wages, no surplus claimed, everything moves into Butterfly. Phrase guarded.
-- [x] **"Bryan Foundation incoming" = Brian M. Davis (Ben, 5 Sep).** Lanes already right; nothing moved.
-- [ ] **Tell Nic the two $100,000 "commitments" are invitations to apply.** The QBE form scores
-      leverage, and the deck's $0 signed is correct.
-- [ ] Ben rules on 02, 03, 04 and 06, all built and on the page.
-- [x] **Slide 05 ruled and BUILT** (Ben, 5 Sep): four organisations, the \$197,060 line prints, Rotary in
-      the notes. Frame rebuilt, exported, Notion image swapped.
-- [x] **Evidence slide (09) ruled and BUILT** (Ben, 5 Sep): headline pair, plain rules line, typographic.
-- [x] **Slide 10 BUILT** (Ben, 5 Sep, "go"): "five" off, strip unclipped, caveat kept.
-- [x] Slide 01 now "Indigenous-led board", matching 10 (Ben, "fix all", 5 Sep).
-- [ ] Ben sends the two drafts: Jay (heads-up: the charity applies) and Eloise (Q22 documents, the extracts).
-- [ ] **Ben rules on slide 07's evidence section** (copy unchanged, frame unchanged).
-- [ ] **Ben rules on slide 08**: the headline to "One catalyst starts a loop a community controls"
-      (the drawing already says one loop). Then the one-line frame change, export, image swap.
-- [ ] 11, 12, 13 stay blocked on the ask decision. 07 and 08 are not: only the ask-bearing lines move.
-- [ ] **Reconcile the margin: $324 modelled (slide 08) against about $200 said to the mentor.**
-- [x] `qbe-story.ts` said four buyers. Derived from the paper now, drawing re-rendered, unblocked.
-- [ ] Parked on Ben's word: "The bed learned in public", the product-evolution slide that
-      would make the 363 Basket Beds visible. Proposal sits in slide 4's research section.
-- [ ] Ben rules on 03 (drafted, all four figures verified to primary source).
-- [ ] Type the three new figures into a guarded module.
-- [ ] Chase the slide 2 references: AFSE mattress price, East Arnhem Spin Project lifespan,
-      and a primary for the FRRR 59/38 pair.
-- [ ] Then photos and the Pencil design pass Ben wants on 02 and 03 together.
-- [ ] Slides 5, 6, 7, 8, 9, 10, 11, 12, one at a time.
-- [ ] Fix the Kalgoorlie stop in `road-spine.ts` once Ben has ruled on slide 3 copy.
-- [ ] **The ask decision.** Ruling Y against the advisor's plant-first framing. Ben and Nic.
-      Nothing downstream is safe until it is settled: slides 6, 7, 10, 11 and 12 all encode ruling Y.
-- [ ] Check whether the two $100,000 commitments exist on paper.
-- [ ] The missing slide: why the products that arrive today fail.
-- [ ] Then Pencil, in ONE pass, from settled copy. The peer session is idle and waiting.
+
+**Ben's rulings, one at a time**
+- [ ] Slide 08: the headline to "One catalyst starts a loop a community controls". Then the one-line
+      frame change, export, image swap.
+- [ ] Slide 07's evidence section (copy unchanged, frame unchanged, nothing to build).
+- [ ] Slides 02, 03, 04 and 06, all built and on the page with full sections.
+- [ ] "The bed learned in public", the product-evolution slide that would make the 363 Basket Beds
+      visible. Proposal sits in slide 04's research section.
+
+**Ben and Nic, together**
+- [ ] **The ask decision.** Ruling Y (the money buys beds) against the mentor's plant-first framing.
+      Slides 11, 12 and 13 wait on it. Paste-prompt 2 in START-HERE runs the grilling.
+- [ ] **The margin: $324 modelled against about $200 told to the mentor.** Reconcile before either
+      goes near a funder.
+- [ ] Tell Nic the two $100,000 "commitments" are invitations to apply. The form scores leverage and
+      $0 signed is the correct answer.
+
+**Ben's to send or bin (unsent drafts)**
+- [ ] Jay: a heads-up that The Butterfly Movement Ltd applies and receives.
+- [ ] Eloise: the Q22 governance documents, the ASIC extract, and whether the auditor has reported.
+
+**Waiting on other people**
+- [ ] Standard Ledger returns the FY26 Goods carve-out on letterhead, signed. Then about twenty
+      carve-out copies move together, `revenue-carveout` drops NOT SIGNED and names the letter, and
+      ruling G closes.
+- [ ] Eloise returns Butterfly's FY26 P&L, balance sheet and cashflow (Q20 item 1).
+- [ ] The AGM date, once the auditor reports.
+
+**Mine, when slides resume**
+- [ ] Type the three slide-03 figures into a guarded module so `check-retired-figures` can police them.
+- [ ] Chase the slide 02 references: the AFSE mattress price, the East Arnhem Spin Project lifespan,
+      and a primary source for the FRRR 59/38 pair.
+- [ ] Fix the Kalgoorlie stop in `road-spine.ts` once Ben has ruled on slide 03's copy.
+- [ ] The missing slide Ben named: why the products that arrive today fail.
+- [ ] Merge PR #253 only on Ben's explicit word.
 
 ### Decisions
 - **ALIVE and Julalikari are sales (Ben, 5 Sep):** "they are beds that are bought so they are sales
