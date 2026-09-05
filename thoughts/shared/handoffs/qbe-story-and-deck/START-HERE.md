@@ -10,7 +10,9 @@ room. The third is the money clean-up, which is now a thread of its own.
 ```
 QBE deck, the next open slide. Use the /deck-slide skill: it is the method and it is not optional.
 Numbering follows the Pencil band (thirteen frames): 07 the unit, 08 the loop, 09 evidence,
-10 governance, 11 capital, 12 catalytic, 13 ask. 05 and 09 built 5 Sep; 10 governance is the next open slide.
+10 governance, 11 capital, 12 catalytic, 13 ask. 05, 09 and 10 built 5 Sep. Every remaining slide (07, 08, 11, 12, 13) waits on the ask
+decision with Nic. Open on 10: slide 01's "100% Indigenous Directors" against 10's "the aim is
+full Indigenous directorship", and whether Jay confirmed Butterfly as applicant.
 
 Read thoughts/shared/handoffs/qbe-story-and-deck/current.md first, and nothing else
 until you have.
