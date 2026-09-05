@@ -72,15 +72,20 @@ thoughts/shared/handoffs/qbe-story-and-deck/current.md.
 Every dollar sits in one of seven lanes and total() throws if you add lanes that
 must not be added. Do not invent a number outside that module.
 
-Three decisions are waiting on me. Put them to me one at a time, with what changes
-if I say yes:
-1. Re-pull the Goods carve-out. $713,827 is asAt 2026-06-02 and the drift guard
-   wants it refreshed before any external share. The Xero ACT-GD paid cut
-   ($650,910.79, asAt 2026-06-01) is stale the same way.
-2. When I said "Bryan Foundation incoming", did I mean The Bryan Foundation
+Decisions waiting on me. Put them to me one at a time, with what changes if I
+say yes:
+1. The carve-out re-pull, already put on 5 Sep with the groundwork done: FY26 income
+   on Xero is $1,640,724.46, the workpaper's denominator to the dollar, and the Goods
+   share ($713,827) needs the accountant. Yes = one message to Eloise and the
+   accountant for the closed-FY26 carve-out, signed. Recommended yes. The Xero
+   ACT-GD paid cut ($650,910.79, asAt 2026-06-01) is stale the same way.
+2. The FY26 sentence. Xero shows a net PROFIT of $167,970 before founder wages (Wages
+   $0 in the books); canon, STRATEGY.md and ruling H say "net loss". The proposed
+   wording is in the ledger under "Decision 2 groundwork". Sweep on my word.
+3. When I said "Bryan Foundation incoming", did I mean The Bryan Foundation
    (26 May meeting, nothing in writing, potential) or Brian M. Davis (invited,
    up to $100,000, board 19 November)?
-3. Rotary $82,500 is bad debt and fine for now. Tell me when that stops being true.
+4. Rotary $82,500 is bad debt and fine for now. Tell me when that stops being true.
 
 Settled 5 Sep: ALIVE $101,200 and Julalikari $15,000 are in funding received, which
 is $901,311. Still open from the same Xero check: are Oonchiumpa INV-0344 $41,250
@@ -111,7 +116,7 @@ Recall surface: `deliverables/qbe-stage2/diagrams/08-money-lanes.svg`.
   Somebody has to correct that**, because the QBE form scores leverage.
 
 **Open and mine to fix once Ben rules:** the stale carve-out (and the equally stale Xero ACT-GD paid
-cut); Bryan against Brian; the two Oonchiumpa receipts (INV-0344 $41,250, INV-0346 $1,000); whether
+cut); the FY26 sentence (net profit before founder wages, not net loss); Bryan against Brian; the two Oonchiumpa receipts (INV-0344 $41,250, INV-0346 $1,000); whether
 Centrecorp counts as a buyer in the funding-received composition. **Done 5 Sep:** ALIVE and Julalikari
 are in, funding received is $901,311, Julalikari sits in the earned lane.
 
@@ -124,12 +129,13 @@ are in, funding received is $901,311, Julalikari sits in the earned lane.
   visible. Proposal is in slide 04's research section.
 - Ben has not formally ruled on slides 02 to 06.
 
-**Branch state.** `feat/qbe-story` in `/Users/benknight/Code/goods-story-wt`, **ten commits ahead
+**Branch state.** `feat/qbe-story` in `/Users/benknight/Code/goods-story-wt`, **11 commits ahead
 of origin and NOT pushed.** Two predate this session (`53b7193` the Kalgoorlie fix, `07af900` slides
 01 to 06). Six are the money work: `08f3acb` buyers derived from the paper · `574ca86` money lanes ·
 `cddf5ed` INV-0317 retired · `b2a0052` receivables $82,500 · `6de744a` revenue $785,111 · `22e839d`
 these prompts. Second session, 5 Sep: `cc45164` the Xero re-check of decision 1, then the
-restatement to $901,311 with Julalikari in the earned lane. PR #253 open and unmerged. Gates green: tsc,
+restatement to $901,311 with Julalikari in the earned lane, then `5c7a919` ruling H remnants out of the
+areas JSON and the drift script, guard now scans JSON. PR #253 open and unmerged. Gates green: tsc,
 692 tests, `check:drift:ci` in lockstep, `check:retired-figures` (32 figures), `next build`.
 
 **Dates.** BMDF closes **25 September**. QBE closes **25 September, 12pm AEST**. TFFF closes

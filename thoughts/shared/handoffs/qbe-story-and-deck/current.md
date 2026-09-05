@@ -9,23 +9,30 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-04T23:24:43Z
+**Updated:** 2026-09-05T01:35:36Z
 **Goal:** Thirteen slides, each built in Pencil and each carrying a full evidence-graded section in Notion. Then the QBE form. Done when Ben has ruled on all thirteen and the PDF is under 10MB.
-**Branch:** `feat/qbe-story`, PR #253, pushed, CI green. Worktree `/Users/benknight/Code/goods-story-wt`.
+**Branch:** `feat/qbe-story`, PR #253 open, **11 commits ahead of origin and NOT pushed** (push is Tier 2, Ben's word). Worktree `/Users/benknight/Code/goods-story-wt`.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
 **Map:** GitHub issue #236. **The Notion deck master is the working surface, not this file:**
 `https://app.notion.com/p/3d1ebcf981cf817598d8f15ee4f89c32`
 
 ### Now
-[->] **PASTE-PROMPT: `thoughts/shared/handoffs/qbe-story-and-deck/START-HERE.md`. Open that first.**
+[->] **Three threads, one paste-prompt file: `thoughts/shared/handoffs/qbe-story-and-deck/START-HERE.md`.
+Open that first.**
 
-[->] **Use the `/deck-slide` skill. It is the whole method and it was written this session.**
-`.claude/skills/deck-slide/` (SKILL.md, EVIDENCE.md, PENCIL.md). `.claude/` is gitignored, so it
-lives only on this machine.
+[->] **The money thread is the live one (5 Sep, second session).** Decision 1 is DONE: ALIVE
+\$101,200 and Julalikari \$15,000 are sales (Ben's words), funding received is **\$901,311**, eleven
+copies in lockstep, Julalikari in the earned lane, gates green including `next build`. **With Ben
+now: decision 2 (re-pull the carve-out = one ask to Eloise and the accountant for the closed-FY26
+Goods carve-out, signed; recommended yes) and the FY26 sentence (Xero shows a net PROFIT of
+\$167,970 before founder wages; canon, STRATEGY.md and ruling H say net loss).** Then decisions 3
+(Bryan v Brian) and 4 (Rotary), one at a time. Also open from his answers: Oonchiumpa INV-0344 and
+INV-0346, and Centrecorp as buyer or philanthropy in the funding-received composition.
 
-[->] **Slides 01 to 06 are BUILT in Pencil, exported, and on the Notion page with the full section
-structure. Ben has not formally ruled on 02 to 06.** Next is **07**, the loop, frame `tkDpX`.
-Ben says "next" between each and expects one slide at a time.
+[->] **Slide 07 (the loop, `tkDpX`) is BLOCKED on the ask decision**, which needs Nic in the room.
+Slides 01 to 06 are built in Pencil and on the Notion page; Ben has not formally ruled on 02 to 06.
+Use the `/deck-slide` skill (`.claude/skills/deck-slide/`, machine-local, gitignored) when slides
+resume.
 
 **The deck is now thirteen slides.** A new 03 was inserted, so everything from the old 03 moved
 down one. Frame ids did not move, only the numbers.
@@ -737,6 +744,12 @@ string renders on a funder page that I can find: `qbe-areas.ts` types the shape 
 - [ ] Then Pencil, in ONE pass, from settled copy. The peer session is idle and waiting.
 
 ### Decisions
+- **ALIVE and Julalikari are sales (Ben, 5 Sep):** "they are beds that are bought so they are sales
+  which showcase how we can sell beds and how communities can as well and washing machines, same as
+  the Centrecorp sales." Funding received \$901,311; commercial and buyer receipts \$221,649.
+- **Four organisations have paid for beds, not six (Ben, 5 Sep morning).** Supersedes the "six"
+  line below: Rotary INV-0222 is bad debt, Palm Island INV-0317 never happened. Slide 05's headline
+  still says six and needs its second pass.
 - Slide 1 is locked in Ben's words. He kept "Better health" and "100% Indigenous Directors" after
   I flagged both twice. **His call, and both are checkable claims.** "Better health" is a health
   outcome and the standing ceiling says scabies to RHD is the why, never the result. "100%
@@ -755,6 +768,13 @@ string renders on a funder page that I can find: `qbe-areas.ts` types the shape 
   leak, and why the source had to be fixed rather than the render patched.
 
 ### Open Questions
+- OPEN: Oonchiumpa INV-0344 \$41,250 (Atnarpa build) and INV-0346 \$1,000 ("wages for the Goods
+  Project"): Goods receipts or not. Paid after the baseline, in no figure and no lane.
+- OPEN: Centrecorp \$123,332 in the funding-received composition: buyer (Ben's words, the buyers
+  ledger) or philanthropic (the prose). Grant share 62% or 75%.
+- OPEN: the FY26 sentence. Net profit \$167,970 before founder wages on Xero (5 Sep); canon,
+  STRATEGY.md and ruling H say net loss. Proposed wording in "Decision 2 groundwork".
+- OPEN: what "ACT-GD" scopes in the \$650,910.79 Xero paid cut (asAt 2026-06-01, 95 days stale).
 - OPEN, and now the biggest: **artificial customer, subsidy, or plant.** The advisor says plant.
   Ruling Y says beds.
 - OPEN: do the two $100,000 philanthropic commitments exist in writing?
@@ -763,9 +783,25 @@ string renders on a funder page that I can find: `qbe-areas.ts` types the shape 
 - UNCONFIRMED: 100% Indigenous directorship, until the AGM on 14 September and an ASIC extract.
 
 ### Workflow State
-pattern: slide-by-slide copy pass
+pattern: money thread, one decision at a time (slides blocked on the ask)
 phase: 2
-total_phases: 3
+total_phases: 4
+retries: 0
+max_retries: 3
+
+#### Resolved
+- decision_1: "ALIVE and Julalikari are sales; funding received $901,311" (Ben, 5 Sep)
+- resource_allocation: aggressive
+
+#### Unknowns
+- decision_2_carveout: WITH BEN (recommended yes, one ask to Eloise and the accountant)
+- fy26_sentence: WITH BEN (net profit before founder wages, not net loss)
+- oonchiumpa_receipts: UNKNOWN
+- centrecorp_composition: UNKNOWN
+- ask_decision: UNKNOWN, needs Nic
+
+#### Last Failure
+(none this session; all gates green at 5c7a919)
 
 ---
 
