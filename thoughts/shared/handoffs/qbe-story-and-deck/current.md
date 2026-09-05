@@ -749,7 +749,7 @@ never swept in the wiki; fixed on the lines touched. Dated `wiki/outputs/` recor
 as history.
 
 **Guarded.** `check-retired-figures.mjs` now retires the phrase family "FY26 net loss" / "P&L is a net
-loss" / "runs an FY26 net loss" (44 figures, 12 phrases). The apostrophe in "trader's" broke two
+loss" / "runs an FY26 net loss" (38 figures, 8 phrases guarded, per the script's own count). The apostrophe in "trader's" broke two
 single-quoted TypeScript strings on the first pass; escaped.
 
 Gates on the final code: tsc clean, 692 tests, `check:drift:ci` green. `next build` re-run after the
