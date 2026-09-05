@@ -8,7 +8,9 @@ room. The third is the money clean-up, which is now a thread of its own.
 ## 1 · The slide pass (paste this)
 
 ```
-QBE deck, slide 07. Use the /deck-slide skill: it is the method and it is not optional.
+QBE deck, the next open slide. Use the /deck-slide skill: it is the method and it is not optional.
+Numbering follows the Pencil band (thirteen frames): 07 the unit, 08 the loop, 09 evidence,
+10 governance, 11 capital, 12 catalytic, 13 ask. 05 built 5 Sep; 09 copy waits on my ruling.
 
 Read thoughts/shared/handoffs/qbe-story-and-deck/current.md first, and nothing else
 until you have.
@@ -17,10 +19,10 @@ The working surface is the Notion deck master, not the repo:
 https://app.notion.com/p/3d1ebcf981cf817598d8f15ee4f89c32
 
 Slides 01 to 06 are built in Pencil, exported, and on the Notion page with the full
-section structure. Slide 07 is the loop, frame tkDpX.
+section structure. The loop is 08, frame tkDpX.
 
-Before you touch 07: the ask decision is not settled, and 07, 10, 11 and 12 all
-encode ruling Y. If it is still open, say so and stop.
+Before you touch 07, 08, 11, 12 or 13: the ask decision is not settled and they all
+encode it. If it is still open, say so and stop. 09 and 10 are open.
 
 Rules, all learned the hard way:
 - ONE SLIDE AT A TIME. I ask for slide N, you give me slide N and stop.
