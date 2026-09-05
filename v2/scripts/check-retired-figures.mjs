@@ -57,6 +57,8 @@ const RETIRED = [
   // one day after the ruling that retired it. Every entry below reached a funder-facing surface.
   { value: '475K', what: 'the old lead stack', now: '$607.5K grants / $710K repayable', context: /stack|sefa|snow|centrecorp/i, ruling: 'stack rebuilt 2026-07-25 from all 67 CRM rows' },
   { value: '150K', what: 'per-site plant capital band', now: 'priced per site by the module model', context: /per site|a site|plant capital/i, ruling: 'DECISIONS.md ruling O' },
+  { value: '679.7K', what: 'grant and philanthropic receipts with Centrecorp inside them', now: '$556,330 (~62%); Centrecorp $123,332 is a buyer', context: /grant|philanthrop|receipt/i, ruling: 'DECISIONS.md ruling Z, 2026-09-05' },
+  { value: '679,662', what: 'grant and philanthropic receipts with Centrecorp inside them', now: '$556,330 (~62%); Centrecorp $123,332 is a buyer', context: /grant|philanthrop|receipt/i, ruling: 'DECISIONS.md ruling Z, 2026-09-05' },
   { value: '403,901', what: 'the "surplus"', now: 'never cited; the sole trader FY26 P&L closed on a net profit of ~$168K before founder wages and no surplus is claimed for Goods', context: /surplus|profit|revenue/i, ruling: 'DECISIONS.md ruling H' },
 
   // SUPPLY MATH. Added 2026-08-24 with ruling T (20kg/bed). An external analysis assumed

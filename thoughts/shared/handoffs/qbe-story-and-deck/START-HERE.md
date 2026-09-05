@@ -87,8 +87,9 @@ say yes:
 
 Settled 5 Sep: ALIVE $101,200 and Julalikari $15,000 are in funding received, which
 is $901,311 and fully current: Oonchiumpa INV-0344 (program work through ACT) and
-INV-0346 (a reimbursement) are both OUT, ruled 5 Sep. Still open: is Centrecorp a
-buyer or philanthropy in the funding-received composition.
+INV-0346 (a reimbursement) are both OUT, ruled 5 Sep. Centrecorp is a BUYER in the
+funding-received composition (ruling Z, 5 Sep): commercial and buyer receipts
+$344,981, grant share about 62%. Every money decision is closed.
 
 The receivables figure lives in FOUR places and revenue in ELEVEN. Move them
 together or check:drift:ci fails on a copy you did not know about.
@@ -113,10 +114,10 @@ Recall surface: `deliverables/qbe-stage2/diagrams/08-money-lanes.svg`.
   Brian M. Davis up to $100,000, board 19 November. **Nic told the mentor these were commitments.
   Somebody has to correct that**, because the QBE form scores leverage.
 
-**Open and mine to fix once Ben rules:** the carve-out copies, once the accountant's letter lands (Ben
-said yes on 5 Sep; two Gmail drafts wait on his send); whether
-Centrecorp counts as a buyer in the funding-received composition. **Done 5 Sep:** ALIVE and Julalikari
-are in, funding received is $901,311, Julalikari sits in the earned lane.
+**Open and mine to fix once the accountant's letter lands:** the carve-out copies (Ben said yes on
+5 Sep; two Gmail drafts wait on his send). **Done 5 Sep, all of it:** ALIVE and Julalikari in ($901,311,
+fully current), Oonchiumpa out, the FY26 sentence swept, Bryan is Brian, Centrecorp a buyer (grant
+share about 62%).
 
 **Open and Ben's alone:**
 - **The ask decision.** Blocks 07, 10, 11 and 12.

@@ -340,6 +340,8 @@ export const verifiedFinancials = {
   // 2026) is "only for the Oonchiumpa program through ACT", not Goods; INV-0346 $1,000 ("wages for
   // the Goods Project", PAID 28 Aug 2026) is "just a payback", a reimbursement, not funding. Neither
   // enters this figure. $901,311 is fully current for Goods: no receipt after the baseline is pending.
+  // RECLASSIFIED 2026-09-05 (Ben: "buyer", ruling Z): Centrecorp $123,332 (INV-0259, INV-0291, 167 beds)
+  // sits with commercial and buyer receipts, $344,981 in all; grant and philanthropic $556,330 (~62%).
   revenueReceived: 901_311,
   // Accounts receivable, restated 2026-09-05 against Xero's aged receivables of the same date,
   // on three rulings from Ben. It was $143,000 and it is $82,500, all of which is bad debt:

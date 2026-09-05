@@ -158,9 +158,13 @@ describe('the lanes stay tied to their sources', () => {
     expect(verifiedFinancials.revenueReceived).toBe(901_311);
     expect(fundingHistory.totalReceived).toBe(verifiedFinancials.revenueReceived);
     expect(fundingHistory.received.reduce((t, r) => t + r.amount, 0)).toBe(fundingHistory.totalReceived);
-    // The two receipts Ben ruled in on 5 Sep sit inside the commercial and buyer line.
-    const commercial = fundingHistory.received.find((r) => /Commercial/.test(r.source));
-    expect(commercial?.amount).toBe(221_649);
+    // The two receipts Ben ruled in on 5 Sep sit inside the "other" commercial and buyer line, and
+    // Centrecorp's two paid bed invoices are a buyer row of their own (ruling Z, 5 Sep 2026).
+    const other = fundingHistory.received.find((r) => /^Other commercial and buyer/.test(r.source));
+    expect(other?.amount).toBe(221_649);
+    const centrecorp = fundingHistory.received.find((r) => /^Centrecorp/.test(r.source));
+    expect(centrecorp?.source, 'Centrecorp is a buyer in this composition').toMatch(/buyer/);
+    expect((other?.amount ?? 0) + (centrecorp?.amount ?? 0), 'commercial and buyer receipts').toBe(344_981);
   });
 
   it('canon, the compendium and the grant content agree on what is receivable', () => {

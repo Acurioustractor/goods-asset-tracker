@@ -9,7 +9,7 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-05T04:23:06Z
+**Updated:** 2026-09-05T04:27:32Z
 **Goal:** Thirteen slides, each built in Pencil and each carrying a full evidence-graded section in Notion. Then the QBE form. Done when Ben has ruled on all thirteen and the PDF is under 10MB.
 **Branch:** `feat/qbe-story`, PR #253 open, **11 commits ahead of origin and NOT pushed** (push is Tier 2, Ben's word). Worktree `/Users/benknight/Code/goods-story-wt`.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
@@ -29,8 +29,9 @@ Nothing in code moves until the accountant's figure comes back. **The FY26 sente
 (Ben, 5 Sep: "we will move all to the new charity"; net profit before founder wages, no surplus claimed,
 everything Goods moves into Butterfly; "FY26 net loss" is now a guarded retired phrase). **Decision 3 RULED:
 Brian M. Davis (Ben, 5 Sep), nothing moves. Rotary (4) is a standing instruction, not a decision. Oonchiumpa RULED:
-both receipts out, \$901,311 is fully current. With Ben now: Centrecorp as buyer or philanthropy in the
-funding-received composition.** Then decisions 3
+both receipts out, \$901,311 is fully current. Centrecorp RULED a buyer
+(ruling Z): commercial and buyer receipts \$344,981, grant share about 62%, total unchanged. **Every
+money decision is closed.** Waiting on Ben: SEND the two Gmail drafts, and the word to push.** Then decisions 3
 (Bryan v Brian) and 4 (Rotary), one at a time. Also open from his answers: Oonchiumpa INV-0344 and
 INV-0346, and Centrecorp as buyer or philanthropy in the funding-received composition.
 
@@ -774,6 +775,23 @@ earned. **\$901,311 is now fully current for Goods**: every sales invoice paid s
 has been read and ruled. Recorded at the three places that named them as pending (`compendium.ts`,
 `grant-content.ts`, the canon `revenue-received` source). No figure moved.
 
+### Centrecorp is a buyer: ruling Z, 5 September
+
+**Ben: "buyer."** The \$123,332 is INV-0259 (\$37,620) and INV-0291 (\$85,712), both paid bed invoices,
+and the sum ties to the dollar. Total unchanged at \$901,311. Grant and philanthropic receipts \$679,662
+to \$556,330; commercial and buyer receipts \$221,649 to \$344,981; grant share about 62%, where five
+surfaces said 75%. The Centrecorp row keeps its name in `received[]` and carries "(buyer: ...)"; the old
+aggregate is "Other commercial and buyer receipts", and the guard test asserts both rows and their sum.
+Ruling Z written above Y in DECISIONS.md. `679.7K` and `679,662` retired in the guard; the 75% could
+only be swept by hand (percentages are invisible to the retired-figures regex, noted twice now).
+
+**Not checked:** the Notion QBE one-document, which Ben edits live. The repo copy of the form answers
+carries no split, but the Notion Q4/Q20 answers may. Grep it for "75%" and "679" before the form goes in.
+
+**With that, every decision in the money thread is closed.** Open and waiting on Ben: send the two
+Gmail drafts (attach the June workpaper to the Standard Ledger one), and the word to push
+`feat/qbe-story`, which sits well ahead of origin with PR #253 open.
+
 ### Next
 - [ ] **Ben: slide 05 needs a second pass.** Headline to "Five organisations have bought beds. Four
       have paid.", add Centrecorp INV-0259 (60 beds, paid), pull the Palm Island row until INV-0317
@@ -788,9 +806,8 @@ has been read and ruled. Recorded at the three places that named them as pending
 - [x] **ALIVE \$101,200 and Julalikari \$15,000 are in.** Ben, 5 Sep: "they are sales which
       showcase how we can sell beds and how communities can as well, same as the Centrecorp sales".
       Funding received \$901,311, eleven copies, gates green.
-- [ ] **Ben: is Centrecorp a buyer or a philanthropic receipt in the funding-received composition?**
-      His words put it with the sales. The prose puts its \$123,332 under grant/philanthropic. If it
-      moves, commercial and buyer receipts are \$344,981 and the grant share is 62%.
+- [x] **Centrecorp is a buyer in the funding-received composition (Ben, 5 Sep, ruling Z).**
+      Commercial and buyer receipts \$344,981, grant share ~62%, total unchanged.
 - [x] **Oonchiumpa INV-0344 and INV-0346: both OUT (Ben, 5 Sep).** Program work through ACT, and a
       reimbursement. \$901,311 fully current.
 - [x] Julalikari was in no lane. `MACHINE_LINES` in `money-lanes.ts` carries it now; `BUYING_STORY` untouched.

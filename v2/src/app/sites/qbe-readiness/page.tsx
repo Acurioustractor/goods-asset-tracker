@@ -250,7 +250,7 @@ const ROWS: Row[] = [
     from: '4',
     to: '7',
     priority: true,
-    line: 'About 75% grant-funded today. The path off grants: in-source plastic, shift buyers to procurement.',
+    line: 'About 62% grant-funded today. The path off grants: in-source plastic, shift buyers to procurement.',
   },
   {
     number: 4,

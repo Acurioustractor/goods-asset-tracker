@@ -21,6 +21,29 @@
 
 ## 2026-09-03 — the QBE ask
 
+### Z. Centrecorp is a buyer in the funding-received composition.
+
+**Ben, 5 September 2026: "buyer."** Centrecorp Foundation's $123,332 inside funding received is two
+paid bed invoices, INV-0259 (60 Basket Beds, August 2025) and INV-0291 (107 Stretch Beds, November
+2025). Slide 05, the buyers ledger in `qbe-story.ts` and the earned lane in `money-lanes.ts` already
+counted it as a purchase; only the funding-received prose filed it under grant and philanthropic
+receipts, a leftover from when Centrecorp sat on the match stack as a grant line. One classification
+per dollar.
+
+**What moved.** The total did not. Grant and philanthropic receipts $679,662 to $556,330 (Snow, VFFF,
+QIC, Villiers). Commercial and buyer receipts $221,649 to $344,981, with the Centrecorp row kept by
+name in the received list and marked as a buyer, and the old aggregate renamed "Other commercial and
+buyer receipts". The grant share of everything received is about 62%, where every surface said 75%.
+Swept together: `grant-content.ts` (rows and the financials prose), `canon.ts` (`revenue-received`
+definition), `compendium.ts` note, `impact-model.ts` (label and source note),
+`qbe-readiness/page.tsx`, the guard test, and `679.7K` / `679,662` retired in
+`check-retired-figures.mjs`. That script cannot guard a percentage (its lookahead rejects a value
+followed by "%"), so "75% grant-funded" was swept by hand and will need a hand grep next time too.
+
+**Still true.** Centrecorp is a foundation. Calling it a buyer says what the paper is, an invoice paid
+for beds, and says nothing about why it bought them. Surfaces that name Centrecorp as a partner or
+funder relationship (partners page, footer, outreach) do not change.
+
 ### Y. The QBE money buys beds. The ask is $400,000, the smaller amount $250,000.
 
 **Ben ruling 2026-09-03**, made while re-voicing the Stage 2 form on the play-space page. Every
