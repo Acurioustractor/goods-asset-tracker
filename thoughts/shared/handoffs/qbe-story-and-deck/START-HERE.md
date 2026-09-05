@@ -10,7 +10,7 @@ room. The third is the money clean-up, which is now a thread of its own.
 ```
 QBE deck, the next open slide. Use the /deck-slide skill: it is the method and it is not optional.
 Numbering follows the Pencil band (thirteen frames): 07 the unit, 08 the loop, 09 evidence,
-10 governance, 11 capital, 12 catalytic, 13 ask. 05 built 5 Sep; 09 copy waits on my ruling.
+10 governance, 11 capital, 12 catalytic, 13 ask. 05 and 09 built 5 Sep; 10 governance is the next open slide.
 
 Read thoughts/shared/handoffs/qbe-story-and-deck/current.md first, and nothing else
 until you have.

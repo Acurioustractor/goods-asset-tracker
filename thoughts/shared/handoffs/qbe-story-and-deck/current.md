@@ -9,7 +9,7 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-05T06:12:45Z
+**Updated:** 2026-09-05T06:17:39Z
 **Goal:** Thirteen slides, each built in Pencil and each carrying a full evidence-graded section in Notion. Then the QBE form. Done when Ben has ruled on all thirteen and the PDF is under 10MB.
 **Branch:** `feat/qbe-story`, PR #253 open, pushed 5 Sep on Ben's word ("push"). Worktree `/Users/benknight/Code/goods-story-wt`.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
@@ -37,8 +37,8 @@ attached because no June workpaper exists anywhere). Waiting on their replies. M
 **Ben's next instruction: "move onto the important relevant part of this work", the deck.
 **Slide 05 is BUILT** (Ben ruled 5 Sep: headline "Four organisations have paid for beds", the 320 beds and
 \$197,060 line prints, Rotary in the notes only): frame `p7GoP` rebuilt, exported at 1.5x, Notion image
-swapped. **The evidence slide (09 in the deck) has its copy rewritten in Notion and WAITS ON BEN** before
-the build of `M3ppb`. The loop (08), the unit (07), capital (11), catalytic (12) and the ask (13) stay
+swapped. **The evidence slide (09) is BUILT** (Ben: "go" on the headline pair, the rules line and typographic
+as built): `M3ppb` updated in place, exported, Notion image swapped. Next open slide is 10, governance. The loop (08), the unit (07), capital (11), catalytic (12) and the ask (13) stay
 blocked on the ask decision.** Then decisions 3
 (Bryan v Brian) and 4 (Rotary), one at a time. Also open from his answers: Oonchiumpa INV-0344 and
 INV-0346, and Centrecorp as buyer or philanthropy in the funding-received composition.
@@ -61,7 +61,7 @@ down one. Frame ids did not move, only the numbers.
 | 06 | The making already works | `FF0af` | Built |
 | 07 | One bed, four things, any amount | `J9I3PO` | Untouched, encodes the ask (blocked) |
 | 08 | The loop | `tkDpX` | Untouched, encodes ruling Y (blocked) |
-| 09 | Evidence | `M3ppb` | Copy rewritten in Notion 5 Sep, waiting on Ben |
+| 09 | Evidence | `M3ppb` | Built 5 Sep on Ben's ruling |
 | 10 | Governance | `GVjkm` | Untouched, open |
 | 11 | Capital | `w3NJ6L` | Untouched, encodes the ask (blocked) |
 | 12 | Catalytic | `fs7ub` | Untouched, encodes the ask (blocked) |
@@ -895,7 +895,11 @@ which is the trap the skill warns about; ids were taken from a re-enumeration, n
 **Decisions for Ben, in the reply:** the headline pair; the rules line replacement; whether Visual A (a
 photograph beside the cards) or the typographic build stays.
 
-**Not done, deliberately.** `M3ppb` untouched; the image on the page is the old export.
+**Ben said go, and the frame is built.** Four text nodes changed in place (title, subhead, rule one, and
+rule two, whose built text ended "and that is where our claim stops"; the ruled copy ends at "because of
+them", so the tail came off with the ruling). Title sets on one line at 54; no clipping. Exported
+`exports/M3ppb.png` at 1.5x, uploaded as `slide-09.png`, placed under the 09 heading, old image trashed,
+footer on the page marked BUILT.
 
 ### Next
 - [ ] **Ben: slide 05 needs a second pass.** Headline to "Five organisations have bought beds. Four
@@ -931,8 +935,8 @@ photograph beside the cards) or the typographic build stays.
 - [ ] Ben rules on 02, 03, 04 and 06, all built and on the page.
 - [x] **Slide 05 ruled and BUILT** (Ben, 5 Sep): four organisations, the \$197,060 line prints, Rotary in
       the notes. Frame rebuilt, exported, Notion image swapped.
-- [ ] **Ben rules on the evidence slide (09) copy**: headline pair, rules line, Visual A or typographic.
-      Then the build of `M3ppb`, export, image swap.
+- [x] **Evidence slide (09) ruled and BUILT** (Ben, 5 Sep): headline pair, plain rules line, typographic.
+- [ ] Next open slide: 10 Governance (`GVjkm`), on Ben's word. 07, 08, 11, 12, 13 stay blocked on the ask.
 - [x] `qbe-story.ts` said four buyers. Derived from the paper now, drawing re-rendered, unblocked.
 - [ ] Parked on Ben's word: "The bed learned in public", the product-evolution slide that
       would make the 363 Basket Beds visible. Proposal sits in slide 4's research section.
