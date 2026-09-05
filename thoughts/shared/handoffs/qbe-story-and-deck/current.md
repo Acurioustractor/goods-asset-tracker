@@ -9,7 +9,7 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-05T07:53:56Z
+**Updated:** 2026-09-05T07:58:31Z
 **Goal:** Thirteen slides, each built in Pencil and each carrying a full evidence-graded section in Notion. Then the QBE form. Done when Ben has ruled on all thirteen and the PDF is under 10MB.
 **Branch:** `feat/qbe-story`, PR #253 open, pushed 5 Sep on Ben's word ("push"). Worktree `/Users/benknight/Code/goods-story-wt`.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
@@ -45,8 +45,9 @@ Deemal and Jeremy Donovan are the directors; the handover completes at the AGM. 
 "recommended", "proposed" and "B until the extract" is gone from the deck, the page, the one-document,
 the code and canon. Ben: "no, I don't want you to send anything, I want this all aligned in the deck and in the documents."
 Aligned, second pass: every surface swept. The two Gmail drafts stay unsent and are his to bin.
-Then "next": **slide 07, the unit, now has its full evidence section on the page. Its copy was ruled
-"leave it" on 4 September and the frame is built, so nothing needs rebuilding. Waiting on Ben.** Next: 07, 08, 11, 12, 13 all wait on the ask
+Then "next" twice: **slides 07 (the unit) and 08 (the loop) now have full evidence sections on the
+page. 07 needs no build. 08 needs one line changed on the frame: its headline still says "five loops"
+and that was ruled down to one on 4 September. Waiting on Ben for both.** Next: 07, 08, 11, 12, 13 all wait on the ask
 decision with Nic, so the deck is at a stop until that call happens.** The loop (08), the unit (07), capital (11), catalytic (12) and the ask (13) stay
 blocked on the ask decision.** Then decisions 3
 (Bryan v Brian) and 4 (Rotary), one at a time. Also open from his answers: Oonchiumpa INV-0344 and
@@ -69,7 +70,7 @@ down one. Frame ids did not move, only the numbers.
 | 05 | Four organisations have paid for beds | `p7GoP` | Built 5 Sep on Ben's ruling, six-row ledger, all paid |
 | 06 | The making already works | `FF0af` | Built |
 | 07 | One bed, four things, any amount | `J9I3PO` | Built; copy ruled 4 Sep, evidence section 5 Sep. Two ask-bearing lines only |
-| 08 | The loop | `tkDpX` | Untouched, encodes ruling Y (blocked) |
+| 08 | The loop | `tkDpX` | Evidence section 5 Sep; headline still says "five loops", one-line fix waiting |
 | 09 | Evidence | `M3ppb` | Built 5 Sep on Ben's ruling |
 | 10 | Governance | `GVjkm` | Built 5 Sep; locked under ruling AA, no caveat on the strip |
 | 11 | Capital | `w3NJ6L` | Untouched, encodes the ask (blocked) |
@@ -1067,6 +1068,34 @@ survives scrutiny.
 
 **No build needed.** The frame is unchanged since 4 September and the image on the page is its export.
 
+### Slide 08, the loop: evidence section, and the headline the drawing already disagrees with
+
+**The finding.** The frame `tkDpX` is titled "One catalyst starts five loops a community controls".
+The 4 September copy pass ruled: "The headline said five loops when only the first has a place
+attached. One loop, drawn properly, with five as the programme target." **The drawing complied and the
+headline did not.** The drawing's own band reads "one community loop, shown once, run five times", so
+the slide currently argues with itself, and the count claims five community relationships that do not
+exist. One-line fix on the frame, waiting on Ben. The page now carries the corrected headline.
+
+**On the page.** The build-brief section renamed "08 · One catalyst starts a loop a community
+controls" and rebuilt in the seven parts, replacing nine flat notes from 3 September: the callout with
+the full drawing (catalyst, five loop steps with their labels, the return arrow, the four gates, the
+guardrail); why these words; speaker notes with four if-asked lines including the margin; a seven-row
+grade table; the QBE table against the real wording of Q6 and Q8; visual options; research.
+
+**Grades.** One A (the $750 price, auto-checked), three target (the 200-bed pool, the $150,000 cost,
+the up-to-$150,000 back), three modelled (the facility band, the $324 margin, the $65 kit margin), and
+the four gates as our own workpaper test. Nothing on the slide is a result.
+
+**Two things recorded that were not in any note.** The margin on this slide is $324 a locally pressed
+bed; Nic told the mentor about $200 on 4 September, and the two have never been reconciled. And the
+3 September note pointed at frame `JCreO`, which is the old frame this one replaced: column two of the
+manifest, not column four, exactly the trap the skill warns about.
+
+**What belongs to the ask:** the catalyst box carrying $750,000 for 1,000 beds across five pools. The
+loop, the gates and the return arrow hold whatever the funder buys. That box is rendered from
+`community-loop.ts`, so it changes by re-rendering, never by editing the frame.
+
 ### Next
 - [ ] **Ben: slide 05 needs a second pass.** Headline to "Five organisations have bought beds. Four
       have paid.", add Centrecorp INV-0259 (60 beds, paid), pull the Palm Island row until INV-0317
@@ -1106,7 +1135,10 @@ survives scrutiny.
 - [x] Slide 01 now "Indigenous-led board", matching 10 (Ben, "fix all", 5 Sep).
 - [ ] Ben sends the two drafts: Jay (heads-up: the charity applies) and Eloise (Q22 documents, the extracts).
 - [ ] **Ben rules on slide 07's evidence section** (copy unchanged, frame unchanged).
-- [ ] 08, 11, 12, 13 stay blocked on the ask decision. 07 is not: only two lines on it move.
+- [ ] **Ben rules on slide 08**: the headline to "One catalyst starts a loop a community controls"
+      (the drawing already says one loop). Then the one-line frame change, export, image swap.
+- [ ] 11, 12, 13 stay blocked on the ask decision. 07 and 08 are not: only the ask-bearing lines move.
+- [ ] **Reconcile the margin: $324 modelled (slide 08) against about $200 said to the mentor.**
 - [x] `qbe-story.ts` said four buyers. Derived from the paper now, drawing re-rendered, unblocked.
 - [ ] Parked on Ben's word: "The bed learned in public", the product-evolution slide that
       would make the 363 Basket Beds visible. Proposal sits in slide 4's research section.

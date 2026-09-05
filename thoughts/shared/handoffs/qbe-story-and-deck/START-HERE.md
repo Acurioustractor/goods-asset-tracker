@@ -10,8 +10,9 @@ room. The third is the money clean-up, which is now a thread of its own.
 ```
 QBE deck, the next open slide. Use the /deck-slide skill: it is the method and it is not optional.
 Numbering follows the Pencil band (thirteen frames): 07 the unit, 08 the loop, 09 evidence,
-10 governance, 11 capital, 12 catalytic, 13 ask. 05, 09 and 10 built 5 Sep. Slide 07 (the unit) has its evidence section too, and is NOT blocked: only two lines on it
-name the ask. 08, 11, 12 and 13 wait on the ask decision with Nic. RULING AA (5 Sep): the charity is the applicant, the directors are Kristy Bloomfield, Audrey
+10 governance, 11 capital, 12 catalytic, 13 ask. 05, 09 and 10 built 5 Sep. Slides 07 (the unit) and 08 (the loop) have evidence sections and are NOT blocked: only the
+ask-bearing lines on them move. 08's headline still says "five loops" and was ruled down to one
+on 4 Sep, a one-line frame fix waiting on me. 11, 12 and 13 wait on the ask decision with Nic. RULING AA (5 Sep): the charity is the applicant, the directors are Kristy Bloomfield, Audrey
 Deemal and Jeremy Donovan, the handover completes at the AGM. No surface says "subject to" or
 "proposed" on any of that. Two drafts wait on my send: Jay (heads-up) and Eloise (Q22 documents).
 
