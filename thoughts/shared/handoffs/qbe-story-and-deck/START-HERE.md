@@ -74,11 +74,10 @@ must not be added. Do not invent a number outside that module.
 
 Decisions waiting on me. Put them to me one at a time, with what changes if I
 say yes:
-1. The carve-out re-pull, already put on 5 Sep with the groundwork done: FY26 income
-   on Xero is $1,640,724.46, the workpaper's denominator to the dollar, and the Goods
-   share ($713,827) needs the accountant. Yes = one message to Eloise and the
-   accountant for the closed-FY26 carve-out, signed. Recommended yes. The Xero
-   ACT-GD paid cut ($650,910.79, asAt 2026-06-01) is stale the same way.
+1. DONE 5 Sep, ruled yes: the carve-out re-pull. Two Gmail drafts wait on my send,
+   Standard Ledger (carve-out signed, ACT FY26 P&L and balance sheet, ACT-GD scope;
+   ATTACH THE JUNE WORKPAPER FIRST) and Eloise (Butterfly FY26 P&L, balance sheet,
+   cashflow). Nothing in code moves until the accountant's letter lands.
 2. The FY26 sentence. Xero shows a net PROFIT of $167,970 before founder wages (Wages
    $0 in the books); canon, STRATEGY.md and ruling H say "net loss". The proposed
    wording is in the ledger under "Decision 2 groundwork". Sweep on my word.
@@ -115,8 +114,8 @@ Recall surface: `deliverables/qbe-stage2/diagrams/08-money-lanes.svg`.
   Brian M. Davis up to $100,000, board 19 November. **Nic told the mentor these were commitments.
   Somebody has to correct that**, because the QBE form scores leverage.
 
-**Open and mine to fix once Ben rules:** the stale carve-out (and the equally stale Xero ACT-GD paid
-cut); the FY26 sentence (net profit before founder wages, not net loss); Bryan against Brian; the two Oonchiumpa receipts (INV-0344 $41,250, INV-0346 $1,000); whether
+**Open and mine to fix once Ben rules:** the carve-out copies, once the accountant's letter lands (Ben
+said yes on 5 Sep; two Gmail drafts wait on his send); the FY26 sentence (net profit before founder wages, not net loss); Bryan against Brian; the two Oonchiumpa receipts (INV-0344 $41,250, INV-0346 $1,000); whether
 Centrecorp counts as a buyer in the funding-received composition. **Done 5 Sep:** ALIVE and Julalikari
 are in, funding received is $901,311, Julalikari sits in the earned lane.
 

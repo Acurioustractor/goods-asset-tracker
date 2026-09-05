@@ -9,7 +9,7 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-05T01:35:36Z
+**Updated:** 2026-09-05T01:50:41Z
 **Goal:** Thirteen slides, each built in Pencil and each carrying a full evidence-graded section in Notion. Then the QBE form. Done when Ben has ruled on all thirteen and the PDF is under 10MB.
 **Branch:** `feat/qbe-story`, PR #253 open, **11 commits ahead of origin and NOT pushed** (push is Tier 2, Ben's word). Worktree `/Users/benknight/Code/goods-story-wt`.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
@@ -22,10 +22,12 @@ Open that first.**
 
 [->] **The money thread is the live one (5 Sep, second session).** Decision 1 is DONE: ALIVE
 \$101,200 and Julalikari \$15,000 are sales (Ben's words), funding received is **\$901,311**, eleven
-copies in lockstep, Julalikari in the earned lane, gates green including `next build`. **With Ben
-now: decision 2 (re-pull the carve-out = one ask to Eloise and the accountant for the closed-FY26
-Goods carve-out, signed; recommended yes) and the FY26 sentence (Xero shows a net PROFIT of
-\$167,970 before founder wages; canon, STRATEGY.md and ruling H say net loss).** Then decisions 3
+copies in lockstep, Julalikari in the earned lane, gates green including `next build`. **Decision 2 (re-pull the carve-out) is RULED YES (Ben, 5 Sep, "yes."). Two Gmail drafts wait
+on his send: Standard Ledger (the FY26 Goods carve-out on letterhead, signed; ACT Pty Ltd FY26 P&L and
+balance sheet; the ACT-GD scope question) and Eloise (Butterfly FY26 P&L, balance sheet, cashflow).
+Nothing in code moves until the accountant's figure comes back. With Ben now: the FY26 sentence
+(Xero shows a net PROFIT of \$167,970 before founder wages; canon, STRATEGY.md and ruling H say net
+loss).** Then decisions 3
 (Bryan v Brian) and 4 (Rotary), one at a time. Also open from his answers: Oonchiumpa INV-0344 and
 INV-0346, and Centrecorp as buyer or philanthropy in the funding-received composition.
 
@@ -694,6 +696,40 @@ includes `.json`; its first pass over JSON caught one more line, an analysis not
 string renders on a funder page that I can find: `qbe-areas.ts` types the shape and nothing in
 `app/` reads `gap` or `summary`.
 
+### Decision 2 applied: the ask is drafted, 5 September
+
+**Ben: "yes."** Two drafts sit in his Gmail, unsent, because sending is his.
+
+- **Standard Ledger** (draft `r-7089002496448025599`, to Dijane and Vanessa, cc Nic): the Goods
+  revenue inside Nic's sole-trader FY26 books on letterhead, signed, taken to 30 June, stating the
+  period, the basis and which invoices are in; A Curious Tractor Pty Ltd's FY26 P&L and balance sheet
+  (Q20 item 2, same accountant); and whether the Xero project code `ACT-GD` is the Goods scope, or a
+  tracking category should be set up so the carve-out can be re-run any time. **The draft says the
+  June workpaper is attached. It is not: no copy of it exists in the repo or in any email thread, so
+  Ben attaches it before sending.**
+- **Eloise** (draft `r-5674312672911716346`, cc Nic): Butterfly's FY26 P&L, balance sheet and
+  cashflow (Q20 item 1), audited if the auditor reports before 25 September, otherwise the current
+  set with a note. Q22 (constitution, ACNC and DGR extracts, the 1 June and 20 July minutes, the
+  transition plan, the member register) also needs Eloise and is NOT in the draft.
+
+**What the mailbox established.** Standard Ledger is the accountant and bookkeeper for BOTH Nicholas
+Marchesi (BAS agent since May 2026, bookkeeping and clean-up engagement accepted 1 June) and A Curious
+Tractor Pty Ltd (incorporated by them, ACN 697 347 676, 22 April 2026; Xero set up July). Day to day:
+Dijane (bookkeeping, `dijane@standardledger.co`) and Vanessa (onboarding, `vanessa@standardledger.co`);
+Kylie Carter and Remco Marcelis above them. **No email thread about the carve-out exists** for May to
+August, so "prepared with the accountant" was a call or a shared spreadsheet, not a document they
+hold. No Q20 ask of any kind had gone out by email as of 5 Sep (sent-mail search, 25 Aug onward).
+
+**Butterfly side, from the board threads.** Alexandra McGee (`alexandraemcgee@gmail.com`) runs the
+board packs and minutes; Sonia Mascolo (Bentleys SA/NT, tax partner) sits on the board; the 1 Sep
+minutes email says the board is **still waiting on the auditor before scheduling the AGM**. That
+contradicts the 14 September AGM date carried in memory and in slide 1's directorship note. UNCONFIRMED
+until Alexandra names a date.
+
+**When the accountant's figure lands**, the copies that move are listed under "Decision 2 groundwork"
+above; `canon.ts` `revenue-carveout` also drops "NOT YET SIGNED" and names the letter in `source`, and
+ruling G closes.
+
 ### Next
 - [ ] **Ben: slide 05 needs a second pass.** Headline to "Five organisations have bought beds. Four
       have paid.", add Centrecorp INV-0259 (60 beds, paid), pull the Palm Island row until INV-0317
@@ -714,10 +750,10 @@ string renders on a funder page that I can find: `qbe-areas.ts` types the shape 
 - [ ] **Ben: are Oonchiumpa INV-0344 \$41,250 (Atnarpa build) and INV-0346 \$1,000 ("wages for
       the Goods Project") Goods receipts?** Both paid after the baseline, in no figure and no lane.
 - [x] Julalikari was in no lane. `MACHINE_LINES` in `money-lanes.ts` carries it now; `BUYING_STORY` untouched.
-- [ ] **Decision 2, with Ben: re-pull the Goods carve-out (\$713,827, asAt 2026-06-02).** Frame
-      verified on Xero 5 Sep (FY26 income \$1,640,724.46). A yes = one ask to Eloise and the
-      accountant for the closed-FY26 carve-out, signed, which Q20 needs anyway. The ACT-GD paid cut
-      (\$650,910.79, asAt 2026-06-01) is stale the same way and its scope is undefined.
+- [x] **Decision 2: re-pull the Goods carve-out. Ben: yes (5 Sep).** Two Gmail drafts created,
+      see "Decision 2 applied" above.
+- [ ] **Ben sends the two drafts** (Standard Ledger, with the June workpaper attached; Eloise).
+      Then: the accountant's letter lands, the carve-out copies move together, ruling G closes.
 - [ ] **Ben: the FY26 sentence.** Xero shows a net PROFIT of \$167,970 before founder wages, not a
       net loss. Sweep the `revenue-carveout` definition in `canon.ts`, `STRATEGY.md`, ruling H's note,
       and the Q20/Q21 answers on the Notion page once Ben has the words.
@@ -768,6 +804,8 @@ string renders on a funder page that I can find: `qbe-areas.ts` types the shape 
   leak, and why the source had to be fixed rather than the render patched.
 
 ### Open Questions
+- UNCONFIRMED: the Butterfly AGM date. Memory and slide 1 say 14 September; the 1 Sep minutes email
+  says the board is still waiting on the auditor before scheduling it.
 - OPEN: Oonchiumpa INV-0344 \$41,250 (Atnarpa build) and INV-0346 \$1,000 ("wages for the Goods
   Project"): Goods receipts or not. Paid after the baseline, in no figure and no lane.
 - OPEN: Centrecorp \$123,332 in the funding-received composition: buyer (Ben's words, the buyers
