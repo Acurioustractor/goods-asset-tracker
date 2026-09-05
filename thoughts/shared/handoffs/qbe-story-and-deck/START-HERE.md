@@ -23,9 +23,8 @@ The deck is THIRTEEN frames. Numbering follows the Pencil band, not the old note
 07 the unit · 08 the loop · 09 evidence · 10 governance · 11 capital · 12 catalytic ·
 13 the ask.
 
-State: 01, 05, 09 and 10 built or corrected 5 Sep, images swapped. 07 and 08 have full
-evidence sections and wait on my ruling. 08 needs ONE line changed on the frame: its
-headline still says "five loops" and I ruled that down to one loop on 4 Sep.
+State: 01, 05, 08, 09 and 10 built or corrected 5 Sep, images swapped. 07 and 08 have
+full evidence sections and wait on my ruling. Nothing is queued to build on 01 to 10.
 11, 12 and 13 carry the ask and wait on me and Nic.
 
 Rules, all learned the hard way:
@@ -103,7 +102,7 @@ together or check:drift:ci fails on a copy you did not know about.
 
 ## What is waiting
 
-**On me (Ben).** Slide 08's headline. Slide 07's section. Slides 02, 03, 04 and 06. Whether the
+**On me (Ben).** Slide 08's section. Slide 07's section. Slides 02, 03, 04 and 06. Whether the
 product-evolution slide gets built. Two unsent Gmail drafts, Jay and Eloise, mine to send or bin.
 
 **On me and Nic.** The ask decision, which holds slides 11, 12 and 13. The margin, $324 against $200.

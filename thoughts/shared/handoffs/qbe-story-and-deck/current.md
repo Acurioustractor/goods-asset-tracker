@@ -9,7 +9,7 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-05T08:03:15Z
+**Updated:** 2026-09-05T08:15:00Z
 **Goal:** Thirteen slides, each built in Pencil and each carrying a full evidence-graded section in Notion. Then the QBE form. Done when Ben has ruled on all thirteen and the PDF is under 10MB.
 **Branch:** `feat/qbe-story`, PR #253 open and unmerged, pushed and level with origin. Worktree `/Users/benknight/Code/goods-story-wt`. Merge only on Ben's explicit word.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
@@ -44,9 +44,9 @@ send anything."** Do not send without a fresh instruction.
 
 **The deck.** Slides 01, 05, 09 and 10 were built or corrected on 5 September and their images are
 swapped on the Notion page. Slides 07 and 08 have full evidence sections on the page and wait on Ben.
-**One build is queued and needs one line:** slide 08's frame is still titled "One catalyst starts five
-loops", which the 4 September pass ruled down to one loop; the drawing already says one loop, so the
-fix is the title text, an export and an image swap.
+**Slide 08's one-line fix is done (5 Sep, evening):** frame `tkDpX` headline now reads "One catalyst
+starts a loop a community controls.", exported at 1.5x and swapped in on the Notion page; the three
+page notes that said the frame was waiting are corrected by block id. Nothing on 08 is queued.
 
 **Blocked, and only these:** slides 11 (capital), 12 (catalytic) and 13 (the ask) carry the ask itself,
 so they wait on Ben and Nic. **07 and 08 are not blocked**, which three earlier replies got wrong: only
@@ -67,7 +67,7 @@ down one. Frame ids did not move, only the numbers.
 | 05 | Four organisations have paid for beds | `p7GoP` | Built 5 Sep on Ben's ruling, six-row ledger, all paid |
 | 06 | The making already works | `FF0af` | Built, full section, waiting on Ben |
 | 07 | One bed, four things, any amount | `J9I3PO` | Built; copy ruled 4 Sep, evidence section 5 Sep. Two ask-bearing lines only |
-| 08 | The loop | `tkDpX` | Evidence section 5 Sep; headline still says "five loops", one-line fix waiting |
+| 08 | The loop | `tkDpX` | Built; headline fixed to one loop 5 Sep, image swapped. Catalyst box carries the ask |
 | 09 | What we count, and what we ask at six months | `M3ppb` | Built 5 Sep on Ben's ruling |
 | 10 | Governance | `GVjkm` | Built 5 Sep; locked under ruling AA, no caveat on the strip |
 | 11 | Capital | `w3NJ6L` | Untouched, encodes the ask (blocked) |
@@ -1089,6 +1089,12 @@ bed; Nic told the mentor about $200 on 4 September, and the two have never been 
 3 September note pointed at frame `JCreO`, which is the old frame this one replaced: column two of the
 manifest, not column four, exactly the trap the skill warns about.
 
+**Fixed 5 September, evening.** Frame title node `aOOhb` updated to the ruled headline, frame renamed
+"QBE 08 — One catalyst starts a loop", exported to `v2/public/strategy/exports/slide-08.png`, new image
+block `3d2ebcf9-81cf-815d-ae3b-eccfb6f4c975` under the 08 heading, old block deleted. Page sweep for
+"five loops": six hits remain and all are the ruling record, the retired list or history; the one stale
+pointer in "Reuse these diagrams" was corrected to slide 08.
+
 **What belongs to the ask:** the catalyst box carrying $750,000 for 1,000 beds across five pools. The
 loop, the gates and the return arrow hold whatever the funder buys. That box is rendered from
 `community-loop.ts`, so it changes by re-rendering, never by editing the frame.
@@ -1096,8 +1102,8 @@ loop, the gates and the return arrow hold whatever the funder buys. That box is 
 ### Next
 
 **Ben's rulings, one at a time**
-- [ ] Slide 08: the headline to "One catalyst starts a loop a community controls". Then the one-line
-      frame change, export, image swap.
+- [x] Slide 08: headline changed on the frame to "One catalyst starts a loop a community controls.",
+      exported, image swapped, page notes corrected (5 Sep evening). Ben still to rule on the section.
 - [ ] Slide 07's evidence section (copy unchanged, frame unchanged, nothing to build).
 - [ ] Slides 02, 03, 04 and 06, all built and on the page with full sections.
 - [ ] "The bed learned in public", the product-evolution slide that would make the 363 Basket Beds
