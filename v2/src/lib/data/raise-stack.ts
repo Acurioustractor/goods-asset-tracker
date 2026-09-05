@@ -121,8 +121,7 @@ export const STACK: readonly StackLine[] = [
   {
     id: 'qbe',
     funder: 'QBE Foundation, Catalysing Impact Stage 2',
-    amountAud: 250_000,
-    split: { poolAud: 150_000, proofsAud: 100_000 },
+    amountAud: 400_000,
     instrument: 'catalytic-grant',
     status: 'ask-made',
     legalHome: 'TBC',
@@ -130,7 +129,7 @@ export const STACK: readonly StackLine[] = [
     label: 'target',
     source: 'Jay Boolkin to the cohort, 24 Aug 2026; wiki/investor/20-qbe-program-economics.md',
     asAt: '2026-09-02',
-    note: 'Typically $150,000 to $400,000 from a pool of up to $1.1 million across ten enterprises. Discretionary. It sits on top of signed external commitments and does not double them. The ask is $250,000: one pool and the proof block (Ben, 2 Sep evening); $400,000 stays the ceiling. Applicant entity to be settled with Jay on 3 Sep. Form closes Fri 25 Sep 12pm AEST; review meeting Wed 7 Oct.',
+    note: 'Typically $150,000 to $400,000 from a pool of up to $1.1 million across ten enterprises. Discretionary. It sits on top of signed external commitments and does not double them. The ask is $400,000: 533 beds at $750, the first two communities\' pools and a start on the third; $250,000 (333 beds) is the smaller amount. The money buys beds; the measured cost of the first fifty comes with the pool (Ben, 3 Sep, superseding the $250K ask of 2 Sep evening). Applicant entity to be settled with Jay on 3 Sep. Form closes Fri 25 Sep 12pm AEST; review meeting Wed 7 Oct.',
   },
   {
     id: 'bmdf',
@@ -318,7 +317,8 @@ export const POOL_LINES: readonly StackLine[] = STACK.filter(
 export const POOL_BEDS_IF_ALL_LAND =
   POOL_LINES.reduce((sum, l) => sum + bedsFunded(l), 0) + bedsFunded(lineById('alive'));
 
-export const POOL_SHORTFALL_BEDS = PROGRAM.beds - POOL_BEDS_IF_ALL_LAND;
+/** Beds still unfunded with everything in; zero once the thousand is covered. */
+export const POOL_SHORTFALL_BEDS = Math.max(0, PROGRAM.beds - POOL_BEDS_IF_ALL_LAND);
 
 // ---------------------------------------------------------------------------
 // The QBE ask, both tiers (form Q5 and Q7)
@@ -334,37 +334,39 @@ export interface AskTier {
 
 function tier(aud: number, poolAud: number, buys: string): AskTier {
   const proofsAud = aud - poolAud;
-  return { aud, poolAud, proofsAud, beds: poolAud / BED_PRICE_AUD, buys };
+  return { aud, poolAud, proofsAud, beds: Math.floor(poolAud / BED_PRICE_AUD), buys };
 }
 
 export const QBE_ASK = {
   /**
-   * The ask (Ben, 2 Sep 2026, evening): one governed pool and the proof block. It does not
-   * have to be the maximum. It is easier to say, easier to grant, and every dollar above it
-   * buys beds at the same ratio (bed-ratio.ts). Form Q5.
+   * The ask (Ben, 3 Sep 2026, "it's actually $400,000"): the money buys beds, a straight ratio at
+   * $750 a bed, and the ask is the top of the program's range. Every dollar any funder adds buys
+   * beds at the same ratio (bed-ratio.ts). The measured cost of the first fifty beds comes with
+   * the first pool; it is not a separate budget line. Form Q5. Supersedes the $250,000 ask of
+   * 2 Sep evening and the earlier reading of ruling V that $400,000 is never the plan.
    */
   recommended: tier(
-    250_000,
-    150_000,
-    'One community pool (200 beds) and the proof block: the first fifty beds pressed at the farm at production rate, timed and costed with receipts; the rules agreements the pools run on; product traceability and the accounting repair that gives Goods on Country a gross margin on paper.',
+    400_000,
+    400_000,
+    "533 beds at $750: the first two communities' pools of 200 each and a start on the third. The first fifty go through our own press and get costed, so the cost of a locally made bed is measured; the rules with each community are agreed before its beds move.",
   ),
-  /** The ceiling, never the plan (ruling V): two pools and the proofs. */
+  /** The top of the range is the ask; the two are the same number. */
   full: tier(
     400_000,
-    300_000,
-    'Two community pools (400 beds) and the proof block. The top of the typical range and 36% of the whole pool; carried as the ceiling, not the plan.',
+    400_000,
+    '533 beds. The top of the typical range and 36% of the whole pool, which is why the smaller amount matters.',
   ),
   /** Form Q7. */
   smaller: tier(
-    150_000,
-    75_000,
-    'The proof block and the first hundred beds. The loop is proven on half a pool; the second half waits for the next funder.',
+    250_000,
+    250_000,
+    "333 beds: the first community's pool, whole, and a start on the second. The second community waits longer for the rest of its pool.",
   ),
   framing:
     'A discretionary Catalysing Impact grant, typically $150,000 to $400,000 from a pool of up to $1.1 million across ten enterprises. It sits on top of signed external commitments and does not double them. $0 is signed today.',
   leverageChain: [
-    'QBE funds the first pool and the proofs. Every other dollar in the stack buys beds at the same ratio or keeps the organisation standing; nothing else buys the proof.',
-    'That work produces community agreements, a measured cost, buyer paper and a governed pool.',
+    "QBE's beds go in first: 533 beds into the first two communities, the first fifty through our own press so the cost of a locally made bed is measured.",
+    'The first pools give the lenders something to read: communities selling beds under signed rules, a cost per bed, buyer paper.',
     'Three invitations are already in hand: TFFF $300,000 for the block, BMDF $100,000 for pool three, and a Snow letter for pool four. Minderoo and Dusseldorp are in conversation.',
     'After the measured run, SEFA $300,000 and White Box $150,000 for equipment and working capital, which cannot proceed while the cost is modelled and the borrower is unsettled.',
     'Demand already paying: ALIVE bought 100 beds up front; Centrecorp\'s 130-bed quote is deferred pending community feedback.',
@@ -372,9 +374,11 @@ export const QBE_ASK = {
 } as const;
 
 // ---------------------------------------------------------------------------
-// The entity route (form Q1, Q2, Q3, Q8), subject to Jay on 3 Sep
+// The entity route (form Q1, Q2, Q3, Q8). RULED by Ben on 5 Sep 2026 (DECISIONS.md ruling AA): the
+// charity applies and receives. Jay is told, not asked.
 
 export const ENTITY_ROUTE = {
+  ruled: 'Ben, 5 September 2026: The Butterfly Movement Ltd, trading as Goods on Country, is the applicant and recipient. Locked. The ASIC and ACNC extracts are attachments, not gates.',
   recommended: {
     applicant: 'The Butterfly Movement Ltd (Goods on Country)',
     abn: '22 155 132 684',
@@ -387,7 +391,7 @@ export const ENTITY_ROUTE = {
   },
   fallback: {
     applicant: 'A Curious Tractor Pty Ltd',
-    why: 'If Jay says the cohort entrant must apply. The grant lands in the company and the external commitments land in the charity, so Q2 and Q8 rest on the inter-entity agreement, which is unsigned. Needs MinterEllison and a signature before 13 Nov. Weaker, and said so.',
+    why: 'Not the route (ruling AA, 5 Sep 2026); kept as the record of what was weighed. If the cohort entrant had to apply, the grant would land in the company and the external commitments land in the charity, so Q2 and Q8 rest on the inter-entity agreement, which is unsigned. Needs MinterEllison and a signature before 13 Nov. Weaker, and said so.',
   },
   tradingFacts:
     'Beds are sold at $750 to buyers; ALIVE paid for 100 up front; Centrecorp has a 130-bed quote open; a repayable equipment raise follows the measured run.',
@@ -397,7 +401,7 @@ export const ENTITY_ROUTE = {
 // The questions only people can answer
 
 export const JAY_QUESTIONS: readonly string[] = [
-  'Can The Butterfly Movement Ltd (Goods on Country) be the applicant and recipient, given the cohort entrant was A Curious Tractor and the operating home has moved?',
+  'Told, not asked (ruling AA, 5 Sep): The Butterfly Movement Ltd (Goods on Country) is the applicant and recipient; A Curious Tractor, the cohort entrant, is disclosed as the related entity transferring its assets.',
   'Do written invitations to apply for a named amount, with callable contacts and boards deciding after 13 November, count as conditional commitments, and can the pre-condition window extend to those board dates?',
   'Does a letter subject to board or credit approval count?',
   'What must the accountant\'s letter cover: the applicant, the carve-out, or both?',

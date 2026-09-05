@@ -284,9 +284,17 @@ export const funding: FundingRecord[] = [
   // INV-0321 Snow $132K: PAID — absorbed into the $493,129.79 3yr total ($0 outstanding, 2026-06-09 reconciliation)
   { id: 'recv-shed-plant-1', source: 'Our Community Shed', amount: 163900, status: 'receivable', notes: 'QU-0011 DRAFT $163,900 (inc GST), Plant Part 1: shredding. 12mo @ $12K/mo + $5K transport.' },
   { id: 'recv-shed-plant-2', source: 'Our Community Shed', amount: 93498, status: 'receivable', notes: 'QU-0012 DRAFT $93,498 (inc GST), Plant Part 2: moulding. 6mo @ $13.3K/mo + $5K transport.' },
-  { id: 'recv-picc', source: 'PICC (Palm Island)', amount: 36300, status: 'receivable', notes: 'INV-0317 AUTHORISED $36,300: 40 Stretch Beds @ $750 + $3K delivery' },
+  // RETIRED 2026-09-05 (Ben: "remove this one, didn't happen"). PICC INV-0317, $36,300, 40 Stretch
+  // Beds at $750 plus $3,000 delivery, was carried here as an authorised receivable from May 2026.
+  // It is absent from Xero's aged receivables of 5 Sep 2026 and from every invoice on the PICC
+  // contact, paid or unpaid. Palm Island has paid $436,700 across five invoices and not one of them
+  // has a bed on it. The order was never placed. check-retired-figures guards the figure.
   { id: 'recv-rotary', source: 'Rotary Eclub Outback Australia', amount: 82500, status: 'receivable', notes: 'INV-0222 OVERDUE $82,500 (inc GST): 200 Basket Beds v1 @ $350 + $5K project. Due 24 Apr 2025. 11 MONTHS OVERDUE.' },
-  { id: 'recv-homeland', source: 'Homeland School Company', amount: 44000, status: 'receivable', notes: 'INV-0303 AUTHORISED $44,000, Awaiting Payment. Sent 18 May 2026, due 30 Jun 2026. Line items (verified via Xero 2026-07-13): 2x Indestructible Washing Machine v1.1 ($9,000), 40x Stretch Bed ($30,000), 1x program support trip ($8,000), delivery ex BNE-DRW-MNG ($5,900), less $14,190 in-kind partnership credit.' },
+  // PAID. Ben, 2026-09-05: "this has been paid". Homeland School Company INV-0303 $44,000 shows
+  // PAID in Xero as at 5 Sep 2026 and is absent from the aged receivables. It had been carried
+  // here as authorised and awaiting payment since 18 May 2026. Its 40 Stretch Beds and two washing
+  // machines are in the earned lane in money-lanes.ts. The $44,000 was folded into
+  // verifiedFinancials.revenueReceived on 2026-09-05 (Ben: "yes restate revenue to $785,111").
 ];
 
 export function getFundingSummary() {
@@ -317,11 +325,32 @@ export const verifiedFinancials = {
   // $1,200 + commercial $61,449. PICC and other Marchesi-project contacts excluded.
   // Must match FUNDING_CANON.totalReceived in grant-content.ts.
   // See wiki/outputs/2026-06-03-cluster2-xero-reconciliation.md.
-  revenueReceived: 741_111,
-  // Accounts receivable, restated 2026-06-03: Rotary INV-0222 $82,500 + Homeland INV-0303
-  // $44,000 + Regional Arts INV-0302 $16,500 (all live authorised in Xero).
+  //
+  // RESTATED 2026-09-05 (Ben: "yes restate revenue to $785,111"). The 3 June baseline was
+  // $741,111; Homeland School Company INV-0303 $44,000 was paid after it and had fallen out of
+  // both revenue and receivables, so the commercial line moved $61,449 -> $105,449.
+  //
+  // RESTATED AGAIN 2026-09-05 (Ben: ALIVE and Julalikari "are sales which showcase how we can sell
+  // beds and how communities can as well, and washing machines, same as the Centrecorp sales").
+  // ALIVE INV-0342 $101,200 (100 beds, PAID July 2026) and Julalikari INV-0335 $15,000 (two washing
+  // machines, PAID June 2026) were also paid after the baseline, and were re-read as PAID on Xero
+  // the same day. Commercial and buyer line $105,449 -> $221,649. Total $785,111 -> $901,311.
+  //
+  // RULED OUT 2026-09-05 (Ben): Oonchiumpa INV-0344 $41,250 (Atnarpa homestead build, PAID 12 Aug
+  // 2026) is "only for the Oonchiumpa program through ACT", not Goods; INV-0346 $1,000 ("wages for
+  // the Goods Project", PAID 28 Aug 2026) is "just a payback", a reimbursement, not funding. Neither
+  // enters this figure. $901,311 is fully current for Goods: no receipt after the baseline is pending.
+  // RECLASSIFIED 2026-09-05 (Ben: "buyer", ruling Z): Centrecorp $123,332 (INV-0259, INV-0291, 167 beds)
+  // sits with commercial and buyer receipts, $344,981 in all; grant and philanthropic $556,330 (~62%).
+  revenueReceived: 901_311,
+  // Accounts receivable, restated 2026-09-05 against Xero's aged receivables of the same date,
+  // on three rulings from Ben. It was $143,000 and it is $82,500, all of which is bad debt:
+  //   Rotary INV-0222 $82,500   BAD DEBT. "Just overdue and fucked." Due 24 Apr 2025.
+  //   Homeland INV-0303 $44,000 PAID. Out.
+  //   Regional Arts INV-0302    A Harvest project receivable, not Goods. Out.
+  // COLLECTABLE GOODS RECEIVABLES ARE $0. Never present this figure as money we expect.
   // Must match FUNDING_CANON.totalReceivables in grant-content.ts.
-  accountsReceivable: 143_000,
+  accountsReceivable: 82_500,
   // Accounts payable: ~$0 owed. Authorised-but-unpaid bills are a Xero payment-
   // matching gap (paid from ACT business accounts, payment never applied to the
   // bill), NOT debt. No director loan.
@@ -340,7 +369,7 @@ export const verifiedFinancials = {
  * the old field names onto the verified figures so any un-migrated consumer reads
  * correct numbers. `tradeRevenue` now points at cash received; `productionPlant-
  * Investment` at verified capex; `outstandingReceivables` at the restated AR total
- * (Rotary + Homeland + Regional Arts).
+ * (Rotary only, and it is bad debt; Homeland is paid and Regional Arts is a Harvest receivable).
  */
 export const financialSnapshot = {
   lastUpdated: verifiedFinancials.lastUpdated,

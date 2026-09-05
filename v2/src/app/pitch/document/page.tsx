@@ -116,7 +116,7 @@ export default function PitchDocumentPage() {
       <div className="no-print sticky top-0 z-50 bg-neutral-900 text-white">
         <div className="mx-auto flex max-w-[210mm] items-center justify-between px-8 py-3">
           <div className="flex items-center gap-3">
-            <Link href="/pitch" className="text-sm text-white/60 transition-colors hover:text-white">
+            <Link href="/pitch/road" className="text-sm text-white/60 transition-colors hover:text-white">
               &larr; Back to pitch
             </Link>
             <span className="text-white/20">|</span>

@@ -41,7 +41,7 @@
       "priority": "P0",
       "band": "priority-gap",
       "sihPriorityGap": true,
-      "gap": "Accountant-signed Goods-only revenue is now DONE at AU$713,827, within AU$741,111 all-sources received. Remaining finance gates: lock the real opening-cash figure, attach firm capex/vendor quotes, supply the full workbook for reviewer/accountant check, keep AP matching as bookkeeper clean-up, and maintain the no-surplus line. Joint-lowest V4 score remains from the 1 May diagnostic, but the revenue-carve-out gate is closed."
+      "gap": "Goods-only revenue is prepared at AU$713,827 as a workpaper with the accountant, not yet signed, within AU$901,311 all-sources received. Remaining finance gates: get the workpaper signed, lock the real opening-cash figure, attach firm capex/vendor quotes, supply the full workbook for reviewer/accountant check, keep AP matching as bookkeeper clean-up, and maintain the no-surplus line. Joint-lowest V4 score remains from the 1 May diagnostic, but the revenue-carve-out gate is closed."
     },
     {
       "id": "05",
@@ -139,7 +139,7 @@
     {
       "rank": 3,
       "areaIds": ["04"],
-      "summary": "Finance controls. Accountant-signed Goods-only revenue is now closed at AU$713,827; keep the no-surplus line, lock opening cash, attach firm capex/vendor quotes, and keep the full workbook reviewable."
+      "summary": "Finance controls. Goods-only revenue is a workpaper at AU$713,827, prepared with the accountant and not yet signed; keep the no-surplus line, lock opening cash, attach firm capex/vendor quotes, and keep the full workbook reviewable."
     },
     {
       "rank": 4,

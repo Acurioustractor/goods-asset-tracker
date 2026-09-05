@@ -215,26 +215,26 @@ export function InvestorLabClient() {
         <div className="mx-auto max-w-[1560px] px-4 py-8 md:px-6 md:py-12">
           <div className="mb-8 flex flex-wrap items-center gap-3">
             <Link
-              href="/pitch"
+              href="/pitch/road"
               className="inline-flex items-center gap-2 rounded-md border border-white/15 px-3 py-2 text-sm font-semibold text-white/75 transition-colors hover:bg-white/10 hover:text-white"
             >
               <ArrowLeft className="h-4 w-4" />
               Pitch
             </Link>
             <Link
-              href="/pitch/workshop"
+              href="/admin/pitch-workshop"
               className="inline-flex items-center gap-2 rounded-md border border-white/15 px-3 py-2 text-sm font-semibold text-white/75 transition-colors hover:bg-white/10 hover:text-white"
             >
               Workshop
             </Link>
             <Link
-              href="/pitch/photo-review"
+              href="/admin/deck-photo-review"
               className="inline-flex items-center gap-2 rounded-md border border-white/15 px-3 py-2 text-sm font-semibold text-white/75 transition-colors hover:bg-white/10 hover:text-white"
             >
               Photo review
             </Link>
             <Link
-              href="/pitch/miro-board"
+              href="/admin/miro-board"
               className="inline-flex items-center gap-2 rounded-md border border-white/15 px-3 py-2 text-sm font-semibold text-white/75 transition-colors hover:bg-white/10 hover:text-white"
             >
               Miro board
@@ -589,7 +589,7 @@ export function InvestorLabClient() {
               <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
                 <h3 className="text-lg font-semibold text-[#1f2623]">Voice wall for deck testing</h3>
                 <Link
-                  href="/pitch/photo-review#storytellers"
+                  href="/admin/deck-photo-review#storytellers"
                   className="inline-flex items-center gap-2 rounded-md border border-[#d6ddd4] bg-white px-3 py-2 text-sm font-semibold text-[#24423f] transition-colors hover:border-[#24423f]"
                 >
                   Full photo review
@@ -773,7 +773,7 @@ export function InvestorLabClient() {
                     <ExternalLink className="h-4 w-4" />
                   </Link>
                   <Link
-                    href="/pitch/photo-review"
+                    href="/admin/deck-photo-review"
                     className="inline-flex items-center justify-between rounded-md border border-[#d6ddd4] px-3 py-2 text-sm font-semibold text-[#24423f] transition-colors hover:border-[#24423f]"
                   >
                     Photo review board

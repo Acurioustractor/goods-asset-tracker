@@ -1,0 +1,25 @@
+"Goods revenue inside Nicholas Marchesi (sole trader) Xero, FY2025-26 sales invoices to the Goods customers. Pulled read-only from Xero on 5 September 2026 by Ben Knight. Customers as named in the June 2026 cut: Centrecorp, Snow, Ingkerreke, Homeland School Company, Our Community Shed, Julalikari, Red Dust, Mala'la, John Villiers, plus VFFF."
+
+invoice,invoice_date,customer,status,amount_ex_gst,gst,amount_inc_gst,note
+INV-0253,2025-07-24,Vincent Fairfax Family Foundation,PAID,50000.00,0.00,50000.00,"Backing the Future grant for Goods (also called the FRRR grant; one grant, count once)"
+INV-0255,2025-07-30,Red Dust Role Models Limited,PAID,14500.00,1450.00,15950.00,
+INV-0258,2025-08-11,The Snow Foundation,PAID,5040.80,504.08,5544.88,
+INV-0259,2025-08-11,Centrecorp Foundation,PAID,34200.00,3420.00,37620.00,60 Basket Beds and two build workshops
+INV-0260,2025-08-11,Our Community Shed Incorporated,PAID,12272.73,1227.27,13500.00,
+INV-0268,2025-09-01,The Snow Foundation,PAID,100000.00,10000.00,110000.00,
+INV-0275,2025-09-27,Ingkerreke Services Aboriginal Corporation,PAID,10000.00,1000.00,11000.00,
+INV-0276,2025-09-27,Ingkerreke Services Aboriginal Corporation,PAID,44600.00,4460.00,49060.00,
+INV-0277,2025-09-27,Ingkerreke Services Aboriginal Corporation,PAID,29527.00,2952.70,32479.70,
+INV-0278,2025-09-27,Ingkerreke Services Aboriginal Corporation,PAID,9600.00,960.00,10560.00,
+INV-0282,2025-10-21,Julalikari Council Aboriginal Corporation,PAID,18000.00,1800.00,19800.00,
+INV-0283,2025-10-21,Mala'la Health Service Aboriginal Corporation,PAID,4940.00,494.00,5434.00,"13 Basket Beds, Maningrida"
+INV-0291,2025-11-26,Centrecorp Foundation,PAID,77920.00,7792.00,85712.00,"107 Stretch Beds, Utopia homelands"
+INV-0308,2026-01-20,Our Community Shed Incorporated,PAID,6150.00,615.00,6765.00,
+INV-0327,2026-05-03,The John Villiers Trust,PAID,1090.92,109.08,1200.00,Goods Project Palm Island video
+INV-0303,2026-05-18,Homeland School Company,PAID,38710.00,5290.00,44000.00,"40 Stretch Beds and two washing machines, Maningrida"
+INV-0321,2026-05-22,The Snow Foundation,PAID,120000.00,12000.00,132000.00,
+INV-0335,2026-06-19,Julalikari Council Aboriginal Corporation,PAID,13540.00,1460.00,15000.00,"Two washing machines, Tennant Creek. Dated after the 2 June cut"
+
+"TOTAL, all rows",,,,590091.45,55534.13,645625.58,18 invoices
+"TOTAL, invoices dated to 2 June 2026",,,,576551.45,,630625.58,"17 invoices. The June figure quoted was $713,827 within $1,640,724.46 FY26 income, so the June cut had a wider basis than this customer list."
+FY26 sales invoices NOT listed here,,,,,,,"51 others on Xero for the year (Sonas, PICC, Regional Arts, SMART Recovery, Green Fox, Dusseldorp, Just Reinvest and the rest). None marked as Goods by us. Please rule on any you think belong."

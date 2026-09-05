@@ -57,7 +57,9 @@ const RETIRED = [
   // one day after the ruling that retired it. Every entry below reached a funder-facing surface.
   { value: '475K', what: 'the old lead stack', now: '$607.5K grants / $710K repayable', context: /stack|sefa|snow|centrecorp/i, ruling: 'stack rebuilt 2026-07-25 from all 67 CRM rows' },
   { value: '150K', what: 'per-site plant capital band', now: 'priced per site by the module model', context: /per site|a site|plant capital/i, ruling: 'DECISIONS.md ruling O' },
-  { value: '403,901', what: 'the "surplus"', now: 'never cited; the entity P&L is a net loss', context: /surplus|profit|revenue/i, ruling: 'DECISIONS.md ruling H' },
+  { value: '679.7K', what: 'grant and philanthropic receipts with Centrecorp inside them', now: '$556,330 (~62%); Centrecorp $123,332 is a buyer', context: /grant|philanthrop|receipt/i, ruling: 'DECISIONS.md ruling Z, 2026-09-05' },
+  { value: '679,662', what: 'grant and philanthropic receipts with Centrecorp inside them', now: '$556,330 (~62%); Centrecorp $123,332 is a buyer', context: /grant|philanthrop|receipt/i, ruling: 'DECISIONS.md ruling Z, 2026-09-05' },
+  { value: '403,901', what: 'the "surplus"', now: 'never cited; the sole trader FY26 P&L closed on a net profit of ~$168K before founder wages and no surplus is claimed for Goods', context: /surplus|profit|revenue/i, ruling: 'DECISIONS.md ruling H' },
 
   // SUPPLY MATH. Added 2026-08-24 with ruling T (20kg/bed). An external analysis assumed
   // 45kg/bed and derived a scenario family from it (22 beds/t, 17,700 beds, 109,600 beds);
@@ -73,6 +75,43 @@ const RETIRED = [
   { value: '800t', what: 'NT CDS plastic per year (unsupported)', now: '~530 tonnes PET (NT EPA annual report 2023-24)', context: /cds|container|deposit/i, ruling: 'DECISIONS.md ruling T' },
   { value: '60 Stretch', what: 'Maningrida in-house run size (Notion source)', now: '40 (register-verified 2026-08-24; INV-0303)', context: /bed/i, ruling: 'CONTEXT.md pressed-run entry; regressed once from the Notion source' },
   { value: '60-bed', what: 'Maningrida in-house run size (Notion source)', now: '40-bed (register-verified 2026-08-24; INV-0303)', context: /run|batch|ledger/i, ruling: 'CONTEXT.md pressed-run entry' },
+
+  // PALM ISLAND'S 40-BED ORDER NEVER HAPPENED. Ben, 2026-09-05: "remove this one, didn't happen."
+  // INV-0317 was carried in compendium.ts as an authorised $36,300 receivable from May 2026 and
+  // reached slide 05 of the QBE deck as a sixth bed buyer. On 5 Sep 2026 it is absent from Xero's
+  // aged receivables and from every invoice on the PICC contact, paid or unpaid. Palm Island has
+  // paid $436,700 across five invoices and none of them has a bed on it.
+  { value: 'INV-0317', what: "Palm Island's 40-bed order", now: 'nothing; the order was never placed', ruling: "Ben 2026-09-05, \"didn't happen\"" },
+  { value: '36,300', what: "Palm Island's 40-bed order", now: 'nothing; the order was never placed', context: /picc|palm island|receivable|bed/i, ruling: 'Ben 2026-09-05' },
+  { value: '36300', what: "Palm Island's 40-bed order", now: 'nothing; the order was never placed', context: /picc|palm island|receivable|bed/i, ruling: 'Ben 2026-09-05' },
+
+  // RECEIVABLES RESTATED 2026-09-05 against Xero's aged receivables of the same date, on three
+  // rulings from Ben: Homeland INV-0303 $44,000 "has been paid"; Regional Arts INV-0302 $16,500
+  // "is a different project and related to the Harvest"; Rotary $82,500 bad debt "is fine for now".
+  // $143,000 was the 3 June composition of all three. Collectable Goods receivables are now $0.
+  { value: '143,000', what: 'accounts receivable', now: '$82,500, all of it Rotary bad debt; $0 collectable', context: /receivable/i, ruling: 'Ben 2026-09-05' },
+  { value: '143_000', what: 'accounts receivable', now: '$82,500, all of it Rotary bad debt; $0 collectable', context: /receivable/i, ruling: 'Ben 2026-09-05' },
+  { value: '143K', what: 'accounts receivable', now: '$82.5K, all of it Rotary bad debt; $0 collectable', context: /receivable|outstanding/i, ruling: 'Ben 2026-09-05' },
+
+  // REVENUE RESTATED 2026-09-05 (Ben: "yes restate revenue to $785,111"). The 3 June 2026 reconcile
+  // baseline was $741,111 and Homeland INV-0303 $44,000 was paid after it, leaving the money in
+  // neither revenue nor receivables. Commercial receipts move $61,449 -> $105,449.
+  { value: '741,111', what: 'funding received since inception', now: '$901,311 (via $785,111 earlier the same day)', context: /receiv|revenue|funding|investment/i, ruling: 'Ben 2026-09-05' },
+  { value: '741_111', what: 'funding received since inception', now: '$901,311 (via $785,111 earlier the same day)', context: /receiv|revenue|funding|investment/i, ruling: 'Ben 2026-09-05' },
+  { value: '741.1K', what: 'funding received since inception', now: '$901.3K', context: /receiv|revenue|accrec/i, ruling: 'Ben 2026-09-05' },
+  { value: '61,449', what: 'commercial and buyer receipts', now: '$221,649 (adds Homeland INV-0303, ALIVE INV-0342, Julalikari INV-0335)', context: /commercial|buyer|receipt/i, ruling: 'Ben 2026-09-05' },
+  { value: '61_449', what: 'commercial and buyer receipts', now: '$221,649 (adds Homeland INV-0303, ALIVE INV-0342, Julalikari INV-0335)', context: /commercial|buyer|receipt/i, ruling: 'Ben 2026-09-05' },
+
+  // REVENUE RESTATED AGAIN 2026-09-05 (Ben: ALIVE and Julalikari "are sales which showcase how we can
+  // sell beds and how communities can as well, and washing machines, same as the Centrecorp sales").
+  // ALIVE INV-0342 $101,200 and Julalikari INV-0335 $15,000 were paid after the 3 June baseline too.
+  // Funding received $785,111 -> $901,311; commercial and buyer receipts $105,449 -> $221,649.
+  { value: '785,111', what: 'funding received since inception', now: '$901,311', context: /receiv|revenue|funding|investment/i, ruling: 'Ben 2026-09-05' },
+  { value: '785_111', what: 'funding received since inception', now: '$901,311', context: /receiv|revenue|funding|investment/i, ruling: 'Ben 2026-09-05' },
+  { value: '785.1K', what: 'funding received since inception', now: '$901.3K', context: /receiv|revenue|accrec/i, ruling: 'Ben 2026-09-05' },
+  { value: '105,449', what: 'commercial and buyer receipts', now: '$221,649 (adds ALIVE INV-0342 and Julalikari INV-0335)', context: /commercial|buyer|receipt/i, ruling: 'Ben 2026-09-05' },
+  { value: '105_449', what: 'commercial and buyer receipts', now: '$221,649 (adds ALIVE INV-0342 and Julalikari INV-0335)', context: /commercial|buyer|receipt/i, ruling: 'Ben 2026-09-05' },
+  { value: '105.4K', what: 'commercial and buyer receipts', now: '$221.6K', context: /commercial|buyer|receipt/i, ruling: 'Ben 2026-09-05' },
 ];
 
 /**
@@ -124,6 +163,30 @@ const RETIRED_PHRASES = [
     what: 'the plant as the ownership object',
     use: 'the making, or the site. And ownership is a pathway: use "toward".',
     ruling: 'DECISIONS.md ruling D',
+  },
+  {
+    // RULING AA (Ben, 5 Sep 2026): the charity is the applicant and the directors are locked. These
+    // phrases carried the question as open for a week after it was settled.
+    pattern: /\b(subject to (?:jay|social impact hub)|recommended route|proposed applicant|ready,? subject to (?:jay|the entity))\b/i,
+    what: 'the applicant as an open question',
+    use: 'The Butterfly Movement Ltd, trading as Goods on Country, applies and receives (ruling AA)',
+    ruling: 'DECISIONS.md ruling AA, 2026-09-05',
+  },
+  {
+    // RULING X (28 Aug 2026): there is no separate "Goods." maker-and-seller layer any more.
+    pattern: /\btrad(?:es|ing) as Goods\.(?=[\s,)]|$)/,
+    what: 'a company "trading as Goods." as a current layer',
+    use: 'Goods on Country, The Butterfly Movement Ltd; the company is the historic maker transferring its assets',
+    ruling: 'DECISIONS.md ruling X, 2026-08-28',
+  },
+  {
+    // The "net loss" was the 31 May 2026 year-to-date position. The year closed on a net profit of
+    // $167,969.63 (Xero, re-pulled 5 Sep 2026) with wages and superannuation at $0, and the old
+    // sentence sat in canon, the cost story and STRATEGY.md for three months after it stopped being true.
+    pattern: /\b(FY26 net loss|(?:P&L|entity|sole trader) (?:is|runs|ran|shows|showed) (?:an? |the )?(?:FY26 )?net loss)\b/i,
+    what: '"the entity runs an FY26 net loss"',
+    use: "the sole trader's FY26 P&L closed on a net profit of about $168K before any founder wages; no surplus is claimed for Goods",
+    ruling: 'Ben 2026-09-05 (DECISIONS.md ruling H, corrected)',
   },
 ];
 
@@ -185,13 +248,45 @@ const ALLOWED = [
     match: /never the \$403,901/i,
     why: 'A watchOut instructing us NEVER to cite this figure. The rule has to name the number it bans.',
   },
+  {
+    file: 'lib/data/canon.ts',
+    match: /Was \$785,111:/,
+    why: 'The canon definition records what funding received WAS and why it moved a second time on 2026-09-05. Same reason as the receivables row below.',
+  },
+  {
+    file: 'lib/data/canon.ts',
+    match: /Was \$143,000:/,
+    why: 'The canon definition records what the figure WAS and why it moved on 2026-09-05. A canon row that cannot say what it superseded is a canon row nobody can audit.',
+  },
+  {
+    file: 'lib/data/compendium.ts',
+    match: /The 3 June baseline was/,
+    why: 'The restatement note has to name the figure it replaced (2026-09-05).',
+  },
+  {
+    file: 'lib/data/grant-content.ts',
+    match: /confirmed NOT understated for the window it covered/,
+    why: 'A dated record of what the 3 June reconcile concluded about the old commercial line.',
+  },
+  {
+    file: 'lib/data/claims-ledger.guards.test.ts',
+    match: /\$741,111/,
+    why: 'Guard-test fixtures assert on a sample figure; the value is arbitrary test data, not a claim.',
+  },
+  {
+    file: 'lib/data/voice-impact-data.json',
+    match: /CANON CONTRADICTIONS:/,
+    why: 'An analysis note listing where a source article contradicts canon. Quoting the wrong numbers is the point, and it renders only on the admin voice-impact page.',
+  },
 ];
 
 const walk = (dir, out = []) => {
   for (const entry of readdirSync(dir)) {
     const p = join(dir, entry);
     if (statSync(p).isDirectory()) walk(p, out);
-    else if (/\.(ts|tsx)$/.test(entry) && !/\.test\.tsx?$/.test(entry)) out.push(p);
+    // .json is scanned too: qbe-areas.json carried "Accountant-signed" and "$741,111" for six weeks
+    // after both were retired, because only .ts/.tsx was walked (found 2026-09-05).
+    else if (/\.(ts|tsx|json)$/.test(entry) && !/\.test\.tsx?$/.test(entry)) out.push(p);
   }
   return out;
 };

@@ -1,5 +1,5 @@
 ---
-date: 2026-09-02T07:05:00Z
+date: 2026-09-03T03:30:00Z
 session_name: qbe-750k-raise
 branch: feat/raise-stack-and-ruling-x
 status: active
@@ -9,15 +9,19 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-02T07:05:00Z
-**Goal:** The QBE Stage 2 application (closes Fri 25 Sep 12pm AEST) and the deck carry one model: the $250K ask buys one governed pool and the proof; the unit is one bed; every figure is derived and guarded. Done when Ben has answered the four decisions, the Zoho form answers exist, and the deck's money slides match `raise-stack.ts`.
+**Updated:** 2026-09-04T00:30:00Z
+**Goal:** The QBE Stage 2 application (closes Fri 25 Sep 12pm AEST) and the deck carry one model: the money buys beds, $400K = 533 beds (ruling Y, 3 Sep), $250K the smaller amount; every figure is derived and guarded; the prose is in the founders' words. Done when Ben has answered the four decisions, the Zoho form answers exist, and the deck's money slides match `raise-stack.ts`.
 **Branch:** feat/raise-stack-and-ruling-x (worktree `/Users/benknight/Code/goods-raise-wt`, PR #234 open, NOT merged)
 **Test:** cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci
 
 ### Now
-[->] Ben's decisions before the deck's money slides move: TFFF to the block or to beds; confirm the $250K ask; which communities may be named against a pool; who builds the deck (this session or the Codex sessions connected to the same .pen).
+[->] Ben has been editing the Notion page directly (renamed 'QBE final Phase - Simple and clean'); it is the master. Next: Jay's answers (entity), Eloise's papers (ASIC extract, three statements, constitution), the Q13 confirmations, the exports in Part 3, the deck save in Pencil, and delete the six old diagram image blocks on the page. Then the /straight skill for any further prose.
+[x] Earlier: Ben reads the one document on the Notion play-space page (3d0ebcf981cf806b918fceff46528300): every Q1 to Q25 answer drafted and marked READY / SUBJECT TO JAY / NEEDS BEN / NEEDS ELOISE, the model in ten sections with seven diagrams. Jay's answers at 2pm change the Q1, Q2, Q8 wording; Eloise's papers close Q4, Q20, Q22. Then the deck's money slides from Part 5 of that page.
 
 ### This Session
+- [x] 3 Sep: ruling Y swept everywhere (see DECISIONS.md Y). Deck text updated live through Pencil across all nine copies of the sequence; needs a save in Pencil (gitignored file).
+- [x] 3 Sep: the one document built. Notion play-space page rewritten at the top (crux, Part 1 model with seven diagrams and four real photos, Part 2 the form answered, Part 3 attachments per slot, Part 4 what only people can close, Part 5 diagram-to-slide map); original form and notes kept below a divider.
+- [x] 3 Sep: `deliverables/qbe-stage2/qbe-stage2-application-2026-09-03.md` and `deliverables/qbe-stage2/diagrams/build.mjs` (seven SVGs in deck tokens) committed as 2e3daa2 on this branch, not pushed.
 - [x] Ruling X (28 Aug) carried into git for the first time, above ruling T, with the CONTEXT/STRATEGY/CLAUDE patches and nine August documents (PR #234).
 - [x] `raise-stack.ts` + 19 guards: every funder line with a status, $0 signed derived, QBE tiers ($250K ask, $400K ceiling, $150K smaller), entity route, five questions for Jay.
 - [x] `community-loop.ts` + 10 guards: one pool of 200 beds, gross sales by share sold, the facility band, the pressed margin, four gates.
@@ -29,6 +33,10 @@ status: active
 - [x] Gates green: tsc, 616 tests, check:drift:ci, production build.
 
 ### Next
+- [ ] Push `feat/raise-stack-and-ruling-x` (PR #234) only on Ben's word; it now carries ruling Y, the one document, diagrams, CONTEXT/STRATEGY/app sweeps. Separate branch `feat/canvas-print-qr` (worktree ../goods-qr-wt) holds the canvas QR/iron-on pack, also unpushed.
+- [ ] Ben: Q1 contact, Q13 confirmation with every director, Q16 contacts, the Q20 cover note, the exports for Q9/Q11/Q23 (Part 3 of the page).
+- [ ] Eloise: ASIC extract and post-AGM board for Q4; Butterfly's three statements; constitution, resolutions, member register.
+- [ ] Slide 07 status strip and applicant footer after Jay; slide 10 'three kinds of money' from the redrawn diagram 04 (QBE 03 frame already carries the words).
 - [ ] Thu 3 Sep 2pm Sydney, Jay's check-in: the five questions in `raise-stack.ts` JAY_QUESTIONS, entity first.
 - [ ] Thu 3 Sep, Eloise: Butterfly's P&L, balance sheet, cashflow (form Q20); the accountant's letter remains the blocker.
 - [ ] After Ben decides: slide 10 "Capital with three jobs" from 08B, slide 07 status strip and applicant footer, renumber 11/12 with the decision copy (`deck-narrative-qbe-2026-09.md` has the exact copy).
@@ -39,13 +47,18 @@ status: active
 - [ ] Merge PR #234 only on Ben's explicit word.
 
 ### Decisions
-- $250K is the QBE ask, $400K the ceiling, $150K the smaller amount (Ben, 2 Sep evening): one pool plus the proof block is easier to say and to grant; every dollar above buys beds at the same ratio.
+- **3 Sep, Ben: the QBE money buys beds, full stop.** $250K = 333 beds, $150K = 200, $400K = 533. The "$150K pool + $100K proof block" split is RETIRED from prose, diagrams and `raise-stack.ts`; the measured cost of the first fifty beds comes with the first pool, not as a budget line. Written from the 2 Sep transcript, in the founders' words.
+- **3 Sep, Ben: "nine years on the road" is wrong, two years max.** Fixed on the page and the repo copy; `CONTEXT.md` road spine and deck slide 03 still carry nine and need the sweep.
+- SUPERSEDED (2 Sep evening): $250K as one pool plus the proof block.
+- **3 Sep, Ben, mid-session: "it's actually $400,000".** The ask is $400K = 533 beds; $250K = 333 is the smaller amount. Ruling Y in DECISIONS.md. Code, page, diagrams updated.
+- **3 Sep, Ben (via /straight, 'yes do all'):** the written piece uses around $200 a bed for the snowball (five plants, ~5,000 beds/yr, ~$1M/yr); the modelled $324 pressed margin stays in the model and is cited as 'the model says'. Reader = Jay, then the Steerco, then the foundation boards; they decide whether $250K gets more than 1:1 and whether Goods covers inclusion and climate resilience. Never: proof block, governed pool, stack, catalytic chain, operating home.
 - TFFF recommended to fund the block, not beds: Katie's invitation names the resilience of organisations; $100K/yr for three years is almost exactly the minimum network block. Ben has not yet ruled.
 - The Butterfly Movement Ltd (Goods on Country) recommended as QBE applicant: every external dollar lands there under ruling X; ACT as related entity; fallback ACT with the unsigned inter-entity agreement, said to be weaker.
 - $750K is only ever the cost of the beds, never sales or income; no community is named beside a price; QBE is never described as doubling anything; debt is repaid from Goods' margin on buyer orders, never from a community's pool.
 - Codex sessions (three Pencil MCP servers, `--agent codexCLI`, from 16:05) are editing the same .pen: they added "QBE 01 to 07" and "PLAN 01" frames and nine copies of the 01 to 11 sequence. This session stopped touching the deck beyond its three frames until Ben picks one builder.
 
 ### Open Questions
+- UNCONFIRMED: "Alexandra Savas" appears as a Butterfly director in `v2/src/lib/people.ts` (July research) with no register source; not used on the form.
 - UNCONFIRMED: whether the deck was saved again after slide 10C was drawn (08C and 09C painted after the 16:29 save and reopen; new nodes do not paint until a save and reopen).
 - UNCONFIRMED: TFFF board date (Katie: late November; Nic on the call: first week of November; meeting summary: 25 November).
 - UNCONFIRMED: "Luke EV Fleet $20K" and "FRRR Palm $20K" on Ben's Notion note (no second source).
@@ -64,7 +77,7 @@ max_retries: 3
 - resource_allocation: aggressive
 
 #### Unknowns
-- applicant_entity: UNKNOWN until Jay answers (3 Sep)
+- applicant_entity: RULED (AA, 5 Sep 2026): The Butterfly Movement Ltd, trading as Goods on Country
 - tfff_use: UNKNOWN until Ben rules (block vs beds)
 - deck_builder: UNKNOWN (this session vs Codex)
 

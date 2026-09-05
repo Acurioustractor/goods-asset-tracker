@@ -101,7 +101,7 @@ Sizing blocks 3-4 precisely is the $426 sense-check session Ben already owes him
 ### C3. Quarantine as stale (never reintroduce)
 - Centrecorp $420K / $208K / $85K commitment math (voided invoices — day4/day8 docs); canon = **$123,332 paid**, stack ask = **$75K grant-side**.
 - Snow $193,785 as "total" (pre-restatement), $132K R4 Day-8 framing.
-- $600/bed (retired), $403,901 "surplus" (NEVER external — entity P&L is a net loss), superseded revenue baselines ($684,911 / $537,595 / $405,685 / $445K / $778,162).
+- $600/bed (retired), $403,901 "surplus" (NEVER external; the sole trader's FY26 P&L closed on a net profit of about $168K before founder wages and no surplus is claimed for Goods), superseded revenue baselines ($684,911 / $537,595 / $405,685 / $445K / $778,162).
 - Day-8 $1.2M stack (QBE $400K + SEFA + Anchor $500K).
 - REAL "$2M" rounding — write $2.4M ($1.2M × 2 sites), and always "Applied/EOI, excluded from QBE match."
 

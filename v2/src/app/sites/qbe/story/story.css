@@ -1,0 +1,32 @@
+/* The QBE story: one chapter per page in print, one chapter per screen in slide mode. */
+
+@media print {
+  [data-story-bar] {
+    display: none !important;
+  }
+  .story-cover {
+    break-after: page;
+    min-height: auto !important;
+  }
+  [data-story-chapter] {
+    break-before: page;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  [data-story-chapter] figure {
+    break-inside: avoid;
+  }
+  input[type='range'],
+  button {
+    display: none !important;
+  }
+}
+
+body[data-story-mode='slides'] [data-story-chapter] {
+  min-height: 100svh;
+  padding-bottom: 6rem;
+}
+
+body[data-story-mode='slides'] .story-cover {
+  display: none;
+}

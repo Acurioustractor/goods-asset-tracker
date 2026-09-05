@@ -84,7 +84,7 @@ Never hide wraparound inside a bed price to manufacture a false commercial claim
 
 The current working interpretation is:
 
-- **Goods. inside A Curious Tractor Pty Ltd** — maker, product system and go-forward trading home;
+- **A Curious Tractor Pty Ltd** — the historic maker, transferring its assets into Goods on Country (ruling X); no separate Goods. layer;
   seller-of-record remains a transition detail that must be stated accurately.
 - **Goods on Country inside The Butterfly Movement Ltd** — charity/DGR home for relationship,
   participation, learning, evidence and wraparound.

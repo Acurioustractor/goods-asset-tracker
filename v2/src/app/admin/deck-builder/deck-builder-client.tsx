@@ -1031,7 +1031,7 @@ export function DeckClient() {
       <div className="border-b border-border bg-foreground text-background">
         <div className="container mx-auto px-4 py-8">
           <Link
-            href="/pitch/deck"
+            href="/pitch/road"
             className="mb-4 inline-flex items-center gap-2 text-sm text-background/70 transition-colors hover:text-background"
           >
             <ArrowLeft className="h-4 w-4" />
@@ -1048,7 +1048,7 @@ export function DeckClient() {
             Ten slides on the signed six-turn spine. Click any headline, paragraph or script to
             edit it in place, or swap a photo from the committed website library and the
             consent-filtered Empathy Ledger feed. Changes save in this browser; export them for
-            Claude to commit. The public page at /pitch/deck renders the committed version. Hit{' '}
+            Claude to commit. The public page at /pitch/road renders the committed version. Hit{' '}
             <span className="font-semibold text-background">Present</span> to open the main deck,
             and press <span className="font-semibold text-background">N</span> in Present for
             speaker notes. Updated {deckUpdated}.

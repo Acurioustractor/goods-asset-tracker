@@ -23,12 +23,12 @@ export interface DeckPhotoSlot {
 export const deckReviewLinks = [
   {
     label: 'Pitch workshop',
-    href: '/pitch/workshop',
+    href: '/admin/pitch-workshop',
     note: 'Walk through the complete message, photos, places, and deck run.',
   },
   {
     label: 'Investor lab',
-    href: '/pitch/investor-lab',
+    href: '/admin/investor-lab',
     note: 'Compare narrative routes, investor lenses, maps, and deck decisions.',
   },
   {
@@ -38,7 +38,7 @@ export const deckReviewLinks = [
   },
   {
     label: 'Miro board',
-    href: '/pitch/miro-board',
+    href: '/admin/miro-board',
     note: 'Use the Miro-style canvas for sorting and live decision work.',
   },
   {

@@ -443,13 +443,13 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       {
         id: 'revenue',
         confidence: 'verified',
-        name: 'Total Revenue Received (cumulative since inception, ~89% grant-funded)',
+        name: 'Total Revenue Received (cumulative since inception, ~62% grant-funded)',
         unit: '$',
-        current: verifiedFinancials.revenueReceived, // 741,111 — total received since inception (grant + commercial), restated 2026-06-03 live-Xero reconcile
+        current: verifiedFinancials.revenueReceived, // 901,311: total received since inception (grant + commercial), 2026-06-03 reconcile restated 2026-09-05 (Homeland, ALIVE, Julalikari)
         targets: { year1: 1_100_000, year3: 4_000_000, vision2030: 15_000_000 }, // Year-1 TOTAL-revenue target across all 7 segments (not commercial-only)
         source: 'xero',
         sourceDetail:
-          'Xero workpaper (verified, not audited): TOTAL revenue received since inception (2023-07-01 → 2026-04-30), ~89% grant-funded (Snow + Centrecorp + VFFF + QIC) and ~11% commercial. This is NOT annual commercial traction — FY26 YTD commercial-only is ~$61K. The target is the Year-1 TOTAL-revenue target across all 7 segments (donor-institutional through adjacent), not a commercial-only target. Do not read cumulative grant-heavy revenue as recurring commercial run-rate.',
+          'Xero workpaper (verified, not audited): TOTAL revenue received since inception (2023-07-01 to 2026-09-05), ~62% grant and philanthropic (Snow + VFFF + QIC + Villiers) and ~38% commercial and buyer receipts, Centrecorp\'s two paid bed invoices among them (a buyer, Ben 2026-09-05, ruling Z). This is NOT annual commercial traction: the commercial line is cumulative since 2024 and most of it is a handful of buyer orders. The target is the Year-1 TOTAL-revenue target across all 7 segments (donor-institutional through adjacent), not a commercial-only target. Do not read cumulative grant-heavy revenue as recurring commercial run-rate.',
         optimizationLevers: ['B2B pipeline', 'Government procurement', 'E-commerce launch'],
       },
       // CLAIM CEILING (P0, 2026-06-18): the "govt-savings" metric (modelled government
@@ -592,7 +592,7 @@ export const PRODUCTION_EFFICIENCY_METRICS: ImpactMetric[] = [
 
 export const FINANCIAL_SUMMARY = {
   // Single source of truth: verifiedFinancials (Xero workpaper, verified not audited).
-  totalInvestment: verifiedFinancials.revenueReceived, // 741,111 — denominator for public impact-per-dollar (restated 2026-06-03)
+  totalInvestment: verifiedFinancials.revenueReceived, // 901,311: denominator for public impact-per-dollar (restated 2026-09-05, Homeland + ALIVE + Julalikari)
   tradeRevenue: verifiedFinancials.revenueReceived,
   productionPlantInvestment: verifiedFinancials.capexInvested, // 110,046
   currentCostPerUnit: CANONICAL_BUYKIT_DIRECT_COST, // 534.79 — Buy-Kit DIRECT cost (materials+assembly, MODELLED); NOT the $685 canon marginal (which adds ~$150 freight)

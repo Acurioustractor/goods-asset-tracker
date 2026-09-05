@@ -213,6 +213,11 @@ export interface PitchAppendix {
 
 export const PITCH_APPENDICES: PitchAppendix[] = [
   {
+    href: '/pitch/model',
+    label: 'The model, in full',
+    answers: 'How one grant becomes five community loops: one bed, who buys, the three kinds of money, and the questions people ask us.',
+  },
+  {
     href: '/pitch/funder-pathways',
     label: 'Funder pathways',
     answers: 'How a community request becomes a visible, priced pathway.',

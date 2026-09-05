@@ -75,7 +75,7 @@ each stop, because each stop is a person saying something. (Rulings C and F.)
 | 5 | **Utopia** | Arrival is not the ending |
 | 6 | **Maningrida and the farm** (Fred Campbell on Xavier) | **Economics land here** |
 | 7 | **Oonchiumpa** (Karen Liddle, Kristy Bloomfield) | The first transfer |
-| 8 | **The gap** | Eleven communities, 540 beds, nine years, **nobody owns the making**. The model and the ask arrive here |
+| 8 | **The gap** | Eleven communities, 540 beds, two years, **nobody owns the making**. The model and the ask arrive here |
 
 **Money never gets its own section again.** Every dead deck bolted money blocks onto story stops,
 and the money slides migrated every time (8-9-11 in one version, the middle in another, the end in
@@ -150,7 +150,7 @@ credibility.**
 Three cost centres, not two:
 
 1. **Network block** (~$109,500/yr today). Design, quality, training, back office, field travel.
-   Amortises across sites. This is what Goods. is for after a handover. The DEWR budget already
+   Amortises across sites. This is what Goods on Country is for after a handover. The DEWR budget already
    pays into it: the "ACT: machinery plus Trainer/WHS" line, $63,333/yr, is **revenue** to Goods.,
    not a cost. No model shows that yet.
 2. **Site production block.** Carried by bed sales. See §4.
@@ -309,8 +309,11 @@ choose; it is never claimed complete in advance.
   outcomes at all.
 - **Revenue: $713,827** Goods-only FY26 carve-out. **Workpaper, prepared with the accountant, NOT
   accountant-signed.** No signed document exists; getting one is an open action. Never the $403,901
-  "surplus"; the entity P&L is a net loss. $741,111 is valid only when the basis is named
-  (all-sources cash since inception).
+  "surplus". The sole trader's FY26 P&L closed on a net profit of about $168K before any founder wages,
+  which are not in the books: say that, never "net loss" (the loss was the 31 May position), and
+  claim no surplus for Goods. Those books are Goods' history; everything Goods is moving into The
+  Butterfly Movement Ltd (ruling X; Ben, 5 Sep 2026). $901,311 is valid only when the basis is named
+  (all-sources cash since inception, restated 5 Sep 2026: Homeland, ALIVE and Julalikari receipts added).
 - **Never "co-design".** Designed **in community, with community**.
 - **Voice:** zero em dashes, no arrows in prose, straight quotes, "On Country" capitalised, units
   with no space (20kg). Banned: empower, beneficiaries, ecosystem, scalable solution,

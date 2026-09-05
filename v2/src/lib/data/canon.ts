@@ -119,19 +119,19 @@ export const CANON: CanonFact[] = [
 
   // ── Money (MANUAL: never auto-written by a loop; reconciliation is a P0 human gate) ──
   {
-    id: 'revenue-received', label: 'Funding received (site figure)', value: 741_111, unit: 'AUD',
+    id: 'revenue-received', label: 'Funding received (site figure)', value: 901_311, unit: 'AUD',
     domain: 'money', claimLabel: 'verified', dataClass: 'amber',
-    source: 'verifiedFinancials.revenueReceived (compendium.ts) === fundingHistory.totalReceived (grant-content.ts); restated 2026-06-03 live-Xero reconcile',
-    check: 'manual', asAt: '2026-06-03', owner: 'Ben/accountant',
-    definition: 'Cash received since inception, Goods-scoped. Snow $493,130 + Centrecorp $123,332 + VFFF $50,000 + QIC $12,000 + Villiers $1,200 + commercial $61,449. PICC and other Marchesi-project contacts excluded.',
+    source: 'verifiedFinancials.revenueReceived (compendium.ts) === fundingHistory.totalReceived (grant-content.ts); 2026-06-03 live-Xero reconcile, restated 2026-09-05 (Ben) twice: first to add Homeland INV-0303 $44,000, then ALIVE INV-0342 $101,200 and Julalikari INV-0335 $15,000, all three Goods receipts paid after that baseline and re-read as PAID on Xero the same day. Oonchiumpa INV-0344 $41,250 and INV-0346 $1,000, both paid after the baseline, were ruled OUT on 2026-09-05 (Ben: the first is the Oonchiumpa program through ACT, the second a reimbursement), so nothing paid after the baseline is pending.',
+    check: 'manual', asAt: '2026-09-05', owner: 'Ben/accountant',
+    definition: 'Cash received since inception, Goods-scoped. Grant and philanthropic receipts $556,330 (Snow $493,130 + VFFF $50,000 + QIC $12,000 + Villiers $1,200) + commercial and buyer receipts $344,981 (Centrecorp $123,332 for 167 beds on INV-0259 and INV-0291, ruled a buyer by Ben on 2026-09-05, DECISIONS.md ruling Z, + other buyer and commercial receipts $221,649). Grant share about 62%. PICC and other Marchesi-project contacts excluded. Was $785,111: the commercial line was $105,449 until Ben ruled on 2026-09-05 that ALIVE INV-0342 $101,200 and Julalikari INV-0335 $15,000 are sales, the same as the Centrecorp sales, and both go in. Before that it was $741,111 until Homeland INV-0303 $44,000 went in the same day.',
     reconcilesWith: ['revenue-xero-paid', 'revenue-carveout'],
   },
   {
-    id: 'accounts-receivable', label: 'Accounts receivable', value: 143_000, unit: 'AUD',
+    id: 'accounts-receivable', label: 'Accounts receivable', value: 82_500, unit: 'AUD',
     domain: 'money', claimLabel: 'verified', dataClass: 'amber',
     source: 'verifiedFinancials.accountsReceivable (compendium.ts) === fundingHistory.totalReceivables (grant-content.ts)',
-    check: 'manual', asAt: '2026-06-03', owner: 'Ben/accountant',
-    definition: 'Rotary INV-0222 $82,500 + Homeland INV-0303 $44,000 + Regional Arts INV-0302 $16,500 (all live authorised in Xero).',
+    check: 'manual', asAt: '2026-09-05', owner: 'Ben/accountant',
+    definition: 'Rotary INV-0222 $82,500 alone, and it is BAD DEBT (Ben, 2026-09-05: "just overdue and fucked"), due 24 April 2025. COLLECTABLE RECEIVABLES ARE $0, so never present this as money we expect. Was $143,000: Homeland INV-0303 $44,000 has been paid (Ben, 2026-09-05; Xero PAID) and Regional Arts INV-0302 $16,500 is a Harvest project receivable, not Goods (Ben, 2026-09-05).',
   },
   {
     id: 'revenue-xero-paid', label: 'ACT-GD receivables paid (Xero cut)', value: 650_910.79, unit: 'AUD',
@@ -147,7 +147,7 @@ export const CANON: CanonFact[] = [
     // flagged as an overclaim rendering in front of funders.
     domain: 'money', claimLabel: 'workpaper', dataClass: 'amber',
     source: 'Goods carve-out workpaper, prepared with the accountant (NOT signed); pitch blueprint A3', check: 'manual', asAt: '2026-06-02', owner: 'Ben/accountant',
-    definition: 'Goods-only FY26 carve-out, prepared with the accountant but NOT YET SIGNED (Ben ruling 2026-07-25, DECISIONS.md ruling G). Cite the figure; never the word signed, until a signed letter exists and is named in this source field. Obtaining one is an open action, promised in the claims ledger before mid-August 2026. No surplus claimed: connected entity runs an FY26 net loss. Use alongside revenue-received ($741,111 all-sources) with the basis named.',
+    definition: 'Goods-only FY26 carve-out, prepared with the accountant but NOT YET SIGNED (Ben ruling 2026-07-25, DECISIONS.md ruling G). Cite the figure; never the word signed, until a signed letter exists and is named in this source field. Obtaining one is an open action, promised in the claims ledger before mid-August 2026. No surplus is claimed for Goods. The sole trader\'s FY26 P&L closed on a net profit of about $168K before any founder wages, which are not in the books (Xero re-pull 5 Sep 2026; the earlier "net loss" was the 31 May year-to-date position and is retired). Goods\' history sits in those books and everything Goods is moving into The Butterfly Movement Ltd, Goods on Country (ruling X; Ben, 5 Sep 2026). Use alongside revenue-received ($901,311 all-sources) with the basis named.',
     reconcilesWith: ['revenue-received'],
   },
 
@@ -247,17 +247,17 @@ export const CANON: CanonFact[] = [
     id: 'entity-operating-now', label: 'Current operating entity', value: 'Nicholas Marchesi (sole trader), ABN 21 591 780 066',
     domain: 'governance', claimLabel: 'verified', dataClass: 'green',
     source: 'wiki/outputs/2026-05-29-qbe-area-09-legal-structure-full-review.md + grant-content.ts orgIdentity', check: 'manual', asAt: '2026-05-29', owner: 'Ben/Nic',
-    definition: 'Goods trades, invoices and contracts through this sole trader today, during migration to the company. The migration starting point, not the destination.',
+    definition: 'The historic trading vehicle. Goods traded, invoiced and contracted through this sole trader until the move into Goods on Country (ruling X, 28 Aug 2026), and its books carry FY26. Disclosed as a related entity on the QBE form (ruling AA, 5 Sep 2026).',
     reconcilesWith: ['entity-trading-goforward'],
   },
   {
-    // RULING K 2026-07-25. The `value` deliberately carries NO trading name: the company holds
-    // no registered business names at all, so asserting one in a canon value is the exact
-    // defect this ruling fixed. The trading-as-Goods. fact lives in the definition instead.
+    // RULING K 2026-07-25: the `value` carries NO trading name, because the company holds none.
+    // RULING X (28 Aug) retired "Goods." as a current operating layer and RULING AA (5 Sep 2026)
+    // locked the charity as the applicant and home; the company is a disclosed related entity.
     id: 'entity-trading-goforward', label: 'Go-forward trading entity', value: 'A Curious Tractor Pty Ltd, ACN 697 347 676 / ABN 36 697 347 676',
     domain: 'governance', claimLabel: 'verified', dataClass: 'green',
     source: 'grant-content.ts orgIdentity (ABN confirmed 2026-05-29, registered 21 Apr 2026); area-09 review', check: 'manual', asAt: '2026-05-29', owner: 'Ben/Nic',
-    definition: 'Confirmed go-forward trading company; all operations migrate to it in FY2026-27. It trades as Goods., the maker and seller, and holds NO registered business names (ABN Lookup, checked 2026-07-25). "Goods on Country" is a business name of The Butterfly Movement Ltd, the charity, registered 23 Jul 2026, NOT of this company (Ben ruling 2026-07-25, DECISIONS.md ruling K). The two are different things and conflating them has reached funder documents. Open and with MinterEllison: the shop\'s seller of record, since beds are sold by the company on a domain named for the charity. Do not present the migration as finished externally.',
+    definition: 'The cohort entrant and historic maker (registered 21 Apr 2026), disclosed on the QBE form as the related entity transferring its assets into Goods on Country (rulings X and AA). It holds NO registered business names (ABN Lookup, checked 2026-07-25). "Goods on Country" is a business name of The Butterfly Movement Ltd, the charity, registered 23 Jul 2026, NOT of this company (Ben ruling 2026-07-25, DECISIONS.md ruling K). The two are different things and conflating them has reached funder documents. Open and with MinterEllison: the shop\'s seller of record, since beds are sold by the company on a domain named for the charity. Do not present the migration as finished externally.',
   },
   {
     id: 'entity-dgr-home', label: 'Charity / DGR home', value: 'The Butterfly Movement Ltd, ABN 22 155 132 684',

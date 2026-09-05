@@ -61,7 +61,7 @@ export const ROAD_STOPS: RoadStop[] = [
     place: 'Kalgoorlie',
     voice: 'Gloria Turner',
     taught: 'The bed disappeared',
-    what: 'A bed arrived, and within a year it was gone. Not stolen and not neglected. Built for a house with one family in it, put into a house with fourteen.',
+    what: 'The first bed went together outside the tent, and it was gone when the team came back. It was inside, with four women sleeping on it. Gloria Turner was the first person to use a Goods bed.',
   },
   {
     id: 'tennant-creek',
@@ -114,7 +114,7 @@ export const ROAD_STOPS: RoadStop[] = [
 export const THE_GAP = {
   taught: 'Nobody owns the making',
   /** Figures are pulled from canon at render time. This is the shape of the sentence, not the numbers. */
-  line: 'Eleven communities. Nine years. Nobody owns the making.',
+  line: 'Eleven communities. Two years. Nobody owns the making.',
 } as const;
 
 export const SPINE_RULES = [

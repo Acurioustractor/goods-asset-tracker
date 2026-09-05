@@ -184,7 +184,7 @@ Ltd (ABN 22 155 132 684, DGR since January 2012, an Australian public company, s
 grants land in Butterfly. Every external dollar in §3 lands in Butterfly. The cohort entrant is A
 Curious Tractor Pty Ltd, now the historic maker in transition.
 
-**Recommended route, subject to Jay on Thursday.** The Butterfly Movement Ltd applies and receives
+**The route, ruled 5 September (Ben, ruling AA).** The Butterfly Movement Ltd applies and receives
 the grant. A Curious Tractor is listed as the related entity: cohort entrant, holder of the
 historic trading record, transferring assets under ruling X. Nicholas Marchesi, sole trader, is
 listed as the historic trading vehicle whose books carry FY26. The structure diagram is three
@@ -192,7 +192,7 @@ boxes and two arrows, sole trader to A Curious Tractor to Butterfly, with the tr
 states that all funded activity sits in Butterfly and that A Curious Tractor delivers nothing under
 the grant after transfer.
 
-**Fallback if Jay says the entrant must apply.** A Curious Tractor applies and receives the grant,
+**Not the route (ruling AA), recorded and closed.** A Curious Tractor applies and receives the grant,
 the external commitments land in Butterfly, and Q2 and Q8 rest on the inter-entity agreement,
 which is unsigned. That route needs MinterEllison and a signature before 13 November. It is weaker
 and the application should say so rather than hide it.

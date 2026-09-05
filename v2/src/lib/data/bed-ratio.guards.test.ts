@@ -74,12 +74,12 @@ describe('any amount scales the same way', () => {
 });
 
 describe('what the slide says', () => {
-  it('never calls sales income and names the proof as what the grant buys', () => {
+  it('never calls sales income and says the beds go first', () => {
     for (const s of strings({ BED_UNIT, RATIO_NOTE, UNLOCK, RATIO_GUARDRAIL })) {
       expect(s).not.toMatch(/community income(?! until)/i);
       expect(s).not.toMatch(/profit/i);
     }
-    expect(UNLOCK.body).toMatch(/buys the proof/);
+    expect(UNLOCK.body).toMatch(/go in first/);
     expect(RATIO_GUARDRAIL).toMatch(/real sites do not/);
   });
 

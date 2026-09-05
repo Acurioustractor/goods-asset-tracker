@@ -281,7 +281,7 @@ export const AUDIENCES: Audience[] = [
     ],
     mustNeverSee: [
       'A photograph, name or quote that is not consent-cleared. A journalist republishes it and no gate we hold can reach into a masthead afterwards.',
-      'Goods. and Goods on Country used interchangeably. One is the maker and seller, the other is the charity, and conflating them has already reached funder documents.',
+      'A separate "Goods." maker-and-seller layer. It is retired (ruling X): there is one identity, Goods on Country, The Butterfly Movement Ltd. Older material that presents Goods. as a current operator is stale.',
       'A modelled figure without its label, which will be printed as fact.',
     ],
     nextAction: 'Take the kit, and ring the contact before publishing.',

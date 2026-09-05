@@ -52,7 +52,7 @@ QBE ask ~$400K signed match-eligible · QBE program: up to $400K from $1M shared
 V4 scores, "strong proof / weak paperwork", CASE 5-of-6 knockouts, keystone = Legal Structure.
 
 **D. Governance / legal (NEW, high-value):**
-operating entity = sole trader (Nicholas Marchesi, ABN 21 591 780 066) · Supply Nation 51% cert deadline 1 July · FY26 net loss (no surplus).
+operating entity = sole trader (Nicholas Marchesi, ABN 21 591 780 066) · Supply Nation 51% cert deadline 1 July · FY26 net profit of about $168K before founder wages, no surplus claimed (corrected 5 Sep 2026).
 
 **E. Market context (LOW confidence — provenance pending):**
 ~$3M/yr remote washing-machine provider · Convergence benchmark $1 concessional → ~$4.10 mobilised.

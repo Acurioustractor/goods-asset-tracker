@@ -166,7 +166,7 @@ export const deckSlides: DeckSlide[] = [
     body: NORTH_STAR.line,
     photo: '/images/product/stretch-bed-community.jpg',
     photoAlt: 'A Stretch Bed set up in a remote community home',
-    place: `${CANONICAL_ASSETS.bedsDeployed} beds · ${CANONICAL_ASSETS.communitiesServed} communities · nine years`,
+    place: `${CANONICAL_ASSETS.bedsDeployed} beds · ${CANONICAL_ASSETS.communitiesServed} communities · two years`,
     goDeeper: [
       { label: 'Field notes from the road', href: '/field-notes' },
       { label: 'Every number, audited', href: '/register' },
@@ -193,7 +193,7 @@ export const deckSlides: DeckSlide[] = [
       { src: '/images/community/kalgoorlie/mattress-decayed.jpg', alt: 'A sun-bleached mattress rotting into the scrub' },
       { src: '/images/community/kalgoorlie/camp-mattress-tent.jpg', alt: 'A mattress in a tent at the camp' },
     ],
-    goDeeper: [{ label: 'Read the Goods origin story', href: '/story/road' }],
+    goDeeper: [{ label: 'Read the Goods origin story', href: '/story' }],
     script:
       'The Goods story begins before the first bed. In 2018 Nic heard paediatric cardiologist Dr Boe Reményi speak about rheumatic heart disease and environmental health. Her point was that advice alone cannot change health when the ordinary conditions of home make the advice impossible to follow. A bed is not a medical device, and we do not claim it prevents disease. But sleeping surfaces, washing, crowding, water and power shape health long before somebody reaches a clinic. At Ninga Mia that broad lesson became specific. Gloria Turner told us why a good mattress matters: for the back, the legs and the muscles. Around the camp were mattresses dumped on red dirt because the normal product-and-replacement system had failed. Then Gloria and her family assembled our first crate bed outside their tent. When we returned, it had disappeared. A family had carried it inside and chosen it for sleep. The health question had become a design obligation: make something useful enough to be chosen, durable enough to stay, and repairable enough not to become the next mattress on the dirt.',
     note: 'Reframed by Ben on 2026-07-30 as the complete origin chain: Nic hearing practitioner Dr Boe Reményi on environmental health; the mattress and sleeping-surface question; then Gloria Turner and the Ninga Mia field story. The bed is explicitly not presented as a medical device or an RHD outcome. Dr Boe is a cleared practitioner voice, not a community recipient. Gloria carries the visible registry quote. The disappearing-bed scene remains narration because no attributable speaker exists for it.',
@@ -423,7 +423,7 @@ export const deckSlides: DeckSlide[] = [
     id: 'gap',
     kind: 'gap',
     eyebrow: 'The gap',
-    headline: 'Nine years, eleven communities, 540 beds. Nobody owns the making.',
+    headline: 'Two years, eleven communities, 540 beds. Nobody owns the making.',
     body: 'The products have reached communities. The production equipment, contracts, systems and margin have not. And the need is measured, not asserted: the Census counts 2,761 very remote NT households short at least a bedroom, half of all of them. Goods now has four live community pathways, each asking for a different part of the making.',
     photo: '/images/qbe/communities-screen.png',
     photoAlt: 'The eleven communities served, on the map',
@@ -438,7 +438,7 @@ export const deckSlides: DeckSlide[] = [
     ],
     goDeeper: [{ label: 'Every number, audited', href: '/register' }],
     script:
-      'Here is the road added up: nine years, eleven communities, 540 beds, twenty two washing machines and three and a half tonnes of plastic diverted through Stretch Bed production. Against that, the Census counts two thousand seven hundred and sixty one very remote Territory households short at least a bedroom. There are still zero community-owned production sites. The next part of the deck shows the practical pathway we built to change that number.',
+      'Here is the road added up: two years, eleven communities, 540 beds, twenty two washing machines and three and a half tonnes of plastic diverted through Stretch Bed production. Against that, the Census counts two thousand seven hundred and sixty one very remote Territory households short at least a bedroom. There are still zero community-owned production sites. The next part of the deck shows the practical pathway we built to change that number.',
     note: 'Ruling F: the model and the ask arrive HERE and only here. Every figure reads from CANONICAL_ASSETS. The "0" is the honest headline and it is stated as a gap, not spun. This slide deliberately carries no voice: pitch-cockpit records the model and framing slides as voices: [], and that is by design so nobody "fills" it with a person.',
   },
 

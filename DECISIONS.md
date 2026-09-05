@@ -19,6 +19,79 @@
 
 ---
 
+## 2026-09-03 — the QBE ask
+
+### AA. The charity is the applicant and the home. The directors are the directors. Locked.
+
+**Ben, 5 September 2026, in full:** "the charity has started, that is the charity, we have directors,
+it's changing over, lock it."
+
+**What is locked.** The Butterfly Movement Ltd, trading as Goods on Country, is the QBE Stage 2
+applicant and recipient and the home of the work (ruling X). Its directors are Kristy Bloomfield,
+Audrey Deemal and Jeremy Donovan; the handover from the previous board is in progress and completes
+at the AGM. A Curious Tractor Pty Ltd is the cohort entrant and the related entity transferring its
+assets; Nicholas Marchesi, sole trader, is the historic trading vehicle whose books carry FY26.
+
+**What that removes.** "Subject to confirmation with Social Impact Hub", "recommended route",
+"subject to Jay", "proposed applicant" and "grade B until the ASIC extract" come off every surface:
+the deck (slides 01 and 10), the Notion deck master, the one-document, `raise-stack.ts`,
+`qbe-form.ts`, `qbe-diagrams.ts`, the story page and canon's entity definitions. Jay is told the
+route, not asked. The ASIC and ACNC extracts are attachments for Q4 and Q22, not gates on saying
+who the directors are.
+
+**What stays.** The AGM has no date until the auditor reports (board secretary, 1 September). The
+stated aim of full Indigenous directorship stays on the drawing, and ownership stays a pathway.
+
+### Z. Centrecorp is a buyer in the funding-received composition.
+
+**Ben, 5 September 2026: "buyer."** Centrecorp Foundation's $123,332 inside funding received is two
+paid bed invoices, INV-0259 (60 Basket Beds, August 2025) and INV-0291 (107 Stretch Beds, November
+2025). Slide 05, the buyers ledger in `qbe-story.ts` and the earned lane in `money-lanes.ts` already
+counted it as a purchase; only the funding-received prose filed it under grant and philanthropic
+receipts, a leftover from when Centrecorp sat on the match stack as a grant line. One classification
+per dollar.
+
+**What moved.** The total did not. Grant and philanthropic receipts $679,662 to $556,330 (Snow, VFFF,
+QIC, Villiers). Commercial and buyer receipts $221,649 to $344,981, with the Centrecorp row kept by
+name in the received list and marked as a buyer, and the old aggregate renamed "Other commercial and
+buyer receipts". The grant share of everything received is about 62%, where every surface said 75%.
+Swept together: `grant-content.ts` (rows and the financials prose), `canon.ts` (`revenue-received`
+definition), `compendium.ts` note, `impact-model.ts` (label and source note),
+`qbe-readiness/page.tsx`, the guard test, and `679.7K` / `679,662` retired in
+`check-retired-figures.mjs`. That script cannot guard a percentage (its lookahead rejects a value
+followed by "%"), so "75% grant-funded" was swept by hand and will need a hand grep next time too.
+
+**Still true.** Centrecorp is a foundation. Calling it a buyer says what the paper is, an invoice paid
+for beds, and says nothing about why it bought them. Surfaces that name Centrecorp as a partner or
+funder relationship (partners page, footer, outreach) do not change.
+
+### Y. The QBE money buys beds. The ask is $400,000, the smaller amount $250,000.
+
+**Ben ruling 2026-09-03**, made while re-voicing the Stage 2 form on the play-space page. Every
+dollar of the Catalysing Impact grant buys beds at $750: $400,000 is 533 beds (the first two
+communities' pools and a start on the third), $250,000 is 333 (Q7). The "$150K pool + $100K proof
+block" split of 2 September evening is retired everywhere: the measured cost of the first fifty beds
+comes with the first pool and is never a budget line to a funder. QBE's beds go in first; the
+foundations' beds fill the thousand.
+
+**Supersedes** the 2 Sep evening $250,000 ask, and the reading of ruling V under which $400,000 was
+"the ceiling, never the plan": the top of the range is the ask. Ruling V's other half stands: QBE is
+never described as matching, doubling, triggering or guaranteeing anything.
+
+Same day, same session: the written piece uses "around $200 a bed" for the snowball (five plants,
+about 5,000 beds a year, about $1M a year reinvested); the modelled $324 pressed margin stays in
+the model and is cited as "the model says". And "nine years on the road" is wrong; two years, max.
+`CONTEXT.md`'s road spine and deck slide 03 still carry nine.
+
+**Sweep (all done 3 Sep).** `raise-stack.ts`, `bed-ratio.ts`, the play-space page and its repo copy,
+diagrams 02/04/06, `CONTEXT.md` (road spine, the ask, the raise answer), `STRATEGY.md` spine table,
+`road-spine.ts`, `deck.ts`, `deck-road.ts`, and the Pencil deck: slide 03 (two years, all nine
+copies), 09 (one pool), 10C (going first, the ask named), 11/12 decision copy ($400,000 = 533 beds,
+$250,000 = 333), 08C step 5 (around $200 a bed), QBE 02/03/04 review frames, MODEL 06 and SIMPLE 02.
+The .pen is gitignored: Ben saves it in Pencil.
+
+---
+
 ## 2026-08-28 — one operating home
 Ben ruling, made while correcting the Goods on Country governance model and LGANT story.
 ### X. Goods on Country owns and runs the whole model. The separate "Goods." layer is retired.
@@ -717,6 +790,20 @@ logged with a correct sweep list and never executed. A ruling with a sweep list 
 until something checks. Treat the sweep list as a to-do that needs verifying, not a record of
 work done, and re-run a grep for retired language before trusting any "swept" note including
 this one.
+
+**Corrected 5 September 2026: FY26 closed on a net profit, and the "net loss" sentence is retired.**
+H leaned on "the entity P&L is a net loss", which was the 31 May year-to-date position (income
+$1,293,477, expenses $1,659,556, loss $366,079). Re-pulled from Xero on 5 September with the year
+closed: income $1,640,724.46, expenses $1,472,754.83, net profit $167,969.63, wages and
+superannuation $0. The figure and the adjective in H stand. The sentence beside them is now: the
+sole trader's FY26 P&L closed on a net profit of about $168K before any founder wages, which are not
+in the books; no surplus is claimed for Goods. Ben's frame, in his words the same day: "we will move
+all to the new charity", so those books are Goods' history and the charity is where Goods' own
+books start (ruling X). "FY26 net loss" is a retired phrase in `check-retired-figures.mjs`. Swept:
+`canon.ts` (`revenue-carveout` definition), `cost-story.ts`, `STRATEGY.md` §7, the guard's own
+`403,901` note, `wiki/canon/loop-c-scope-test.md`, `wiki/investor/02-financial-model.md` and
+`wiki/investor/15-money-alignment-audit.md`. Dated `wiki/outputs/` records keep the old sentence as
+history.
 
 ### G. There is no signed accountant document
 
