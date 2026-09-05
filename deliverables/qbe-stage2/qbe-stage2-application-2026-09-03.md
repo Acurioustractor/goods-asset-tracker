@@ -126,8 +126,8 @@ Three layers.
 **The advisory committee** meets monthly, eleven people, and brings First Nations leadership, manufacturing, social enterprise and funder experience close to the work. It advises. It is never called a board.
 ### 1.7 The entity, and how the money moves
 Since 28 August everything Goods sits in Goods on Country, a business name of The Butterfly Movement Ltd since 23 July 2026. Every funder's money already lands there: Tim Fairfax invited Butterfly, Brian M. Davis invited Goods On Country, Snow's grants go to Butterfly. A Curious Tractor entered the QBE cohort in March and is the historic maker, moving its assets across. The FY26 trading sits in Nic's sole trader books.
-![The entity, and how the money moves. Three entities in a dated line, one home, five community partners. Recommended route, subject to Social Impact Hub confirming.](diagrams/01-entity-and-money.svg)
-**Recommended, subject to Jay today.** The Butterfly Movement Ltd, trading as Goods on Country, applies and receives. A Curious Tractor is listed as the related entity: cohort entrant, historic maker, moving its assets across, delivering nothing under the grant. Nicholas Marchesi, sole trader, is listed as the historic trading vehicle whose books carry FY26. A Kind Tractor Ltd is dormant and has no role.
+![The entity, and how the money moves. Three entities in a dated line, one home, five community partners. The route, ruled 5 September.](diagrams/01-entity-and-money.svg)
+**Ruled, 5 September (Ben).** The Butterfly Movement Ltd, trading as Goods on Country, applies and receives. A Curious Tractor is listed as the related entity: cohort entrant, historic maker, moving its assets across, delivering nothing under the grant. Nicholas Marchesi, sole trader, is listed as the historic trading vehicle whose books carry FY26. A Kind Tractor Ltd is dormant and has no role.
 **Fallback if Jay says the cohort entrant must apply.** A Curious Tractor applies and receives, the foundations' money lands in Butterfly, and Q2 and Q8 rest on the agreement between the two, which is not signed. That needs MinterEllison and a signature before 13 November. It is weaker, and we say so.
 Either way, this is a trading enterprise and the form should read like one: beds sold at $750, ALIVE's paid order, Centrecorp's quote, and plant finance that follows the measured cost.
 ### 1.8 The calendar
@@ -164,12 +164,12 @@ Every figure on every surface carries one of six labels, defined in `cost-story.
 </tr>
 <tr>
 <td>Q1 Entities and ABNs</td>
-<td>READY, SUBJECT TO JAY</td>
+<td>READY</td>
 <td>Jay: can Butterfly apply</td>
 </tr>
 <tr>
 <td>Q2 How the entities connect and funds flow</td>
-<td>READY, SUBJECT TO JAY</td>
+<td>READY</td>
 <td>Jay</td>
 </tr>
 <tr>
@@ -199,7 +199,7 @@ Every figure on every surface carries one of six labels, defined in `cost-story.
 </tr>
 <tr>
 <td>Q8 Funded activity and related entities</td>
-<td>READY, SUBJECT TO JAY</td>
+<td>READY</td>
 <td>Jay</td>
 </tr>
 <tr>
@@ -284,16 +284,16 @@ Every figure on every surface carries one of six labels, defined in `cost-story.
 </tr>
 </table>
 ### Q1. Enterprise name, contact
-**NEEDS BEN.** Enterprise name: **Goods on Country** (The Butterfly Movement Ltd, trading as Goods on Country), subject to Jay confirming the applicant route. Nicholas Marchesi has been the cohort contact since March; Jay's emails reach the team through him. Ben to decide who signs the form and to add phone and email.
+**NEEDS BEN.** Enterprise name: **Goods on Country** (The Butterfly Movement Ltd, trading as Goods on Country). Nicholas Marchesi has been the cohort contact since March; Jay's emails reach the team through him. Ben to decide who signs the form and to add phone and email.
 ### Q1. Entities related to the enterprise
-**READY, SUBJECT TO JAY.**
+**READY.**
 Applicant: **The Butterfly Movement Ltd, trading as Goods on Country.** ABN 22 155 132 684. An Australian public company limited by guarantee, registered with the ACNC as a charity since 3 December 2012 and endorsed as a deductible gift recipient since 17 January 2012. Goods on Country was registered as its business name on 23 July 2026, as part of a stewardship transition in which the charity's outgoing directors handed the entity to the Goods on Country team to become the home for this work.
 Related entity: **A Curious Tractor Pty Ltd.** ABN 36 697 347 676, ACN 697 347 676. The enterprise that entered the 2026 Catalysing Impact cohort, and the historic maker and seller of Goods products. Under a decision of 28 August 2026 the products, intellectual property, assets, contracts, making, sales, delivery, capital, governance and evidence are being transferred into Goods on Country.
 Related entity: **Nicholas Marchesi, sole trader.** ABN 21 591 780 066. The historic trading vehicle through which Goods activity was invoiced and received in FY2025-26 and earlier while the company structure was being established. Its FY26 books carry the Goods revenue carve-out.
 Dormant, no role: **A Kind Tractor Ltd.** ABN 73 669 029 341. Not used, not a DGR pathway, listed for completeness.
 Community partners, including Oonchiumpa in Alice Springs and Homeland School Company in Maningrida, are independent organisations. They are not related entities and are not subsidiaries.
 ### Q2. Which entity applies, how the entities connect, how funds flow
-**READY, SUBJECT TO JAY.** If Jay says the cohort entrant must apply, swap the first paragraph for the fallback in Part 1.7 and say plainly that the inter-entity agreement is not yet signed.
+**READY.**
 The Butterfly Movement Ltd, trading as Goods on Country, is the applicant and would receive the grant. Everything Goods sits there: the products, IP, assets, contracts, making, sales, delivery, capital, governance and evidence. It is Australian-incorporated, a registered charity, and the entity every co-funder in our strategy has invited or is considering: Tim Fairfax Family Foundation invited The Butterfly Movement to apply on 31 August 2026, Brian M. Davis Charitable Foundation invited Goods On Country on 1 September, and the Snow Foundation's grants land there. Placing the QBE grant in the same entity means one set of books, one board and one reporting line for the whole program.
 A Curious Tractor Pty Ltd connects as the enterprise that entered this cohort and as the historic maker. It was founded by Nicholas Marchesi and Benjamin Knight, who lead Goods on Country's operating team, and it is transferring the Goods products, IP and production assets into Goods on Country. Mr Marchesi's position as a director of A Curious Tractor and as the incoming operating lead of Goods on Country was noted as a conflict of interest and managed by The Butterfly Movement board at its meeting on 20 July 2026. Nicholas Marchesi, sole trader, connects as the trading vehicle whose FY2025-26 books carry the Goods activity while the company structure was established; its Goods revenue has been carved out as a workpaper for this application.
 Funds flow in one direction. Grants, gifts and DGR-eligible funding land in The Butterfly Movement Ltd and never pass through A Curious Tractor or the sole trader. Buyer orders are being moved to Goods on Country as seller of record during the transition; where an order was invoiced from the historic vehicle, that is disclosed on the invoice record. No grant money flows from the applicant to a related entity. The transfer of production equipment from the founders' historic vehicles into Goods on Country is being documented, and until it completes Goods on Country uses that equipment under an inter-entity arrangement that is being formalised with legal advice.
@@ -301,7 +301,7 @@ Capital raised elsewhere supports the enterprise in two ways. The Real Innovatio
 ### Q3. Structure diagram
 **READY.** Attach diagram 01, "The entity, and how the money moves". It shows the three entities in a dated line, the one home, the money doors, and the five community partners drawn as independent organisations with their own boards.
 ### Q4. Directors of every entity
-**NEEDS BEN, NEEDS ELOISE.** Names must come from the ASIC and ACNC registers, not from memory, because the form exists to run them against the banned and disqualified register. What the record supports today:
+**READY (Ben, 5 September). Eloise attaches the ASIC extract.** Names must come from the ASIC and ACNC registers, not from memory, because the form exists to run them against the banned and disqualified register. What the record supports today:
 - **The Butterfly Movement Ltd.** Kristy Bloomfield, Audrey Deemal and Jeremy Donovan (Ben, 3 September 2026). Kristy and Audrey were minuted as appointed to casual vacancies at the 20 July 2026 board meeting. Eloise to confirm the ASIC extract shows the same three, and whether any TABOO-period director remains on the register until the AGM on 14 September; if so, list them too.
 - **A Curious Tractor Pty Ltd.** Benjamin Knight and Nicholas Marchesi OAM, per the ACT core facts record. Confirm against the ASIC extract.
 - **Nicholas Marchesi, sole trader.** Not a company; Nicholas Marchesi.
@@ -323,7 +323,7 @@ What the grant changes beyond unlocking other money. The first two communities h
 **READY.** `250000`
 With $250,000 we would buy 333 beds: the first community's pool, whole, and a start on the second. The community still sets its give and sell mix, the sales money still stays local, and the first fifty beds still go through our own press so the cost of a locally made bed gets measured. What changes is that the second community waits longer for the rest of its pool. Every dollar between $250,000 and $400,000 buys beds at the same ratio, one bed for $750.
 ### Q8. How the funded activity touches related entities
-**READY, SUBJECT TO JAY.**
+**READY.**
 All funded activity sits in the applicant. Goods on Country buys the beds, agrees the rules with each community, runs the measured run, keeps the register and the product passport, and reports.
 One funded activity depends on equipment held by a related entity during the transition. The press, shredder and CNC router at our production facility were bought by the founders through the sole trader and A Curious Tractor and are being transferred to Goods on Country. Until that transfer completes, the measured run uses them under the inter-entity arrangement described in Q2. No payment flows to a related entity for their use.
 Two kinds of organisation are involved in delivering funded activity and neither is a related entity. Community partners deliver assembly, delivery and local decision-making under their pool rules, and benefit directly by design: that is the point of the program. Defy Design, a Sydney recycled-plastic manufacturer, supplies bed kits and shredded plastic as an ordinary supplier at arm's length. No related entity benefits from the grant, directly or indirectly, beyond the transfer of assets into the applicant that is already under way.

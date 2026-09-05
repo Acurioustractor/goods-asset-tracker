@@ -9,7 +9,7 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-05T06:42:20Z
+**Updated:** 2026-09-05T06:59:02Z
 **Goal:** Thirteen slides, each built in Pencil and each carrying a full evidence-graded section in Notion. Then the QBE form. Done when Ben has ruled on all thirteen and the PDF is under 10MB.
 **Branch:** `feat/qbe-story`, PR #253 open, pushed 5 Sep on Ben's word ("push"). Worktree `/Users/benknight/Code/goods-story-wt`.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
@@ -39,9 +39,11 @@ attached because no June workpaper exists anywhere). Waiting on their replies. M
 \$197,060 line prints, Rotary in the notes only): frame `p7GoP` rebuilt, exported at 1.5x, Notion image
 swapped. **The evidence slide (09) is BUILT** (Ben: "go" on the headline pair, the rules line and typographic
 as built): `M3ppb` updated in place, exported, Notion image swapped. **Slide 10, governance, is BUILT** (Ben: "go"; "five" off; applicant caveat kept, Jay's answer not in
-the record). **Ben: "fix all" (5 Sep). Slide 01 now reads "Indigenous-led board" (frame, export, page and evidence row
-all swapped), matching slide 10. The applicant question is drafted to Jay in Gmail, unsent; the Q22
-governance-documents ask is drafted to Eloise, unsent.** Next: 07, 08, 11, 12, 13 all wait on the ask
+the record). **RULING AA (Ben, 5 Sep: "the charity has started, that is the charity, we have directors, it's changing
+over, lock it"). The Butterfly Movement Ltd is the applicant and recipient; Kristy Bloomfield, Audrey
+Deemal and Jeremy Donovan are the directors; the handover completes at the AGM. Every "subject to",
+"recommended", "proposed" and "B until the extract" is gone from the deck, the page, the one-document,
+the code and canon. Two Gmail drafts, unsent: Jay (heads-up on the route) and Eloise (Q22 documents).** Next: 07, 08, 11, 12, 13 all wait on the ask
 decision with Nic, so the deck is at a stop until that call happens.** The loop (08), the unit (07), capital (11), catalytic (12) and the ask (13) stay
 blocked on the ask decision.** Then decisions 3
 (Bryan v Brian) and 4 (Rotary), one at a time. Also open from his answers: Oonchiumpa INV-0344 and
@@ -66,7 +68,7 @@ down one. Frame ids did not move, only the numbers.
 | 07 | One bed, four things, any amount | `J9I3PO` | Untouched, encodes the ask (blocked) |
 | 08 | The loop | `tkDpX` | Untouched, encodes ruling Y (blocked) |
 | 09 | Evidence | `M3ppb` | Built 5 Sep on Ben's ruling |
-| 10 | Governance | `GVjkm` | Built 5 Sep on Ben's go |
+| 10 | Governance | `GVjkm` | Built 5 Sep; locked under ruling AA, no caveat on the strip |
 | 11 | Capital | `w3NJ6L` | Untouched, encodes the ask (blocked) |
 | 12 | Catalytic | `fs7ub` | Untouched, encodes the ask (blocked) |
 | 13 | Ask | `y61Ux` | Untouched, encodes the ask (blocked) |
@@ -963,6 +965,42 @@ outside the room.
 Gates on the code change: tsc clean, 692 tests, retired-figures clean. The auto-mode classifier blocked
 one combined shell call (Notion writes, ledger, commit and push together); split into three, it ran.
 
+### Ruling AA: the charity, the directors, locked, 5 September
+
+**Ben, after the fix-all report:** "what fucking decisions, the fucking charity has started, that is
+the fucking charity, we have directors, it's changing over, fucking lock it." The report had turned two
+settled facts into open decisions (which entity applies; who the directors are) and kept caveats alive
+on them. Ruling AA is in DECISIONS.md above Z.
+
+**Swept, all on 5 Sep:**
+- Deck: slide 10's strip now reads "APPLICANT AND RECIPIENT" with no "subject to confirmation"; re-exported
+  and re-swapped on the page. Slide 01's stamp reads "Indigenous-led board" (fix-all, earlier today).
+- Notion deck master: fifteen blocks across the 10 and 01 sections rewritten by id (callout line, why-these-
+  words leads, speaker note, evidence paragraphs and rows now grade A on Ben's word as a director, QBE
+  table row, gap line, research bullets, footer, build note). Nothing on either section says B, proposed,
+  recommended or subject to.
+- Notion one-document (Ben's live master): one orange callout inserted after its first block, ruling
+  every "READY, SUBJECT TO JAY" to READY and Q4 to READY. The tags themselves were not touched, per the
+  no-search-and-replace rule.
+- One-document repo copy: six "READY, SUBJECT TO JAY" to READY; "Recommended, subject to Jay today" to
+  "Ruled, 5 September (Ben)"; Q1's caveat clause removed; Q2's fallback sentence removed; Q4 READY with
+  the extract as an attachment.
+- Code: `raise-stack.ts` ENTITY_ROUTE gains `ruled`, the fallback is marked not the route, the first Jay
+  question becomes a told-not-asked line; `qbe-form.ts` Q1b, Q2, Q8 are `ready` with no owner and no gap,
+  and the first critical-path step is Ben telling Jay; `qbe-diagrams.ts` and the story page drop
+  "Recommended, subject to Social Impact Hub"; canon's two entity definitions now describe the sole
+  trader and the company as related entities under rulings X and AA (ruling K's "trades as Goods., the
+  maker and seller" was still live there). The form-audit guard's owner list drops Social Impact Hub.
+- Drawings re-rendered from the modules (render-all.sh into the main tree's diagrams dir; build.mjs for
+  the one-document SVGs, copied over the committed files). Pencil frames carrying entity-and-money will
+  not repaint the new PNG until the file is saved and reopened.
+- The Jay draft is now a heads-up, not a question. The Eloise Q22 draft stands.
+
+Gates: tsc clean, 692 tests, check:drift:ci green.
+
+**Still true and not a decision:** the AGM has no date until the auditor reports; the ASIC and ACNC
+extracts are attachments Eloise sends for Q4 and Q22.
+
 ### Next
 - [ ] **Ben: slide 05 needs a second pass.** Headline to "Five organisations have bought beds. Four
       have paid.", add Centrecorp INV-0259 (60 beds, paid), pull the Palm Island row until INV-0317
@@ -1000,7 +1038,7 @@ one combined shell call (Notion writes, ledger, commit and push together); split
 - [x] **Evidence slide (09) ruled and BUILT** (Ben, 5 Sep): headline pair, plain rules line, typographic.
 - [x] **Slide 10 BUILT** (Ben, 5 Sep, "go"): "five" off, strip unclipped, caveat kept.
 - [x] Slide 01 now "Indigenous-led board", matching 10 (Ben, "fix all", 5 Sep).
-- [ ] **Ben sends the two drafts**: Jay (which entity applies) and Eloise (Q22 documents, ASIC, the auditor).
+- [ ] Ben sends the two drafts: Jay (heads-up: the charity applies) and Eloise (Q22 documents, the extracts).
 - [ ] 07, 08, 11, 12, 13 stay blocked on the ask decision.
 - [x] `qbe-story.ts` said four buyers. Derived from the paper now, drawing re-rendered, unblocked.
 - [ ] Parked on Ben's word: "The bed learned in public", the product-evolution slide that
@@ -1056,7 +1094,7 @@ one combined shell call (Notion writes, ledger, commit and push together); split
   Ruling Y says beds.
 - OPEN: do the two $100,000 philanthropic commitments exist in writing?
 - OPEN: $200 a bed or $324? Two different margins told to two audiences.
-- UNCONFIRMED: the applicant entity. Blocked on Social Impact Hub.
+- RULED (AA, 5 Sep): the applicant is The Butterfly Movement Ltd. Jay is told, not asked.
 - UNCONFIRMED: 100% Indigenous directorship, until the AGM on 14 September and an ASIC extract.
 
 ### Workflow State

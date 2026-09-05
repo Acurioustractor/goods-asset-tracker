@@ -633,7 +633,7 @@ export function QbeStory({ audience }: { audience: StoryAudience }) {
         {working ? (
           <div className="grid gap-8 lg:grid-cols-2">
             <div className="rounded-md border-2 border-goods-terracotta bg-white p-6">
-              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-goods-terracotta">Recommended, subject to Social Impact Hub</p>
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-goods-terracotta">Ruled 5 September 2026</p>
               <p className="goods-pitch-display mt-2 text-2xl">{ENTITY_ROUTE.recommended.applicant} applies and receives</p>
               <p className="mt-3 text-sm leading-6">{ENTITY_ROUTE.recommended.why}</p>
               <ul className="mt-3 space-y-1 text-sm leading-6 text-goods-sub">

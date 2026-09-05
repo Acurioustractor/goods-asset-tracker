@@ -184,7 +184,7 @@ export function entityAndMoney(audience: StoryAudience): string {
   b += text(cx + 20 + PROGRAM.pools * 40 + 6, hy + hh - 23, `× ${POOL.beds} beds each`, { size: 12, font: F.mono, fill: C.mute });
 
   return frame({
-    page: working ? 'Form Q2, Q3, Q8. Recommended route, subject to Social Impact Hub' : 'Where the money lands',
+    page: working ? 'Form Q2, Q3, Q8. The route, ruled 5 September 2026' : 'Where the money lands',
     title: 'The entity, and how the money moves',
     sub: working
       ? 'Three entities in a dated line, one home for the work, and five community partners who make the local decisions. Every external dollar lands in the charity.'

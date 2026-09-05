@@ -514,7 +514,8 @@ describe('the form audit', () => {
       expect(step.unblocks.length, step.what).toBeGreaterThan(0);
       for (const u of step.unblocks) expect(ids.has(u), u).toBe(true);
     }
-    for (const owner of ['Ben', 'Eloise', 'Social Impact Hub'] as const) {
+    // Ruling AA (5 Sep 2026) locked the applicant, so Social Impact Hub owns no open question any more.
+    for (const owner of ['Ben', 'Eloise'] as const) {
       expect(questionsFor(owner).length, owner).toBeGreaterThan(0);
       expect(CRITICAL_PATH.some((s) => s.owner === owner), owner).toBe(true);
     }

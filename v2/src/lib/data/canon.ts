@@ -247,17 +247,17 @@ export const CANON: CanonFact[] = [
     id: 'entity-operating-now', label: 'Current operating entity', value: 'Nicholas Marchesi (sole trader), ABN 21 591 780 066',
     domain: 'governance', claimLabel: 'verified', dataClass: 'green',
     source: 'wiki/outputs/2026-05-29-qbe-area-09-legal-structure-full-review.md + grant-content.ts orgIdentity', check: 'manual', asAt: '2026-05-29', owner: 'Ben/Nic',
-    definition: 'Goods trades, invoices and contracts through this sole trader today, during migration to the company. The migration starting point, not the destination.',
+    definition: 'The historic trading vehicle. Goods traded, invoiced and contracted through this sole trader until the move into Goods on Country (ruling X, 28 Aug 2026), and its books carry FY26. Disclosed as a related entity on the QBE form (ruling AA, 5 Sep 2026).',
     reconcilesWith: ['entity-trading-goforward'],
   },
   {
-    // RULING K 2026-07-25. The `value` deliberately carries NO trading name: the company holds
-    // no registered business names at all, so asserting one in a canon value is the exact
-    // defect this ruling fixed. The trading-as-Goods. fact lives in the definition instead.
+    // RULING K 2026-07-25: the `value` carries NO trading name, because the company holds none.
+    // RULING X (28 Aug) retired "Goods." as a current operating layer and RULING AA (5 Sep 2026)
+    // locked the charity as the applicant and home; the company is a disclosed related entity.
     id: 'entity-trading-goforward', label: 'Go-forward trading entity', value: 'A Curious Tractor Pty Ltd, ACN 697 347 676 / ABN 36 697 347 676',
     domain: 'governance', claimLabel: 'verified', dataClass: 'green',
     source: 'grant-content.ts orgIdentity (ABN confirmed 2026-05-29, registered 21 Apr 2026); area-09 review', check: 'manual', asAt: '2026-05-29', owner: 'Ben/Nic',
-    definition: 'Confirmed go-forward trading company; all operations migrate to it in FY2026-27. It trades as Goods., the maker and seller, and holds NO registered business names (ABN Lookup, checked 2026-07-25). "Goods on Country" is a business name of The Butterfly Movement Ltd, the charity, registered 23 Jul 2026, NOT of this company (Ben ruling 2026-07-25, DECISIONS.md ruling K). The two are different things and conflating them has reached funder documents. Open and with MinterEllison: the shop\'s seller of record, since beds are sold by the company on a domain named for the charity. Do not present the migration as finished externally.',
+    definition: 'The cohort entrant and historic maker (registered 21 Apr 2026), disclosed on the QBE form as the related entity transferring its assets into Goods on Country (rulings X and AA). It holds NO registered business names (ABN Lookup, checked 2026-07-25). "Goods on Country" is a business name of The Butterfly Movement Ltd, the charity, registered 23 Jul 2026, NOT of this company (Ben ruling 2026-07-25, DECISIONS.md ruling K). The two are different things and conflating them has reached funder documents. Open and with MinterEllison: the shop\'s seller of record, since beds are sold by the company on a domain named for the charity. Do not present the migration as finished externally.',
   },
   {
     id: 'entity-dgr-home', label: 'Charity / DGR home', value: 'The Butterfly Movement Ltd, ABN 22 155 132 684',

@@ -21,6 +21,27 @@
 
 ## 2026-09-03 — the QBE ask
 
+### AA. The charity is the applicant and the home. The directors are the directors. Locked.
+
+**Ben, 5 September 2026, in full:** "the charity has started, that is the charity, we have directors,
+it's changing over, lock it."
+
+**What is locked.** The Butterfly Movement Ltd, trading as Goods on Country, is the QBE Stage 2
+applicant and recipient and the home of the work (ruling X). Its directors are Kristy Bloomfield,
+Audrey Deemal and Jeremy Donovan; the handover from the previous board is in progress and completes
+at the AGM. A Curious Tractor Pty Ltd is the cohort entrant and the related entity transferring its
+assets; Nicholas Marchesi, sole trader, is the historic trading vehicle whose books carry FY26.
+
+**What that removes.** "Subject to confirmation with Social Impact Hub", "recommended route",
+"subject to Jay", "proposed applicant" and "grade B until the ASIC extract" come off every surface:
+the deck (slides 01 and 10), the Notion deck master, the one-document, `raise-stack.ts`,
+`qbe-form.ts`, `qbe-diagrams.ts`, the story page and canon's entity definitions. Jay is told the
+route, not asked. The ASIC and ACNC extracts are attachments for Q4 and Q22, not gates on saying
+who the directors are.
+
+**What stays.** The AGM has no date until the auditor reports (board secretary, 1 September). The
+stated aim of full Indigenous directorship stays on the drawing, and ownership stays a pathway.
+
 ### Z. Centrecorp is a buyer in the funding-received composition.
 
 **Ben, 5 September 2026: "buyer."** Centrecorp Foundation's $123,332 inside funding received is two

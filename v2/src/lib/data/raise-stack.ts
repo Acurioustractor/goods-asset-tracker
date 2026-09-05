@@ -374,9 +374,11 @@ export const QBE_ASK = {
 } as const;
 
 // ---------------------------------------------------------------------------
-// The entity route (form Q1, Q2, Q3, Q8), subject to Jay on 3 Sep
+// The entity route (form Q1, Q2, Q3, Q8). RULED by Ben on 5 Sep 2026 (DECISIONS.md ruling AA): the
+// charity applies and receives. Jay is told, not asked.
 
 export const ENTITY_ROUTE = {
+  ruled: 'Ben, 5 September 2026: The Butterfly Movement Ltd, trading as Goods on Country, is the applicant and recipient. Locked. The ASIC and ACNC extracts are attachments, not gates.',
   recommended: {
     applicant: 'The Butterfly Movement Ltd (Goods on Country)',
     abn: '22 155 132 684',
@@ -389,7 +391,7 @@ export const ENTITY_ROUTE = {
   },
   fallback: {
     applicant: 'A Curious Tractor Pty Ltd',
-    why: 'If Jay says the cohort entrant must apply. The grant lands in the company and the external commitments land in the charity, so Q2 and Q8 rest on the inter-entity agreement, which is unsigned. Needs MinterEllison and a signature before 13 Nov. Weaker, and said so.',
+    why: 'Not the route (ruling AA, 5 Sep 2026); kept as the record of what was weighed. If the cohort entrant had to apply, the grant would land in the company and the external commitments land in the charity, so Q2 and Q8 rest on the inter-entity agreement, which is unsigned. Needs MinterEllison and a signature before 13 Nov. Weaker, and said so.',
   },
   tradingFacts:
     'Beds are sold at $750 to buyers; ALIVE paid for 100 up front; Centrecorp has a 130-bed quote open; a repayable equipment raise follows the measured run.',
@@ -399,7 +401,7 @@ export const ENTITY_ROUTE = {
 // The questions only people can answer
 
 export const JAY_QUESTIONS: readonly string[] = [
-  'Can The Butterfly Movement Ltd (Goods on Country) be the applicant and recipient, given the cohort entrant was A Curious Tractor and the operating home has moved?',
+  'Told, not asked (ruling AA, 5 Sep): The Butterfly Movement Ltd (Goods on Country) is the applicant and recipient; A Curious Tractor, the cohort entrant, is disclosed as the related entity transferring its assets.',
   'Do written invitations to apply for a named amount, with callable contacts and boards deciding after 13 November, count as conditional commitments, and can the pre-condition window extend to those board dates?',
   'Does a letter subject to board or credit approval count?',
   'What must the accountant\'s letter cover: the applicant, the carve-out, or both?',
