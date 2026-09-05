@@ -128,8 +128,8 @@ share about 62%).
   visible. Proposal is in slide 04's research section.
 - Ben has not formally ruled on slides 02 to 06.
 
-**Branch state.** `feat/qbe-story` in `/Users/benknight/Code/goods-story-wt`, **11 commits ahead
-of origin and NOT pushed.** Two predate this session (`53b7193` the Kalgoorlie fix, `07af900` slides
+**Branch state.** `feat/qbe-story` in `/Users/benknight/Code/goods-story-wt`, **pushed 5 Sep on
+Ben's word; merge #253 only on his explicit word.** Before the push it was eighteen commits ahead. Two predate this session (`53b7193` the Kalgoorlie fix, `07af900` slides
 01 to 06). Six are the money work: `08f3acb` buyers derived from the paper · `574ca86` money lanes ·
 `cddf5ed` INV-0317 retired · `b2a0052` receivables $82,500 · `6de744a` revenue $785,111 · `22e839d`
 these prompts. Second session, 5 Sep: `cc45164` the Xero re-check of decision 1, then the

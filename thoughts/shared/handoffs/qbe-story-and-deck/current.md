@@ -11,7 +11,7 @@ status: active
 <!-- This section is extracted by SessionStart hook for quick resume -->
 **Updated:** 2026-09-05T04:27:32Z
 **Goal:** Thirteen slides, each built in Pencil and each carrying a full evidence-graded section in Notion. Then the QBE form. Done when Ben has ruled on all thirteen and the PDF is under 10MB.
-**Branch:** `feat/qbe-story`, PR #253 open, **11 commits ahead of origin and NOT pushed** (push is Tier 2, Ben's word). Worktree `/Users/benknight/Code/goods-story-wt`.
+**Branch:** `feat/qbe-story`, PR #253 open, pushed 5 Sep on Ben's word ("push"). Worktree `/Users/benknight/Code/goods-story-wt`.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
 **Map:** GitHub issue #236. **The Notion deck master is the working surface, not this file:**
 `https://app.notion.com/p/3d1ebcf981cf817598d8f15ee4f89c32`
@@ -31,7 +31,7 @@ everything Goods moves into Butterfly; "FY26 net loss" is now a guarded retired 
 Brian M. Davis (Ben, 5 Sep), nothing moves. Rotary (4) is a standing instruction, not a decision. Oonchiumpa RULED:
 both receipts out, \$901,311 is fully current. Centrecorp RULED a buyer
 (ruling Z): commercial and buyer receipts \$344,981, grant share about 62%, total unchanged. **Every
-money decision is closed.** Waiting on Ben: SEND the two Gmail drafts, and the word to push.** Then decisions 3
+money decision is closed.** Pushed 5 Sep on Ben's word. Waiting on Ben: SEND the two Gmail drafts; merge #253 only on his word.** Then decisions 3
 (Bryan v Brian) and 4 (Rotary), one at a time. Also open from his answers: Oonchiumpa INV-0344 and
 INV-0346, and Centrecorp as buyer or philanthropy in the funding-received composition.
 
@@ -789,8 +789,8 @@ only be swept by hand (percentages are invisible to the retired-figures regex, n
 carries no split, but the Notion Q4/Q20 answers may. Grep it for "75%" and "679" before the form goes in.
 
 **With that, every decision in the money thread is closed.** Open and waiting on Ben: send the two
-Gmail drafts (attach the June workpaper to the Standard Ledger one), and the word to push
-`feat/qbe-story`, which sits well ahead of origin with PR #253 open.
+Gmail drafts (attach the June workpaper to the Standard Ledger one), and then merge #253 on
+his explicit word (pushed 5 Sep, CI to confirm).
 
 ### Next
 - [ ] **Ben: slide 05 needs a second pass.** Headline to "Five organisations have bought beds. Four
