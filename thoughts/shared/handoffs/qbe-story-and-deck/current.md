@@ -38,7 +38,9 @@ attached because no June workpaper exists anywhere). Waiting on their replies. M
 **Slide 05 is BUILT** (Ben ruled 5 Sep: headline "Four organisations have paid for beds", the 320 beds and
 \$197,060 line prints, Rotary in the notes only): frame `p7GoP` rebuilt, exported at 1.5x, Notion image
 swapped. **The evidence slide (09) is BUILT** (Ben: "go" on the headline pair, the rules line and typographic
-as built): `M3ppb` updated in place, exported, Notion image swapped. Next open slide is 10, governance. The loop (08), the unit (07), capital (11), catalytic (12) and the ask (13) stay
+as built): `M3ppb` updated in place, exported, Notion image swapped. **Slide 10, governance, has its copy rewritten in Notion and WAITS ON BEN** (three calls: "five" off;
+slide 01's "100% Indigenous Directors" against this slide's "the aim is full Indigenous directorship";
+whether Jay confirmed Butterfly as applicant on 3 Sep). `GVjkm` untouched.** The loop (08), the unit (07), capital (11), catalytic (12) and the ask (13) stay
 blocked on the ask decision.** Then decisions 3
 (Bryan v Brian) and 4 (Rotary), one at a time. Also open from his answers: Oonchiumpa INV-0344 and
 INV-0346, and Centrecorp as buyer or philanthropy in the funding-received composition.
