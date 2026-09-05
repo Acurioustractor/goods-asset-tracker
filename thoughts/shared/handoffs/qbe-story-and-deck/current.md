@@ -9,7 +9,7 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-05T05:08:52Z
+**Updated:** 2026-09-05T05:53:36Z
 **Goal:** Thirteen slides, each built in Pencil and each carrying a full evidence-graded section in Notion. Then the QBE form. Done when Ben has ruled on all thirteen and the PDF is under 10MB.
 **Branch:** `feat/qbe-story`, PR #253 open, pushed 5 Sep on Ben's word ("push"). Worktree `/Users/benknight/Code/goods-story-wt`.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
@@ -34,7 +34,9 @@ both receipts out, \$901,311 is fully current. Centrecorp RULED a buyer
 money decision is closed.** Pushed 5 Sep on Ben's word. **Both asks SENT 5 Sep on Ben's word ("send")**: Eloise (Butterfly FY26
 statements) and Standard Ledger (the FY26 Goods carve-out on letterhead, signed, with a fresh Xero cut
 attached because no June workpaper exists anywhere). Waiting on their replies. Merge #253 only on his word.
-**Ben's next instruction: "move onto the important relevant part of this work", the deck.** Then decisions 3
+**Ben's next instruction: "move onto the important relevant part of this work", the deck.
+Slide 05's copy is rewritten in Notion (four organisations, 320 beds, \$197,060 ex GST, every invoice paid)
+and WAITING ON BEN before the Pencil build.** Slide 07 stays blocked on the ask decision. Then decisions 3
 (Bryan v Brian) and 4 (Rotary), one at a time. Also open from his answers: Oonchiumpa INV-0344 and
 INV-0346, and Centrecorp as buyer or philanthropy in the funding-received composition.
 
@@ -822,6 +824,39 @@ basis problem on top of being unsigned. Do not print it anywhere new until the a
 where it already prints, the workpaper label stands (ruling H). `revenue-xero-paid` (\$650,910.79, "ACT-GD
 receivables paid") is in the same email as a scope question.
 
+### Slide 05, copy rewritten in Notion from the module, 5 September
+
+**Why 05.** Ben said "move onto the important relevant part of this work". 07 is blocked on the ask
+decision, and 05 was the one built slide saying something the paper contradicts: "Six organisations
+have paid for beds", with Palm Island (INV-0317, never issued) and Rotary (INV-0222, bad debt) as rows.
+
+**What the module says, and what is now on the page.** `buyingStoryLine('working')`: four organisations,
+320 beds, four paid, 130 on an open quote. The deck renders the working audience, so Mala'la (a
+`working: true` row, 13 beds) is on the slide; the public variant says three and 307. The Notion section
+under "Slide-by-slide build brief" now carries: heading "05 · Four organisations have paid for beds";
+the callout with ten lines (headline, "every buyer on a paid invoice, 320 beds sold, \$197,060 ex GST",
+540 delivered, five buyer rows with invoice numbers, the open quote, a sources line); Why these words
+(six leads: four because the paper says four; Centrecorp's sixty go on; Rotary to the notes; the bed
+money printed and the \$273,966 whole-document figure kept off; ALIVE is July at \$800 a bed; every
+figure grade A); speaker notes with the three "if asked" lines (the \$82,500 on the balance sheet, demand
+beyond the invoices, which community sells first); the evidence block and an eight-row grade table, all
+A; the QBE table with columns two and three rewritten against the form's own wording; visual options
+corrected (six rows, the who-buys drawing usable again, Palm Island photo demoted to reserve); two
+research bullets recording the Rotary and Palm Island rulings; both build notes.
+
+**Decisions for Ben, in the reply:** the headline wording; whether "320 beds sold, \$197,060 ex GST"
+prints on the slide; Rotary off the slide and in the notes.
+
+**Not done, deliberately.** The Pencil frame `p7GoP` is untouched and the image on the page is still the
+six-row export. Build after Ben rules: six rows by Copy, the second figure under the 540, export, swap.
+
+**Two findings.** The older "04 · Buyers, rebuilt" pass (the "Drag into slide 4" section that said six)
+was already archived when the sweep reached it; somebody, most likely Ben, deleted it. The 4 September
+"Copy pass, all twelve" entry for 04 · Buyers still says "Four organisations have bought beds on
+invoices. Two more places have asked for beds", which is accidentally right on the count and wrong on
+the two places (Tennant Creek and Mparntwe came off); left as a dated pass. And `ntn api` write calls
+hang unless stdin is closed, and reject `after` on append-children; both are in the skill now.
+
 ### Next
 - [ ] **Ben: slide 05 needs a second pass.** Headline to "Five organisations have bought beds. Four
       have paid.", add Centrecorp INV-0259 (60 beds, paid), pull the Palm Island row until INV-0317
@@ -853,7 +888,9 @@ receivables paid") is in the same email as a scope question.
 - [x] **"Bryan Foundation incoming" = Brian M. Davis (Ben, 5 Sep).** Lanes already right; nothing moved.
 - [ ] **Tell Nic the two $100,000 "commitments" are invitations to apply.** The QBE form scores
       leverage, and the deck's $0 signed is correct.
-- [ ] Ben rules on 02, 03, 04, 05 and 06, all built and on the page.
+- [ ] Ben rules on 02, 03, 04 and 06, all built and on the page.
+- [ ] **Ben rules on slide 05's rewritten copy** (four organisations; the \$197,060 line; Rotary in the notes).
+      Then the Pencil build of `p7GoP`, export, image swap.
 - [x] `qbe-story.ts` said four buyers. Derived from the paper now, drawing re-rendered, unblocked.
 - [ ] Parked on Ben's word: "The bed learned in public", the product-evolution slide that
       would make the 363 Basket Beds visible. Proposal sits in slide 4's research section.
