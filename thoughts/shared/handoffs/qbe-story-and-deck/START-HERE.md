@@ -74,10 +74,10 @@ must not be added. Do not invent a number outside that module.
 
 Decisions waiting on me. Put them to me one at a time, with what changes if I
 say yes:
-1. DONE 5 Sep, ruled yes: the carve-out re-pull. Two Gmail drafts wait on my send,
-   Standard Ledger (carve-out signed, ACT FY26 P&L and balance sheet, ACT-GD scope;
-   ATTACH THE JUNE WORKPAPER FIRST) and Eloise (Butterfly FY26 P&L, balance sheet,
-   cashflow). Nothing in code moves until the accountant's letter lands.
+1. DONE 5 Sep, ruled yes and SENT: the carve-out ask to Standard Ledger (with a fresh Xero
+   cut attached; no June workpaper exists and the $713,827 does not reproduce from its own
+   customer list) and the Butterfly statements ask to Eloise. Nothing in code moves until
+   the accountant's letter lands.
 2. DONE 5 Sep, ruled and swept: the FY26 sentence. Net profit of about $168K before
    founder wages, no surplus claimed, everything moves into the charity. "FY26 net loss"
    is a guarded retired phrase now.
@@ -114,8 +114,8 @@ Recall surface: `deliverables/qbe-stage2/diagrams/08-money-lanes.svg`.
   Brian M. Davis up to $100,000, board 19 November. **Nic told the mentor these were commitments.
   Somebody has to correct that**, because the QBE form scores leverage.
 
-**Open and mine to fix once the accountant's letter lands:** the carve-out copies (Ben said yes on
-5 Sep; two Gmail drafts wait on his send). **Done 5 Sep, all of it:** ALIVE and Julalikari in ($901,311,
+**Open and mine to fix once the accountant's letter lands:** the carve-out copies (both asks sent
+5 Sep on Ben's word; waiting on Standard Ledger and Eloise). **Done 5 Sep, all of it:** ALIVE and Julalikari in ($901,311,
 fully current), Oonchiumpa out, the FY26 sentence swept, Bryan is Brian, Centrecorp a buyer (grant
 share about 62%).
 
