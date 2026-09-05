@@ -165,7 +165,7 @@ export const FAQ: readonly FaqEntry[] = [
   {
     id: 'which-entity',
     question: 'Which entity applies to QBE and receives the grant?',
-    answer: `Our recommendation is The Butterfly Movement Ltd, trading as Goods on Country. Everything we do sits there since 28 August, and every funder's money already lands there. A Curious Tractor entered the cohort in March and is the historic maker, moving its assets across. If the program says the cohort entrant must apply, A Curious Tractor applies and the answer rests on the agreement between the two, which is not yet signed. That is weaker, and we say so.`,
+    answer: `The Butterfly Movement Ltd, trading as Goods on Country, applies and receives. Everything we do sits there since 28 August, and every funder's money already lands there. A Curious Tractor entered the cohort in March and is the historic maker, moving its assets across; it is disclosed as a related entity. Ruled 5 September.`,
     working: true,
     status: 'open',
     askedBy: 'The program team, form Q1, Q2, Q8; asked of Social Impact Hub on 3 September',

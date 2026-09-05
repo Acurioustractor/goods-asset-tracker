@@ -697,7 +697,7 @@ export const investmentCase = {
     {
       risk: 'Governance',
       detail: 'Legal or board structure lags investor needs. Medium likelihood, high consequence.',
-      mitigation: 'Advisory committee in place today; QBE, SIH and legal counsel are helping pick the minimum viable structure once the entity decision lands (~end July 2026).',
+      mitigation: 'The entity is settled: Goods on Country runs through The Butterfly Movement Ltd, a registered charity with DGR (rulings X and AA, 2026). Directors Kristy Bloomfield, Audrey Deemal and Jeremy Donovan; an eleven-member advisory committee alongside, advising and not governing.',
     },
     {
       risk: 'Community ownership',

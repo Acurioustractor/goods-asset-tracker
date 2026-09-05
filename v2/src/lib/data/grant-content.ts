@@ -16,13 +16,12 @@ import { NORTH_STAR } from './content';
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const orgIdentity = {
-  // ── Entity structure confirmed by Ben 2026-05-29 (canonical: memory goods-entity-structure) ──
-  // CURRENT operating entity: Nicholas Marchesi (sole trader), ABN 21 591 780 066.
-  // GO-FORWARD trading/operating company (migrating ALL to it this FY, FY2026-27):
-  //   A Curious Tractor Pty Ltd, ACN 697 347 676, trading as Goods. (the maker and seller).
-  //   RULING K 2026-07-25: NOT "trading as Goods on Country". That business name is registered
-  //   to The Butterfly Movement Ltd from 23 Jul 2026; this company holds no business names.
-  // CHARITY / DGR home (operational from FY2026-27): The Butterfly Movement Ltd (ACNC, Item 1 DGR).
+  // ── Entity structure (rulings X, 28 Aug 2026, and AA, 5 Sep 2026; DECISIONS.md) ──
+  // THE HOME, APPLICANT AND DGR VEHICLE: The Butterfly Movement Ltd, ABN 22 155 132 684, trading as
+  //   Goods on Country (business name registered 23 Jul 2026). Charity since 2012, DGR Item 1.
+  // RELATED: A Curious Tractor Pty Ltd, ACN 697 347 676, the cohort entrant and historic maker,
+  //   transferring its assets in. Holds no business names (ruling K).
+  // HISTORIC TRADING VEHICLE: Nicholas Marchesi (sole trader), ABN 21 591 780 066; books carry FY26.
   // A Kind Tractor Ltd (ABN 73 669 029 341) is DORMANT and NOT used — do not cite it.
   // ⚠️ Per grant, confirm with the accountant which entity is the applicant/contracting party
   //    (current sole trader vs the Pty Ltd once migrated).
@@ -236,10 +235,10 @@ export const grantAnswers = {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const eligibility = [
-  'Trading entity: A Curious Tractor Pty Ltd, ACN 697 347 676 (trading as Goods., the maker and seller). "Goods on Country" is a registered business name of The Butterfly Movement Ltd, the charity.',
-  'Charitable / DGR home: The Butterfly Movement Ltd (ACNC, Item 1 DGR) — operational from FY2026-27',
-  'Current operating entity during migration: Nicholas Marchesi (sole trader), ABN 21 591 780 066',
-  '⚠️ Confirm the applicant/contracting entity with the accountant before submitting any application',
+  'Applicant, recipient and home: The Butterfly Movement Ltd, ABN 22 155 132 684, trading as Goods on Country. ACNC charity since 2012, DGR Item 1 (ruling AA, 5 Sep 2026).',
+  'Related entity, disclosed: A Curious Tractor Pty Ltd, ACN 697 347 676, the cohort entrant and historic maker, transferring its assets in (ruling X). Holds no business names.',
+  'Historic trading vehicle, disclosed: Nicholas Marchesi (sole trader), ABN 21 591 780 066; its books carry FY26.',
+  'Directors of the applicant: Kristy Bloomfield, Audrey Deemal, Jeremy Donovan. The handover from the previous board completes at the AGM.',
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────

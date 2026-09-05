@@ -150,7 +150,7 @@ credibility.**
 Three cost centres, not two:
 
 1. **Network block** (~$109,500/yr today). Design, quality, training, back office, field travel.
-   Amortises across sites. This is what Goods. is for after a handover. The DEWR budget already
+   Amortises across sites. This is what Goods on Country is for after a handover. The DEWR budget already
    pays into it: the "ACT: machinery plus Trainer/WHS" line, $63,333/yr, is **revenue** to Goods.,
    not a cost. No model shows that yet.
 2. **Site production block.** Carried by bed sales. See §4.

@@ -77,7 +77,7 @@ max_retries: 3
 - resource_allocation: aggressive
 
 #### Unknowns
-- applicant_entity: UNKNOWN until Jay answers (3 Sep)
+- applicant_entity: RULED (AA, 5 Sep 2026): The Butterfly Movement Ltd, trading as Goods on Country
 - tfff_use: UNKNOWN until Ben rules (block vs beds)
 - deck_builder: UNKNOWN (this session vs Codex)
 

@@ -189,9 +189,9 @@ export const ASK_REVIEW = {
 export const DIRECTION = {
   headline: 'One trading company, one charity, ownership moving to community',
   points: [
-    'Trading today: Nicholas Marchesi sole trader (ABN 21 591 780 066) — the migration starting point, not the destination.',
-    'Go-forward: A Curious Tractor Pty Ltd (ACN 697 347 676) trading as Goods., the maker and seller; operations migrate FY2026-27. "Goods on Country" is the CHARITY, a business name of The Butterfly Movement Ltd (ruling K). Not finished — never present it as done.',
-    'DGR / charity home: The Butterfly Movement Ltd (ABN 22 155 132 684) — the ONLY deductible vehicle, operational from FY2026-27. No DGR claims before the handover.',
+    'Historic trading vehicle: Nicholas Marchesi sole trader (ABN 21 591 780 066); its books carry FY26. Disclosed as a related entity (ruling AA).',
+    'A Curious Tractor Pty Ltd (ACN 697 347 676): the cohort entrant and historic maker, transferring its assets into Goods on Country (ruling X). It holds no business names; "Goods on Country" is the charity\'s (ruling K). Disclosed as a related entity (ruling AA).',
+    'The home, the applicant and the DGR vehicle: The Butterfly Movement Ltd (ABN 22 155 132 684), trading as Goods on Country. Charity since 2012, DGR Item 1. Directors Kristy Bloomfield, Audrey Deemal and Jeremy Donovan; the handover from the previous board completes at the AGM (ruling AA, 5 Sep 2026).',
     'A Kind Tractor Ltd is dormant. Never cite it.',
     'The 51% First Nations ownership decision gates IBA / First Australians Capital; target is post-Butterfly (~end July, MinterEllison).',
     'Community ownership is a pathway: plant, contracts, margin, knowledge and decisions transfer — Oonchiumpa is the first pathway.',

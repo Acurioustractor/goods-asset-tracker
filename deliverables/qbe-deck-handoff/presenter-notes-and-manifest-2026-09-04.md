@@ -213,8 +213,7 @@ not a completed claim.
 
 **Answers.** Q1, Q2, Q3, Q4, Q19, Q22.
 
-**Open, and said on the slide.** The applicant footer says "subject to confirmation with Social
-Impact Hub" because that is still true. The application needs the complete current director register
+**Closed 5 September (ruling AA).** The applicant footer now reads "APPLICANT AND RECIPIENT": The Butterfly Movement Ltd applies and receives, and nothing on the slide hedges it.
 across every related entity, which this slide does not carry.
 
 ---

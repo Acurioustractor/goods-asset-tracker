@@ -38,7 +38,7 @@ const ALLOWED_TYPES = [
 ];
 
 const DGR_NOTE =
-  'Goods on Country is being set up as the charity. Until that change is complete, The Butterfly Movement Ltd is the charity and the current DGR pathway. A Curious Tractor Pty Ltd trades as Goods. and sells the products; it is separate from the charity.';
+  'Goods on Country is the operating identity of The Butterfly Movement Ltd, the registered charity and DGR pathway. Everything Goods, the products, the making, the sales and the money, runs through it. A Curious Tractor Pty Ltd is the historic maker, transferring its assets in.';
 
 const backedByPartners = [
   {
@@ -142,7 +142,7 @@ const faq = [
   {
     question: 'Is Goods on Country a charity?',
     answer:
-      'Goods on Country is being set up as the charity. Until that change is complete, The Butterfly Movement Ltd is the charity and current DGR pathway. The products are sold by A Curious Tractor Pty Ltd, which trades as Goods.',
+      'Goods on Country is the operating identity of The Butterfly Movement Ltd, the registered charity and DGR pathway. Everything Goods, the products, the making, the sales and the money, runs through it. A Curious Tractor Pty Ltd is the historic maker, transferring its assets in.',
   },
   {
     question: 'Can I make a tax-deductible gift?',
@@ -429,9 +429,9 @@ export default async function PartnerPage({
                 Goods on Country is becoming the charity.
               </h2>
               <p className="text-lg leading-relaxed text-muted-foreground">
-                Until that change is complete, The Butterfly Movement Ltd is the charity and current
-                DGR pathway. A Curious Tractor Pty Ltd trades as Goods. and sells the products; it
-                is separate from the charity.
+                Everything Goods, the products, the making, the sales and the money, runs through
+                The Butterfly Movement Ltd, the registered charity and DGR pathway. A Curious Tractor
+                Pty Ltd is the historic maker, transferring its assets in.
               </p>
             </div>
           </div>

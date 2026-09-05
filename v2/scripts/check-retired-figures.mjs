@@ -165,6 +165,21 @@ const RETIRED_PHRASES = [
     ruling: 'DECISIONS.md ruling D',
   },
   {
+    // RULING AA (Ben, 5 Sep 2026): the charity is the applicant and the directors are locked. These
+    // phrases carried the question as open for a week after it was settled.
+    pattern: /\b(subject to (?:jay|social impact hub)|recommended route|proposed applicant|ready,? subject to (?:jay|the entity))\b/i,
+    what: 'the applicant as an open question',
+    use: 'The Butterfly Movement Ltd, trading as Goods on Country, applies and receives (ruling AA)',
+    ruling: 'DECISIONS.md ruling AA, 2026-09-05',
+  },
+  {
+    // RULING X (28 Aug 2026): there is no separate "Goods." maker-and-seller layer any more.
+    pattern: /\btrad(?:es|ing) as Goods\.(?=[\s,)]|$)/,
+    what: 'a company "trading as Goods." as a current layer',
+    use: 'Goods on Country, The Butterfly Movement Ltd; the company is the historic maker transferring its assets',
+    ruling: 'DECISIONS.md ruling X, 2026-08-28',
+  },
+  {
     // The "net loss" was the 31 May 2026 year-to-date position. The year closed on a net profit of
     // $167,969.63 (Xero, re-pulled 5 Sep 2026) with wages and superannuation at $0, and the old
     // sentence sat in canon, the cost story and STRATEGY.md for three months after it stopped being true.

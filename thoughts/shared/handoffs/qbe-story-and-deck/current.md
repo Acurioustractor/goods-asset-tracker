@@ -9,7 +9,7 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-05T06:59:02Z
+**Updated:** 2026-09-05T07:14:22Z
 **Goal:** Thirteen slides, each built in Pencil and each carrying a full evidence-graded section in Notion. Then the QBE form. Done when Ben has ruled on all thirteen and the PDF is under 10MB.
 **Branch:** `feat/qbe-story`, PR #253 open, pushed 5 Sep on Ben's word ("push"). Worktree `/Users/benknight/Code/goods-story-wt`.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
@@ -43,7 +43,8 @@ the record). **RULING AA (Ben, 5 Sep: "the charity has started, that is the char
 over, lock it"). The Butterfly Movement Ltd is the applicant and recipient; Kristy Bloomfield, Audrey
 Deemal and Jeremy Donovan are the directors; the handover completes at the AGM. Every "subject to",
 "recommended", "proposed" and "B until the extract" is gone from the deck, the page, the one-document,
-the code and canon. Two Gmail drafts, unsent: Jay (heads-up on the route) and Eloise (Q22 documents).** Next: 07, 08, 11, 12, 13 all wait on the ask
+the code and canon. Ben: "no, I don't want you to send anything, I want this all aligned in the deck and in the documents."
+Aligned, second pass: every surface swept (below). The two Gmail drafts stay unsent and are his to bin.** Next: 07, 08, 11, 12, 13 all wait on the ask
 decision with Nic, so the deck is at a stop until that call happens.** The loop (08), the unit (07), capital (11), catalytic (12) and the ask (13) stay
 blocked on the ask decision.** Then decisions 3
 (Bryan v Brian) and 4 (Rotary), one at a time. Also open from his answers: Oonchiumpa INV-0344 and
@@ -1001,6 +1002,39 @@ Gates: tsc clean, 692 tests, check:drift:ci green.
 **Still true and not a decision:** the AGM has no date until the auditor reports; the ASIC and ACNC
 extracts are attachments Eloise sends for Q4 and Q22.
 
+### Ruling AA, second pass: the deck and every document aligned, 5 September
+
+**Ben:** "no, I don't want you to send anything, I want this all to be aligned in the deck and in the
+documents." Then "next". So: no sends, and a full scan for anything still hedging on the charity,
+the applicant or the directors.
+
+**Scanned.** All thirteen Pencil frames (text nodes), the whole deck master (1,071 blocks and their
+children), the whole form master (343 blocks and children), and the repo's code, root documents,
+deliverables, wiki canon and the two ledgers.
+
+**Found and fixed.**
+- Deck: clean; slide 13's stamp already reads "a registered business name of The Butterfly Movement Ltd".
+- Deck master: slide 01's QBE row ("Applicant entity is not settled. Blocked on Social Impact Hub") and its
+  research bullet about a "fourth director" rewritten to the ruled facts.
+- Form master: eleven blocks rewritten by id (the 1.7 route and fallback paragraphs, four Part 2 status
+  rows, Q1's caveat clause, the Q1, Q2, Q4 and Q8 status lines, the Q4 "unconfirmed name" paragraph, the
+  two appendix bullets), and the 1.7 entity drawing replaced with a rasterised copy of the re-rendered
+  SVG whose header now reads "The route, ruled 5 September 2026". The form's own source text ("the
+  applicant entity named above") and Q13/Q24's neutral uses of "applicant entity" were left alone.
+- Repo: `/partner` page (three copies of "Until that change is complete... A Curious Tractor trades as
+  Goods."), `qbe-faq.ts` (which-entity answer), `pitch-cockpit.ts` (three entity points), `audience.ts`
+  (the never-see line), `content.ts` (governance risk mitigation), `grant-content.ts` (the orgIdentity
+  comment and the four eligibility lines, including the "confirm the applicant with the accountant"
+  warning), `GRANTSCOPE.md`, `STRATEGY.md` ("what Goods. is for" to Goods on Country), the 2 Sep strategy
+  note, the presenter notes, and both ledgers' open-question lines.
+- Guard: `check-retired-figures.mjs` now retires "subject to Jay / Social Impact Hub", "recommended route",
+  "proposed applicant", "ready, subject to", and "trades as Goods." as a current layer (10 phrases guarded).
+
+**Left as history, on purpose:** DECISIONS.md ruling K's own text; dated `wiki/outputs`; the form master's
+"recommended stack" row, which is ask content and waits on the ask decision.
+
+Gates: tsc clean, 692 tests, check:drift:ci green.
+
 ### Next
 - [ ] **Ben: slide 05 needs a second pass.** Headline to "Five organisations have bought beds. Four
       have paid.", add Centrecorp INV-0259 (60 beds, paid), pull the Palm Island row until INV-0317
@@ -1095,7 +1129,7 @@ extracts are attachments Eloise sends for Q4 and Q22.
 - OPEN: do the two $100,000 philanthropic commitments exist in writing?
 - OPEN: $200 a bed or $324? Two different margins told to two audiences.
 - RULED (AA, 5 Sep): the applicant is The Butterfly Movement Ltd. Jay is told, not asked.
-- UNCONFIRMED: 100% Indigenous directorship, until the AGM on 14 September and an ASIC extract.
+- RULED (AA, 5 Sep): the directors are Kristy Bloomfield, Audrey Deemal and Jeremy Donovan; the handover completes at the AGM, date set once the auditor reports.
 
 ### Workflow State
 pattern: money thread, one decision at a time (slides blocked on the ask)
