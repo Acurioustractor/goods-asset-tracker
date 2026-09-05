@@ -78,9 +78,9 @@ say yes:
    Standard Ledger (carve-out signed, ACT FY26 P&L and balance sheet, ACT-GD scope;
    ATTACH THE JUNE WORKPAPER FIRST) and Eloise (Butterfly FY26 P&L, balance sheet,
    cashflow). Nothing in code moves until the accountant's letter lands.
-2. The FY26 sentence. Xero shows a net PROFIT of $167,970 before founder wages (Wages
-   $0 in the books); canon, STRATEGY.md and ruling H say "net loss". The proposed
-   wording is in the ledger under "Decision 2 groundwork". Sweep on my word.
+2. DONE 5 Sep, ruled and swept: the FY26 sentence. Net profit of about $168K before
+   founder wages, no surplus claimed, everything moves into the charity. "FY26 net loss"
+   is a guarded retired phrase now.
 3. When I said "Bryan Foundation incoming", did I mean The Bryan Foundation
    (26 May meeting, nothing in writing, potential) or Brian M. Davis (invited,
    up to $100,000, board 19 November)?
@@ -115,7 +115,7 @@ Recall surface: `deliverables/qbe-stage2/diagrams/08-money-lanes.svg`.
   Somebody has to correct that**, because the QBE form scores leverage.
 
 **Open and mine to fix once Ben rules:** the carve-out copies, once the accountant's letter lands (Ben
-said yes on 5 Sep; two Gmail drafts wait on his send); the FY26 sentence (net profit before founder wages, not net loss); Bryan against Brian; the two Oonchiumpa receipts (INV-0344 $41,250, INV-0346 $1,000); whether
+said yes on 5 Sep; two Gmail drafts wait on his send); Bryan against Brian; the two Oonchiumpa receipts (INV-0344 $41,250, INV-0346 $1,000); whether
 Centrecorp counts as a buyer in the funding-received composition. **Done 5 Sep:** ALIVE and Julalikari
 are in, funding received is $901,311, Julalikari sits in the earned lane.
 

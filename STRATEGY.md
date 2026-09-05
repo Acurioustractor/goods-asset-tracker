@@ -309,7 +309,10 @@ choose; it is never claimed complete in advance.
   outcomes at all.
 - **Revenue: $713,827** Goods-only FY26 carve-out. **Workpaper, prepared with the accountant, NOT
   accountant-signed.** No signed document exists; getting one is an open action. Never the $403,901
-  "surplus"; the entity P&L is a net loss. $901,311 is valid only when the basis is named
+  "surplus". The sole trader's FY26 P&L closed on a net profit of about $168K before any founder wages,
+  which are not in the books: say that, never "net loss" (the loss was the 31 May position), and
+  claim no surplus for Goods. Those books are Goods' history; everything Goods is moving into The
+  Butterfly Movement Ltd (ruling X; Ben, 5 Sep 2026). $901,311 is valid only when the basis is named
   (all-sources cash since inception, restated 5 Sep 2026: Homeland, ALIVE and Julalikari receipts added).
 - **Never "co-design".** Designed **in community, with community**.
 - **Voice:** zero em dashes, no arrows in prose, straight quotes, "On Country" capitalised, units

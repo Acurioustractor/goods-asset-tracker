@@ -321,7 +321,7 @@ export const COST_CHAPTERS: CostChapter[] = [
         // RULING G/H 2026-07-25: no signed accountant document exists. Figure stays, word goes.
         solidity: 'workpaper',
         means: 'Goods-only revenue, prepared with our accountant. The business already trades.',
-        watchOut: 'Never call this “signed”: no accountant letter exists yet, and getting one is the next action. Externally, ONLY this figure, never the $403,901 “surplus” (entity P&L is a net loss).',
+        watchOut: 'Never call this “signed”: no accountant letter exists yet, and getting one is the next action. Externally, ONLY this figure, never the $403,901 “surplus” (the sole trader\'s FY26 P&L closed on a net profit of about $168K before any founder wages, which are not in the books; no surplus is claimed for Goods).',
         source: 'Workpaper prepared with the accountant / 04 · Verified Financials',
       },
       {

@@ -147,7 +147,7 @@ export const CANON: CanonFact[] = [
     // flagged as an overclaim rendering in front of funders.
     domain: 'money', claimLabel: 'workpaper', dataClass: 'amber',
     source: 'Goods carve-out workpaper, prepared with the accountant (NOT signed); pitch blueprint A3', check: 'manual', asAt: '2026-06-02', owner: 'Ben/accountant',
-    definition: 'Goods-only FY26 carve-out, prepared with the accountant but NOT YET SIGNED (Ben ruling 2026-07-25, DECISIONS.md ruling G). Cite the figure; never the word signed, until a signed letter exists and is named in this source field. Obtaining one is an open action, promised in the claims ledger before mid-August 2026. No surplus claimed: connected entity runs an FY26 net loss. Use alongside revenue-received ($901,311 all-sources) with the basis named.',
+    definition: 'Goods-only FY26 carve-out, prepared with the accountant but NOT YET SIGNED (Ben ruling 2026-07-25, DECISIONS.md ruling G). Cite the figure; never the word signed, until a signed letter exists and is named in this source field. Obtaining one is an open action, promised in the claims ledger before mid-August 2026. No surplus is claimed for Goods. The sole trader\'s FY26 P&L closed on a net profit of about $168K before any founder wages, which are not in the books (Xero re-pull 5 Sep 2026; the earlier "net loss" was the 31 May year-to-date position and is retired). Goods\' history sits in those books and everything Goods is moving into The Butterfly Movement Ltd, Goods on Country (ruling X; Ben, 5 Sep 2026). Use alongside revenue-received ($901,311 all-sources) with the basis named.',
     reconcilesWith: ['revenue-received'],
   },
 

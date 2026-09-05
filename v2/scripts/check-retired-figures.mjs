@@ -57,7 +57,7 @@ const RETIRED = [
   // one day after the ruling that retired it. Every entry below reached a funder-facing surface.
   { value: '475K', what: 'the old lead stack', now: '$607.5K grants / $710K repayable', context: /stack|sefa|snow|centrecorp/i, ruling: 'stack rebuilt 2026-07-25 from all 67 CRM rows' },
   { value: '150K', what: 'per-site plant capital band', now: 'priced per site by the module model', context: /per site|a site|plant capital/i, ruling: 'DECISIONS.md ruling O' },
-  { value: '403,901', what: 'the "surplus"', now: 'never cited; the entity P&L is a net loss', context: /surplus|profit|revenue/i, ruling: 'DECISIONS.md ruling H' },
+  { value: '403,901', what: 'the "surplus"', now: 'never cited; the sole trader FY26 P&L closed on a net profit of ~$168K before founder wages and no surplus is claimed for Goods', context: /surplus|profit|revenue/i, ruling: 'DECISIONS.md ruling H' },
 
   // SUPPLY MATH. Added 2026-08-24 with ruling T (20kg/bed). An external analysis assumed
   // 45kg/bed and derived a scenario family from it (22 beds/t, 17,700 beds, 109,600 beds);
@@ -161,6 +161,15 @@ const RETIRED_PHRASES = [
     what: 'the plant as the ownership object',
     use: 'the making, or the site. And ownership is a pathway: use "toward".',
     ruling: 'DECISIONS.md ruling D',
+  },
+  {
+    // The "net loss" was the 31 May 2026 year-to-date position. The year closed on a net profit of
+    // $167,969.63 (Xero, re-pulled 5 Sep 2026) with wages and superannuation at $0, and the old
+    // sentence sat in canon, the cost story and STRATEGY.md for three months after it stopped being true.
+    pattern: /\b(FY26 net loss|(?:P&L|entity|sole trader) (?:is|runs|ran|shows|showed) (?:an? |the )?(?:FY26 )?net loss)\b/i,
+    what: '"the entity runs an FY26 net loss"',
+    use: "the sole trader's FY26 P&L closed on a net profit of about $168K before any founder wages; no surplus is claimed for Goods",
+    ruling: 'Ben 2026-09-05 (DECISIONS.md ruling H, corrected)',
   },
 ];
 

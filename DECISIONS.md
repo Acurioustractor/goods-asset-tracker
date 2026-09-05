@@ -747,6 +747,20 @@ until something checks. Treat the sweep list as a to-do that needs verifying, no
 work done, and re-run a grep for retired language before trusting any "swept" note including
 this one.
 
+**Corrected 5 September 2026: FY26 closed on a net profit, and the "net loss" sentence is retired.**
+H leaned on "the entity P&L is a net loss", which was the 31 May year-to-date position (income
+$1,293,477, expenses $1,659,556, loss $366,079). Re-pulled from Xero on 5 September with the year
+closed: income $1,640,724.46, expenses $1,472,754.83, net profit $167,969.63, wages and
+superannuation $0. The figure and the adjective in H stand. The sentence beside them is now: the
+sole trader's FY26 P&L closed on a net profit of about $168K before any founder wages, which are not
+in the books; no surplus is claimed for Goods. Ben's frame, in his words the same day: "we will move
+all to the new charity", so those books are Goods' history and the charity is where Goods' own
+books start (ruling X). "FY26 net loss" is a retired phrase in `check-retired-figures.mjs`. Swept:
+`canon.ts` (`revenue-carveout` definition), `cost-story.ts`, `STRATEGY.md` §7, the guard's own
+`403,901` note, `wiki/canon/loop-c-scope-test.md`, `wiki/investor/02-financial-model.md` and
+`wiki/investor/15-money-alignment-audit.md`. Dated `wiki/outputs/` records keep the old sentence as
+history.
+
 ### G. There is no signed accountant document
 
 The $713,827 Goods-only carve-out is **not accountant-signed**. Getting it signed is the next

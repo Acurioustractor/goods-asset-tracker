@@ -9,7 +9,7 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-05T01:50:41Z
+**Updated:** 2026-09-05T04:15:14Z
 **Goal:** Thirteen slides, each built in Pencil and each carrying a full evidence-graded section in Notion. Then the QBE form. Done when Ben has ruled on all thirteen and the PDF is under 10MB.
 **Branch:** `feat/qbe-story`, PR #253 open, **11 commits ahead of origin and NOT pushed** (push is Tier 2, Ben's word). Worktree `/Users/benknight/Code/goods-story-wt`.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
@@ -25,9 +25,10 @@ Open that first.**
 copies in lockstep, Julalikari in the earned lane, gates green including `next build`. **Decision 2 (re-pull the carve-out) is RULED YES (Ben, 5 Sep, "yes."). Two Gmail drafts wait
 on his send: Standard Ledger (the FY26 Goods carve-out on letterhead, signed; ACT Pty Ltd FY26 P&L and
 balance sheet; the ACT-GD scope question) and Eloise (Butterfly FY26 P&L, balance sheet, cashflow).
-Nothing in code moves until the accountant's figure comes back. With Ben now: the FY26 sentence
-(Xero shows a net PROFIT of \$167,970 before founder wages; canon, STRATEGY.md and ruling H say net
-loss).** Then decisions 3
+Nothing in code moves until the accountant's figure comes back. **The FY26 sentence is RULED and SWEPT**
+(Ben, 5 Sep: "we will move all to the new charity"; net profit before founder wages, no surplus claimed,
+everything Goods moves into Butterfly; "FY26 net loss" is now a guarded retired phrase). **With Ben
+now: decision 3, Bryan against Brian.** Then Rotary, the two Oonchiumpa receipts, Centrecorp.** Then decisions 3
 (Bryan v Brian) and 4 (Rotary), one at a time. Also open from his answers: Oonchiumpa INV-0344 and
 INV-0346, and Centrecorp as buyer or philanthropy in the funding-received composition.
 
@@ -730,6 +731,30 @@ until Alexandra names a date.
 above; `canon.ts` `revenue-carveout` also drops "NOT YET SIGNED" and names the letter in `source`, and
 ruling G closes.
 
+### The FY26 sentence, ruled and swept, 5 September
+
+**Ben's whole answer: "we will move all to the new charity."** Read as the frame for the sentence, and
+applied: the sole trader's books are Goods' history, FY26 closed there on a net profit of about \$168K
+before any founder wages (none are in the books), no surplus is claimed for Goods, and everything Goods
+is moving into The Butterfly Movement Ltd (ruling X). If he meant something narrower, the sweep is one
+sentence in each place and easy to re-cut.
+
+Swept together: `canon.ts` (`revenue-carveout` definition), `cost-story.ts` (the revenue row's
+watchOut), `STRATEGY.md` §7, the guard's own `403,901` note, DECISIONS.md (dated correction at the end
+of ruling H), `wiki/canon/loop-c-scope-test.md`, `wiki/investor/02-financial-model.md` ×2 and
+`wiki/investor/15-money-alignment-audit.md`. The two `02-financial-model.md` lines also carried
+"Accountant-signed", `verified`, "\$143,000 live receivables" and "\$741,111", all retired weeks ago and
+never swept in the wiki; fixed on the lines touched. Dated `wiki/outputs/` records keep the old sentence
+as history.
+
+**Guarded.** `check-retired-figures.mjs` now retires the phrase family "FY26 net loss" / "P&L is a net
+loss" / "runs an FY26 net loss" (44 figures, 12 phrases). The apostrophe in "trader's" broke two
+single-quoted TypeScript strings on the first pass; escaped.
+
+Gates on the final code: tsc clean, 692 tests, `check:drift:ci` green. `next build` re-run after the
+fix (the first run started on the broken files and still passed, which means its compile had not
+reached `canon.ts` before the fix landed).
+
 ### Next
 - [ ] **Ben: slide 05 needs a second pass.** Headline to "Five organisations have bought beds. Four
       have paid.", add Centrecorp INV-0259 (60 beds, paid), pull the Palm Island row until INV-0317
@@ -754,9 +779,8 @@ ruling G closes.
       see "Decision 2 applied" above.
 - [ ] **Ben sends the two drafts** (Standard Ledger, with the June workpaper attached; Eloise).
       Then: the accountant's letter lands, the carve-out copies move together, ruling G closes.
-- [ ] **Ben: the FY26 sentence.** Xero shows a net PROFIT of \$167,970 before founder wages, not a
-      net loss. Sweep the `revenue-carveout` definition in `canon.ts`, `STRATEGY.md`, ruling H's note,
-      and the Q20/Q21 answers on the Notion page once Ben has the words.
+- [x] **The FY26 sentence: ruled and swept (Ben, 5 Sep, "we will move all to the new charity").**
+      Net profit before founder wages, no surplus claimed, everything moves into Butterfly. Phrase guarded.
 - [ ] **Ben: does "Bryan Foundation" mean The Bryan Foundation (May meeting, nothing in writing) or
       Brian M. Davis (invited, up to $100,000, board 19 Nov)? Both are in the lanes; only one is
       new money.**
