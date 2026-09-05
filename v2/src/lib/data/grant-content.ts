@@ -143,8 +143,9 @@ export const fundingHistory = {
   // RESTATED 2026-09-05 (Ben): + Homeland INV-0303 $44,000, paid after the 3 June baseline.
   // RESTATED AGAIN 2026-09-05 (Ben: ALIVE and Julalikari are sales, same as the Centrecorp sales):
   // + ALIVE INV-0342 $101,200 and Julalikari INV-0335 $15,000, both paid after the baseline.
-  // Commercial and buyer line $105,449 -> $221,649. Still outside pending a ruling: Oonchiumpa
-  // INV-0344 $41,250 and INV-0346 $1,000, both paid after the baseline.
+  // Commercial and buyer line $105,449 -> $221,649. Oonchiumpa INV-0344 $41,250 and INV-0346 $1,000
+  // RULED OUT 2026-09-05 (Ben): the first is the Oonchiumpa program through ACT, the second a
+  // reimbursement. Nothing paid after the baseline is pending.
   totalReceived: 901_311,
   received: [
     { source: 'Snow Foundation', amount: 493_130, when: '2023-2026' },

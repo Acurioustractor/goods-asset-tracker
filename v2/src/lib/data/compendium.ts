@@ -336,8 +336,10 @@ export const verifiedFinancials = {
   // machines, PAID June 2026) were also paid after the baseline, and were re-read as PAID on Xero
   // the same day. Commercial and buyer line $105,449 -> $221,649. Total $785,111 -> $901,311.
   //
-  // STILL OUTSIDE, not yet ruled on: Oonchiumpa INV-0344 $41,250 (Atnarpa homestead build, PAID
-  // 12 Aug 2026) and INV-0346 $1,000 ("wages for the Goods Project", PAID 28 Aug 2026).
+  // RULED OUT 2026-09-05 (Ben): Oonchiumpa INV-0344 $41,250 (Atnarpa homestead build, PAID 12 Aug
+  // 2026) is "only for the Oonchiumpa program through ACT", not Goods; INV-0346 $1,000 ("wages for
+  // the Goods Project", PAID 28 Aug 2026) is "just a payback", a reimbursement, not funding. Neither
+  // enters this figure. $901,311 is fully current for Goods: no receipt after the baseline is pending.
   revenueReceived: 901_311,
   // Accounts receivable, restated 2026-09-05 against Xero's aged receivables of the same date,
   // on three rulings from Ben. It was $143,000 and it is $82,500, all of which is bad debt:

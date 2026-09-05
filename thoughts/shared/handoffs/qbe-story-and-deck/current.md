@@ -9,7 +9,7 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-05T04:17:54Z
+**Updated:** 2026-09-05T04:23:06Z
 **Goal:** Thirteen slides, each built in Pencil and each carrying a full evidence-graded section in Notion. Then the QBE form. Done when Ben has ruled on all thirteen and the PDF is under 10MB.
 **Branch:** `feat/qbe-story`, PR #253 open, **11 commits ahead of origin and NOT pushed** (push is Tier 2, Ben's word). Worktree `/Users/benknight/Code/goods-story-wt`.
 **Test:** `cd v2 && npx tsc --noEmit -p tsconfig.json && npx vitest run && npm run check:drift:ci && npx next build`
@@ -28,8 +28,9 @@ balance sheet; the ACT-GD scope question) and Eloise (Butterfly FY26 P&L, balanc
 Nothing in code moves until the accountant's figure comes back. **The FY26 sentence is RULED and SWEPT**
 (Ben, 5 Sep: "we will move all to the new charity"; net profit before founder wages, no surplus claimed,
 everything Goods moves into Butterfly; "FY26 net loss" is now a guarded retired phrase). **Decision 3 RULED:
-Brian M. Davis (Ben, 5 Sep), nothing moves. Rotary (4) is a standing instruction, not a decision. With
-Ben now: the two Oonchiumpa receipts, then Centrecorp.** Then decisions 3
+Brian M. Davis (Ben, 5 Sep), nothing moves. Rotary (4) is a standing instruction, not a decision. Oonchiumpa RULED:
+both receipts out, \$901,311 is fully current. With Ben now: Centrecorp as buyer or philanthropy in the
+funding-received composition.** Then decisions 3
 (Bryan v Brian) and 4 (Rotary), one at a time. Also open from his answers: Oonchiumpa INV-0344 and
 INV-0346, and Centrecorp as buyer or philanthropy in the funding-received composition.
 
@@ -765,6 +766,14 @@ room from 26 May and nothing in writing since. The `money-lanes.ts` docblock tha
 open now records the answer. Rotary (decision 4) is a standing instruction: bad debt, fine for now,
 say when that stops being true.
 
+### The Oonchiumpa receipts: both out, 5 September
+
+**Ben:** INV-0344 \$41,250 is "not Goods, only for the Oonchiumpa program through ACT". INV-0346
+\$1,000 is "just a payback re Goods", a reimbursement. Neither is funding received and neither is
+earned. **\$901,311 is now fully current for Goods**: every sales invoice paid since the 3 June baseline
+has been read and ruled. Recorded at the three places that named them as pending (`compendium.ts`,
+`grant-content.ts`, the canon `revenue-received` source). No figure moved.
+
 ### Next
 - [ ] **Ben: slide 05 needs a second pass.** Headline to "Five organisations have bought beds. Four
       have paid.", add Centrecorp INV-0259 (60 beds, paid), pull the Palm Island row until INV-0317
@@ -782,8 +791,8 @@ say when that stops being true.
 - [ ] **Ben: is Centrecorp a buyer or a philanthropic receipt in the funding-received composition?**
       His words put it with the sales. The prose puts its \$123,332 under grant/philanthropic. If it
       moves, commercial and buyer receipts are \$344,981 and the grant share is 62%.
-- [ ] **Ben: are Oonchiumpa INV-0344 \$41,250 (Atnarpa build) and INV-0346 \$1,000 ("wages for
-      the Goods Project") Goods receipts?** Both paid after the baseline, in no figure and no lane.
+- [x] **Oonchiumpa INV-0344 and INV-0346: both OUT (Ben, 5 Sep).** Program work through ACT, and a
+      reimbursement. \$901,311 fully current.
 - [x] Julalikari was in no lane. `MACHINE_LINES` in `money-lanes.ts` carries it now; `BUYING_STORY` untouched.
 - [x] **Decision 2: re-pull the Goods carve-out. Ben: yes (5 Sep).** Two Gmail drafts created,
       see "Decision 2 applied" above.

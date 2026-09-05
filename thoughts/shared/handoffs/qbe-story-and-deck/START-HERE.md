@@ -86,9 +86,9 @@ say yes:
 4. Rotary $82,500 is bad debt and fine for now. Tell me when that stops being true.
 
 Settled 5 Sep: ALIVE $101,200 and Julalikari $15,000 are in funding received, which
-is $901,311. Still open from the same Xero check: are Oonchiumpa INV-0344 $41,250
-and INV-0346 $1,000 Goods receipts, and is Centrecorp a buyer or philanthropy in
-the funding-received composition.
+is $901,311 and fully current: Oonchiumpa INV-0344 (program work through ACT) and
+INV-0346 (a reimbursement) are both OUT, ruled 5 Sep. Still open: is Centrecorp a
+buyer or philanthropy in the funding-received composition.
 
 The receivables figure lives in FOUR places and revenue in ELEVEN. Move them
 together or check:drift:ci fails on a copy you did not know about.
@@ -114,7 +114,7 @@ Recall surface: `deliverables/qbe-stage2/diagrams/08-money-lanes.svg`.
   Somebody has to correct that**, because the QBE form scores leverage.
 
 **Open and mine to fix once Ben rules:** the carve-out copies, once the accountant's letter lands (Ben
-said yes on 5 Sep; two Gmail drafts wait on his send); the two Oonchiumpa receipts (INV-0344 $41,250, INV-0346 $1,000); whether
+said yes on 5 Sep; two Gmail drafts wait on his send); whether
 Centrecorp counts as a buyer in the funding-received composition. **Done 5 Sep:** ALIVE and Julalikari
 are in, funding received is $901,311, Julalikari sits in the earned lane.
 
