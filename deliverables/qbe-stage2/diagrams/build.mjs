@@ -160,7 +160,7 @@ const out = {};
   b += text(cx + 20 + 5 * 40 + 6, hy + hh - 23, '× 200 beds each', { size: 12, font: F.mono, fill: C.mute });
 
   out['01-entity-and-money'] = frame({
-    page: 'Form Q2, Q3, Q8. Recommended route, subject to Social Impact Hub confirming on 3 September',
+    page: 'Form Q2, Q3, Q8. The route, ruled 5 September 2026',
     title: 'The entity, and how the money moves',
     sub: 'Three entities in a dated line, one operating home, and five community partners who make the local decisions. Every external dollar lands in the charity.',
     body: b,
@@ -315,7 +315,7 @@ const out = {};
     ], note: 'If every line lands, the thousand is covered with room to spare (1,098). At $250K from QBE the count is 898 and the last pool waits.' },
     { k: 'Money that runs the organisation', t: 'Three years of support, the organisation\'s resilience', lines: [
       ['Tim Fairfax Family Foundation, three years', '$300,000', 'invited'],
-    ], note: 'About $109,500 a year runs Goods on Country before a bed is made; about $300,000 a year is the public network ask. Bed money never funds this. Katie Norman named the resilience of organisations as the reason for the invitation, so this is the block in the funder\'s own words. Recommended: the block, not beds. Ben has not yet ruled.' },
+    ], note: 'About $109,500 a year runs Goods on Country before a bed is made; about $300,000 a year is the public network ask. Bed money never funds this. Katie Norman named the resilience of organisations as the reason for the invitation, so this is the block in the funder\'s own words. Proposed: the block rather than beds, which the TFFF invitation describes as the resilience of organisations. Open until the founders rule.' },
     { k: 'Money we borrow for the plants', t: 'Equipment and working capital, once the cost is measured', lines: [
       ['SEFA', '$300,000', 'target'],
       ['White Box SELF', '$150,000', 'target'],
