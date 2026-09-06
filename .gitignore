@@ -281,3 +281,12 @@ deliverables/community-model.json
 tools/.gsheet-targets.json
 .venv-sheets/
 .vercel
+
+# Shared ACT skills, synced from act-global-infrastructure (config/shared-skills.json,
+# scripts/sync-skills.mjs). Tracked so the copy can be checked; edit upstream, not here.
+!.claude/
+.claude/*
+!.claude/skills/
+.claude/skills/*
+!.claude/skills/act-brand-alignment/
+!.claude/skills/_archive/
