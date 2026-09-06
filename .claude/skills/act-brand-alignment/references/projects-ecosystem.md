@@ -29,11 +29,11 @@
 - Tagline: "Your waste, your wealth"
 - Registry: Public feed includes title, summary, image, link, price range
 - Key features: Remote community co-design, circular manufacturing, waste-to-product conversion, community ownership of production
-- Revenue model: Communities own production and profits; 40% profit-sharing to source communities
+- Revenue model: communities own production and profits. Do not quote a profit-share percentage; the only citable figure is whatever `wiki/decisions/act-core-facts.md` records, and today it records none.
 
 ### Black Cockatoo Valley (BCV)
 **Regeneration Estate & Living Lab**
-- 150-acre (117 ha) property on Jinibara lands near Witta, Queensland
+- Property on Jinibara lands near Witta, Queensland (size: see `wiki/projects/act-farm/black-cockatoo-valley.md`; sources have disagreed, do not quote a figure from here)
 - Working farm and living lab for R&D, residencies, accommodation, CSA exploration
 - Views to Mary River; creeks and forest down to Elaman Creek
 - Threatened species habitat (Glossy Black Cockatoo); conservation comes first
@@ -107,18 +107,12 @@
 
 ## Revenue & Sustainability Model
 
-### Dual-Entity Structure
-**ACT Foundation (Not-for-profit CLG)**
-- Charitable status for grants and donations
-- Mission-locked governance
-- Owns majority of ventures
-- Protects community interests
-
-**ACT Ventures (Mission-locked Trading Company)**
-- Generates sustainable revenue through Goods, BCV eco-cottages, Art sales
-- Enables 40% profit-sharing to communities
-- Attracts impact investment
-- Creates jobs and opportunities
+### Entity structure
+Do not describe ACT's legal structure from this file. The dual-entity picture (a not-for-profit
+CLG plus a trading arm called "ACT Foundation" / "ACT Ventures") is retired; those were
+conceptual labels, never legal entities. `wiki/decisions/act-core-facts.md` holds the current
+table of entities, which trades, which holds DGR, and how money flows, and it changes; read it
+each time and do not restate a count or a list here.
 
 ### Funding Streams
 - Government contracts (40-50%): Fee-for-service programs, research partnerships
@@ -131,11 +125,11 @@
 
 ### Community Ownership
 - 3+ communities independently replicating ACT models
-- 40% of profits flowing to community hands
+- Profits flowing to community hands (no percentage is citable; see act-core-facts.md)
 - Indigenous-majority governance on place-based projects
 
 ### Regenerative Outcomes
-- 117+ hectares of land under conservation
+- The whole property under conservation-first management (size from the wiki page, not from here)
 - 50+ jobs created in marginalised communities
 - 70% reduction in waste through circular economy
 
