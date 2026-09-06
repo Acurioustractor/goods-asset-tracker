@@ -1,6 +1,7 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
+import { logAccountabilityEvent } from '@/lib/empathy-ledger/accountability';
 
 const EL_URL = process.env.EMPATHY_LEDGER_SUPABASE_URL || '';
 const EL_KEY = process.env.EMPATHY_LEDGER_SUPABASE_KEY || '';
@@ -97,6 +98,47 @@ export async function createStory(input: CreateStoryInput): Promise<{
   }
   const rows = (await res.json()) as Array<{ id: string }>;
   const story = rows[0];
+
+  // The story is written. Now say so on the shared accountability trail, against
+  // the real storyteller only: the placeholder is "ACT Production Team", not a
+  // person, and an event on it would be a claim about nobody. Best-effort; a
+  // refused or unreachable ledger never undoes the insert above.
+  const requestedStorytellerId = input.storytellerId?.trim() || null;
+  const realStorytellerId =
+    requestedStorytellerId && requestedStorytellerId !== EL_FALLBACK_STORYTELLER_ID ? requestedStorytellerId : null;
+  if (input.hasExplicitConsent) {
+    await logAccountabilityEvent({
+      eventType: 'consent.verified',
+      actorId: 'goods-admin-composer',
+      subjectId: story.id,
+      subjectType: 'story',
+      empathyLedgerStorytellerId: realStorytellerId,
+      culturalSensitivity: input.culturalPermissionLevel === 'public' ? 'medium' : 'high',
+      payload: {
+        source: 'goods-admin-composer',
+        basis: 'staff_recorded_explicit_consent',
+        cultural_permission_level: input.culturalPermissionLevel,
+        syndicate_goods_longform: input.syndicateGoodsLongform,
+      },
+    });
+  }
+  if (input.isPublic) {
+    await logAccountabilityEvent({
+      eventType: 'decision.published',
+      actorId: 'goods-admin-composer',
+      subjectId: story.id,
+      subjectType: 'story',
+      empathyLedgerStorytellerId: realStorytellerId,
+      culturalSensitivity: 'medium',
+      payload: {
+        decision: 'publish',
+        surface: 'empathy_ledger_story',
+        has_explicit_consent: input.hasExplicitConsent,
+        cultural_permission_level: input.culturalPermissionLevel,
+        syndication_enabled: input.syndicateGoodsLongform && input.isPublic,
+      },
+    });
+  }
 
   revalidatePath('/stories');
   revalidatePath('/admin/media-library');
