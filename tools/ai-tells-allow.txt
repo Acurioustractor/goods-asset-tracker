@@ -1,0 +1,20 @@
+# Phrases the checker would flag that are allowed, each with the reason it survives.
+# Default is deny. Adding a line here is a decision, not a workaround.
+# Ben, 4 Sep 2026: a claim ceiling shaped as a negation stays; rhetoric shaped as one goes.
+
+# Claim ceilings. These limit what is being claimed, which is the honest use of a negation.
+the reason, never a claimed outcome
+An ambition, not a forecast.
+never a claimed outcome
+modelled, not measured
+
+# House rules stated as prohibitions, printed so a reader knows the rule.
+Buyers pay the community, never Goods.
+never divided by beds
+never gifted first stock
+
+# Deck claim ceilings, kept by Ben 10 Sep 2026 ("keep the two ceilings").
+# S14: stops a funder reading a measured health outcome into the four outcomes slide.
+The reason, not a claim
+# S18: tells a funder the plant figure has no quote behind it. Matt Allen's modules price it at $96,000.
+is an allowance, not a quote
