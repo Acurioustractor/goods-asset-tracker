@@ -1,3 +1,7 @@
+## The BMD condition settled from the primary documents: 10 September 2026
+
+The 9 September record held both answers at once. The BMDCF Grant Conditions PDF has now been read: eight conditions, none about other funders, so the invitation email note was right about the PDF. The condition itself is real and sits in the budget template, `BMD - application forms /BMDCF Budget template 3yr - 2026.xlsx`, sheet INSTRUCTIONS, cell B16: "Please note BMDCF only pays out a grant once all funding for a project has been confirmed." Cite the template, never the PDF. QBE Stage 2 answer Q18 quotes B16 verbatim and builds the catalytic mechanism on it: conditional QBE outcomes 23 October, BMD grants committee October, BMD board 19 November. The 13 November preconditions mismatch is now asked of QBE inside Q18 instead of sitting in a note.
+
 ## The shred loop: 9 September 2026 (late)
 
 Ben: leg sheet 21 kg of shred, tab sheet 15 kg, bed 20 kg (two legs). Phase and raise rows 146 to 156: 36 kg pressed per bed, about 16 kg offcut back to the shredder, 20 kg new shred per bed at steady state; 1,800 kg of raw makes 50 beds on the first pass and 90 with the loop running. Gaps: tab mass, shredder throughput a day.
