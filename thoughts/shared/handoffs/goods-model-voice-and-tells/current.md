@@ -209,8 +209,28 @@ No future site is pictured." Re-exported at 1.5x and swapped on the Notion deck 
   allowed roots.
 - The Xero MCP was unreachable all session.
 
-### On disk, uncommitted
+### Where the work lives now
 
-`tools/check-ai-tells.mjs`, `tools/ai-tells-allow.txt`, the whole of
-`deliverables/finance/goods-financial-plan/` (untracked), and a modified `v2/package.json`.
-Nothing committed, nothing pushed. The branch is 35 behind `origin/main`.
+**Everything is committed in a worktree, not in the main tree.**
+
+| | |
+|---|---|
+| Worktree | `/Users/benknight/Code/goods-finance-wt` |
+| Branch | `feat/ai-tells-gate-and-goods-model`, off `origin/main` at `14c5f45` |
+| Commits | `5f0c36f` the gate · `54b386f` the model and the trade · `d6798af` this handoff |
+| Pushed | **No.** No PR. Ben has not asked. |
+
+The files were **moved** out of the main working tree, so there is one copy and it is tracked.
+The artifacts now publish from
+`/Users/benknight/Code/goods-finance-wt/deliverables/finance/goods-financial-plan/*.html`.
+Republishing works from any session by passing the artifact `url`, so the path change costs nothing.
+
+Why a worktree: the main tree sits on `feat/empathy-ledger-accountability-events` with about 640
+modified files belonging to other sessions, and `v2/package.json` there carries two script entries
+(`reconcile:washers`, `dev:local-admin`) that are not ours. Committing in the main tree would have
+swept those up. The worktree took a clean `package.json` from `origin/main` and only the
+`check:tells` lines were added to it.
+
+The workbook backups in `deliverables/finance/goods-financial-plan/archive/` are deliberately
+untracked, by a `.gitignore` in that directory. They are eight point-in-time copies of the same
+workbook, 5.9 MB, and git now carries that history properly.
