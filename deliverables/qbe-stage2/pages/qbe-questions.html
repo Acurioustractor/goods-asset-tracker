@@ -1,0 +1,1022 @@
+<title>The 25 Questions</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#F7F3EA; --surface:#FFFDF8; --surface-2:#F1EADC; --rail:#E2D9C9;
+  --ink:#221F1B; --ink-2:#4A443B; --ink-3:#7A7263;
+  --clay:#A8643F; --terracotta:#C45C3E; --olive:#7E9A68; --gold:#A98F3E; --teal:#4F7B77; --plum:#7A4A55;
+  --ok:#5E7A4C; --warn:#A98F3E; --bad:#B4442A; --open:#4F7B77;
+  --display:"Playfair Display",Georgia,serif;
+  --body:"Inter",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#16140F; --surface:#1E1B16; --surface-2:#252118; --rail:#3A342A;
+    --ink:#EFE8DA; --ink-2:#C6BCA9; --ink-3:#938A79;
+    --clay:#CE8A62; --terracotta:#E2836A; --olive:#A2BC8A; --gold:#CBAF5C; --teal:#7FB0AB; --plum:#C08997;
+    --ok:#8FB176; --warn:#CBAF5C; --bad:#E08268; --open:#7FB0AB;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#16140F; --surface:#1E1B16; --surface-2:#252118; --rail:#3A342A;
+  --ink:#EFE8DA; --ink-2:#C6BCA9; --ink-3:#938A79;
+  --clay:#CE8A62; --terracotta:#E2836A; --olive:#A2BC8A; --gold:#CBAF5C; --teal:#7FB0AB; --plum:#C08997;
+  --ok:#8FB176; --warn:#CBAF5C; --bad:#E08268; --open:#7FB0AB;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--clay);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--clay) 35%,transparent)}
+a:hover{border-bottom-color:var(--clay)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--clay);outline-offset:2px}
+h1,h2,h3{font-family:var(--display);font-weight:600;text-wrap:balance;margin:0}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px 110px}
+@media(min-width:900px){.wrap{padding:0 32px 130px}}
+
+/* masthead */
+.mast{padding-top:38px;border-bottom:2px solid var(--ink);padding-bottom:18px}
+.mast .eyebrow{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--clay);font-weight:600}
+.mast h1{font-size:clamp(32px,5vw,52px);line-height:1.02;letter-spacing:-.02em;margin:10px 0 8px}
+.mast p{margin:0;max-width:66ch;color:var(--ink-2);font-size:16px}
+.mast .back{margin-top:14px;font-size:13px}
+
+/* index */
+.idx{border:1px solid var(--rail);border-top:0;background:var(--surface)}
+.idx .row{display:grid;grid-template-columns:74px 1fr;gap:14px;padding:9px 16px;border-bottom:1px solid color-mix(in srgb,var(--rail) 55%,transparent);align-items:baseline}
+@media(min-width:760px){.idx .row{grid-template-columns:74px 1fr 150px 92px}}
+.idx .row:last-child{border-bottom:0}
+.idx .row:hover{background:var(--surface-2)}
+.idx .q{font-family:var(--mono);font-size:12.5px;color:var(--clay);font-weight:500}
+.idx .t{font-size:14px}
+.idx .o{font-size:12px;color:var(--ink-3)}
+.idx a{border:0}
+.tally{display:flex;flex-wrap:wrap;gap:8px;padding:12px 16px;background:var(--surface-2);border-bottom:1px solid var(--rail)}
+
+/* chips */
+.chip{display:inline-flex;align-items:center;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;font-weight:600;padding:3px 7px 3px 6px;border-radius:3px;white-space:nowrap;border-left:3px solid}
+.s-written{color:var(--ok);border-color:var(--ok);background:color-mix(in srgb,var(--ok) 11%,transparent)}
+.s-ready{color:var(--ok);border-color:var(--ok);background:color-mix(in srgb,var(--ok) 11%,transparent)}
+.s-doc{color:var(--warn);border-color:var(--warn);background:color-mix(in srgb,var(--warn) 12%,transparent)}
+.s-open{color:var(--bad);border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,transparent)}
+.s-person{color:var(--open);border-color:var(--open);background:color-mix(in srgb,var(--open) 12%,transparent)}
+
+/* question block */
+.q-block{margin-top:52px;scroll-margin-top:16px}
+.q-head{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:baseline;border-bottom:1px solid var(--rail);padding-bottom:12px}
+.q-head .qn{font-family:var(--mono);font-size:13px;color:var(--clay);font-weight:500;letter-spacing:.04em}
+.q-head h2{font-size:clamp(21px,2.4vw,27px);letter-spacing:-.01em;flex:1 1 320px}
+.q-head .meta{font-size:12px;color:var(--ink-3);font-family:var(--mono)}
+.q-body{display:grid;gap:26px;margin-top:22px}
+@media(min-width:960px){.q-body{grid-template-columns:minmax(0,1fr) 306px;gap:36px}}
+
+/* answer prose */
+.answer{min-width:0}
+.answer .tag{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:8px}
+.answer p{margin:0 0 13px;max-width:66ch}
+.answer ul{margin:0 0 14px;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;max-width:66ch}
+.answer ul li{position:relative;padding-left:15px}
+.answer ul li:before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;background:var(--clay)}
+.answer h3{font-family:var(--body);font-size:13px;letter-spacing:.09em;text-transform:uppercase;color:var(--clay);font-weight:600;margin:22px 0 9px}
+.answer blockquote{margin:0 0 14px;padding:12px 16px;border-left:3px solid var(--rail);background:var(--surface);font-size:14px;color:var(--ink-2)}
+.answer blockquote p:last-child{margin-bottom:0}
+.answer code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding:1px 5px;border-radius:3px}
+.answer .fieldval{font-family:var(--mono);font-size:22px;font-weight:500;color:var(--ink);background:var(--surface);border:1px solid var(--rail);border-left:3px solid var(--clay);padding:10px 14px;display:inline-block;margin:0 0 14px}
+.answer .tblwrap{overflow-x:auto;margin:0 0 16px;border:1px solid var(--rail);background:var(--surface)}
+.answer table{width:100%;border-collapse:collapse;font-size:13px;min-width:460px}
+.answer th{text-align:left;font-family:var(--body);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:600;padding:9px 12px;background:var(--surface-2);border-bottom:1px solid var(--rail);white-space:nowrap}
+.answer td{padding:9px 12px;border-bottom:1px solid color-mix(in srgb,var(--rail) 50%,transparent);vertical-align:top}
+.answer td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.answer tr:last-child td{border-bottom:0}
+.notwritten{border:1px dashed var(--rail);background:var(--surface);padding:18px 20px}
+.notwritten .h{font-family:var(--display);font-size:18px;margin-bottom:7px}
+.notwritten p{margin:0;color:var(--ink-2);max-width:64ch}
+
+/* breakdown blocks */
+.bd{margin-top:30px}
+.bd>h4{font-family:var(--body);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--clay);font-weight:600;margin:0 0 4px}
+.bd>.sub{font-size:13.5px;color:var(--ink-3);margin:0 0 12px;max-width:70ch}
+.bd .tblwrap{overflow-x:auto;border:1px solid var(--rail);background:var(--surface)}
+.bd table{width:100%;border-collapse:collapse;font-size:13px;min-width:560px}
+.bd th{text-align:left;font-family:var(--body);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:600;padding:9px 12px;background:var(--surface-2);border-bottom:1px solid var(--rail);white-space:nowrap}
+.bd td{padding:9px 12px;border-bottom:1px solid color-mix(in srgb,var(--rail) 50%,transparent);vertical-align:top}
+.bd td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bd tr:last-child td{border-bottom:0}
+.bd tr.tot td{font-weight:600;background:var(--surface-2)}
+.bd .mid{font-family:var(--mono);font-size:10.5px;color:var(--ink-3)}
+.bench{display:grid;gap:1px;background:var(--rail);border:1px solid var(--rail);margin-top:14px}
+@media(min-width:640px){.bench{grid-template-columns:repeat(3,1fr)}}
+.bench div{background:var(--surface);padding:13px 15px}
+.bench dt{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.bench dd{margin:5px 0 0;font-family:var(--display);font-size:22px;font-variant-numeric:tabular-nums}
+.bench .sub{font-size:11.5px;color:var(--ink-3);margin-top:4px;line-height:1.35}
+.bench .pick{border-left:3px solid var(--clay)}
+.jam{display:flex;flex-direction:column;gap:1px;background:var(--rail);border:1px solid var(--rail);margin-top:4px}
+.jam .st{background:var(--surface);padding:12px 15px;display:grid;grid-template-columns:1fr 108px;gap:4px 14px;align-items:baseline}
+.jam .st.block{border-left:3px solid var(--terracotta)}
+.jam .nm{font-size:14px;font-weight:600}
+.jam .rate{font-family:var(--display);font-size:17px;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.jam .why{grid-column:1/-1;font-size:12.5px;color:var(--ink-3);line-height:1.4}
+.jam .bar{grid-column:1/-1;height:6px;background:var(--surface-2);margin-top:2px}
+.jam .bar i{display:block;height:100%;background:var(--olive)}
+.jam .st.block .bar i{background:var(--terracotta)}
+.derive{border:1px solid var(--rail);border-left:3px solid var(--olive);background:var(--surface);padding:14px 16px;margin-top:14px}
+.derive .h{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--olive);font-weight:600;margin-bottom:6px}
+.derive p{margin:0;font-size:13.5px;color:var(--ink-2);max-width:72ch}
+.derive p+p{margin-top:7px}
+
+/* side */
+.side{min-width:0;display:flex;flex-direction:column;gap:20px}
+.panel{border:1px solid var(--rail);background:var(--surface)}
+.panel>.ph{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);font-weight:600;padding:10px 14px;border-bottom:1px solid var(--rail);background:var(--surface-2)}
+.panel>.pb{padding:12px 14px}
+.slide{display:block;border:0;margin-bottom:12px}
+.slide:last-child{margin-bottom:0}
+.slide img{display:block;width:100%;height:auto;border:1px solid var(--rail)}
+.slide .cap{font-size:12px;color:var(--ink-3);margin-top:5px;line-height:1.35}
+.slide .cap b{color:var(--ink);font-weight:600;font-size:12.5px}
+.slide .cap .fid{font-family:var(--mono);font-size:10.5px}
+ul.lst{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+ul.lst li{font-size:13px;color:var(--ink-2);line-height:1.4;padding-left:12px;position:relative}
+ul.lst li:before{content:"";position:absolute;left:0;top:7px;width:4px;height:4px;background:var(--clay)}
+.ev{display:flex;flex-direction:column;gap:10px}
+.ev .e{display:grid;grid-template-columns:1fr auto;gap:4px 10px}
+.ev .k{font-size:12.5px;color:var(--ink-2);line-height:1.35}
+.ev .v{font-family:var(--display);font-size:16px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ev .s{grid-column:1/-1;font-family:var(--mono);font-size:10.5px;color:var(--ink-3)}
+.voice{border-left:3px solid var(--olive);padding:2px 0 2px 12px;margin-bottom:14px}
+.voice:last-child{margin-bottom:0}
+.voice q{display:block;font-family:var(--display);font-size:15px;line-height:1.4;color:var(--ink);quotes:"\201C" "\201D"}
+.voice .who{font-size:11.5px;color:var(--ink-3);margin-top:6px;line-height:1.35}
+.voice .who b{color:var(--ink-2);font-weight:600}
+.need{border:1px solid var(--rail);border-left:3px solid var(--terracotta);background:var(--surface);padding:13px 15px;margin-top:20px}
+.need .h{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--terracotta);font-weight:600;margin-bottom:5px}
+.need p{margin:0;font-size:13.5px;color:var(--ink-2);max-width:70ch}
+
+.callout{border:1px solid var(--rail);border-left:3px solid var(--clay);background:var(--surface);padding:16px 18px;margin-top:24px}
+.callout b{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--clay);margin-bottom:6px}
+.callout p{margin:0;font-size:14px;color:var(--ink-2);max-width:74ch}
+footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--rail);font-size:12px;color:var(--ink-3);max-width:82ch}
+.themebtn{position:fixed;top:12px;right:12px;z-index:20;font-family:var(--mono);font-size:11px;padding:6px 9px;border:1px solid var(--rail);background:var(--surface);color:var(--ink-2);border-radius:3px;cursor:pointer}
+.top{position:fixed;bottom:16px;right:16px;z-index:20;font-family:var(--body);font-size:11.5px;font-weight:600;padding:8px 12px;border:1px solid var(--rail);background:var(--surface);color:var(--ink-2);border-radius:3px;cursor:pointer}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<button class="themebtn" id="themebtn" type="button">theme</button>
+<button class="top" id="topbtn" type="button">Index</button>
+
+<div class="wrap">
+  <div class="mast" id="top">
+    <div class="eyebrow">Goods on Country &middot; QBE Foundation Stage 2 &middot; closes 25 September, noon</div>
+    <h1>The 25 Questions</h1>
+    <p>Every question on the form, with the answer as it will be submitted, the deck slides that carry it,
+       the files it needs, the figures behind it and the community voices that can be quoted against it.
+       Seven answers are written. The rest name the person or the document they are waiting on.</p>
+    <div class="back">Companion to the <a href="https://claude.ai/code/artifact/b45c45a0-378b-41a0-b635-eaa461d0957f">QBE Control Room</a>, which holds every claim, every funder line and the model to play with.</div>
+  </div>
+
+  <div class="idx">
+    <div class="tally" id="tally"></div>
+    <div id="idxRows"></div>
+  </div>
+
+  <div class="callout">
+    <b>How to read the voices</b>
+    <p>Every quote on this page is external tier in the repo storyteller registry, which is the record that
+       governs what may be printed. The registry wins over Empathy Ledger, where nothing is yet approved for
+       public display. Kristy Bloomfield is cleared as a person and is deliberately not quoted here: her
+       quotes trace to other projects, so using them for Goods would be a scope error.</p>
+  </div>
+
+  <div id="questions"></div>
+
+  <footer>
+    Answers are the text in <span style="font-family:var(--mono);font-size:11.5px">deliverables/qbe-stage2/qbe-answers-2026-09-10.md</span>
+    and its Q9 attachment, rendered verbatim. Figures come from a recalculated copy of the workbook, because
+    the file is saved without cached values. Slide images are exports of the 19 live frames in the Pencil deck
+    board, taken 10 September 2026. Working notes for Ben and Nic are not on this page and do not go to QBE.
+  </footer>
+</div>
+
+<script type="text/plain" id="md-Q10">Beds are counted in a register, one row per bed, with an asset identifier, a community and a
+product. The register is the source of every count below and it is the same record we use to find a
+bed again when someone reports a fault.
+
+### What the register holds
+
+On 8 September 2026 we read all 609 asset rows and reconciled them.
+
+| | Count | What it is |
+|---|---:|---|
+| Beds recorded as deployed | 540 | 177 Stretch Beds and 363 Basket Beds |
+| Communities with a recorded deployment | 11 | Bed-only and all-product counts both return 11 |
+| Washing machines in community | 22 | A curated count, not derived from rows |
+
+That is recorded deployment. It is not a survey of what is in use in a household today.
+
+### What was sold and paid for
+
+Ten invoices, 320 beds, $343,481 all time. Two of those runs carry the delivery detail worth
+reading:
+
+| | Beds | Detail |
+|---|---:|---|
+| Centrecorp, for Utopia | 130 | Paid and delivered. Oonchiumpa held the build, Urapuntja staff led the local delivery |
+| Maningrida | 40 | Pressed at our facility, assembled at Gamardi with young people and Homeland School Company |
+
+### Why 540 and 320 are both true
+
+The register counts beds that reached a community, including prototypes, gifted beds and the
+Basket Beds that came before the current product. The invoice record counts beds someone paid us
+for. A bed can sit in one, the other or both.
+
+The 130 Centrecorp beds are the reason we do not simply add the two. Their invoice, their delivery
+record and their register rows have not been reconciled against each other yet, so we hold them
+outside any cumulative total, where they cannot be counted twice. When that reconciliation is done we
+will report the number it produces, including if it is lower than 540.
+
+### How each figure is graded
+
+Every figure we publish carries one of four labels, and the label travels with the number.
+
+- **Verified** means we read the source. The 540, the 11 communities and the ten invoices are
+  verified.
+- **Workpaper** means it comes from a reconciliation we did ourselves and can hand over.
+- **Modelled** means it is calculated. Two hours of paid making a bed and 20 kilograms of plastic
+  in a finished bed are both modelled.
+- **Target** means it is a plan.
+
+### What we hear, held separately from what we count
+
+Experience is recorded in Empathy Ledger, our consent-based storytelling platform, with consent
+held per person and per quote. A repo registry governs what may be printed and it is the record
+that wins. Dorrie Jones at Arlparra said of her bed, "Good for me and comfy, easy to put together."
+Ray Nelson, against bed GBO-156-96, reported that the household is no longer experiencing back
+pains. Those are reported experience. They are not a measured health outcome and we do not present
+them as one.
+
+### What we do not claim
+
+No clinical result. Scabies and rheumatic heart disease are why a bed is washable and off the
+ground, and that is where the claim stops. We have never run a health study and we do not infer one
+from a delivery.
+
+Three things are not measured yet and we would rather name them than imply them. Paid hours a bed
+at working pace, which the first fifty beds out of each new plant will settle. Weighed yield, which
+needs input, accepted parts, offcuts and waste weighed per batch. And household use over time,
+which needs a consented follow-up at delivery, six weeks and three months.</script>
+<script type="text/plain" id="md-Q5">`300000`
+
+Two production plants, one each in a community that has asked for one. An allowance of $150,000
+a plant covers every module and the site base it sits on, with a small margin. The module prices
+are in Q6.</script>
+<script type="text/plain" id="md-Q6">$300,000 builds two production plants in communities that have asked for one.
+
+A community does not buy a facility. It chooses modules in feed order on top of a site base, and
+each module has a supplier behind it.
+
+| Module | Low | High | Where the price comes from |
+|---|---:|---:|---|
+| Site base: 40ft and 20ft containers, genset, crane, electrical, ventilation, pad, PPE | $31,800 | $64,000 | Modelled. Crane and containers quoted. |
+| Collection and sorting | $5,000 | $19,500 | Estimated |
+| Shredding | $19,800 | $19,800 | Telford Smith |
+| Pressing, CNC and finishing | $32,780 | $32,780 | Circularity bundle |
+| Assembly and workshop | $6,387 | $6,387 | Carbatec |
+| All modules and the site base | $95,767 | $142,467 | |
+
+The $150,000 we have allowed is an allowance, not a quote. It sits above the high column so that
+a site with a harder pad, a longer power run or a container that has to be barged does not stop
+the build.
+
+A plant goes where a community has 200 beds a year of recorded need and a local operator to run
+it. Five communities have asked us for their own plant: Palm Island, Alice Springs, Maningrida,
+Utopia and Tennant Creek. Alice Springs is already funded through Oonchiumpa's Commonwealth
+money and is outside this request. The two we plan to build with this grant are Palm Island,
+first, and Maningrida.
+
+A plant takes about three months from money to first bed. It starts at 200 beds a year on a
+single press and can reach 720 on the same equipment as the local crew builds speed. Maningrida
+has already made beds with us: 40 pressed at our facility, sent north, and assembled at Gamardi
+by young people with Homeland School Company. Palm Island's council, the community and PICC have
+each asked for a facility.
+
+This grant does not buy beds. The first stock is paid for separately, by the Tim Fairfax Family
+Foundation and the Brian M. Davis Charitable Foundation, so that a community's plant and a
+community's stock are never competing for the same dollar. Keeping them apart is what lets a
+plant be judged on whether it runs.
+
+What the money produces that we can count: two plants standing and pressing; the beds they make
+in their first year; the hours of paid local work that go into them; and the plastic that goes
+through the shredder instead of the tip. At month six we ask four questions at each site that
+have a yes or a no. Who holds the keys. Who runs the payroll. Who invoices the buyer. Whether at
+least half the production is local.</script>
+<script type="text/plain" id="md-Q7">`150000`
+
+$150,000 builds one plant. It goes to Palm Island, where the council, the community and PICC have
+all asked for one and where the recorded demand is largest.
+
+Nothing about the model changes. The modules, the site base, the three months to first bed and
+the four questions at month six are the same. Maningrida waits for its plant and keeps taking
+beds pressed at our facility in the meantime, which is how the 40 beds at Gamardi were made.
+
+Every dollar between $150,000 and $300,000 buys the same thing at the same rate, because a plant
+is a fixed list of modules and not a variable.</script>
+<script type="text/plain" id="md-Q8">No related entity delivers any part of the funded activity. The applicant builds both plants and
+buys every module from a supplier at arm's length. What follows is every related-party connection
+a reader should know about, including the ones this grant does not touch.
+
+### The entities
+
+The Butterfly Movement Ltd is the applicant and trades as Goods on Country. A Curious Tractor Pty
+Ltd is related through the founders and has been the operating home for parts of this work during
+the transition. A Kind Tractor Ltd is dormant and carries no activity.
+
+### Oonchiumpa, and the connection due diligence would find
+
+Oonchiumpa is an Aboriginal community-controlled organisation in Alice Springs. Kristy Bloomfield
+is a director of Oonchiumpa and a director of the applicant. She also leads the Oonchiumpa
+relationship for Goods on Country.
+
+Oonchiumpa holds a Commonwealth offer from the Department of Employment and Workplace Relations
+for $1,695,000 over four years, dated 12 August 2026, with the agreement still to be executed.
+Under it Oonchiumpa expects to pay Goods on Country about $150,000 to build a production plant in
+Alice Springs. A further amount of up to $150,000 for plant equipment is in train with the
+National Indigenous Australians Agency, where no invitation has yet been issued.
+
+That plant and that money sit outside this request. The two plants QBE would fund are in other
+communities. In Alice Springs, Goods on Country is a builder paid to do a job by the organisation
+that holds the funding, and the money is spent on the build.
+
+Kristy declares her interest at both boards and takes no part in a decision of either board about
+a transaction between them. Oonchiumpa's own decision to commission the plant is made by its board
+without her.
+
+### The founders' entities, and the transfer under way
+
+Part of the Goods trading history sits in a founder's sole trader ledger, because that is where
+the work was done before the applicant took it on. Our accountants, Standard Ledger, are
+documenting the FY26 carve-out into the applicant.
+
+The production equipment at our Witta facility was bought by the founders through the sole trader
+and through A Curious Tractor, and is being transferred into the applicant. No related entity is
+paid for the use of it, then or now.
+
+### Who is involved and is not a related entity
+
+Community partners assemble, deliver and make the local decisions, and they benefit directly by
+design, which is the purpose of the programme. Defy Design, a Sydney recycled-plastic
+manufacturer, supplies bed kits and shredded plastic as an ordinary supplier at commercial rates.
+
+No related entity benefits from this grant, directly or indirectly, beyond the transfer of assets
+into the applicant that is already under way.</script>
+<script type="text/plain" id="md-Q18">A QBE decision releases money that is already invited and cannot be paid without it.
+
+The Brian M. Davis Charitable Foundation invited us on 1 September to apply for up to $100,000.
+Their budget template sets the condition in writing:
+
+> Please note BMDCF only pays out a grant once all funding for a project has been confirmed. If an
+> application to another funding body is unsuccessful, or other income becomes unavailable, you
+> must advise BMDCF as soon as possible.
+
+Our budget names QBE as the other funding body. So their money moves when yours does, and it stays
+still when yours does not. The dates line up in that order:
+
+| When | What happens |
+|---|---|
+| 25 September | This application and the Brian M. Davis application both close |
+| 6 and 7 October | QBE interviews |
+| 23 October | QBE conditional outcomes |
+| October | Brian M. Davis grants committee |
+| 19 November | Brian M. Davis board decides |
+| Late November | Tim Fairfax Family Foundation decides |
+
+A conditional outcome on 23 October is in our hands almost four weeks before the Brian M. Davis
+board sits. That is the whole mechanism, and it is the reason we are applying to you for the
+plants and to them for the beds and the youth facilitation.
+
+The second thing your money unlocks takes longer to arrive and is worth more. Nobody will lend
+against a community-made bed today, because nobody knows what one costs to make in a community.
+Our costs come from a shed in Witta. The two plants this grant builds produce that number in their
+first year, weighed and counted at the site, alongside the operating cost of running a plant a
+long way from a city. We are in conversation with Sefa and with the Paul Ramsay Foundation and
+Atlassian Foundation's Impact First Fund about repayable capital. Neither conversation can become
+an application until the number exists. Our own test says a $200,000 loan needs 101 paid beds a
+year to service it, which is a plant's output and not a guess about demand. Grant capital builds
+plants one and two. Measured cost is what lets debt build plants three and four, and that is how
+this stops needing grants.
+
+One thing here is a question for you. Your preconditions date is 13 November. The
+Brian M. Davis board sits on 19 November and Tim Fairfax decides late in the same month. Both are
+invitations we received in the last fortnight and neither board can be moved. We would like to
+know whether a conditional board outcome, or the invitation itself, can stand as the confirmation
+you need on 13 November.</script>
+<script type="text/plain" id="md-Q9">Attach `What $300,000 produces`, drafted at
+`deliverables/qbe-stage2/q9-impact-of-the-new-funds-2026-09-10.md` and exported to PDF.
+
+It runs to about two pages and covers what the money builds, what each bed does with the unit it
+is counted in, what two plants produce in their first year, how each row is counted, the test at
+month six, what the grant does not pay for, and what happens after the two plants.
+
+The organisation, the model and the evidence are not repeated in it. Those go in at Q23.
+
+### The attached document, in full
+
+**Goods on Country · The Butterfly Movement Ltd · QBE Foundation Stage 2, question 9 · September 2026**
+
+This document covers the impact of the funds requested. It does not restate the organisation.
+The model, the money and the evidence behind every figure sit in the materials attached at
+question 23.
+
+---
+
+## What the money builds
+
+Two production plants, one each in a community that has asked for one, at an allowance of
+$150,000 a plant. A plant is a site base and four modules: collection and sorting, shredding,
+pressing with CNC and finishing, and assembly. It takes about three months from money to first
+bed. It starts at 200 beds a year on one press and reaches 720 on the same equipment as the local
+crew builds speed.
+
+The two we plan to build are Palm Island, first, and Maningrida. Both have asked us for a plant.
+Alice Springs has asked as well and is funded separately through Oonchiumpa's Commonwealth
+funding, so it is outside this request.
+
+---
+
+## What each bed does, with the unit it is counted in
+
+| Outcome | Unit | Per bed |
+|---|---|---|
+| Paid making | hours | 2 |
+| Plastic kept in use | kilograms of HDPE | 20 |
+| Money kept in the community | dollars, when the community sells the bed | up to 750 |
+| A person off the floor | one bed, one person | 1 |
+
+Health is the reason the hardware exists and it is not one of these rows. Scabies and rheumatic
+heart disease are why a bed is washable and off the ground. That is where the claim stops.
+
+## What two plants produce in their first year
+
+At 200 beds a plant in year one, 400 beds across the two sites.
+
+| | Year one, both plants |
+|---|---|
+| Beds made in community | 400 |
+| Paid making | 800 hours |
+| Plastic kept in use | 8 tonnes |
+| People off the floor | 400 |
+
+The money row is deliberately absent from that table. What share of a bed's price stays with the
+community enterprise is a decision each community makes with us, and none of them has made it
+yet. No community's own pathway gets a price in a document before they have seen it.
+
+---
+
+## How each row is counted
+
+Beds are units in a live register, counted per community, and the register is the source of every
+count we publish. Every figure we print carries a label: verified, workpaper, modelled or target.
+The two rows above that are modelled today are hours and kilograms, at 2 hours and 20 kilograms a
+bed. The first fifty beds out of each plant are weighed and timed at the site, which replaces both
+with measured numbers.
+
+Voices are held in Empathy Ledger, our consent-based storytelling platform, with consent recorded
+per person and per quote. The rule that joins the two records is that no number goes out without a
+voice and no voice is reduced to a number.
+
+---
+
+## The test at month six
+
+Six months after a plant starts, we ask four questions at the site. Each has a yes or a no.
+
+1. Who holds the keys.
+2. Who runs the payroll.
+3. Who invoices the buyer.
+4. Whether at least half the production is local.
+
+We report the answers whichever way they fall. A plant that answers no to three of them is a
+finding, and it is more useful to us and to you than a plant that is reported as a success.
+
+---
+
+## What this grant does not pay for, and why that matters
+
+It does not buy beds. The first stock is paid for separately, so that a community's plant and a
+community's stock never compete for the same dollar. A plant can then be judged on whether it
+runs.
+
+It does not pay for the youth programme wrapped around a site. In Alice Springs that is the
+Commonwealth's. Elsewhere it is $10,000 of facilitation a community, which sits in a separate
+application.
+
+---
+
+## What happens after the two plants
+
+Nobody will lend against a community-made bed today, because nobody knows what one costs to make
+in a community. Our costs come from a shed in Witta.
+
+These two plants produce that number in their first year, along with the operating cost of running
+a plant a long way from a city. Our own test says a $200,000 loan needs 101 paid beds a year to
+service it, which is inside a single plant's output. Grant capital builds plants one and two.
+A measured cost is what lets repayable capital build plants three and four.</script>
+<script type="text/plain" id="md-Q23">Four files.
+
+| File | What it is |
+|---|---|
+| `Goods-on-Country-QBE-deck.pdf` | The deck, 19 slides. Slides 13 to 19 carry this request. |
+| `Goods-financial-plan.xlsx` | The model. Every figure on the deck and in these answers is a cell in it. |
+| `Goods-on-Country-the-model.pdf` | The whole model written out in eleven sections, including last year from the accounts and the trade already running. |
+| `Goods-on-Country-money-map.pdf` | The money drawn: a bed, the three pots, who pays for the first stock, the year in and out, what a plant costs by module. |
+
+The workbook is the model. We maintain it week to week, and it was not assembled for this
+application. Yellow
+cells are inputs. Change an input and the beds, the cash by month, the break-even and the ten-year
+shape all move together. The loan test in it is the one we hold ourselves to: a $200,000 facility
+needs 101 paid beds a year to service.
+
+Two things in the deck are worth saying in advance. Nothing in our funding is signed, and the
+deck says so on the slide where the money is. And the photographs show work already done, with no
+future site pictured.</script>
+
+<script>
+/* ---------- slide catalogue ---------- */
+const SLIDES = {
+  LDM1K:["01","Made on Country"], nYkbR:["02","The broken system"], T814io:["03","The systemic cost"],
+  S28Ukn:["04","How we work"], LP8Uy:["05","Governance and people"], i3mL7v:["06","The road here"],
+  MYAVQ:["07","Products"], XRUz9:["08","Relationship geography"], mDhny:["09","One facility, four steps"],
+  esUr4:["10","Maningrida"], ZZ4GO:["11","Utopia homelands"], LX4ci:["12","Demand and buyers"],
+  COJmo:["13","The model"], nfPKg:["14","The intended change"], TiKvy:["15","The investment"],
+  F93w1o:["16","The funding design"], rknzM:["17","The sequence"], tVcLc:["18","The ask"], H5N2zG:["19","The close"]
+};
+const THUMBS = __THUMBS__;
+
+/* ---------- questions ---------- */
+const STATES = {written:["s-written","written"],ready:["s-ready","ready"],doc:["s-doc","document owed"],open:["s-open","not started"],person:["s-person","a person must answer"]};
+const Q = [
+{id:"Q1-Q2", anchor:"q1", title:"Legal entities, identifiers, applicant and funding flows", state:"ready", owner:"Ben",
+ slides:["LP8Uy"],
+ files:["Structure and funding-flow PDF, one page, draft","Butterfly registry extract","A Curious Tractor registry extract"],
+ ev:[["The applicant","Butterfly","ABN 22 155 132 684, ACN 155 132 684"],["Related entity","A Curious Tractor","ABN 36 697 347 676, ACN 697 347 676"],["Historical trading","Sole trader","Nicholas Marchesi, ABN 21 591 780 066"]],
+ voices:[],
+ need:"The entity names and identifiers are settled. What is missing is the record of actual transfers: dates, contracts and control. QBE pays the applicant, and the money flow diagram has to match the records rather than the intention."},
+
+{id:"Q3", anchor:"q3", title:"Structure and ownership diagram", state:"doc", owner:"Ben",
+ slides:["LP8Uy"],
+ files:["Goods-structure-and-funding-flow.pdf, one page, working draft"],
+ ev:[["Upload field","5 files","10MB a file"]],
+ voices:[],
+ need:"A draft diagram exists. Confirm control, every related entity and the transfers, then correct the diagram against the records. A diagram is not proof of an appointment."},
+
+{id:"Q4", anchor:"q4", title:"All directors across related entities", state:"doc", owner:"Ben",
+ slides:["LP8Uy"],
+ files:["Director and control records for every related entity"],
+ ev:[["Butterfly directors","3","Kristy Bloomfield, Audrey Deemal, Jeremy Donovan"]],
+ voices:[],
+ need:"Butterfly's three directors are settled, stated by Ben as a director. A Curious Tractor's director and ownership records still need assembling."},
+
+{id:"Q5", anchor:"q5", title:"Amount requested", state:"written", owner:"written", md:"Q5",
+ slides:["tVcLc"],
+ files:[],
+ ev:[["The request","$300,000","QBE!D14, Funding F01"],["A plant","$150,000","an allowance, not a quote"],["Modules priced","$95,767 to $142,467","Matt Allen's Facility and Modules sheet"]],
+ voices:[],
+ need:""},
+
+{id:"Q6", anchor:"q6", title:"Proposed use of funds", state:"written", owner:"written", md:"Q6",
+ extras:["modules","line","impact4"],
+ slides:["tVcLc","mDhny","rknzM"],
+ files:[],
+ ev:[["Communities that asked for a plant","5","Palm Island, Alice Springs, Maningrida, Utopia, Tennant Creek"],["A plant's first year","200 beds","reaching 720 on the same press"],["Money to first bed","3 months",""],["Beds already made with Maningrida","40","pressed at Witta, assembled at Gamardi"]],
+ voices:[["You can't just go down to the store and buy beds and stuff, it's hard for families","Alfred Johnson","Manbarra Country, Bwgcolman, Palm Island","On the barge-freight barrier"],
+         ["Hardly any people around the community have got beds.","Ivy","Palm Island","Housing need on Palm Island"],
+         ["We made 20 odd beds in aged care, utilizing the young people of the aged care service","Shayne Bloomfield","Alice Springs and Utopia","On the Maningrida delivery"]],
+ need:""},
+
+{id:"Q7", anchor:"q7", title:"If the full amount were not available", state:"written", owner:"written", md:"Q7",
+ slides:["tVcLc"],
+ files:[],
+ ev:[["The smaller case","$150,000","one plant, Palm Island"],["What changes in the model","nothing","the modules are a fixed list"]],
+ voices:[["the cost of, not only purchasing it, the cost of having it freighted over as well, it all adds","Daniel Patrick Noble","Palm Island","Why freight means families go without"],
+         ["Try it. Try it. You won't regret it, I tell you.","Jason","Palm Island","His message to other communities"]],
+ need:""},
+
+{id:"Q8", anchor:"q8", title:"How the funded activity touches related entities", state:"written", owner:"Board, 14 Sep", md:"Q8",
+ slides:["LP8Uy"],
+ files:["Board minute of Kristy Bloomfield's declaration","Oonchiumpa's matching minute","Standard Ledger FY26 carve-out documentation"],
+ ev:[["Oonchiumpa's Commonwealth offer","$1,695,000","DEWR letter 12 Aug 2026, agreement unexecuted"],["Paid to Goods for the Alice Springs plant","about $150,000","spent on that build, net zero"],["NIAA, in train","up to $150,000","no invitation issued"],["Sunk plant workpaper","$110,046","equipment being transferred into the applicant"]],
+ voices:[],
+ need:"The answer says Kristy declares her interest at both boards and takes no part in decisions between them. Get it minuted at the applicant's board on Monday 14 September and ask Oonchiumpa to minute the same. Submitting the sentence without the minute turns a disclosure into an exposure."},
+
+{id:"Q9", anchor:"q9", title:"Document outlining the expected impact of the new funds", state:"written", owner:"written", md:"Q9",
+ slides:["nfPKg"],
+ files:["What $300,000 produces, about two pages, export to PDF"],
+ ev:[["Paid making a bed","2 hours","the 6.5-hour figure is withdrawn"],["Plastic through the press","36 kg a bed","21 kg for a leg sheet, 15 for a tab sheet, NM Play B21"],["Plastic in the finished bed","20 kg","the 16 kg difference is offcut or loss until yield is measured"],["Both plants, year one","400 beds","800 hours, 8 tonnes in the beds, 14.4 pressed"],["The money row","absent on purpose","no community has agreed its share"]],
+ voices:[["Because I was sleeping on floor, turn around, turn around. Yeah. No comfortable nothing.","Margaret Lloyd","Utopia homelands","Recorded at delivery"],
+         ["To see kids' faces with joy after making a bed, it just really hits you.","Karen Liddle","Utopia, Oonchiumpa","Young people and making"],
+         ["Yeah, I'll be rocking up every day to make them.","Mykel","Utopia","From build day to local work"]],
+ need:"The impact document is written and checker-clean. It carries beds, hours and kilograms in the year-one table and describes the money without totalling it. If Ben rules the community share, add the row. One figure in the attachment is now narrower than the workbook: it prints 20 kg a bed, and NM Play B21 says 36 kg of shred is pressed to make that bed. Say the word and the attachment carries both."},
+
+{id:"Q10", anchor:"q10", title:"Impact to date and how it is measured", state:"written", owner:"written", md:"Q10",
+ slides:["XRUz9","esUr4","ZZ4GO","nfPKg"],
+ files:["Dated register extract","Delivery and feedback records","Consented story evidence"],
+ ev:[["Beds recorded as deployed","540","177 Stretch, 363 Basket, 11 communities, register check 8 Sep"],["Beds sold and paid, all time","320","ten invoices, $343,481"],["Centrecorp, paid and delivered","130","outside the cumulative adjustment until overlap is reconciled"],["Maningrida, delivered and paid","40","a paid run, not a sustained rate"]],
+ voices:[["Good for me and comfy, easy to put together.","Dorrie Jones","Arlparra, Utopia Homelands","Product proof at home"],
+         ["Since receiving their new beds, they are no longer experiencing back pains.","Ray Nelson","Utopia Homelands","Lived experience, bed GBO-156-96"],
+         ["We put together crates, tied them up with plastic, joined them together to make it look like a bed","Mark","Palm Island","Making do without beds"],
+         ["These two boys just picked it up straight away. The most important thing is it's actually comfortable","Heather Mundo","Katherine","On the Stretch Bed"]],
+ need:"Written 10 September and checker-clean. It reports both counts and says why they differ. The Centrecorp reconciliation is still owed, and the answer commits to reporting whatever number it produces, including a lower one. Consent for the two quoted lines is held in the repo registry."},
+
+{id:"Q11", anchor:"q11", title:"Existing impact measurement materials", state:"doc", owner:"Ben",
+ slides:["nfPKg"],
+ files:["Register reconciliation, dated","Retrospective evidence note","Blank collection templates, labelled as proposed"],
+ ev:[["Follow-up points proposed","3","delivery, six weeks, three months"],["Beds followed in the next programme","50","20 made at Witta, 15 at each new site"]],
+ voices:[["Like me, see, I had a couple of strokes and a lot of the time I can't get up. If I have two of those beds","Cliff Plummer","Tennant Creek","Accessibility feedback on bed height"],
+         ["And even especially for our older people too. They like to have lower beds","Melissa Jackson","Tennant Creek","Unprompted product feedback"]],
+ need:"Reconcile the Centrecorp overlap and select which consented records go in. Label proposed collection as proposed. Never describe future collection as an evaluation already done."},
+
+{id:"Q12", anchor:"q12", title:"Why governance documents are unavailable", state:"open", owner:"Ben",
+ slides:[],
+ files:["A written explanation of the genuine retrieval gap"],
+ ev:[["Butterfly's constitution","not located",""]],
+ voices:[],
+ need:"Explain only genuine retrieval gaps. A Curious Tractor's constitution is not Butterfly's and cannot stand in for it."},
+
+{id:"Q13", anchor:"q13", title:"Legal and regulatory declaration", state:"person", owner:"Ben",
+ slides:[],
+ files:[],
+ ev:[],
+ voices:[],
+ need:"The applicant answers this. Do not infer it from a search and do not pre-tick it."},
+
+{id:"Q14-Q15", anchor:"q14", title:"Other funding, with original evidence", state:"doc", owner:"Ben",
+ slides:["F93w1o"],
+ files:["Private bundle of original funder correspondence","Status schedule with conditions, recipient and dates"],
+ ev:[["Secured today","$0","Funding!F19"],["Tim Fairfax, invited","$300,000 over three years","Katie Norman email 31 Aug 2026"],["Brian M. Davis, invited","up to $100,000","Miranda Campbell email 1 Sep 2026"],["Earlier QBE support in the accounts","$50,000","historical, separate from this request"]],
+ voices:[],
+ need:"The bundle exists. Refresh the conditions, the recipient and the dates, and describe letters accurately. An invitation is not an award, and Snow and Dusseldorp are conversations with no dated ask."},
+
+{id:"Q16-Q17", anchor:"q16", title:"Committed funder contacts and permission to contact", state:"person", owner:"Ben",
+ slides:[],
+ files:["Private contact schedule"],
+ ev:[["Funders with a satisfied condition","0",""]],
+ voices:[],
+ need:"The schedule is prepared and contact details stay private. The applicant gives permission to contact, and there is no committed funder yet to name."},
+
+{id:"Q18", anchor:"q18", title:"How QBE funding would be catalytic", state:"written", owner:"written", md:"Q18",
+ slides:["F93w1o","tVcLc"],
+ files:["Brian M. Davis budget template, sheet INSTRUCTIONS cell B16"],
+ ev:[["QBE conditional outcomes","23 October","four weeks before the BMD board"],["QBE pre-conditions due","13 November","before both boards decide"],["Loan test","101 paid beds a year","to service $200,000, inside one plant's output"]],
+ voices:[],
+ need:"The answer puts the timing question to QBE directly, and asks whether a conditional board outcome or the invitation itself can stand as confirmation on 13 November."},
+
+{id:"Q19", anchor:"q19", title:"Governance, team, financial and delivery readiness", state:"open", owner:"Nic",
+ slides:["mDhny","esUr4","ZZ4GO","COJmo","rknzM"],
+ files:["Site agreement or letter per plant","Quote basis per plant","Cash milestone schedule"],
+ ev:[["Plants to defend","2","a pad, a power answer and a freight number each"],["Allowance against quoted modules","$150,000 against $95,767 to $142,467",""],["Beds ready to assemble now","81","Model!B36"],["Witta output a month","60 or 120","own panels or Defy legs"]],
+ voices:[["I had a yarn with the girls one day. Said you got to get out and start your own business.","Karen Liddle","Utopia, Oonchiumpa","Local leadership to enterprise"],
+         ["That's where we talk about allies, right? It's about letting Aboriginal people lead, but being","Tanya Turner","Alice Springs and Utopia, Oonchiumpa","The posture partners must hold"],
+         ["We could even teach them down there to make it, you know, and you want this bed, here","Gary","Mount Isa","On young people and making"]],
+ need:"Nic owes a site and a quote basis for each plant before 25 September. Neither community has agreed to a build, and neither should be told they are in a grant application before Ben has spoken to them."},
+
+{id:"Q20-Q21", anchor:"q20", title:"Applicant profit and loss, balance sheet and cashflow", state:"doc", owner:"Eloise",
+ slides:["TiKvy"],
+ files:["Butterfly-FY26-unaudited-financial-statements.pdf, ten pages","Current management cashflow","Reconciled opening balances"],
+ ev:[["Butterfly FY26 income","$77,080","unaudited, declaration unsigned"],["Butterfly FY26 expenses","$119,934",""],["Butterfly FY26 closing cash","$4,041",""],["Opening cash for the programme","unknown","decision D10, unknown is not zero"]],
+ voices:[],
+ need:"The FY26 set is found and audit is not required. What is missing is current management cashflow for the entity and reconciled opening balances. A programme forecast is not entity cashflow."},
+
+{id:"Q22", anchor:"q22", title:"Evidence that governance is focused on impact", state:"doc", owner:"Ben",
+ slides:["LP8Uy","tVcLc"],
+ files:["Butterfly constitution","Board, delegation and conflict records","Registry and control extracts"],
+ ev:[["Indigenous directors","3 of 3",""],["Related-party declaration minuted","not yet","14 September board"]],
+ voices:[["We're given the opportunity to be consulted with, but you're never given the opportunity","Tanya Turner","Alice Springs and Utopia, Oonchiumpa","Consultation without decision power"],
+         ["We've never been asked what sort of house we'd like to live in.","Linda Turner","Warumungu Country, Tennant Creek","Being asked"]],
+ need:"The constitution is unlocated and Q12 explains that. Assemble the control, delegation and conflict records. Community ownership stays a pathway until rights and transfers are evidenced."},
+
+{id:"Q23", anchor:"q23", title:"Capital raising deck, model and materials", state:"written", owner:"written", md:"Q23",
+ slides:["LDM1K","COJmo","TiKvy","F93w1o","rknzM","tVcLc"],
+ files:["Goods-on-Country-QBE-deck.pdf, 19 slides, 4.7MB","Goods-financial-plan.xlsx","Goods-on-Country-the-model.pdf","Goods-on-Country-money-map.pdf"],
+ ev:[["Deck pages","19","2,193 words, zero writing-tell errors"],["Deck size","4.7MB","inside the 10MB cap"],["Workbook","28 sheets","42,429 formulas"],["Loan test in the model","101 paid beds a year",""]],
+ voices:[],
+ need:"Four files, all under the cap. The deck now carries the $300,000 two-plant request, checked by exporting all 19 frames on 10 September."},
+
+{id:"Q24", anchor:"q24", title:"Solvency declaration", state:"person", owner:"Ben",
+ slides:[],
+ files:[],
+ ev:[["Butterfly closing cash, FY26","$4,041","the last audited-free record"],["Opening cash","unknown",""]],
+ voices:[],
+ need:"The authorised applicant assesses the ability to pay debts as they fall due, on current information. An old balance or a forecast does not establish it, and it must not be pre-ticked."},
+
+{id:"Q25", anchor:"q25", title:"Accuracy declaration", state:"person", owner:"Ben",
+ slides:[],
+ files:[],
+ ev:[["Answers written","7 of 25",""],["Upload fields","7","five files each, 10MB a file"]],
+ voices:[],
+ need:"The applicant confirms the final application and its attachments after checking them. It is the last thing done, not the first."}
+];
+
+/* ---------- tiny markdown renderer for the answer text ---------- */
+function inline(t){
+  return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/`([^`]+)`/g,"<code>$1</code>")
+    .replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>");
+}
+function renderMd(src){
+  const lines=src.replace(/\r/g,"").split("\n");
+  let out="",i=0,para=[],quote=[];
+  const flushP=()=>{if(para.length){out+="<p>"+inline(para.join(" "))+"</p>";para=[]}};
+  const flushQ=()=>{if(quote.length){out+="<blockquote><p>"+inline(quote.join(" "))+"</p></blockquote>";quote=[]}};
+  while(i<lines.length){
+    const l=lines[i];
+    if(/^\s*$/.test(l)){flushP();flushQ();i++;continue}
+    if(/^>\s?/.test(l)){flushP();quote.push(l.replace(/^>\s?/,""));i++;continue}
+    flushQ();
+    if(/^###\s+/.test(l)){flushP();out+="<h3>"+inline(l.replace(/^###\s+/,""))+"</h3>";i++;continue}
+    if(/^##\s+/.test(l)){flushP();out+="<h3>"+inline(l.replace(/^##\s+/,""))+"</h3>";i++;continue}
+    if(/^#\s+/.test(l)){i++;continue}
+    if(/^---+$/.test(l)){flushP();i++;continue}
+    if(/^\|/.test(l)&&i+1<lines.length&&/^\|[\s:|-]+\|?$/.test(lines[i+1])){
+      flushP();
+      const cells=r=>r.replace(/^\|/,"").replace(/\|\s*$/,"").split("|").map(c=>c.trim());
+      const head=cells(l), align=cells(lines[i+1]).map(a=>/^-*:$/.test(a)?"n":"");
+      let body=""; i+=2;
+      while(i<lines.length&&/^\|/.test(lines[i])){
+        const row=cells(lines[i]);
+        body+="<tr>"+row.map((c,k)=>'<td class="'+(align[k]||"")+'">'+inline(c)+"</td>").join("")+"</tr>";
+        i++;
+      }
+      out+='<div class="tblwrap"><table><thead><tr>'+head.map(h=>"<th>"+inline(h)+"</th>").join("")+"</tr></thead><tbody>"+body+"</tbody></table></div>";
+      continue;
+    }
+    if(/^`[0-9]+`\s*$/.test(l.trim())){flushP();out+='<div class="fieldval">'+inline(l.trim().replace(/`/g,""))+"</div>";i++;continue}
+    if(/^[-*]\s+/.test(l)){
+      flushP(); let items=[];
+      while(i<lines.length&&/^[-*]\s+/.test(lines[i])){
+        let txt=lines[i].replace(/^[-*]\s+/,""); i++;
+        while(i<lines.length&&/^\s{2,}\S/.test(lines[i])){txt+=" "+lines[i].trim();i++}
+        items.push("<li>"+inline(txt)+"</li>");
+      }
+      out+="<ul>"+items.join("")+"</ul>"; continue;
+    }
+    para.push(l.trim()); i++;
+  }
+  flushP(); flushQ();
+  return out;
+}
+const words=s=>s.replace(/[|`>#*-]/g," ").split(/\s+/).filter(w=>/[a-z0-9$]/i.test(w)).length;
+
+/* ---------- the plant, broken down ---------- */
+const MODULES = [
+ ["M01","40ft shipping container",13000,16000,14500,"Estimate or historical proxy, not a current quote"],
+ ["M02","20ft shipping container",6000,10000,8000,"Estimate or historical proxy"],
+ ["M03","Diesel generator, press-line sized",6600,20000,13300,"Estimate. The widest range of any module"],
+ ["M04","Crane placement and transport",1200,2500,1850,"Quoted"],
+ ["M05","Electrical fit-out, board and three-phase",3000,8000,5500,"Estimate"],
+ ["M06","Ventilation and fume extraction",1000,3000,2000,"Estimate"],
+ ["M07","Site prep, pad and levelling",500,3000,1750,"Estimate. Site specific, and the reason for the allowance margin"],
+ ["M08","PPE and startup consumables",500,1500,1000,"Estimate"],
+ ["M09","Collection and sorting",5000,19500,12250,"Estimate"],
+ ["M10","Shredding",19800,19800,19800,"Telford Smith. A single price, not a range"],
+ ["M11","Pressing, CNC and finishing",32780,32780,32780,"Circularity bundle. A single price"],
+ ["M12","Assembly and workshop",6387,6387,6387,"Carbatec. A single price"],
+ ["M13","Sales and delivery",0,0,0,"Nothing priced here yet"]
+];
+const BENCH = [
+ ["Replication and installation","$113,000","Capital!C31. The lean end, if a site needs little."],
+ ["The allowance we ask for","$150,000","Capital!C7 and C8. Sits above the module high of $142,467."],
+ ["Turnkey a site","$207,450","Capital!C32. What a supplier would charge to hand it over running."]
+];
+const LINE = [
+ ["Sort and shred","36 kg of shred a bed",null,false,"A leg sheet takes 21 kg of shred and a tab sheet 15 kg, so 36 kg is pressed for one bed. The finished bed is 20 kg. NM Play B21, Ben 9 Sep."],
+ ["Heat, press and cool","3 beds a day",0.35,true,"Six pressed sheets a day and two sheets a bed. This is the jam in the line, and it is an unverified sustained rate. NM Play B10, B45, B46."],
+ ["CNC cut and finish","8.56 beds a day",1.0,false,"The router has spare capacity at every level of press output. NM Play B47."],
+ ["Assemble, test and pack","5 beds a day",0.58,false,"An independent ceiling that staffing has to verify. NM Play B36."]
+];
+const CAP = [
+ ["Year one, one plant",200,"What Q6 promises. The ramp, not the ceiling."],
+ ["Own sheets, full year",720,"3 a day, 5 days a week, 48 productive weeks. NM Play B52."],
+ ["Defy leg panels, full year",1440,"One pressed sheet a bed instead of two, so the press doubles. NM Play C52."]
+];
+const IMPACT4 = [
+ ["Recycling","36 kg pressed, 20 kg in the bed","Collection, preparation, processing, quality checks and material tracking",
+  b=>[(b*36/1000).toFixed(1)+"t pressed",(b*20/1000).toFixed(1)+"t in beds"],
+  "Design mass is not measured diversion. Weigh feedstock, accepted parts, reusable offcuts and waste per batch, and never double count recirculated material."],
+ ["Health","One person off the floor","Beds, delivery, follow-up and repair support",
+  b=>[b+" people",""],
+  "Scabies and rheumatic heart disease are why the hardware exists. No clinical outcome is claimed, then or later."],
+ ["Employment","2 hours of paid making, $80","Operators, training, supervision and youth support",
+  b=>[(b*2).toLocaleString()+" hours","$"+(b*80).toLocaleString()],
+  "Report actual paid hours and payments. The legacy 4.8 hours a bed is comparison only and the 544-hour target is retired."],
+ ["Community enterprise","Up to $750 kept on sale","Partner time, governance, operating agreements and upkeep",
+  b=>["$"+(b*750).toLocaleString(),""],
+  "Only if the community sells the bed, and the share it keeps has not been agreed with any community. Ownership is a pathway until rights and transfers are evidenced."]
+];
+
+function blockModules(){
+  const w=el("div","bd");
+  w.appendChild(el("h4",null,"The plant, module by module"));
+  w.appendChild(el("p","sub","Thirteen modules and a site base. A community chooses in feed order, and each module has a supplier behind it. Only four carry a single price; the rest are estimates, which is what the allowance margin is for."));
+  const tw=el("div","tblwrap"); const t=el("table");
+  t.innerHTML="<thead><tr><th>Module</th><th>Low</th><th>High</th><th>Midpoint</th><th>Price basis</th></tr></thead>";
+  const tb=el("tbody");
+  let lo=0,hi=0,mid=0;
+  MODULES.forEach(([id,nm,l,h,m,basis])=>{
+    lo+=l;hi+=h;mid+=m;
+    const tr=el("tr");
+    const c1=el("td"); c1.appendChild(document.createTextNode(nm+" ")); c1.appendChild(el("span","mid",id)); tr.appendChild(c1);
+    tr.appendChild(el("td","n",l?"$"+l.toLocaleString():"not priced"));
+    tr.appendChild(el("td","n",h?"$"+h.toLocaleString():""));
+    tr.appendChild(el("td","n",m?"$"+m.toLocaleString():""));
+    tr.appendChild(el("td",null,basis));
+    tb.appendChild(tr);
+  });
+  const tr=el("tr","tot");
+  tr.appendChild(el("td",null,"Every module and the site base"));
+  tr.appendChild(el("td","n","$"+lo.toLocaleString()));
+  tr.appendChild(el("td","n","$"+hi.toLocaleString()));
+  tr.appendChild(el("td","n","$"+mid.toLocaleString()));
+  tr.appendChild(el("td",null,"Capital sheet, rows 14 to 26"));
+  tb.appendChild(tr);
+  t.appendChild(tb); tw.appendChild(t); w.appendChild(tw);
+  const b=el("dl","bench");
+  BENCH.forEach(([k,v,sub],i)=>{
+    const d=el("div",i===1?"pick":null);
+    d.appendChild(el("dt",null,k)); d.appendChild(el("dd",null,v)); d.appendChild(el("div","sub",sub));
+    b.appendChild(d);
+  });
+  w.appendChild(b);
+  const dv=el("div","derive");
+  dv.appendChild(el("div","h","What this settles"));
+  dv.appendChild(el("p",null,"The $150,000 allowance is not a number we reached for. It sits above the module high of $142,467 and between the two site benchmarks the workbook already holds, $113,000 to replicate and install and $207,450 to buy a site turnkey."));
+  dv.appendChild(el("p",null,"What it does not settle: nine of the thirteen modules are estimates rather than quotes, and the generator alone ranges from $6,600 to $20,000. Palm Island and Maningrida each need a pad, a power answer and a freight number before the allowance is defended."));
+  w.appendChild(dv);
+  return w;
+}
+function blockLine(){
+  const w=el("div","bd");
+  w.appendChild(el("h4",null,"Where the line jams"));
+  w.appendChild(el("p","sub","Four steps, and only one of them sets the pace. The press does, at three beds a day on our own sheets, which is why capacity moves when the route changes rather than when the router or the bench does."));
+  const j=el("div","jam");
+  LINE.forEach(([nm,rate,frac,isBlock,why])=>{
+    const st=el("div","st"+(isBlock?" block":""));
+    st.appendChild(el("div","nm",nm));
+    st.appendChild(el("div","rate",rate));
+    if(frac!==null){const bar=el("div","bar"); const i=el("i"); i.style.width=Math.round(frac*100)+"%"; bar.appendChild(i); st.appendChild(bar);}
+    st.appendChild(el("div","why",why));
+    j.appendChild(st);
+  });
+  w.appendChild(j);
+  const tw=el("div","tblwrap"); tw.style.marginTop="14px";
+  const t=el("table");
+  t.innerHTML="<thead><tr><th>Capacity</th><th>Beds a year</th><th>What sets it</th></tr></thead>";
+  const tb=el("tbody");
+  CAP.forEach(([k,v,why])=>{
+    const tr=el("tr");
+    tr.appendChild(el("td",null,k));
+    tr.appendChild(el("td","n",v.toLocaleString()));
+    tr.appendChild(el("td",null,why));
+    tb.appendChild(tr);
+  });
+  t.appendChild(tb); tw.appendChild(t); w.appendChild(tw);
+  const dv=el("div","derive");
+  dv.appendChild(el("div","h","The cost per bed, reconciled"));
+  dv.appendChild(el("p",null,"Raw plastic $60, electricity $16.67, consumables $33.33 and bought parts $125.74 come to $235.74 a bed on the annual-staff basis. Add the $40 assembly allowance and it is $275.74, which is the $276 the deck prints. The two figures are the same build with and without one line, so they were never in conflict."));
+  dv.appendChild(el("p",null,"Three process lines are still unpriced: edging and finishing, a shredding allowance, and the additional crew. NM Play B67."));
+  w.appendChild(dv);
+  return w;
+}
+function blockImpact4(){
+  const w=el("div","bd");
+  w.appendChild(el("h4",null,"The four impact areas, broken down"));
+  w.appendChild(el("p","sub","What each bed carries, what has to be funded for it to happen, and where the claim stops. The columns show one plant's first year and the ceiling of the same equipment."));
+  const tw=el("div","tblwrap"); const t=el("table");
+  t.innerHTML="<thead><tr><th>Area</th><th>Per bed</th><th>200 beds</th><th>720 beds</th><th>What has to be funded</th></tr></thead>";
+  const tb=el("tbody");
+  IMPACT4.forEach(([area,per,funded,fn,limit])=>{
+    const tr=el("tr");
+    tr.appendChild(el("td",null,area));
+    tr.appendChild(el("td",null,per));
+    const a=fn(200), b=fn(720);
+    const c1=el("td","n"); c1.appendChild(document.createTextNode(a[0])); if(a[1]){c1.appendChild(el("div","mid",a[1]))} tr.appendChild(c1);
+    const c2=el("td","n"); c2.appendChild(document.createTextNode(b[0])); if(b[1]){c2.appendChild(el("div","mid",b[1]))} tr.appendChild(c2);
+    tr.appendChild(el("td",null,funded));
+    tb.appendChild(tr);
+    const tr2=el("tr");
+    const td=el("td",null,limit); td.colSpan=5; td.style.color="var(--ink-3)"; td.style.fontSize="12.5px"; td.style.paddingTop="0";
+    tr2.appendChild(td); tb.appendChild(tr2);
+  });
+  t.appendChild(tb); tw.appendChild(t); w.appendChild(tw);
+  return w;
+}
+const BLOCKS={modules:blockModules,line:blockLine,impact4:blockImpact4};
+
+/* ---------- render ---------- */
+const el=(t,c,x)=>{const n=document.createElement(t);if(c)n.className=c;if(x!==undefined)n.textContent=x;return n};
+const mdFor=id=>{const n=document.getElementById("md-"+id);return n?n.textContent.trim():""};
+
+(function(){
+  /* tally */
+  const counts={}; Q.forEach(q=>counts[q.state]=(counts[q.state]||0)+1);
+  const t=document.getElementById("tally");
+  Object.keys(STATES).forEach(k=>{ if(!counts[k])return;
+    const c=el("span","chip "+STATES[k][0],STATES[k][1]+" "+counts[k]); t.appendChild(c); });
+
+  /* index */
+  const rows=document.getElementById("idxRows");
+  Q.forEach(q=>{
+    const a=el("a"); a.href="#"+q.anchor; a.className="row";
+    a.appendChild(el("span","q",q.id));
+    a.appendChild(el("span","t",q.title));
+    const st=el("span"); st.appendChild(el("span","chip "+STATES[q.state][0],STATES[q.state][1])); a.appendChild(st);
+    a.appendChild(el("span","o",q.owner==="written"?"":q.owner));
+    rows.appendChild(a);
+  });
+
+  /* blocks */
+  const host=document.getElementById("questions");
+  Q.forEach(q=>{
+    const sec=el("section","q-block"); sec.id=q.anchor;
+    const head=el("div","q-head");
+    head.appendChild(el("span","qn",q.id));
+    head.appendChild(el("h2",null,q.title));
+    const chip=el("span","chip "+STATES[q.state][0],STATES[q.state][1]); head.appendChild(chip);
+    const md=q.md?mdFor(q.md):"";
+    head.appendChild(el("span","meta",md?words(md)+" words":(q.owner==="written"?"":q.owner)));
+    sec.appendChild(head);
+
+    const body=el("div","q-body");
+    const ans=el("div","answer");
+    if(md){
+      ans.appendChild(el("div","tag","The answer, as it goes in the form"));
+      const box=el("div"); box.innerHTML=renderMd(md); ans.appendChild(box);
+    }else{
+      const nw=el("div","notwritten");
+      nw.appendChild(el("div","h","Not written yet"));
+      nw.appendChild(el("p",null,q.need||"Waiting on a person or a document."));
+      ans.appendChild(nw);
+    }
+    (q.extras||[]).forEach(k=>{ if(BLOCKS[k]) ans.appendChild(BLOCKS[k]()) });
+    if(md&&q.need){
+      const n=el("div","need"); n.appendChild(el("div","h","Before it is submitted")); n.appendChild(el("p",null,q.need)); ans.appendChild(n);
+    }
+    body.appendChild(ans);
+
+    const side=el("div","side");
+    if(q.slides.length){
+      const p=el("div","panel"); p.appendChild(el("div","ph","Slides that carry it"));
+      const pb=el("div","pb");
+      q.slides.forEach(id=>{
+        const s=SLIDES[id]||["",id];
+        const d=el("div","slide");
+        if(THUMBS[id]){const img=el("img");img.src=THUMBS[id];img.alt="Deck slide "+s[0]+", "+s[1];img.loading="lazy";d.appendChild(img)}
+        const cap=el("div","cap");
+        cap.appendChild(el("b",null,"S"+s[0]+" "+s[1]));
+        cap.appendChild(document.createTextNode(" "));
+        cap.appendChild(el("span","fid",id));
+        d.appendChild(cap); pb.appendChild(d);
+      });
+      p.appendChild(pb); side.appendChild(p);
+    }
+    if(q.files.length){
+      const p=el("div","panel"); p.appendChild(el("div","ph","Files this question needs"));
+      const pb=el("div","pb"); const ul=el("ul","lst");
+      q.files.forEach(f=>ul.appendChild(el("li",null,f)));
+      pb.appendChild(ul); p.appendChild(pb); side.appendChild(p);
+    }
+    if(q.ev.length){
+      const p=el("div","panel"); p.appendChild(el("div","ph","The figures behind it"));
+      const pb=el("div","pb ev");
+      q.ev.forEach(([k,v,s])=>{
+        const e=el("div","e");
+        e.appendChild(el("div","k",k)); e.appendChild(el("div","v",v));
+        if(s)e.appendChild(el("div","s",s));
+        pb.appendChild(e);
+      });
+      p.appendChild(pb); side.appendChild(p);
+    }
+    if(q.voices.length){
+      const p=el("div","panel"); p.appendChild(el("div","ph","Voices cleared to quote"));
+      const pb=el("div","pb");
+      q.voices.forEach(([txt,who,place,ctx])=>{
+        const v=el("div","voice");
+        v.appendChild(el("q",null,txt));
+        const w=el("div","who"); w.appendChild(el("b",null,who));
+        w.appendChild(document.createTextNode(" · "+place+" · "+ctx));
+        v.appendChild(w); pb.appendChild(v);
+      });
+      p.appendChild(pb); side.appendChild(p);
+    }
+    body.appendChild(side);
+    sec.appendChild(body);
+    host.appendChild(sec);
+  });
+})();
+
+document.getElementById("themebtn").onclick=()=>{
+  const r=document.documentElement, cur=r.getAttribute("data-theme");
+  const dark=cur?cur==="dark":matchMedia("(prefers-color-scheme: dark)").matches;
+  r.setAttribute("data-theme",dark?"light":"dark");
+};
+document.getElementById("topbtn").onclick=()=>document.getElementById("top").scrollIntoView({behavior:"smooth"});
+</script>
+
