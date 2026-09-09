@@ -18,8 +18,10 @@ off `origin/main` at `14c5f45`. Six commits, NOT pushed, no PR.
 **Test:** `node tools/check-ai-tells.mjs <file>` · `cd v2 && npm run check:tells`
 
 ### Now
-[->] Q10's evidence. It still claims 191 Empathy Ledger quotes and 37 people cleared, and nothing in
-    Empathy Ledger's own tables is approved. Rewrite it on the register and the repo registry.
+[->] Ben's next block, named 10 September before a clear, in his order: **review all three artifacts**,
+    then **build the charts and visualisations that align the deck**, then **turn the workbook into a
+    management daily driver**. The workbook audit is done and sits under "The workbook as it stands".
+    Q10's evidence is still owed and is the smaller job.
 
 ### This Session
 - [x] Seven QBE answers rebuilt on the plants ask and checker-clean: Q5, Q6, Q7, Q8, Q9, Q18, Q23
@@ -33,6 +35,9 @@ off `origin/main` at `14c5f45`. Six commits, NOT pushed, no PR.
 - [x] Deck PDF built for Q23: 19 pages, 4.7MB, inside the upload cap
 
 ### Next
+- [ ] Review the three artifacts end to end with Ben, jumping between them
+- [ ] Charts and visualisations for the deck, so the deck and the artifacts show the same shapes
+- [ ] The workbook as a daily driver: readable numbers, real actuals, named ranges, an as-at view
 - [ ] Q10's evidence, then the remaining NEEDS BEN and NEEDS ELOISE answers
 - [ ] Minute Kristy's related-party declaration at the 14 September board, and ask Oonchiumpa to
       minute the same. Q8 asserts it and it is not yet true.
@@ -153,6 +158,44 @@ reason the hardware exists and is never claimed as an outcome.
 | Late November | Tim Fairfax decides |
 
 The last three are the problem, and Q18 now asks QBE about it rather than leaving it in a note.
+
+### The workbook as it stands, audited 10 September
+
+`deliverables/finance/goods-financial-plan/Goods-financial-plan.xlsx`, 953KB, 28 sheets, 42,429
+formulas and 49,676 values. It is a good forecast model. It is not yet something you could run the
+business off on a Tuesday morning, and these are the reasons, in the order they bite.
+
+**No number in it can be read without recalculating first.** The file is saved with no cached
+values, deliberately, so that Excel recomputes on open. The cost is that `openpyxl` with
+`data_only=True` returns `None` for every formula cell, including the whole `Statements` roll-up.
+Any agent reading a figure must first recalculate a copy. LibreOffice is installed at
+`/opt/homebrew/bin/soffice` and is the way:
+`soffice --headless --convert-to xlsx --outdir <tmp> <copy>`.
+
+**No actuals have ever been entered.** The `Actuals` sheet has exactly the right shape, with month,
+actual receipts, actual payments, actual closing cash, entity and source, reviewed date, forecast
+receipts, forecast payments, net cash variance and a reconciliation note. Columns C, D and E are
+empty. Everything the business has actually done sits in `FY26`, `FY26 cash` (6,520 values), `FY26
+invoices` (7,185 values) and `Butterfly FY26`, which are Xero extracts, not a running ledger. The
+Xero connector has been unreachable for two sessions, so there is no refresh path either.
+
+**Zero defined names.** Across 28 sheets, every formula is positional: `'Monthly forecast'!D31`,
+`SUMIFS('Cash schedule'!$AQ$6:$AQ$18...)`. Insert one row anywhere and the model quietly changes
+meaning. Named ranges are the single cheapest fix and they are what makes roll-ups safe.
+
+**The roll-up is annual, not as-at.** `Statements` aggregates to Year 1, 2 and 3 off the `Cash
+schedule`. There is no view that answers "where are we today", which is the question a daily driver
+exists to answer.
+
+What is already right and should not be rebuilt: the input convention is documented on `Alignment`
+under "How to use this workbook", blue cells are inputs, `Source records` holds 6,100 rows of
+provenance, `Evidence and decisions` is a decision log, `Source map` maps figures to their origin,
+and `build-plan-sheet.py` regenerates `Plan to July 2027`. The bones are sound.
+
+**The likely shape of the work**, to be agreed with Ben rather than assumed: name the ranges,
+build one Xero-to-Actuals import so the month closes without typing, add a budget-versus-actual
+variance roll-up by month, and put an as-at dashboard on the front. Research what a small
+manufacturer's management pack normally carries before designing it.
 
 ### Which file wins
 
