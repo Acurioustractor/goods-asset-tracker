@@ -279,7 +279,13 @@ paragraph with his answer.
 a meeting summary said 25 November. The answer says late November, which is the funder's own
 words. Do not sharpen it without a primary source.
 
-**The deck PDF does not exist yet.** The Pencil file was last saved 10 September 05:21 and holds
+**The deck PDF now exists**, 19 pages at 1920x1080 in 4.7MB, at
+`v2/public/strategy/exports/Goods-on-Country-QBE-deck-2026-09-10.pdf` in the main working tree. It
+is gitignored with everything else in that directory. Re-export it if Ben changes a slide. Pencil's
+own PDF export ignores `scale` and produces 20MB, over the upload cap, so the file was built from
+JPEG frames.
+
+**The Pencil file was last saved 10 September 05:21 and holds
 19 built frames in board `BEXfI`, "QBE 2026 - CLEAN BUILD". The 255 top-level frames are old
 iterations; do not export those. Checked today by exporting the copy of all 19 frames: they carry
 $300,000, two plants at $150,000 each, Palm Island and Maningrida, and the allowance wording that

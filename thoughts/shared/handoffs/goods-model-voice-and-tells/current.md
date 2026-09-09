@@ -1,7 +1,7 @@
 ---
-date: 2026-09-10T06:40:00+10:00
+date: 2026-09-10T17:45:00+10:00
 session_name: goods-model-voice-and-tells
-branch: feat/empathy-ledger-accountability-events
+branch: feat/ai-tells-gate-and-goods-model
 status: active
 ---
 
@@ -9,91 +9,85 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-10T09:30:00+10:00
-**Goal:** The whole Goods model reads true and reads human. Done when the finance holds together,
-the trade outside the raise is visible, only Goods-scoped consented voices are quoted, and no
-surface ships AI tells.
-**Branch:** feat/empathy-ledger-accountability-events (35 behind origin/main, 4 ahead)
+**Updated:** 2026-09-10T17:45:00+10:00
+**Goal:** The QBE Stage 2 application goes in by Friday 25 September at noon carrying one model that
+holds together, in language that reads human. Done when every question is answered or assigned to a
+named person, every figure traces to the workbook, and nothing ships with an AI tell.
+**Branch:** feat/ai-tells-gate-and-goods-model in worktree `/Users/benknight/Code/goods-finance-wt`,
+off `origin/main` at `14c5f45`. Six commits, NOT pushed, no PR.
 **Test:** `node tools/check-ai-tells.mjs <file>` · `cd v2 && npm run check:tells`
 
 ### Now
-[->] QBE application answers, phase one of Ben's queue. Q5, Q6, Q7 and Q8 written and checker-clean
-    at `deliverables/qbe-stage2/qbe-answers-2026-09-10.md`. Seven answers written and
-    checker-clean: Q5, Q6, Q7, Q8, Q9, Q18, Q23. Q9's attachment is drafted beside them. Next is
-    Q10's evidence, which still cites Empathy Ledger quote counts that are not approved there.
+[->] Q10's evidence. It still claims 191 Empathy Ledger quotes and 37 people cleared, and nothing in
+    Empathy Ledger's own tables is approved. Rewrite it on the register and the repo registry.
 
 ### This Session
-- [x] Model artifact rebuilt to eleven sections; new section 5, the trade outside the raise
-- [x] Seven finance faults found and fixed on the model page
-- [x] Six community voices added, one per layer, all registry-cleared external tier
-- [x] Empathy Ledger scoped properly to the Goods project; three name findings
-- [x] `tools/check-ai-tells.mjs` written, wired as `npm run check:tells`, inside `check:drift`
-- [x] All three artifacts swept to zero errors and republished
-- [x] Deck swept: S17 line rewritten, two claim ceilings allowlisted, S17 re-exported and swapped
-- [x] 27 em dashes cleared from the Notion deck master; linked page renamed
+- [x] Seven QBE answers rebuilt on the plants ask and checker-clean: Q5, Q6, Q7, Q8, Q9, Q18, Q23
+- [x] Q9's attachment written: `deliverables/qbe-stage2/q9-impact-of-the-new-funds-2026-09-10.md`
+- [x] Brian M. Davis payment condition settled from both primary documents
+- [x] Consent precedence ruled: the repo registry wins over Empathy Ledger
+- [x] Hours per bed settled at 2; the 3 September figure of 6.5 is withdrawn
+- [x] The built deck verified against the current ask by exporting all 19 frames and reading them
+- [x] Pencil capability reviewed; `PENCIL.md` gained components, PDF export, icons, restore path
+- [x] 246 dead root frames MOVED into `GL2zw`; root 265 -> 20; live board unchanged
+- [x] Deck PDF built for Q23: 19 pages, 4.7MB, inside the upload cap
 
 ### Next
-- [ ] QBE answers continue: Q10's evidence, then the remaining NEEDS BEN and NEEDS ELOISE set
-- [ ] Export the deck PDF for Q23 after Ben's read; it does not exist yet
+- [ ] Q10's evidence, then the remaining NEEDS BEN and NEEDS ELOISE answers
 - [ ] Minute Kristy's related-party declaration at the 14 September board, and ask Oonchiumpa to
       minute the same. Q8 asserts it and it is not yet true.
-- [ ] Q10's evidence needs reworking: it cites 191 Empathy Ledger quotes and 37 people cleared, but
-      nothing in Empathy Ledger's own tables is approved; the registry is the gate
+- [ ] Nic owes a site and a quote basis for each plant before the $150,000 allowance is defended
 - [ ] Story scroll from the consented voices; housing sovereignty leads, recycling does not
 - [ ] Website journeys: community, buyer, funder, supporter
-- [ ] Public site copy has never been through the checker
+- [ ] Public site copy has never been through the tells checker
 
 ### Decisions
 - **Price model, never cost-plus.** $750 at the door, $276 to make, $474 stays, freight on top.
-- **Tim Fairfax is operating support**, unrestricted, which releases $100,000 of bed money = 133
-  beds. Said the same way in every place on the page. Settled a live contradiction.
-- **The asks total is split by kind of capital**, never one number against a bed count. Minderoo is
-  listed and excluded because it is not live.
-- **Two claim ceilings kept** and recorded in `tools/ai-tells-allow.txt`: S14 "The reason, not a
-  claim", S18 "is an allowance, not a quote".
-- **A quotation is never rewritten.** The checker blanks `<blockquote>`, `<p class="quote">` and
-  markdown `>` lines. Ben's own transcript line now sits on the model page as an attributed quote.
-- **Judgement is not a control for AI tells.** A gate is. See [[feedback-ai-tells-need-a-gate]].
-- **The repo registry wins on consent, ruled by Ben 10 September.** `storyteller-registry.ts` is the
-  record that governs what may be printed. Karen Liddle, Mykel and Fred Campbell are cleared and may
-  be quoted. Empathy Ledger's own rows are behind and get updated to match, so they are never a veto.
-- **QBE asks for $300,000 to build two plants**, $150,000 for one as the smaller case. The 3 September
-  draft's $400,000 for 533 beds is withdrawn. Beds are paid by Tim Fairfax and Brian M. Davis.
-- **The BMD full-funding condition is real and lives in the budget template**, sheet INSTRUCTIONS
-  cell B16, not in the Grant Conditions PDF, which has now been read and carries eight conditions
-  about none of this. Cite the template. Q18 quotes B16 and builds the catalytic case on it.
-- **A bed carries 2 hours of paid making**, per the 9 September model brief and the ten-year model.
-  The 3 September figure of 6.5 hours is withdrawn.
-- **The built deck already carries this request.** All 19 frames in board `BEXfI` exported and read
-  on 10 September: $300,000, two plants at $150,000, Palm Island and Maningrida, 2,193 words, zero
-  tells errors. Slides 13 to 19 were built, despite the 9 September note saying they were not.
+- **QBE asks $300,000 to build two plants**, $150,000 for one. The 3 September ask of $400,000 for
+  533 beds is withdrawn. Beds are paid by Tim Fairfax and Brian M. Davis.
+- **Tim Fairfax is operating support**, unrestricted, which releases $100,000 of bed money = 133 beds.
+- **The repo registry wins on consent** (Ben, 10 Sep). `storyteller-registry.ts` governs what may be
+  printed. Karen Liddle, Mykel and Fred Campbell are cleared. Empathy Ledger's rows are never a veto.
+- **A bed carries 2 hours of paid making**, 20 kg of HDPE, up to $750 kept locally when the community
+  sells it, and one person off the floor. Health is the reason, never a claimed outcome.
+- **The BMD full-funding condition lives in the budget template**, sheet INSTRUCTIONS cell B16, not
+  in the Grant Conditions PDF. Cite the template.
+- **Judgement is not a control for AI tells.** A gate is. Quotations are exempt and never rewritten;
+  keeps are recorded in `tools/ai-tells-allow.txt`, never argued in a session.
+- **Archive means move.** The 246 dead frames are inside `GL2zw`, recoverable one `Move` at a time.
 
 ### Open Questions
-- UNCONFIRMED: **Margaret Lloyd's location.** Empathy Ledger says Palm Island. The registry says
+- UNCONFIRMED: **The 50% share** paid to Goods in the ten-year chart is a split no community has
+  agreed. It keeps less local ($375) than a bed Goods sells itself ($474). Ben rules or moves it.
+  Q9's document leaves the money row out until he does.
+- UNCONFIRMED: **"Ntjillaburra" does not exist** in the ledger. Needs Nic, or Ben meant Oonchiumpa.
+- UNCONFIRMED: **Margaret Lloyd's location.** Empathy Ledger says Palm Island, the registry says
   Utopia homelands. The page follows the registry.
-- UNCONFIRMED: **"Ntjillaburra" does not exist** in the ledger. A union query across twelve tables
-  returns nothing. Needs Nic, or Ben meant Oonchiumpa.
-- UNCONFIRMED: **ALIVE's money.** The page uses $75,000 for 100 beds. The reckoning doc records
-  $101,200 received and $66,000 still owed, so the order is bigger than the beds. Not itemised.
-- UNCONFIRMED: **The 50% share paid to Goods** in the ten-year chart is a shared-services split no
-  community has agreed to. It makes less stay local ($375 a bed) than stays with Goods on a bed
-  Goods sells ($474). Ben should move it or rule on it.
-- Xero's connector would not connect all session. Every figure came from the repo, not a fresh pull.
+- UNCONFIRMED: **ALIVE's money.** The page uses $75,000 for 100 beds; the reckoning records $101,200
+  received and $66,000 owed, so the order is bigger than the beds.
+- UNDECIDED: **charts.** The deck carries data as text and rectangles. Pencil builds bar and donut
+  charts from layout. Our charts currently live in the HTML artifacts. Nobody chose that split.
+- UNCONFIRMED: **Tim Fairfax's board date.** Katie said late November, Nic said the first week, a
+  meeting summary said 25 November. Say late November until a primary source says otherwise.
+- The Xero connector has been unreachable for two sessions. Every figure comes from the repo.
 
 ### Workflow State
 pattern: sequential
-phase: 4
+phase: 5
 total_phases: 8
 retries: 0
 max_retries: 3
 
 #### Resolved
-- goal: "review the cost story, add the money outside the raise, align community voice, then go part by part"
+- goal: "the QBE application answers, the story scroll, the website journeys, in that order"
 - resource_allocation: balanced
 - consent_record_precedence: the repo registry wins (Ben, 10 Sep)
+- qbe_ask: $300,000 for two plants, $150,000 for one (Ben, 9 Sep)
 
 #### Unknowns
+- community_revenue_share: UNKNOWN (the 50% split)
 - ntjillaburra_identity: UNKNOWN
+- deck_charts: UNDECIDED
 
 #### Last Failure
 (none)
@@ -104,13 +98,67 @@ max_retries: 3
 
 ### Paste this to resume
 
-> Read `thoughts/shared/handoffs/goods-model-voice-and-tells/current.md` first, then
-> `deliverables/finance/goods-financial-plan/README.md` (top four entries, 10 September).
-> The model artifact is https://claude.ai/code/artifact/0b235115-7bbb-436f-bbe8-f716c283dcf5
-> and it is the current picture of the whole model. Before writing any prose for a slide, a funder
-> document or a public page, run `node tools/check-ai-tells.mjs <file>`. Do not defend a flagged
-> phrase because of where it came from; delete it and rewrite. Ben's four remaining phases, in his
-> order: the QBE application answers, the story scroll, the website journeys. Ask him which.
+> Read `thoughts/shared/handoffs/goods-model-voice-and-tells/current.md` first. It is the single
+> entry point; everything else is named from it. Then read the four answers below under "The model,
+> aligned", which is the whole current picture in one screen.
+>
+> The work lives in the worktree `/Users/benknight/Code/goods-finance-wt` on
+> `feat/ai-tells-gate-and-goods-model`, six commits, not pushed. The main tree is on another
+> session's branch with about 640 modified files; do not commit there.
+>
+> Before writing any prose for a slide, a funder document or a public page, run
+> `node tools/check-ai-tells.mjs <file>`. Never defend a flagged phrase by where it came from.
+> Delete it and rewrite. Quotations are exempt.
+>
+> The queue, in Ben's order: finish the QBE answers, then the story scroll, then the website
+> journeys. QBE closes Friday 25 September at noon.
+
+### The model, aligned
+
+Four questions, four answers. Every figure below is a cell in
+`deliverables/finance/goods-financial-plan/Goods-financial-plan.xlsx`.
+
+**What is a bed worth?** $750 at the factory door. $276 to make, with $80 of factory labour inside
+it. $474 stays with Goods. Freight is charged on top at cost, its own line per community, paid by
+whoever buys the bed. Never cost-plus, and never divide the organisation by beds.
+
+**What is being asked for, and by whom?** The Butterfly Movement Ltd, trading as Goods on Country,
+is the applicant and the recipient. Directors are Kristy Bloomfield, Audrey Deemal and Jeremy
+Donovan. QBE is asked for $300,000 to build two plants at $150,000 each, working choices Palm Island
+and Maningrida, with $150,000 for one plant as the smaller case. Beds are a separate ask: 400 of
+first stock, of which Tim Fairfax covers 133 and Brian M. Davis 80, leaving 187 to find. Alice
+Springs is funded by DEWR and NIAA through Oonchiumpa and sits outside the raise. ALIVE's 100 beds
+are paid and outside the 400.
+
+**What already runs without any of it?** 320 beds sold and paid across ten invoices, $343,481 all
+time. FY26 Goods receipts were $653,246, of which Snow was $375,000, or 57%. There is no Snow ask
+this year and nothing in the plan replaces the other $275,000. That relationship is worth more than
+any single line on the asks table.
+
+**What does one bed do?** Two hours of paid making, 20 kilograms of HDPE kept in use, up to $750
+kept in the community when the community sells it, and one person off the floor. Health is the
+reason the hardware exists and is never claimed as an outcome.
+
+### The calendar that governs everything
+
+| When | What |
+|---|---|
+| Mon 14 September | Butterfly board. Minute Kristy's related-party declaration. |
+| Fri 25 September, noon | QBE Stage 2 closes. Brian M. Davis closes the same day. |
+| 6 and 7 October | QBE interviews |
+| 23 October | QBE conditional outcomes |
+| 9 October | Tim Fairfax SmartyGrants deadline |
+| 13 November | QBE preconditions date |
+| 19 November | Brian M. Davis board |
+| Late November | Tim Fairfax decides |
+
+The last three are the problem, and Q18 now asks QBE about it rather than leaving it in a note.
+
+### Which file wins
+
+`canon.ts` and `asset-canonical.ts` for figures. `/DECISIONS.md` for judgements. `/CONTEXT.md` for
+language. `/STRATEGY.md` names the order. Inside this stream: the workbook for money, the repo
+storyteller registry for consent, and `tools/ai-tells-allow.txt` for permitted phrases.
 
 ### The three artifacts
 
@@ -193,8 +241,18 @@ the ask.
 ### The deck
 
 `v2/public/strategy/Goods Final Deck.pen`, gitignored, main working tree. The live sequence is the
-**19 frames inside board `BEXfI`, "QBE 2026 — CLEAN BUILD"**. The 255 top-level frames are old
-iterations; do not edit those.
+**19 frames inside board `BEXfI`, "QBE 2026 — CLEAN BUILD"**. On 10 September the 246 dead root
+frames were moved into `GL2zw`, `_ARCHIVE 2026-09-10`, so the root now holds 20 children: the board,
+the 18 components and the archive. Nothing was deleted; `Move("<id>", document)` puts one back, and
+a whole-file backup sits beside the deck.
+
+The deck carries this request, checked by exporting all 19 frames on 10 September: $300,000, two
+plants at $150,000, Palm Island and Maningrida, 2,193 words, zero tells errors. The PDF for Q23 is
+`v2/public/strategy/exports/Goods-on-Country-QBE-deck-2026-09-10.pdf`, 19 pages, 4.7MB.
+
+**Eight slide archetypes and nine components exist and are used by nothing.** A census returns zero
+`ref` nodes, so every slide is hand-built. Copying a reusable node makes a connected instance and
+paints immediately. Ids and the method are in `.claude/skills/deck-slide/PENCIL.md`.
 
 To read the deck's printed copy without opening every frame, export it and run the checker:
 
@@ -234,8 +292,12 @@ No future site is pictured." Re-exported at 1.5x and swapped on the Notion deck 
 |---|---|
 | Worktree | `/Users/benknight/Code/goods-finance-wt` |
 | Branch | `feat/ai-tells-gate-and-goods-model`, off `origin/main` at `14c5f45` |
-| Commits | `5f0c36f` the gate · `54b386f` the model and the trade · `d6798af` this handoff |
+| Commits | Six. The gate, the model and the trade, the handoff, the QBE answers, the Brian M. Davis correction, this record. |
 | Pushed | **No.** No PR. Ben has not asked. |
+
+The `.claude/` directory is gitignored at `.gitignore:99`, so all 44 project skills, `deck-slide`
+included, live only in the main working tree. That is policy, not an accident, and changing it is
+Ben's call.
 
 The files were **moved** out of the main working tree, so there is one copy and it is tracked.
 The artifacts now publish from
