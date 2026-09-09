@@ -56,7 +56,7 @@ goods-money-map.html beside this file, published as an artifact at https://claud
 
 ## Alignment with Matt's model: 9 September 2026 (late)
 
-ALIGNMENT-WITH-MATT-2026-09-09.md: read his workbook sheet by sheet. Unit costs already agree (factory $425.74 = our $276 + $150 freight). Landed: three pots (production network $109,500 paid by the bed at 231 beds a year; community wraparound grant-funded; the organisation $297,550 paid by the whole business); plant priced by modules ($95,767 to $142,967 plus site base, $150,000 allowance, $207,450 turnkey ceiling); a plant goes where a community has 200 beds of need and a local operator; Witta 360 on the roster, 720 at five days a week.
+ALIGNMENT-WITH-MATT-2026-09-09.md: read his workbook sheet by sheet. Unit costs already agree (factory $425.74 = our $276 + $150 freight). Landed: three pots (production network $109,500 paid by the bed at 231 beds a year; community wraparound grant-funded; the organisation $297,550 paid by the whole business); plant priced by modules ($95,767 to $142,467 plus site base, $150,000 allowance, $207,450 turnkey ceiling); a plant goes where a community has 200 beds of need and a local operator; Witta 360 on the roster, 720 at five days a week.
 
 ## Freight on top: 9 September 2026 (late)
 

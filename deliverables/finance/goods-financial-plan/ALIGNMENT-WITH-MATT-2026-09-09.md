@@ -70,7 +70,7 @@ Matt's Facility & Modules sheet is the right way to price it: a community does n
 | Shredding | $19,800 | $19,800 | evidenced (Telford Smith) |
 | Pressing, CNC and finishing | $32,780 | $32,780 | evidenced (Circularity bundle) |
 | Assembly and workshop | $6,387 | $6,387 | evidenced (Carbatec) |
-| **All modules plus site base** | **$95,767** | **$142,967** | reconciles to MVF $105,000 |
+| **All modules plus site base** | **$95,767** | **$142,467** | reconciles to MVF $105,000 |
 | Turnkey 40ft workshop, bought new | | $207,450 | conservative ceiling |
 
 So $150,000 a plant is the high end of "all modules plus site base" with a small margin, and the honest sentence is: "$150,000 stands up a working line; $207,000 buys it all new." Running cost of a plant (Pot 2) is separate: rent $60,000, insurance $12,000, maintenance $8,350 in Matt's community column, plus people.
