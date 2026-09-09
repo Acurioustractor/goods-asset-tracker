@@ -9,7 +9,7 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-10T06:40:00+10:00
+**Updated:** 2026-09-10T09:30:00+10:00
 **Goal:** The whole Goods model reads true and reads human. Done when the finance holds together,
 the trade outside the raise is visible, only Goods-scoped consented voices are quoted, and no
 surface ships AI tells.
@@ -17,7 +17,10 @@ surface ships AI tells.
 **Test:** `node tools/check-ai-tells.mjs <file>` · `cd v2 && npm run check:tells`
 
 ### Now
-[->] Nothing in flight. Ben's four named phases are the queue; he picks the next one.
+[->] QBE application answers, phase one of Ben's queue. Q5, Q6, Q7 and Q8 written and checker-clean
+    at `deliverables/qbe-stage2/qbe-answers-2026-09-10.md`. Seven answers written and
+    checker-clean: Q5, Q6, Q7, Q8, Q9, Q18, Q23. Q9's attachment is drafted beside them. Next is
+    Q10's evidence, which still cites Empathy Ledger quote counts that are not approved there.
 
 ### This Session
 - [x] Model artifact rebuilt to eleven sections; new section 5, the trade outside the raise
@@ -30,7 +33,12 @@ surface ships AI tells.
 - [x] 27 em dashes cleared from the Notion deck master; linked page renamed
 
 ### Next
-- [ ] QBE application answers, one question at a time, and run the checker on them
+- [ ] QBE answers continue: Q10's evidence, then the remaining NEEDS BEN and NEEDS ELOISE set
+- [ ] Export the deck PDF for Q23 after Ben's read; it does not exist yet
+- [ ] Minute Kristy's related-party declaration at the 14 September board, and ask Oonchiumpa to
+      minute the same. Q8 asserts it and it is not yet true.
+- [ ] Q10's evidence needs reworking: it cites 191 Empathy Ledger quotes and 37 people cleared, but
+      nothing in Empathy Ledger's own tables is approved; the registry is the gate
 - [ ] Story scroll from the consented voices; housing sovereignty leads, recycling does not
 - [ ] Website journeys: community, buyer, funder, supporter
 - [ ] Public site copy has never been through the checker
@@ -46,12 +54,21 @@ surface ships AI tells.
 - **A quotation is never rewritten.** The checker blanks `<blockquote>`, `<p class="quote">` and
   markdown `>` lines. Ben's own transcript line now sits on the model page as an attributed quote.
 - **Judgement is not a control for AI tells.** A gate is. See [[feedback-ai-tells-need-a-gate]].
+- **The repo registry wins on consent, ruled by Ben 10 September.** `storyteller-registry.ts` is the
+  record that governs what may be printed. Karen Liddle, Mykel and Fred Campbell are cleared and may
+  be quoted. Empathy Ledger's own rows are behind and get updated to match, so they are never a veto.
+- **QBE asks for $300,000 to build two plants**, $150,000 for one as the smaller case. The 3 September
+  draft's $400,000 for 533 beds is withdrawn. Beds are paid by Tim Fairfax and Brian M. Davis.
+- **The BMD full-funding condition is real and lives in the budget template**, sheet INSTRUCTIONS
+  cell B16, not in the Grant Conditions PDF, which has now been read and carries eight conditions
+  about none of this. Cite the template. Q18 quotes B16 and builds the catalytic case on it.
+- **A bed carries 2 hours of paid making**, per the 9 September model brief and the ten-year model.
+  The 3 September figure of 6.5 hours is withdrawn.
+- **The built deck already carries this request.** All 19 frames in board `BEXfI` exported and read
+  on 10 September: $300,000, two plants at $150,000, Palm Island and Maningrida, 2,193 words, zero
+  tells errors. Slides 13 to 19 were built, despite the 9 September note saying they were not.
 
 ### Open Questions
-- UNCONFIRMED: Empathy Ledger's rows for **Karen Liddle, Mykel and Fred Campbell** still say nothing
-  may be published until the person has reviewed. The registry records Ben clearing the May 2026
-  Utopia voices on 26 June. Two records, two answers. Ben must say which wins before these quotes
-  leave the working page.
 - UNCONFIRMED: **Margaret Lloyd's location.** Empathy Ledger says Palm Island. The registry says
   Utopia homelands. The page follows the registry.
 - UNCONFIRMED: **"Ntjillaburra" does not exist** in the ledger. A union query across twelve tables
@@ -73,9 +90,9 @@ max_retries: 3
 #### Resolved
 - goal: "review the cost story, add the money outside the raise, align community voice, then go part by part"
 - resource_allocation: balanced
+- consent_record_precedence: the repo registry wins (Ben, 10 Sep)
 
 #### Unknowns
-- consent_record_precedence: UNKNOWN (registry vs Empathy Ledger)
 - ntjillaburra_identity: UNKNOWN
 
 #### Last Failure
