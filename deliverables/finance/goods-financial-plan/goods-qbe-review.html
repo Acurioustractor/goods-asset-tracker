@@ -1,0 +1,363 @@
+<title>QBE Raise Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#FBF8F1; --surface:#FFFFFF; --muted:#F1ECE4; --sand:#E8DCC8; --grid:#E6DFD1;
+  --ink:#2B2A26; --sub:#7A7363;
+  --terracotta:#C45C3E; --clay:#A8643F; --sage:#8B9D77; --olive:#7E9A68; --green:#5E7A4C; --teal:#5C8A86; --gold:#BBA255; --rose:#C18A7B;
+  --display:"Playfair Display",Georgia,"Times New Roman",serif; --body:"Inter",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1C1A17;--surface:#26231F;--muted:#2E2A25;--sand:#3A342C;--grid:#3F3931;--ink:#F1ECE4;--sub:#B8AE9C;--terracotta:#E88461;--clay:#C98A62;--sage:#A3B48E;--olive:#98B282;--green:#8FAF7C;--teal:#7FAEAA;--gold:#D2BC72;--rose:#D4A597;}}
+:root[data-theme="dark"]{--bg:#1C1A17;--surface:#26231F;--muted:#2E2A25;--sand:#3A342C;--grid:#3F3931;--ink:#F1ECE4;--sub:#B8AE9C;--terracotta:#E88461;--clay:#C98A62;--sage:#A3B48E;--olive:#98B282;--green:#8FAF7C;--teal:#7FAEAA;--gold:#D2BC72;--rose:#D4A597;}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;margin:0}
+main{max-width:1120px;margin:0 auto;padding:40px 24px 72px}
+header{border-bottom:1px solid var(--grid);padding-bottom:22px;margin-bottom:34px}
+.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);font-weight:600}
+h1{font-family:var(--display);font-weight:600;font-size:42px;letter-spacing:-0.01em;margin:6px 0 10px;text-wrap:balance}
+h2{font-family:var(--display);font-weight:500;font-size:27px;letter-spacing:-0.01em;margin:0 0 6px;text-wrap:balance}
+h3{font-family:var(--display);font-weight:500;font-size:18px;margin:0 0 8px}
+figure>h3{font-size:15px;font-family:var(--body);font-weight:600;color:var(--sub);margin:0 0 10px;letter-spacing:.02em}
+.lede{max-width:68ch;color:var(--sub);margin:0;font-size:16px}
+section{margin:0 0 48px;padding-top:6px}
+.claim{max-width:70ch;margin:0 0 18px}
+.quote{max-width:66ch;font-family:var(--display);font-size:20px;line-height:1.4;border-left:3px solid var(--terracotta);padding:4px 0 4px 16px;margin:14px 0 18px}
+figure{margin:0;background:var(--surface);border:1px solid var(--grid);border-radius:14px;padding:18px 20px 14px;overflow-x:auto}
+figure svg{display:block;max-width:100%;height:auto;color:var(--ink)}
+figcaption{font-size:13px;color:var(--sub);margin-top:10px;max-width:74ch}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:0 0 16px}
+.tile{background:var(--surface);border:1px solid var(--grid);border-radius:12px;padding:12px 14px}
+.tile .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--sub);font-weight:600}
+.tile .v{font-family:var(--display);font-size:27px;font-weight:500;font-variant-numeric:tabular-nums;margin-top:2px}
+.tile .s{font-size:12px;color:var(--sub)}
+.tile.warn .v{color:var(--terracotta)} .tile.ok .v{color:var(--green)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;background:var(--surface);border:1px solid var(--grid);border-radius:12px;overflow:hidden}
+th,td{padding:8px 11px;text-align:left;border-bottom:1px solid var(--grid);vertical-align:top}
+th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--sub);background:var(--muted)}
+td.n,th.n{text-align:right}
+tr:last-child td{border-bottom:none}
+tr.tot td{font-weight:600;border-top:2px solid var(--ink)}
+.wrap{overflow-x:auto}
+.note{font-size:13px;color:var(--sub);max-width:74ch;margin-top:10px}
+.pill{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.04em;padding:2px 8px;border-radius:20px;white-space:nowrap}
+.p-done{background:rgba(94,122,76,.18);color:var(--green)}
+.p-part{background:rgba(187,162,85,.22);color:var(--gold)}
+.p-open{background:rgba(196,92,62,.16);color:var(--terracotta)}
+.p-ben{background:rgba(92,138,134,.18);color:var(--teal)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--sub);margin:10px 0 0}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:-1px;margin-right:5px}
+.foot{border-top:1px solid var(--grid);padding-top:16px;font-size:13px;color:var(--sub);max-width:86ch}
+.toc{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px;margin-top:14px}
+.toc a{color:var(--sub);text-decoration:none;border-bottom:1px dotted var(--grid)}
+.toc a:hover,.toc a:focus{color:var(--terracotta)}
+.flag{background:var(--surface);border-left:4px solid var(--terracotta);border-radius:0 10px 10px 0;padding:12px 16px;margin:14px 0;max-width:74ch}
+.flag b{font-family:var(--display);font-weight:500;font-size:16px}
+</style>
+
+<main>
+<header>
+  <div class="eyebrow">Goods on Country · QBE raise review · 9 September 2026 · 16 days to the deadline</div>
+  <h1>Everything the raise needs, and what is still missing</h1>
+  <p class="lede">One pass over the whole QBE submission: the money in and out, the twenty-five questions and their evidence, where the communities and the demand actually are, what the storytellers actually say, and what this year's impact grows into over three, five and ten years. Figures come from the maintained workbook, Xero, the live community records and the Empathy Ledger.</p>
+  <nav class="toc" aria-label="Sections">
+    <a href="#money">1 The money</a><a href="#raise">2 What is still to raise</a><a href="#form">3 The 25 questions</a><a href="#map">4 Where the work is</a><a href="#demand">5 Demand and buyers</a><a href="#voices">6 What the storytellers say</a><a href="#growth">7 Three, five, ten years</a><a href="#next">8 What to do next</a>
+  </nav>
+</header>
+
+<section id="money">
+  <div class="eyebrow">1 · The money</div>
+  <h2>In, out, and what is left at July 2027</h2>
+  <p class="claim">Ten months, October 2026 to July 2027. ALIVE's money is already banked. Grants land after their boards, which is why December is the hinge. Beds made for a funder who has not yet said yes are the catalytic gap, and they sit here as cost with no cash against them. Buyers who pay a community enterprise are not in this picture by design, because that money never reaches Goods.</p>
+  <div class="tiles">
+    <div class="tile"><div class="k">Money in</div><div class="v">$747,500</div><div class="s">grants $650,000, buyers paying Goods $97,500</div></div>
+    <div class="tile"><div class="k">Money out</div><div class="v">$856,046</div><div class="s">make and freight $268,088, running $247,958, plants $300,000, facilitation $40,000</div></div>
+    <div class="tile warn"><div class="k">Cash at July 2027</div><div class="v">-$33,546</div><div class="s">starts from ALIVE's $75,000</div></div>
+    <div class="tile ok"><div class="k">Result after operating support</div><div class="v">+$93,782</div><div class="s">contribution banked less running, plus Tim Fairfax</div></div>
+  </div>
+  <figure>
+    <h3>The cash runway, October 2026 to July 2027</h3>
+    <svg id="runway" viewBox="0 0 1060 450" role="img" aria-label="Cash balance from October 2026 to July 2027: starts at 50,204 dollars, dips below zero in November, rises to a peak of 257,693 in February after the grants land, then falls steadily to minus 33,546 by July"></svg>
+    <div class="legend"><span><i style="background:var(--sage)"></i>cash in hand</span><span><i style="background:var(--terracotta)"></i>below zero</span><span><i style="background:var(--green);border-radius:2px"></i>money landing</span></div>
+    <figcaption>Money arrives in four steps and leaves as a constant slope: about $53,000 a month of beds, freight and running the business, plus $150,000 each time a plant is paid for. The two moments below the line are the whole argument for the raise, and both have a cause you can act on.</figcaption>
+  </figure>
+</section>
+
+<section id="raise">
+  <div class="eyebrow">2 · What is still to raise</div>
+  <h2>Only $75,000 of this year is actually money</h2>
+  <p class="claim">The year needs $856,046. Of that, $75,000 is in the bank, being ALIVE's payment. Half a million is invited but unsigned, and all three of those boards sit in November. A further $150,000 has not been asked for yet. $97,500 is a quote a community is still thinking about. And $33,546 has no source at all. Read left to right, the bar goes from certain to imaginary.</p>
+  <figure>
+    <h3>The year's requirement, and what covers it</h3>
+    <svg viewBox="0 0 1060 300" role="img" aria-label="A stacked requirement bar of 928,000 dollars against the coverage: QBE 300,000, Tim Fairfax 100,000, Brian M. Davis 100,000, ALIVE 75,000, Centrecorp 97,500, leaving 187 beds at 140,000 and freight at 88,000 uncovered"></svg>
+    <figcaption>Both bars are the same total and the same scale, so the second is a direct answer to the first. If Snow and Dusseldorp are never asked, the gap is not $33,546 but $183,546. If freight is charged on top at cost, which is how ALIVE's order already works, $88,000 of the requirement disappears instead.</figcaption>
+  </figure>
+  <div class="flag"><b>The one decision that moves the most.</b> Snow gave $375,000 of last year's Goods income and has no ask in front of them. The plan already spends their $100,000. Sal has booked a catch-up. Making that ask is the highest-value hour in the next fortnight and it is not a QBE task.</div>
+</section>
+
+<section id="form">
+  <div class="eyebrow">3 · The application</div>
+  <h2>Twenty-five questions, and what is behind each one</h2>
+  <p class="claim">The form closes Friday 25 September at midday. Upload fields Q3, Q9, Q11, Q15, Q20, Q22 and Q23 take five files each at 10MB. Everything below is either drafted, part-drafted, or waiting on a person. Nothing here is a QBE judgement; it is our own readiness.</p>
+  <div class="tiles">
+    <div class="tile ok"><div class="k">Drafted</div><div class="v">14</div><div class="s">answer and evidence exist</div></div>
+    <div class="tile"><div class="k">Part drafted</div><div class="v">6</div><div class="s">answer exists, evidence or decision missing</div></div>
+    <div class="tile warn"><div class="k">Waiting on a person</div><div class="v">5</div><div class="s">Ben, Nic, Jay, Standard Ledger, the board</div></div>
+  </div>
+  <div class="wrap"><table>
+    <tr><th>Q</th><th>What it asks</th><th>State</th><th>What is missing, and who</th></tr>
+    <tr><td>1–2</td><td>Legal entities, ABNs, applicant and funding flows</td><td><span class="pill p-part">part</span></td><td>Butterfly is the applicant, ruled 5 Sep. The actual transfer of Goods trading out of Nic's ledger is not documented. Standard Ledger.</td></tr>
+    <tr><td>3–4</td><td>Structure diagram and all directors</td><td><span class="pill p-part">part</span></td><td>Structure PDF exists; Butterfly directors settled. ACT director records incomplete. A diagram is not proof of appointment.</td></tr>
+    <tr><td>5–7</td><td>The request, its exact use, and a smaller case</td><td><span class="pill p-done">drafted</span></td><td>$300,000 for two plants; $150,000 is the smaller case, one plant. Slides 15, 16 and 18 carry it. Site and quote basis for each plant still to come.</td></tr>
+    <tr><td>8</td><td>Related-party activities and benefits</td><td><span class="pill p-open">open</span></td><td>Oonchiumpa holds DEWR money and pays Goods to build the Alice Springs plant. Kristy sits on both boards. Write it out in the answer. Jay has the question.</td></tr>
+    <tr><td>9</td><td>Expected impact document (optional upload)</td><td><span class="pill p-part">part</span></td><td>Ten-page draft exists; realign to the four outcomes counted per bed, as slide 14 now states them.</td></tr>
+    <tr><td>10</td><td>Impact to date and how it is measured</td><td><span class="pill p-done">drafted</span></td><td>320 beds sold and paid across four organisations; 540 recorded, 11 communities. Keep outputs, reported experience and outcomes apart.</td></tr>
+    <tr><td>11</td><td>Existing measurement materials</td><td><span class="pill p-part">part</span></td><td>Blank templates must be labelled proposed. Do not describe future collection as an evaluation already done.</td></tr>
+    <tr><td>12</td><td>Explain unavailable governance documents</td><td><span class="pill p-open">open</span></td><td>The Butterfly constitution is still unlocated. Zandra or Eloise.</td></tr>
+    <tr><td>13</td><td>Legal and regulatory declaration</td><td><span class="pill p-ben">Ben</span></td><td>Applicant answers. Ben answers each one himself.</td></tr>
+    <tr><td>14–15</td><td>Other funding, with original evidence</td><td><span class="pill p-done">drafted</span></td><td>Twelve-page private bundle done. Refresh with the 31 Aug and 1 Sep invitations and the DEWR letter.</td></tr>
+    <tr><td>16–17</td><td>Committed-funder contacts and permission</td><td><span class="pill p-ben">Ben</span></td><td>Applicant gives permission to contact. Nobody is committed, so the honest answer is invitations with board dates.</td></tr>
+    <tr><td>18</td><td>How QBE unlocks or de-risks other funding</td><td><span class="pill p-done">drafted</span></td><td>The mechanism is real: BMD pays only once all project funding is confirmed, so a QBE decision on 23 October unlocks the 19 November board. Say exactly that.</td></tr>
+    <tr><td>19</td><td>Governance, team, financial and delivery readiness</td><td><span class="pill p-part">part</span></td><td>Slide 17 now carries the sequence with dates. Site agreements and the Alice Springs factory lead trained at Witta are the readiness evidence and are not yet written.</td></tr>
+    <tr><td>20–21</td><td>Applicant P&amp;L, balance sheet, cashflow</td><td><span class="pill p-part">part</span></td><td>Butterfly FY26 unaudited set received 7 Sep; audit due this week. Cashflow from the Plan to July 2027 sheet. Audit is not required by Q20.</td></tr>
+    <tr><td>22</td><td>Evidence governance is focused on impact</td><td><span class="pill p-open">open</span></td><td>Needs the constitution, board and delegation records. ACT's constitution is not Butterfly's.</td></tr>
+    <tr><td>23</td><td>Capital-raising deck, model and materials</td><td><span class="pill p-done">drafted</span></td><td>Slides 13 to 19 rebuilt tonight; 1 to 12 stand. Export the PDF after Ben's read. The workbook and the model page are the model.</td></tr>
+    <tr><td>24</td><td>Solvency declaration</td><td><span class="pill p-ben">Ben</span></td><td>Assessed on current information. Butterfly holds $4,041 cash and $8,407 net assets at 30 June.</td></tr>
+    <tr><td>25</td><td>Accuracy declaration</td><td><span class="pill p-ben">Ben</span></td><td>Last thing signed, after the attachments are final.</td></tr>
+  </table></div>
+  <div class="flag"><b>The one that will bite.</b> Q8, related parties. Oonchiumpa holds Commonwealth money, pays Goods to build a plant, and shares a director with Butterfly. Due diligence will find it. Writing it plainly is the difference between a disclosure and a discovery.</div>
+</section>
+
+<section id="map">
+  <div class="eyebrow">4 · Where the work is</div>
+  <h2>Thirty-one communities on the record</h2>
+  <p class="claim">Nine are active relationships, one is testing, one is exploring a large order, fifteen are named prospects with a partner organisation behind each, and five are administrative entries, so they do not count as communities. Five have told us they want a production facility. This is the map the deck has never had.</p>
+  <figure>
+    <h3>Communities, by state of relationship</h3>
+    <svg id="mapSvg" viewBox="0 0 1060 560" role="img" aria-label="Map of Australia with 26 located communities plotted, coloured by whether the relationship is active, testing, exploring or a prospect, with five marked as wanting a production facility"></svg>
+    <div class="legend"><span><i style="background:var(--terracotta)"></i>active (9)</span><span><i style="background:var(--gold)"></i>testing or exploring (2)</span><span><i style="background:var(--sage)"></i>prospect (15)</span><span><i style="background:transparent;border:2px solid var(--green)"></i>wants a production facility (5)</span></div>
+    <figcaption>Nine active relationships, two exploring, fifteen named prospects with a partner organisation behind each. Cropped to northern Australia, where every community is; Ceduna, Port Augusta, Darwin and Canberra hold no coordinates and are not plotted. Facility interest is recorded in the community record in Ben's own words, 21 July 2026: Palm Island (council, community and PICC all want it), Alice Springs (Oonchiumpa close to starting with DEWR), Maningrida (has asked about their own plant, and is the proof site), Utopia (wants the shredder, to engage young people), Tennant Creek (The Community Shed, leaning into plastic recycling).</figcaption>
+  </figure>
+</section>
+
+<section id="demand">
+  <div class="eyebrow">5 · Demand and buyers</div>
+  <h2>885 beds asked for, 320 paid so far</h2>
+  <p class="claim">Two different things, and the deck must never add them. On the left is demand: what communities and organisations have asked for, dated and attributed, none of it an order. On the right is what has actually been paid for and delivered. The gap between them is the case for the raise, and the reason the beds are made before the buyer pays.</p>
+  <div class="grid2">
+    <figure>
+      <h3>Recorded demand, by who asked</h3>
+      <svg viewBox="0 0 500 320" role="img" aria-label="Horizontal bars of recorded bed demand: Groote Archipelago 500, Utopia homelands 150, Maningrida 65, Palm Island 40, Tennant Creek 23"></svg>
+      <figcaption>From the community demand record. Groote is a procurement pathway through WHSAC. No order has been placed. Utopia's 150 is "beds for every child". Dianne Stokes offered to self-fund 20 in Tennant Creek.</figcaption>
+    </figure>
+    <figure>
+      <h3>Paid and delivered, by who paid</h3>
+      <svg viewBox="0 0 500 320" role="img" aria-label="Horizontal bars of beds paid for: Centrecorp 167, ALIVE 100, Maningrida Homeland School Company 40, Mala'la 13"></svg>
+      <figcaption>$343,481 of buyer receipts all time, of which $197,060 ex GST is bed lines. ALIVE's 100 are paid and not yet delivered. Rotary's 200 invoiced in April 2025 are a bad debt and are in no total.</figcaption>
+    </figure>
+  </div>
+  <div class="flag"><b>The buyer story the deck has not told.</b> Groote Archipelago asked about 500 beds and 300 washing machines through the WHSAC procurement pathway. That single conversation is larger than this whole year's plan. It is exploring, not an order, and it belongs in the demand evidence for Q10. Keep it out of every revenue line.</div>
+</section>
+
+<section id="voices">
+  <div class="eyebrow">6 · What the storytellers say</div>
+  <h2>390 stories, and they are not about recycling</h2>
+  <p class="claim">The Empathy Ledger holds 390 stories in the Goods project: 14 published, 24 substantive drafts, the rest archived field captures. When the themes are counted, the community does not talk about the four areas the way the deck does. They talk about resilience, housing sovereignty and connection to Country. Recycling barely registers as a value; it is our materials fact. It is not the reason they give.</p>
+  <figure>
+    <h3>Themes across the Goods stories, mapped to the four areas</h3>
+    <svg viewBox="0 0 1060 400" role="img" aria-label="Horizontal bars of Empathy Ledger theme counts, coloured by which of the four areas each theme supports, with community resilience and housing sovereignty far ahead"></svg>
+    <div class="legend"><span><i style="background:var(--terracotta)"></i>health and housing</span><span><i style="background:var(--green)"></i>community and enterprise</span><span><i style="background:var(--gold)"></i>employment and knowledge</span><span><i style="background:var(--teal)"></i>environment</span><span><i style="background:var(--sub)"></i>cross-cutting</span></div>
+    <figcaption>Counted across all 390 stories in the project. Housing sovereignty at ten is the second most common theme in the whole collection and it maps directly onto why a bed matters. Environmental stewardship appears once.</figcaption>
+  </figure>
+  <div class="flag"><b>Two names to fix before anyone is quoted.</b> There is no storyteller called Karen Little in the ledger. There is <b>Karen Liddle</b>, Alice Springs and Atnarpa. And there is no record under <b>Ntjillaburra</b> at all, under that spelling or any partial match. Both need checking with Nic before a word of either goes near the story scroll.</div>
+  <p class="claim">Who is on the record and cleared: Kristy Bloomfield (Elder, Alice Springs), Dianne Stokes (Elder, Tennant Creek, whose story "Where the Country Calls Me Home" is published), Linda Turner (Tennant Creek), Alfred Johnson (Palm Island), Fred Campbell (Alice Springs), Eric Pascoe (Maningrida). The substantive interview transcripts are still drafts, and 156 field captures carry an Elder-review-pending tag from the May trip.</p>
+  <p class="quote">Every time I go away from here, it's like it's calling me. Come back home. And when I get home, I feel happy I'm at home.</p>
+  <p class="note">Dianne Stokes, Tennant Creek. Published, consent intact. She is also the Elder who named the washing machine Pakkimjalki Kari, and the person who asked to self-fund twenty beds.</p>
+</section>
+
+<section id="growth">
+  <div class="eyebrow">7 · Three, five, ten years</div>
+  <h2>Goods that heal, made where the money stays</h2>
+  <p class="claim">The goods that arrive in remote communities today are made somewhere else, freighted at enormous cost, break, and go to the tip. The money leaves with them. The mission is to replace them with goods designed on Country, made on Country, where the money stays. Impact investing has one job in that: building the capacity of a community to get there, and then getting out of the way.</p>
+  <figure>
+    <h3>Where the beds are made, FY27 to FY36</h3>
+    <svg id="madeWhere" viewBox="0 0 1060 360" role="img" aria-label="Stacked area of beds made each year, split between Witta and community plants on country. Witta stays flat at about 400 while on-country production grows to 7,200 a year."></svg>
+    <div class="legend"><span><i style="background:var(--clay)"></i>made at Witta</span><span><i style="background:var(--green)"></i>made on country</span></div>
+    <figcaption>Two plants added a year, 400 beds a plant once running. Witta stays the same size. Everything above it is a community plant. By the third year four beds in five are made on country, and by the tenth, nineteen in twenty.</figcaption>
+  </figure>
+  <div class="grid3" style="margin-top:18px">
+    <figure><h3>Plastic diverted, tonnes</h3><svg id="spTonnes" viewBox="0 0 340 190" role="img" aria-label="Cumulative tonnes of HDPE diverted, rising to 810 tonnes by year ten"></svg></figure>
+    <figure><h3>Paid making, hours</h3><svg id="spHours" viewBox="0 0 340 190" role="img" aria-label="Cumulative paid making hours, rising to 80,960 by year ten"></svg></figure>
+    <figure><h3>Money kept in communities</h3><svg id="spLocal" viewBox="0 0 340 190" role="img" aria-label="Cumulative money kept in communities, rising to 15.18 million dollars by year ten"></svg></figure>
+  </div>
+  <div class="wrap"><table>
+    <tr><th></th><th class="n">Year 1 · FY27</th><th class="n">Year 3 · to FY29</th><th class="n">Year 5 · to FY31</th><th class="n">Year 10 · to FY36</th></tr>
+    <tr><td>Plants making beds</td><td class="n">1</td><td class="n">5</td><td class="n">9</td><td class="n">19</td></tr>
+    <tr><td>Beds, cumulative</td><td class="n">880</td><td class="n">4,080</td><td class="n">10,480</td><td class="n">40,480</td></tr>
+    <tr><td>Plastic diverted, tonnes</td><td class="n">18</td><td class="n">82</td><td class="n">210</td><td class="n">810</td></tr>
+    <tr><td>Paid making, hours</td><td class="n">1,760</td><td class="n">8,160</td><td class="n">20,960</td><td class="n">80,960</td></tr>
+    <tr><td>Communities with stock to sell</td><td class="n">8</td><td class="n">20</td><td class="n">36</td><td class="n">76</td></tr>
+    <tr class="tot"><td>Money kept in communities</td><td class="n">$330,000</td><td class="n">$1.53M</td><td class="n">$3.93M</td><td class="n">$15.18M</td></tr>
+  </table></div>
+  <p class="note">Every row is beds multiplied by a per-bed constant, so the whole table moves from three inputs on the Plan to July 2027 sheet: plants added a year, beds a plant, and the share a funder or buyer pays Goods for. Health is not on this table, because it is the reason and not a measured outcome.</p>
+</section>
+
+<section id="next">
+  <div class="eyebrow">8 · What to do next</div>
+  <h2>Sixteen days</h2>
+  <div class="wrap"><table>
+    <tr><th>By when</th><th>What</th><th>Who</th></tr>
+    <tr><td>This week</td><td>Directors' self-nominations and CVs to Zandra, before Monday's board</td><td>Ben, Nic, Audrey, Kristy</td></tr>
+    <tr><td>This week</td><td>Read slides 13 to 19 on the deck master and rule</td><td>Ben</td></tr>
+    <tr><td>This week</td><td>Sefa at The Harvest on Thursday: repayable capital is for plants, never gifted stock</td><td>Ben, Joel Bird</td></tr>
+    <tr><td>Before 25 Sep</td><td>A site and a quote basis for each of the two plants</td><td>Nic</td></tr>
+    <tr><td>Before 25 Sep</td><td>The signed FY26 Goods carve-out letter</td><td>Standard Ledger</td></tr>
+    <tr><td>Before 25 Sep</td><td>Q8 related parties and Q22 governance records written</td><td>Ben, with Jay</td></tr>
+    <tr><td>Before 25 Sep</td><td>Brian M. Davis application, same deadline, scoped as 80 beds plus facilitation</td><td>Ben</td></tr>
+    <tr><td>Soon, not QBE</td><td>The Snow ask: $100,000, 133 beds, the largest single thing that closes the gap</td><td>Ben, Nic</td></tr>
+    <tr><td>When at Witta</td><td>Weigh one bucket of vacuum shred; count canvas, poles, hardware and finished beds</td><td>Whoever is there next</td></tr>
+    <tr><td>Before the story scroll</td><td>Check Karen Liddle and find whoever Ntjillaburra is</td><td>Ben with Nic</td></tr>
+  </table></div>
+</section>
+
+<div class="foot">Built 9 September 2026 from Goods-financial-plan.xlsx (Bed calculator, Plan to July 2027, Phase and raise), Xero FY26 accrual profit and loss, the v2 community and demand records, the Empathy Ledger Goods project, and the QBE question inventory on the Notion deck master. Money figures are AUD. Buyer receipts include GST; model costs are ex GST. Nothing here is signed, and no community has agreed a price or a promise.</div>
+</main>
+
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+const F=v=>Math.round(v).toLocaleString('en-AU');
+const T=(x,y,t,o)=>{o=o||{};return `<text x="${x}" y="${y}" font-size="${o.s||11}" fill="${o.f||'currentColor'}" text-anchor="${o.a||'start'}"${o.w?' font-weight="'+o.w+'"':''}${o.o?' opacity="'+o.o+'"':''}>${t}</text>`;};
+const put=(sel,svg)=>{const n=document.querySelector(sel);if(n)n.innerHTML=svg;};
+
+// 1 · cash runway
+(function(){
+const m=["Oct 26","Nov 26","Dec 26","Jan 27","Feb 27","Mar 27","Apr 27","May 27","Jun 27","Jul 27"];
+const cash=[50204,-12192,184436,221065,257693,191821,128449,75453,22458,-33546];
+const ins=[{i:2,t:"+$400K",l:"QBE and Tim Fairfax"},{i:3,t:"+$100K",l:"Brian M. Davis"},{i:4,t:"+$100K",l:"Snow, if asked"},{i:5,t:"+$148K",l:"Dusseldorp, Centrecorp"}];
+const W=1060,H=450,L=88,R=34,Tp=118,B=62;
+const yMax=280000,yMin=-105000;
+const x=i=>L+i*(W-L-R)/(m.length-1);
+const y=v=>Tp+(H-Tp-B)*(yMax-v)/(yMax-yMin);
+let s='';
+s+=`<defs><clipPath id="above"><rect x="0" y="${Tp-6}" width="${W}" height="${y(0)-Tp+6}"/></clipPath><clipPath id="below"><rect x="0" y="${y(0)}" width="${W}" height="${H-B-y(0)+6}"/></clipPath></defs>`;
+s+=`<rect x="${L}" y="${y(0)}" width="${W-L-R}" height="${H-B-y(0)}" fill="var(--terracotta)" fill-opacity="0.07"/>`;
+[250000,200000,150000,100000,50000].forEach(v=>{s+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="currentColor" stroke-opacity="0.09"/>`+T(L-10,y(v)+4,'$'+F(v/1000)+'K',{a:'end',o:0.5,s:11});});
+s+=T(L-10,y(-50000)+4,'-$50K',{a:'end',o:0.5,s:11});
+s+=`<line x1="${L}" x2="${W-R}" y1="${y(0)}" y2="${y(0)}" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.5"/>`+T(L-10,y(0)+4,'$0',{a:'end',o:0.8,s:11,w:600});
+const pts=cash.map((v,i)=>x(i)+','+y(v)).join(' ');
+const area=`${x(0)},${y(0)} ${pts} ${x(m.length-1)},${y(0)}`;
+s+=`<polygon points="${area}" fill="var(--sage)" fill-opacity="0.34" clip-path="url(#above)"/>`;
+s+=`<polygon points="${area}" fill="var(--terracotta)" fill-opacity="0.55" clip-path="url(#below)"/>`;
+s+=`<polyline fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round" points="${pts}"/>`;
+ins.forEach(p=>{const cx=x(p.i);
+ s+=`<line x1="${cx}" x2="${cx}" y1="${Tp-30}" y2="${y(cash[p.i])-11}" stroke="var(--green)" stroke-width="1" stroke-dasharray="3 3" stroke-opacity="0.5"/>`;
+ s+=`<rect x="${cx-48}" y="${Tp-70}" width="96" height="36" rx="7" fill="var(--green)" fill-opacity="0.15"/>`;
+ s+=T(cx,Tp-53,p.t,{a:'middle',s:14,w:600,f:'var(--green)'})+T(cx,Tp-40,p.l,{a:'middle',s:10,f:'var(--green)',o:0.85});});
+cash.forEach((v,i)=>{s+=`<circle cx="${x(i)}" cy="${y(v)}" r="${v<0?5.5:4}" fill="${v<0?'var(--terracotta)':'var(--ink)'}"/>`;
+ s+=T(x(i),H-B+22,m[i],{a:'middle',o:0.75,s:11});});
+s+=T(x(0)+10,y(50204)-14,'$75,000 from ALIVE',{s:13,w:600})+T(x(0)+10,y(50204)+1,'already in the bank',{s:11,o:0.7});
+s+=T(x(1),y(-12192)+34,'-$12,192',{a:'middle',s:14,w:600,f:'var(--terracotta)'})+T(x(1),y(-12192)+50,'100 beds made and freighted before anyone pays',{a:'middle',s:11,o:0.8});
+s+=T(x(4),y(257693)-22,'$257,693',{a:'middle',s:15,w:600})+T(x(4),y(257693)-7,'the high point',{a:'middle',s:11,o:0.7});
+s+=T(x(9)-8,y(-33546)+24,'-$33,546',{a:'end',s:15,w:600,f:'var(--terracotta)'})+T(x(9)-8,y(-33546)+40,'187 beds with no funder yet',{a:'end',s:11,o:0.8});
+[[2,184436],[5,191821]].forEach((p,k)=>{s+=`<line x1="${x(p[0])}" x2="${x(p[0])}" y1="${y(p[1])+12}" y2="${y(p[1])+30}" stroke="var(--rose)" stroke-width="1.5"/>`+T(x(p[0]),y(p[1])+44,'plant '+(k+1)+' paid, $150K',{a:'middle',s:11,f:'var(--rose)',w:600});});
+s+=T(x(6)+8,y(128449)-30,'about $53,000 a month goes out',{s:13,w:600,o:0.9})+T(x(6)+8,y(128449)-15,'beds, freight and running the business',{s:11,o:0.65});
+s+=T(L-8,26,'Money lands in four steps. It leaves as a slope.',{s:16,w:600});
+put('#runway',s);})();
+
+// 2 · requirement and coverage
+(function(){
+const need=[["Make and freight the beds",268088,'var(--clay)'],["Running the business",247958,'var(--gold)'],["Two community plants",300000,'var(--rose)'],["Facilitation",40000,'var(--sage)',1,"four communities"]];
+const cover=[["Banked",75000,'var(--green)',1,"the only money in the bank"],["Invited, boards in November",500000,'var(--sage)',1,"QBE, Tim Fairfax, Brian M. Davis"],["Not yet asked",150000,'var(--sage)',0,"Snow, Dusseldorp"],["On a quote",97500,'var(--teal)',0,"Centrecorp"],["No funder",33546,'var(--terracotta)',1,"the gap"]];
+const tot=856046,W=1060,L=20,R=20,bw=W-L-R,H=300;
+const x=v=>L+bw*v/tot;
+const bar=(rows,y,h,labelY)=>{let o='',acc=0,alt=0;
+ rows.forEach(p=>{const x0=x(acc),x1=x(acc+p[1]),w=x1-x0,solid=p[3]===undefined?1:p[3];
+  o+=`<rect x="${x0}" y="${y}" width="${w-1}" height="${h}" fill="${p[2]}"${solid?'':' fill-opacity="0.22" stroke="'+p[2]+'" stroke-dasharray="4 3"'}/>`;
+  let cx=x0+w/2; const near=cx>W-R-90; if(near)cx=W-R; const anc=near?'end':'middle';
+  const ly=labelY+(w<150?alt*30:0); if(w<150)alt=1-alt;
+  if(w<150) o+=`<line x1="${x0+w/2}" x2="${x0+w/2}" y1="${y+h}" y2="${ly-13}" stroke="${p[2]}" stroke-opacity="0.5"/>`;
+  o+=T(cx,ly,p[0],{a:anc,s:12,w:600,f:p[2]})+T(cx,ly+14,'$'+F(p[1]),{a:anc,s:12,o:0.75});
+  if(p[4])o+=T(cx,ly+28,p[4],{a:anc,s:10,o:0.6});
+  acc+=p[1];});
+ return o;};
+let s2='';
+s2+=T(L,20,'What the year needs',{s:15,w:600})+T(W-R,20,'$856,046',{a:'end',s:15,w:600});
+s2+=bar(need,32,40,92);
+s2+=T(L,168,'Where it comes from, by how certain the money is',{s:15,w:600});
+s2+=bar(cover,180,40,240);
+s2+=`<line x1="${x(75000)}" x2="${x(75000)}" y1="180" y2="228" stroke="var(--ink)" stroke-width="1.5"/>`;
+put('#raise figure svg',s2);})();
+
+// 4 · map
+(function(){
+const C=[["Alice Springs",-23.698,133.8807,"a",1,[-13,11]],["Utopia Homelands",-22.2333,134.7833,"a",1,[13,-5]],["Maningrida",-12.0464,134.2236,"a",1,[0,-13]],["Palm Island",-18.7333,146.5833,"a",1,[13,5]],["Tennant Creek",-19.65,134.1833,"a",1,[-13,5]],
+["Kununurra",-15.7736,128.7386,"a",0,[-13,5]],["Katherine",-14.4652,132.2635,"a",0,[-13,5]],["Kalgoorlie",-30.7489,121.4655,"a",0,[13,5]],["Mutitjulu",-25.35,131.0333,"a",0,[-13,11]],
+["Mt Isa",-20.7256,139.4927,"t",0,[-13,5]],["Groote Archipelago",-13.9667,136.4333,"t",0,[13,5]],
+["Wadeye",-14.2333,129.5167,"p",0,[-11,4]],["Yarrabah",-16.9167,145.8833,"p",0,[11,4]],["Galiwin'ku",-12.0333,135.5667,"p",0,null],["Aurukun",-13.3536,141.7244,"p",0,null],["Torres Strait",-10.5833,142.2167,"p",0,[11,2]],["Gunbalanya",-12.3167,133.0333,"p",0,null],["Doomadgee",-17.9356,138.8217,"p",0,null],["Borroloola",-16.0717,136.3097,"p",0,null],["Ngukurr",-14.7333,134.7333,"p",0,null],["Ramingining",-12.3667,134.9,"p",0,null],["Kowanyama",-15.4839,141.7503,"p",0,null],["Woorabinda",-24.1264,149.4561,"p",0,[11,4]],["Cherbourg",-26.2833,151.95,"p",0,[11,4]],["Lajamanu",-18.3333,130.6333,"p",0,[-11,4]],["Yuendumu",-22.2549,131.7975,"p",0,[-11,4]]];
+const O=[[142.5,-10.7],[143.5,-12.5],[145.3,-14.5],[145.5,-15.0],[146.3,-19.0],[147.5,-19.5],[149.2,-21.5],[150.5,-22.4],[152.0,-24.8],[153.0,-25.9],[153.6,-28.6],[152.5,-32.5],[151.2,-33.9],[150.2,-35.7],[149.9,-37.5],[147.0,-38.9],[144.9,-38.4],[143.5,-38.8],[141.0,-38.4],[139.8,-37.3],[139.0,-35.6],[138.5,-34.8],[137.8,-35.2],[137.0,-34.2],[135.9,-34.9],[135.2,-34.6],[134.2,-32.5],[132.0,-32.0],[129.0,-31.6],[126.0,-32.3],[123.6,-33.9],[121.9,-33.9],[119.0,-34.5],[117.0,-35.1],[115.7,-34.4],[115.0,-33.5],[114.9,-30.0],[113.7,-26.1],[114.1,-22.6],[115.5,-21.5],[117.2,-20.7],[119.0,-20.0],[121.0,-19.6],[122.2,-18.1],[123.6,-17.5],[124.0,-16.0],[125.4,-14.5],[127.5,-14.0],[128.0,-15.4],[129.0,-15.2],[129.7,-14.9],[130.9,-12.4],[131.9,-12.4],[132.6,-11.2],[133.5,-11.5],[135.5,-12.0],[136.5,-11.9],[136.9,-12.2],[137.9,-16.5],[139.5,-17.3],[140.8,-17.5],[141.6,-12.5],[142.5,-10.7]];
+const W=1060,H=560,lo=112.5,hi=155,la=-9.3,lb=-32.2,P=22;
+const x=g=>P+(W-2*P)*(g-lo)/(hi-lo), y=t=>P+(H-2*P)*(t-la)/(lb-la);
+const col={a:'var(--terracotta)',t:'var(--gold)',p:'var(--sage)'};
+let o=`<polygon points="${O.map(p=>x(p[0])+','+y(p[1])).join(' ')}" fill="var(--muted)" stroke="var(--grid)" stroke-width="1.5"/>`;
+C.forEach(c=>{const cx=x(c[2]),cy=y(c[1]);
+ if(c[4])o+=`<circle cx="${cx}" cy="${cy}" r="11" fill="none" stroke="var(--green)" stroke-width="2"/>`;
+ o+=`<circle cx="${cx}" cy="${cy}" r="${c[3]==='a'?6:4.5}" fill="${col[c[3]]}"/>`;
+ if(c[5])o+=T(cx+c[5][0],cy+c[5][1],c[0],{s:12.5,a:c[5][0]<0?'end':(c[5][0]===0?'middle':'start'),w:c[3]==='a'?600:400,o:c[3]==='a'?1:0.78});});
+put('#mapSvg',o);})();
+
+// 5 · demand and buyers
+(function(){
+const mk=(sel,rows,max,note)=>{const W=500,L=158,R=58,rowH=38,Tp=20,H=Tp+rows.length*rowH+34;let o='';const x=v=>L+(W-L-R)*v/max;
+ rows.forEach((r,i)=>{const yy=Tp+i*rowH;o+=`<rect x="${L}" y="${yy}" width="${Math.max(3,x(r[1])-L)}" height="20" rx="3" fill="${r[2]}"/>`+T(L-8,yy+15,r[0],{a:'end',s:12})+T(x(r[1])+7,yy+15,F(r[1]),{s:12,w:600});});
+ o+=`<line x1="${L}" x2="${W-R}" y1="${Tp+rows.length*rowH+2}" y2="${Tp+rows.length*rowH+2}" stroke="currentColor" stroke-opacity="0.2"/>`;
+ o+=T(L,Tp+rows.length*rowH+22,note,{s:12,w:600,o:0.85});
+ const n=document.querySelector(sel);if(n){n.setAttribute('viewBox','0 0 '+W+' '+H);n.innerHTML=o;}};
+mk('#demand figure:nth-of-type(1) svg',[["Groote Archipelago",500,'var(--sage)'],["Utopia homelands",150,'var(--sage)'],["Maningrida",65,'var(--sage)'],["Palm Island",40,'var(--sage)'],["Tennant Creek",23,'var(--sage)']],520,'778 beds asked for. None of it an order.');
+mk('#demand figure:nth-of-type(2) svg',[["Centrecorp",167,'var(--terracotta)'],["ALIVE",100,'var(--clay)'],["Homeland School Co.",40,'var(--terracotta)'],["Mala'la Health",13,'var(--terracotta)']],520,'320 beds paid for. ALIVE\'s 100 are paid, not yet sent.');})();
+
+// 6 · themes
+(function(){
+const th=[["Community resilience",14,'var(--sub)'],["Housing sovereignty",10,'var(--terracotta)'],["Connection to Country",8,'var(--sub)'],["Kinship systems",7,'var(--sub)'],["Traditional knowledge",5,'var(--sub)'],["Intergenerational knowledge",5,'var(--gold)'],["Cultural protocols",4,'var(--sub)'],["Mental health",4,'var(--terracotta)'],["Data sovereignty",3,'var(--green)'],["Cultural identity",3,'var(--sub)'],["Economic independence",2,'var(--green)'],["Healing and trauma",2,'var(--terracotta)'],["Climate adaptation",2,'var(--teal)'],["Education access",1,'var(--gold)'],["Economic exploitation",1,'var(--green)'],["Environmental stewardship",1,'var(--teal)']];
+const W=1060,L=230,R=60,rowH=22,Tp=16,max=15;let s='';const x=v=>L+(W-L-R)*v/max;
+th.forEach((r,i)=>{const yy=Tp+i*rowH;s+=`<rect x="${L}" y="${yy}" width="${Math.max(2,x(r[1])-L)}" height="15" rx="3" fill="${r[2]}"/>`+T(L-8,yy+12,r[0],{a:'end',s:12})+T(x(r[1])+6,yy+12,r[1],{s:12,o:0.85});});
+s+=T(L,Tp+th.length*rowH+22,'Health and housing 16 mentions · community and enterprise 6 · employment and knowledge 6 · environment 3 · cross-cutting 41.',{s:13,o:0.85});
+put('#voices figure svg',s);})();
+
+// 7 · growth
+(function(){
+const yl=["FY27","FY28","FY29","FY30","FY31","FY32","FY33","FY34","FY35","FY36"];
+const total=[880,1200,2000,2800,3600,4400,5200,6000,6800,7600];
+const witta=[880,400,400,400,400,400,400,400,400,400];
+const W=1060,H=360,L=76,R=150,Tp=34,B=48,mx=8000;
+const x=i=>L+i*(W-L-R)/(yl.length-1), y=v=>Tp+(H-Tp-B)*(1-v/mx);
+let o='';
+[2000,4000,6000,8000].forEach(v=>{o+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="currentColor" stroke-opacity="0.1"/>`+T(L-10,y(v)+4,F(v),{a:'end',o:0.5,s:11});});
+o+=`<polygon points="${x(0)},${y(0)} ${total.map((v,i)=>x(i)+','+y(v)).join(' ')} ${x(9)},${y(0)}" fill="var(--green)" fill-opacity="0.55"/>`;
+o+=`<polygon points="${x(0)},${y(0)} ${witta.map((v,i)=>x(i)+','+y(v)).join(' ')} ${x(9)},${y(0)}" fill="var(--clay)" fill-opacity="0.9"/>`;
+o+=`<polyline fill="none" stroke="var(--ink)" stroke-width="2" points="${total.map((v,i)=>x(i)+','+y(v)).join(' ')}"/>`;
+yl.forEach((l,i)=>o+=T(x(i),H-B+20,l,{a:'middle',s:11,o:0.75}));
+o+=T(W-R+12,y(7600)+4,'7,600 beds a year',{s:13,w:600})+T(W-R+12,y(7600)+20,'19 plants',{s:11,o:0.7});
+o+=T(W-R+12,y(400)-2,'400 at Witta',{s:12,w:600,f:'var(--clay)'})+T(W-R+12,y(400)+14,'unchanged',{s:11,o:0.7});
+o+=`<line x1="${x(2)}" x2="${x(2)}" y1="${y(2000)}" y2="${y(2000)-30}" stroke="currentColor" stroke-opacity="0.45"/>`;
+o+=T(x(2),y(2000)-38,'by FY29, four beds in five',{a:'middle',s:12,w:600})+T(x(2),y(2000)-24,'are made on country',{a:'middle',s:12,w:600});
+o+=T(L,20,'Witta stays the same size. Everything above it is a community plant.',{s:14,w:600});
+put('#madeWhere',o);
+const sp=(sel,vals,fmt,col)=>{const W=340,H=190,L=20,R=20,Tp=26,B=30,mx=Math.max.apply(null,vals)*1.12;
+ const x=i=>L+i*(W-L-R)/(vals.length-1), y=v=>Tp+(H-Tp-B)*(1-v/mx);
+ let o=`<polygon points="${x(0)},${y(0)} ${vals.map((v,i)=>x(i)+','+y(v)).join(' ')} ${x(vals.length-1)},${y(0)}" fill="${col}" fill-opacity="0.28"/>`;
+ o+=`<polyline fill="none" stroke="${col}" stroke-width="2.5" points="${vals.map((v,i)=>x(i)+','+y(v)).join(' ')}"/>`;
+ o+=`<line x1="${L}" x2="${W-R}" y1="${y(0)}" y2="${y(0)}" stroke="currentColor" stroke-opacity="0.25"/>`;
+ o+=`<circle cx="${x(vals.length-1)}" cy="${y(vals[vals.length-1])}" r="4" fill="${col}"/>`;
+ o+=T(W-R,y(vals[vals.length-1])-12,fmt(vals[vals.length-1]),{a:'end',s:16,w:600,f:col});
+ o+=T(L,H-10,'FY27',{s:11,o:0.6})+T(W-R,H-10,'FY36',{a:'end',s:11,o:0.6});
+ o+=T(L,18,'cumulative',{s:11,o:0.6});
+ const n=document.getElementById(sel);if(n)n.innerHTML=o;};
+const cum=a=>{let t=0;return a.map(v=>t+=v);};
+sp('spTonnes',cum(total.map(v=>v*0.02)),v=>F(v)+' t','var(--teal)');
+sp('spHours',cum(total.map(v=>v*2)),v=>F(v),'var(--gold)');
+sp('spLocal',cum(total.map(v=>v*0.5*750)),v=>'$'+(v/1e6).toFixed(1)+'M','var(--green)');
+})();
+})();
+</script>

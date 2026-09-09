@@ -1,0 +1,648 @@
+<title>Goods on Country Model</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#FBF8F1; --surface:#FFFFFF; --muted:#F1ECE4; --sand:#E8DCC8; --grid:#E6DFD1;
+  --ink:#2B2A26; --sub:#7A7363;
+  --terracotta:#C45C3E; --clay:#A8643F; --sage:#8B9D77; --olive:#7E9A68; --green:#5E7A4C; --teal:#5C8A86; --gold:#BBA255; --rose:#C18A7B;
+  --display:"Playfair Display",Georgia,"Times New Roman",serif; --body:"Inter",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1C1A17;--surface:#26231F;--muted:#2E2A25;--sand:#3A342C;--grid:#3F3931;--ink:#F1ECE4;--sub:#B8AE9C;--terracotta:#E88461;--clay:#C98A62;--sage:#A3B48E;--olive:#98B282;--green:#8FAF7C;--teal:#7FAEAA;--gold:#D2BC72;--rose:#D4A597;}}
+:root[data-theme="dark"]{--bg:#1C1A17;--surface:#26231F;--muted:#2E2A25;--sand:#3A342C;--grid:#3F3931;--ink:#F1ECE4;--sub:#B8AE9C;--terracotta:#E88461;--clay:#C98A62;--sage:#A3B48E;--olive:#98B282;--green:#8FAF7C;--teal:#7FAEAA;--gold:#D2BC72;--rose:#D4A597;}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;margin:0}
+main{max-width:1080px;margin:0 auto;padding:40px 24px 72px}
+header{border-bottom:1px solid var(--grid);padding-bottom:22px;margin-bottom:34px}
+.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);font-weight:600}
+h1{font-family:var(--display);font-weight:600;font-size:42px;letter-spacing:-0.01em;margin:6px 0 10px;text-wrap:balance}
+h2{font-family:var(--display);font-weight:500;font-size:27px;letter-spacing:-0.01em;margin:0 0 6px;text-wrap:balance}
+h3{font-family:var(--display);font-weight:500;font-size:18px;margin:0 0 8px}
+figure>h3{font-size:15px;font-family:var(--body);font-weight:600;color:var(--sub);margin:0 0 10px;letter-spacing:.02em}
+.lede{max-width:68ch;color:var(--sub);margin:0;font-size:16px}
+section{margin:0 0 48px;padding-top:6px}
+section .eyebrow{margin-bottom:4px}
+.claim{max-width:68ch;margin:0 0 18px}
+.quote{max-width:66ch;font-family:var(--display);font-size:20px;line-height:1.4;border-left:3px solid var(--terracotta);padding:4px 0 4px 16px;margin:14px 0 18px}
+figure{margin:0;background:var(--surface);border:1px solid var(--grid);border-radius:14px;padding:18px 20px 14px;overflow-x:auto}
+figure svg{display:block;max-width:100%;height:auto;color:var(--ink)}
+figcaption{font-size:13px;color:var(--sub);margin-top:10px;max-width:72ch}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:0 0 16px}
+.tile{background:var(--surface);border:1px solid var(--grid);border-radius:12px;padding:12px 14px}
+.tile .k{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--sub);font-weight:600}
+.tile .v{font-family:var(--display);font-size:27px;font-weight:500;font-variant-numeric:tabular-nums;margin-top:2px}
+.tile .s{font-size:12px;color:var(--sub)}
+.tile.warn .v{color:var(--terracotta)} .tile.ok .v{color:var(--green)}
+.tile.o1{border-top:4px solid var(--gold)} .tile.o2{border-top:4px solid var(--green)} .tile.o3{border-top:4px solid var(--teal)} .tile.o4{border-top:4px solid var(--clay)} .tile.o5{border-top:4px solid var(--terracotta)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;background:var(--surface);border:1px solid var(--grid);border-radius:12px;overflow:hidden}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--grid);vertical-align:top}
+th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--sub);background:var(--muted)}
+td.n,th.n{text-align:right}
+tr:last-child td{border-bottom:none}
+tr.tot td{font-weight:600;border-top:2px solid var(--ink)}
+.wrap{overflow-x:auto}
+.note{font-size:13px;color:var(--sub);max-width:72ch;margin-top:10px}
+.lanes{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:720px){.lanes{grid-template-columns:1fr}}
+.lane{border-top:4px solid var(--teal);background:var(--surface);border-radius:0 0 12px 12px;padding:14px 16px}
+.lane.phil{border-top-color:var(--sage)}
+.lane .sub{font-size:12px;color:var(--sub);margin:2px 0 10px}
+.lane table{border:none;border-radius:0}
+.lane td,.lane th{padding:7px 6px}
+.play{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-bottom:16px}
+.ctl{background:var(--surface);border:1px solid var(--grid);border-radius:12px;padding:14px 16px}
+.ctl label{display:grid;grid-template-columns:1fr 92px;gap:8px;align-items:center;font-size:13px;padding:4px 0;border-bottom:1px solid var(--grid)}
+.ctl label:last-child{border-bottom:none}
+.ctl input[type=number],.ctl select{width:92px;font:inherit;font-size:13px;padding:4px 6px;border:1px solid var(--grid);border-radius:6px;background:var(--bg);color:var(--ink);text-align:right;font-variant-numeric:tabular-nums}
+.ctl input:focus,.ctl select:focus{outline:2px solid var(--teal);outline-offset:1px}
+.caps{display:grid;gap:10px}
+.caprow{border-left:4px solid var(--grid);background:var(--muted);border-radius:0 10px 10px 0;padding:10px 14px;font-size:13.5px;line-height:1.45}
+.caprow b{display:block;font-family:var(--display);font-weight:500;font-size:16px;margin-bottom:2px}
+.caprow.c1{border-left-color:var(--gold)} .caprow.c2{border-left-color:var(--clay)} .caprow.c3{border-left-color:var(--green)} .caprow.c4{border-left-color:var(--teal)}
+.levers{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.lever{border-top:4px solid var(--sage);background:var(--surface);border-radius:0 0 12px 12px;padding:12px 14px;font-size:13px}
+.lever b{display:block;font-family:var(--display);font-weight:500;font-size:16px;margin-bottom:4px}
+.lever.save{border-top-color:var(--teal)} .lever.make{border-top-color:var(--gold)} .lever.grow{border-top-color:var(--terracotta)}
+.voices{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:16px}
+.voice{background:var(--surface);border:1px solid var(--grid);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.voice .lay{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--sub)}
+.voice blockquote{margin:0;font-family:var(--display);font-size:15.5px;line-height:1.42}
+.voice .who{font-size:12.5px;color:var(--sub);margin-top:auto}
+.voice .who b{color:var(--ink);font-weight:600}
+.voice.v1{border-top:4px solid var(--clay)} .voice.v2{border-top:4px solid var(--gold)} .voice.v3{border-top:4px solid var(--teal)} .voice.v4{border-top:4px solid var(--green)} .voice.v5{border-top:4px solid var(--sage)} .voice.v6{border-top:4px solid var(--terracotta)}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--sub);margin:8px 0 0}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:5px}
+.foot{border-top:1px solid var(--grid);padding-top:16px;font-size:13px;color:var(--sub);max-width:84ch}
+.toc{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px;margin-top:14px}
+.toc a{color:var(--sub);text-decoration:none;border-bottom:1px dotted var(--grid)}
+.toc a:hover,.toc a:focus{color:var(--terracotta)}
+</style>
+
+<main>
+<header>
+  <div class="eyebrow">Goods on Country · the model, start to finish · 9 September 2026</div>
+  <h1>Reroute existing spend through a community-owned channel</h1>
+  <p class="lede">Goods on Country is a model for moving manufacturing and economic ownership into communities, with beds as the first proven product. This page tells it in order: why the model is shaped this way and who says so, what one bed does, where last year's money went, what a bed costs and earns, what Goods sells whether or not a funder says yes, every way a bed gets paid for, what Witta can make, the cash month by month to July 2027, what a loan is good for, and the asks. The last section is live, so any number here can be changed and the year redrawn.</p>
+  <nav class="toc" aria-label="Sections">
+    <a href="#s1">1 Mission</a><a href="#s2">2 Impact</a><a href="#s3">3 Last year</a><a href="#s4">4 One bed</a><a href="#s5">5 The trade</a><a href="#s6">6 Paid for</a><a href="#s7">7 Making</a><a href="#s8">8 To July</a><a href="#s9">9 Investing</a><a href="#s10">10 Asks</a><a href="#s11">11 Play</a>
+  </nav>
+</header>
+
+<section id="s1">
+  <div class="eyebrow">1 · Mission and focus</div>
+  <h2>How a bed becomes a community enterprise</h2>
+  <p class="claim">The output of this work is community-owned enterprises. Beds are the first product that proves one can be stood up. Map the need. Find the institutional buyers who already hold budgets for health and housing outcomes. Connect them to a community enterprise that is selling. That reroutes existing spend through a community-owned channel, and each deployment teaches the next one about need, buyers, making and governance.</p>
+  <p class="quote">&ldquo;Success is measured by community enterprises operating and local revenue retained, not beds produced.&rdquo; <span class="sub">Ben Knight, 9 September 2026</span></p>
+  <figure>
+    <h3>Five connected layers</h3>
+    <svg viewBox="0 0 980 330" role="img" aria-label="Five layers: community demand, catalytic enterprise capital paying Goods for first stock, the community enterprise selling to institutional buyers whose money stays local, manufacturing transfer through plants, and shared services and governance underneath">
+      <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker></defs>
+      <g font-size="12" fill="currentColor">
+        <rect x="16" y="46" width="176" height="78" rx="12" fill="var(--muted)" stroke="var(--grid)"/>
+        <text x="104" y="72" text-anchor="middle" font-weight="600">1 Community demand</text>
+        <text x="104" y="92" text-anchor="middle" opacity=".75">need mapped, buyers named</text>
+        <text x="104" y="108" text-anchor="middle" opacity=".75">Empathy Ledger voices</text>
+        <rect x="248" y="46" width="176" height="78" rx="12" fill="var(--sage)" fill-opacity=".25" stroke="var(--sage)"/>
+        <text x="336" y="72" text-anchor="middle" font-weight="600">2 Catalytic capital</text>
+        <text x="336" y="92" text-anchor="middle" opacity=".75">philanthropy pays Goods</text>
+        <text x="336" y="108" text-anchor="middle" opacity=".75">$750 a bed for first stock</text>
+        <rect x="480" y="46" width="176" height="78" rx="12" fill="var(--terracotta)" fill-opacity=".18" stroke="var(--terracotta)"/>
+        <text x="568" y="72" text-anchor="middle" font-weight="600">Goods, at Witta</text>
+        <text x="568" y="92" text-anchor="middle" opacity=".75">makes the first stock</text>
+        <text x="568" y="108" text-anchor="middle" opacity=".75">$276 to make, $474 stays</text>
+        <rect x="712" y="46" width="252" height="78" rx="12" fill="var(--green)" fill-opacity=".2" stroke="var(--green)"/>
+        <text x="838" y="72" text-anchor="middle" font-weight="600">Community enterprise</text>
+        <text x="838" y="92" text-anchor="middle" opacity=".75">owns the stock, sells it,</text>
+        <text x="838" y="108" text-anchor="middle" opacity=".75">keeps every dollar</text>
+        <line x1="192" y1="85" x2="244" y2="85" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"/>
+        <line x1="424" y1="85" x2="476" y2="85" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"/><text x="450" y="76" text-anchor="middle" font-size="11">$750/bed</text>
+        <line x1="656" y1="85" x2="708" y2="85" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"/><text x="682" y="76" text-anchor="middle" font-size="11">beds</text>
+        <rect x="712" y="170" width="252" height="64" rx="12" fill="var(--teal)" fill-opacity=".18" stroke="var(--teal)"/>
+        <text x="838" y="194" text-anchor="middle" font-weight="600">3 Institutional demand</text>
+        <text x="838" y="214" text-anchor="middle" opacity=".75">health and housing budgets, rerouted</text>
+        <path d="M838 170 L838 128" stroke="var(--green)" stroke-width="2.5" marker-end="url(#ar)"/>
+        <text x="850" y="152" font-size="11" font-weight="600" fill="var(--green)">money stays local</text>
+        <rect x="248" y="170" width="408" height="64" rx="12" fill="var(--clay)" fill-opacity=".15" stroke="var(--clay)"/>
+        <text x="452" y="194" text-anchor="middle" font-weight="600">4 Manufacturing transfer</text>
+        <text x="452" y="214" text-anchor="middle" opacity=".75">once the enterprise muscle exists, the plant moves home</text>
+        <path d="M568 124 L568 166" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"/>
+        <rect x="16" y="268" width="948" height="46" rx="12" fill="var(--muted)" stroke="var(--grid)"/>
+        <text x="490" y="296" text-anchor="middle" font-weight="600">5 Shared services and governance: Indigenous-led shared capability across communities, through The Butterfly Movement Ltd</text>
+      </g>
+    </svg>
+    <figcaption>Two kinds of money never meet. Catalytic capital pays Goods for first stock. Buyers pay the community enterprise, and that money never reaches Goods. Plants are capital, outside the bed price.</figcaption>
+  </figure>
+  <div class="grid2" style="margin-top:18px">
+    <figure>
+      <h3>Capital aligned to jobs</h3>
+      <div class="caps">
+        <div class="caprow c1"><b>Employment capital</b>pays the people making. Brian M. Davis youth employment, and the $80 of labour inside every bed.</div>
+        <div class="caprow c2"><b>Production capital</b>builds plants and presses. QBE's two plants, DEWR and NIAA at Alice Springs, Sefa if repayable.</div>
+        <div class="caprow c3"><b>Community enterprise capital</b>buys first trading stock at $750 a bed. Tim Fairfax, Brian M. Davis's bed share, Snow, Dusseldorp.</div>
+        <div class="caprow c4"><b>Public good capital</b>shared services, governance, evidence and story. Tim Fairfax operating support, SEDI, the Butterfly board.</div>
+      </div>
+      <figcaption>Each dollar has one job. A funder is asked for one kind of capital, and the ask says which.</figcaption>
+    </figure>
+    <figure>
+      <h3>Each deployment teaches the next</h3>
+      <svg viewBox="0 0 540 350" role="img" aria-label="A loop of four stages: map the need, make the first stock, the enterprise sells and keeps the money, the plant moves home and the next one starts smarter">
+        <g font-size="12" fill="currentColor">
+          <circle cx="270" cy="172" r="86" fill="none" stroke="var(--grid)" stroke-width="20"/>
+          <path d="M270 86 A86 86 0 0 1 356 172" fill="none" stroke="var(--sage)" stroke-width="20"/>
+          <path d="M356 172 A86 86 0 0 1 270 258" fill="none" stroke="var(--green)" stroke-width="20"/>
+          <path d="M270 258 A86 86 0 0 1 184 172" fill="none" stroke="var(--teal)" stroke-width="20"/>
+          <path d="M184 172 A86 86 0 0 1 270 86" fill="none" stroke="var(--clay)" stroke-width="20"/>
+          <path d="M258 79 L275 86 L258 93" fill="none" stroke="currentColor" stroke-width="2"/>
+          <text x="270" y="52" text-anchor="middle" font-weight="600">map the need</text>
+          <text x="376" y="168" font-weight="600">make first stock</text>
+          <text x="376" y="184" opacity="0.75">catalytic capital pays</text>
+          <text x="270" y="292" text-anchor="middle" font-weight="600">the enterprise sells</text>
+          <text x="270" y="308" text-anchor="middle" opacity="0.75">and keeps the money</text>
+          <text x="164" y="168" text-anchor="end" font-weight="600">the plant moves home</text>
+          <text x="164" y="184" text-anchor="end" opacity="0.75">the next one starts smarter</text>
+          <text x="270" y="158" text-anchor="middle" font-weight="600" font-size="12.5">every rollout</text>
+          <text x="270" y="175" text-anchor="middle" font-weight="600" font-size="12.5">raises the model's</text>
+          <text x="270" y="192" text-anchor="middle" font-weight="600" font-size="12.5">intelligence</text>
+        </g>
+      </svg>
+      <figcaption>Utopia, Maningrida and Palm Island each taught something the next one uses: freight, who pays, what a plant needs on day one.</figcaption>
+    </figure>
+  </div>
+  <h3 style="margin-top:24px">Each layer, in the words of someone who is in it</h3>
+  <p class="claim" style="margin-bottom:0">These are not decoration. Each one is the reason a layer is shaped the way it is. Every quote here is a Goods on Country storyteller, consent-cleared at the external tier in the storyteller registry, which is the file that wins when anything else disagrees.</p>
+  <div class="voices">
+    <div class="voice v1"><div class="lay">1 &middot; Community demand</div>
+      <blockquote>&ldquo;I sleep in the tent but look, there&rsquo;s my house or the rubbish house. No mattress. Look, the bed was mine. Just for chucking us blanket, that&rsquo;s all, that&rsquo;s all I was sleeping.&rdquo;</blockquote>
+      <div class="who"><b>Margaret Lloyd</b>, Utopia homelands, about thirty years on her homeland</div></div>
+    <div class="voice v2"><div class="lay">2 &middot; Catalytic capital, as first stock</div>
+      <blockquote>&ldquo;Most of our people in community are just on a blanket on the ground. These beds will come in handy. Mainly for the old elders. Getting up and down off the ground is very hard.&rdquo;</blockquote>
+      <div class="who"><b>Katrina Bloomfield</b>, Oonchiumpa, Alice Springs</div></div>
+    <div class="voice v3"><div class="lay">3 &middot; Institutional demand</div>
+      <blockquote>&ldquo;This is a great project, and it will definitely have lasting effects on the students and families out here.&rdquo;</blockquote>
+      <div class="who"><b>Tehmineh Mason</b>, Principal, Homeland School Company, Maningrida. The school held the budget and placed the order for forty beds.</div></div>
+    <div class="voice v4"><div class="lay">4 &middot; Manufacturing transfer</div>
+      <blockquote>&ldquo;Never would have thought it would have come out like that. Yeah, I&rsquo;ll be rocking up every day to make them.&rdquo;</blockquote>
+      <div class="who"><b>Mykel</b>, Utopia, on building his first bed</div></div>
+    <div class="voice v5"><div class="lay">5 &middot; Shared services and governance</div>
+      <blockquote>&ldquo;I had a yarn with the girls one day. Said you got to get out and start your own business. That&rsquo;s how we started Oonchiumpa.&rdquo;</blockquote>
+      <div class="who"><b>Karen Liddle</b>, co-founder, Oonchiumpa, Utopia</div></div>
+    <div class="voice v6"><div class="lay">Why the model runs this way round</div>
+      <blockquote>&ldquo;A lot of people say community is community and they need what we&rsquo;ve got. When you flip it, we need what they&rsquo;ve got.&rdquo;</blockquote>
+      <div class="who"><b>Shayne Bloomfield</b>, Oonchiumpa, who drove the Maningrida delivery</div></div>
+  </div>
+  <p class="note">Scope, because it matters. Empathy Ledger holds 44 storytellers against the Goods project and 390 stories, but 351 of those stories are archived photo captions from the production team, so the human voices number 39. Everyone quoted above is one of the 44, cleared at the external tier in <code>storyteller-registry.ts</code>, which is the record that governs what may be printed. Xavier&rsquo;s consent is held by Oonchiumpa and Fred Campbell speaks for him, so Xavier is never quoted directly. Two Ampilatwatja Elders are named on the published Utopia field note while their tier is still pending, so they are not quoted here. Kristy Bloomfield is a Goods storyteller but has no Goods story and no Goods-scoped quote; her twenty recorded quotes come from The Homestead, Law Student Workshops and Caterpillar Dreaming, and using them here would attribute another project&rsquo;s words to this one.</p>
+  <p class="note"><b>One consent conflict to settle before any of this goes further than a working page.</b> Ben cleared the May 2026 Utopia voices on 26 June 2026 and the registry records them as approved. Empathy Ledger&rsquo;s own rows for Karen Liddle and Mykel still carry the line that nothing may be published until they have reviewed and decided, and Fred Campbell&rsquo;s row also gates Xavier and his family. Two records, two answers. The registry is the one the code enforces; Empathy Ledger is the one the person signed. Confirm the June clearance stands before these quotes appear on a deck, a website or anything a funder keeps.</p>
+</section>
+
+<section id="s2">
+  <div class="eyebrow">2 · Impact</div>
+  <h2>Four outcomes, counted per bed</h2>
+  <p class="claim">The four outcomes the funders keep asking about are employment, community impact, recycling and health, with economic ownership running through all of them. They are counted per bed, so every ask can be read the same way: this much money buys this many beds, and each bed carries the same outcomes. Scabies and rheumatic heart disease are why a bed off the floor matters. Nothing here claims a health result that has not been measured. The figures below are for this year's plan of 413 funded beds. Section 11 recalculates them as the plan changes.</p>
+  <p class="quote">&ldquo;The families right now, like you see in most of those houses that we went to, the beds were on the ground. It&rsquo;s a safety thing. Some of our kids have come up with scabies and stuff that shed from the dogs.&rdquo; <span class="sub">Fred Campbell, Youth Case Worker, Oonchiumpa, Alice Springs</span></p>
+  <div class="tiles" id="impactTiles"></div>
+  <figure>
+    <svg viewBox="0 0 980 120" role="img" aria-label="One bed: 20 kilograms of recycled plastic, two hours of paid making at Witta, 750 dollars kept in the community that sells it">
+      <g font-size="12" fill="currentColor">
+        <rect x="16" y="24" width="200" height="70" rx="10" fill="var(--clay)" fill-opacity=".18" stroke="var(--clay)"/><text x="116" y="52" text-anchor="middle" font-weight="600">20 kg of HDPE</text><text x="116" y="72" text-anchor="middle" opacity=".75">milk bottles, out of landfill</text>
+        <line x1="216" y1="59" x2="270" y2="59" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"/>
+        <rect x="274" y="24" width="200" height="70" rx="10" fill="var(--gold)" fill-opacity=".22" stroke="var(--gold)"/><text x="374" y="52" text-anchor="middle" font-weight="600">2 hours of paid making</text><text x="374" y="72" text-anchor="middle" opacity=".75">$80 of labour inside the $276</text>
+        <line x1="474" y1="59" x2="528" y2="59" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"/>
+        <rect x="532" y="24" width="200" height="70" rx="10" fill="var(--terracotta)" fill-opacity=".18" stroke="var(--terracotta)"/><text x="632" y="52" text-anchor="middle" font-weight="600">One Stretch Bed</text><text x="632" y="72" text-anchor="middle" opacity=".75">a person off the floor</text>
+        <line x1="732" y1="59" x2="786" y2="59" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"/>
+        <rect x="790" y="24" width="174" height="70" rx="10" fill="var(--green)" fill-opacity=".2" stroke="var(--green)"/><text x="877" y="52" text-anchor="middle" font-weight="600">$750 kept local</text><text x="877" y="72" text-anchor="middle" opacity=".75">when the community sells it</text>
+      </g>
+    </svg>
+    <figcaption>The four counts above are the same 413 beds counted four ways. The fifth, community, is the number of places holding stock to sell.</figcaption>
+  </figure>
+</section>
+
+<section id="s3">
+  <div class="eyebrow">3 · Where the money went last year</div>
+  <h2>A Curious Tractor, FY26, from Xero</h2>
+  <p class="claim">Before the model can ask for money it has to show where money went. Goods still trades inside the ledger Nic runs, so this is the whole of A Curious Tractor on an accrual basis for July 2025 to June 2026. It made a surplus before founder wages, which were zero. Standard Ledger is carving the Goods share out on letterhead for the QBE application, and until that lands the honest number is the Goods-tagged one. Materials and travel are the two biggest lines, which is what a business making things in remote places looks like.</p>
+  <div class="tiles">
+    <div class="tile"><div class="k">Income</div><div class="v">$1.64M</div><div class="s">other revenue $1.37M, grants $155K, consulting $78K, rent $37K</div></div>
+    <div class="tile"><div class="k">Expenses</div><div class="v">$1.47M</div><div class="s">cost of goods sold booked as $0; materials sit in expenses</div></div>
+    <div class="tile ok"><div class="k">Net</div><div class="v">$168K</div><div class="s">before any founder wages</div></div>
+    <div class="tile"><div class="k">Goods-tagged</div><div class="v">$653K in</div><div class="s">$287K of bills tagged ACT-GD; the carve-out is being signed</div></div>
+  </div>
+  <figure>
+    <h3>FY26 expenses by category, whole ledger</h3>
+    <svg id="spendChart" viewBox="0 0 980 420" role="img" aria-label="Horizontal bars of FY26 expenses by category, largest first"></svg>
+    <figcaption>Materials, national travel, consulting and accounting, sub-contractors and marketing are three quarters of the spend. The Goods cost model in the next section is built from one bed upward. These lines are the whole of A Curious Tractor.</figcaption>
+  </figure>
+</section>
+
+<section id="s4">
+  <div class="eyebrow">4 · The cost model, simply</div>
+  <h2>One bed carries the business</h2>
+  <p class="claim">A bed sells for $750 at the factory door. $276 makes it, with the person on the press inside that number, so the making is a wage from the first bed. $474 stays with Goods for rent, the founders and everything else. Freight is charged on top at cost, per community, because Utopia and Maningrida do not cost the same to reach. The business is never priced cost-plus and the organisation is never divided by beds to make a bed look dear. This is the number that let today's "half a million to raise" be retired: the running costs are carried by what stays in every bed, plus what else Goods sells.</p>
+  <figure>
+    <h3>One bed at $750</h3>
+    <svg id="bedBar" viewBox="0 0 980 150" role="img" aria-label="A 750 dollar bed split into the 276 dollars that make it and the 474 that stay with Goods, with the make cost broken into plastic, diesel, labour, steel, canvas and hardware"></svg>
+    <figcaption>Make cost from canon: plastic $55, diesel $15, press labour $80, steel $27, canvas $93.50, hardware $5.24. The labour is the community's wage when the plant is theirs.</figcaption>
+  </figure>
+  <div class="grid2" style="margin-top:18px">
+    <figure>
+      <h3>Running the business, a year</h3>
+      <svg id="runChart" viewBox="0 0 480 230" role="img" aria-label="Running the business a year: founders 151,200, travel 51,000, accounting 50,000, Witta rent and upkeep 35,350, marketing 10,000"></svg>
+      <figcaption id="runCap"></figcaption>
+    </figure>
+    <figure>
+      <h3>Full cost per bed, if beds were the only income</h3>
+      <svg id="volChart" viewBox="0 0 480 250" role="img" aria-label="Two lines of full cost per bed as volume rises, one with freight carried by Goods and one with freight charged on top, each crossing the 750 dollar price line"></svg>
+      <figcaption id="volCap"></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="s5">
+  <div class="eyebrow">5 &middot; The trade that is already running</div>
+  <h2>What Goods sells when nobody is giving</h2>
+  <p class="claim">Goods sold beds before any of this year's asks existed, and it will keep selling them whatever the asks do. Ten paid invoices carry 320 beds and a set of washing machines, $343,481 received from four organisations. Since 1 July, $116,200 has landed against Goods work: ALIVE's hundred beds and $15,000 from Julalikari. So the raise is not the thing keeping the lights on. The raise buys new work, first stock for community enterprises and two plants, and the trade underneath it pays for Witta, the founders and the year. The risk in the trade is not that it stops. It is that one funder was more than half of it.</p>
+  <div class="tiles">
+    <div class="tile"><div class="k">Beds sold and paid for</div><div class="v">320</div><div class="s">ten invoices, $343,481, all time</div></div>
+    <div class="tile"><div class="k">Goods money in, FY26</div><div class="v">$653,246</div><div class="s">19 paid invoices</div></div>
+    <div class="tile warn"><div class="k">Snow's share of that year</div><div class="v">57%</div><div class="s">$375,000, and no Snow ask on the table now</div></div>
+    <div class="tile"><div class="k">Landed since 1 July</div><div class="v">$116,200</div><div class="s">ALIVE $101,200, Julalikari $15,000</div></div>
+    <div class="tile"><div class="k">Ordered, not yet placed</div><div class="v">130 beds</div><div class="s">Centrecorp, on quote since May</div></div>
+  </div>
+  <figure>
+    <h3>Who paid Goods last year</h3>
+    <svg id="whoChart" viewBox="0 0 980 400" role="img" aria-label="Horizontal bars of who paid Goods in FY26: Snow Foundation 375,000 dominates, then Centrecorp 85,712, Vincent Fairfax 50,000, Homeland School 44,000, Julalikari 34,800 and five smaller payers"></svg>
+    <figcaption>Nineteen paid invoices, $653,246. One foundation was $375,000 of it. The seven organisations that bought beds and washers were $204,661 together, less than Snow on their own. Concentration, not shortage, is what the year has to fix. Source: Xero receipts, Goods-tagged, FY26.</figcaption>
+  </figure>
+  <h3 style="margin-top:22px">Money in that has nothing to do with the raise</h3>
+  <table>
+    <tr><th>Line</th><th>How it pays</th><th>What is behind it</th></tr>
+    <tr><td>Beds sold direct to an organisation</td><td>Goods invoices the buyer, keeps $474 a bed, charges freight on top at cost</td><td>320 beds paid all time. ALIVE's 100 this July. Centrecorp's 130 on quote.</td></tr>
+    <tr><td>Washing machines</td><td>No price set; register interest only while the design is still a prototype</td><td>Pakkimjalki Kari, named in Warumungu by Elder Dianne Stokes. Eight in Maningrida.</td></tr>
+    <tr><td>Facilitation and design in community</td><td>Nic and Ben paid to set an enterprise up, separate from the beds</td><td>Brian M. Davis's other $40,000, across four communities.</td></tr>
+    <tr><td>A plant funded outside the raise</td><td>Programme money that builds capacity and pays Goods to deliver it</td><td>Alice Springs with Oonchiumpa: DEWR $1,695,000 over four years, about $150,000 of it to Goods, and NIAA up to $150,000.</td></tr>
+    <tr><td>The rest of A Curious Tractor</td><td>The Harvest, CONTAINED, JusticeHub, container builds, consulting, rent</td><td>Whole ledger FY26: $1,464,204 in, $260,485 kept, on a cash basis. This is what pays the founders today.</td></tr>
+  </table>
+  <p class="note">Two things to hold against this. Butterfly, the entity that will apply and receive, is small: FY26 income $77,080, expenses $119,934, a $42,854 loss and $4,041 of closing cash. And of $281,049 owed to the ledger today, Rotary's $82,500 is bad debt and ALIVE still owes $66,000. Trade only counts once it is banked.</p>
+  <p class="note"><b>The real hole in next year.</b> Snow gave $375,000 last year and there is no Snow ask this year. The $100,000 in the asks table is a new ask for one community's first stock, not a renewal of what Snow already does. Nothing in this plan replaces the other $275,000. That is a conversation, not a spreadsheet line, and it is worth more than any single ask on the list.</p>
+</section>
+
+<section id="s6">
+  <div class="eyebrow">6 · Every way a bed gets paid for</div>
+  <h2>Two lanes of money that are never added together</h2>
+  <div class="lanes">
+    <div class="lane phil">
+      <h3>Catalytic capital pays Goods</h3>
+      <div class="sub">$750 a bed, Witta-made, becomes a community enterprise's trading stock</div>
+      <table>
+        <tr><th>Who</th><th class="n">Beds</th><th class="n">$</th><th>Status</th></tr>
+        <tr><td>Tim Fairfax Family Foundation<br><span class="sub">unrestricted, so it releases bed money</span></td><td class="n">133</td><td class="n">100,000</td><td>Invited, due 9 Oct</td></tr>
+        <tr><td>Brian M. Davis Charitable Foundation</td><td class="n">80</td><td class="n">60,000</td><td>Invited, due 25 Sep</td></tr>
+        <tr><td>Still to find, or a smaller first year</td><td class="n">187</td><td class="n">140,000</td><td>Snow, Dusseldorp, others</td></tr>
+        <tr class="tot"><td>First stock</td><td class="n">400</td><td class="n">300,000</td><td></td></tr>
+      </table>
+      <p class="note">Tim Fairfax is asked for operating support. The ask does not name beds. Because it is unrestricted it pays for running the business, which releases $100,000 that would otherwise have to come out of bed money, and $100,000 of bed money is 133 beds. That is the only sense in which Tim Fairfax buys beds, and the asks table says the same thing. Brian M. Davis's other $40,000 pays Nic and Ben to facilitate in four communities. QBE's $300,000 builds two plants and sits outside the bed price.</p>
+    </div>
+    <div class="lane">
+      <h3>Buyers pay the community</h3>
+      <div class="sub">Existing health and housing budgets, through a community-owned channel</div>
+      <table>
+        <tr><th>Who</th><th class="n">Beds</th><th>Status</th></tr>
+        <tr><td>Centrecorp Foundation, Utopia</td><td class="n">130</td><td>On quote since May</td></tr>
+        <tr><td>NT Health, Miwatj</td><td class="n"></td><td>In conversation</td></tr>
+        <tr><td>Shepherdson College, Ceduna Aboriginal Corporation</td><td class="n"></td><td>In conversation</td></tr>
+        <tr class="tot"><td>Money stays with the community</td><td colspan="2">Never Goods revenue</td></tr>
+      </table>
+      <p class="note">ALIVE's 100 beds are a paid order to Goods, outside the 400, delivered around Central Australia under ALIVE's own grant. The next buyer who orders from Goods directly follows the same pattern.</p>
+    </div>
+  </div>
+  <figure style="margin-top:18px">
+    <h3>Every source that could pay for a bed, by how real the money is</h3>
+    <svg id="ladderChart" viewBox="0 0 980 372" role="img" aria-label="Horizontal bars of beds each funding source could pay for, tiered by how real the money is, with markers at 213, 413 and 680 beds"></svg>
+    <figcaption>Tier 1 is invited, 213 beds. Tiers 1 and 2 with the asks to make, 413 beds, this year's plan. Tier 3 adds repayable capital, 680, only where a loan has a repayment source. Ramp the bed count up or down from here. The cost side stays where it is.</figcaption>
+  </figure>
+</section>
+
+<section id="s7">
+  <div class="eyebrow">7 · Making</div>
+  <h2>What Witta holds, what it can make, when the plants must be live</h2>
+  <p class="claim">The count at Witta on 9 September: 812 tabs, 650 leg pieces, about 59 uncut tab sheets, 145 kg of weighed shred and roughly 1,150 kg more in buckets, offcuts and router skeletons. Legs and shred are the limit. There are more tabs on the shelf than either. Witta presses six sheets a day, two to a bed: 60 beds a month on its own panels, 120 if Defy supplies the leg panels. With three plants coming on through 2027 the plan does not run short; the question is shred supply and when the second press goes in, not whether the beds can be made.</p>
+  <div class="tiles" id="makeTiles"></div>
+  <figure>
+    <h3>Beds wanted a month against what can be made</h3>
+    <svg id="capChart" viewBox="0 0 980 340" role="img" aria-label="Beds wanted each month from October 2026 to September 2027 as bars, against a line of what Witta and the plants can make"></svg>
+    <figcaption id="capCap"></figcaption>
+  </figure>
+  <figure style="margin-top:18px">
+    <h3>When each plant makes beds</h3>
+    <svg id="plantChart" viewBox="0 0 980 190" role="img" aria-label="Timeline of plants: Witta now, Alice Springs and Palm Island from March 2027, Maningrida from June 2027, each rising to 720 beds a year at steady state"></svg>
+    <figcaption>A new plant makes its first beds three months after funding and about 200 in its first year. The trigger for the next one is 200 beds of need in a community and someone there to run it.</figcaption>
+  </figure>
+</section>
+
+<section id="s8">
+  <div class="eyebrow">8 · The year to July 2027</div>
+  <h2>Every dollar in and out, month by month</h2>
+  <p class="claim">The year read as cash in the bank, month by month. ALIVE's $75,000 for a hundred beds is already banked, so those beds leave stock in November with the $474 a bed already earned. Grants land after their boards, which is why December matters. Buyers who pay a community enterprise are not here, by design. The chart is driven by the controls in section 11, so a later Snow decision or a freight rule can be tried before it is promised.</p>
+  <p class="note">Two things this chart does on purpose, and they both make it look worse than the year probably is. Goods makes 713 beds and is paid for 510. Of the 203 nobody pays for, about 120 are first-stock beds whose funder has not said yes yet, which is the catalytic gap, and about 83 are made in July as stock for the year after, which is inventory. And freight is set to nothing recovered, so Goods carries all $71,300 of it. The price model says freight is charged on top at cost, so set freight recovered to 100 in section 11 to see the year the way it is meant to be priced.</p>
+  <div class="tiles" id="cashTiles"></div>
+  <figure>
+    <h3>The cash runway, October 2026 to July 2027</h3>
+    <svg id="cashChart" viewBox="0 0 980 430" role="img" aria-label="Cash balance month by month, with the moments money lands marked and the outflow read as the slope between them"></svg>
+    <div class="legend"><span><i style="background:var(--sage)"></i>cash in hand</span><span><i style="background:var(--terracotta)"></i>below zero</span><span><i style="background:var(--green);border-radius:2px"></i>money landing</span></div>
+    <figcaption id="cashCap"></figcaption>
+  </figure>
+</section>
+
+<section id="s9">
+  <div class="eyebrow">9 · Community impact investing</div>
+  <h2>What a loan is good for, and the shape of ten years</h2>
+  <p class="claim">Repayable capital only works where the beds it buys bring cash back. A plant does: its first year of paid beds covers the service on a loan that built it, and the plant is the asset that ends up community-owned. Gifted first stock does not: the community keeps the sale, so there is nothing to repay from. That is the line to hold with Sefa and with the Paul Ramsay and Atlassian fund, and the reason production capital and community enterprise capital are asked for separately. The ten-year chart underneath shows where the beds get made, which is the claim the whole model rests on.</p>
+  <div class="tiles" id="loanTiles"></div>
+  <figure>
+    <h3>Where the beds are made, ten years</h3>
+    <svg id="tenChart" viewBox="0 0 980 360" role="img" aria-label="Stacked area of beds made each year split between Witta and community plants on country, with Witta flat and on-country production growing"></svg>
+    <div class="legend"><span><i style="background:var(--clay)"></i>made at Witta</span><span><i style="background:var(--green)"></i>made on country</span></div>
+    <figcaption id="tenCap"></figcaption>
+  </figure>
+</section>
+
+<section id="s10">
+  <div class="eyebrow">10 · The asks</div>
+  <h2>One sentence per funder, four outcomes each</h2>
+  <p class="claim">Every funder gets the same sentence with their own numbers in it, and the table below is that sentence in columns. Snow and Dusseldorp are asked for community enterprise capital. Brian M. Davis is asked for beds and for the facilitation that stands an enterprise up. QBE is asked for production capital. Tim Fairfax is asked for operating support, which is the one ask that is not counted in beds. Sefa is repayable and belongs against a plant. Nobody is asked to fund a gap.</p>
+  <p class="note">The money kept locally column is the full sale value of the beds the enterprise holds, before whatever it costs that enterprise to sell them. It is what the community controls. What it clears depends on its own cost of selling.</p>
+  <div class="wrap"><table id="askTable"></table></div>
+  <p class="note">The live total does not add up to a bed count, and it should not. Of it, first stock is the only part that buys beds; the rest builds plants, pays for running the business or has to be repaid. Minderoo is listed because the conversation may revive, and left out of the total because it has not. Amounts for Snow, Dusseldorp and others are ours until an ask exists.</p>
+</section>
+
+<section id="s11">
+  <div class="eyebrow">11 · Play with it</div>
+  <h2>Change a number, watch the year move</h2>
+  <p class="claim">Defaults are the workbook. Extra founder wages and marketing are separate lines so they can be tested without touching the base. Freight recovered means the payer covers freight on top of the bed. The include switches turn a funder or a buyer on and off.</p>
+  <div class="play">
+    <div class="ctl"><h3>The bed</h3>
+      <label>Price a bed<input type="number" id="i_price" value="750"></label>
+      <label>Make a bed<input type="number" id="i_make" value="276"></label>
+      <label>Freight a bed<input type="number" id="i_frt" value="100"></label>
+      <label>Freight recovered, %<input type="number" id="i_frec" value="0" min="0" max="100"></label>
+      <label>Labour hours a bed<input type="number" id="i_hrs" value="2" step="0.5"></label>
+    </div>
+    <div class="ctl"><h3>Running the business, a year</h3>
+      <label>Founder wages<input type="number" id="i_wages" value="151200"></label>
+      <label>Extra founder wages<input type="number" id="i_wx" value="0"></label>
+      <label>Travel<input type="number" id="i_travel" value="51000"></label>
+      <label>Accounting and consulting<input type="number" id="i_acc" value="50000"></label>
+      <label>Marketing<input type="number" id="i_mkt" value="10000"></label>
+      <label>Extra marketing<input type="number" id="i_mx" value="0"></label>
+      <label>Witta rent and upkeep<input type="number" id="i_witta" value="35350"></label>
+    </div>
+    <div class="ctl"><h3>Money landing, and when</h3>
+      <label>ALIVE already banked<input type="number" id="i_alive" value="75000"></label>
+      <label>QBE, plants<input type="number" id="i_qbe" value="300000"></label>
+      <label>QBE month<select id="m_qbe"></select></label>
+      <label>Tim Fairfax, operating<input type="number" id="i_tfff" value="100000"></label>
+      <label>Tim Fairfax month<select id="m_tfff"></select></label>
+      <label>Brian M. Davis, beds<input type="number" id="i_bmd" value="60000"></label>
+      <label>Brian M. Davis, facilitation<input type="number" id="i_bmdf" value="40000"></label>
+      <label>Brian M. Davis month<select id="m_bmd"></select></label>
+    </div>
+    <div class="ctl"><h3>Asks to make</h3>
+      <label>Snow<input type="number" id="i_snow" value="100000"></label>
+      <label>Snow month<select id="m_snow"></select></label>
+      <label>Dusseldorp<input type="number" id="i_dus" value="50000"></label>
+      <label>Dusseldorp month<select id="m_dus"></select></label>
+      <label>Other philanthropy<input type="number" id="i_oth" value="0"></label>
+      <label>Other month<select id="m_oth"></select></label>
+      <label>Direct orders to Goods<input type="number" id="i_dir" value="0"></label>
+      <label>Centrecorp 130 paid to Goods<select id="i_cc"><option value="1">yes, March</option><option value="0">no, community sells</option></select></label>
+    </div>
+    <div class="ctl"><h3>Plants, loan, making</h3>
+      <label>Plant cost, each<input type="number" id="i_plant" value="150000"></label>
+      <label>Plant 1 build month<select id="m_p1"></select></label>
+      <label>Plant 2 build month<select id="m_p2"></select></label>
+      <label>Sefa loan<select id="i_loan"><option value="0">off</option><option value="1">on, January</option></select></label>
+      <label>Loan amount<input type="number" id="i_loanamt" value="200000"></label>
+      <label>Sheets a day at Witta<input type="number" id="i_spd" value="6"></label>
+      <label>Witta legs<select id="i_route"><option value="own">own panels</option><option value="defy">Defy panels</option></select></label>
+    </div>
+    <div class="ctl"><h3>Ten years</h3>
+      <label>Plants added a year<input type="number" id="i_addp" value="2"></label>
+      <label>Beds a plant a year<input type="number" id="i_bpp" value="400"></label>
+      <label>Share paid to Goods, % <span class="sub">shared services; no community has agreed this</span><input type="number" id="i_share" value="50" min="0" max="100"></label>
+      <label>Running costs growth, %<input type="number" id="i_grow" value="10"></label>
+    </div>
+  </div>
+  <div class="tiles" id="resultTiles"></div>
+  <h3>First principles</h3>
+  <div class="levers" id="levers"></div>
+</section>
+
+<div class="foot">Built 9 September 2026 from Goods-financial-plan.xlsx (sheets Phase and raise, Bed calculator, Plan to July 2027), Defy's invoices, Xero FY26 accrual profit and loss, canon.ts and the transcript of 9 September. Change the workbook. This page reads from it. Prices: $750 at the door, $276 to make, $474 stays. Never cost-plus. Buyers pay the community, never Goods.</div>
+</main>
+
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+const fmt=v=>Math.round(v).toLocaleString('en-AU'); const $$=v=>(v<0?'-$':'$')+fmt(Math.abs(v)); const k=v=>(v<0?'-':'')+'$'+(Math.abs(v)>=1e6?(Math.abs(v)/1e6).toFixed(2)+'M':Math.round(Math.abs(v)/1000)+'K');
+const months=[];for(let i=0;i<12;i++){const m=(9+i)%12,y=m>=9?2026:2027;months.push(new Date(y,m,1).toLocaleString('en-AU',{month:'short',year:'2-digit'}));}
+const num=id=>parseFloat($(id).value)||0;
+function tile(k,v,s,cls){return `<div class="tile ${cls||''}"><div class="k">${k}</div><div class="v">${v}</div><div class="s">${s||''}</div></div>`;}
+function svgText(x,y,t,o={}){return `<text x="${x}" y="${y}" font-size="${o.size||11}" fill="${o.fill||'currentColor'}" text-anchor="${o.anchor||'start'}" ${o.weight?'font-weight="'+o.weight+'"':''} ${o.op?'opacity="'+o.op+'"':''}>${t}</text>`;}
+for(const id of ['m_qbe','m_tfff','m_bmd','m_snow','m_dus','m_oth','m_p1','m_p2']){const sel=$(id);months.slice(0,10).forEach((m,i)=>{const o=document.createElement('option');o.value=i;o.textContent=m;sel.appendChild(o);});const o=document.createElement('option');o.value=-1;o.textContent='not this year';sel.appendChild(o);}
+$('m_qbe').value=2;$('m_tfff').value=2;$('m_bmd').value=3;$('m_snow').value=4;$('m_dus').value=5;$('m_oth').value=6;$('m_p1').value=2;$('m_p2').value=5;
+
+// static charts
+(function spend(){
+  const d=[['Materials and supplies',363183],['Travel, national',232786],['Consulting and accounting',174056],['Sub-contractors',167094],['Advertising and marketing',142162],['General expenses',68239],['Subscriptions',45187],['Light meals',30091],['Freight and courier',27108],['Parking, tolls, taxis',25810],['Travel, international',24298],['Insurance',23534],['Everything else',149207]];
+  const W=980,L=230,R=90,rowH=28,T=16; let s=''; const max=380000; const x=v=>L+(W-L-R)*v/max;
+  d.forEach((r,i)=>{const y=T+i*rowH; s+=`<rect x="${L}" y="${y}" width="${x(r[1])-L}" height="18" rx="3" fill="${i===12?'var(--sand)':'var(--clay)'}" fill-opacity="${i===12?1:0.85-i*0.03}"/>`+svgText(L-8,y+13,r[0],{anchor:'end'})+svgText(x(r[1])+6,y+13,'$'+fmt(r[1]),{op:.85});});
+  $('spendChart').innerHTML=s;
+})();
+(function who(){
+  const d=[['Snow Foundation',375000,'g'],['Centrecorp Foundation',85712,'b'],['Vincent Fairfax Family Foundation',50000,'g'],['Homeland School Company',44000,'b'],['Julalikari Council',34800,'b'],['Red Dust Role Models',15950,'b'],['QIC',12000,'b'],["Our Community Shed",6765,'b'],["Mala'la Health Service",5434,'b'],['John Villiers Trust',1200,'g'],['Not yet named',22385,'u']];
+  const W=980,L=250,R=90,rowH=30,T=42; const max=400000; const x=v=>L+(W-L-R)*v/max; let s='';
+  const col={g:'var(--gold)',b:'var(--green)',u:'var(--sand)'};
+  s+=svgText(L,20,'grant',{fill:'var(--gold)',weight:600,size:12})+svgText(L+56,20,'bought beds or washers',{fill:'var(--green)',weight:600,size:12})+svgText(L+228,20,'unclassified',{fill:'var(--sub)',weight:600,size:12});
+  d.forEach((r,i)=>{const y=T+i*rowH; s+=`<rect x="${L}" y="${y}" width="${Math.max(2,x(r[1])-L)}" height="19" rx="3" fill="${col[r[2]]}" fill-opacity="${r[2]==='u'?1:0.9}"/>`+svgText(L-8,y+14,r[0],{anchor:'end'})+svgText(x(r[1])+6,y+14,'$'+fmt(r[1]),{op:.85});});
+  const yb=T+d.length*rowH+10;
+  s+=`<line x1="${L}" x2="${W-R}" y1="${yb}" y2="${yb}" stroke="currentColor" stroke-opacity=".25"/>`;
+  s+=svgText(L,yb+18,'0',{size:11,op:.6})+svgText(x(200000),yb+18,'$200,000',{anchor:'middle',size:11,op:.6})+svgText(x(400000),yb+18,'$400,000',{anchor:'end',size:11,op:.6});
+  s+=svgText(L,yb+40,"Snow alone is 57% of the year. Every organisation that bought something is 31% together.",{size:12,weight:600});
+  $('whoChart').innerHTML=s;
+})();
+(function bed(){
+  const parts=[['plastic',55,'var(--clay)'],['diesel',15,'var(--rose)'],['labour',80,'var(--gold)'],['steel',27,'var(--sub)'],['canvas',93.5,'var(--teal)'],['hardware',5.24,'var(--olive)']];
+  const W=980,L=16,R=16,y=40,h=44; const x=v=>L+(W-L-R)*v/750; let s='',acc=0;
+  parts.forEach(p=>{s+=`<rect x="${x(acc)}" y="${y}" width="${x(acc+p[1])-x(acc)}" height="${h}" fill="${p[2]}"/>`;const cx=(x(acc)+x(acc+p[1]))/2; if(p[1]>=50) s+=svgText(cx,y+27,p[0]+' $'+p[1],{anchor:'middle',fill:'#fff',size:11,weight:600}); acc+=p[1];});
+  s+=`<rect x="${x(276)}" y="${y}" width="${x(750)-x(276)}" height="${h}" fill="var(--green)"/>`+svgText((x(276)+x(750))/2,y+27,'stays with Goods $474',{anchor:'middle',fill:'#fff',size:13,weight:600});
+  s+=svgText(L,y-12,'$276 makes the bed',{weight:600})+svgText(W-R,y-12,'$750 at the factory door',{anchor:'end',weight:600});
+  s+=`<line x1="${x(276)}" y1="${y-6}" x2="${x(276)}" y2="${y+h+8}" stroke="currentColor" stroke-width="1.5"/>`;
+  s+=svgText(L,y+h+30,'freight is charged on top, at cost, per community; about $100 a bed on average',{op:.75});
+  $('bedBar').innerHTML=s;
+})();
+(function run(){
+  const d=[['Founders',151200],['Travel',51000],['Accounting, consulting',50000],['Witta rent, upkeep',35350],['Marketing',10000]];
+  const W=480,L=150,R=70,rowH=34,T=14; let s=''; const x=v=>L+(W-L-R)*v/160000;
+  d.forEach((r,i)=>{const y=T+i*rowH; s+=`<rect x="${L}" y="${y}" width="${x(r[1])-L}" height="22" rx="3" fill="var(--gold)" fill-opacity=".85"/>`+svgText(L-8,y+15,r[0],{anchor:'end'})+svgText(x(r[1])+6,y+15,'$'+fmt(r[1]),{op:.85});});
+  s+=svgText(L,T+5*rowH+12,'$297,550 a year · 628 paid beds carries it',{weight:600});
+  $('runChart').innerHTML=s;
+})();
+function drawVol(price,make,frt,running){
+  const ns=[300,400,500,600,800,1000,1400,2000];
+  const withF=ns.map(n=>[n,make+frt+running/n]), noF=ns.map(n=>[n,make+running/n]);
+  const W=480,H=250,L=52,R=16,T=26,B=44; const yTop=1200;
+  const xs=v=>L+(W-L-R)*(v-250)/1800, ys=v=>T+(H-T-B)*(1-Math.min(v,yTop)/yTop); let s='';
+  [0,400,800,1200].forEach(v=>{s+=`<line x1="${L}" x2="${W-R}" y1="${ys(v)}" y2="${ys(v)}" stroke="currentColor" stroke-opacity=".13"/>`+svgText(L-6,ys(v)+4,'$'+v,{anchor:'end',op:.65});});
+  s+=`<line x1="${L}" x2="${W-R}" y1="${ys(price)}" y2="${ys(price)}" stroke="var(--terracotta)" stroke-width="2" stroke-dasharray="6 4"/>`+svgText(W-R,ys(price)-6,'price $'+fmt(price),{anchor:'end',fill:'var(--terracotta)',weight:600});
+  s+=`<polyline fill="none" stroke="var(--clay)" stroke-width="2.5" points="${withF.map(p=>xs(p[0])+','+ys(p[1])).join(' ')}"/>`;
+  s+=`<polyline fill="none" stroke="var(--green)" stroke-width="2.5" points="${noF.map(p=>xs(p[0])+','+ys(p[1])).join(' ')}"/>`;
+  const nF=(price-make-frt)>0?running/(price-make-frt):null, nN=(price-make)>0?running/(price-make):null;
+  [[nN,'var(--green)',-1],[nF,'var(--clay)',1]].forEach(c=>{ if(!c[0]||c[0]>2000) return;
+    s+=`<line x1="${xs(c[0])}" x2="${xs(c[0])}" y1="${ys(price)}" y2="${ys(price)+16}" stroke="${c[1]}" stroke-width="2"/>`
+     +svgText(xs(c[0])+c[2]*4,ys(price)+30,Math.ceil(c[0])+' beds',{anchor:c[2]<0?'end':'start',fill:c[1],size:11,weight:600});});
+  [300,800,1400,2000].forEach(n=>s+=svgText(xs(n),H-B+18,n,{anchor:'middle',op:.7,size:11}));
+  s+=svgText((L+W-R)/2,H-6,'beds sold a year',{anchor:'middle',op:.55,size:11});
+  s+=svgText(L,T-12,'Goods carries freight',{fill:'var(--clay)',size:11,weight:600})+svgText(L+150,T-12,'freight charged on top',{fill:'var(--green)',size:11,weight:600});
+  $('volChart').innerHTML=s;
+  return {nF:nF?Math.ceil(nF):null,nN:nN?Math.ceil(nN):null};
+}
+(function ladder(){
+  const d=[['Tim Fairfax, year one',133,1,'var(--sage)'],['Brian M. Davis, bed share',80,1,'var(--sage)'],['Snow Foundation',133,2,'var(--olive)'],['Dusseldorp Forum',67,2,'var(--olive)'],['Other philanthropy',0,2,'var(--olive)'],['Direct orders to Goods',0,2,'var(--olive)'],['Sefa loan, plant capital',267,3,'var(--rose)'],['Paul Ramsay and Atlassian fund',0,3,'var(--rose)'],['Minderoo',0,4,'var(--sand)']];
+  const W=980,L=250,R=60,rowH=28,T=16; const max=720; const x=v=>L+(W-L-R)*v/max; let s='';
+  d.forEach((r,i)=>{const y=T+i*rowH; s+=`<rect x="${L}" y="${y}" width="${Math.max(2,x(r[1])-L)}" height="18" rx="3" fill="${r[3]}"/>`+svgText(L-8,y+13,r[0],{anchor:'end'})+svgText(x(r[1])+6,y+13,(r[1]?r[1]+' beds':'no ask yet'),{op:.85})+svgText(L-236,y+13,'tier '+r[2],{op:.6,size:10});});
+  const y2=T+d.length*rowH+14; const cum=[[213,'tier 1, invited: 213','var(--sage)',0],[413,'tiers 1+2: 413, this year','var(--olive)',0],[680,'tiers 1+2+3: 680','var(--rose)',1]]; const xc=x;
+  s+=`<line x1="${L}" x2="${W-R}" y1="${y2+10}" y2="${y2+10}" stroke="currentColor" stroke-opacity=".25"/>`;
+  cum.forEach(c=>{s+=`<line x1="${xc(c[0])}" x2="${xc(c[0])}" y1="${y2}" y2="${y2+20}" stroke="${c[2]}" stroke-width="3"/>`+svgText(xc(c[0]),y2+34+(c[3]?16:0),c[1],{anchor:'middle',size:11});});
+  s+=svgText(xc(720),y2+34,'Witta ceiling 720',{anchor:'end',size:11,op:.7})+svgText(L,y2+34,'0',{size:11,op:.7});
+  s+=svgText(L,T+d.length*rowH+2,'Bars and the scale below share one axis: beds, out of Witta\'s 720 a year.',{size:11,op:.6});
+  $('ladderChart').innerHTML=s;
+})();
+(function plants(){
+  const W=980,L=150,R=16,T=18,rowH=34; const ms=['Oct 26','Jan 27','Apr 27','Jul 27','Oct 27','Jan 28','Apr 28','Jul 28']; const x=i=>L+(W-L-R)*i/21;
+  let s=''; ms.forEach((m,i)=>{s+=`<line x1="${x(i*3)}" x2="${x(i*3)}" y1="${T}" y2="${T+4*rowH}" stroke="currentColor" stroke-opacity=".12"/>`+svgText(x(i*3),T+4*rowH+16,m,{anchor:'middle',op:.75});});
+  const rows=[['Witta',0,'var(--terracotta)','720 a year now'],['Alice Springs, Oonchiumpa',5,'var(--clay)','DEWR funded; from March 2027, to confirm'],['Palm Island, QBE plant 1',5,'var(--sage)','from March 2027'],['Maningrida, QBE plant 2',8,'var(--green)','from June 2027']];
+  rows.forEach((r,i)=>{const y=T+i*rowH+6; s+=svgText(L-8,y+14,r[0],{anchor:'end'}); if(r[1]>0){s+=`<rect x="${x(r[1])}" y="${y}" width="${x(r[1]+12)-x(r[1])}" height="20" rx="4" fill="${r[2]}" fill-opacity=".45"/>`+`<rect x="${x(r[1]+12)}" y="${y}" width="${x(21)-x(r[1]+12)}" height="20" rx="4" fill="${r[2]}"/>`+svgText(x(r[1])+6,y+14,'year one, about 200',{size:11,fill:'#fff',weight:600})+((x(21)-x(r[1]+12))>140?svgText(x(r[1]+12)+6,y+14,'steady, up to 720',{size:11,fill:'#fff',weight:600}):'');}else{s+=`<rect x="${x(0)}" y="${y}" width="${x(21)-x(0)}" height="20" rx="4" fill="${r[2]}"/>`+svgText(x(0)+6,y+14,r[3],{size:11,fill:'#fff',weight:600});}});
+  $('plantChart').innerHTML=s;
+})();
+
+function calc(){
+  const price=num('i_price'),make=num('i_make'),frt=num('i_frt'),frec=num('i_frec')/100,hrs=num('i_hrs'); const stays=price-make;
+  const running=num('i_wages')+num('i_wx')+num('i_travel')+num('i_acc')+num('i_mkt')+num('i_mx')+num('i_witta'); const runM=running/12;
+  const vx=drawVol(price,make,frt,running);
+  $('volCap').textContent=`With freight charged on top of the bed, as the price model says it is, ${vx.nN} paid beds a year covers the whole business. If Goods carries the freight itself, it takes ${vx.nF}. Read it as a ceiling, not a target: beds are not the only thing Goods sells.`;
+  $('runCap').textContent=`Running the business is ${$$(running)} a year. At $${fmt(price-make)} a bed, ${vx.nN} paid beds a year carries it on beds alone.`;
+  const spd=num('i_spd'); const own=spd/2*5*4, defy=spd*5*4; const witta=$('i_route').value==='defy'?defy:own;
+  const stockBeds=143, readyBeds=81;
+  // demand Oct..Sep (12)
+  const dem=[0,100,76,76,76,76,76,75,75,83,83,84]; const plantM=200/12;
+  const al=5,pa=5,ma=8; let cumD=0,cumC=stockBeds,firstShort=null,worst=0,caps=[];
+  dem.forEach((d,i)=>{const cap=witta+(i>=al?plantM:0)+(i>=pa?plantM:0)+(i>=ma?plantM:0);cumD+=d;cumC+=cap;const short=Math.max(0,cumD-cumC);if(short>0&&firstShort===null)firstShort=i;worst=Math.max(worst,short);caps.push(cap);});
+  $('makeTiles').innerHTML=tile('Beds ready to assemble',readyBeds,'parts on the shelf')+tile('Beds from everything on hand',stockBeds,'shred pressed into legs first')+tile('Witta a month',fmt(witta),$('i_route').value==='defy'?'Defy leg panels':'own panels')+tile('First month short',firstShort===null?'none':months[firstShort],'to September 2027, with three plants',firstShort===null?'ok':'warn')+tile('Shred to buy this year','28 bags','600 kg a bag, 16,800 kg, $30,240 at $1.80');
+  // capacity chart
+  (function(){const W=980,H=340,L=56,R=16,T=32,B=40; const maxY=Math.max(...dem,...caps)*1.15; const x=i=>L+i*(W-L-R)/12, bw=(W-L-R)/12*0.6, y=v=>T+(H-T-B)*(1-v/maxY); let s='';
+    const st=Math.max(20,Math.ceil(maxY/4/20)*20);for(let v=0;v<=maxY;v+=st){s+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="currentColor" stroke-opacity=".15"/>`+svgText(L-8,y(v)+4,v,{anchor:'end',op:.7});}
+    dem.forEach((d,i)=>{s+=`<rect x="${x(i)+((W-L-R)/12-bw)/2}" y="${y(d)}" width="${bw}" height="${y(0)-y(d)}" fill="var(--sand)" stroke="var(--clay)"/>`+svgText(x(i)+(W-L-R)/24,H-B+16,months[i],{anchor:'middle',op:.8});});
+    s+=`<polyline fill="none" stroke="var(--green)" stroke-width="2.5" points="${caps.map((c,i)=>(x(i)+(W-L-R)/24)+','+y(c)).join(' ')}"/>`;
+    s+=svgText(L,T-2,'capacity a month, Witta plus plants',{fill:'var(--green)',size:12,weight:600})+svgText(L+250,T-2,'beds wanted a month',{fill:'var(--clay)',size:12,weight:600});
+    $('capChart').innerHTML=s; $('capCap').textContent=`Bars are beds wanted: ALIVE's 100 in November, then 400 first stock plus Centrecorp's 130 across December to June, then about 1,000 a year. The line is Witta plus the plants as they come on. Stock at Witta covers ${stockBeds} beds before the line has to. ${firstShort===null?'Cumulative capacity stays ahead all year.':'Cumulative demand overtakes capacity in '+months[firstShort]+', short by '+fmt(worst)+' at worst.'}`;})();
+  // cash to July (10 months)
+  const land=[]; const add=(m,a,kind)=>{if(m>=0&&a>0)land.push({m,a,kind});};
+  add(+$('m_qbe').value,num('i_qbe'),'grant');add(+$('m_tfff').value,num('i_tfff'),'grant');add(+$('m_bmd').value,num('i_bmd'),'beds');add(+$('m_bmd').value,num('i_bmdf'),'grant');add(+$('m_snow').value,num('i_snow'),'beds');add(+$('m_dus').value,num('i_dus'),'beds');add(+$('m_oth').value,num('i_oth'),'beds');add(4,num('i_dir'),'buyer');if($('i_cc').value==='1')add(5,130*price,'buyer');
+  const loanOn=$('i_loan').value==='1', loanAmt=num('i_loanamt'), r=0.07/12, n=60, pmt=loanAmt*r/(1-Math.pow(1+r,-n));
+  const p1=+$('m_p1').value,p2=+$('m_p2').value,plant=num('i_plant'); let cash=num('i_alive'),rows=[],low=Infinity,lowM=0,tot={gin:0,bin:0,mk:0,fr:0,run:0,fac:0,pl:0,ls:0};
+  for(let i=0;i<10;i++){const beds=dem[i]; const gin=land.filter(l=>l.m===i&&l.kind!=='buyer').reduce((a,l)=>a+l.a,0), bin=land.filter(l=>l.m===i&&l.kind==='buyer').reduce((a,l)=>a+l.a,0);
+    const draw=(loanOn&&i===3)?loanAmt:0, ls=(loanOn&&i>3)?pmt:0; const mk=beds*make, fr=beds*frt*(1-frec), fac=(i>=3&&i<7)?10000:0, pl=(i===p1?plant:0)+(i===p2?plant:0);
+    const net=gin+bin+draw-mk-fr-runM-fac-pl-ls; cash+=net; if(cash<low){low=cash;lowM=i;} rows.push({beds,gin,bin,draw,mk,fr,run:runM,fac,pl,ls,net,cash});
+    tot.gin+=gin;tot.bin+=bin;tot.mk+=mk;tot.fr+=fr;tot.run+=runM;tot.fac+=fac;tot.pl+=pl;tot.ls+=ls;}
+  const bedsMade=dem.slice(0,10).reduce((a,b)=>a+b,0); const paidBeds=100+Math.round(land.filter(l=>l.kind!=='grant').reduce((a,l)=>a+l.a,0)/price); const banked=paidBeds*stays; const opRes=banked-tot.run; const tfffIn=num('i_tfff')*(+$('m_tfff').value>=0?1:0);
+  $('cashTiles').innerHTML=tile('Lowest cash',$$(low),months[lowM],low<0?'warn':'ok')+tile('Cash at July 2027',$$(rows[9].cash),'',rows[9].cash<0?'warn':'ok')+tile('Beds made',fmt(bedsMade),'October to July')+tile('Beds someone pays Goods for',fmt(paidBeds),'ALIVE, funders, buyers to Goods')+tile('Result after operating support',$$(opRes+tfffIn),'banked contribution less running, plus Tim Fairfax',opRes+tfffIn<0?'warn':'ok');
+  (function(){
+   const mo=months.slice(0,10);
+   const W=980,H=430,L=82,R=30,Tp=112,B=56;
+   const cs=rows.map(r=>r.cash), lowV=Math.min.apply(null,cs), hiV=Math.max.apply(null,cs);
+   const yMax=Math.max(hiV*1.12,10000), yMin=Math.min(lowV*2.2,-Math.max(hiV*1.12,10000)*0.28);
+   const xx=i=>L+i*(W-L-R)/(mo.length-1), yy=v=>Tp+(H-Tp-B)*(yMax-v)/(yMax-yMin);
+   let s='';
+   s+=`<defs><clipPath id="ab"><rect x="0" y="${Tp-6}" width="${W}" height="${yy(0)-Tp+6}"/></clipPath><clipPath id="be"><rect x="0" y="${yy(0)}" width="${W}" height="${H-B-yy(0)+6}"/></clipPath></defs>`;
+   s+=`<rect x="${L}" y="${yy(0)}" width="${W-L-R}" height="${H-B-yy(0)}" fill="var(--terracotta)" fill-opacity="0.07"/>`;
+   const step=Math.max(50000,Math.round(yMax/4/50000)*50000);
+   for(let v=step;v<=yMax;v+=step) s+=`<line x1="${L}" x2="${W-R}" y1="${yy(v)}" y2="${yy(v)}" stroke="currentColor" stroke-opacity="0.09"/>`+svgText(L-10,yy(v)+4,'$'+fmt(v/1000)+'K',{anchor:'end',op:.5});
+   s+=`<line x1="${L}" x2="${W-R}" y1="${yy(0)}" y2="${yy(0)}" stroke="currentColor" stroke-opacity="0.55" stroke-width="1.5"/>`+svgText(L-10,yy(0)+4,'$0',{anchor:'end',op:.8,weight:600});
+   const pl=cs.map((v,i)=>xx(i)+','+yy(v)).join(' ');
+   const ar=`${xx(0)},${yy(0)} ${pl} ${xx(mo.length-1)},${yy(0)}`;
+   s+=`<polygon points="${ar}" fill="var(--sage)" fill-opacity="0.34" clip-path="url(#ab)"/>`;
+   s+=`<polygon points="${ar}" fill="var(--terracotta)" fill-opacity="0.55" clip-path="url(#be)"/>`;
+   s+=`<polyline fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round" points="${pl}"/>`;
+   const lands=rows.map((r,i)=>({i,v:r.gin+r.bin+r.draw})).filter(o=>o.v>0);
+   lands.forEach(o=>{const cx=xx(o.i);
+     s+=`<line x1="${cx}" x2="${cx}" y1="${Tp-30}" y2="${yy(cs[o.i])-11}" stroke="var(--green)" stroke-width="1" stroke-dasharray="3 3" stroke-opacity="0.5"/>`;
+     s+=`<rect x="${cx-42}" y="${Tp-62}" width="84" height="28" rx="6" fill="var(--green)" fill-opacity="0.15"/>`;
+     s+=svgText(cx,yy(0)&&Tp-44,'+'+k(o.v),{anchor:'middle',size:13,weight:600,fill:'var(--green)'});});
+   cs.forEach((v,i)=>{s+=`<circle cx="${xx(i)}" cy="${yy(v)}" r="${v<0?5.5:4}" fill="${v<0?'var(--terracotta)':'var(--ink)'}"/>`+svgText(xx(i),H-B+22,mo[i],{anchor:'middle',op:.75});});
+   const lowI=cs.indexOf(lowV);
+   s+=svgText(xx(0)+10,yy(cs[0])-26,'Starts with '+$$(num('i_alive')),{size:13,weight:600})+svgText(xx(0)+10,yy(cs[0])-11,"ALIVE's money, already banked",{size:11,op:.7});
+   if(lowV<0) s+=svgText(xx(9)-12,yy(0)+22,$$(lowV),{anchor:'end',size:14,weight:600,fill:'var(--terracotta)'})+svgText(xx(9)-12,yy(0)+38,'the catalytic gap and the freight Goods carries',{anchor:'end',size:11,op:.8});
+   const hiI=cs.indexOf(hiV);
+   s+=svgText(xx(hiI),yy(hiV)-20,$$(hiV),{anchor:'middle',size:14,weight:600})+svgText(xx(hiI),yy(hiV)-6,'the high point',{anchor:'middle',size:11,op:.7});
+   s+=svgText(L-8,26,'Money lands in steps. It leaves as a slope.',{size:15,weight:600});
+   s+=svgText(L-8,46,'About '+$$(runM+dem[3]*(make+frt*(1-frec)))+' a month goes out: beds, freight and running the business.',{size:12,op:.7});
+   $('cashChart').innerHTML=s;
+   $('cashCap').textContent=`Grants and catalytic capital in: ${$$(tot.gin)}. Buyers paying Goods: ${$$(tot.bin)}. Make and freight: ${$$(tot.mk+tot.fr)}. Running the business: ${$$(tot.run)}. Plants and facilitation: ${$$(tot.pl+tot.fac)}. ${low<0?'Cash goes below zero in '+months[lowM]+'.':'Cash stays above zero all year.'}`;})();
+  // loan and ten years
+  const bedsToService=Math.ceil(pmt*12/stays), plantYear=200*stays;
+  $('loanTiles').innerHTML=tile('Sefa loan',$$(loanAmt),'7% over five years')+tile('Service a year',$$(pmt*12),$$(pmt)+' a month')+tile('Paid beds to service it',fmt(bedsToService),'a year, at $'+fmt(stays)+' a bed')+tile("A plant's first year",$$(plantYear),'200 paid beds',plantYear>pmt*12?'ok':'warn')+tile('Plant payback',(plant/plantYear).toFixed(1)+' years','$'+fmt(plant)+' plant, 200 paid beds a year')+tile('Verdict',plantYear>pmt*12?'plant capital, yes':'not yet','never gifted first stock',plantYear>pmt*12?'ok':'warn');
+  (function(){const addp=num('i_addp'),bpp=num('i_bpp'),share=num('i_share')/100,grow=num('i_grow')/100;
+   const yrs=[];let plants=1,run=running;
+   for(let i=0;i<10;i++){if(i>0){plants+=addp;run*=1+grow;} const beds=i===0?880:plants*bpp; yrs.push({fy:'FY'+(27+i),plants,beds,witta:i===0?beds:Math.min(beds,bpp),local:beds*(1-share)*price});}
+   const W=980,H=360,L=76,R=150,Tp=34,B=48;
+   const mx=Math.max.apply(null,yrs.map(y=>y.beds))*1.12;
+   const xx=i=>L+i*(W-L-R)/(yrs.length-1), yy=v=>Tp+(H-Tp-B)*(1-v/mx);
+   let s='';
+   const step=Math.max(500,Math.round(mx/4/500)*500);
+   for(let v=step;v<=mx;v+=step) s+=`<line x1="${L}" x2="${W-R}" y1="${yy(v)}" y2="${yy(v)}" stroke="currentColor" stroke-opacity="0.1"/>`+svgText(L-10,yy(v)+4,fmt(v),{anchor:'end',op:.5});
+   s+=`<polygon points="${xx(0)},${yy(0)} ${yrs.map((y,i)=>xx(i)+','+yy(y.beds)).join(' ')} ${xx(9)},${yy(0)}" fill="var(--green)" fill-opacity="0.55"/>`;
+   s+=`<polygon points="${xx(0)},${yy(0)} ${yrs.map((y,i)=>xx(i)+','+yy(y.witta)).join(' ')} ${xx(9)},${yy(0)}" fill="var(--clay)" fill-opacity="0.9"/>`;
+   s+=`<polyline fill="none" stroke="var(--ink)" stroke-width="2" points="${yrs.map((y,i)=>xx(i)+','+yy(y.beds)).join(' ')}"/>`;
+   yrs.forEach((y,i)=>s+=svgText(xx(i),H-B+20,y.fy,{anchor:'middle',op:.75}));
+   const last=yrs[9];
+   s+=svgText(W-R+12,yy(last.beds)+4,fmt(last.beds)+' beds a year',{size:13,weight:600})+svgText(W-R+12,yy(last.beds)+20,last.plants+' plants',{size:11,op:.7});
+   s+=svgText(W-R+12,yy(last.witta)-2,fmt(last.witta)+' at Witta',{size:12,weight:600,fill:'var(--clay)'})+svgText(W-R+12,yy(last.witta)+14,'one plant, capped',{size:11,op:.7});
+   const y2=yrs[2], pc=Math.round((1-y2.witta/y2.beds)*100);
+   s+=`<line x1="${xx(2)}" x2="${xx(2)}" y1="${yy(y2.beds)}" y2="${yy(y2.beds)-30}" stroke="currentColor" stroke-opacity="0.45"/>`;
+   s+=svgText(xx(2),yy(y2.beds)-38,'by FY29, '+pc+'% of the beds',{anchor:'middle',size:12,weight:600})+svgText(xx(2),yy(y2.beds)-24,'are made on country',{anchor:'middle',size:12,weight:600});
+   s+=svgText(L,20,'Witta is capped at one plant. Everything above it is made in a community.',{size:14,weight:600});
+   $('tenChart').innerHTML=s;
+   $('tenCap').textContent=`${addp} plants added a year, ${fmt(bpp)} beds a plant once running. FY27 is Witta's own 880; from FY28 Witta is one plant among many and holds at ${fmt(bpp)}. By FY36 that is ${fmt(last.beds)} beds a year across ${last.plants} plants. At the ${Math.round((1-share)*100)}% share, ${$$(yrs.reduce((a,y)=>a+y.local,0))} of bed revenue stays in communities over the ten years. That share is a shared-services split nobody has agreed to yet; it is ours until a community enterprise negotiates it. An ambition, not a forecast.`;})();
+  // impact and asks
+  const tierBeds=Math.round((num('i_tfff')*0+num('i_bmd')+num('i_snow')+num('i_dus')+num('i_oth')+num('i_dir'))/price)+Math.round(num('i_tfff')/price);
+  const yearBeds=tierBeds; const comms=Math.floor(yearBeds/100);
+  $('impactTiles').innerHTML=tile('Employment',fmt(yearBeds*hrs)+' hours','of paid making at Witta or on country','o1')+tile('Community',comms+' enterprises','with 100 beds each to sell','o2')+tile('Economic',$$(yearBeds*price),'kept locally when the community sells them','o3')+tile('Recycling',fmt(yearBeds*20)+' kg','of HDPE out of landfill','o4')+tile('Health',fmt(yearBeds)+' beds','people off the floor; the reason, never a claimed outcome','o5');
+  const asks=[
+    ['Snow Foundation',num('i_snow'),'First trading stock for one community enterprise','Ask to make; catch-up booked','bed'],
+    ['Dusseldorp Forum',num('i_dus'),'First stock plus the story symposium','Our number; in conversation','bed'],
+    ['Other philanthropy',num('i_oth'),'First stock','No ask yet','bed'],
+    ['Brian M. Davis Charitable Foundation',num('i_bmd')+num('i_bmdf'),'80 beds, plus Nic and Ben facilitating in four communities','Invited; due 25 Sep','bed'],
+    ['Tim Fairfax Family Foundation',num('i_tfff'),'Operating support; unrestricted, so it releases 133 beds of bed money','Invited; due 9 Oct','op'],
+    ['QBE Foundation',num('i_qbe'),'Two community plants; the jobs move on country','Due 25 Sep','plant'],
+    ['Sefa, repayable',loanAmt,'Plant capital, or stock a buyer has already ordered','EOI not sent','loan'],
+    ['Minderoo',100000,'First stock, if the conversation revives','Paused May 2026. Not live, and not in the total.','off']];
+  let t='<tr><th>Funder</th><th class="n">Ask</th><th>What it buys</th><th class="n">Beds</th><th class="n">Hours</th><th class="n">Communities</th><th class="n">$ kept local</th><th class="n">kg diverted</th><th class="n">Off the floor</th><th>Status</th></tr>';
+  const sum={bed:0,fac:0,op:0,plant:0,loan:0,off:0}; let T2={b:0,h:0,l:0,kg:0};
+  asks.forEach(a=>{
+    let beds=0,comm=0;
+    if(a[0].startsWith('Brian')){beds=Math.round(num('i_bmd')/price);comm=4;}
+    else if(a[4]==='bed'||a[0].startsWith('Tim Fairfax')){beds=Math.round(a[1]/price);comm=Math.floor(beds/100);}
+    if(a[0].startsWith('Brian')){sum.bed+=num('i_bmd');sum.fac+=num('i_bmdf');}else{sum[a[4]]+=a[1];}
+    if(a[4]!=='off'){T2.b+=beds;T2.h+=beds*hrs;T2.l+=beds*price;T2.kg+=beds*20;}
+    const hoursTxt=a[4]==='plant'?"two plants' crews":(beds?fmt(beds*hrs):'');
+    t+=`<tr${a[4]==='off'?' style="opacity:.6"':''}><td>${a[0]}</td><td class="n">${$$(a[1])}</td><td>${a[2]}</td><td class="n">${beds||''}</td><td class="n">${hoursTxt}</td><td class="n">${comm||''}</td><td class="n">${beds?$$(beds*price):''}</td><td class="n">${beds?fmt(beds*20):''}</td><td class="n">${beds||''}</td><td>${a[3]}</td></tr>`;});
+  const live=sum.bed+sum.fac+sum.op+sum.plant+sum.loan;
+  t+=`<tr class="tot"><td>Live asks</td><td class="n">${$$(live)}</td><td>${$$(sum.bed)} first stock &middot; ${$$(sum.fac)} facilitation &middot; ${$$(sum.op)} operating &middot; ${$$(sum.plant)} plants &middot; ${$$(sum.loan)} repayable</td><td class="n">${fmt(T2.b)}</td><td class="n">${fmt(T2.h)}</td><td></td><td class="n">${$$(T2.l)}</td><td class="n">${fmt(T2.kg)}</td><td class="n">${fmt(T2.b)}</td><td>Minderoo's ${$$(sum.off)} is not counted</td></tr>`;
+  $('askTable').innerHTML=t;
+  $('resultTiles').innerHTML=tile('Running the business',$$(running)+' a year',$$(runM)+' a month')+tile('Beds to carry it alone',fmt(Math.ceil(running/stays)),'at $'+fmt(stays)+' a bed')+tile('Catalytic capital still to find',$$(Math.max(0,400*price-num('i_tfff')-num('i_bmd'))),'for the 400 first-stock beds')+tile('Cash at July 2027',$$(rows[9].cash),'',rows[9].cash<0?'warn':'ok')+tile('Beds funded, tiers 1 and 2',fmt(yearBeds),comms+' communities at 100');
+  $('levers').innerHTML=`<div class="lever save"><b>Save $${fmt(401.49/2-20*1.8)} a bed</b>by pressing our own sheets instead of buying Defy panels.</div><div class="lever save"><b>Save $${(16*1.8).toFixed(0)} a bed</b>with the shred loop: offcuts and router skeletons back through the press.</div><div class="lever save"><b>Recover freight</b>Charged on top at cost, freight stops being ${$$(tot.fr)} of Goods' own cash over the ten months.</div><div class="lever make"><b>Make $${fmt(stays)} a bed</b>on every bed a funder or buyer pays Goods for. ${fmt(Math.ceil(running/stays))} a year carries the whole organisation.</div><div class="lever"><b>Keep $${fmt(price)} a bed local</b>when a community enterprise sells its first stock. Buyers pay the community, never Goods.</div><div class="lever grow"><b>Next plant: 200 beds of need</b>and an operator. About $${fmt(plant)} a plant, paid back in ${(plant/plantYear).toFixed(1)} years of paid beds.</div>`;
+}
+document.querySelectorAll('#s11 input, #s11 select').forEach(el=>el.addEventListener('input',calc));
+calc();
+})();
+</script>
