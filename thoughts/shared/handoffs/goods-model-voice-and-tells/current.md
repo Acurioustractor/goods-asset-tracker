@@ -195,6 +195,35 @@ The QBE Control Room now opens with it. Sixty-eight claims on that page, **eleve
 one sits in finances by buyer, costings, the production facility or the ask. Nothing else blocks the
 application.
 
+## Walked the nine written answers, 11 September 2026
+
+Three problems, found by reading each answer against what is now locked.
+
+**Q9 contradicted itself and is fixed.** Its impact table carried a money row of up to $750 while
+the prose underneath said "the money row is deliberately absent from that table". The table was
+updated after Ben's 10 September ruling and the prose was not. It now says the community keeps the
+full sale price, that Goods keeps $474 on a bed it sells itself, and that what no community has
+settled is how many of its beds it sells and how many it places.
+
+**Q6 states a siting rule no site meets. NEEDS BEN.** It says a plant goes where a community has
+200 beds a year of recorded need. The largest open record is Utopia at 150. Groote's 500 is logged
+as exploring after one meeting. Maningrida is 65 and Palm Island is 40. Either the rule changes or
+the sentence does.
+
+**Q7 says Palm Island is where the recorded demand is largest. It is not. NEEDS BEN.** Palm Island
+has 40 beds of open recorded demand, fourth behind Groote, Utopia and Maningrida. What Palm Island
+does have is 131 beds already deployed, third of eleven communities, and seven cleared voices, more
+than anywhere else. There is a real case for Palm Island going first, and the sentence makes a
+different one.
+
+Deployed beds by community, register read 11 September: Tennant Creek 160, Utopia 147, Palm Island
+131, Maningrida 58, Kalgoorlie 20, Alice Springs 16, then Kununurra, Mount Isa and Canberra at 2
+and Katherine and Darwin at 1. Total 540.
+
+**Google Sheet access confirmed.** `1Sh0Kk0CI0NSeO_H0T8P91H8skBJLpKkRfcQjRWTd-5Y`, "Goods on Country
+| Management and finance", owner hi@act.place, reads in full through the Drive connector at 177,823
+characters. The service-account blocker is historical and Codex can work against it.
+
 ## Where the QBE application stands, 11 September 2026
 
 Both artifacts are current. Q10 was rewritten today because the reconciliation it promised closed.
