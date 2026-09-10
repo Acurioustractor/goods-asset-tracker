@@ -5,6 +5,137 @@ branch: feat/ai-tells-gate-and-goods-model
 status: handoff
 ---
 
+## Decision, 10 September 2026: how the funder and community picture gets built
+
+Ben asked for Notion databases holding every funding opportunity, every past and potential
+supporter, every community considered for beds with a confidence level, every possible facility
+site, and community population and need.
+
+**Ruling: build the decision read `GRANTSCOPE.md` already specifies, assembled from the systems
+that own each fact. Do not create a Notion master.** A hand-maintained Notion database would be
+the fifth copy of the funder list, and the contract says the system must read what is already
+happening, and that maintaining another transactional model is what it exists to avoid.
+
+**Most of it already exists.**
+
+| What was asked for | Where it is | Rows |
+|---|---|---|
+| Funders, buyers, partners | `outreach-targets.ts` | 52 across 12 categories, last synced 16 March 2026 |
+| Amount, stage, next action | GHL | the system of record |
+| The live asks | Live sheet, Asks and Funding timing | 11 and 7 |
+| Bed counts per community | `community-canonical.ts` | 11, guarded against the register |
+| New communities and population | `expansion-targets.ts` | 16, with priority and housing body |
+| Need | `community-need.ts` | 13, ABS Census 2021 overcrowding by ILOC |
+| The join, with consent per field | `community-record.ts` | one record per community |
+
+The 52 targets split as 28 funders, 10 buyers and 10 delivery partners.
+
+**Four things have no home.** A confidence level against a named claim. Facility readiness for any
+community beyond the three on the Facility plans tab. The link between a funder's money and whose
+beds it buys. Past buyers as a list someone can work. Today they are ten invoices summarised on a page.
+
+**Where it gets built.** `/admin/communities/[id]` is 901 lines and already renders the asset
+register, documented demand, CRM deals, the partner, the production facility, community voices and
+a Notion link. `/admin/funders/[slug]` exists alongside it. The work extends those two against the
+six questions in `GRANTSCOPE.md`.
+
+Against those six, the page already answers what was requested, what happened, and what the CRM
+says. Three are missing. The CRM block does not say on its face that it is internal coordination and
+carries no community consent. There is no next open action with a named holder. And there is no
+evidence-health read.
+
+**The distinction Ben has to hold.** A confidence level against one named claim is a judgement. The
+same column across every community becomes a pipeline stage, which the contract forbids. They look
+identical in a table, so confidence is stored against a claim and never as a bare community
+attribute.
+
+**Assumption to correct if wrong.** Judgement fields are typed in the admin page, which already
+carries forms, and Notion stays where Ben writes prose. Nothing new goes into Notion.
+
+**Open before building.** `outreach-targets.ts` is six months stale, so the funder half of the read
+rests on rows that may have closed. Refresh it with the `funding-pipeline` skill before the funder
+pages are trusted.
+
+## Decision, 10 September 2026: availability at The Harvest
+
+Ben set availability to **80%** for HARVEST. Enter it on the Facility plans tab, Availability row,
+HARVEST column. It was `Capacity!B8` before the redesign and the row order is unchanged.
+
+At 20 planning days and 3 modelled beds a day, the ceiling is 60 beds a month. 80% gives 48 a month
+and 576 a year. There is no measured basis for the figure: the Production log is empty, so nothing
+has a run-day history yet. The log's run-days column is what replaces this assumption with a
+measured rate.
+
+Leave NEW1 and NEW2 blank. They are proposals with no roster, and the sheet's own note says blank
+until chosen.
+
+**What follows.** The demand recorded in The plant is 630 beds, being ALIVE 100 in November, 400 of
+first stock and Centrecorp 130 from December. At 48 a month that takes 13.1 months and lands about
+January 2028. Clearing 630 inside twelve months needs 87.5% availability on one press, which is not
+a rate a single-shift line holds. One press cannot deliver 630 inside a year, so the second press
+now sets the schedule. At 12 press sheets a day, assembly becomes the limit at 5 beds a day, the
+ceiling is 100 a month, and 80% gives 80 a month, which clears 630 in 7.9 months.
+
+Nic was to raise the second 1200 x 1200 press with Sam at Defy on 14 September, per
+`DEFY-ORDERS-2026-09-09.md`. That conversation now decides when the 630 can be delivered.
+
+The Calculator tab keeps its own availability and starts at 100% when the site has no chosen rate,
+so setting the site figure also corrects the Calculator, which currently shows 400 beds in 7 months.
+
+## Decision, 10 September 2026: how the second press gets paid for
+
+Ben's ruling: **go to Sefa, sized to the press and working capital, not the illustrative $200,000.**
+Nic is authorised to pursue it.
+
+The press is unpriced. Nothing in the repo or the sheet quotes a second press at The Harvest. The
+two nearest anchors are module M11, a $32,780 Circularity bundle covering pressing, CNC and
+finishing for a whole new plant, and the comparison in `DEFY-ORDERS-2026-09-09.md` to roughly
+$22,500 of Defy panels. Nic's conversation with Sam at Defy on 14 September is what produces the
+number, and the EOI cannot be sized until it exists.
+
+**Why the QBE plants do not solve this.** NEW1 and NEW2 are both marked Proposed, neither has a
+planned start date, and their money is not confirmed before 13 November. No part of the 630 is
+allocated to them. Every one of those beds comes off The Harvest's one press, so the capacity
+problem is independent of the QBE outcome.
+
+**Why a loan fits here.** Repayable capital is allowed for plant, and for stock a buyer has ordered,
+and never for gifted first stock. A press lifts The Harvest from 48 beds a month to 80 at the same
+80% availability, so it is serviced from Goods' own margin on paid beds. Community resale proceeds
+stay outside repayment, per the 8 September ruling.
+
+**What this protects.** The bed hole stays at 54. Q5, Q6 and Q7 stay as written, fifteen days before
+QBE closes.
+
+**Open, and needed before an EOI goes anywhere.**
+
+- A quote for the press, from Monday's conversation.
+- Affordability, which is Matt review item 8 and still unresolved.
+- No EOI has ever been sent. Joel Bird offered to review one on 25 August.
+
+**Consequence for the sheet, once the quote lands.** Funding timing F06 carries Sefa at $200,000 as
+a possible receipt in scenario month 1, and that figure is part of the $900,000 of forecast receipts
+across 36 months. Re-sizing the loan changes both. Leave F06 alone until there is a real number.
+
+## Latest update: visual Sheets redesign, 10 September 2026
+
+Start on Home (gid=140), then Calculator (142) and Charts (141). Home C7/G7 controls site/month; preserved Production detail (130) follows these selections. The Calculator is an independent scenario, including second-press checkbox and editable availability, with no override of actual capacity. Stock counts, Production log and Cost log are native Sheets tables with filters and typed columns. Supporting notes and advanced assumptions are collapsed, not removed.
+
+See the production-tracker README below for the updated entry routine and verification. Sixteen behavioural checks passed in a temporary copy, which was deleted. Live source counts were preserved and checked formula ranges had no errors. No commits or pushes. Earlier descriptions of the first tabs are superseded by this section.
+
+## Latest update: production tracker, 10 September 2026
+
+The live sheet now starts with The plant (gid=130), Capacity (131), Stock counts (132), Production log (133) and Cost log (134). Start with `deliverables/finance/goods-financial-plan/production-tracker-2026-09-10/README.md` for the entry routine, count qualifications and test evidence. Plant budget and Capacity basis preserve the earlier tables and references.
+
+The 9 September source count is loaded: 81 cut plastic sets, 87 with weighed shred, 143 with estimated recovery. Finished beds and bought parts remain uncounted. The 20 kg net-new shred loop is explicit. The cost log remains empty and does not post automatically into Monthly cash. The original workbooks are unchanged. Tests passed in a separate copy, which was deleted. No commits or pushes.
+
+## Latest update: working original and Matt review, 10 September 2026
+
+The Google Sheet is populated and editable through the Google Drive connector. The service-account sharing blocker below is historical. Start with `deliverables/finance/goods-financial-plan/review-2026-09-10/REVIEW.md` for the current state.
+
+The supplied working original preserves Matt's five entity-model tabs. All 27 Open Items are mapped in the live sheet, with a one-item Review together tab at gid=124. The live factory BOM now includes $80 labour once. The earlier claim that NM plus $40 was the same cost basis was corrected. Named funding tranches now drive monthly receipts and loan service. Snow remains an undated $100,000 ask; no payment date was invented.
+
+Production purchases and labour still need reconciliation into cash. Opening balances and site-specific costs remain open. Original workbooks and the detailed master were preserved. Local Q6/Q18 and page source corrections are uncommitted and unpublished.
+
 # Work Stream: goods-model-voice-and-tells
 
 ## Ledger
@@ -103,8 +234,13 @@ These are new today and are not yet swept through every surface.
 - **Q6 had a $500 arithmetic error going to a funder.** Its module table totals the high column as
   $142,967. The Capital sheet's own rows add to **$142,467**. Corrected in the answers file,
   `ALIGNMENT-WITH-MATT-2026-09-09.md`, the finance README, the money map and both pages.
-- **The two making costs were never in conflict.** $235.74 on the annual-staff basis plus the $40
-  assembly allowance is $275.74, the $276 the deck prints. Same build, one line apart.
+- **The two making costs reach the same total by different routes.** The factory BOM is $55
+  plastic, $15 power, $125.74 bought parts and $80 labour: $275.74 before freight, and the repo
+  cost engine reaches the same figure independently as `stateFactory`. The NM annual-staff
+  calculation is $235.74 from plastic $60, electricity $16.67, consumables $33.33 and the same
+  $125.74 of parts, and adding a $40 assembly allowance lands on $275.74 as well. Different line
+  values and a different wage treatment, so it is not a reconciliation and must not be cited as
+  one. Corrected on both pages and in the live sheet, 10 September.
 - **The press is the bottleneck, not the router.** Six pressed sheets a day and two sheets a bed give
   three beds a day. CNC does 8.56 and assembly 5, so both have spare. 720 beds a year on own sheets,
   1,440 on Defy leg panels. NM Play B10, B45, B46, B47, B36.
@@ -136,8 +272,12 @@ These are new today and are not yet swept through every surface.
 
 ### Next
 
-- [ ] Share the sheet to the service account, then push the twelve tabs in
-- [ ] Sweep 187 beds to 54 everywhere, following the Snow ruling
+- [x] The live sheet is built and readable. No service account was needed: the Google Drive
+      connector both writes and reads it, and it now carries twenty-one tabs
+- [x] The Snow ruling is swept through all five published pages. Every surface now carries both
+      figures with the basis: 187 beds to find today, 54 once the $100,000 ask is sent. The ten-year
+      table on the QBE Raise Review still computes the community share at 50% and is deliberately
+      left for Ben, because correcting it doubles a headline projection
 - [ ] Q19 needs a site and a quote basis for each plant. Nic holds this and it is the last hard blocker
 - [ ] Q3 and Q4: the structure diagram and every related entity's director records
 - [ ] Q20 and Q21: current management cashflow for Butterfly. Eloise
