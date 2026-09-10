@@ -200,8 +200,8 @@ application.
 **"How a Bed Becomes an Enterprise."** The simple one-sheet Ben asked for, built 11 September against
 his twelve rulings. Nine plates, structured the way the bed is: a flat-pack with a parts list.
 
-01 the four doors, being the whole buyer model with a real buyer behind each · 02 the price ladder
-$370 to $800 · 03 two kinds of money that never meet, Ben's chosen chart, with the money labelled on
+01 the four doors, being the whole buyer model with a real buyer behind each · 02 what a buyer
+actually pays for · 03 two kinds of money that never meet, Ben's chosen chart, with the money labelled on
 every arrow · 04 one bed at $750 with the $80 wage drawn inside the $276 · 05 two plants and why
 those two · 06 where every ask goes, with $0 secured · 07 the four things a bed carries · 08 six
 months to five years · 09 nine questions people actually ask.
@@ -209,6 +209,16 @@ months to five years · 09 nine questions people actually ask.
 Palette and type deliberately differ from the other artifacts: galvanised steel and canvas in place
 of the cream and terracotta, Archivo with Source Serif 4, because Archivo is what the brand tokens
 name as the logo face and never loads. Tells gate clean.
+
+**The price ladder was cut on Ben's word, and he was right twice over.** The bed price is locked at
+$750 and drift-checked against the live products table, so a chart implying discovery contradicts the
+model. And the five unit prices are not comparable: two are the discontinued Basket Bed and one
+carried a $14,190 in-kind credit. **The chart was also drawn wrong**, with the dashed $750 line
+sitting on the 800 gridline.
+
+Plate 02 is now **what a buyer actually pays for**: $197,060 of bed lines, $50,000 of the making,
+$9,000 of washers and $5,900 of freight, gross $261,960, less the in-kind credit, leaving $247,770
+net. It carries the facilitation argument instead of a false trend. **NEVER draw a bed price trend.**
 
 ## Deck alignment, 11 September 2026
 
