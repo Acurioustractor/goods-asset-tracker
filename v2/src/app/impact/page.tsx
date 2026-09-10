@@ -184,7 +184,7 @@ function LossFunctionSection({ snapshot }: { snapshot: ImpactSnapshot }) {
             { value: CANONICAL_ASSETS.washersInCommunity, label: 'Washing machines', sub: 'in community' },
             { value: `${(CANONICAL_ASSETS.plasticKg / 1000).toFixed(2)}t`, label: 'Plastic diverted', sub: `${CANONICAL_ASSETS.plasticKg.toLocaleString()}kg` },
             { value: CANONICAL_ASSETS.communitiesServed, label: 'Communities', sub: 'across Australia' },
-            { value: Math.round(CANONICAL_ASSETS.bedsDeployed * MODELLED_LABOUR_HOURS_PER_BED).toLocaleString(), label: 'Employment hrs', sub: `${MODELLED_LABOUR_HOURS_PER_BED.toFixed(1)}hrs/bed, modelled` },
+            { value: Math.round(CANONICAL_ASSETS.bedsDeployed * MODELLED_LABOUR_HOURS_PER_BED).toLocaleString(), label: 'Employment hrs', sub: `${MODELLED_LABOUR_HOURS_PER_BED}hrs/bed, modelled` },
             { value: `$${(summary.totalInvestment / 1000).toFixed(0)}K`, label: 'Invested', sub: 'to date' },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
@@ -529,7 +529,7 @@ function ProductionCostSection() {
               The freight tax puts a basic good out of reach, so the bed is built to beat the true
               remote cost, not the sticker price. As the making moves On Country and in-sources, the
               direct cost per bed comes down and the value stays local. Every bed also creates roughly{' '}
-              {MODELLED_LABOUR_HOURS_PER_BED.toFixed(1)} modelled hours of employment; at 1,500 beds a
+              {MODELLED_LABOUR_HOURS_PER_BED} modelled hours of paid making; at 1,500 beds a
               year that is about {(1500 * MODELLED_LABOUR_HOURS_PER_BED).toLocaleString()} hours of work.
             </p>
           </div>

@@ -18,7 +18,7 @@ import {
   scale,
 } from './bed-ratio';
 import { canonValue } from './canon';
-import { MODELLED_LABOUR_HOURS_PER_BED } from './impact-model';
+import { MODELLED_LABOUR_HOURS_PER_BED, WITHDRAWN_LABOUR_STAGES } from './impact-model';
 
 const BANNED = /\b(empower\w*|beneficiar\w*|ecosystem|scalable solution|transformational|unlock(s|ed|ing)?\b(?! panel)|journey|game-changing|co-design\w*)\b/i;
 
@@ -35,26 +35,26 @@ describe('the unit reads its inputs', () => {
     expect(HDPE_KG_PER_BED).toBe(20);
     expect(BEDS_PER_TONNE).toBe(50);
     expect(LOCAL_HOURS_PER_BED).toBe(MODELLED_LABOUR_HOURS_PER_BED);
-    expect(LOCAL_HOURS_PER_BED).toBeCloseTo(6.5, 5);
+    expect(LOCAL_HOURS_PER_BED).toBeCloseTo(2, 5);
     expect(FAIR_WAGE_PER_BED_AUD).toBe(130);
   });
 
   it('says what one bed does, with a label on each line', () => {
     expect(BED_UNIT.length).toBe(4);
     expect(BED_UNIT[1].body).toContain('one tonne');
-    expect(BED_UNIT[2].title).toContain('6.5');
+    expect(BED_UNIT[2].title).toContain('2 hours');
     expect(BED_UNIT[3].title).toContain(`$${BED_PRICE_AUD}`);
     expect(BED_UNIT.map((u) => u.label)).toEqual(['verified', 'workpaper', 'modelled', 'target']);
   });
 });
 
 describe('any amount scales the same way', () => {
-  it('turns $750,000 into 1,000 beds, five pools, 20 tonnes and 6,500 hours', () => {
+  it('turns $750,000 into 1,000 beds, five pools, 20 tonnes and 2,000 hours', () => {
     const r = scale(750_000);
     expect(r.beds).toBe(1000);
     expect(r.pools).toBe(5);
     expect(r.hdpeTonnes).toBe(20);
-    expect(r.localHours).toBeCloseTo(6500, 5);
+    expect(r.localHours).toBeCloseTo(2000, 5);
     expect(r.fairWageAud).toBe(130_000);
     expect(r.staysLocalIfAllSoldAud).toBe(750_000);
   });
@@ -64,7 +64,7 @@ describe('any amount scales the same way', () => {
     expect(SCALE_ROWS.map((r) => r.beds)).toEqual([200, 333, 533, 1000]);
     expect(SCALE_ROWS[0].pools).toBe(1);
     expect(SCALE_ROWS[1].hdpeTonnes).toBeCloseTo(6.66, 2);
-    expect(Math.round(SCALE_ROWS[2].localHours)).toBe(3465);
+    expect(Math.round(SCALE_ROWS[2].localHours)).toBe(1066);
   });
 
   it('never lets money that stays local exceed the amount', () => {
@@ -88,5 +88,26 @@ describe('what the slide says', () => {
       expect(s, s).not.toMatch(/[—→]/);
       expect(s, s).not.toMatch(BANNED);
     }
+  });
+});
+
+describe('the withdrawn 6.5-hour labour figure cannot come back', () => {
+  it('paid making is the ruled two hours', () => {
+    expect(MODELLED_LABOUR_HOURS_PER_BED).toBe(2);
+    expect(LOCAL_HOURS_PER_BED).toBe(2);
+  });
+
+  it('is not the sum of the withdrawn stage table', () => {
+    // Those seven stages sum to 6.5, which was the public employment driver until 10 September.
+    const withdrawnSum = WITHDRAWN_LABOUR_STAGES.reduce((a, s) => a + s.hoursPerUnit, 0);
+    expect(withdrawnSum).toBeCloseTo(6.5, 5);
+    expect(MODELLED_LABOUR_HOURS_PER_BED).not.toBeCloseTo(withdrawnSum, 5);
+  });
+
+  it('the stage table stays inconsistent with the throughput, which is why it went', () => {
+    // CNC does 8.56 beds a day in the live model, under an hour a bed. The stage said 3.5.
+    const cnc = WITHDRAWN_LABOUR_STAGES.find((s) => s.stage.startsWith('CNC'))!;
+    expect(cnc.hoursPerUnit).toBe(3.5);
+    expect(8 / 8.56).toBeLessThan(cnc.hoursPerUnit);
   });
 });

@@ -35,7 +35,7 @@ export const BED_PRICE_AUD = Number(canonValue('stretch-price'));
 export const HDPE_KG_PER_BED = CANONICAL_ASSETS.plasticKg / CANONICAL_ASSETS.stretchBedsDeployed;
 export const BEDS_PER_TONNE = 1000 / HDPE_KG_PER_BED;
 
-/** Modelled labour hours per bed across the seven production stages. Not yet time-studied. */
+/** Modelled paid making per bed. Ben's ruling of 10 September 2026, and not yet time-studied. */
 export const LOCAL_HOURS_PER_BED = MODELLED_LABOUR_HOURS_PER_BED;
 
 /** Deep search so the value comes from the cost model, wherever the key sits. */
@@ -75,7 +75,7 @@ export const BED_UNIT: readonly BedUnitLine[] = [
     label: 'workpaper',
   },
   {
-    title: 'About 6.5 hours of local work',
+    title: 'About 2 hours of paid local making',
     body: 'Collect, shred, press, cut, assemble, deliver. Modelled, not yet timed; 3.5 of those hours are CNC and the stopwatch decides.',
     label: 'modelled',
   },

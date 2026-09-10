@@ -180,7 +180,22 @@ export interface ProductionLabourStage {
   personnelRequired: number;
 }
 
-export const PRODUCTION_LABOUR_STAGES: ProductionLabourStage[] = [
+/**
+ * WITHDRAWN, 10 September 2026. Kept so the retired figure is visible rather than deleted, and
+ * so nothing sums it back into the employment number by accident.
+ *
+ * These seven stages summed to 6.5 hours a bed, and that was the employment driver on the public
+ * impact page. Ben settled the figure at two hours on 10 September and withdrew the 6.5.
+ *
+ * The stage table was separately inconsistent with the production model. It puts CNC cutting at
+ * 3.5 hours a bed, while the live model has the router at 8.56 beds a day, which is under an hour
+ * a bed. It puts pressing at 1.0 hour, while six sheets a day and two sheets a bed is nearer
+ * 2.7 hours. So the breakdown contradicted the throughput it was supposed to describe.
+ *
+ * A replacement breakdown needs measurement, not re-estimation: paid hours against completed beds,
+ * from the production log.
+ */
+export const WITHDRAWN_LABOUR_STAGES: ProductionLabourStage[] = [
   { stage: 'Plastic collection & sorting', hoursPerUnit: 0.5, personnelRequired: 1 },
   { stage: 'Shredding & pelletising', hoursPerUnit: 0.3, personnelRequired: 1 },
   { stage: 'Sheet pressing (180°C, 5000 PSI)', hoursPerUnit: 1.0, personnelRequired: 1 },
@@ -190,11 +205,18 @@ export const PRODUCTION_LABOUR_STAGES: ProductionLabourStage[] = [
   { stage: 'Freight & logistics', hoursPerUnit: 0.2, personnelRequired: 1 },
 ];
 
-/** MODELLED labour hours per bed (employment-impact driver, not yet time-studied). */
-export const MODELLED_LABOUR_HOURS_PER_BED = PRODUCTION_LABOUR_STAGES.reduce(
-  (sum, item) => sum + item.hoursPerUnit,
-  0,
-);
+/**
+ * Paid making per bed, in hours. MODELLED: it is a wage allowance divided by an assumed daily
+ * output, and no bed has been time-studied.
+ *
+ * Ben, 10 September 2026: two hours. The basis is $80 of paid making a bed, from $400 a day over
+ * five beds, recorded on the live model's Inputs sheet as `hours_per_bed`. The earlier 6.5, summed
+ * from `WITHDRAWN_LABOUR_STAGES`, is withdrawn and must not be reinstated by re-summing them.
+ *
+ * What replaces this is measurement: the production log records paid hours and completed beds per
+ * day, and the first fifty beds at working pace settle it.
+ */
+export const MODELLED_LABOUR_HOURS_PER_BED = 2;
 
 // ---------------------------------------------------------------------------
 // Canonical cost-per-bed (single source of truth, MODELLED)
@@ -409,9 +431,11 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
         name: 'Employment Hours Created',
         unit: 'hours',
         current: null,
-        targets: { year1: 9750, year3: 32500, vision2030: 162500 },
+        // 1,500 / 5,000 / 25,000 beds x MODELLED_LABOUR_HOURS_PER_BED. Were 9,750 / 32,500 /
+        // 162,500 at the withdrawn 6.5 hours.
+        targets: { year1: 3000, year3: 10000, vision2030: 50000 },
         source: 'computed',
-        sourceDetail: `MODELLED: ${MODELLED_LABOUR_HOURS_PER_BED.toFixed(1)} labour hours per bed × beds produced`,
+        sourceDetail: `MODELLED: ${MODELLED_LABOUR_HOURS_PER_BED} paid hours per bed × beds produced. Ben's ruling, 10 September 2026; no bed has been time-studied`,
         proxyFor: 'Economic inclusion for at-risk youth and community members',
         optimizationLevers: ['Production volume', 'Training programs', 'Community facility hosting'],
         computeFn: 'computeEmploymentHours',
@@ -616,8 +640,8 @@ export const DEFAULT_OPPORTUNITIES: OptimizationOpportunity[] = [
   },
   {
     id: 'wise-employment',
-    title: `Each bed sale creates ~${MODELLED_LABOUR_HOURS_PER_BED.toFixed(1)} modelled hours of employment`,
-    description: `At 1,500 beds/year, that's about ${(1500 * MODELLED_LABOUR_HOURS_PER_BED).toLocaleString()} hours of employment for at-risk youth (modelled, not yet time-studied). The WISE model is the strongest impact narrative for QLD government funding.`,
+    title: `Each bed carries ${MODELLED_LABOUR_HOURS_PER_BED} modelled hours of paid making`,
+    description: `At 1,500 beds a year that is about ${(1500 * MODELLED_LABOUR_HOURS_PER_BED).toLocaleString()} hours of paid work. Modelled from a wage allowance, and no bed has been time-studied.`,
     dimension: 'economic',
     potential: 'high',
     dataSource: 'Production labour model + Eloise meeting',
