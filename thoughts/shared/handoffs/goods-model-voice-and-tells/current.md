@@ -195,6 +195,23 @@ The QBE Control Room now opens with it. Sixty-eight claims on that page, **eleve
 one sits in finances by buyer, costings, the production facility or the ask. Nothing else blocks the
 application.
 
+## The 25 Questions swept clean, 11 September 2026
+
+A full pass for stale figures. Nothing left: no $75,000 for ALIVE, no 57%, no $375,000, no 130 outside
+the note that names it as an unpaid quote. The two remaining "ten invoices" mentions are the
+deliberate wording that keeps the all-time $343,481 apart from the five bed invoices.
+
+**Q6 and Q7 no longer show as written.** A new state, `hold`, reads "written, held on a ruling", and
+both now sit in it with Ben as owner. They are complete prose carrying a claim our own demand record
+contradicts, so showing them green was the risk. The tally now reads nine drafted, seven final.
+
+**Q10's grading paragraph** said the 540, the 11 communities and the ten invoices are verified. It now
+says the five bed invoices and the Centrecorp reconciliation, which is what was actually verified.
+Patched in the artifact and in both source files.
+
+**Q19 gained today's two closures in its evidence panel**: The Harvest at 576 beds a year with 176 of
+headroom against the 400 target, and freight at $150 all up.
+
 ## The artifact register, 11 September 2026
 
 Five QBE artifacts. Two are current, three predate today's corrections.

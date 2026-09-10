@@ -273,8 +273,8 @@ evidence for the other.
 
 Every figure we publish carries one of four labels, and the label travels with the number.
 
-- **Verified** means we read the source. The 540, the 11 communities and the ten invoices are
-  verified.
+- **Verified** means we read the source. The 540, the 11 communities, the five bed invoices and the
+  Centrecorp reconciliation are verified.
 - **Workpaper** means it comes from a reconciliation we did ourselves and can hand over.
 - **Modelled** means it is calculated. Two hours of paid making a bed and 20 kilograms of plastic
   in a finished bed are both modelled.
