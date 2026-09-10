@@ -10,6 +10,13 @@ import { getCommunityVoices, getCommunityStories } from '@/lib/data/community-st
 import CommunityPresent, { type PresentSlide } from './community-present';
 import { getMediaLinksFor, getPeopleInMediaFor } from '@/lib/data/media-links';
 import { StorytellerAvatar } from '@/components/storyteller-avatar';
+import { placeEvidence } from '@/lib/data/place-evidence';
+import {
+  CRM_COORDINATION_NOTICE,
+  EVIDENCE_STATE_MEANING,
+  needsAPerson,
+  type EvidenceState,
+} from '@/lib/data/place-decision';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -201,6 +208,16 @@ export default async function CommunityDetailPage({
   const assets = (assetsRes.data || []) as AssetRow[];
   const demand = (demandRes.data || []) as DemandRow[];
   const deals = (dealsRes.data || []) as DealRow[];
+
+  // The evidence-health read. Assembled in place-evidence.ts from the modules that own each fact;
+  // this page passes only the row counts it already has.
+  const evidence = placeEvidence({
+    communityId: community.id,
+    demandRows: demand.length,
+    crmDealRows: deals.length,
+    registerRows: assets.length,
+  });
+  const openForAPerson = needsAPerson(evidence);
 
   // Fleet cross-link: machine assets at this community, with last-seen + alert count
   type MachineAsset = { unique_id: string; name: string | null; machine_id: string; status: string | null };
@@ -852,6 +869,9 @@ export default async function CommunityDetailPage({
             Linked via <code>crm_deals.metadata.community_id = {community.id}</code>.
             {deals.length === 0 && ' Set this metadata in the CRM admin to surface deals here.'}
           </p>
+          <p className="mt-2 rounded-md border-l-4 border-amber-500 bg-amber-50 px-3 py-2 text-xs text-amber-900 dark:bg-amber-950/40 dark:text-amber-200">
+            {CRM_COORDINATION_NOTICE}
+          </p>
         </div>
         {deals.length === 0 ? null : (
           <div className="overflow-x-auto rounded-lg border">
@@ -884,8 +904,82 @@ export default async function CommunityDetailPage({
           </div>
         )}
       </section>
+
+      {/* Evidence health. Six states, deliberately no score: a single number per community would
+          be sorted, and that sort ranks places by how well we happen to have filed them. */}
+      <section id="evidence" className="scroll-mt-24 space-y-3">
+        <div>
+          <h2 className="text-base font-semibold font-display">Evidence health</h2>
+          <p className="text-xs text-muted-foreground">
+            What is verified, partial, conflicted, stale, unavailable or waiting on a person. Read
+            it row by row. There is no overall score, on purpose.
+          </p>
+        </div>
+
+        {openForAPerson.length > 0 && (
+          <div className="rounded-md border-l-4 border-rose-500 bg-rose-50 px-3 py-2 text-xs text-rose-900 dark:bg-rose-950/40 dark:text-rose-200">
+            <span className="font-semibold">
+              {openForAPerson.length === 1
+                ? 'One row needs a person'
+                : `${openForAPerson.length} rows need a person`}
+              :
+            </span>{' '}
+            {openForAPerson.map((r) => r.fact).join(' · ')}. Nowhere records who holds these yet.
+          </div>
+        )}
+
+        <div className="overflow-x-auto rounded-lg border">
+          <table className="w-full text-sm">
+            <thead className="bg-muted">
+              <tr className="border-b text-left text-xs uppercase tracking-wider text-muted-foreground">
+                <th className="py-2 px-3 font-medium">Fact</th>
+                <th className="py-2 px-3 font-medium">State</th>
+                <th className="py-2 px-3 font-medium">Where it comes from</th>
+              </tr>
+            </thead>
+            <tbody>
+              {evidence.map((r) => (
+                <tr key={r.fact} className="border-b last:border-0 align-top hover:bg-muted">
+                  <td className="py-2 px-3 font-medium">{r.fact}</td>
+                  <td className="py-2 px-3">
+                    <Badge variant="outline" className={evidenceTone(r.state)}>
+                      {r.state === 'awaiting-review' ? 'awaiting review' : r.state}
+                    </Badge>
+                    <div className="mt-1 text-xs text-muted-foreground">
+                      {EVIDENCE_STATE_MEANING[r.state]}
+                    </div>
+                  </td>
+                  <td className="py-2 px-3 text-xs text-muted-foreground">
+                    {r.source}
+                    {r.asAt && <span className="ml-1 font-mono">· as at {r.asAt}</span>}
+                    {r.note && <div className="mt-1">{r.note}</div>}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
     </div>
   );
+}
+
+/** Colour carries the same meaning as the word, and never a rank. */
+function evidenceTone(state: EvidenceState): string {
+  switch (state) {
+    case 'verified':
+      return 'border-emerald-500 text-emerald-700 dark:text-emerald-300';
+    case 'partial':
+      return 'border-amber-500 text-amber-700 dark:text-amber-300';
+    case 'conflicted':
+      return 'border-rose-500 text-rose-700 dark:text-rose-300';
+    case 'stale':
+      return 'border-sky-500 text-sky-700 dark:text-sky-300';
+    case 'unavailable':
+      return 'border-muted-foreground text-muted-foreground';
+    case 'awaiting-review':
+      return 'border-violet-500 text-violet-700 dark:text-violet-300';
+  }
 }
 
 function Kpi({ label, value, sub, highlight }: { label: string; value: string; sub?: string; highlight?: boolean }) {
