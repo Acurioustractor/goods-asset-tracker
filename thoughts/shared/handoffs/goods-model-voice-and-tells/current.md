@@ -180,167 +180,56 @@ Production purchases and labour still need reconciliation into cash. Opening bal
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-10T09:35:00+10:00
+**Updated:** 2026-09-11T07:15:00+10:00
 **Goal:** The QBE Stage 2 application goes in by Friday 25 September at noon carrying one model that
-holds together, in language that reads human. Done when every question is answered or assigned to a
-named person, every figure traces to the workbook, and nothing ships with a writing tell.
-**Branch:** feat/ai-tells-gate-and-goods-model in worktree `/Users/benknight/Code/goods-finance-wt`,
-off `origin/main` at `14c5f45`. Six commits, NOT pushed. Six paths modified or new and uncommitted.
-**Test:** `node tools/check-ai-tells.mjs <file>` before publishing anything.
+holds together. Done when every question is answered or assigned to a named person, every figure
+traces to a source, and nothing ships with a writing tell.
+**Branch:** feat/ai-tells-gate-and-goods-model in worktree `/Users/benknight/Code/goods-finance-wt`.
+**33 commits, NOT pushed.**
+**Test:** `cd v2 && ./node_modules/.bin/vitest run && ./node_modules/.bin/tsc --noEmit -p tsconfig.json && npm run build`
+**Before publishing anything:** `node tools/check-ai-tells.mjs <file>`
 
 ### Now
-[->] **One click finishes the live Google Sheet.** The sheet exists and Ben can already write to it.
-    It needs the service account added as an editor, then the twelve tabs go in. Everything else
-    below is done and published.
+[->] Demand and buyers, the last unlocked section of the deck. Of 778 beds of recorded demand only
+    20 have a rule and a person behind them, and the buyer data is unusable by key.
 
-### The one blocked thing, and its exact fix
-
-An empty Google Sheet is created and shared to benjamin@act.place as writer:
-
-    https://docs.google.com/spreadsheets/d/1Sh0Kk0CI0NSeO_H0T8P91H8skBJLpKkRfcQjRWTd-5Y/edit
-
-To fill it, share it as **Editor** with:
-
-    subscription-scanner@act-subscription-tracker.iam.gserviceaccount.com
-
-Then take the content from `deliverables/qbe-stage2/pages/build-live-model.py` and push it in with
-the Sheets API. Twelve tabs, twenty-nine named ranges, formulas already verified against the master.
-
-**Why this is the only step left, all tested on 10 September:**
-
-| Route | Result |
-|---|---|
-| Google Drive connector, create a Sheet | Works. Owned by hi@act.place |
-| Google Drive connector, read computed values | Works. Returns calculated numbers |
-| Google Drive connector, write cells | Not available. `update_file` changes title and parent only |
-| A Google Sheets connector | Does not exist in the account directory. Drive, Calendar, BigQuery, Compute Engine only |
-| Service account, mint a token | Works. Key is in `v2/.env.local`, commented out, mangled by escaping |
-| Service account, Sheets and Drive APIs | Both enabled on project `act-subscription-tracker` (1053421850098) |
-| Service account, create a file | Refused. Robot accounts have no Drive storage quota |
-| Service account, act as benjamin@act.place | Refused. Needs domain-wide delegation in Workspace admin |
-| Sharing the sheet to the service account | Blocked by the harness auto-mode guard, not by Google |
-
-**The key needs repair before use.** In `v2/.env.local` the `private_key` carries stray backslashes
-from `.env` escaping, so loading the PEM fails with `ERR_OSSL_UNSUPPORTED`. Strip every backslash and
-whitespace from the base64 body, decode it and load it as DER:
-
-```js
-const body = k.private_key.replace(/-----[A-Z ]+-----/g,"").replace(/[\\\s]/g,"");
-const key = crypto.createPrivateKey({key: Buffer.from(body,"base64"), format:"der", type:"pkcs8"});
-```
-
-The alternative route Ben has not chosen: add a Google Sheets MCP server as a custom connector using
-the `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` already in `v2/.env.local`. One browser consent,
-then full access as benjamin@act.place and no robot account at all.
-
-### What is published and live
-
-| Page | URL | What it is |
-|---|---|---|
-| QBE Control Room | https://claude.ai/code/artifact/b45c45a0-378b-41a0-b635-eaa461d0957f | 60 graded claims each citing a cell, the 25 questions, the funder register, the model to play with, the workbook as a download, the names register, 14 retired lines |
-| The 25 Questions | https://claude.ai/code/artifact/92ad473f-91e5-4ec8-b68c-2c3580102cb5 | Every question with the written answer verbatim and its word count, the deck slides that carry it as thumbnails with frame ids, the files it needs, the figures, the cleared voices |
-| Goods on Country Model | https://claude.ai/code/artifact/0b235115-7bbb-436f-bbe8-f716c283dcf5 | Eleven sections, from the earlier session |
-| QBE Raise Review | https://claude.ai/code/artifact/c3a9260a-c99f-4f63-b6b4-80e7fd8b4ab1 | Eight sections, from the earlier session |
-| Goods Money Map | https://claude.ai/code/artifact/eeb96c11-6564-45ca-af68-69b7f4bac84d | The money drawn, from the earlier session |
-
-The control room carries the `db` and `downloads` capabilities. Saved scenario readings land in
-collection `scenarios`; read them with the Artifact tool, `action: read_db`, `db_op: list`.
-
-**To edit a published page:** read it from its URL with the Artifact tool, or use the stripped source
-in `deliverables/qbe-stage2/pages/` plus `rebuild-pages.py`, then publish passing the same `url` so
-the link is kept. The tracked sources have their two large embedded payloads replaced with
-placeholders on purpose, so git carries no base64 blobs.
-
-### Ben's rulings, 10 September, from the interview
-
-These are new today and are not yet swept through every surface.
-
-| Question | His ruling |
-|---|---|
-| What a community keeps when it sells a bed | **The full $750.** The 50% split in the ten-year chart is retired. Q9's money row goes back in |
-| Butterfly's constitution | **Eloise or the accountant has it.** Q12 is a chase, not a genuine gap. Q22 gets the real document |
-| Q16 and Q17, contacting other funders | **Yes, contact Tim Fairfax and Brian M. Davis now.** Names and emails still needed |
-| Q19, the plant sites | **Both named as working choices**, with the module pricing as the basis and site quotes to follow |
-| Q13, legal and regulatory | **Nothing to declare** |
-| Q24, solvency | **Solvent, and show why.** Still needs today's bank position from Ben |
-| Snow Foundation | **A $100,000 ask shaped like Brian M. Davis, counted as bed money.** His words were "they can also give ness and will count to beds"; the "ness" fragment was never clarified |
-| Q11, what to upload | **The dated register reconciliation and the consented story records.** Not the retrospective note, not the blank templates |
-
-**The consequence nobody has swept yet:** counting Snow's 133 beds takes the hole from 187 beds to
-**54**. Every surface that says 187 is out of date.
-
-### What was found and corrected today
-
-- **Q6 had a $500 arithmetic error going to a funder.** Its module table totals the high column as
-  $142,967. The Capital sheet's own rows add to **$142,467**. Corrected in the answers file,
-  `ALIGNMENT-WITH-MATT-2026-09-09.md`, the finance README, the money map and both pages.
-- **The two making costs reach the same total by different routes.** The factory BOM is $55
-  plastic, $15 power, $125.74 bought parts and $80 labour: $275.74 before freight, and the repo
-  cost engine reaches the same figure independently as `stateFactory`. The NM annual-staff
-  calculation is $235.74 from plastic $60, electricity $16.67, consumables $33.33 and the same
-  $125.74 of parts, and adding a $40 assembly allowance lands on $275.74 as well. Different line
-  values and a different wage treatment, so it is not a reconciliation and must not be cited as
-  one. Corrected on both pages and in the live sheet, 10 September.
-- **The press is the bottleneck, not the router.** Six pressed sheets a day and two sheets a bed give
-  three beds a day. CNC does 8.56 and assembly 5, so both have spare. 720 beds a year on own sheets,
-  1,440 on Defy leg panels. NM Play B10, B45, B46, B47, B36.
-- **The plastic figures are two, not one.** A leg sheet takes 21 kg of shred and a tab sheet 15 kg, so
-  36 kg is pressed for one bed and the finished bed is 20 kg. Both now print on both pages. Decision
-  D06 still says 40 kg of gross input, which is a live conflict.
-- **The $150,000 plant allowance is defensible.** It sits above the module high of $142,467 and
-  between the workbook's own benchmarks, $113,000 to replicate and install (Capital!C31) and $207,450
-  turnkey (Capital!C32). Nine of thirteen modules are estimates; the generator alone runs $6,600 to
-  $20,000.
-- **Q10 is written**, 583 words, checker-clean, on the page and appended to the answers file. It
-  reports 540 deployed and 320 sold and paid and explains why both are true.
-- **Notion's deck master is corrected.** Section 4 read "candidate ask AUD 250,000"; it now reads
-  $300,000 settled with the three-option table marked superseded. Section 5 excluded Palm Island from
-  demand; it now names Palm Island as the first plant. Block ids
-  `3ea3fe3d-14db-4879-9668-c7f666894249` and `e4b53396-bc65-4531-b65d-1a5a45778b59`.
-- **Deck slide S15 gained a chart.** The $750 splits into gold for the $80 wage, clay for the $196
-  rest of making and green for the $474 that stays. Frame `TiKvy`, nodes named `Bed value *`. Pencil
-  builds bar and donut charts from layout and cannot do line charts, so anything needing a curve
-  stays in the HTML pages or becomes a bar.
-
-### Still wrong in the master workbook, deliberately not edited
-
-- Decision log **D12** still says the request is "250,000 / 150,000 unapproved candidates".
-  `QBE!D14`, `QBE!A54` and Funding F01 all say $300,000.
-- Decision **D06** says 40 kg of gross sheet input against NM Play B21's 36 kg.
-- **D17** says current capacity is 360 while `Start!B7` says 400 supported and `Start!B46` says
-  nothing above capacity.
+### This Session
+- [x] Live sheet read path proven through the Google Drive connector. The service-account blocker is historical.
+- [x] All five published artifacts corrected: the retired 50% split, the Snow ask on every table, 1,440 beds a year fixed to 1,200 for the assembly ceiling, the FY26 basis named, the plastic figures on the 21 and 15 kg basis.
+- [x] Q19 drafted, 538 words, checker-clean, six owed documents named. Nine of 25 answers drafted.
+- [x] Availability set at 80%, so 48 beds a month, and the 630 of demand takes 13.1 months on one press. The second press sets the schedule; Sefa is the route, sized to the press.
+- [x] Decision read live on `/admin/communities/[id]`: CRM coordination notice, evidence health in six states, no score.
+- [x] Framework built: `place-decision`, `place-evidence`, `place-denominator`, `place-feedstock`, `place-framework`. The denominator is community-set and the ABS derivation is unbuildable.
+- [x] `community-need.ts` widened to the full 1,138-ILOC reference with a nine-entry crosswalk. Mount Isa persons-per-dwelling corrected from 3.13 to 2.91.
+- [x] Employment moved off the withdrawn 6.5 hours to the ruled 2. The public impact tile fell from 3,510 hours to 1,080.
+- [x] The four problem areas locked in code with guards: `rhd-problem`, `recycling-problem`, `employment-problem`, `ownership-problem`.
+- [x] Funder refresh: FRRR SRC Round 30 closes 17 September, and Butterfly being a charity opens grants a Pty Ltd could not enter.
+- [x] Snow reconciled against Xero, which is reachable again.
 
 ### Next
+- [ ] Demand and buyer slides, using the four buyers with real paid trade: Centrecorp, ALIVE, Homeland School Company, Mala'la.
+- [ ] Push the branch and open the PR. Tier 2 then Tier 3, both need Ben's word.
+- [ ] Codex: push the problem tab into the live sheet from `deliverables/qbe-stage2/pages/problem-tab-for-sheet.md`.
+- [ ] Butterfly's constitution from Eloise. It blocks Q12, Q22, the 50% Indigenous-business threshold and IBA eligibility.
+- [ ] Q19's six documents: a site letter and quote basis per plant and a cash milestone schedule from Nic, Kristy's minute, the applicant cashflow.
+- [ ] An `audit-memory` pass. MEMORY.md is 28KB against a 24.4KB limit with 32 over-long index lines.
+- [ ] FRRR SRC Round 30 by 17 September, or Round 31 by 3 December.
+- [ ] GHL corrections needing Ben: Snow first-mover from Ask made to Identified, Minderoo paused not open, Sefa $200,000 not $300,000.
 
-- [x] The live sheet is built and readable. No service account was needed: the Google Drive
-      connector both writes and reads it, and it now carries twenty-one tabs
-- [x] The Snow ruling is swept through all five published pages. Every surface now carries both
-      figures with the basis: 187 beds to find today, 54 once the $100,000 ask is sent. The ten-year
-      table on the QBE Raise Review still computes the community share at 50% and is deliberately
-      left for Ben, because correcting it doubles a headline projection
-- [ ] Q19 needs a site and a quote basis for each plant. Nic holds this and it is the last hard blocker
-- [ ] Q3 and Q4: the structure diagram and every related entity's director records
-- [ ] Q20 and Q21: current management cashflow for Butterfly. Eloise
-- [ ] Q24: today's bank position, then the answer can show its basis
-- [ ] Q16 and Q17: a name and email for Tim Fairfax and Brian M. Davis
-- [ ] Minute Kristy Bloomfield's related-party declaration at the 14 September board, and ask
-      Oonchiumpa to minute the same. Q8 asserts it and it is not yet true
-- [ ] Clarify the "ness" fragment in the Snow ruling
-- [ ] The workbook as a daily driver: named ranges, a Xero import into Actuals, budget against actual
-      by month, an as-at front page. Sketched, never agreed
+### Decisions
+- Availability 80% at The Harvest, so 48 beds a month, and the second press sets the schedule.
+- Sefa for the second press, sized to the press rather than the illustrative $200,000.
+- The funder and community picture is the GrantScope decision read, not a Notion master.
+- A bed denominator is set by a community with a rule and a name, never derived from overcrowding.
+- The problem section leads with health, and overcrowding is the shared risk measure under all four areas.
 
-### Uncommitted in the worktree
-
-    M deliverables/finance/goods-financial-plan/ALIGNMENT-WITH-MATT-2026-09-09.md
-    M deliverables/finance/goods-financial-plan/README.md
-    M deliverables/finance/goods-financial-plan/goods-money-map.html
-    M deliverables/qbe-stage2/qbe-answers-2026-09-10.md
-    ?? deliverables/qbe-stage2/pages/
-    ?? deliverables/qbe-stage2/q10-impact-to-date-2026-09-10.md
-
-The first four are the $142,467 correction and the Q10 answer. `pages/` holds the two stripped page
-sources, the live-model builder, the live-model xlsx and `rebuild-pages.py`. Nothing is committed and
-nothing is pushed. Ben has not asked for either.
+### Open Questions
+- UNCONFIRMED: freight is $100 in the sheet and $150 in the cost engine, which moves break-even from 796 to 918.
+- UNCONFIRMED: GHL holds Snow historical at $397,384.91 against $375,000 published, reconciling to nothing.
+- UNCONFIRMED: the 19 May Snow grant letter names A Curious Tractor while INV-0321 sits in the sole trader's ledger.
+- UNCONFIRMED: $127,455.12 of Snow FY26 money should be in the A Curious Tractor Pty Ltd Xero org, which nobody has read.
+- UNCONFIRMED: Palm Island's row in `goods_communities` carries postcode 4895, which pulled Cooktown organisations into its buyer list.
+- UNCONFIRMED: nobody has viewed the evidence-health block in a browser beyond the rendered text I read.
 
 ### Traps
 
@@ -362,7 +251,15 @@ nothing is pushed. Ben has not asked for either.
   `node --experimental-strip-types` importing `v2/src/lib/data/storyteller-registry.ts`. Palm Island
   has seven, which matters because Palm Island is plant one. Kristy Bloomfield is cleared as a person
   and is never quoted for Goods: her quotes trace to other projects.
-- Xero has been unreachable for three sessions. Every figure comes from the repo.
+- **Xero is reachable again** as of 11 September, after three sessions of it being down. The
+  connected org is Nicholas Marchesi sole trader, ABN 21 591 780 066. A Curious Tractor Pty Ltd
+  is a SEPARATE org and is not connected; $127,455.12 of Snow FY26 money is probably in it.
+- **`v2/` in this worktree now has node_modules and a copied `.env.local`.** The env file is
+  gitignored so it does not travel with a worktree, and the build fails on an unrelated admin
+  page without it.
+- **The problem data is EXTERNAL.** Five internal searches across two Supabase projects, two
+  wikis and grantscope/data found no RHD, recycling or employment statistics. AIHW, DCCEEW, the
+  Census and Supply Nation hold them. Do not repeat that search.
 
 ---
 
