@@ -30,7 +30,8 @@ import {
   UTOPIA_REGISTER_UNITS,
   FREIGHT_EVIDENCE,
   FREIGHT_PER_BED_AUD,
-  FREIGHT_RETIRED_AUD,
+  FREIGHT_FACTORY_LEG_AUD,
+  FREIGHT_COMMUNITY_LEG_AUD,
   FREIGHT_RULING,
 } from './demand-and-buyers';
 import { BED_PRICE_AUD } from './bed-ratio';
@@ -277,12 +278,12 @@ describe('freight is evidenced, and its limits are stated', () => {
     }
   });
 
-  it('lands on $150 and retires $100', () => {
+  it('is two legs that sum to the all-up figure, never two rival numbers', () => {
+    expect(FREIGHT_FACTORY_LEG_AUD + FREIGHT_COMMUNITY_LEG_AUD).toBe(FREIGHT_PER_BED_AUD);
     expect(FREIGHT_PER_BED_AUD).toBe(150);
-    expect(FREIGHT_RETIRED_AUD).toBe(100);
     const charged = FREIGHT_EVIDENCE[0];
     expect(Math.abs(charged.perBedAud - FREIGHT_PER_BED_AUD)).toBeLessThan(3);
-    expect(Math.abs(charged.perBedAud - FREIGHT_RETIRED_AUD)).toBeGreaterThan(45);
+    expect(SRC).toMatch(/never were in conflict|were never in conflict/);
   });
 
   it('shows freight per bed falling with volume, to the same destination', () => {
@@ -300,6 +301,7 @@ describe('freight is evidenced, and its limits are stated', () => {
 
   it('says freight does not enter the printed break-even under the price model', () => {
     expect(FREIGHT_RULING).toMatch(/628/);
+    expect(FREIGHT_RULING).toMatch(/918/);
     expect(FREIGHT_RULING).toMatch(/buyer pays freight at cost/);
     expect(SRC).toMatch(/sensitivity and not the plan/);
   });

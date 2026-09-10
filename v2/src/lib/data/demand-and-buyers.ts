@@ -482,16 +482,22 @@ export const CENTRECORP_LINE =
  *                        the Mala'la run. Its only line reads ".", so it cannot be proven to carry
  *                        those 13 beds alone. If it did, that run cost $178.63 a bed to move.
  *
- * WHAT THIS SETTLES. $100 has nothing behind it. $150 is within $2.50 of what a real 40-bed run
- * was charged. Use $150 wherever one number is needed.
+ * WHAT THIS SETTLES. The two figures were never in conflict, and calling them one was my error.
+ * The live sheet's Open Item 9 reads "$100 factory and $50 community, as entered on the input
+ * page", which sums to $150. A leg was being compared against a total. $150 is the all-up number,
+ * it is what both sources say, and it is within $2.50 of what a real 40-bed run was charged.
  *
  * WHAT IT DOES NOT SETTLE. Freight per bed falls with volume: $147.50 across 40 beds against
  * $246.15 quoted across 13, to the same place. A single constant misstates both ends, and one
  * destination is not a national rate.
  *
  * WHERE IT ACTUALLY BITES. Under the ruled price model the buyer pays freight at cost as its own
- * line, so the printed break-even is 628 beds and this constant never enters it. The 796 and 918
- * figures belong to the case where Goods carries freight, which is a sensitivity and not the plan.
+ * line, so the printed break-even is 628 beds and this constant never enters it. Where Goods
+ * carries freight the right figure is 918, because 796 was computed on the factory leg alone. That
+ * case is a sensitivity and not the plan.
+ *
+ * STILL OWED. Open Item 9 in the live sheet wants delivery-route quotes and a named payer, and it
+ * wants freight recovery shown once alongside freight cost. Nic and Ben own it.
  */
 
 export interface FreightPoint {
@@ -537,11 +543,15 @@ export const FREIGHT_EVIDENCE: readonly FreightPoint[] = [
 /** The figure to use where one number is needed. */
 export const FREIGHT_PER_BED_AUD = 150;
 
-/** The figure it replaces, and why. */
-export const FREIGHT_RETIRED_AUD = 100;
+/** The factory leg. It is half of the pair, never an alternative to the total. */
+export const FREIGHT_FACTORY_LEG_AUD = 100;
+
+/** The community leg. */
+export const FREIGHT_COMMUNITY_LEG_AUD = 50;
 
 export const FREIGHT_RULING =
-  'Freight is a route and a volume before it is a rate. Where one number is needed use $150 a bed, ' +
-  'which is within $2.50 of what a real 40-bed run to Maningrida was charged. $100 has no source. ' +
-  'Under the price model the buyer pays freight at cost on its own line, so break-even stays at 628 ' +
-  'beds and this number is a sensitivity.';
+  'Freight is a route and a volume before it is a rate. The all-up figure is $150 a bed, being $100 ' +
+  'for the factory leg and $50 for the community leg, and both sources already agree on it. It is ' +
+  'within $2.50 of what a real 40-bed run to Maningrida was charged. Under the price model the buyer ' +
+  'pays freight at cost on its own line, so break-even stays at 628 beds. Where Goods carries ' +
+  'freight the figure is 918, because 796 used the factory leg alone.';
