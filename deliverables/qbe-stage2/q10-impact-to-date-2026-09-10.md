@@ -16,13 +16,18 @@ That is recorded deployment. It is not a survey of what is in use in a household
 
 ### What was sold and paid for
 
-Ten invoices, 320 beds, $343,481 all time. Two of those runs carry the delivery detail worth
-reading:
+320 beds, across five invoices to four organisations.
 
-| | Beds | Detail |
+| Buyer | Beds | Detail |
 |---|---:|---|
-| Centrecorp, for Utopia | 130 | Paid and delivered. Oonchiumpa held the build, Urapuntja staff led the local delivery |
-| Maningrida | 40 | Pressed at our facility, assembled at Gamardi with young people and Homeland School Company |
+| Centrecorp Foundation | 167 | Two orders for Utopia. Oonchiumpa held the build and Urapuntja staff led the local delivery |
+| ALIVE, University of Melbourne | 100 | Paid in full, August 2026 |
+| Homeland School Company | 40 | Pressed at our facility, assembled at Gamardi with young people |
+| Mala'la Health Service | 13 | Maningrida |
+
+Those five invoices settled for $273,966, which is $247,770 once GST comes out. A wider all-time
+figure of $343,481 spans ten invoices and includes buyers who bought no beds, so the two are not
+the same measure and we do not present them as one.
 
 ### Why 540 and 320 are both true
 
@@ -30,10 +35,23 @@ The register counts beds that reached a community, including prototypes, gifted 
 Basket Beds that came before the current product. The invoice record counts beds someone paid us
 for. A bed can sit in one, the other or both.
 
-The 130 Centrecorp beds are the reason we do not simply add the two. Their invoice, their delivery
-record and their register rows have not been reconciled against each other yet, so we hold them
-outside any cumulative total, where they cannot be counted twice. When that reconciliation is done we
-will report the number it produces, including if it is lower than 540.
+### The Centrecorp reconciliation, now done
+
+We said we would reconcile the Centrecorp overlap and report whatever number it produced. It is
+done and it ties exactly.
+
+Centrecorp paid for 60 Basket Beds on one invoice and 107 Stretch Beds on another. The 60 are batch
+GB0-148 and all are deployed at Utopia. The 107 are batch GB0-156, which holds exactly 107 units:
+79 deployed at Utopia, 8 deployed at Alice Springs, and 20 made, counted and waiting to be
+deployed.
+
+**So Centrecorp bought 167 beds and 147 of them are in households.** The 20 that are ready sit
+outside the 540, which is why the two counts do not need adjusting against each other.
+
+One caution we will carry ourselves. Utopia's community total is also 147, and it is a different
+147: it includes 8 beds from a batch Centrecorp did not pay for and excludes the 8 at Alice
+Springs. Only 139 beds are in both. We hold the two apart in our own data so neither is used as
+evidence for the other.
 
 ### How each figure is graded
 

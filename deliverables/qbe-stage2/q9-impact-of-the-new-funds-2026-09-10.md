@@ -45,9 +45,15 @@ At 200 beds a plant in year one, 400 beds across the two sites.
 | Plastic kept in use | 8 tonnes |
 | People off the floor | 400 |
 
-The money row is deliberately absent from that table. What share of a bed's price stays with the
-community enterprise is a decision each community makes with us, and none of them has made it
-yet. No community's own pathway gets a price in a document before they have seen it.
+| Money kept in the community | up to $300,000 |
+
+The money row is the full sale price because Ben ruled on 10 September that a community keeps all
+of what it sells a bed for. Goods keeps $474 on a bed it sells itself, so a community selling its
+own bed keeps more than we do. Those proceeds are the community's and they never repay Goods
+borrowing.
+
+What no community has settled yet is how many of its beds it sells and how many it places, and no
+community's own pathway gets a price in a document before they have seen it.
 
 ---
 

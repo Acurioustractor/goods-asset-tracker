@@ -220,6 +220,16 @@ Deployed beds by community, register read 11 September: Tennant Creek 160, Utopi
 131, Maningrida 58, Kalgoorlie 20, Alice Springs 16, then Kununurra, Mount Isa and Canberra at 2
 and Katherine and Darwin at 1. Total 540.
 
+**The tells gate has never seen the QBE answers in the artifact.** `check-ai-tells.mjs` blanks
+`<script>` blocks, and every answer on the 25 Questions page lives inside
+`<script type="text/plain" id="md-QN">`. So the page reports clean while its most important prose is
+skipped. Run the gate on `deliverables/qbe-stage2/*.md` instead, which is where the answers are
+authored. Those are clean: 0 to fix across all three, 11 advisory.
+
+**Source and artifact are back in sync.** The Q10, Q19 and Q9 corrections were applied to
+`qbe-answers-2026-09-10.md`, `q10-impact-to-date-2026-09-10.md` and
+`q9-impact-of-the-new-funds-2026-09-10.md`, so a rebuild will not revert them.
+
 **Google Sheet access confirmed.** `1Sh0Kk0CI0NSeO_H0T8P91H8skBJLpKkRfcQjRWTd-5Y`, "Goods on Country
 | Management and finance", owner hi@act.place, reads in full through the Drive connector at 177,823
 characters. The service-account blocker is historical and Codex can work against it.
