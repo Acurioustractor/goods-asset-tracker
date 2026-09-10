@@ -1,10 +1,12 @@
 # Deck alignment against what is locked
 
 Every text node in all nineteen frames of board `BEXfI` read on 11 September 2026, checked against
-the guarded modules, the register, Xero and the rulings. Nothing was changed. Slides get built one
-at a time, on Ben's word.
+the guarded modules, the register, Xero and the rulings.
 
-## Seven findings, worst first
+**All seven were fixed on Ben's word the same day.** Fifteen nodes across six frames. The record
+below is what was wrong and what it now says.
+
+## Seven findings, all fixed, worst first
 
 ### 1. Two slides print 130 beds as paid and delivered, six times between them
 
@@ -85,3 +87,28 @@ $150,000 allowance look tighter than it is.
 S12A and S12B are written and sit at the bottom of the Notion deck master with three rulings
 attached. S12 is the frame they replace. Q6 and Q7 carry a siting claim the demand record
 contradicts, and both are held.
+
+
+---
+
+## What was changed, 11 September 2026
+
+Fifteen nodes across six frames, by `Update` so every one repaints.
+
+| Frame | Was | Now |
+|---|---|---|
+| `ZZ4GO` S11 name | How 130 beds moved through relationships | How the model works |
+| `ZZ4GO` big number | 130 | 167 |
+| `ZZ4GO` number label | Stretch Beds, paid and delivered | beds bought and paid for, 147 deployed, 20 waiting |
+| `ZZ4GO` reconciliation note | Keep the 87, 130 and historic 147 separate | The reconciliation, and the warning that Utopia's 147 is a different 147 |
+| `ZZ4GO` body | Centrecorp bought 130 beds | Centrecorp bought 167 beds |
+| `ZZ4GO` flow step 01 | buys 130 Stretch Beds | buys 167 beds, 60 Basket and 107 Stretch |
+| `ZZ4GO` footer | Paid and delivered: 130 beds | Bought and paid for: 167 beds, 147 of them deployed |
+| `LX4ci` S12 paid panel | 130 beds, Centrecorp, then 40 beds, Maningrida | 320 beds across four buyers, $273,966 settled, then all four named with their counts and the $370 to $800 price movement |
+| `TiKvy` S15 | $75,000 | $101,200 |
+| `rknzM` S17 | sixty a month | forty-eight a month |
+| `tVcLc` S18 | $96,000 to $143,000 | $95,767 to $142,467 |
+| `T814io` S03 | 2022-23, source ABS via AIHW | names the National Aboriginal and Torres Strait Islander Health Survey, and says the 2021 Census returns a lower rate |
+
+S12's panel was restructured, because it only had room for two entries and the largest paid bed
+order Goods has was one of the two it left out.
