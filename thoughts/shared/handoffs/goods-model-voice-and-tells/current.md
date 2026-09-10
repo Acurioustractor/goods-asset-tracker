@@ -195,6 +195,31 @@ The QBE Control Room now opens with it. Sixty-eight claims on that page, **eleve
 one sits in finances by buyer, costings, the production facility or the ask. Nothing else blocks the
 application.
 
+## The artifact register, 11 September 2026
+
+Five QBE artifacts. Two are current, three predate today's corrections.
+
+| Artifact | What it is | State |
+|---|---|---|
+| QBE Control Room `b45c45a0-378b-41a0-b635-eaa461d0957f` | The board: landing list, six to confirm, every claim, every funder line, the model to play | **Current** |
+| The 25 Questions `92ad473f-91e5-4ec8-b68c-2c3580102cb5` | Question by question, with the answer, its slides, its files and its cleared voices | **Current** |
+| Goods on Country Model `0b235115-7bbb-436f-bbe8-f716c283dcf5` | The whole model in eleven sections, live play | **Stale** |
+| Goods Money Map `eeb96c11-6564-45ca-af68-69b7f4bac84d` | The money drawn, live play | Unchecked, predates today |
+| QBE Raise Review `c3a9260a-c99f-4f63-b6b4-80e7fd8b4ab1` | Everything the raise needs, eight sections | Unchecked, predates today |
+
+**The Model artifact is confirmed stale, read 11 September.** Section 5 prints Snow at 57% in a tile,
+reads "ten paid invoices carry 320 beds ... $343,481" as one measure, and section 8 says ALIVE's
+$75,000 is banked while its own tile in section 5 says $101,200. Its Centrecorp handling is right: it
+says 130 is on quote since May, which is what deck slide 12 gets wrong.
+
+The Money Map and the Raise Review were published 10 September and have not been read against today's
+corrections. The Control Room's link grid now carries the 25 Questions, which it was missing, and
+marks all three.
+
+**Not artifacts, but part of the same set:** five Notion pages (deck master, final application, final
+submission, media library, operating plan), the live Google Sheet and the Zoho form. All are in the
+Control Room's section 08.
+
 ## Six to confirm, live in the control room, 11 September 2026
 
 The control room has a new section, **Six to confirm**, above Where it stands. Each of Items 3, 4, 5,
