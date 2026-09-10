@@ -5,6 +5,46 @@ branch: feat/ai-tells-gate-and-goods-model
 status: handoff
 ---
 
+## Locked, 11 September 2026: the four problem areas
+
+The four areas that open the deck each have a typed module in `v2/src/lib/data/`, every figure
+carrying what it counts, the period, a source URL and a grade, with the claim ceiling as a constant
+and guards enforcing it. 766 tests, typecheck clean, production build passes.
+
+| Area | Module | The line |
+|---|---|---|
+| Health | `rhd-problem.ts` | NT First Nations RHD 3,398.7 per 100,000; 506 new ARF diagnoses in 2024, 93% First Nations, 211 in children 5 to 14 |
+| Environment | `recycling-problem.ts` | 87% of plastic straight to landfill; remote communities outside NT kerbside collection |
+| Employment | `employment-problem.ts` | 35% of First Nations 25 to 64 employed in very remote against 62% in cities |
+| Ownership | `ownership-problem.ts` | 68.4% Indigenous employment across 3,327 Supply Nation businesses against 3 to 5% |
+
+**All four sources are external.** Before finding them I searched the shared CivicGraph project's
+1,459 tables, the Goods v2 project's 75, this repo's wiki and deliverables, the
+act-global-infrastructure wiki and `grantscope/data`. None hold RHD, recycling or employment
+statistics. The sources are AIHW, DCCEEW, the Census via AIHW and the Supply Nation research brief.
+Do not repeat that search.
+
+**The join.** AIHW names household overcrowding as the risk factor for the Strep A to ARF to RHD
+chain and defines it by the Canadian National Occupancy Standard, which is the standard the ABS
+extract uses across 1,138 ILOCs. So per-community overcrowding is the risk measure itself. Arnhem
+Land 70%, Central Australia 49%, against 15% nationally.
+
+**Ready for the sheet.** `deliverables/qbe-stage2/pages/problem-tab-for-sheet.md` is a tab spec for
+Codex to push. It reads the modules; the modules stay the source.
+
+**Also fixed today.** `community-need.ts` widened from 9 mapped communities to the full 1,138-ILOC
+reference, with the crosswalk as the only way in; Mount Isa persons-per-dwelling corrected from a
+hand-typed 3.13 to the ABS 2.91. The employment figure moved off the withdrawn 6.5 hours to the
+ruled 2, cutting the public impact tile from 3,510 hours to 1,080.
+
+**The constitution now blocks four things at once:** Q12, Q22, whether Goods meets the 50%
+threshold to be an Indigenous business, and IBA eligibility, where the test for a company limited
+by guarantee is membership. Eloise has it. It is the highest-value unread document in the
+organisation.
+
+**Housekeeping:** `MEMORY.md` is 28KB against a 24.4KB limit and 32 index lines exceed the
+one-line rule. It needs an `audit-memory` pass.
+
 ## Decision, 10 September 2026: how the funder and community picture gets built
 
 Ben asked for Notion databases holding every funding opportunity, every past and potential
