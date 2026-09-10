@@ -1,0 +1,375 @@
+/**
+ * DEMAND AND BUYERS: what somebody actually paid for, and what is still a conversation.
+ *
+ * Same discipline as `rhd-problem.ts` and the other three problem modules. Every figure carries
+ * what it counts, the date, where it can be checked and a grade.
+ *
+ * ---------------------------------------------------------------------------
+ * WHY THIS MODULE EXISTS
+ * ---------------------------------------------------------------------------
+ * Two numbers about demand were being carried side by side and read as the same kind of thing.
+ * 320 beds have been invoiced and paid for. 778 more are recorded as wanted. Only the first is
+ * trade. Of the 778, exactly 20 carry both a named person and a stated way of paying, which is
+ * Dianne Stokes offering to self-fund twenty at Tennant Creek. The other 758 are conversations
+ * held in a table.
+ *
+ * The gap between those two states is the work, and it has a price somebody has already paid.
+ * Across the four buyers, $50,000 of community build and program-support time was billed and
+ * settled alongside the beds. That is the evidence for facilitation money, and it is why the 758
+ * belongs on the slide rather than behind it.
+ *
+ * ---------------------------------------------------------------------------
+ * WHAT IS DELIBERATELY NOT HERE
+ * ---------------------------------------------------------------------------
+ * The shared project's buyer table holds roughly 4,562 organisation rows and cannot be keyed by
+ * community. Palm Island's row in `goods_communities` carries postcode 4895, so a lookup for Palm
+ * Island returns Cooktown organisations. Nothing from that table is used until the key is fixed.
+ *
+ * The register's 540 deployed beds counts what reached a community, including prototypes and
+ * gifted beds. It is a different count from the invoice record and the two are never added.
+ *
+ * ---------------------------------------------------------------------------
+ * ONE NAMING TRAP, ALREADY RULED
+ * ---------------------------------------------------------------------------
+ * Centrecorp's INV-0291 reads "Goods Weave Bed v2.3". Those are Stretch Beds. The line name was
+ * held steady across the Centrecorp paper trail on purpose so their finance team sees the same
+ * description invoice to invoice (Ben, 2 August 2026). Do not correct the invoice, and do not
+ * read it as evidence a Weave Bed was ever produced at scale.
+ */
+
+export type TradeGrade = 'verified' | 'workpaper' | 'unverified';
+
+/** Every amount in this module is Australian dollars. */
+export interface PaidInvoice {
+  /** Xero invoice number, which is how an assessor checks it. */
+  invoiceNumber: string;
+  buyer: string;
+  /** The community the beds went to, where the invoice or its delivery record names one. */
+  forPlace: string;
+  invoiceDate: string;
+  fullyPaidOn: string;
+  /** Beds on this invoice, at the unit price actually charged. */
+  beds: number;
+  bedUnitPriceAud: number;
+  bedLineNetAud: number;
+  /** Community build, workshop or program-support time billed on the same invoice. */
+  facilitationNetAud: number;
+  facilitationDetail: string;
+  /** Freight charged to the buyer as its own line. */
+  freightChargedNetAud: number;
+  /** Value deducted on the face of the invoice, as a positive number. */
+  writtenOffNetAud: number;
+  writtenOffDetail?: string;
+  /** Value quoted on a line and then zeroed, so it never entered the total. */
+  absorbedNotBilledAud: number;
+  absorbedDetail?: string;
+  /** Anything on the invoice that is not a bed, facilitation or freight. */
+  otherNetAud: number;
+  otherDetail?: string;
+  totalNetAud: number;
+  totalPaidInclGstAud: number;
+  productAsInvoiced: string;
+  grade: TradeGrade;
+  note?: string;
+}
+
+const XERO = 'Xero, Nicholas Marchesi sole trader, ABN 21 591 780 066. Read 11 September 2026.';
+
+/**
+ * The claim ceiling for this area, as a constant.
+ *
+ * Read together with `DEMAND_CLAIM_CEILING`. Neither may travel without the other.
+ */
+export const TRADE_CLAIM_CEILING =
+  'These are invoices raised and settled in one Xero organisation, the sole trader Goods trades ' +
+  'through today. They are not consolidated accounts and they are not the asset register. Beds ' +
+  'invoiced and beds deployed are two different counts of two different things and are never ' +
+  'added together. Nothing here is a forward order: a paid invoice says what a buyer did, not ' +
+  'what they will do next.';
+
+/**
+ * The four buyers with real paid trade, every line taken from the invoice.
+ *
+ * Ordered by invoice date, which is also the order the bed price moved.
+ */
+export const PAID_TRADE: readonly PaidInvoice[] = [
+  {
+    invoiceNumber: 'INV-0259',
+    buyer: 'Centrecorp Foundation',
+    forPlace: 'Utopia Homelands',
+    invoiceDate: '2025-08-11',
+    fullyPaidOn: '2025-09-04',
+    beds: 60,
+    bedUnitPriceAud: 370,
+    bedLineNetAud: 22_200,
+    facilitationNetAud: 12_000,
+    facilitationDetail: 'Two bed-building workshops at $6,000 each, covering the community visit, working with Elders and young people on how the bed gets built locally, team time on the ground, transport and accommodation',
+    freightChargedNetAud: 0,
+    writtenOffNetAud: 0,
+    absorbedNotBilledAud: 0,
+    otherNetAud: 0,
+    totalNetAud: 34_200,
+    totalPaidInclGstAud: 37_620,
+    productAsInvoiced: 'Goods Basket Bed v1.3',
+    grade: 'verified',
+    note: 'The Basket Bed is the first prototype. Sales are discontinued and the design is being open-sourced, so this price does not describe the product Goods sells now.',
+  },
+  {
+    invoiceNumber: 'INV-0283',
+    buyer: "Mala'la Health Service Aboriginal Corporation",
+    forPlace: 'Maningrida',
+    invoiceDate: '2025-10-21',
+    fullyPaidOn: '2025-11-21',
+    beds: 13,
+    bedUnitPriceAud: 380,
+    bedLineNetAud: 4_940,
+    facilitationNetAud: 0,
+    facilitationDetail: 'None billed',
+    freightChargedNetAud: 0,
+    writtenOffNetAud: 0,
+    absorbedNotBilledAud: 3_200,
+    absorbedDetail: 'Shipping was quoted at $3,200 on its own line and discounted in full, so Goods carried freight worth 65% of the bed line on a $4,940 order',
+    otherNetAud: 0,
+    totalNetAud: 4_940,
+    totalPaidInclGstAud: 5_434,
+    productAsInvoiced: 'Goods Basket Bed v2.1',
+    grade: 'verified',
+    note: 'This invoice is the clearest reason freight is now its own line, charged at cost to whoever buys the bed.',
+  },
+  {
+    invoiceNumber: 'INV-0291',
+    buyer: 'Centrecorp Foundation',
+    forPlace: 'Utopia Homelands',
+    invoiceDate: '2025-11-26',
+    fullyPaidOn: '2026-02-03',
+    beds: 107,
+    bedUnitPriceAud: 560,
+    bedLineNetAud: 59_920,
+    facilitationNetAud: 18_000,
+    facilitationDetail: 'Three bed-building workshops at $6,000 each, on the same scope as INV-0259',
+    freightChargedNetAud: 0,
+    writtenOffNetAud: 0,
+    absorbedNotBilledAud: 0,
+    otherNetAud: 0,
+    totalNetAud: 77_920,
+    totalPaidInclGstAud: 85_712,
+    productAsInvoiced: 'Goods Weave Bed v2.3 - Utopia Homelands',
+    grade: 'verified',
+    note: 'These are Stretch Beds. The line name is held steady across the Centrecorp paper trail on purpose. The invoice took 69 days to settle, the longest of the five.',
+  },
+  {
+    invoiceNumber: 'INV-0303',
+    buyer: 'Homeland School Company',
+    forPlace: 'Maningrida homelands',
+    invoiceDate: '2026-05-18',
+    fullyPaidOn: '2026-07-23',
+    beds: 40,
+    bedUnitPriceAud: 750,
+    bedLineNetAud: 30_000,
+    facilitationNetAud: 8_000,
+    facilitationDetail: 'One Goods on Country program-support trip to train, build, test, document and make with community, including travel and accommodation',
+    freightChargedNetAud: 5_900,
+    writtenOffNetAud: 14_190,
+    writtenOffDetail: 'A Goods in Kind Partnership line of minus $14,190, which is 27% of the invoice before it was applied',
+    absorbedNotBilledAud: 0,
+    otherNetAud: 9_000,
+    otherDetail: 'Two Indestructible Washing Machines v1.1 at $4,500 each',
+    totalNetAud: 38_710,
+    totalPaidInclGstAud: 44_000,
+    productAsInvoiced: 'Goods Stretch Bed - Single Bed, Poles, Canvas',
+    grade: 'verified',
+    note: 'The only invoice carrying beds, a washer, facilitation and freight together, and the first at the $750 list price. These are the 40 beds pressed at our facility and assembled at Gamardi with young people.',
+  },
+  {
+    invoiceNumber: 'INV-0342',
+    buyer: 'ALIVE National Centre, University of Melbourne',
+    forPlace: 'Communities under the Gathering the Parts program',
+    invoiceDate: '2026-07-02',
+    fullyPaidOn: '2026-08-20',
+    beds: 100,
+    bedUnitPriceAud: 800,
+    bedLineNetAud: 80_000,
+    facilitationNetAud: 12_000,
+    facilitationDetail: 'Four half-shares of a bed-building workshop at $3,000 each, the buyer carrying half the cost of each visit',
+    freightChargedNetAud: 0,
+    writtenOffNetAud: 0,
+    absorbedNotBilledAud: 0,
+    otherNetAud: 0,
+    totalNetAud: 92_000,
+    totalPaidInclGstAud: 101_200,
+    productAsInvoiced: 'Goods Stretch Bed Single',
+    grade: 'verified',
+    note: 'The largest single bed order paid to date, and the only one above the $750 list price.',
+  },
+];
+
+/**
+ * Money owed by a buyer on this list, which a funder reading the receivables would find first.
+ *
+ * Held here so it is never left off a buyer slide by accident.
+ */
+export const OUTSTANDING_FROM_BUYERS = {
+  invoiceNumber: 'INV-0341',
+  buyer: 'ALIVE National Centre, University of Melbourne',
+  amountInclGstAud: 66_000,
+  dueDate: '2026-07-30',
+  what: 'A twelve-month Empathy Ledger storytelling program at $5,000 a month. No beds on this invoice.',
+  status: 'Authorised and unpaid as at 11 September 2026, past its due date.',
+  grade: 'verified' as TradeGrade,
+  note: 'ALIVE has paid in full for its 100 beds under INV-0342. The two invoices were raised the same day and only this one is outstanding, so a receivables list reads worse than the bed trade does.',
+} as const;
+
+export interface DemandRecord {
+  place: string;
+  beds: number;
+  /** The person or organisation whose words the record came from. */
+  askedBy: string;
+  /** The rule the community stated, in their framing, where there is one. */
+  rule: string;
+  /** Where the record came from. */
+  heardVia: string;
+  /** Is there a stated way of paying for these beds? */
+  moneyNamed: boolean;
+  grade: TradeGrade;
+  note?: string;
+}
+
+/**
+ * The claim ceiling for recorded demand. Read with `TRADE_CLAIM_CEILING`.
+ */
+export const DEMAND_CLAIM_CEILING =
+  'Recorded demand is what somebody said they wanted, written down with a date and a name where ' +
+  'there was one. It is not an order, not a letter of intent and not revenue. It may not be ' +
+  'presented as a pipeline, converted to dollars on a slide, or added to beds already sold. One ' +
+  'record on this list has money named against it.';
+
+/**
+ * Open recorded demand, from `community_demand` in the Goods v2 project, read 11 September 2026.
+ *
+ * Ordered largest first, which is also weakest first.
+ */
+export const RECORDED_DEMAND: readonly DemandRecord[] = [
+  {
+    place: 'Groote Archipelago',
+    beds: 500,
+    askedBy: 'Simone Grimmond, WHSAC',
+    rule: 'None stated. The same conversation named 300 washing machines alongside the beds.',
+    heardVia: 'Meeting',
+    moneyNamed: false,
+    grade: 'unverified',
+    note: 'Logged as exploring, not requested, and it is 64% of all recorded demand on its own. Nothing has been quoted and no order has been discussed. It carries the whole number up and should never be shown without its status.',
+  },
+  {
+    place: 'Utopia',
+    beds: 150,
+    askedBy: 'Utopia Homelands',
+    rule: 'Beds for every child.',
+    heardVia: 'Compendium',
+    moneyNamed: false,
+    grade: 'unverified',
+    note: 'A real rule set by the community and the clearest denominator anyone has given us. No person is attached to the record and no funder has been named against it. Utopia is also the one place with a paid delivery behind it, 167 beds across two Centrecorp invoices.',
+  },
+  {
+    place: 'Maningrida',
+    beds: 65,
+    askedBy: 'Homeland Schools Co.',
+    rule: 'Beds for kids in the Maningrida homelands.',
+    heardVia: 'Meeting',
+    moneyNamed: false,
+    grade: 'unverified',
+    note: 'The only demand record whose counterparty has already paid Goods for beds, 40 of them at list price on INV-0303. That is a payment history, not a commitment to buy again.',
+  },
+  {
+    place: 'Palm Island',
+    beds: 40,
+    askedBy: 'Palm Island Community Company',
+    rule: 'None stated.',
+    heardVia: 'Partner update',
+    moneyNamed: false,
+    grade: 'unverified',
+    note: 'Palm Island is one of the two working choices for a QBE plant, so this record will be read as demand for that plant. It is a figure from a partner update and nothing more.',
+  },
+  {
+    place: 'Tennant Creek',
+    beds: 20,
+    askedBy: 'Dianne Stokes',
+    rule: 'Offered to self-fund the twenty.',
+    heardVia: 'Community voice',
+    moneyNamed: true,
+    grade: 'verified',
+    note: 'The only record on this list with a person and a way of paying. Dianne Stokes named the Pakkimjalki Kari washing machines in Warumungu, so this is a long relationship rather than a first conversation. No invoice has been raised and no date has been set.',
+  },
+  {
+    place: 'Tennant Creek',
+    beds: 3,
+    askedBy: 'Norman Frank',
+    rule: 'Three beds, in the maroon colourway.',
+    heardVia: 'Community voice',
+    moneyNamed: false,
+    grade: 'unverified',
+    note: 'The smallest record and the most specific. A named person who has chosen a colour is further along than five hundred beds with no status.',
+  },
+];
+
+/** Beds invoiced and paid for, across the four buyers. */
+export const BEDS_PAID_FOR = PAID_TRADE.reduce((n, i) => n + i.beds, 0);
+
+/** What those invoices settled for, including GST, which is what landed in the bank. */
+export const PAID_INCL_GST_AUD = PAID_TRADE.reduce((n, i) => n + i.totalPaidInclGstAud, 0);
+
+/** The same trade excluding GST, which is what the P&L sees. */
+export const PAID_NET_AUD = PAID_TRADE.reduce((n, i) => n + i.totalNetAud, 0);
+
+/** Bed lines only, excluding GST. */
+export const BED_REVENUE_NET_AUD = PAID_TRADE.reduce((n, i) => n + i.bedLineNetAud, 0);
+
+/**
+ * Community build and program-support time billed and settled alongside the beds.
+ *
+ * This is the number that makes the facilitation ask something buyers have already priced.
+ */
+export const FACILITATION_PAID_NET_AUD = PAID_TRADE.reduce((n, i) => n + i.facilitationNetAud, 0);
+
+/**
+ * Freight and partnership value Goods carried rather than charged.
+ *
+ * Two different things, kept apart on purpose. The Homeland in-kind line came off the face of the
+ * invoice. The Mala'la shipping line was quoted and zeroed, so it never entered any total and only
+ * the quote records what it was worth.
+ */
+export const WRITTEN_OFF_NET_AUD = PAID_TRADE.reduce((n, i) => n + i.writtenOffNetAud, 0);
+export const ABSORBED_NOT_BILLED_AUD = PAID_TRADE.reduce((n, i) => n + i.absorbedNotBilledAud, 0);
+export const VALUE_FOREGONE_AUD = WRITTEN_OFF_NET_AUD + ABSORBED_NOT_BILLED_AUD;
+
+/** Open recorded demand in beds. Excludes the 107 already invoiced and paid on INV-0291. */
+export const RECORDED_DEMAND_BEDS = RECORDED_DEMAND.reduce((n, d) => n + d.beds, 0);
+
+/** Recorded demand with a named person and a stated way of paying. */
+export const DEMAND_WITH_MONEY_NAMED = RECORDED_DEMAND.filter((d) => d.moneyNamed);
+
+/** Beds in that state. */
+export const OWNED_DEMAND_BEDS = DEMAND_WITH_MONEY_NAMED.reduce((n, d) => n + d.beds, 0);
+
+/** Beds that are a conversation and nothing more. */
+export const CONVERSATION_BEDS = RECORDED_DEMAND_BEDS - OWNED_DEMAND_BEDS;
+
+/** What each buyer paid per bed, in the order the price moved. */
+export const PRICE_LADDER = PAID_TRADE.map((i) => ({
+  when: i.invoiceDate,
+  buyer: i.buyer,
+  perBed: i.bedUnitPriceAud,
+  product: i.productAsInvoiced,
+}));
+
+/** Where the trade record can be checked. */
+export const TRADE_SOURCE = XERO;
+
+/** Where the demand record can be checked. */
+export const DEMAND_SOURCE =
+  'Table `community_demand`, Goods v2 Supabase project cwsyhpiuepvdjtxaozwf. Read 11 September 2026. ' +
+  'Seven rows, of which one is the allocated and paid Centrecorp order and is excluded here.';
+
+/** Records still needing a second source before they may be printed without their status. */
+export function needsSecondSource(): readonly DemandRecord[] {
+  return RECORDED_DEMAND.filter((d) => d.grade !== 'verified');
+}

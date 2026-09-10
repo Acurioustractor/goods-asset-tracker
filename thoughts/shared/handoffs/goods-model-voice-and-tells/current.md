@@ -180,18 +180,20 @@ Production purchases and labour still need reconciliation into cash. Opening bal
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-11T07:15:00+10:00
+**Updated:** 2026-09-11T17:40:00+10:00
 **Goal:** The QBE Stage 2 application goes in by Friday 25 September at noon carrying one model that
 holds together. Done when every question is answered or assigned to a named person, every figure
 traces to a source, and nothing ships with a writing tell.
 **Branch:** feat/ai-tells-gate-and-goods-model in worktree `/Users/benknight/Code/goods-finance-wt`.
-**33 commits, NOT pushed.**
+**34 commits, NOT pushed.**
 **Test:** `cd v2 && ./node_modules/.bin/vitest run && ./node_modules/.bin/tsc --noEmit -p tsconfig.json && npm run build`
 **Before publishing anything:** `node tools/check-ai-tells.mjs <file>`
 
 ### Now
-[->] Demand and buyers, the last unlocked section of the deck. Of 778 beds of recorded demand only
-    20 have a rule and a person behind them, and the buyer data is unusable by key.
+[->] Three rulings on S12A and S12B, written at the bottom of the Notion deck master. S12 prints
+    130 Centrecorp beds as paid when 130 is a quote quantity; section 5 says ALIVE does not buy
+    beds when ALIVE is the largest paid bed order; section 5 keeps Tennant Creek and Groote out of
+    the demand schedule when they are 523 of the 778.
 
 ### This Session
 - [x] Live sheet read path proven through the Google Drive connector. The service-account blocker is historical.
@@ -206,17 +208,55 @@ traces to a source, and nothing ships with a writing tell.
 - [x] Funder refresh: FRRR SRC Round 30 closes 17 September, and Butterfly being a charity opens grants a Pty Ltd could not enter.
 - [x] Snow reconciled against Xero, which is reachable again.
 
+## Locked, 11 September 2026: demand and buyers
+
+`v2/src/lib/data/demand-and-buyers.ts`, 26 guards, taken line by line from five settled Xero
+invoices and the `community_demand` table. The four buyers with real paid trade, what each paid,
+and the open demand held apart from it.
+
+| | Beds | Per bed | Paid inc GST | Facilitation |
+|---|---:|---:|---:|---:|
+| Centrecorp INV-0259, Aug 2025, Basket Bed v1.3 | 60 | $370 | $37,620 | $12,000 |
+| Mala'la INV-0283, Oct 2025, Basket Bed v2.1 | 13 | $380 | $5,434 | none |
+| Centrecorp INV-0291, Nov 2025, Stretch Bed | 107 | $560 | $85,712 | $18,000 |
+| Homeland INV-0303, May 2026, Stretch Bed | 40 | $750 | $44,000 | $8,000 |
+| ALIVE INV-0342, Jul 2026, Stretch Bed | 100 | $800 | $101,200 | $12,000 |
+| **Total** | **320** | | **$273,966** | **$50,000** |
+
+$247,770 excluding GST, of which $197,060 is bed lines. **$50,000 of community-build and
+program-support time has been billed and settled alongside the beds**, which is what puts a
+price on the facilitation ask that a buyer has already met.
+
+**Value foregone, $17,390.** $14,190 of in-kind partnership deducted on the Homeland invoice, and
+$3,200 of Mala'la shipping quoted on its own line and zeroed. The two are kept apart in the module
+because only the first changed a total.
+
+**ALIVE also owes $66,000** on INV-0341, a twelve-month Empathy Ledger contract raised the same day
+as the bed order and past its 30 July due date. No beds on it. A receivables list reads worse than
+the bed trade does, so the slide's speaker notes carry it.
+
+**Demand, from `community_demand`, seven rows.** 778 open beds once the 107 paid Centrecorp beds
+come out: Groote 500 (exploring, one meeting, 64% of the total), Utopia 150 (beds for every child,
+no name), Maningrida 65 (Homeland Schools Co., who have paid before), Palm Island 40 (a partner
+update), Tennant Creek 20 (Dianne Stokes, offered to self-fund) and Tennant Creek 3 (Norman Frank,
+maroon). **Twenty carry a person and money. 758 are conversations.**
+
+The shared project's 4,562-row buyer table stays out until Palm Island's postcode 4895 is fixed.
+
 ### Next
-- [ ] Demand and buyer slides, using the four buyers with real paid trade: Centrecorp, ALIVE, Homeland School Company, Mala'la.
+- [ ] Ben rules on the three at the top of this ledger, then one Pencil build pass on S12A and S12B.
 - [ ] Push the branch and open the PR. Tier 2 then Tier 3, both need Ben's word.
 - [ ] Codex: push the problem tab into the live sheet from `deliverables/qbe-stage2/pages/problem-tab-for-sheet.md`.
 - [ ] Butterfly's constitution from Eloise. It blocks Q12, Q22, the 50% Indigenous-business threshold and IBA eligibility.
 - [ ] Q19's six documents: a site letter and quote basis per plant and a cash milestone schedule from Nic, Kristy's minute, the applicant cashflow.
 - [ ] An `audit-memory` pass. MEMORY.md is 28KB against a 24.4KB limit with 32 over-long index lines.
 - [ ] FRRR SRC Round 30 by 17 September, or Round 31 by 3 December.
-- [ ] GHL corrections needing Ben: Snow first-mover from Ask made to Identified, Minderoo paused not open, Sefa $200,000 not $300,000.
+- [ ] GHL corrections needing Ben: Snow first-mover from Ask made to Identified, Minderoo paused not open, Sefa $200,000 not $300,000. Tier 3, writes to a system of record.
+- [ ] Nic: Centrecorp's position. Section 5 of the deck master says they declined further funding; QU-0014 quotes 130 beds in May 2026.
 
 ### Decisions
+- Demand and trade are two different records and are never added. A paid invoice says what a buyer did, not what they will do next; a demand record is what somebody said, with a date and a name.
+- Recorded demand goes on the slide with its status attached. The distance between the twenty owned beds and the 758 conversations is the facilitation money, and hiding it removes the reason to fund the trips.
 - Availability 80% at The Harvest, so 48 beds a month, and the second press sets the schedule.
 - Sefa for the second press, sized to the press rather than the illustrative $200,000.
 - The funder and community picture is the GrantScope decision read, not a Notion master.
@@ -229,6 +269,7 @@ traces to a source, and nothing ships with a writing tell.
 - UNCONFIRMED: the 19 May Snow grant letter names A Curious Tractor while INV-0321 sits in the sole trader's ledger.
 - UNCONFIRMED: $127,455.12 of Snow FY26 money should be in the A Curious Tractor Pty Ltd Xero org, which nobody has read.
 - UNCONFIRMED: Palm Island's row in `goods_communities` carries postcode 4895, which pulled Cooktown organisations into its buyer list.
+- UNCONFIRMED: Utopia has three bed counts. The register says 147, the two Centrecorp invoices say 167, and deck slide S12 says 130. Only the invoice figure was checked this session.
 - UNCONFIRMED: nobody has viewed the evidence-health block in a browser beyond the rendered text I read.
 
 ### Traps
