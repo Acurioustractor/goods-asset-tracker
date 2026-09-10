@@ -138,6 +138,9 @@ export function placeEvidence(input: PlaceEvidenceInput): EvidenceRow[] {
   const expansion = expansionTargets.find(
     (t) => t.community.toLowerCase().includes(communityId.replace(/-/g, ' ')),
   );
+  // A served community was never in the sweep's scope, which looked at where to go next. Saying
+  // "not covered by the sweep" would read as a filing failure rather than a question never asked.
+  const alreadyServed = canon !== undefined;
   if (expansion) {
     rows.push({
       fact: 'Population and the body that runs housing procurement',
@@ -150,7 +153,10 @@ export function placeEvidence(input: PlaceEvidenceInput): EvidenceRow[] {
       fact: 'Population and the body that runs housing procurement',
       state: 'unavailable',
       source: '—',
-      note: 'Not covered by the March 2026 research sweep.',
+      note: alreadyServed
+        ? 'The research sweep looked at where to go next, so a community already being served was ' +
+          'never in its scope. No population figure has been gathered for this place.'
+        : 'Not covered by the March 2026 research sweep.',
     });
   }
 

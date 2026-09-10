@@ -104,6 +104,27 @@ describe('a canonical bed count is verified and cites its ruling', () => {
   });
 });
 
+describe('a question never asked is not a filing failure', () => {
+  it('tells a served community the sweep was never about it', () => {
+    const served = COMMUNITY_BED_CANON[0];
+    const row = rowFor(
+      placeEvidence({ ...bare, communityId: served.id }),
+      'Population and the body that runs housing procurement',
+    );
+    expect(row.state).toBe('unavailable');
+    expect(row.note).toMatch(/never in its scope/i);
+    expect(row.note).not.toMatch(/Not covered by the March 2026 research sweep/);
+  });
+
+  it('still says not covered for a place that was in scope and missed', () => {
+    const row = rowFor(
+      placeEvidence({ ...bare, communityId: 'nowhere-at-all' }),
+      'Population and the body that runs housing procurement',
+    );
+    expect(row.note).toMatch(/Not covered by the March 2026 research sweep/);
+  });
+});
+
 describe('recorded demand is an ask, never an order', () => {
   it('says so on the row', () => {
     const row = rowFor(placeEvidence({ ...bare, communityId: 'utopia', demandRows: 3 }), 'A recorded ask');
