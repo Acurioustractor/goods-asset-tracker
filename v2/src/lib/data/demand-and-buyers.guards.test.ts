@@ -21,6 +21,13 @@ import {
   ABSORBED_NOT_BILLED_AUD,
   VALUE_FOREGONE_AUD,
   needsSecondSource,
+  CENTRECORP_RECONCILIATION,
+  CENTRECORP_BEDS_PAID,
+  CENTRECORP_BEDS_DEPLOYED,
+  CENTRECORP_BEDS_READY,
+  CENTRECORP_QUOTED_UNPAID,
+  CENTRECORP_LINE,
+  UTOPIA_REGISTER_UNITS,
 } from './demand-and-buyers';
 import { BED_PRICE_AUD } from './bed-ratio';
 
@@ -201,5 +208,58 @@ describe('no writing tells in the prose this module carries', () => {
 
   it('never says co-design', () => {
     expect(SRC.toLowerCase()).not.toMatch(/co-design/);
+  });
+});
+
+describe('the Centrecorp reconciliation, which Q10 owed', () => {
+  it('ties every paid bed to a batch, with nothing missing', () => {
+    for (const r of CENTRECORP_RECONCILIATION) {
+      expect(r.batchUnits).toBe(r.bedsInvoiced);
+      expect(r.split.reduce((n, x) => n + x.units, 0)).toBe(r.batchUnits);
+    }
+  });
+
+  it('matches the invoices it reconciles', () => {
+    for (const r of CENTRECORP_RECONCILIATION) {
+      const inv = PAID_TRADE.find((i) => i.invoiceNumber === r.invoiceNumber);
+      expect(inv, `${r.invoiceNumber} must be in PAID_TRADE`).toBeDefined();
+      expect(inv!.beds).toBe(r.bedsInvoiced);
+      expect(inv!.buyer).toBe('Centrecorp Foundation');
+    }
+  });
+
+  it('is 167 paid, 147 deployed and 20 waiting', () => {
+    expect(CENTRECORP_BEDS_PAID).toBe(167);
+    expect(CENTRECORP_BEDS_DEPLOYED).toBe(147);
+    expect(CENTRECORP_BEDS_READY).toBe(20);
+  });
+
+  it('keeps the two 147s apart, because they share a number and not a set of beds', () => {
+    // Utopia's 147 includes 8 beds from batch GB0-152 that Centrecorp never paid for,
+    // and excludes the 8 Centrecorp beds deployed at Alice Springs.
+    expect(UTOPIA_REGISTER_UNITS).toBe(CENTRECORP_BEDS_DEPLOYED);
+    const utopiaFromCentrecorp = CENTRECORP_RECONCILIATION.flatMap((r) => r.split)
+      .filter((x) => x.place === 'Utopia Homelands')
+      .reduce((n, x) => n + x.units, 0);
+    expect(utopiaFromCentrecorp).toBe(139);
+    expect(utopiaFromCentrecorp).not.toBe(UTOPIA_REGISTER_UNITS);
+    expect(SRC).toMatch(/different 147/);
+  });
+
+  it('names 130 as an unpaid quote and never as a delivery', () => {
+    expect(CENTRECORP_QUOTED_UNPAID).toBe(130);
+    expect(CENTRECORP_RECONCILIATION.some((r) => r.bedsInvoiced === 130)).toBe(false);
+    expect(SRC).toMatch(/QU-0014/);
+    expect(SRC).toMatch(/has not been paid/);
+  });
+
+  it('the printable line says both halves', () => {
+    expect(CENTRECORP_LINE).toContain('167');
+    expect(CENTRECORP_LINE).toContain('147');
+    expect(CENTRECORP_LINE).toContain('20');
+  });
+
+  it('says the register is counted in units, because a row can carry more than one', () => {
+    expect(SRC).toMatch(/UNITS, not rows/);
   });
 });

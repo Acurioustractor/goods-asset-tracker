@@ -373,3 +373,95 @@ export const DEMAND_SOURCE =
 export function needsSecondSource(): readonly DemandRecord[] {
   return RECORDED_DEMAND.filter((d) => d.grade !== 'verified');
 }
+
+/* ---------------------------------------------------------------------------
+ * THE CENTRECORP RECONCILIATION, closed 11 September 2026
+ * ---------------------------------------------------------------------------
+ * Q10 promised this and it is now done. Three numbers were in circulation for
+ * Centrecorp: 167 on the invoices, 147 in the register and 130 on deck slide S12.
+ *
+ * Every bed Centrecorp paid for has a register row. Nothing is missing.
+ *
+ *   INV-0259, 60 Basket Beds   -> batch GB0-148, 60 units, all deployed at Utopia
+ *   INV-0291, 107 Stretch Beds -> batch GB0-156, 107 units exactly, split three ways:
+ *                                 79 deployed at Utopia
+ *                                  8 deployed at Alice Springs
+ *                                 20 made and READY at Alice Springs, not yet deployed
+ *
+ * So Centrecorp bought 167 beds and 147 of them are deployed. The 20 that are ready
+ * are the whole of the gap.
+ *
+ * THE TRAP. Utopia's community total is also 147, and it is a different 147. Utopia
+ * holds 60 Basket plus 79 Stretch from the Centrecorp batches, plus 8 Stretch from
+ * batch GB0-152, which Centrecorp did not pay for. The two 147s share a number and
+ * not a single set of beds. Never treat one as evidence for the other.
+ *
+ * 130 is the quantity on quote QU-0014 from May 2026, which has not been paid.
+ * Nothing in the register or the ledger is 130.
+ *
+ * GB0-152 is 15 units, 8 at Utopia and 7 at Tennant Creek, and no invoice in this
+ * module accounts for it. That is the next thread, and it is not Centrecorp's.
+ *
+ * Counting note: the register is counted in UNITS, not rows, because one row can
+ * carry a quantity above 1. Rows and units agree on all three batches here.
+ */
+
+export interface BatchSplit {
+  place: string;
+  status: 'deployed' | 'ready';
+  units: number;
+}
+
+export interface InvoiceToRegister {
+  invoiceNumber: string;
+  bedsInvoiced: number;
+  batch: string;
+  batchUnits: number;
+  split: readonly BatchSplit[];
+}
+
+export const CENTRECORP_RECONCILIATION: readonly InvoiceToRegister[] = [
+  {
+    invoiceNumber: 'INV-0259',
+    bedsInvoiced: 60,
+    batch: 'GB0-148',
+    batchUnits: 60,
+    split: [{ place: 'Utopia Homelands', status: 'deployed', units: 60 }],
+  },
+  {
+    invoiceNumber: 'INV-0291',
+    bedsInvoiced: 107,
+    batch: 'GB0-156',
+    batchUnits: 107,
+    split: [
+      { place: 'Utopia Homelands', status: 'deployed', units: 79 },
+      { place: 'Alice Springs', status: 'deployed', units: 8 },
+      { place: 'Alice Springs', status: 'ready', units: 20 },
+    ],
+  },
+];
+
+/** Beds Centrecorp paid for, across both invoices. */
+export const CENTRECORP_BEDS_PAID = CENTRECORP_RECONCILIATION.reduce((n, r) => n + r.bedsInvoiced, 0);
+
+/** Of those, the ones a household has. */
+export const CENTRECORP_BEDS_DEPLOYED = CENTRECORP_RECONCILIATION.flatMap((r) => r.split)
+  .filter((x) => x.status === 'deployed')
+  .reduce((n, x) => n + x.units, 0);
+
+/** Made, counted and waiting. This is the whole of the gap. */
+export const CENTRECORP_BEDS_READY = CENTRECORP_BEDS_PAID - CENTRECORP_BEDS_DEPLOYED;
+
+/** Utopia's community total, which is a different 147 from the Centrecorp one. */
+export const UTOPIA_REGISTER_UNITS = 147;
+
+/**
+ * The quantity on quote QU-0014, May 2026. Unpaid. It is printed on deck slide S12
+ * as paid and delivered, which is the error this reconciliation exists to correct.
+ */
+export const CENTRECORP_QUOTED_UNPAID = 130;
+
+/** The line that may be printed once Ben rules. */
+export const CENTRECORP_LINE =
+  'Centrecorp bought and paid for 167 beds. 147 are in households and 20 are made and waiting at ' +
+  'Alice Springs.';

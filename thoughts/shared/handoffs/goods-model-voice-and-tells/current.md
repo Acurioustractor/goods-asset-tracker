@@ -195,6 +195,31 @@ The QBE Control Room now opens with it. Sixty-eight claims on that page, **eleve
 one sits in finances by buyer, costings, the production facility or the ask. Nothing else blocks the
 application.
 
+## Closed, 11 September 2026: the Centrecorp reconciliation
+
+Q10 owed this since it was written. It ties exactly and nothing is missing.
+
+| Invoice | Beds | Batch | Where they are |
+|---|---:|---|---|
+| INV-0259 | 60 Basket | GB0-148, 60 units | 60 deployed, Utopia |
+| INV-0291 | 107 Stretch | GB0-156, 107 units | 79 deployed Utopia, 8 deployed Alice Springs, **20 ready Alice Springs** |
+
+**Centrecorp bought 167 beds. 147 are in households. 20 are made and waiting at Alice Springs.**
+That is the whole gap. 130 is the quantity on quote QU-0014 from May 2026, unpaid, and deck slide S12
+prints it as paid and delivered.
+
+**The trap: there are two 147s and they are not the same beds.** Utopia's community total is 147 and
+Centrecorp's deployed total is 147. Utopia holds 60 Basket and 79 Stretch from the Centrecorp batches
+plus 8 Stretch from batch GB0-152, which Centrecorp never paid for. Centrecorp's 147 includes 8 beds at
+Alice Springs and excludes those 8. **Only 139 beds are in both.** Never use one as evidence for the other.
+
+**New, smaller thread: batch GB0-152, 15 units**, 8 at Utopia and 7 at Tennant Creek, supplied December
+2025, with no invoice in the buyer record covering it. Gifted stock, or a sale nobody has traced.
+
+**Counting note.** The register is counted in UNITS, not rows: one row can carry a quantity above 1, which
+is why 571 deployed rows are 572 units and why a row count gives 176 Stretch Beds against canon's 177.
+`check:asset-drift` is green and canon at 540 is right.
+
 **Two closed today** when Xero came back and the invoices were read line by line. ALIVE is $101,200 for
 100 beds at $800, settled 20 August, and the $75,000 figure was never on an invoice; the separate $66,000
 is a storytelling contract carrying no beds. **One opened**: Centrecorp paid for 167 beds across two
@@ -205,8 +230,7 @@ QU-0014.
 Sam at Defy what a press costs, which is the first real number under the $150,000 plant allowance and the
 only thing that can size the Sefa approach. One day closes or informs four of the eleven.
 
-The nine that stay open after Monday: Centrecorp's real count, Snow at 57% untraced to a cell, 540 against
-320, freight at $100 or $150 (a 122-bed swing on the printed break-even), twelve unpriced cost lines,
+**Four of the eleven closed on 11 September** and seven are left. The seven that stay open after Monday: Snow at 57% untraced to a cell, freight at $100 or $150 (a 122-bed swing on the printed break-even), twelve unpriced cost lines,
 opening cash unknown, 36 kg against a stale D06 of 40, capacity 360 against 400, and the four pool
 communities.
 
