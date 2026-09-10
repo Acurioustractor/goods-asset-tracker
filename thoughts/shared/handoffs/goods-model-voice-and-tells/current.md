@@ -195,6 +195,30 @@ The QBE Control Room now opens with it. Sixty-eight claims on that page, **eleve
 one sits in finances by buyer, costings, the production facility or the ask. Nothing else blocks the
 application.
 
+## Traced, 11 September 2026: Snow's 57% mixes two entities
+
+The published claim is that Snow was $375,000 of $653,246 of FY26 Goods receipts, or 57%, never
+traced to a workbook cell. It cannot be traced to one, because it is not one ledger.
+
+Snow's FY26 invoices in the connected sole-trader org are INV-0258 $5,544.88, INV-0268 $110,000 and
+INV-0321 $132,000. **That is $247,544.88 on an invoice-date basis**, or $264,144.99 received in the
+year once INV-0240 settles in September. Add the **$127,455.12** the handoff places in the A Curious
+Tractor Pty Ltd org and it reaches **$375,000.12**, to the cent. That is where the figure comes from.
+
+**The A Curious Tractor org is not connected and nobody has read it.** So the numerator spans two
+entities while the $653,246 denominator is the sole trader alone, and 57% divides one by the other.
+
+On the connected org by itself, Snow is **37.9%** of FY26 Goods receipts on an invoice-date basis and
+**40.4%** on a cash basis. All-time Snow in this org is **$493,129.79** across ten invoices, against
+$397,384.91 in GHL and $375,000 published. None of the three agree.
+
+**Do not print 57% until the A Curious Tractor ledger is read.** Connecting that org is the single
+action that closes it.
+
+**Today's sole-trader position**, read 11 September: cash at bank $143,402.56, owed to us
+$281,048.84, owed by us $310,835.48. That is one org on one day and it is not the applicant's
+opening balance, which Butterfly's cashflow has to give.
+
 ## Walked the nine written answers, 11 September 2026
 
 Three problems, found by reading each answer against what is now locked.
