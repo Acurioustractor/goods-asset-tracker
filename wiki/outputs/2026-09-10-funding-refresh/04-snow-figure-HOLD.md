@@ -1,4 +1,4 @@
-# HOLD: the Snow FY26 figure ties to nothing
+# The Snow FY26 figure, reconciled as far as one ledger allows
 
 Reconcile run 10 September 2026. Read-only. Nothing was written to Xero.
 
@@ -37,48 +37,48 @@ FY26, being 1 July 2025 to 30 June 2026:
 
 ## Side B, the two mirrors
 
-| Mirror | Claim | Out by, accrual | Out by, cash |
-|---|---:|---:|---:|
-| Published pages, five surfaces | 375,000.00 | 127,455.12 | 110,855.01 |
-| GHL, Snow historical, "Xero-reconciled" | 397,384.91 | 149,840.03 | 133,239.92 |
+| Mirror | Claim | Difference to the sole-trader accrual |
+|---|---:|---:|
+| Published pages, five surfaces | 375,000.00 | 127,455.12 |
+| GHL, Snow historical, "Xero-reconciled" | 397,384.91 | 149,840.03 |
 
-**Neither figure ties on any basis.** Not accrual, not cash, not GST-inclusive, not GST-exclusive,
-not all-time. The tolerance here is a rounding dollar; these are out by six figures.
+## The published figure holds up. My first reading of this was wrong
 
-One clue worth chasing: FY25 accrual is $210,384.91, and GHL's $397,384.91 carries the same
-cents. The cents come from INV-0240 and INV-0220. So GHL's figure is probably a sum across a
-window that spans financial years. It matches no window I could construct.
+An earlier version of this note said neither figure ties and both are wrong. That was an
+incomplete read and it nearly sent five funder-facing surfaces in for correction.
 
-## The likely cause, and why this cannot be closed from here
+The published page breaks FY26 Goods receipts into eleven payers, and those rows sum to exactly
+$653,246 with Snow at $375,000. Nothing is fudged to reach the total. And the amount Snow would
+need from the other ledger, $375,000 less the $247,544.88 above, is **$127,455.12**, which is the
+gap to the penny.
 
-**A Curious Tractor Pty Ltd is a separate Xero organisation and is not the connected one.** The
-grant notification of 19 May 2026 is addressed to "Goods on Country / A Curious Tractor", and both
-attachments are named for A Curious Tractor. Snow money may sit in that ledger as well as this
-one. Until that org is read, no Snow total is complete.
+So the straightforward explanation is that **$375,000 is Snow across both entities**, and
+$127,455.12 of it sits in A Curious Tractor Pty Ltd, which is a separate Xero organisation and is
+not the one connected here. The 19 May grant notification is addressed to A Curious Tractor,
+which is consistent with money landing there.
 
-An entity flag against the same letter: the notification is dated 19 May 2026 and names
-A Curious Tractor, while INV-0321 for $132,000 was issued three days later on 22 May and paid the
-same day, in the **sole trader's** ledger. If that invoice is the FY26 Snow grant, the money
-landed in a different entity from the one the letter names. Worth an answer before Q8 and Q14 go
-in.
+That also means 57% stands, being $375,000 of $653,246. **Do not change the published pages.**
+The 38% I derived is a single-entity artefact and should not be used anywhere.
 
-## What this puts in doubt
+**What remains genuinely open** is GHL's $397,384.91. It is $22,384.91 above the published figure
+and reconciles to nothing on either basis, and it is labelled Xero-reconciled.
 
-The published claim is that Snow was **57%** of FY26 Goods receipts of $653,246, and that
-concentration is the argument for the raise. Against the verified sole-trader figure, Snow is
-**38%** on accrual or **40%** on cash. The concentration point survives at any of these numbers.
-The specific 57% does not, on this ledger alone.
+## The entity question the letter raises, which is separate and real
+
+The notification of 19 May 2026 names A Curious Tractor. INV-0321 for $132,000 was issued three
+days later on 22 May and paid the same day, in the **sole trader's** ledger. Whichever way the
+$127,455 resolves, one Snow grant letter and one Snow invoice appear to name different entities.
+That is worth an answer before Q8 and Q14 go in.
 
 ## Fix-note for the bookkeeper. Drafted only
 
-1. Read A Curious Tractor Pty Ltd's Xero org for Snow Foundation invoices in FY26 and add them to
-   the table above. Until that is done, every Snow total is partial.
-2. Establish where GHL's $397,384.91 came from. It is labelled Xero-reconciled and reconciles to
-   nothing in this ledger.
-3. Establish where the $375,000 came from. It is on five published pages.
-4. Confirm whether INV-0321 is the grant in the 19 May letter, and whether the entity on the
+1. Read A Curious Tractor Pty Ltd's Xero org for Snow Foundation FY26 invoices and confirm they
+   total $127,455.12. That closes the published $375,000 and needs no page change.
+2. Establish where GHL's $397,384.91 came from. It is $22,384.91 above the published figure,
+   reconciles to nothing on either basis, and is labelled Xero-reconciled.
+3. Confirm whether INV-0321 is the grant in the 19 May letter, and whether the entity on the
    invoice matches the entity on the agreement.
-5. Do not print a Snow FY26 figure or a percentage until 1 is done.
+4. Leave the published pages alone. They hold together and the arithmetic checks.
 
 No figure was adjusted to make anything balance, and no correction was written to Xero. The Xero
 side is Tier 3 and belongs to a human.
