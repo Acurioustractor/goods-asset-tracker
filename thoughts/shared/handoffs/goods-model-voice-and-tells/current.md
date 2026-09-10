@@ -195,6 +195,27 @@ The QBE Control Room now opens with it. Sixty-eight claims on that page, **eleve
 one sits in finances by buyer, costings, the production facility or the ask. Nothing else blocks the
 application.
 
+## Deck alignment, 11 September 2026
+
+Every text node in all nineteen frames of board `BEXfI` read and checked. Nothing changed; slides get
+built one at a time on Ben's word. Full review in `deliverables/qbe-stage2/deck-alignment-2026-09-11.md`.
+
+**Seven findings.**
+
+1. **130 printed as paid and delivered six times**, five on `ZZ4GO` S11 including the frame's own
+   name, once on `LX4ci` S12. Centrecorp paid for 167.
+2. **S11's note is stale**: "Keep the 87, 130 and historic 147 records separate until overlap is
+   reconciled." It is reconciled. The 87 is Utopia's Stretch count, 8 from GB0-152 and 79 from GB0-156.
+3. **S15 says ALIVE paid $75,000.** They paid $101,200.
+4. **S17 says sixty beds a month.** The ruled rate is 48 at 80% availability, which is what Q19 says.
+5. **S12 omits ALIVE and Mala'la**, and carries no demand figures at all.
+6. **S03's four statistics are not the four locked problem modules.** Both sets are sourced. The
+   employment pair is the risk: 38% is the 2022-23 health survey, 35% is the 2021 Census.
+7. **S18 rounds the module range up at both ends**, $96,000 to $143,000 against $95,767 to $142,467.
+
+**What checked out:** S08's register tiles against canon and the live register, S10's Maningrida 40,
+S13's model, S14's four outcomes, S15's bed economics, S16's funding design and S18's ask.
+
 ## The 25 Questions swept clean, 11 September 2026
 
 A full pass for stale figures. Nothing left: no $75,000 for ALIVE, no 57%, no $375,000, no 130 outside
