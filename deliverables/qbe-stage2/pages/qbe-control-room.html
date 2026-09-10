@@ -1,3 +1,4 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>QBE Control Room</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -194,14 +195,14 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--rail);font-si
     <p>One place for the whole application. Every figure carries the cell or the document it came from, every
        claim carries a grade, and where two sources disagree the row says so.</p>
     <div class="back" style="margin-top:14px;font-size:13px">Question by question, with the written answers, the slides that carry each one and the voices cleared to quote: <a href="https://claude.ai/code/artifact/92ad473f-91e5-4ec8-b68c-2c3580102cb5">The 25 Questions</a>.</div>
-    <div class="when">Built 10 September 2026 &middot; figures read from a recalculated copy of Goods-financial-plan.xlsx, 28 sheets, 42,429 formulas</div>
+    <div class="when">Built 10 September 2026, checked against the live model sheet the same day &middot; deep source: a recalculated copy of Goods-financial-plan.xlsx, 28 sheets, 42,429 formulas &middot; live layer: Goods, the live model, fifteen tabs</div>
   </div>
 
   <dl class="strip">
     <div><dt>Closes</dt><dd>25 Sep</dd><div class="sub">Friday, noon AEST. Brian M. Davis closes the same day.</div></div>
     <div><dt>The request</dt><dd>$300,000</dd><div class="sub">Two community plants at $150,000 each.</div></div>
     <div><dt>Signed today</dt><dd class="flag">$0</dd><div class="sub">Funding!F19. Every other line is an invitation or a conversation.</div></div>
-    <div><dt>Answers written</dt><dd>8 of 25</dd><div class="sub">Q5, Q6, Q7, Q8, Q9, Q10, Q18, Q23.</div></div>
+    <div><dt>Answers drafted</dt><dd>9 of 25</dd><div class="sub">Q5, Q6, Q7, Q8, Q9, Q10, Q18, Q19, Q23. Q19 is drafted and waits on six documents.</div></div>
     <div><dt>Unpriced inputs</dt><dd>12</dd><div class="sub">QBE!D20. The plan is not fully priced while this is above zero.</div></div>
   </dl>
 
@@ -249,7 +250,7 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--rail);font-si
         <h3>What is being asked for</h3>
         <p>QBE is asked for <b>$300,000</b> to build two plants at $150,000 each. Beds are separate:
            <b>400</b> of first stock, of which Tim Fairfax covers <b>133</b> and Brian M. Davis <b>80</b>,
-           leaving <b>187</b> to find. Alice Springs is funded through Oonchiumpa and sits outside the raise.</p>
+           leaving <b>187</b> to find, or <b>54</b> once the $100,000 Snow ask is sent and counted as beds. Alice Springs is funded through Oonchiumpa and sits outside the raise.</p>
       </article>
       <article>
         <h3>What already runs</h3>
@@ -305,6 +306,7 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--rail);font-si
         <div class="bar" id="fundbar" role="img" aria-label="Beds funded against the target"></div>
         <div class="barkey">
           <span><i style="background:var(--olive)"></i>Invited money</span>
+          <span><i style="background:var(--gold)"></i>An ask not yet sent</span>
           <span><i style="background:var(--surface-2);border:1px solid var(--rail)"></i>Still to find</span>
         </div>
         <div class="saverow">
@@ -463,7 +465,7 @@ const FUNDERS = [
   {id:"tff",  name:"Tim Fairfax Family Foundation", amt:100000, beds:133, on:true,  kind:"invited", note:"Operating support, unrestricted. Releases $100,000 of bed money. Board late November."},
   {id:"bmd",  name:"Brian M. Davis", amt:60000, beds:80, on:true, kind:"invited", note:"$60,000 of the $100,000 against stock, $40,000 against facilitation. Board 19 November."},
   {id:"alive",name:"ALIVE, University of Melbourne", amt:75000, beds:100, on:true, kind:"paid", note:"Already paid. Outside the 400."},
-  {id:"snow", name:"Snow Foundation", amt:0, beds:0, on:false, kind:"none", note:"No current ask found in email to 9 September. Enter an amount only after a dated ask."},
+  {id:"snow", name:"Snow Foundation", amt:100000, beds:133, on:false, kind:"toask", note:"Ben, 10 September: a $100,000 ask shaped like Brian M. Davis, counted as bed money. Not yet sent, so it is off by default. Turning it on is what takes the hole from 187 beds to 54."},
   {id:"sefa", name:"Sefa loan, if it lands", amt:200000, beds:266, on:false, kind:"invited", note:"Repayable. Good for plants or for stock a buyer has ordered, never for gifted first stock."}
 ];
 
@@ -473,7 +475,7 @@ const CLAIMS = [
   ["Funding secured to date","$0","verified","Funding!F19. No signed commitment with satisfied conditions."],
   ["A bed sells at the factory door for","$750","verified","Model!B22. Canon."],
   ["A bed costs this to make, paid making inside it","$276","modelled","Model!B23. Modelled, not measured, until the first fifty come off the line at working pace."],
-  ["Making cost, reconciled against the $276","$235.74 plus $40","verified","Start!B48 and NM Play B66 give $235.74: raw plastic $60, electricity $16.67, consumables $33.33, bought parts $125.74. Add the $40 assembly allowance (NM Play B64) and it is $275.74, the $276 the deck prints. Same build, one line apart."],
+  ["Making cost, built line by line","$275.74","modelled","Canon grades the factory cost modelled, because the arithmetic is checked and the per-bed cost has never been measured at a sustained pace. Live model One bed tab: plastic $55, power $15, bought parts $125.74, factory labour $80. The repo cost engine reaches the same $275.74 independently (cost-model/engine.ts stateFactory), so two sources agree on the total and on the build. A second route through the workbook, $235.74 (plastic $60, electricity $16.67, consumables $33.33, parts $125.74) plus a $40 assembly allowance, lands on the same total from different line values and a different wage treatment. Matching totals do not make it the same build, and it must not be cited as a reconciliation."],
   ["What stays with Goods on a bed it sells","$474","verified","Model!B24, derived from B22 minus B23."],
   ["Paid making inside every bed","$80","modelled","Two hours at the factory rate. Model!B8 gives 826.67 hours across 413.33 beds."],
   ["Running the organisation for a year","$297,550","verified","Model!B25."],
@@ -497,11 +499,13 @@ const CLAIMS = [
   ["Beds Centrecorp bought and paid for","130","verified","Ben confirmed. Their invoices read Weave Bed v2.3 deliberately, and must not be corrected."],
   ["Beds delivered and paid at Maningrida","40","verified","Pressed at Witta, assembled at Gamardi. A paid production run, not a sustained rate."],
   ["HDPE in a finished bed","20 kg","modelled","Design mass. Not measured landfill diversion, and not the same as what goes through the press."],
-  ["Gross input per bed: two figures","36 kg or 40 kg","conflict","NM Play B21 says 36 kg of shred is pressed for one bed. Decision D06 says 40 kg of gross sheets. The 36 breaks down by sheet (21 plus 15) and is the later of the two. Neither is measured diversion."],
+  ["Gross input per bed: two figures","36 kg or 40 kg","conflict","The recorded production assumption is 36 kg, breaking down by sheet as 21 plus 15. Decision D06 says 40 kg of gross sheets. The 36 is the later of the two. Neither is measured diversion, and neither is NM Play B21, which holds a net-per-sheet figure."],
   ["HDPE across 400 beds","8 tonnes in the beds, 14.4 pressed","modelled","Model!B11 gives 8,266.67 kg of design mass. At 36 kg of shred a bed the press takes 14.4 tonnes to make them. Do not double count recirculated material."],
-  ["Beds ready to assemble now","81","verified","Model!B36."],
+  ["Beds ready to assemble now","81","verified","Live model Stock counts, the 9 September count, and Model!B36. 87 once the 145 kg of weighed shred is pressed."],
   ["Beds possible from everything at Witta","143","verified","Model!B37."],
-  ["Witta output a month, own panels or Defy legs","60 or 120","modelled","Model!B38."],
+  ["The Harvest, beds a month","48","modelled","3 beds a day, 20 planning days, 80% availability (Ben, 10 Sep). 576 a year. There is no measured basis: the production log opened 10 September with no entries, and its run-days column is what replaces the assumption."],
+  ["With a second press at The Harvest","80 beds a month","modelled","12 pressed sheets a day makes assembly the constraint at 5 beds a day, so the ceiling is 100 a month and 80% of that is 80. Clears the 630 of recorded demand in 7.9 months against 13.1 on one press."],
+  ["Recorded demand on The Harvest","630 beds","modelled","ALIVE 100 from November, 400 of first stock and Centrecorp 130 from December. Live model, The plant. Neither QBE plant has a start date, so none of the 630 can be made at Palm Island or Maningrida."],
   ["Beds made October to July in the plan","713","modelled","Model!B45."],
   ["Beds someone pays Goods for","510","modelled","Model!B46. The difference is roughly 120 catalytic gap and 83 July stock."],
   ["Lowest closing cash to July 2027","-$33,546.33","modelled","Model!B43."],
@@ -517,18 +521,18 @@ const CLAIMS = [
   ["Alice Springs plant money","about $150,000 of DEWR's $1,695,000","verified","DEWR offer letter 12 Aug 2026 to Oonchiumpa, pass-through to Goods. Net zero for Goods and outside the two plants."],
   ["NIAA Local Investments for the Alice Springs plant","up to $150,000","invited","Alex Cadden email 7 Aug 2026. Invitation in train, not issued. NIAA confirmed plant equipment is eligible."],
   ["A plant costs this to build","$150,000","modelled","An allowance, not a quote. It sits above the module high of $142,467 and between the workbook's two site benchmarks: $113,000 to replicate and install (Capital!C31), $207,450 turnkey (Capital!C32). Nine of thirteen modules are estimates; the generator alone runs $6,600 to $20,000."],
-  ["The press sets the pace, not the router","3 beds a day","verified","NM Play B46. Six pressed sheets a day and two sheets a bed. CNC does 8.56 a day and assembly 5, so both have spare. 720 beds a year on own sheets, 1,440 on Defy leg panels."],
-  ["Shred pressed for one bed","36 kg","verified","NM Play B21, Ben 9 Sep: a leg sheet takes 21 kg and a tab sheet 15 kg. The finished bed is 20 kg, so 16 kg is offcut or loss until yield is measured."],
+  ["The press sets the pace","3 beds a day","verified","NM Play B46. Six pressed sheets a day and two sheets a bed. CNC does 8.56 a day and assembly 5, so both have spare. That is 720 beds a year at full availability. Buying Defy leg panels lifts the press out of the way and assembly then caps the line at 5 beds a day, which is 1,200 a year. The 1,440 figure carried in older documents predates the assembly ceiling."],
+  ["Shred pressed for one bed","36 kg","modelled","Recorded gross production input, Ben 9 Sep: a leg sheet takes 21 kg and a tab sheet 15 kg. Do not cite NM Play B21 for it: that cell holds 10 kg net per sheet, a different basis. The finished bed keeps 20 kg and about 16 kg of melt-edge and router offcut goes back to the shredder, so net new shred is 20 kg a bed (Ben, 9 Sep). Tab mass and the shredder's daily throughput are still to weigh."],
   ["Beds still to find for the 400","54","modelled","Tim Fairfax 133, Brian M. Davis 80 and a Snow ask of 133 at the bed price. Ben, 10 Sep: Snow gets an ask shaped like Brian M. Davis and it counts as bed money. Without Snow it is 187."],
   ["Communities that would hold a 100-bed pool","four","open","Decision D09, at $10,000 facilitation each. Candidates are Mount Isa and the Lower Gulf, Kununurra, Ceduna or Port Augusta, Tennant Creek, possibly Utopia homelands. None named."],
-  ["The community share when a community sells a bed","50%","conflict","No community has agreed this split, and it keeps less locally ($375) than a bed Goods sells itself ($474). Q9's document leaves the money row out until Ben rules."],
+  ["What a community keeps when it sells a bed","$750, all of it","verified","Ben, 8 and 10 September 2026. The 50% split is retired. Live model Inputs community_keeps = 1.00, One bed tab: kept in the community on sale $750. That is more than the $474.26 Goods keeps on a bed it sells itself. Proceeds are not Butterfly receipts and cannot repay Goods borrowing."],
   ["Nothing in Empathy Ledger is approved for public display","110 quotes pending, 486 unapproved","verified","Supabase, project 6bd47c8a, read 10 Sep 2026. The repo storyteller registry governs what may be printed."],
   ["Voices cleared to print","six external tier, plus Fred Campbell","verified","storyteller-registry.ts. Margaret Lloyd, Katrina Bloomfield, Tehmineh Mason, Mykel, Karen Liddle, Shayne Bloomfield."],
   ["Kristy Bloomfield has a Goods story to quote","no","verified","Her twenty quotes trace to The Homestead, Law Student Workshops and Caterpillar Dreaming. Quoting her for Goods is a project-scope error."],
   ["Margaret Lloyd's community","Utopia homelands","conflict","Empathy Ledger says Palm Island. The registry says Utopia homelands and the page follows the registry."],
   ["ALIVE's money against ALIVE's beds","$75,000 for 100 beds","conflict","The reckoning records $101,200 received and $66,000 owed, so the order is bigger than the beds."],
-  ["What the community does with its sale proceeds","keeps all of it","verified","Ben, 8 Sep 2026. Proceeds are not Butterfly receipts and cannot repay Goods borrowing."],
   ["The Sefa loan amount","$200,000","unverified","Funding F06. Our number, not Sefa's. No EOI sent, eligibility and affordability unresolved."],
+  ["Freight a bed: two live figures","$100 or $150","conflict","The live model Inputs sheet carries $100 (Start!B49, an inherited estimate with no route quotes). The repo cost engine's default long-haul freight is $150, which is what makes canon's marginal factory cost $425.74 against the $275.74 ex-freight build. Break-even when Goods carries freight is 796 beds at $100 and 918 at $150, so the choice moves the number the deck prints by 122 beds."],
   ["Paid beds a year needed to service the loan","101","modelled","Model!B51. Serviceable from a plant's own paid beds from its first full year, never from gifted stock."]
 ];
 const FUNDROWS = [
@@ -552,7 +556,7 @@ const QS = [
   ["Q6","","Proposed use of funds","written","-","Written and checker-clean."],
   ["Q7","","If the full amount were not available","written","-","Written and checker-clean. One plant, not fewer beds."],
   ["Q8","","Activity touching related entities","written","Board","Written, but it asserts a related-party declaration that the 14 September board has not yet minuted."],
-  ["Q9","","Expected impact of the new funds","written","-","Document written. The money row is left out until Ben rules on the 50% share."],
+  ["Q9","","Expected impact of the new funds","written","-","Document written. The money row can go back in at the full sale price: Ben ruled on 10 September that the community keeps all of it."],
   ["Q10","","Impact to date and how it is measured","written","-","Written 10 September and checker-clean. Reports 540 deployed and 320 sold and paid, and says why both are true. The Centrecorp reconciliation is still owed."],
   ["Q11","","Existing impact measurement materials","doc","Ben","Register reconciliation, retrospective note and blank templates exist. Label proposed collection as proposed, never as an evaluation already done."],
   ["Q12","","Why governance documents are unavailable","open","Ben","Butterfly's constitution is unlocated. Explain only genuine retrieval gaps."],
@@ -560,7 +564,7 @@ const QS = [
   ["Q14","Q15","Other funding, with original evidence","doc","Ben","Private evidence bundle exists. Refresh conditions, recipient and dates. Invitations remain invitations."],
   ["Q16","Q17","Committed funder contacts and permission to contact","person","Ben","Contact schedule prepared. The applicant supplies permission."],
   ["Q18","","How QBE unlocks or de-risks other funding","written","-","Written and checker-clean. It asks QBE about the November timing rather than hiding it."],
-  ["Q19","","Governance, team, financial and delivery readiness","open","Nic","Site agreements, funded support, cash timing and responsibilities unfinished. Nic owes a site and a quote basis per plant."],
+  ["Q19","","Governance, team, financial and delivery readiness","doc","Nic","Drafted 10 September, 538 words, checker-clean. It carries the first written delivery rate: 48 beds a month at The Harvest. Six documents are owed. A site letter, a quote basis per plant and a cash milestone schedule from Nic; Kristy's related-party minute from the 14 September board; the constitution and the applicant cashflow from Eloise."],
   ["Q20","Q21","Applicant profit and loss, balance sheet and cashflow","doc","Eloise","FY26 Butterfly set found, ten pages with FY25 comparatives, unaudited and unsigned. Audit is not required. Current management cashflow still needed."],
   ["Q22","","Evidence that governance is focused on impact","doc","Ben","Constitution, control records, board delegation and conflict records. ACT's constitution is not Butterfly's."],
   ["Q23","","Capital raising deck, model and materials","written","-","Answer written. Deck PDF is 19 pages at 4.7MB, inside the cap, and carries the current ask."],
@@ -569,7 +573,7 @@ const QS = [
 ];
 const ATT = [
   ["Q3 · structure","One-page structure and funding-flow draft","Confirm control, ownership, every related entity and the transfers. Correct the diagram against the records."],
-  ["Q9 · expected impact","Impact document written 10 September","Ben's ruling on the 50% community share before the money row goes back in."],
+  ["Q9 · expected impact","Impact document written 10 September","Put the money row back in at $750 kept locally, per Ben's 10 September ruling."],
   ["Q11 · existing measurement","Dated register reconciliation, retrospective note, blank templates","Reconcile the Centrecorp overlap. Select consented stories. Keep planned collection apart from completed evaluation."],
   ["Q15 · funder evidence","Private original-correspondence bundle","Refresh status and any later letters. Confirm conditions, recipient and dates."],
   ["Q20 · financials","FY26 Butterfly accounts, unaudited and unsigned","Current management cashflow and reconciled opening balances. Programme cashflow is not entity cashflow."],
@@ -585,6 +589,7 @@ const LINKS = [
   ["Notion","Goods on Country, QBE final submission","Site choices, bed quantities, final budget and the request.","https://app.notion.com/p/3d2ebcf981cf819a9399c538f34893f8"],
   ["Notion","QBE media library","Photographs, films and usage.","https://app.notion.com/p/3d2ebcf981cf81f6ba65d6418da837d0"],
   ["Notion","QBE operating plan","Programme dates, flags and the investor shortlist.","https://app.notion.com/p/380ebcf981cf819cac62f51dd9532e84"],
+  ["Sheet","Goods, the live model","Fifteen tabs off one Inputs tab. Codex builds and maintains it, Ben edits the yellow input cells, and this page reads it. Change one input and the model moves.","https://docs.google.com/spreadsheets/d/1Sh0Kk0CI0NSeO_H0T8P91H8skBJLpKkRfcQjRWTd-5Y/edit"],
   ["Form","QBE Stage 2 Zoho form","The live application form.","https://survey.zohopublic.com/zs/Iqt8SS"],
   ["Programme","Sefa Backing the Bold","Programme and eligibility, for the loan conversation.","https://www.sefapartnerships.org.au/programs/backing-the-bold"]
 ];
@@ -614,14 +619,15 @@ const RETIRED = [
   ["A $403,901 surplus","Never use it","Use $713,827 for revenue, and never call it signed."],
   ["Utopia holds 169 beds","147 confirmed","Community OS's count is wrong. The register's real column is product, not type."],
   ["Goods. as a separate maker or seller","Retired from the model","Ruling X, Ben 28 Aug 2026."],
-  ["1,000 beds, five roles, nine years","Not this programme's funded target","The 1,000-bed case is a capacity test, not a slide claim."]
+  ["1,000 beds, five roles, nine years","Not this programme's funded target","The 1,000-bed case is a capacity test, not a slide claim."],
+  ["A 50% community share of the sale","The community keeps the full sale price","Ben, 10 Sep 2026. Any slide carrying a split bar, and any Q9 draft with a half-share money row, still needs sweeping."],
+  ["NM Play B21 as the source for 36 kg","The recorded 21 plus 15 sheet breakdown","That cell holds 10 kg net per sheet. Citing it for the gross figure invites a funder to open the workbook and find a different number."]
 ];
 const OPEN = [
-  ["The 50% community share","It keeps less locally ($375) than a bed Goods sells itself ($474), and no community has agreed it. Q9's document leaves the money row out until it is settled.","Ben"],
   ["Kristy Bloomfield's related-party declaration","Q8 already asserts it. It has to be minuted at the 14 September board, and Oonchiumpa asked to minute the same.","Board, 14 Sep"],
   ["A site and a quote basis for each plant","Without them the $150,000 allowance cannot be defended against Matt Allen's $96,000 to $143,000 modules.","Nic, before 25 Sep"],
   ["Which four communities hold a 100-bed pool","The facilitation cost is priced at $10,000 each and none of the four is named.","Ben and partners"],
-  ["Butterfly's constitution","Q12 and Q22 both need it and it is unlocated.","Ben"],
+  ["Butterfly's constitution","Q12 and Q22 both need it. Ben, 10 Sep: it is with Eloise. Until the file is in hand the answer stays open.","Eloise"],
   ["Current management cashflow for the applicant","Q20 needs entity cashflow. A programme forecast is not entity cashflow.","Eloise"],
   ["The Snow relationship","Snow was 57% of last year's Goods receipts and there is no ask this year. Nothing in the plan replaces the other $275,000.","Ben"],
   ["Ntjillaburra","The name returns nothing across twelve tables. Either Nic knows it or Oonchiumpa was meant.","Nic"],
@@ -739,9 +745,10 @@ function drawQs(active){
     const c=CASES[+sel.value], plants=+$("#plants").value, target=+$("#target").value||0, freight=$("#freight").checked;
     const on=FUNDERS.filter(f=>ft.querySelector('[data-id="'+f.id+'"]').checked);
     const invitedBeds=on.filter(f=>f.kind==="invited").reduce((a,f)=>a+f.beds,0);
+    const askBeds=on.filter(f=>f.kind==="toask").reduce((a,f)=>a+f.beds,0);
     const paidBeds=on.filter(f=>f.kind==="paid").reduce((a,f)=>a+f.beds,0);
-    const funded=invitedBeds; // ALIVE's 100 sit outside the target
-    return {c,plants,target,freight,invitedBeds,paidBeds,funded,toFind:Math.max(0,target-funded)};
+    const funded=invitedBeds+askBeds; // ALIVE's 100 sit outside the target
+    return {c,plants,target,freight,invitedBeds,askBeds,paidBeds,funded,toFind:Math.max(0,target-funded)};
   }
   function draw(){
     const s=state();
@@ -750,7 +757,7 @@ function drawQs(active){
     const be=s.freight?BE_GOODS:BE_BUYER;
     const rows=[
       ["QBE request",money(s.plants*PLANT),s.plants?s.plants+" plants at "+money(PLANT):"nothing asked of QBE"],
-      ["Beds funded",s.funded,"of a "+s.target+"-bed target"],
+      ["Beds covered if every ask lands",s.funded,"of a "+s.target+"-bed target"+(s.askBeds?", including "+s.askBeds+" from an ask not yet sent":"")],
       ["Still to find",s.toFind,s.toFind?money(s.toFind*PRICE)+" of bed money":"the target is covered"],
       ["Paid making",(s.funded*HOURS).toLocaleString(),"hours, at two a bed"],
       ["HDPE in the beds",(s.funded*KG/1000).toFixed(1)+"t",(s.funded*SHRED/1000).toFixed(1)+"t pressed to make them"],
@@ -768,6 +775,7 @@ function drawQs(active){
     const tot=Math.max(s.target,s.funded)||1;
     const seg=(w,col)=>{if(w<=0)return;const sp=el("span");sp.style.width=(w/tot*100)+"%";sp.style.background=col;bar.appendChild(sp)};
     seg(s.invitedBeds,"var(--olive)");
+    seg(s.askBeds,"var(--gold)");
     bar.setAttribute("aria-label",s.funded+" of "+s.target+" beds funded, "+s.toFind+" still to find");
   }
   draw();
@@ -842,3 +850,5 @@ function drawQs(active){
 })();
 </script>
 <script type="text/plain" id="wbdata">__WORKBOOK_B64__</script>
+
+</body></html>

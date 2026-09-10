@@ -60,10 +60,9 @@ has already made beds with us: 40 pressed at our facility, sent north, and assem
 by young people with Homeland School Company. Palm Island's council, the community and PICC have
 each asked for a facility.
 
-This grant does not buy beds. The first stock is paid for separately, by the Tim Fairfax Family
-Foundation and the Brian M. Davis Charitable Foundation, so that a community's plant and a
-community's stock are never competing for the same dollar. Keeping them apart is what lets a
-plant be judged on whether it runs.
+Separate asks to the Tim Fairfax Family Foundation, the Brian M. Davis Charitable Foundation
+and the Snow Foundation would fund the first stock. All three remain unawarded. QBE's $300,000
+request is allocated to the two plants, with bed production and support funded separately.
 
 What the money produces that we can count: two plants standing and pressing; the beds they make
 in their first year; the hours of paid local work that go into them; and the plastic that goes
@@ -144,47 +143,36 @@ into the applicant that is already under way.
 
 ## Q18. How QBE funding would be catalytic
 
-A QBE decision releases money that is already invited and cannot be paid without it.
+A QBE award would fund two plants and help us meet a condition attached to another funding application.
 
 The Brian M. Davis Charitable Foundation invited us on 1 September to apply for up to $100,000.
-Their budget template sets the condition in writing:
+Its budget template says:
 
-> Please note BMDCF only pays out a grant once all funding for a project has been confirmed. If an
-> application to another funding body is unsuccessful, or other income becomes unavailable, you
-> must advise BMDCF as soon as possible.
+> Please note BMDCF only pays out a grant once all funding for a project has been confirmed.
 
-Our budget names QBE as the other funding body. So their money moves when yours does, and it stays
-still when yours does not. The dates line up in that order:
+Our budget names QBE as another funding body. A QBE award would help confirm the funding needed
+for that project. The Brian M. Davis application still needs its own approval and confirmation
+of the remaining project funding before payment.
 
-| When | What happens |
-|---|---|
-| 25 September | This application and the Brian M. Davis application both close |
-| 6 and 7 October | QBE interviews |
-| 23 October | QBE conditional outcomes |
-| October | Brian M. Davis grants committee |
-| 19 November | Brian M. Davis board decides |
-| Late November | Tim Fairfax Family Foundation decides |
+The timing matters. QBE expects to communicate conditional outcomes by 23 October and requires
+any preconditions to be met by 13 November. The Brian M. Davis board sits on 19 November and
+Tim Fairfax decides in late November. We need to clarify what evidence QBE can accept on
+13 November while those decisions are pending.
 
-A conditional outcome on 23 October is in our hands almost four weeks before the Brian M. Davis
-board sits. That is the whole mechanism, and it is the reason we are applying to you for the
-plants and to them for the beds and the youth facilitation.
+The plants would also let us measure the costs of making beds locally: material use, paid
+hours, good output, freight and the cost of operating each site. That evidence would improve
+future funding and borrowing decisions. Sefa is a possible source of repayable capital; no loan
+is agreed. The Paul Ramsay and Atlassian partnership is a prospect we have identified, with no
+approach yet recorded.
 
-The second thing your money unlocks takes longer to arrive and is worth more. Nobody will lend
-against a community-made bed today, because nobody knows what one costs to make in a community.
-Our costs come from a shed in Witta. The two plants this grant builds produce that number in their
-first year, weighed and counted at the site, alongside the operating cost of running a plant a
-long way from a city. We are in conversation with Sefa and with the Paul Ramsay Foundation and
-Atlassian Foundation's Impact First Fund about repayable capital. Neither conversation can become
-an application until the number exists. Our own test says a $200,000 loan needs 101 paid beds a
-year to service it, which is a plant's output and not a guess about demand. Grant capital builds
-plants one and two. Measured cost is what lets debt build plants three and four, and that is how
-this stops needing grants.
+Our illustrative $200,000 loan has annual payments of about $47,523. At the current modelled
+contribution of $474.26 per bed, 101 bed contributions would cover those payments before
+organisation costs. That calculation alone cannot establish affordability. We need a forecast
+showing a repayment source after operating costs, and community resale proceeds remain with
+the community.
 
-One thing here is a question for you. Your preconditions date is 13 November. The
-Brian M. Davis board sits on 19 November and Tim Fairfax decides late in the same month. Both are
-invitations we received in the last fortnight and neither board can be moved. We would like to
-know whether a conditional board outcome, or the invitation itself, can stand as the confirmation
-you need on 13 November.
+Can a conditional outcome or invitation from the other funders meet QBE's evidence requirement
+on 13 November, or would another arrangement be needed?
 
 ---
 
@@ -295,6 +283,82 @@ needs input, accepted parts, offcuts and waste weighed per batch. And household 
 which needs a consented follow-up at delivery, six weeks and three months.
 
 ---
+
+## Q19. Governance, team, financial and delivery readiness
+
+DRAFT, 10 September 2026. 538 words. Owner Nic. Not ready to submit. Every outstanding item
+below is a document someone has to supply.
+
+Goods on Country makes beds today. That is the readiness question answered in one line, and the
+rest is the detail behind it.
+
+**Delivery.** The press sets the pace at The Harvest. It makes six sheets a day and a bed takes
+two, one for the legs and one for the tabs, so the line runs at three beds a day. The router does
+8.56 a day and assembly does five, so neither is the constraint. On twenty working days a month,
+with an allowance of 80% for downtime, sickness and waiting on material, that is 48 beds a month
+and 576 a year. Those figures are modelled. The daily production log opened this week and has no
+entries in it, so the availability allowance is a planning assumption, and the log is what will
+replace it with a measured rate.
+
+What is measured is the work already done. 320 beds sold and paid across ten invoices, $343,481
+all time. 540 beds sit on the register across eleven communities. Forty of them were pressed at
+Witta and assembled at Gamardi with the Maningrida crew, paid for and delivered. That
+run is the evidence that the making travels. On the floor today there are 81 cut
+plastic bed sets, and 87 once the weighed shred is pressed.
+
+**Governance.** The applicant and recipient is The Butterfly Movement Ltd, trading as Goods on
+Country, ABN 22 155 132 684, ACN 155 132 684. Its directors are Kristy Bloomfield, Audrey Deemal
+and Jeremy Donovan. The board meets on 14 September and will minute Kristy's related-party
+declaration, because Oonchiumpa, which she leads, is both a delivery partner and a supplier in
+Central Australia. It is disclosed here, and the minute will be available.
+
+**Team.** Nic Marchesi runs production, supply and the plant build. Ben Knight runs the model, the
+money and the funder relationships. Making is paid work: $80 a bed, about two hours, at the
+factory rate. Additional central roles beyond the two founders are not priced in this plan. That gap is
+named at Q20.
+
+**Financial.** Goods' trading history sits in Nicholas Marchesi's sole-trader ledger and is moving
+across to Butterfly under the transfer described at Q8. Butterfly's own unaudited FY26 shows income
+of $77,080 against expenses of $119,934 and closing cash of $4,041, and the full statements go to
+Q20 and Q21. Running the organisation costs $297,550 a year. A bed sells at $750 at the factory
+door, costs $275.74 to make with the $80 of paid making inside that, and leaves $474.26. Freight is
+charged on top, at cost, per community. Nothing in this application is secured yet, and twelve cost
+lines in the plan are still unpriced. Both of those are stated in full at Q14 and Q15.
+
+**The two plants.** QBE's $300,000 builds two plants, working
+choices Palm Island and Maningrida, at $150,000 each. That allowance sits above the module total
+of $95,767 to $142,467 and below the $207,450 it costs to hand a site over running. Nine of the
+thirteen modules carry estimates. Site quotes follow.
+
+The plants do not make this year's beds. Neither has a start date, and every bed committed for the
+next twelve months comes off the line at The Harvest.
+
+---
+
+## What Q19 still needs, and from whom
+
+- A site agreement or letter of support for Palm Island and for Maningrida. **Nic.**
+- A quote basis for each plant, against the thirteen modules. **Nic.**
+- A cash milestone schedule tying the build to the funding dates. **Nic and Eloise.**
+- Kristy's related-party declaration, minuted. **Board, 14 September.**
+- Butterfly's constitution. **Eloise.**
+- Current management cashflow for the applicant. **Eloise.**
+
+## Figures used, and where each comes from
+
+| Figure | Source | Grade |
+|---|---|---|
+| 3 beds a day, press-limited | Live model Facility plans, from NM Play B10, B45 | Modelled |
+| 48 beds a month, 576 a year | 20 days x 3 beds x 80% availability, Ben 10 Sep | Modelled |
+| 81 cut sets, 87 with weighed shred | Stock counts, 9 September count | Provisional |
+| 320 beds sold and paid, $343,481 | Ten invoices | Verified |
+| 540 on the register, eleven communities | Register check 8 September, 609 asset rows | Verified |
+| 40 beds pressed at Witta for Maningrida | Paid production run | Verified |
+| $750 / $275.74 / $474.26 | Live model One bed; cost engine stateFactory | Verified arithmetic, modelled cost |
+| $297,550 a year | Model!B25 | Verified |
+| Butterfly FY26 $77,080 / $119,934 / $4,041 | Butterfly FY26 sheet, unaudited and unsigned | Verified |
+| $95,767 to $142,467 modules, $207,450 turnkey | Live model plant budget; Capital!C32 | Modelled |
+| 12 unpriced cost lines | QBE!D20 | Verified |
 
 ## Working notes, not for QBE
 

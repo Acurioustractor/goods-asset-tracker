@@ -73,7 +73,7 @@ Legs are the limit: about 81 beds of legs, tabs for 101 (plus about 59 uncut tab
 
 ## What to order next
 
-1. Shred, not panels, is the standing order. Three bags (1,800 kg) at $1.80 = $3,564 plus GST is one month at the Defy-legs pace or six weeks at own-panel pace. Witta holds 1,800 kg plus 600 kg coloured plus the unweighed buckets, so the next three bags are due about late October, and monthly after that. Nic collecting from Botany saves about $1,350 of freight a load.
+1. Shred, not panels, is the standing order. Three bags (1,800 kg) at $1.80 = $3,240 ex GST ($3,564 incl GST) is one month at the Defy-legs pace or six weeks at own-panel pace. Witta holds 1,800 kg plus 600 kg coloured plus the unweighed buckets, so the next three bags are due about late October, and monthly after that. Nic collecting from Botany saves about $1,350 of freight a load.
 2. Panels only as a surge for ALIVE's November 100. Fifty full panels at $401.49 = $20,075 plus about $2,450 freight, about $225 a bed. That is the same money as the second 1200 x 1200 press Nic wants to raise with Sam on 14 September, which doubles Witta's own capacity for good. Buy the press, not the panels, unless the press cannot be running by mid October.
 3. Do not order cut kits at $344.05. They cost more than the whole $276 make cost and take the labour out of the bed.
 4. Ask Millie for a statement of account. It settles INV-1503 and INV-1507 from November 2025, confirms INV-1732 was never an order, and lets the three card duplicates be voided in Xero.
