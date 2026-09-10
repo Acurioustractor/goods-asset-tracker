@@ -195,6 +195,21 @@ The QBE Control Room now opens with it. Sixty-eight claims on that page, **eleve
 one sits in finances by buyer, costings, the production facility or the ask. Nothing else blocks the
 application.
 
+## ▶ THE EXPLAINER: https://claude.ai/code/artifact/90e5a525-b65b-48ae-8a34-95bf6268a728
+
+**"How a Bed Becomes an Enterprise."** The simple one-sheet Ben asked for, built 11 September against
+his twelve rulings. Nine plates, structured the way the bed is: a flat-pack with a parts list.
+
+01 the four doors, being the whole buyer model with a real buyer behind each · 02 the price ladder
+$370 to $800 · 03 two kinds of money that never meet, Ben's chosen chart, with the money labelled on
+every arrow · 04 one bed at $750 with the $80 wage drawn inside the $276 · 05 two plants and why
+those two · 06 where every ask goes, with $0 secured · 07 the four things a bed carries · 08 six
+months to five years · 09 nine questions people actually ask.
+
+Palette and type deliberately differ from the other artifacts: galvanised steel and canvas in place
+of the cream and terracotta, Archivo with Source Serif 4, because Archivo is what the brand tokens
+name as the logo face and never loads. Tells gate clean.
+
 ## Deck alignment, 11 September 2026
 
 Every text node in all nineteen frames of board `BEXfI` read and checked. Nothing changed; slides get
