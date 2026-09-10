@@ -195,6 +195,48 @@ The QBE Control Room now opens with it. Sixty-eight claims on that page, **eleve
 one sits in finances by buyer, costings, the production facility or the ask. Nothing else blocks the
 application.
 
+## The 27 Open Items, read from the live sheet, 11 September 2026
+
+The sheet's Open Items table is the real list behind "twelve unpriced cost lines". All 27 rows carry
+an owner and the QBE questions they touch. Sorted by who can actually move them:
+
+**Ben alone, no document needed (6).** 3 non-founder central wages (confirm nil in scope, Q19 already
+discloses the gap), 4 R&D (confirm nil), 5 youth employment (already decided at $10,000 x 4 =
+$40,000, needs recording), 16 the v6 admin line of $14,700 (confirm it is covered), 21 selling price
+(decided), 27 Notion source pages (resolved).
+
+**Nic, needs a quote or a measurement (6).** 12 trainer and WHS officer scope, 13 equipment
+maintenance (a 5% estimate), 14 factory power per bed (needs measuring), 17 and 19 the build cost
+scope and facility basis (Monday's Defy conversation), 20 bought-in Defy kit beds.
+
+**Accountant or Eloise (9).** 1 opening cash, 2 opening PP&E, 15 head office overlap, 18 founder
+salaries, 22 financial-year view, 23 depreciation life, 24 tax rate, 25 debtor days, 26 grant income
+recognition.
+
+**Shared or already moving (6).** 6 tied grants, 7 untied grant income, 8 repayable capital, 9
+freight, 10 site lease, 11 insurance.
+
+## Closed, 11 September 2026: capacity is 576, not 360 or 400
+
+3 beds a day, 20 planning days a month, twelve months, is 720 a year at full availability. Ben set
+availability at **80%** on 10 September, giving 48 a month and **576 a year** at The Harvest.
+
+**360 is exactly 720 at 50%**, so it is a pre-ruling number that Ben's own decision superseded.
+Start!B7 is right that 400 is supported, and it is conservative: 176 beds of headroom. The 50%
+reading of D17 is inferred, because the cell formula has not been opened, but the conclusion holds
+either way since 576 beats 400.
+
+## Corrected, 11 September 2026: freight was never a conflict
+
+Earlier today I called $100 against $150 a conflict and settled it at $150. The settling was right
+and the framing was wrong. Open Item 9 reads **"$100 factory and $50 community, as entered on the
+input page"**. They sum to $150. I compared a leg against a total.
+
+The consequence runs the other way from what I said. **Where Goods carries freight the printed
+break-even is 918, not 796**, because 796 used the factory leg alone. Under the price model the
+buyer pays freight at cost on its own line, so 628 stands. A guard now asserts the two legs sum to
+the all-up figure. Open Item 9 still wants route quotes and a named payer.
+
 ## Traced, 11 September 2026: Snow's 57% mixes two entities
 
 The published claim is that Snow was $375,000 of $653,246 of FY26 Goods receipts, or 57%, never
