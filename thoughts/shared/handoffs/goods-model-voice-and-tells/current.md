@@ -252,7 +252,9 @@ The shared project's 4,562-row buyer table stays out until Palm Island's postcod
 - [x] `audit-memory` pass done 11 September: MEMORY.md 26,953 bytes to 9,386, no index line over 200 characters, July and August archived verbatim to `goods-resume-archive-2026-08`.
 - [ ] Apply `deliverables/qbe-stage2/fixes/palm-island-buyer-key-2026-09-11.sql` against project `tednluwflfhxyucgwigh`. Reversible, transactional, reads back 21 rows before commit. Blocked in auto mode, so Ben runs it.
 - [ ] FRRR SRC Round 30 by 17 September, or Round 31 by 3 December.
-- [ ] GHL corrections needing Ben: Snow first-mover from Ask made to Identified, Minderoo paused not open, Sefa $200,000 not $300,000. Tier 3, writes to a system of record.
+- [x] GHL stage corrections written 11 September on Ben's word: Snow first-mover `ZzPJCLAq3nkAo0bG7ot3` moved Ask made to **Identified**; Minderoo `zQZWXJyILdvzwm8OACPr` moved Ask made to **Declined / Parked**, which is the pipeline's word for paused. Both stages set in two places, the pipeline stage and custom field `QbfHdeNpz2JiMe5iRESS`, because the row carries the stage twice.
+- [ ] Two GHL dollar figures held until Nic's Defy conversation on Mon 14 September, both flagged to Ben and agreed: **Sefa stays at $300,000** rather than moving to the illustrative $200,000, because the 10 September ruling sizes the loan to a press that is still unpriced. **Snow's first-mover row stays at $150,000** against the $100,000 ask ruled on 10 September that moves the bed hole from 187 to 54; the row's own next-action note already asks whether $150,000 is current.
+- [ ] Sefa row `hBRVkCMhT93215aqTRRr` disagrees with itself: pipeline stage Cultivating, custom field `QbfHdeNpz2JiMe5iRESS` says "Signal", which is not a stage in this pipeline. Not touched, because only the two stage corrections were authorised.
 - [ ] Nic: Centrecorp's position. Section 5 of the deck master says they declined further funding; QU-0014 quotes 130 beds in May 2026.
 
 ### Decisions
