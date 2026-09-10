@@ -195,6 +195,27 @@ The QBE Control Room now opens with it. Sixty-eight claims on that page, **eleve
 one sits in finances by buyer, costings, the production facility or the ask. Nothing else blocks the
 application.
 
+## Where the QBE application stands, 11 September 2026
+
+Both artifacts are current. Q10 was rewritten today because the reconciliation it promised closed.
+
+| State | Count | Which |
+|---|---:|---|
+| Written and checker-clean | 9 | Q5, Q6, Q7, Q8, Q9, Q10, Q18, Q19, Q23 |
+| Document owed | 8 | Q3, Q4, Q11, Q14/Q15, Q19's six files, Q20/Q21, Q22 |
+| A person must answer | 5 | Q13, Q16/Q17, Q24, Q25 |
+| Not started | 1 | Q12, blocked on Butterfly's constitution |
+| Ready, needs its records | 1 | Q1/Q2 |
+
+**Q10 rewritten.** The old answer printed "ten invoices, 320 beds, $343,481" and "Centrecorp, for
+Utopia, 130, paid and delivered", and said the reconciliation was still owed. It now reports 320 beds
+across five invoices to four organisations settling for $273,966, and reports the reconciliation:
+167 bought, 147 deployed, 20 waiting, with the two-different-147s caution carried in the answer
+itself. **Q19's trade sentence corrected** the same way.
+
+**Deck slide 12, frame LX4ci, is "Demand and buyers"**, which is the slide S12A and S12B replace. It
+is the last place the 130 survives.
+
 ## Closed, 11 September 2026: freight, against real numbers
 
 Two estimates were being chosen between. There are three real freight figures and all are Maningrida.
