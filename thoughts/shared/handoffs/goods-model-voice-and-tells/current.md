@@ -185,7 +185,7 @@ Production purchases and labour still need reconciliation into cash. Opening bal
 holds together. Done when every question is answered or assigned to a named person, every figure
 traces to a source, and nothing ships with a writing tell.
 **Branch:** feat/ai-tells-gate-and-goods-model in worktree `/Users/benknight/Code/goods-finance-wt`.
-**34 commits, NOT pushed.**
+**36 commits, pushed 11 September. No PR open.**
 **Test:** `cd v2 && ./node_modules/.bin/vitest run && ./node_modules/.bin/tsc --noEmit -p tsconfig.json && npm run build`
 **Before publishing anything:** `node tools/check-ai-tells.mjs <file>`
 
@@ -245,11 +245,12 @@ The shared project's 4,562-row buyer table stays out until Palm Island's postcod
 
 ### Next
 - [ ] Ben rules on the three at the top of this ledger, then one Pencil build pass on S12A and S12B.
-- [ ] Push the branch and open the PR. Tier 2 then Tier 3, both need Ben's word.
+- [ ] Open the PR when Ben gives the verb. The branch is pushed; the PR is the Tier 3 half.
 - [ ] Codex: push the problem tab into the live sheet from `deliverables/qbe-stage2/pages/problem-tab-for-sheet.md`.
 - [ ] Butterfly's constitution from Eloise. It blocks Q12, Q22, the 50% Indigenous-business threshold and IBA eligibility.
 - [ ] Q19's six documents: a site letter and quote basis per plant and a cash milestone schedule from Nic, Kristy's minute, the applicant cashflow.
-- [ ] An `audit-memory` pass. MEMORY.md is 28KB against a 24.4KB limit with 32 over-long index lines.
+- [x] `audit-memory` pass done 11 September: MEMORY.md 26,953 bytes to 9,386, no index line over 200 characters, July and August archived verbatim to `goods-resume-archive-2026-08`.
+- [ ] Apply `deliverables/qbe-stage2/fixes/palm-island-buyer-key-2026-09-11.sql` against project `tednluwflfhxyucgwigh`. Reversible, transactional, reads back 21 rows before commit. Blocked in auto mode, so Ben runs it.
 - [ ] FRRR SRC Round 30 by 17 September, or Round 31 by 3 December.
 - [ ] GHL corrections needing Ben: Snow first-mover from Ask made to Identified, Minderoo paused not open, Sefa $200,000 not $300,000. Tier 3, writes to a system of record.
 - [ ] Nic: Centrecorp's position. Section 5 of the deck master says they declined further funding; QU-0014 quotes 130 beds in May 2026.
@@ -268,7 +269,8 @@ The shared project's 4,562-row buyer table stays out until Palm Island's postcod
 - UNCONFIRMED: GHL holds Snow historical at $397,384.91 against $375,000 published, reconciling to nothing.
 - UNCONFIRMED: the 19 May Snow grant letter names A Curious Tractor while INV-0321 sits in the sole trader's ledger.
 - UNCONFIRMED: $127,455.12 of Snow FY26 money should be in the A Curious Tractor Pty Ltd Xero org, which nobody has read.
-- UNCONFIRMED: Palm Island's row in `goods_communities` carries postcode 4895, which pulled Cooktown organisations into its buyer list.
+- CONFIRMED 11 September: Palm Island's `goods_communities` row carries postcode 4895, which is Cooktown, and all 17 linked buyers are Cape York and Cooktown bodies. The 21 real ones sit in `gs_entities` under lga_name 'Palm Island', postcode 4816. Repair script written and unapplied.
+- CONFIRMED 11 September: the wider table is worse than one row. Of 4,551 links, 3,255 carry an `entity_id` that resolves to nothing and 1,231 more disagree with their community's postcode. Fixing Palm Island does not make the table trustworthy.
 - UNCONFIRMED: Utopia has three bed counts. The register says 147, the two Centrecorp invoices say 167, and deck slide S12 says 130. Only the invoice figure was checked this session.
 - UNCONFIRMED: nobody has viewed the evidence-health block in a browser beyond the rendered text I read.
 
