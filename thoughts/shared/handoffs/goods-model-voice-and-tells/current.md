@@ -220,6 +220,16 @@ Plate 02 is now **what a buyer actually pays for**: $197,060 of bed lines, $50,0
 $9,000 of washers and $5,900 of freight, gross $261,960, less the in-kind credit, leaving $247,770
 net. It carries the facilitation argument instead of a false trend. **NEVER draw a bed price trend.**
 
+**Plate 04 now breaks down both halves of the $750, on Ben's word, and they tie exactly.**
+Make: plastic $55, power $15, the maker's wage $80, bought parts $125.74, being $275.74. Runs the
+organisation: founders $240.76, travel $81.21, accounting $79.62, the Witta shed $56.29, marketing
+$15.92, being $473.81. Together $749.55, which rounds to the price.
+
+**The elegant part is that the right half is exactly the year divided by break-even.** $297,550 of
+running costs across 628 beds is $473.81 a bed, so 628 is not an assumption, it is what the two
+halves force. Founder wages $151,200, travel $51,000, accounting $50,000, Witta $35,350, marketing
+$10,000. The $474 is not profit and the plate says so.
+
 ## Deck alignment, 11 September 2026
 
 Every text node in all nineteen frames of board `BEXfI` read and checked. Nothing changed; slides get
