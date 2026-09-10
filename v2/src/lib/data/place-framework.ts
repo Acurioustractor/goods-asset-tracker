@@ -73,12 +73,16 @@ const GATED_ORDER: AxisName[] = ['denominator', 'feedstock', 'buyer', 'authority
 function settingAxis(communityId: string): Axis {
   const need = COMMUNITY_NEED.find((n) => n.communityId === communityId);
   if (need) {
+    // Lead with the Aboriginal and Torres Strait Islander household figure, because that is who
+    // Goods works with and the whole-population count can be an order of magnitude larger. Darwin
+    // is 226 dwellings overall and 10 among ATSIP households.
     return {
       axis: 'setting',
       state: 'stale',
       detail:
-        `${need.need1plus} of ${need.occupiedDwellings} dwellings need an extra bedroom, ` +
-        `about ${Math.round(need.occupiedDwellings * need.personsPerDwelling)} people. ` +
+        `${need.atsipNeed1plus} of ${need.atsipHouseholds} Aboriginal and Torres Strait Islander ` +
+        `households need an extra bedroom (${need.need1plus} of ${need.occupiedDwellings} dwellings ` +
+        `all households, ${need.persons.toLocaleString()} people). ` +
         'ABS Census 2021, and it counts bedrooms rather than beds.',
     };
   }
