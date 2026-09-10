@@ -195,6 +195,27 @@ The QBE Control Room now opens with it. Sixty-eight claims on that page, **eleve
 one sits in finances by buyer, costings, the production facility or the ask. Nothing else blocks the
 application.
 
+## Closed, 11 September 2026: freight, against real numbers
+
+Two estimates were being chosen between. There are three real freight figures and all are Maningrida.
+
+| | Beds | Net | Per bed |
+|---|---:|---:|---:|
+| Charged to Homeland, Brisbane to Darwin to Maningrida, INV-0303 | 40 | $5,900 | **$147.50 at most** |
+| Quoted to Mala'la then discounted in full, INV-0283 | 13 | $3,200 | $246.15 |
+| Paid to Sea Swift in that window, bill 5732 2163 022 | 13 | $2,322.17 | $178.63 upper bound |
+
+**Use $150.** It is within $2.50 of what a real 40-bed run was charged. **$100 has no source.** The
+Sea Swift bill's only line reads "." so it cannot be shown to carry those 13 beds alone; its per-bed
+figure is an upper bound on that run.
+
+**Freight per bed falls with volume**, $147.50 across 40 against $246.15 quoted across 13, to the same
+place. No single constant is right at both ends.
+
+**It matters less than it looked.** Under the price model the buyer pays freight at cost on its own
+line, so the printed break-even stays at **628** beds. The 796 and 918 figures belong to the case where
+Goods carries freight, which is a sensitivity.
+
 ## Closed, 11 September 2026: the Centrecorp reconciliation
 
 Q10 owed this since it was written. It ties exactly and nothing is missing.
@@ -230,7 +251,7 @@ QU-0014.
 Sam at Defy what a press costs, which is the first real number under the $150,000 plant allowance and the
 only thing that can size the Sefa approach. One day closes or informs four of the eleven.
 
-**Four of the eleven closed on 11 September** and seven are left. The seven that stay open after Monday: Snow at 57% untraced to a cell, freight at $100 or $150 (a 122-bed swing on the printed break-even), twelve unpriced cost lines,
+**Five of the eleven closed on 11 September** and six are left. The six that stay open after Monday: Snow at 57% untraced to a cell, twelve unpriced cost lines,
 opening cash unknown, 36 kg against a stale D06 of 40, capacity 360 against 400, and the four pool
 communities.
 

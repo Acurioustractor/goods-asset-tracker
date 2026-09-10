@@ -465,3 +465,83 @@ export const CENTRECORP_QUOTED_UNPAID = 130;
 export const CENTRECORP_LINE =
   'Centrecorp bought and paid for 167 beds. 147 are in households and 20 are made and waiting at ' +
   'Alice Springs.';
+
+/* ---------------------------------------------------------------------------
+ * FREIGHT, what was actually charged and actually paid, 11 September 2026
+ * ---------------------------------------------------------------------------
+ * The live model carries $100 a bed and the repo cost engine defaults to $150, and the choice
+ * moves the break-even the deck prints by 122 beds. Both were estimates. These are the only real
+ * freight figures Goods has, and all three are Maningrida.
+ *
+ *   CHARGED, 40 beds     INV-0303 billed Homeland $5,900 net for delivery ex Brisbane through
+ *                        Darwin to Maningrida. Two washing machines rode on the same invoice, so
+ *                        $147.50 a bed is the ceiling and the true per-bed number is under it.
+ *   QUOTED, 13 beds      INV-0283 quoted Mala'la $3,200 of shipping, which is $246.15 a bed, then
+ *                        discounted it in full. The buyer paid nothing and Goods carried it.
+ *   PAID TO A CARRIER    One Sea Swift bill, $2,322.17 net, 29 September 2025, in the window of
+ *                        the Mala'la run. Its only line reads ".", so it cannot be proven to carry
+ *                        those 13 beds alone. If it did, that run cost $178.63 a bed to move.
+ *
+ * WHAT THIS SETTLES. $100 has nothing behind it. $150 is within $2.50 of what a real 40-bed run
+ * was charged. Use $150 wherever one number is needed.
+ *
+ * WHAT IT DOES NOT SETTLE. Freight per bed falls with volume: $147.50 across 40 beds against
+ * $246.15 quoted across 13, to the same place. A single constant misstates both ends, and one
+ * destination is not a national rate.
+ *
+ * WHERE IT ACTUALLY BITES. Under the ruled price model the buyer pays freight at cost as its own
+ * line, so the printed break-even is 628 beds and this constant never enters it. The 796 and 918
+ * figures belong to the case where Goods carries freight, which is a sensitivity and not the plan.
+ */
+
+export interface FreightPoint {
+  what: string;
+  beds: number;
+  amountNetAud: number;
+  perBedAud: number;
+  source: string;
+  grade: TradeGrade;
+  caveat: string;
+}
+
+export const FREIGHT_EVIDENCE: readonly FreightPoint[] = [
+  {
+    what: 'Charged to Homeland School Company, Brisbane to Darwin to Maningrida',
+    beds: 40,
+    amountNetAud: 5_900,
+    perBedAud: 147.5,
+    source: 'INV-0303, 18 May 2026, settled 23 July 2026',
+    grade: 'verified',
+    caveat: 'Two washing machines were on the same invoice, so $147.50 is a ceiling for the per-bed share.',
+  },
+  {
+    what: "Quoted to Mala'la Health Service for Maningrida, then discounted in full",
+    beds: 13,
+    amountNetAud: 3_200,
+    perBedAud: 246.15,
+    source: 'INV-0283, 21 October 2025',
+    grade: 'verified',
+    caveat: 'The buyer paid none of it. It records what the run was worth, not what anyone was charged.',
+  },
+  {
+    what: "Paid to Sea Swift in the window of the Mala'la run",
+    beds: 13,
+    amountNetAud: 2_322.17,
+    perBedAud: 178.63,
+    source: 'Bill 5732 2163 022, 29 September 2025, settled 1 October 2025',
+    grade: 'unverified',
+    caveat: 'The bill has a single line reading ".", so it cannot be shown to carry only those 13 beds. Treat the per-bed figure as an upper bound on that run.',
+  },
+];
+
+/** The figure to use where one number is needed. */
+export const FREIGHT_PER_BED_AUD = 150;
+
+/** The figure it replaces, and why. */
+export const FREIGHT_RETIRED_AUD = 100;
+
+export const FREIGHT_RULING =
+  'Freight is a route and a volume before it is a rate. Where one number is needed use $150 a bed, ' +
+  'which is within $2.50 of what a real 40-bed run to Maningrida was charged. $100 has no source. ' +
+  'Under the price model the buyer pays freight at cost on its own line, so break-even stays at 628 ' +
+  'beds and this number is a sensitivity.';

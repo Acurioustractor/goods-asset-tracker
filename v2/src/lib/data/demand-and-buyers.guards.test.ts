@@ -28,6 +28,10 @@ import {
   CENTRECORP_QUOTED_UNPAID,
   CENTRECORP_LINE,
   UTOPIA_REGISTER_UNITS,
+  FREIGHT_EVIDENCE,
+  FREIGHT_PER_BED_AUD,
+  FREIGHT_RETIRED_AUD,
+  FREIGHT_RULING,
 } from './demand-and-buyers';
 import { BED_PRICE_AUD } from './bed-ratio';
 
@@ -261,5 +265,49 @@ describe('the Centrecorp reconciliation, which Q10 owed', () => {
 
   it('says the register is counted in units, because a row can carry more than one', () => {
     expect(SRC).toMatch(/UNITS, not rows/);
+  });
+});
+
+describe('freight is evidenced, and its limits are stated', () => {
+  it('every point does its own arithmetic', () => {
+    for (const f of FREIGHT_EVIDENCE) {
+      expect(Math.round((f.amountNetAud / f.beds) * 100) / 100).toBe(f.perBedAud);
+      expect(f.caveat.length).toBeGreaterThan(30);
+      expect(f.source).toMatch(/INV-|Bill /);
+    }
+  });
+
+  it('lands on $150 and retires $100', () => {
+    expect(FREIGHT_PER_BED_AUD).toBe(150);
+    expect(FREIGHT_RETIRED_AUD).toBe(100);
+    const charged = FREIGHT_EVIDENCE[0];
+    expect(Math.abs(charged.perBedAud - FREIGHT_PER_BED_AUD)).toBeLessThan(3);
+    expect(Math.abs(charged.perBedAud - FREIGHT_RETIRED_AUD)).toBeGreaterThan(45);
+  });
+
+  it('shows freight per bed falling with volume, to the same destination', () => {
+    const forty = FREIGHT_EVIDENCE.find((f) => f.beds === 40)!;
+    const thirteen = FREIGHT_EVIDENCE.find((f) => f.beds === 13 && f.grade === 'verified')!;
+    expect(forty.perBedAud).toBeLessThan(thirteen.perBedAud);
+    expect(SRC).toMatch(/falls with volume/);
+  });
+
+  it('keeps the unproven carrier bill unverified rather than rounding it up', () => {
+    const bill = FREIGHT_EVIDENCE.find((f) => f.source.startsWith('Bill '))!;
+    expect(bill.grade).toBe('unverified');
+    expect(bill.caveat).toMatch(/upper bound/);
+  });
+
+  it('says freight does not enter the printed break-even under the price model', () => {
+    expect(FREIGHT_RULING).toMatch(/628/);
+    expect(FREIGHT_RULING).toMatch(/buyer pays freight at cost/);
+    expect(SRC).toMatch(/sensitivity and not the plan/);
+  });
+
+  it('is consistent with the freight actually charged on the paid invoices', () => {
+    const homeland = PAID_TRADE.find((i) => i.invoiceNumber === 'INV-0303')!;
+    expect(homeland.freightChargedNetAud).toBe(5_900);
+    const malala = PAID_TRADE.find((i) => i.invoiceNumber === 'INV-0283')!;
+    expect(malala.absorbedNotBilledAud).toBe(3_200);
   });
 });
