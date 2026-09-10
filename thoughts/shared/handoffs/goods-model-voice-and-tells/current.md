@@ -189,6 +189,27 @@ traces to a source, and nothing ships with a writing tell.
 **Test:** `cd v2 && ./node_modules/.bin/vitest run && ./node_modules/.bin/tsc --noEmit -p tsconfig.json && npm run build`
 **Before publishing anything:** `node tools/check-ai-tells.mjs <file>`
 
+## The landing list, 11 September 2026
+
+The QBE Control Room now opens with it. Sixty-eight claims on that page, **eleven unresolved**, and every
+one sits in finances by buyer, costings, the production facility or the ask. Nothing else blocks the
+application.
+
+**Two closed today** when Xero came back and the invoices were read line by line. ALIVE is $101,200 for
+100 beds at $800, settled 20 August, and the $75,000 figure was never on an invoice; the separate $66,000
+is a storytelling contract carrying no beds. **One opened**: Centrecorp paid for 167 beds across two
+invoices, the register says 147 and deck slide S12 prints 130, which is the quantity on unpaid quote
+QU-0014.
+
+**Monday 14 September is the hinge.** The board minutes Kristy's declaration, which closes Q8. Nic asks
+Sam at Defy what a press costs, which is the first real number under the $150,000 plant allowance and the
+only thing that can size the Sefa approach. One day closes or informs four of the eleven.
+
+The nine that stay open after Monday: Centrecorp's real count, Snow at 57% untraced to a cell, 540 against
+320, freight at $100 or $150 (a 122-bed swing on the printed break-even), twelve unpriced cost lines,
+opening cash unknown, 36 kg against a stale D06 of 40, capacity 360 against 400, and the four pool
+communities.
+
 ### Now
 [->] Three rulings on S12A and S12B, written at the bottom of the Notion deck master. S12 prints
     130 Centrecorp beds as paid when 130 is a quote quantity; section 5 says ALIVE does not buy
@@ -253,7 +274,7 @@ The shared project's 4,562-row buyer table stays out until Palm Island's postcod
 - [ ] Apply `deliverables/qbe-stage2/fixes/palm-island-buyer-key-2026-09-11.sql` against project `tednluwflfhxyucgwigh`. Reversible, transactional, reads back 21 rows before commit. Blocked in auto mode, so Ben runs it.
 - [ ] FRRR SRC Round 30 by 17 September, or Round 31 by 3 December.
 - [x] GHL stage corrections written 11 September on Ben's word: Snow first-mover `ZzPJCLAq3nkAo0bG7ot3` moved Ask made to **Identified**; Minderoo `zQZWXJyILdvzwm8OACPr` moved Ask made to **Declined / Parked**, which is the pipeline's word for paused. Both stages set in two places, the pipeline stage and custom field `QbfHdeNpz2JiMe5iRESS`, because the row carries the stage twice.
-- [ ] Two GHL dollar figures held until Nic's Defy conversation on Mon 14 September, both flagged to Ben and agreed: **Sefa stays at $300,000** rather than moving to the illustrative $200,000, because the 10 September ruling sizes the loan to a press that is still unpriced. **Snow's first-mover row stays at $150,000** against the $100,000 ask ruled on 10 September that moves the bed hole from 187 to 54; the row's own next-action note already asks whether $150,000 is current.
+- [ ] Two GHL dollar figures held until Nic's Defy conversation on Mon 14 September, both flagged to Ben and agreed: **Sefa stays at $300,000** until the press has a price, because the 10 September ruling sizes the loan to the press and the press is still unpriced. **Snow's first-mover row stays at $150,000** against the $100,000 ask ruled on 10 September that moves the bed hole from 187 to 54; the row's own next-action note already asks whether $150,000 is current.
 - [ ] Sefa row `hBRVkCMhT93215aqTRRr` disagrees with itself: pipeline stage Cultivating, custom field `QbfHdeNpz2JiMe5iRESS` says "Signal", which is not a stage in this pipeline. Not touched, because only the two stage corrections were authorised.
 - [ ] Nic: Centrecorp's position. Section 5 of the deck master says they declined further funding; QU-0014 quotes 130 beds in May 2026.
 
