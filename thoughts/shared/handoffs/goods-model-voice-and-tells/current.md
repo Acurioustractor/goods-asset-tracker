@@ -195,6 +195,19 @@ The QBE Control Room now opens with it. Sixty-eight claims on that page, **eleve
 one sits in finances by buyer, costings, the production facility or the ask. Nothing else blocks the
 application.
 
+## Six to confirm, live in the control room, 11 September 2026
+
+The control room has a new section, **Six to confirm**, above Where it stands. Each of Items 3, 4, 5,
+16, 21 and 27 carries what the sheet says now, the wording to paste into the answer column, and two
+buttons: Confirm as written, or Needs a change with a note field.
+
+**Decisions persist.** They write to the artifact's `db` under `confirmations/<itemId>` as
+`{state, note, at}`, so the next session can read what Ben chose with `read_db` on collection
+`confirmations`. A view that cannot save shows the buttons disabled and says so. The running tally
+says how far 27 Open Items would fall.
+
+Same text is in `deliverables/qbe-stage2/six-confirmations-2026-09-11.md`.
+
 ## The 27 Open Items, read from the live sheet, 11 September 2026
 
 The sheet's Open Items table is the real list behind "twelve unpriced cost lines". All 27 rows carry
