@@ -5,6 +5,37 @@ branch: feat/ai-tells-gate-and-goods-model
 status: handoff
 ---
 
+## The backwards pass, 11 September 2026, evening
+
+Both pages are republished and the third document is written.
+
+- **Control Room** `b45c45a0-378b-41a0-b635-eaa461d0957f` gained a money section and an impact
+  section, and the landing list now shows the seven closures with two smaller threads opened in
+  their place: a batch of 15 beds no invoice accounts for, and the shared buyer table's broken key.
+- **The 25 Questions** `92ad473f-91e5-4ec8-b68c-2c3580102cb5` gained a backwards-pass board at the
+  top: the 25 sorted by what blocks them, a ten-item work list in unblock order, the money model and
+  the impact grades.
+- `deliverables/qbe-stage2/backwards-pass-2026-09-11.md` carries the same in markdown.
+
+**The state of the 25.** Six final (Q5, Q8, Q9, Q10, Q18, Q23). Two written and held on the siting
+ruling (Q6, Q7). Three ready pending a check (Q1, Q2, Q19's text). Nine owed a document (Q3, Q4,
+Q11, Q14, Q15, Q19, Q20, Q21, Q22). Five that only a person can answer (Q13, Q16, Q17, Q24, Q25).
+One blocked on a missing file (Q12, the constitution, which also blocks Q22).
+
+**The money.** The year needs $937,550. $600,000 is asked across five asks, one unsent. $0 secured.
+The bed gap is 54 beds ($40,500) if all three land, 187 ($140,250) without Snow. **$197,550 of the
+operating cost is asked for nowhere** and is carried by trade. The second press, about $22,500, is
+in no ask and decides June against August for the 400 beds.
+
+**The impact measure.** One of four is verified: a person off the floor, counted from the register.
+Two hours of paid making and 20 kg of plastic are modelled. Money kept in community is a settled
+rule with no trading enterprise behind it yet. Health stays out of the measures.
+
+**Still open.** Push (classifier-blocked, Ben runs it). Palm Island SQL on the clipboard. Six
+confirmations awaiting ticks. Q6 and Q7 rewrites. The sheet build from the two modules. The
+A Curious Tractor Xero org. Decision D06's 40 kg to 36 kg sweep.
+
+
 ## Locked, 11 September 2026: the four problem areas
 
 The four areas that open the deck each have a typed module in `v2/src/lib/data/`, every figure
