@@ -1,9 +1,151 @@
 ---
-date: 2026-09-10T09:35:00+10:00
+date: 2026-09-11T22:00:00+10:00
 session_name: goods-model-voice-and-tells
 branch: feat/ai-tells-gate-and-goods-model
 status: handoff
 ---
+
+## Where it stands, end of 11 September 2026
+
+Fourteen days to the QBE close. 74 commits today, all pushed to
+`feat/ai-tells-gate-and-goods-model`. 774 tests across 47 files, typecheck clean, no PR open.
+
+### The money was wrong and is now right
+
+**The year needs $747,950, not $937,550.** The old figure added 400 beds at the $750 sale price to
+the full $297,550 running cost. A $750 bed pays its own $276 of making and hands $474 to the
+organisation, so the running cost was charged twice. The overlap is $189,600.
+
+$600,000 is asked across five lines, $0 secured, gap $147,950. **Tim Fairfax was being counted
+against beds and against operating at once**, which is where $99,500 of the error came from. Their
+invitation names the resilience of organisations, so it sits on the operating line alone.
+
+The same error was on three deck slides and is fixed: `TiKvy` S15, `F93w1o` S16, `tVcLc` S18.
+
+**Plant money never moves the gap.** A plant costs $150,000 and a plant grant brings $150,000. Ben,
+11 September: Alice Springs is approved and a second $150,000 is likely. The gap closes only if the
+second lands on a site QBE is already being asked to fund, and that then has to be declared at Q14
+and Q15. **Ben still has to name the site, and that answer is worth $147,950.**
+
+### The 25
+
+Nine final: Q5, Q6, Q7, Q8, Q9, Q10, Q11, Q18, Q23. Nothing is held any more.
+
+- **Q6 and Q7 rewritten** against the siting ruling. The 200-beds-of-recorded-need test is gone,
+  replaced by four readiness tests that Palm Island and Maningrida each pass. Q7's
+  largest-demand claim was false and is gone.
+- **Q11 written from scratch.** Three records already run and all three upload. It says one of four
+  measures is counted, says what we do not have, and proposes the household count as proposed.
+
+Eight questions are owed a document and every one belongs to somebody else. Five need only a
+signature. Q12 and Q22 are both blocked on Butterfly's constitution.
+
+### Demand: there is no number, and that is the position
+
+Three attempts, two failed, and both failures are recorded so nobody repeats them.
+
+1. Beds cannot come from ABS overcrowding. CNOS counts bedrooms, we supply beds.
+2. No rate hides under the recorded asks. Each is scoped to a different population. **A cluster at
+   0.26 beds per crowded dwelling looks real and is an artefact** of dividing Maningrida's
+   homelands figure by the whole ABS area.
+3. What works is the delivery record. **Palm Island reached one bed per 16.0 people and Tennant
+   Creek one per 15.9, independently.** Planning range one per 12 to one per 21 across three towns.
+   Utopia is held out at one per 3, being homelands.
+
+**Never state a demand total.** Present acts instead: money moved, money named, an organisation
+asked, a person asked, raised in a meeting. The largest figure sits on the weakest rung.
+
+### Defy and the Witta decision
+
+**INV-2021, $10,496.20, due 18 September.** 25 sheets of the 105 Nic asked for on 26 August, so 80
+are still to come. The 105 counts sheets. Sam's covering note calls them panels, which is where the confusion came from.
+
+**The shred runs out on 18 September**, the same day the invoice falls due, on Nic's own figure of
+450 kg a week with three weeks left as at 28 August.
+
+Panels go through the router beside the press instead of replacing it, lifting the line from 48
+beds a month to the assembly ceiling of 80. **Panels and a second press cost the same across the 400 when shred lands
+at $3.16 a kilogram.** Below that the press wins. The only prices a kilogram we hold are $6.87 and
+$7.34 and both are finished panel, so the press is the likely answer. **Quotes QU0494 and QU0495
+carry the bag price and neither has been opened. That is the whole blocker.**
+
+### TFN, and two Xero edits that need the screen
+
+The 12 month impact report is drafted and there is a cut-and-paste page for the form.
+
+**The books were already fixed.** Both distributions are reconciled against The Funding Network and
+booked to account 262 Grants Received. Both phantom bills are voided. The June note in memory was
+stale.
+
+**Two tracking edits remain and the API cannot make them.** Xero refuses: *"This Bank Transaction
+cannot be edited as it has been reconciled with a Bank Statement."* Nothing was written.
+
+| What | BankTransactionID |
+|---|---|
+| TFN tranche 1, $89,361, 28 Nov 2025, no tracking at all | `e5b115f7-73f7-4cff-9352-36d8c921dc70` |
+| Multicam CNC router, $18,000, 8 Jun 2026, tracked to The Farm | `aaa306fa-9922-425d-a1bf-6b8466d924ab` |
+
+Unreconcile in the Xero screen, add the tracking, re-reconcile. Option ids are in the TFN report.
+
+### The live sheet
+
+Eleven drifted cells and four missing tabs, written up two ways: a brief and a Codex prompt pack.
+
+**The short path is one share.** `tools/sheets.mjs` authenticates and the Sheets API answers. The
+only error is a permission denial on the file. Share the workbook with
+`subscription-scanner@act-subscription-tracker.iam.gserviceaccount.com` as Editor and the eleven
+changes can be applied cell by cell, leaving all 42,429 formulas alone.
+
+The worst drift is the Calculator's Availability at 100% when Ben set 80% on 10 September. One cell
+drives three others and every capacity number is wrong until it is set.
+
+### What was built
+
+Ten new guarded modules in `v2/src/lib/data/`:
+
+`the-year-and-the-raise` · `three-year-plan` · `defy-supply` · `production-scenarios` ·
+`who-has-asked` · `sizing-from-experience` · `bed-need-and-order` · `model-language` ·
+`model-consistency.guards.test` · plus `tools/sheets.mjs` and `tools/check-module-prose.mjs`.
+
+**`model-consistency.guards.test.ts` is the one to keep.** 29 cross-module invariants. Nothing
+previously guarded that the modules agreed with each other. It caught a real drift on its first run.
+
+**`check-module-prose.mjs` closed a blind spot in the writing gate.** The tells checker reads whole
+files and module prose lives inside strings and comments, so it had never run there. Thirty tells
+were sitting in today's eight modules, and one had drifted out of step with the same sentence in a
+published page. All cleared. **1,420 tells remain across 122 pre-existing modules and are
+deliberately left alone until after QBE.**
+
+### Artifacts
+
+| Page | URL |
+|---|---|
+| QBE Control Room | `b45c45a0-378b-41a0-b635-eaa461d0957f` |
+| The 25 Questions | `92ad473f-91e5-4ec8-b68c-2c3580102cb5` |
+| TFN answers, cut and paste | `eb4bd86c-20b7-4027-a3b4-1a77ca49477c` |
+| The Two Loops | `58d96a4b-616e-49ac-b274-8237929ae68a` |
+| Three Plates for the Deck | `69266095-8cfc-43ab-b81f-ed71b4e2b3de` |
+| How a Bed Becomes an Enterprise | `90e5a525-b65b-48ae-8a34-95bf6268a728` |
+
+**Watches are dropped on all of them.** If anyone republishes from elsewhere this session will not
+hear it, so re-read before editing.
+
+### Open, and who owns each
+
+1. **Name the site for the second Commonwealth $150,000.** Ben. Worth $147,950.
+2. **Open QU0494 and QU0495.** Ben or Nic. Decides the second press against panels.
+3. **Share the workbook with the service account.** Ben. Unblocks every sheet change.
+4. **Butterfly's constitution.** Eloise. Blocks Q12 and Q22.
+5. **Q19's six documents**, site letters and quote bases and a cash milestone schedule. Nic.
+6. **Current management cashflow and reconciled opening balances.** Eloise.
+7. **Kristy Bloomfield's related-party minute**, 14 September board. Ben.
+8. **The two Xero tracking edits**, in the screen.
+9. **The child safety answer for Brian M. Davis.** The policy is in draft and a youth funder will
+   read it closely. Do not submit that question until it is finished or dated.
+10. **Palm Island SQL**, still on Ben's clipboard.
+11. **Three deck plates**, not built in Pencil. One slide at a time, on Ben's word.
+12. **S13's subhead**, put to Ben and not changed.
+
 
 ## The backwards pass, 11 September 2026, evening
 
