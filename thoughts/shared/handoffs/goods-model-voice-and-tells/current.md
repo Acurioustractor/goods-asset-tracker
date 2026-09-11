@@ -1,9 +1,26 @@
 ---
-date: 2026-09-11T22:00:00+10:00
+date: 2026-09-12T21:00:00+10:00
 session_name: goods-model-voice-and-tells
 branch: feat/ai-tells-gate-and-goods-model
 status: handoff
 ---
+
+## ▶ START HERE
+
+**`RESUME-QBE.md` at the repo root is the paste-prompt.** Copy it into a fresh session.
+
+Notion front door: **🛏️ Goods on Country, the raise, start here**, `3d8ebcf981cf8128bd9aee918f49733f`.
+
+Six Notion pages, eight artifacts, eleven guarded modules, 809 tests, branch pushed, no PR.
+
+**The five that decide it:** send the SEFA EOI because Jay wants debt in the stack · the
+accountant's letter has no owner · the constitution blocks two funders · which entity holds the
+trade revenue · name the site for the second Commonwealth $150,000.
+
+**The architecture:** the modules are the core and the workbook is a view of them. `sheet-canon.ts`
+holds 43 figures, `tools/sheet-canon.mjs` pushes and checks them, and the whole thing is blocked on
+one share to the service account.
+
 
 ## Where it stands, end of 11 September 2026
 
