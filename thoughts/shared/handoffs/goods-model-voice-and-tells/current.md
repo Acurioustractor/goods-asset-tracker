@@ -308,6 +308,26 @@ Patched in the artifact and in both source files.
 **Q19 gained today's two closures in its evidence panel**: The Harvest at 576 beds a year with 176 of
 headroom against the 400 target, and freight at $150 all up.
 
+## The Model artifact corrected, 11 September 2026
+
+Read in full and fixed. It was the last stale one of the five and it is one of the four files Q23
+attaches, so it goes to QBE.
+
+- **Snow's tile** was 57% and $375,000. It reads 38% with the two-entity split named, and the
+  who-paid chart caption and its in-chart line both carry the same explanation.
+- **The 320 and the $343,481** were one sentence. They are separated, with $273,966 as the five-invoice
+  figure.
+- **ALIVE was $75,000** in section 8 while its own tile said $101,200. Both now read $101,200, and the
+  play control's default moved from 75000 to 101200.
+- **Freight** said about $100 a bed on average. It says $150 all up, $100 factory and $50 community,
+  and the control is labelled as the factory leg.
+- **Washing machines** said no price set, register interest only. Julalikari bought six for Tennant
+  Creek at $4,500 then $5,800 and Homeland two for Maningrida, so it now says they have been sold and
+  that the public site still takes register-interest only.
+- **The consent caveat is removed** on Ben's 11 September ruling. See [[feedback-el-consent-is-approved]].
+
+All five QBE artifacts are now current. The control room's link grid says so.
+
 ## The artifact register, 11 September 2026
 
 Five QBE artifacts. Two are current, three predate today's corrections.
