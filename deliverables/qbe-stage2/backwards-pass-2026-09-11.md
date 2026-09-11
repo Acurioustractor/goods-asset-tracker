@@ -24,8 +24,8 @@ Q19 has text and sits in the document column because of its six attachments.
 
 ## What needs work, in the order it unblocks the most
 
-1. **Butterfly's constitution** (Q12, Q22) — the only item blocking two questions. Eloise.
-2. **Q19's six documents** — a site letter and a quote basis per plant, and a cash milestone
+1. **Butterfly's constitution** (Q12, Q22). The only item blocking two questions. Eloise.
+2. **Q19's six documents**: a site letter and a quote basis per plant, and a cash milestone
    schedule. Nic. Neither community has agreed to a build, and neither should be told they are in
    a grant application before they have agreed.
 3. **Current management cashflow and reconciled opening balances** (Q20, Q21). Eloise. A programme
