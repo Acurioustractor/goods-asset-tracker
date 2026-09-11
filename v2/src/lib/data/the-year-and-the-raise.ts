@@ -56,7 +56,7 @@ export interface RunningLine {
 /** Running the organisation before a single bed is made. Ben's trimmed provision, 9 Sep 2026. */
 export const RUNNING_LINES: readonly RunningLine[] = [
   { line: 'Founders', amountAud: 151_200, what: 'Two founders beyond the days they spend on production.' },
-  { line: 'Getting to communities', amountAud: 51_000, what: 'Travel to eleven communities, which is the cost of being on country rather than on a call.' },
+  { line: 'Getting to communities', amountAud: 51_000, what: 'Travel to eleven communities. Being on country costs what a call does not.' },
   { line: 'Accounting and advice', amountAud: 50_000, what: 'Bookkeeping, the FY26 repair, the entity work and the audit-readiness the funders are asking for.' },
   { line: 'Witta rent', amountAud: 27_000, what: 'The Harvest shed, where the press and the router live.' },
   { line: 'Marketing', amountAud: 10_000, what: 'The site, the deck, the print.' },
@@ -129,7 +129,7 @@ export const ASKS: readonly Ask[] = [
     amountAud: 100_000,
     job: 'operating',
     stage: 'invited',
-    source: 'Katie Norman, 31 August 2026: a three-year grant of $300,000 in three equal payments, naming the resilience of organisations. Year one is $100,000 and it belongs against running the organisation, not against beds.',
+    source: 'Katie Norman, 31 August 2026: a three-year grant of $300,000 in three equal payments, naming the resilience of organisations. Year one is $100,000 and it belongs on the operating line alone.',
   },
   {
     funder: 'Brian M. Davis Charitable Foundation',
@@ -188,7 +188,7 @@ export const COMMONWEALTH_PLANT_MONEY: readonly PlantMoney[] = [
     amountAud: 150_000,
     stage: 'likely',
     inTheQbeAsk: false,
-    note: 'The same route again, for a Goods facility. Ben judges it highly likely. Which site it lands on is the open question: a third or fourth site leaves QBE untouched, and Palm Island or Maningrida means QBE funds one plant rather than two and the other $150,000 moves to beds.',
+    note: 'The same route again, for a Goods facility. Ben judges it highly likely. Which site it lands on is the open question: a third or fourth site leaves QBE untouched, and Palm Island or Maningrida means QBE funds one plant, and the other $150,000 moves to beds.',
   },
 ];
 

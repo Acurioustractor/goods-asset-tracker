@@ -30,14 +30,14 @@
  * relationship between population and beds that this record supports.
  *
  * Utopia is held out. At one bed per three people it is four times denser than anywhere else,
- * because it is a dispersed homelands population rather than a town and because we went deep
+ * because it is a dispersed homelands population and because we went deep
  * there. A homelands community is a different shape of job and is sized on its own.
  *
  * ---------------------------------------------------------------------------
  * WHAT THIS IS NOT
  * ---------------------------------------------------------------------------
- * It is not a measure of need. It is a record of what communities took when beds were on offer,
- * bounded by what we could afford to make. Every one of them has since asked for more, so the
+ * This records what communities took when beds were on offer, bounded by what we could afford
+ * to make, so it measures our funding as much as their need. Every one of them has since asked for more, so the
  * range is a floor and not a ceiling. Say that whenever the number is used.
  */
 
@@ -95,7 +95,7 @@ export const COMPARATORS: readonly Comparator[] = [
     delivered: 147,
     askedNext: 150,
     shape: 'homelands',
-    note: 'Dispersed homelands rather than a town, and the place we have gone deepest. Four times denser than anywhere else, so it sizes nothing but itself.',
+    note: 'Dispersed homelands, and the place we have gone deepest. Four times denser than any town, so it sizes nothing but itself.',
   },
 ];
 
@@ -154,11 +154,11 @@ export const NOBODY_HAS_SAID_ENOUGH =
   'Beds have gone to eleven communities. Not one has come back and told us they have enough. That is the plainest thing we can say about need and it needs no model behind it.';
 
 export const THE_CEILING =
-  'This is a record of what communities took when beds were on offer, bounded by what we could afford to make. It is not a measure of need, it is a floor rather than a ceiling, and one community doing a proper household count would replace it.';
+  'This records what communities took when beds were on offer, bounded by what we could afford to make. It measures our funding as much as their need, it is a floor because all three have asked for more, and one community doing a proper household count would replace it.';
 
 export const HOW_TO_SAY_IT: readonly string[] = [
   'Lead with the two that agree. Palm Island and Tennant Creek independently reached about one bed per 16 people, and both have asked for more since.',
-  'Give a range, never a point. One bed per 12 to one per 21 people, from three communities.',
+  'Give a range. One bed per 12 to one per 21 people, from three communities.',
   'Say what bounded it. Every number here is limited by what we could afford to make, so it describes our funding as much as their need.',
   'Hold homelands separate. Utopia sits at one bed per three people and sizes nothing but itself.',
   'Close with the count. Eleven communities have beds and none has said it has enough, and one household count would turn all of this into a measurement.',

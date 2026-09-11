@@ -130,7 +130,7 @@ export const OWN_PRESS_SAVING_VS_PANEL_HIGH_AUD =
   PANEL_PATH_PER_BED_AUD - OWN_PRESS_PLASTIC_LOW_AUD;
 
 export const OWN_PRESS_CEILING =
-  'The $40 to $55 is raw plastic only and is modelled, never invoiced. It excludes press time, power, the labour of shredding and the collection that puts feedstock in the bag. Treat it as the floor of the own press path rather than its cost.';
+  'The $40 to $55 is raw plastic only, and it is modelled. No invoice carries it. It excludes press time, power, the labour of shredding and the collection that puts feedstock in the bag, so treat it as the floor of the own press path.';
 
 // ---------------------------------------------------------------------------
 // What each path does to speed
@@ -248,5 +248,5 @@ export const WHAT_TO_ASK_DEFY: readonly string[] = [
   'Confirm the remaining 80 sheets of the 105 and whether the production slot still stands, because the 4 September deposit date has passed.',
   'Whether the 20% scale discount holds for a 267-sheet order, which is what 400 beds needs.',
   'What the lead time is on 267 sheets, because 21 days on 50 kits is the only lead time we have on record.',
-  'Whether they will quote cutting to the finished leg profile rather than to 800 by 1200, and what that does to the $344.05 kit price.',
+  'Whether they will quote cutting to the finished leg profile instead of 800 by 1200, and what that does to the $344.05 kit price.',
 ];

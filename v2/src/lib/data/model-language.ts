@@ -7,7 +7,7 @@
  * and says something the deck does not already say better. A line is recorded as retired when it
  * is good English and false, because those are the ones that come back.
  *
- * Every kept line carries the surface it belongs on, so it is used once rather than sprayed.
+ * Every kept line carries the surface it belongs on, so it gets used once.
  */
 
 export const READ_AT = '2026-09-11';

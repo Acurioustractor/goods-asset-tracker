@@ -111,7 +111,7 @@ export function limitedBy(s: Scenario): string {
   return 'The router';
 }
 
-/** Beds a month that come off bought plastic rather than our own press. */
+/** Beds a month that come off bought plastic, over and above what the press makes. */
 export function boughtBedsAMonth(s: Scenario): number {
   return Math.max(0, bedsAMonth(s) - pressBedsADay(s) * RUN_DAYS_A_MONTH);
 }
@@ -186,7 +186,7 @@ export function breakEvenShredPriceKg(beds: number): number {
 export const BREAK_EVEN_ON_THE_400 = breakEvenShredPriceKg(FIRST_STOCK_BEDS);
 
 /**
- * The only prices a kilogram we hold, and both are finished pressed panel rather than shred.
+ * The only prices a kilogram we hold. Both are for finished pressed panel, and shred is a different material at a different price.
  * A 1200 by 2400 by 19mm sheet weighs about 51.98 kg.
  */
 export const PANEL_MATERIAL_PER_KG_AUD = 356.88 / 51.98;
@@ -196,7 +196,7 @@ export const THE_MISSING_NUMBER =
   'We do not know what a bulka bag of shred costs. Quotes QU0494 and QU0495 from Sam Davies on 27 August price the 105 sheets and the 8 bags, and neither is in the repo. Without the bag price the choice between a second press and bought panels cannot be closed, because that is the only variable it turns on.';
 
 export const THE_RULE_OF_THUMB =
-  'On the 400, panels and a second press cost the same when shred lands at about $3.16 a kilogram. Below that the press wins and above it the panels do. The only prices a kilogram we hold are $6.87 for panel material and $7.34 with the cutting, and both are finished pressed panel rather than shred, so the press is the likely answer once the bag price arrives. A longer run moves the line further in the press\'s favour, because the machine is bought once.';
+  'On the 400, panels and a second press cost the same when shred lands at about $3.16 a kilogram. Below that the press wins and above it the panels do. The only prices a kilogram we hold are $6.87 for panel material and $7.34 with the cutting. Both are for finished pressed panel, and shred should come in well under either, so the press is the likely answer once the bag price arrives. A longer run moves the line further in the press\'s favour, because the machine is bought once.';
 
 export const WHAT_THE_PRESS_DOES_NOT_SOLVE =
   'A second press only helps if there is shred to feed it. At the assembly ceiling it needs 2,880 kg a month, which is two thirds more than the line burns today, and Witta had three weeks of stock on 28 August. Buying the press without buying the bags changes nothing.';

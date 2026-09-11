@@ -106,7 +106,7 @@ export const YEARS: readonly PlanYear[] = [
     id: 'fy29',
     label: 'Year three, to June 2029',
     story:
-      'The plants move toward community hands. Goods earns more than it costs to run and the grant pays for the transfer rather than the operation.',
+      'The plants move toward community hands. Goods earns more than it costs to run, and the grant turns to paying for the handover.',
     plants: 3,
     capacityBeds: 576 + 2 * 720 + 200,
     bedsSold: 900,
@@ -135,7 +135,7 @@ export function facilitationAud(y: PlanYear): number {
  * income here without its cost would be the same mistake that produced the $937,550.
  */
 export const FACILITATION_IS_COST_NEUTRAL =
-  'Facilitation is billed at $10,000 a community and costs about the same to deliver, so it neither funds the organisation nor drains it. It sits beside this ledger rather than inside it.';
+  'Facilitation is billed at $10,000 a community and costs about the same to deliver, so it neither funds the organisation nor drains it. It sits beside this ledger instead of inside it.';
 
 export function tradeIncomeAud(y: PlanYear): number {
   return contributionAud(y);

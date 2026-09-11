@@ -16,7 +16,7 @@
  * them by dwellings needing an extra bedroom and three of them land between 0.22 and 0.30, which
  * looks like a rate hiding under the noise.
  *
- * It is not a rate. It is four numerators being divided by the wrong denominator.
+ * That is four numerators being divided by the wrong denominator, and no rate at all.
  *
  * Maningrida's 65 is "beds for kids in the Maningrida homelands". The homelands are outstations,
  * a small fraction of the 2,518 people the ABS counts in the Maningrida ILOC. Dividing 65 by 2,518
@@ -32,7 +32,7 @@
  * Three fields, and we hold at most two of them for any figure:
  *
  *   QUESTION   Is this what the community needs, or what it will order in a year. Different
- *              objects, never summed.
+ *              different objects. They are never summed.
  *   SCOPE      Which population it covers. The whole community, the homelands, the children,
  *              one household. Without this no figure can be compared to any other.
  *   OWNER      Who set it and by what rule, so a funder asking where it came from gets a person.
@@ -219,17 +219,17 @@ export const HOUSEHOLD_COUNT_FORM: readonly CountField[] = [
   {
     field: 'on the floor',
     ask: 'How many sleep on the floor, on a mattress on the floor, or outside.',
-    why: 'The one number we report as impact. A person off the floor is the only measure of ours that is counted rather than modelled.',
+    why: 'The one number we report as impact. A person off the floor is the only measure of ours that anybody counts.',
   },
   {
     field: 'first in line',
     ask: 'Who in this house would use a new bed first.',
-    why: 'Turns a count into a delivery list, and means the first beds go where the household says rather than where we guess.',
+    why: 'Turns a count into a delivery list, so the first beds go where the household says.',
   },
 ];
 
 export const WHO_COUNTS =
-  'A local person paid for the work, not a visitor. The count is theirs, it stays with the community organisation, and Goods receives a total and a delivery list rather than a household register.';
+  'A local person paid for the work. Never a visitor. The count is theirs, it stays with the community organisation, and Goods receives a total and a delivery list. The household register stays where it was made.';
 
 export const COUNT_IS_THE_MISSING_PIECE =
   'No community has done this count. Every need figure we hold is somebody\'s impression, including the good ones. One community doing it properly is worth more than four more conversations.';

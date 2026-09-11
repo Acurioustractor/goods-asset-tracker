@@ -107,8 +107,8 @@ describe('using it', () => {
 
 describe('honesty', () => {
   it('says out loud that it is not a need measure', () => {
-    expect(THE_CEILING).toContain('not a measure of need');
-    expect(THE_CEILING).toContain('floor rather than a ceiling');
+    expect(THE_CEILING).toContain('our funding as much as their need');
+    expect(THE_CEILING).toContain('it is a floor');
     expect(THE_CEILING).toContain('household count');
   });
 

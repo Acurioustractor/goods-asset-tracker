@@ -126,7 +126,7 @@ describe('how to say it', () => {
   });
 
   it('names the organisation over the number', () => {
-    expect(HOW_TO_TALK.some((r) => r.includes('Name the organisation, not the number'))).toBe(true);
+    expect(HOW_TO_TALK.some((r) => r.includes('Name the organisation and let the number follow'))).toBe(true);
   });
 
   it('the funder answer leads with money and ends with what we cannot give them', () => {

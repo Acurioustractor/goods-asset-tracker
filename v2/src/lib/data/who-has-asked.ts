@@ -17,7 +17,7 @@
  * An act is a thing a person or an organisation DID, which either happened or did not. Money
  * moved. A council wrote. An Elder said she would pay. Those are checkable by anyone, they do not
  * degrade when a funder pushes on them, and they are the only part of our demand record that is
- * evidence rather than impression.
+ * evidence, where everything else is impression.
  *
  * The bed numbers stay, attached to the act that produced them, and are never totalled across
  * acts. A total across rungs is the 778, and the 778 is not a quantity of anything.
@@ -62,7 +62,7 @@ export const LADDER: readonly RungDef[] = [
     rung: 'organisation-asked',
     label: 'A body with authority asked',
     test: 'Did an organisation that can decide for that place ask us, and can we name it?',
-    strength: 'Real, and silent on quantity. A council asking is evidence about the relationship, not about how many beds.',
+    strength: 'Real, and silent on quantity. A council asking is evidence about the relationship. It says nothing about how many beds.',
   },
   {
     rung: 'person-asked',
@@ -226,7 +226,7 @@ export const NO_TOTAL_ACROSS_RUNGS =
 
 export const HOW_TO_TALK: readonly string[] = [
   'Lead with what was paid. Four organisations, 320 beds, $273,966 settled. It is the only rung nobody can push back on, and it proves the price at the same time.',
-  'Name the organisation, not the number. "Palm Island Community Company asked" is evidence. "Palm Island needs 40 beds" is an impression wearing a number.',
+  'Name the organisation and let the number follow it. "Palm Island Community Company asked" is evidence. "Palm Island needs 40 beds" is an impression wearing a number.',
   'When a number is used, it stays attached to the act that produced it and to what it covers. A figure with no scope is printed with its scope missing.',
   'Never state a demand total. If asked for one, say we do not have a demand measure, say why, and offer the household count instead.',
   'Two organisations in Maningrida have bought from us and one of them asked for more. Repeat buyers in one place say more about demand than any count.',
