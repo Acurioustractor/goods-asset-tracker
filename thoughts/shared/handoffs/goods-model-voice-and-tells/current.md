@@ -308,6 +308,36 @@ Patched in the artifact and in both source files.
 **Q19 gained today's two closures in its evidence panel**: The Harvest at 576 beds a year with 176 of
 headroom against the 400 target, and freight at $150 all up.
 
+## The wider field of plant candidates, and the question it raises
+
+Ben, 11 September: Palm Island and Maningrida are the two most likely, with Mount Isa, Tennant Creek,
+Ceduna, Port Augusta, Utopia, Kununurra and Katherine as the other options. Put against his own
+siting test, being asked plus a local operator plus beds already landed:
+
+| Community | Asked for a plant | Beds there |
+|---|---|---:|
+| Palm Island | Yes, council, community and PICC | 131 |
+| Maningrida | Yes | 58 |
+| **Tennant Creek** | **Yes** | **160** |
+| **Utopia Homelands** | **Yes** | **147** |
+| Alice Springs | Yes | 16 |
+| Mount Isa | Not on the record | 2 |
+| Kununurra | Not on the record | 2 |
+| Katherine | Not on the record | 1 |
+| Ceduna | An enquiry only | 0 |
+| Port Augusta | Not on the record | 0 |
+
+**Tennant Creek and Utopia meet the test at least as well as the two named**, and both have asked.
+Q6 names five communities that have asked: Palm Island, Alice Springs, Maningrida, Utopia and Tennant
+Creek. The other five on Ben's list have not asked on any record I can find.
+
+**Utopia has an answer:** it is served by the Alice Springs plant Oonchiumpa is already funding.
+**Tennant Creek does not have one yet.** It has the most beds of any community, nine washing machines,
+and Dianne Stokes, who named the machines and is the only person in the demand record offering to
+self-fund. That question is now on the face of the explainer so it is answered before it is asked.
+
+Ceduna and Port Augusta have zero beds, so on the third leg of the test they do not yet qualify.
+
 ## The ramp to 400, and whether it lands in winter
 
 Modelled 11 September. First stock is ordered once the boards sit, so the line starts in December
