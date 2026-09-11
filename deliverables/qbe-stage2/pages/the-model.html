@@ -189,53 +189,178 @@ footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--rail);font-si
   </div>
 
   <div class="sec">
-    <h2>Three. What gets counted</h2>
-    <p class="lede">Three tiers and one number in the middle. Every question a funder asks hangs off
-      one of these.</p>
-    <div class="grid g3">
-      <div>
-        <h3 style="color:var(--goods)">The capital model</h3>
-        <p>Where every dollar goes and what job it does. $300,000 into two plants, $110,400 into
-          making 400 beds, $40,000 into facilitation, $297,550 into running the organisation.</p>
-        <p><b>$747,950 for the year.</b> $600,000 asked, $0 secured.</p>
-      </div>
-      <div>
-        <h3 style="color:var(--community)">The enterprise model</h3>
-        <p>400 beds into four community pools of 100. Each pool sells at $750 and keeps
-          <b>$75,000</b> of local capital.</p>
-        <p>Then the question that matters: how much of the next production cycle can each one fund
-          itself.</p>
-      </div>
-      <div>
-        <h3 style="color:var(--plum)">The impact measures</h3>
-        <p>Five rows, and one of them is counted. A person off the floor comes from the register,
-          bed by bed.</p>
-        <p>Paid making and plastic are modelled. Money kept is a rule with no trade behind it yet.
-          Health carries no number.</p>
-      </div>
-    </div>
+    <h2>Three. The capital model</h2>
+    <p class="lede">Where every dollar goes and what job it does. The arrow in the middle is the one
+      nobody draws, and it is why the gap is smaller than the operating hole.</p>
+    <div class="fig">
+      <svg viewBox="0 0 1000 430" role="img" aria-label="Money in on the left by funder, the four jobs in the middle, and an arrow showing bed money over-covering its own making cost and the surplus flowing to operating.">
+        <defs><marker id="m2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 z" fill="currentColor"/></marker></defs>
+        <text x="60" y="36" font-size="12.5" letter-spacing="2" font-weight="700" fill="var(--ink-3)">ASKED</text>
+        <text x="420" y="36" font-size="12.5" letter-spacing="2" font-weight="700" fill="var(--ink-3)">WHAT IT PAYS FOR</text>
+        <text x="812" y="36" font-size="12.5" letter-spacing="2" font-weight="700" fill="var(--ink-3)">THE YEAR</text>
 
-    <div class="note">
-      <b>Procurement shifted, the number in the middle</b>
-      <p>Institutional dollars that now land in a community enterprise instead of a southern
-        supplier. It names the counterfactual that money kept in community never did:
-        <b>that money was going to be spent anyway, somewhere else.</b></p>
-      <p>It is countable one sale at a time, it is the difference between catalytic and charitable,
-        and <b>nobody is counting it yet</b> because no community enterprise is trading. The first
-        sale out of a 100-bed pool is the first number.</p>
-    </div>
+        <g font-size="13">
+          <rect x="60" y="58" width="250" height="52" rx="3" fill="var(--goods)" opacity=".9"/>
+          <text x="76" y="80" fill="#FFFCF6" font-weight="700">QBE</text>
+          <text x="294" y="80" text-anchor="end" fill="#FFFCF6" font-family="var(--mono)">$300,000</text>
+          <text x="76" y="99" fill="#FFFCF6" font-size="11.5" opacity=".85">applying, closes 25 September</text>
 
-    <div class="scroll">
-      <table>
-        <thead><tr><th>Measure</th><th>Per bed</th><th>Where it stands</th></tr></thead>
-        <tbody>
-          <tr><td><b>Procurement shifted</b></td><td class="r">up to $750</td><td>Not yet counted. No enterprise is trading</td></tr>
-          <tr><td><b>A person off the floor</b></td><td class="r">1</td><td>Counted, from the register, with a community and a date</td></tr>
-          <tr><td><b>Paid making</b></td><td class="r">2 hours, $80</td><td>Modelled from the build. The production log is what changes it</td></tr>
-          <tr><td><b>Plastic kept in use</b></td><td class="r">20 kg</td><td>Design mass. 36 kg goes through the press and yield is unweighed</td></tr>
-          <tr><td><b>Health</b></td><td class="r">no number</td><td>The reason the work exists. Never a claimed outcome</td></tr>
-        </tbody>
-      </table>
+          <rect x="60" y="122" width="250" height="52" rx="3" fill="var(--community)" opacity=".9"/>
+          <text x="76" y="144" fill="#FFFCF6" font-weight="700">Brian M. Davis</text>
+          <text x="294" y="144" text-anchor="end" fill="#FFFCF6" font-family="var(--mono)">$100,000</text>
+          <text x="76" y="163" fill="#FFFCF6" font-size="11.5" opacity=".85">$60,000 beds &middot; $40,000 facilitation</text>
+
+          <rect x="60" y="186" width="250" height="52" rx="3" fill="var(--community)" opacity=".62"/>
+          <text x="76" y="208" fill="#FFFCF6" font-weight="700">Snow</text>
+          <text x="294" y="208" text-anchor="end" fill="#FFFCF6" font-family="var(--mono)">$100,000</text>
+          <text x="76" y="227" fill="#FFFCF6" font-size="11.5" opacity=".85">not sent</text>
+
+          <rect x="60" y="250" width="250" height="52" rx="3" fill="var(--plum)" opacity=".9"/>
+          <text x="76" y="272" fill="#FFFCF6" font-weight="700">Tim Fairfax</text>
+          <text x="294" y="272" text-anchor="end" fill="#FFFCF6" font-family="var(--mono)">$100,000</text>
+          <text x="76" y="291" fill="#FFFCF6" font-size="11.5" opacity=".85">year one of three</text>
+
+          <rect x="60" y="314" width="250" height="52" rx="3" fill="none" stroke="var(--bad)" stroke-width="2" stroke-dasharray="6 5"/>
+          <text x="76" y="336" fill="var(--bad)" font-weight="700">Still to find</text>
+          <text x="294" y="336" text-anchor="end" fill="var(--bad)" font-family="var(--mono)" font-weight="700">$147,950</text>
+          <text x="76" y="355" fill="var(--ink-3)" font-size="11.5">187 beds, and the rest of running the year</text>
+        </g>
+
+        <g font-size="13">
+          <rect x="400" y="58" width="270" height="52" rx="3" fill="var(--surface-2)" stroke="var(--goods)" stroke-width="2"/>
+          <text x="416" y="80" font-weight="700" fill="var(--ink)">Two community plants</text>
+          <text x="654" y="80" text-anchor="end" font-family="var(--mono)" fill="var(--ink)">$300,000</text>
+          <text x="416" y="99" font-size="11.5" fill="var(--ink-3)">$150,000 each, an allowance</text>
+
+          <rect x="400" y="122" width="270" height="52" rx="3" fill="var(--surface-2)" stroke="var(--community)" stroke-width="2"/>
+          <text x="416" y="144" font-weight="700" fill="var(--ink)">Making 400 beds</text>
+          <text x="654" y="144" text-anchor="end" font-family="var(--mono)" fill="var(--ink)">$110,400</text>
+          <text x="416" y="163" font-size="11.5" fill="var(--ink-3)">$276 a bed, labour inside it</text>
+
+          <rect x="400" y="186" width="270" height="52" rx="3" fill="var(--surface-2)" stroke="var(--community)" stroke-width="2"/>
+          <text x="416" y="208" font-weight="700" fill="var(--ink)">Facilitation, four communities</text>
+          <text x="654" y="208" text-anchor="end" font-family="var(--mono)" fill="var(--ink)">$40,000</text>
+          <text x="416" y="227" font-size="11.5" fill="var(--ink-3)">$10,000 each, billed at this rate before</text>
+
+          <rect x="400" y="250" width="270" height="116" rx="3" fill="var(--surface-2)" stroke="var(--plum)" stroke-width="2"/>
+          <text x="416" y="272" font-weight="700" fill="var(--ink)">Running the organisation</text>
+          <text x="654" y="272" text-anchor="end" font-family="var(--mono)" fill="var(--ink)">$297,550</text>
+          <text x="416" y="292" font-size="11.5" fill="var(--ink-3)">Founders $151,200 &middot; travel $51,000</text>
+          <text x="416" y="309" font-size="11.5" fill="var(--ink-3)">accounting $50,000 &middot; rent $27,000</text>
+          <text x="416" y="326" font-size="11.5" fill="var(--ink-3)">marketing $10,000 &middot; maintenance $8,350</text>
+          <text x="416" y="352" font-size="12" font-weight="700" fill="var(--plum)">628 paid beds a year covers all of it</text>
+        </g>
+
+        <g style="color:var(--gold)">
+          <path d="M672 150 C 716 150, 716 258, 672 262" fill="none" stroke="currentColor" stroke-width="3.4" marker-end="url(#m2)"/>
+        </g>
+        <text x="700" y="202" font-size="12" font-weight="700" fill="var(--gold)">$49,600</text>
+        <text x="700" y="219" font-size="11" fill="var(--ink-3)">surplus</text>
+
+        <g>
+          <rect x="760" y="58" width="200" height="180" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+          <text x="780" y="86" font-size="12" letter-spacing="1.5" font-weight="700" fill="var(--ink-3)">NEEDS</text>
+          <text x="780" y="124" font-family="var(--display)" font-size="30" font-weight="600" fill="var(--ink)">$747,950</text>
+          <text x="780" y="156" font-size="12" letter-spacing="1.5" font-weight="700" fill="var(--ink-3)">ASKED</text>
+          <text x="780" y="182" font-family="var(--display)" font-size="24" font-weight="600" fill="var(--ink-2)">$600,000</text>
+          <text x="780" y="212" font-size="12" letter-spacing="1.5" font-weight="700" fill="var(--bad)">SECURED</text>
+          <text x="780" y="232" font-family="var(--display)" font-size="20" font-weight="600" fill="var(--bad)">$0</text>
+        </g>
+      </svg>
+      <p class="cap">Bed money is asked at the $750 sale price and the making line is the $276 cost,
+        so $160,000 of bed money over-covers its own line by $49,600. That surplus is the $474
+        carrying the organisation. The operating line is short $197,550 and the gap is $147,950, and
+        the difference between those two is exactly that arrow.</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>Four. The enterprise model</h2>
+    <p class="lede">What one community pool does. The arithmetic at the end is the catalytic
+      argument, and it is a coincidence nobody designed.</p>
+    <div class="fig">
+      <svg viewBox="0 0 1000 350" role="img" aria-label="One pool of 100 beds sells for 75,000 dollars, which is half the cost of a community plant. Four pools are 300,000 dollars, which is two plants.">
+        <defs><marker id="m3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 z" fill="currentColor"/></marker></defs>
+        <g font-size="13">
+          <rect x="40" y="70" width="190" height="96" rx="4" fill="var(--surface-2)" stroke="var(--community)" stroke-width="2"/>
+          <text x="60" y="98" font-size="11.5" letter-spacing="1.5" font-weight="700" fill="var(--ink-3)">ONE POOL ARRIVES</text>
+          <text x="60" y="132" font-family="var(--display)" font-size="34" font-weight="600" fill="var(--ink)">100</text>
+          <text x="122" y="132" font-size="15" fill="var(--ink-2)">beds</text>
+          <text x="60" y="154" font-size="11.5" fill="var(--ink-3)">already paid for, as trading stock</text>
+
+          <path d="M240 118 L 300 118" stroke="var(--community)" stroke-width="3.4" marker-end="url(#m3)" fill="none"/>
+
+          <rect x="312" y="70" width="200" height="96" rx="4" fill="var(--surface-2)" stroke="var(--community)" stroke-width="2"/>
+          <text x="332" y="98" font-size="11.5" letter-spacing="1.5" font-weight="700" fill="var(--ink-3)">THE ENTERPRISE SELLS</text>
+          <text x="332" y="132" font-family="var(--display)" font-size="30" font-weight="600" fill="var(--ink)">$75,000</text>
+          <text x="332" y="154" font-size="11.5" fill="var(--ink-3)">100 at $750, and it keeps all of it</text>
+
+          <path d="M522 118 L 582 118" stroke="var(--community)" stroke-width="3.4" marker-end="url(#m3)" fill="none"/>
+
+          <rect x="594" y="46" width="366" height="144" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+          <text x="614" y="74" font-size="11.5" letter-spacing="1.5" font-weight="700" fill="var(--ink-3)">WHAT THAT COULD FUND, THEIR CHOICE</text>
+          <text x="614" y="102" font-size="13.5" fill="var(--ink)"><tspan font-weight="700">Half a community plant.</tspan> One costs $150,000</text>
+          <text x="614" y="128" font-size="13.5" fill="var(--ink)"><tspan font-weight="700">271 beds of making</tspan> at $276 each</text>
+          <text x="614" y="154" font-size="13.5" fill="var(--ink)"><tspan font-weight="700">Wages, more stock, something else.</tspan> Not ours to say</text>
+          <text x="614" y="178" font-size="11.5" fill="var(--ink-3)">Banking the whole pool is one option among several.</text>
+        </g>
+
+        <g>
+          <rect x="40" y="222" width="920" height="96" rx="4" fill="var(--surface-2)" stroke="var(--gold)" stroke-width="2.5"/>
+          <text x="64" y="252" font-size="12" letter-spacing="1.8" font-weight="700" fill="var(--gold)">AND THE FOUR POOLS TOGETHER</text>
+          <text x="64" y="292" font-family="var(--display)" font-size="26" font-weight="600" fill="var(--ink)">400 beds sell for $300,000, which is two more plants.</text>
+          <text x="700" y="292" font-size="13" fill="var(--ink-3)">The same number QBE is asked for.</text>
+        </g>
+      </svg>
+      <p class="cap">Four pools of 100 beds at $750 is $300,000. Two community plants at the
+        $150,000 allowance is $300,000. Nobody designed those to match, which is what makes it worth
+        saying. It is a statement of scale and not a claim that the money doubles: the beds are
+        funded by Brian M. Davis, Snow and the gap, and what a community does with its own sales is
+        its decision.</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>Five. The impact dashboard</h2>
+    <p class="lede">Five measures. One is counted, two are modelled, one has no trade behind it yet,
+      and one carries no number at all.</p>
+    <div class="fig">
+      <svg viewBox="0 0 1000 400" role="img" aria-label="Five impact measures with their grades. Procurement shifted is not yet counted. A person off the floor is counted from the register. Paid making and plastic are modelled. Health carries no number.">
+        <g font-size="13.5">
+          <rect x="40" y="34" width="920" height="64" rx="4" fill="var(--surface-2)" stroke="var(--gold)" stroke-width="2.5"/>
+          <text x="64" y="60" font-size="11.5" letter-spacing="1.6" font-weight="700" fill="var(--gold)">THE ONE IN THE MIDDLE</text>
+          <text x="64" y="84" font-size="16" font-weight="700" fill="var(--ink)">Procurement shifted</text>
+          <text x="260" y="84" font-size="13.5" fill="var(--ink-2)">Institutional dollars landing in a community enterprise instead of a southern supplier</text>
+          <text x="936" y="84" text-anchor="end" font-size="13" font-weight="700" fill="var(--bad)">not yet counted</text>
+
+          <rect x="40" y="112" width="920" height="58" rx="4" fill="var(--surface)" stroke="var(--ok)" stroke-width="2"/>
+          <text x="64" y="139" font-size="15" font-weight="700" fill="var(--ink)">A person off the floor</text>
+          <text x="300" y="139" fill="var(--ink-2)">One bed, one person. From the register, with a community and a date</text>
+          <text x="936" y="139" text-anchor="end" font-size="13" font-weight="700" fill="var(--ok)">counted</text>
+          <text x="64" y="158" font-size="11.5" fill="var(--ink-3)">540 beds across eleven communities</text>
+
+          <rect x="40" y="184" width="920" height="58" rx="4" fill="var(--surface)" stroke="var(--rail)"/>
+          <text x="64" y="211" font-size="15" font-weight="700" fill="var(--ink)">Paid making</text>
+          <text x="300" y="211" fill="var(--ink-2)">Two hours a bed, $80 of the $750, inside the $276 it costs to make</text>
+          <text x="936" y="211" text-anchor="end" font-size="13" font-weight="700" fill="var(--ink-3)">modelled</text>
+          <text x="64" y="230" font-size="11.5" fill="var(--ink-3)">The production log is what changes it. It opened with no entries</text>
+
+          <rect x="40" y="256" width="920" height="58" rx="4" fill="var(--surface)" stroke="var(--rail)"/>
+          <text x="64" y="283" font-size="15" font-weight="700" fill="var(--ink)">Plastic kept in use</text>
+          <text x="300" y="283" fill="var(--ink-2)">20 kg in the bed, 36 kg through the press</text>
+          <text x="936" y="283" text-anchor="end" font-size="13" font-weight="700" fill="var(--ink-3)">modelled</text>
+          <text x="64" y="302" font-size="11.5" fill="var(--ink-3)">Design mass. Yield has never been weighed</text>
+
+          <rect x="40" y="328" width="920" height="58" rx="4" fill="var(--surface)" stroke="var(--goods)" stroke-width="2" stroke-dasharray="6 5"/>
+          <text x="64" y="355" font-size="15" font-weight="700" fill="var(--goods)">Health</text>
+          <text x="300" y="355" fill="var(--ink-2)">Scabies to rheumatic heart disease is why a bed is washable and off the ground</text>
+          <text x="936" y="355" text-anchor="end" font-size="13" font-weight="700" fill="var(--goods)">the reason</text>
+          <text x="64" y="374" font-size="11.5" fill="var(--ink-3)">It carries no dial and no number, deliberately</text>
+        </g>
+      </svg>
+      <p class="cap">Money kept in community sits behind procurement shifted and is the same event
+        seen from the community side. It is a settled rule, the full $750, with no enterprise
+        trading against it yet.</p>
     </div>
   </div>
 
