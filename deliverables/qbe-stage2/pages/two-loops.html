@@ -1,0 +1,232 @@
+<title>The Two Loops</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#F5F0E6; --surface:#FFFCF6; --surface-2:#EDE4D5; --rail:#DCD0BC;
+  --ink:#201D18; --ink-2:#4E4739; --ink-3:#837A69;
+  --goods:#A85B34; --community:#3F7A6A; --buyer:#7A5B86; --gold:#9C7C2B;
+  --ok:#4C7A4E; --bad:#A33C22;
+  --display:"Fraunces",Georgia,serif;
+  --body:"Inter",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#15130F; --surface:#1D1A15; --surface-2:#262119; --rail:#3B3428;
+  --ink:#F1EADC; --ink-2:#C5BCA9; --ink-3:#8F8574;
+  --goods:#D08A5E; --community:#6FB3A0; --buyer:#B491C0; --gold:#CCA84F;
+  --ok:#8CB78E; --bad:#DE7A5C;
+}}
+:root[data-theme="dark"]{
+  --ground:#15130F; --surface:#1D1A15; --surface-2:#262119; --rail:#3B3428;
+  --ink:#F1EADC; --ink-2:#C5BCA9; --ink-3:#8F8574;
+  --goods:#D08A5E; --community:#6FB3A0; --buyer:#B491C0; --gold:#CCA84F;
+  --ok:#8CB78E; --bad:#DE7A5C;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--display);font-weight:600;text-wrap:balance;margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 90px}
+@media(min-width:860px){.wrap{padding:0 30px 110px}}
+.mast{padding:38px 0 18px;border-bottom:2px solid var(--ink)}
+.mast .eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--goods);font-weight:700}
+.mast h1{font-size:clamp(32px,6vw,54px);line-height:1;letter-spacing:-.025em;margin:10px 0 10px}
+.mast p{margin:0;color:var(--ink-2);max-width:64ch}
+.figure{margin:26px 0 0;border:1px solid var(--rail);background:var(--surface);border-radius:4px;padding:10px 6px 4px;overflow-x:auto}
+svg{display:block;min-width:860px;width:100%;height:auto}
+.cap{font-size:12.5px;color:var(--ink-3);padding:6px 12px 10px;max-width:78ch}
+.grid{display:grid;gap:1px;background:var(--rail);border:1px solid var(--rail);border-radius:3px;overflow:hidden;margin-top:26px}
+@media(min-width:820px){.grid{grid-template-columns:1fr 1fr}}
+.grid > div{background:var(--surface);padding:16px 18px 18px}
+.grid h3{font-size:17px;margin:0 0 7px}
+.grid p{margin:0 0 8px;font-size:13.5px;color:var(--ink-2);line-height:1.55}
+.grid p:last-child{margin-bottom:0}
+.grid b{color:var(--ink)}
+.gl h3{color:var(--goods)}
+.gc h3{color:var(--community)}
+.note{margin:22px 0 0;border:1px solid var(--rail);border-left:3px solid var(--bad);background:var(--surface);padding:15px 17px;border-radius:2px}
+.note b{display:block;margin-bottom:5px}
+.note p{margin:0 0 8px;font-size:13.5px;color:var(--ink-2)}
+.note p:last-child{margin:0}
+.areas{display:grid;gap:1px;background:var(--rail);border:1px solid var(--rail);border-radius:3px;overflow:hidden;margin-top:24px}
+@media(min-width:760px){.areas{grid-template-columns:repeat(4,1fr)}}
+.areas > div{background:var(--surface);padding:14px 15px 16px}
+.areas .k{font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.areas .v{font-family:var(--display);font-size:22px;line-height:1.1;margin-top:4px}
+.areas .s{font-size:12px;color:var(--ink-2);margin-top:5px;line-height:1.45}
+.areas .why .v{color:var(--goods);font-size:17px}
+h2.sec{font-size:24px;margin:34px 0 4px}
+p.lede{margin:0 0 4px;color:var(--ink-2);max-width:70ch}
+footer{margin-top:38px;padding-top:16px;border-top:1px solid var(--rail);font-size:12.5px;color:var(--ink-3)}
+.themebtn{position:fixed;top:12px;right:12px;z-index:20;font-family:var(--body);font-size:11px;font-weight:600;padding:6px 10px;border:1px solid var(--rail);background:var(--surface);color:var(--ink-2);border-radius:2px;cursor:pointer}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<button class="themebtn" id="themebtn" type="button">theme</button>
+
+<div class="wrap">
+  <div class="mast">
+    <div class="eyebrow">Goods on Country &middot; the model, drawn</div>
+    <h1>The Two Loops</h1>
+    <p>Catalytic capital pays Goods for a community's first stock. Buyers pay the community
+      enterprise, and that money never reaches Goods. Drawing it as one circle would say the
+      opposite, so it is drawn as two.</p>
+  </div>
+
+  <div class="figure">
+    <svg viewBox="0 0 1000 520" role="img" aria-label="Two loops. The Goods loop on the left is funded by catalytic capital and trade. The community loop on the right is funded by institutional buyers. Beds cross from left to right. Money does not cross back.">
+      <defs>
+        <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,1 L9,5 L0,9 z" fill="currentColor"/>
+        </marker>
+        <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="n"/>
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="1.4" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+      </defs>
+
+      <g filter="url(#rough)">
+        <!-- GOODS LOOP -->
+        <g style="color:var(--goods)">
+          <ellipse cx="255" cy="272" rx="182" ry="146" fill="none" stroke="currentColor" stroke-width="2.4" stroke-dasharray="1 0" opacity=".55"/>
+          <path d="M255 126 A182 146 0 0 1 400 220" fill="none" stroke="currentColor" stroke-width="3" marker-end="url(#ar)"/>
+          <path d="M420 320 A182 146 0 0 1 255 418" fill="none" stroke="currentColor" stroke-width="3" marker-end="url(#ar)"/>
+          <path d="M90 340 A182 146 0 0 1 90 205" fill="none" stroke="currentColor" stroke-width="3" marker-end="url(#ar)"/>
+        </g>
+        <text x="255" y="268" text-anchor="middle" font-family="var(--display)" font-size="26" font-weight="600" fill="var(--goods)">The Goods loop</text>
+        <text x="255" y="292" text-anchor="middle" font-size="13.5" fill="var(--ink-2)">628 paid beds a year carries the organisation</text>
+
+        <!-- COMMUNITY LOOP -->
+        <g style="color:var(--community)">
+          <ellipse cx="745" cy="272" rx="182" ry="146" fill="none" stroke="currentColor" stroke-width="2.4" opacity=".55"/>
+          <path d="M745 126 A182 146 0 0 1 900 230" fill="none" stroke="currentColor" stroke-width="3" marker-end="url(#ar)"/>
+          <path d="M905 325 A182 146 0 0 1 745 418" fill="none" stroke="currentColor" stroke-width="3" marker-end="url(#ar)"/>
+          <path d="M585 340 A182 146 0 0 1 585 205" fill="none" stroke="currentColor" stroke-width="3" marker-end="url(#ar)"/>
+        </g>
+        <text x="745" y="268" text-anchor="middle" font-family="var(--display)" font-size="26" font-weight="600" fill="var(--community)">The community loop</text>
+        <text x="745" y="292" text-anchor="middle" font-size="13.5" fill="var(--ink-2)">the enterprise keeps the whole sale</text>
+      </g>
+
+      <!-- Goods nodes -->
+      <g font-size="13" fill="var(--ink)">
+        <rect x="140" y="84" width="230" height="50" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+        <text x="255" y="104" text-anchor="middle" font-weight="700">Catalytic capital</text>
+        <text x="255" y="121" text-anchor="middle" font-size="11.5" fill="var(--ink-2)">QBE, Tim Fairfax, Brian M. Davis, Snow</text>
+
+        <rect x="300" y="215" width="185" height="52" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+        <text x="392" y="235" text-anchor="middle" font-weight="700">Made at Witta</text>
+        <text x="392" y="252" text-anchor="middle" font-size="11.5" fill="var(--ink-2)">400 beds, then two plants</text>
+
+        <rect x="140" y="410" width="230" height="52" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+        <text x="255" y="430" text-anchor="middle" font-weight="700">Goods is paid $750 a bed</text>
+        <text x="255" y="447" text-anchor="middle" font-size="11.5" fill="var(--ink-2)">$276 makes it, $474 carries the business</text>
+
+        <rect x="22" y="215" width="185" height="52" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+        <text x="114" y="235" text-anchor="middle" font-weight="700">The next bed</text>
+        <text x="114" y="252" text-anchor="middle" font-size="11.5" fill="var(--ink-2)">and the next plant</text>
+      </g>
+
+      <!-- Community nodes -->
+      <g font-size="13" fill="var(--ink)">
+        <rect x="630" y="84" width="230" height="50" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+        <text x="745" y="104" text-anchor="middle" font-weight="700">First stock arrives</text>
+        <text x="745" y="121" text-anchor="middle" font-size="11.5" fill="var(--ink-2)">100 beds, in each of four communities</text>
+
+        <rect x="800" y="215" width="190" height="52" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+        <text x="895" y="235" text-anchor="middle" font-weight="700">Institutional buyers</text>
+        <text x="895" y="252" text-anchor="middle" font-size="11.5" fill="var(--ink-2)">health and housing budgets</text>
+
+        <rect x="630" y="410" width="230" height="52" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+        <text x="745" y="430" text-anchor="middle" font-weight="700">Local capital</text>
+        <text x="745" y="447" text-anchor="middle" font-size="11.5" fill="var(--ink-2)">$75,000 a pool, and it stays there</text>
+
+        <rect x="505" y="215" width="180" height="52" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+        <text x="595" y="235" text-anchor="middle" font-weight="700">Local production</text>
+        <text x="595" y="252" text-anchor="middle" font-size="11.5" fill="var(--ink-2)">beds, washers, then more</text>
+      </g>
+
+      <!-- THE CROSSING: beds go one way only -->
+      <g style="color:var(--gold)">
+        <path d="M452 150 C 500 150, 540 128, 610 112" fill="none" stroke="currentColor" stroke-width="3.4" marker-end="url(#ar)"/>
+      </g>
+      <text x="512" y="138" text-anchor="middle" font-size="12" font-weight="700" fill="var(--gold)">beds cross</text>
+
+      <!-- THE BREAK: money does not come back -->
+      <g style="color:var(--bad)">
+        <path d="M612 466 C 545 486, 470 486, 400 466" fill="none" stroke="currentColor" stroke-width="2.6" stroke-dasharray="7 7" opacity=".75"/>
+        <line x1="495" y1="462" x2="519" y2="490" stroke="currentColor" stroke-width="3.4"/>
+        <line x1="519" y1="462" x2="495" y2="490" stroke="currentColor" stroke-width="3.4"/>
+      </g>
+      <text x="507" y="510" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--bad)">no money returns to Goods, on purpose</text>
+    </svg>
+    <p class="cap">The gold arrow is the only crossing, and it carries beds. The red cross is the
+      arrow a funder expects to find and will not. The left loop is what sustains Goods.</p>
+  </div>
+
+  <div class="grid">
+    <div class="gl">
+      <h3>The Goods loop</h3>
+      <p>Catalytic capital buys beds at the published $750. Of that, <b>$276 makes the bed</b> and
+        <b>$474 carries the organisation</b>. At 628 paid beds a year that covers the whole $297,550
+        of running Goods on Country, with no grant support at all.</p>
+      <p>This is the loop that keeps the lights on, and it closes inside Goods.</p>
+    </div>
+    <div class="gc">
+      <h3>The community loop</h3>
+      <p>A community receives 100 beds as first trading stock, already paid for. It sells them to
+        buyers who already hold health and housing budgets, and keeps <b>the whole sale price</b>.
+        A hundred beds at $750 is <b>$75,000</b> of local capital.</p>
+      <p>That money funds whatever the community decides next, which may be a plant, may be more
+        stock, may be something we have not thought of.</p>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>Why one loop would be a lie</b>
+    <p>Drawing this as a single circle puts an arrow from community revenue back to catalytic
+      capital, and implies Goods is repaid out of community sales. It is not. The $750 stays with the
+      enterprise, which was ruled on 10 September, and the 50% split that used to sit here is retired.</p>
+    <p>A funder reading one loop asks the obvious question: if the money comes back, why do you need
+      the grant again next year? The honest answer is that it does not come back, and Goods is
+      carried by its own trade instead. Two loops says that without anybody having to ask.</p>
+  </div>
+
+  <h2 class="sec">The number in the middle</h2>
+  <p class="lede">One measure is what makes this catalytic. It is also the one we do not yet count.</p>
+  <div class="areas">
+    <div>
+      <div class="k">Procurement shifted</div>
+      <div class="v">the ask</div>
+      <div class="s">Institutional dollars that now land in a community enterprise instead of a
+        southern supplier. Countable per sale, and nobody is counting it yet.</div>
+    </div>
+    <div>
+      <div class="k">Enterprise</div>
+      <div class="v">0 trading</div>
+      <div class="s">No community enterprise is trading yet. Four pools is what changes that.</div>
+    </div>
+    <div>
+      <div class="k">Employment</div>
+      <div class="v">2 hours a bed</div>
+      <div class="s">$80 of every $750 is the maker's wage. Modelled from the build. Nobody has counted it in the field yet.</div>
+    </div>
+    <div class="why">
+      <div class="k">Health</div>
+      <div class="v">the reason we started</div>
+      <div class="s">Scabies to rheumatic heart disease is why a bed is washable and off the ground. It carries no dial and no number, deliberately.</div>
+    </div>
+  </div>
+
+  <footer>
+    Built 11 September 2026. The $750, $276 and $474 come from canon. The 628 comes from
+    $297,550 divided by $474. The four 100-bed pools are ruling 7, and the two kinds of money that
+    never meet are ruling 9.
+  </footer>
+</div>
+
+<script>
+document.getElementById('themebtn').addEventListener('click', () => {
+  const cur = document.documentElement.getAttribute('data-theme');
+  const dark = cur ? cur === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.setAttribute('data-theme', dark ? 'light' : 'dark');
+});
+</script>
