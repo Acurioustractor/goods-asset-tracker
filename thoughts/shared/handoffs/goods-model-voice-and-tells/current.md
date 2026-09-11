@@ -230,6 +230,23 @@ running costs across 628 beds is $473.81 a bed, so 628 is not an assumption, it 
 halves force. Founder wages $151,200, travel $51,000, accounting $50,000, Witta $35,350, marketing
 $10,000. The $474 is not profit and the plate says so.
 
+**Plate 07, capacity at Witta, added on Ben's word.** Three stations in beds a day: press 3, assembly
+5, CNC 8.56, with the press marked as the constraint. A second press does not double the line, it
+moves the bottleneck to a station already 67% faster. One press at 80% is 48 a month and 576 a year
+at $158,826 of making cost; two presses are 80 a month and 960 a year at $264,710; at full
+availability 100 a month and 1,200 a year at $330,888.
+
+The 630 recorded against Witta clears in **13.1 months on one press, about January 2028**, or **7.9
+months on two, about August 2027**. Five months of difference on one machine, which is Monday's Defy
+conversation.
+
+**The plate says plainly that the plants do not make this year's beds.** Neither has a start date and
+no part of the 630 is allocated to one, so the second press and the QBE request are separate
+decisions that do not substitute for each other. A plant is needed when a community wants the making
+itself, on the same three-part test: they asked, someone local can run it, beds have already landed.
+
+The page is now ten plates.
+
 ## Deck alignment, 11 September 2026
 
 Every text node in all nineteen frames of board `BEXfI` read and checked. Nothing changed; slides get
