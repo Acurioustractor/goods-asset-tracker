@@ -1,0 +1,332 @@
+{
+  "generated": "v2/src/lib/data/sheet-canon.ts",
+  "note": "Written by the test suite. Do not edit by hand; change the module and re-run the tests.",
+  "cells": [
+    {
+      "key": "bed.price",
+      "label": "Bed price",
+      "value": 750,
+      "unit": "AUD",
+      "from": "canon stretch-price"
+    },
+    {
+      "key": "bed.make",
+      "label": "Cost to make a bed",
+      "value": 276,
+      "unit": "AUD",
+      "from": "the-year-and-the-raise"
+    },
+    {
+      "key": "bed.freight",
+      "label": "Freight a bed, all up",
+      "value": 150,
+      "unit": "AUD",
+      "from": "demand-and-buyers FREIGHT_RULING"
+    },
+    {
+      "key": "bed.contribution",
+      "label": "Contribution a bed, buyer pays freight",
+      "value": 474,
+      "unit": "AUD",
+      "from": "the-year-and-the-raise"
+    },
+    {
+      "key": "bed.contribution.goodsFreight",
+      "label": "Contribution a bed, Goods pays freight",
+      "value": 324,
+      "unit": "AUD",
+      "from": "the-year-and-the-raise"
+    },
+    {
+      "key": "bed.pressedKg",
+      "label": "Shred pressed for one bed",
+      "value": 36,
+      "unit": "kg",
+      "from": "production-scenarios",
+      "drift": "Decision D06 still records 40 kg"
+    },
+    {
+      "key": "line.pressPerDay",
+      "label": "Press, beds a day",
+      "value": 3,
+      "unit": "beds",
+      "from": "production-scenarios"
+    },
+    {
+      "key": "line.cncPerDay",
+      "label": "Router, beds a day",
+      "value": 8.56,
+      "unit": "beds",
+      "from": "production-scenarios"
+    },
+    {
+      "key": "line.assemblyPerDay",
+      "label": "Assembly, beds a day",
+      "value": 5,
+      "unit": "beds",
+      "from": "production-scenarios"
+    },
+    {
+      "key": "line.runDaysPerMonth",
+      "label": "Run days a month, at 80% availability",
+      "value": 16,
+      "unit": "days",
+      "from": "Ben ruling 10 Sep",
+      "drift": "Calculator availability still reads 100% and working days 20"
+    },
+    {
+      "key": "line.bedsPerMonth",
+      "label": "Beds a month today",
+      "value": 48,
+      "unit": "beds",
+      "from": "derived",
+      "drift": "Home tab equipment ceiling reads 60"
+    },
+    {
+      "key": "line.bedsPerMonthLifted",
+      "label": "Beds a month at the assembly ceiling",
+      "value": 80,
+      "unit": "beds",
+      "from": "derived"
+    },
+    {
+      "key": "line.wittaPerYear",
+      "label": "Witta beds a year",
+      "value": 576,
+      "unit": "beds",
+      "from": "three-year-plan"
+    },
+    {
+      "key": "line.bulkaBagKg",
+      "label": "A bulka bag of shred",
+      "value": 1000,
+      "unit": "kg",
+      "from": "production-scenarios"
+    },
+    {
+      "key": "plant.count",
+      "label": "Plants in the QBE ask",
+      "value": 2,
+      "unit": "count",
+      "from": "the-year-and-the-raise"
+    },
+    {
+      "key": "plant.allowance",
+      "label": "Plant allowance",
+      "value": 150000,
+      "unit": "AUD",
+      "from": "the-year-and-the-raise"
+    },
+    {
+      "key": "plant.modulesLow",
+      "label": "Plant modules, low",
+      "value": 95767,
+      "unit": "AUD",
+      "from": "Matt Allen modules"
+    },
+    {
+      "key": "plant.modulesHigh",
+      "label": "Plant modules, high",
+      "value": 142467,
+      "unit": "AUD",
+      "from": "Matt Allen modules"
+    },
+    {
+      "key": "plant.firstYearBeds",
+      "label": "A plant, beds in year one",
+      "value": 200,
+      "unit": "beds",
+      "from": "three-year-plan"
+    },
+    {
+      "key": "plant.matureBeds",
+      "label": "A plant, beds at maturity",
+      "value": 720,
+      "unit": "beds",
+      "from": "three-year-plan"
+    },
+    {
+      "key": "plant.secondPress",
+      "label": "A second press",
+      "value": 22500,
+      "unit": "AUD",
+      "from": "defy-supply"
+    },
+    {
+      "key": "year.beds",
+      "label": "Beds of first stock",
+      "value": 400,
+      "unit": "beds",
+      "from": "the-year-and-the-raise"
+    },
+    {
+      "key": "year.pools",
+      "label": "Community pools",
+      "value": 4,
+      "unit": "count",
+      "from": "ruling 7"
+    },
+    {
+      "key": "year.poolSize",
+      "label": "Beds in a pool",
+      "value": 100,
+      "unit": "beds",
+      "from": "derived"
+    },
+    {
+      "key": "year.facilitationEach",
+      "label": "Facilitation a community",
+      "value": 10000,
+      "unit": "AUD",
+      "from": "three-year-plan"
+    },
+    {
+      "key": "year.facilitation",
+      "label": "Facilitation, all four",
+      "value": 40000,
+      "unit": "AUD",
+      "from": "the-year-and-the-raise"
+    },
+    {
+      "key": "year.running",
+      "label": "Running the organisation",
+      "value": 297550,
+      "unit": "AUD",
+      "from": "Ben provision 9 Sep"
+    },
+    {
+      "key": "year.breakEvenBeds",
+      "label": "Beds a year that carry the organisation",
+      "value": 628,
+      "unit": "beds",
+      "from": "three-year-plan"
+    },
+    {
+      "key": "year.needs",
+      "label": "The year needs",
+      "value": 747950,
+      "unit": "AUD",
+      "from": "the-year-and-the-raise",
+      "drift": "No tab carries this figure"
+    },
+    {
+      "key": "year.needsGoodsFreight",
+      "label": "The year needs, Goods pays freight",
+      "value": 807950,
+      "unit": "AUD",
+      "from": "the-year-and-the-raise"
+    },
+    {
+      "key": "year.asked",
+      "label": "Asked across five lines",
+      "value": 600000,
+      "unit": "AUD",
+      "from": "the-year-and-the-raise",
+      "drift": "Money tab December receipts read $700,000 including a Sefa line that is ours"
+    },
+    {
+      "key": "year.secured",
+      "label": "Secured",
+      "value": 0,
+      "unit": "AUD",
+      "from": "the-year-and-the-raise"
+    },
+    {
+      "key": "year.gap",
+      "label": "Still to find",
+      "value": 147950,
+      "unit": "AUD",
+      "from": "capital-stack-flex"
+    },
+    {
+      "key": "year.bedSurplus",
+      "label": "Bed money over the making line",
+      "value": 49600,
+      "unit": "AUD",
+      "from": "capital-stack-flex"
+    },
+    {
+      "key": "year.bedsUnfunded",
+      "label": "Beds unfunded",
+      "value": 187,
+      "unit": "beds",
+      "from": "the-year-and-the-raise"
+    },
+    {
+      "key": "year.bedsUnfundedAud",
+      "label": "Beds unfunded, at the price",
+      "value": 140250,
+      "unit": "AUD",
+      "from": "the-year-and-the-raise"
+    },
+    {
+      "key": "plastic.panelPerBed",
+      "label": "Defy panels a bed",
+      "value": 254.45,
+      "unit": "AUD",
+      "from": "defy-supply INV-2021",
+      "drift": "Calculator plastic reads $55 with no supply-path choice"
+    },
+    {
+      "key": "plastic.kitPerBed",
+      "label": "Defy finished kit a bed",
+      "value": 344.05,
+      "unit": "AUD",
+      "from": "defy-supply INV-1602"
+    },
+    {
+      "key": "plastic.breakEvenShred",
+      "label": "Shred price where press and panels cost the same",
+      "value": 3.1618055555555555,
+      "unit": "AUD/kg",
+      "from": "production-scenarios",
+      "drift": "Not in the workbook at all"
+    },
+    {
+      "key": "trade.bedsPaid",
+      "label": "Beds bought and paid for",
+      "value": 320,
+      "unit": "beds",
+      "from": "demand-and-buyers"
+    },
+    {
+      "key": "trade.paidNet",
+      "label": "Paid, net",
+      "value": 247770,
+      "unit": "AUD",
+      "from": "demand-and-buyers"
+    }
+  ],
+  "runningBreakdown": [
+    {
+      "line": "Founders",
+      "amountAud": 151200,
+      "what": "Two founders beyond the days they spend on production."
+    },
+    {
+      "line": "Getting to communities",
+      "amountAud": 51000,
+      "what": "Travel to eleven communities. Being on country costs what a call does not."
+    },
+    {
+      "line": "Accounting and advice",
+      "amountAud": 50000,
+      "what": "Bookkeeping, the FY26 repair, the entity work and the audit-readiness the funders are asking for."
+    },
+    {
+      "line": "Witta rent",
+      "amountAud": 27000,
+      "what": "The Harvest shed, where the press and the router live."
+    },
+    {
+      "line": "Marketing",
+      "amountAud": 10000,
+      "what": "The site, the deck, the print."
+    },
+    {
+      "line": "Maintenance",
+      "amountAud": 8350,
+      "what": "Press, router and shredder upkeep."
+    }
+  ]
+}
