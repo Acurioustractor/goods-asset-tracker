@@ -312,6 +312,18 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--rail);font-si
 .say div{background:var(--surface);padding:11px 15px;font-size:13px;line-height:1.5;display:flex;gap:11px}
 .say div::before{content:counter(sayc);counter-increment:sayc;font-family:var(--mono);font-size:11px;color:var(--clay);font-weight:600;flex:0 0 16px}
 .say{counter-reset:sayc}
+
+/* sizing */
+.siz{overflow-x:auto;margin-top:14px}
+.siz table{border-collapse:collapse;width:100%;font-size:13px;min-width:460px}
+.siz td.hit{background:color-mix(in srgb,var(--olive) 13%,transparent);font-weight:600}
+.siz td.out{color:var(--ink-3)}
+.bigline{display:flex;flex-wrap:wrap;gap:0;margin-top:16px;border:1px solid var(--rail);border-radius:3px;overflow:hidden}
+.bigline div{flex:1 1 150px;padding:13px 15px;background:var(--surface);border-right:1px solid var(--rail)}
+.bigline div:last-child{border-right:0}
+.bigline .k{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.bigline .v{font-family:var(--display);font-size:25px;line-height:1.1;margin-top:3px}
+.bigline .s{font-size:11.5px;color:var(--ink-3);margin-top:2px}
 </style>
 
 <button class="themebtn" id="themebtn" type="button">theme</button>
@@ -549,6 +561,48 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--rail);font-si
       <div>Never state a demand total. If asked for one, say we do not have a demand measure, say why, and offer the household count instead.</div>
       <div>Two organisations in Maningrida have bought from us and one of them asked for more. Repeat buyers in one place say more about demand than any count.</div>
       <div>The largest number on the record came up once in a meeting and is the weakest thing we hold.</div>
+    </div>
+
+
+    <h3>How many a community takes, from the ones we know</h3>
+    <p>Two earlier attempts to size this failed. Beds cannot be derived from Census overcrowding,
+      because that standard counts bedrooms and we supply beds. And no rate hides under the recorded
+      asks, because each is scoped to a different population. This works because it uses a different
+      input: what communities actually took once beds were available.</p>
+
+    <div class="bigline">
+      <div><div class="k">Palm Island</div><div class="v">1 per 16.0</div><div class="s">2,097 people, 131 beds</div></div>
+      <div><div class="k">Tennant Creek</div><div class="v">1 per 15.9</div><div class="s">2,549 people, 160 beds</div></div>
+      <div><div class="k">Planning range</div><div class="v">1 per 12 to 21</div><div class="s">Three towns, delivered plus asked</div></div>
+    </div>
+    <p class="note">Palm Island and Tennant Creek reached almost exactly the same place, with
+      different products and no coordination between them. Neither stopped there: Palm Island has
+      asked for 40 more and Tennant Creek for 23.</p>
+
+    <div class="siz">
+      <table>
+        <thead><tr><th>Place</th><th class="r">People</th><th class="r">Delivered</th><th class="r">Asked next</th><th class="r">People per bed now</th><th class="r">With the ask</th></tr></thead>
+        <tbody>
+          <tr><td>Palm Island</td><td class="r">2,097</td><td class="r">131</td><td class="r">40</td><td class="r hit">16.0</td><td class="r">12.3</td></tr>
+          <tr><td>Tennant Creek</td><td class="r">2,549</td><td class="r">160</td><td class="r">23</td><td class="r hit">15.9</td><td class="r">13.9</td></tr>
+          <tr><td>Maningrida</td><td class="r">2,518</td><td class="r">58</td><td class="r">65</td><td class="r out">43.4</td><td class="r">20.5</td></tr>
+          <tr><td>Utopia, held out</td><td class="r">444</td><td class="r">147</td><td class="r">150</td><td class="r out">3.0</td><td class="r out">1.5</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Utopia is dispersed homelands and not a town, and it is where we have gone
+      deepest. At four times the density of anywhere else it sizes nothing but itself.</p>
+
+    <div class="callout">
+      <b>A plant's first year is the size of a town's first phase</b>
+      <p>A new plant makes about 200 beds in its first year. A town of 2,500 people sits between 122
+        and 204 beds on this range. So one plant, running a year, covers roughly what a community
+        that size has been observed to take. Nobody designed that to line up, which is what makes it
+        a check on both models.</p>
+      <p><b>Three things to say every time the number is used.</b> It is bounded by what we could
+        afford to make, so it describes our funding as much as their need. It is a floor, because all
+        three have asked for more. And the plainest claim needs no model at all: beds have gone to
+        eleven communities and not one has come back to say it has enough.</p>
     </div>
 
     <div class="callout">
