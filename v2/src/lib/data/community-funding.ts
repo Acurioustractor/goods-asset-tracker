@@ -38,7 +38,7 @@ function defaultNeeds(name: string): FundingNeed[] {
   return [
     {
       title: 'Sponsor the next beds',
-      detail: `Every sponsored Stretch Bed goes to a family in ${name} — flat-packed, washable, built to last 10+ years.`,
+      detail: `Every sponsored Stretch Bed goes to a family in ${name}: flat-packed, washable, designed to last 10+ years.`,
       href: '/sponsor',
       cta: 'Sponsor beds',
     },

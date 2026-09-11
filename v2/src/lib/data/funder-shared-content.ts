@@ -25,7 +25,7 @@ export const PRODUCT_CARDS: ProductCard[] = [
     body:
       'Stretch Bed v2.3 is in production. Sale price sits around $750 a bed, with marginal cost well below that and a clear path to lower it further as we move HDPE processing On-Country and volume scales. Margin improves as we in-source production.',
     image: '/images/product/stretch-bed-hero.jpg',
-    imageAlt: 'The Stretch Bed: flat-pack, washable, 10-year design',
+    imageAlt: 'The Stretch Bed: flat-pack, washable, designed for a 10 year life',
     link: { href: '/shop/stretch-bed-single', label: 'See the product' },
   },
   {

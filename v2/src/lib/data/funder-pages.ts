@@ -111,7 +111,7 @@ export const FUNDER_PAGES: FunderPage[] = [
       ],
     },
     intro:
-      "Goods on Country is a First Nations led social enterprise making the Stretch Bed: a flat-pack, washable, 10-year bed built from recycled HDPE, galvanised steel and Australian canvas, designed for remote Indigenous communities. We're in the QBE Catalysing Impact 2026 cohort, putting together a ~$3M blended capital raise (target) to build the On-Country manufacturing facility and meet the institutional buyer demand we have in active conversation.",
+      "Goods on Country is a First Nations led social enterprise making the Stretch Bed: a flat-pack, washable bed designed to last 10 years, built from recycled HDPE, galvanised steel and Australian canvas, designed for remote Indigenous communities. We're in the QBE Catalysing Impact 2026 cohort, putting together a ~$3M blended capital raise (target) to build the On-Country manufacturing facility and meet the institutional buyer demand we have in active conversation.",
     whyUs: [
       "DGR pathway via The Butterfly Movement Ltd (ACNC charity, Item 1 DGR). The gifting arrangement routing Goods-directed philanthropy through Butterfly is being formalised for FY2026-27; confirm with us before structuring a donation for DGR treatment. Goods on Country / A Curious Tractor are not themselves DGR.",
       'Self-servicing economics. At roughly $750 a bed with marginal cost well below sale price, the recoverable portion pays itself back across the buyer pipeline within two to three years.',
@@ -139,7 +139,7 @@ export const FUNDER_PAGES: FunderPage[] = [
       purpose: 'Working capital for community deployments plus outcome measurement',
     },
     intro:
-      "Goods on Country is a First Nations led social enterprise making the Stretch Bed: a 10-year, washable, flat-pack bed designed for remote Indigenous housing. We're approaching PRF as part of a ~$3M blended capital raise (target) through the QBE Catalysing Impact 2026 program, with a focus on the disadvantage and housing outcomes alignment that's central to PRF's mission.",
+      "Goods on Country is a First Nations led social enterprise making the Stretch Bed: a washable, flat-pack bed designed to last 10 years in remote Indigenous housing. We're approaching PRF as part of a ~$3M blended capital raise (target) through the QBE Catalysing Impact 2026 program, with a focus on the disadvantage and housing outcomes alignment that's central to PRF's mission.",
     whyUs: [
       "Direct alignment with the PRF disadvantage pillar. Quality, durable furniture is a measurable lever for housing outcomes in remote Australia.",
       "Outcomes tracking is in place. Bed deployment uses a QR scan-and-record system across all 11 communities; washing machine telemetry is piloting on selected units. PRF gets deployment data from day one; fleet-wide machine telemetry is the next instrumentation milestone.",
@@ -160,7 +160,7 @@ export const FUNDER_PAGES: FunderPage[] = [
       purpose: 'Community deployment plus Elder-led design program in NPY lands',
     },
     intro:
-      "Goods on Country makes the Stretch Bed (a flat-pack, washable, 10-year bed for remote Indigenous communities) and the Pakkimjalki Kari washing machine, named in Warumungu by Elder Dianne Stokes. We're approaching TFFF for community deployment funding aligned with your remote and First Nations focus, as part of our QBE Catalysing Impact 2026 capital raise.",
+      "Goods on Country makes the Stretch Bed (a flat-pack, washable bed designed to last 10 years in remote Indigenous communities) and the Pakkimjalki Kari washing machine, named in Warumungu by Elder Dianne Stokes. We're approaching TFFF for community deployment funding aligned with your remote and First Nations focus, as part of our QBE Catalysing Impact 2026 capital raise.",
     whyUs: [
       "TFFF's remote and First Nations focus matches our deployment geography exactly: NPY lands, Tennant Creek, Groote Eylandt, Arnhem Land.",
       'Elder-led design is built into the product. Dianne Stokes named the Pakkimjalki Kari washing machine and shaped its construction in community.',

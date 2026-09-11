@@ -62,7 +62,7 @@ const colourSwatches = [
 ];
 
 const voiceRules = [
-  'Lead with impact, not charity. A washing machine is cardiac prevention. A bed is medical recovery.',
+  'Lead with impact, not charity. A bed off the ground and a working washing machine are health hardware. Scabies and rheumatic heart disease are why, and the claim stops there.',
   'Centre community voices. Quote people by name, with location, with consent.',
   'Be specific. Real numbers, real materials, real places. "Tennant Creek" beats "remote Australia".',
   'Plain, not polished. Write the way Nic talks at the kitchen table. Short sentences. Concrete nouns.',

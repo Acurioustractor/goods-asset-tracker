@@ -142,8 +142,10 @@ export default function WashingMachinePage() {
                   <div>
                     <p className="font-medium text-foreground">Health Hardware</p>
                     <p className="text-sm text-muted-foreground">
-                      A washing machine isn&apos;t convenience. It&apos;s cardiac prevention.
-                      Clean bedding breaks the scabies cycle that leads to Rheumatic Heart Disease.
+                      A working washing machine is health hardware. Scabies spreads where
+                      bedding cannot be washed, and untreated scabies is part of the chain that
+                      leads to rheumatic heart disease. That is why this matters. We have never
+                      run a clinical study and we do not claim a machine prevented a case.
                     </p>
                   </div>
                 </div>

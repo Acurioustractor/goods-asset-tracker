@@ -263,7 +263,7 @@ const snow: PartnerDashboard = {
       {
         stage: 'Blended raise',
         meaning:
-          'Where we are now. A mix of repayable finance, a matched grant through QBE, and philanthropic partners. Repayable finance is prioritised over grants, by design.',
+          'Where we are now. A mix of repayable finance, a catalytic grant through QBE, and philanthropic partners. Repayable finance is prioritised over grants, by design.',
         state: 'now',
       },
       {
@@ -279,7 +279,7 @@ const snow: PartnerDashboard = {
       body: 'Snow has opened a conversation about coming into this next chapter as more than a grant maker: as an impact investor. Our hope is to structure as much of the next commitment as possible as a loan, recoverable capital that returns to Snow over time and can be put back to work, rather than a grant. The three things we want to settle together with Snow are the amount, the conditions it carries, and the impact it is held to. It is an exploration, not a commitment, and it sits alongside the partnership we already have, not in place of it.',
     },
     qbeNote:
-      'Goods was selected into QBE Catalysing Impact 2026, a blended finance accelerator run by the Social Impact Hub. Stage 2 can match up to $400,000, but only against capital we raise alongside it, and repayable finance is prioritised over grants. The match is contingent, and it is not secured until it is awarded.',
+      'Goods was selected into QBE Catalysing Impact 2026, a blended finance accelerator run by the Social Impact Hub. Stage 2 is a catalytic grant of up to $400,000, awarded at QBE discretion and only where signed external commitments at least cover it. It is a coverage test on the grant, not a doubling of our money, and there is no floor. Repayable finance is prioritised over grants. Nothing is secured until it is awarded.',
   },
   statusLine:
     'Commissioning the first containerised plant (about 85 percent); the Alice Springs facility submission with Oonchiumpa is in review.',
@@ -350,9 +350,9 @@ const snow: PartnerDashboard = {
   ],
   cta: {
     headline: 'Back the next handover',
-    action: 'Help close the match',
+    action: 'Help cover the grant',
     supporting:
-      'Three years of trusting, long-term partnership put the proof in the houses. The next stage is the kind of bold idea that rewards considered risk: QBE will match up to $400K, but only against capital we raise alongside it. Closing that gap unlocks the next community-owned facility.',
+      'Three years of trusting, long-term partnership put the proof in the houses. The next stage is the kind of bold idea that rewards considered risk. QBE Stage 2 is a catalytic grant of up to $400K, awarded at their discretion and only where signed external commitments at least cover it. A commitment now is what makes the grant possible, and the grant is what pays for the next community facility.',
     href: '/partner',
   },
   traffic: {
