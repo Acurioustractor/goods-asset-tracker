@@ -1,3 +1,7 @@
+> **SUPERSEDED 12 September 2026** by `codex-sheet-brief.md`, which is generated from the canon
+> so its figures cannot be mistyped, and which fixes the workbook structurally instead of patching
+> eleven cells that would drift again. Kept for the reasoning.
+
 # Codex prompts for the live sheet
 
 Eleven changes and four new tabs, written as prompts to paste one at a time.
