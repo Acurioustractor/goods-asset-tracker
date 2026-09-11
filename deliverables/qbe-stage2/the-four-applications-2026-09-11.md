@@ -40,7 +40,7 @@ error and is now stated on the stack page.
 
 **Beds are bought at $750 and cost $276 to make.** $160,000 of bed money over-covers the $110,400
 making line by $49,600, and that surplus carries the organisation. It is the $474 doing its job,
-seen from the other end. `capital-stack-flex.ts` computes it rather than asserting it, and a guard
+seen from the other end. `capital-stack-flex.ts` computes it from both ends, and a guard
 fails if the two ends stop agreeing.
 
 ## Plant money behaves differently
