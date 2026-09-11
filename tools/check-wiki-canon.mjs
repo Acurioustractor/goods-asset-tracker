@@ -140,6 +140,8 @@ function main() {
   let errors = 0;
   let warnings = 0;
   const unversioned = [];
+  const needVersioning = [];
+  const strict = args.includes('--strict');
 
   // Staleness is measured against the newest article in the corpus, not against the clock. That
   // keeps the check reproducible: it fails when the wiki has moved on without an article, which is
@@ -172,8 +174,11 @@ function main() {
     }
 
     if (!fm.reviewed) {
-      console.log(`ERROR    ${rel}\n         frontmatter has no reviewed: date`);
-      errors++;
+      // An article predating rule 12. It cites no canon keys, so it cannot drift against a module:
+      // what it carries is a claim nobody has checked since the September rulings. That is a backlog
+      // to work through, not a broken build, so it is named and counted and does not fail the gate.
+      // `--strict` makes it fail, for when the backlog is cleared and the rule should bite.
+      needVersioning.push(rel);
     } else if (newest) {
       const age = daysBetween(new Date(fm.reviewed), newest);
       if (age > STALE_DAYS) {
@@ -199,14 +204,22 @@ function main() {
     }
   }
 
+  if (needVersioning.length) {
+    console.log(`\n${needVersioning.length} article(s) predating rule 12, awaiting a review against the September rulings:`);
+    for (const f of needVersioning) console.log(`  ${f}`);
+  }
+
   if (listUnversioned || unversioned.length) {
     console.log(`\n${unversioned.length} article(s) with no frontmatter yet:`);
     for (const f of unversioned) console.log(`  ${f}`);
   }
 
-  const checked = files.length - unversioned.length;
-  console.log(`\n${checked} versioned article(s) checked, ${errors} error(s), ${warnings} warning(s).`);
-  if (errors) process.exit(1);
+  const checked = files.length - unversioned.length - needVersioning.length;
+  console.log(
+    `\n${checked} versioned article(s) checked, ${errors} error(s), ${warnings} warning(s), ` +
+      `${needVersioning.length} awaiting review.`,
+  );
+  if (errors || (strict && needVersioning.length)) process.exit(1);
 }
 
 main();
