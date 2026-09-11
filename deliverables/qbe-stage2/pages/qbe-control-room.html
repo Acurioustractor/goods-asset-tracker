@@ -246,6 +246,27 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--rail);font-si
 .gap .sub{font-size:12px;color:var(--ink3);margin-top:6px;line-height:1.4}
 .gap .bad dd{color:var(--bad)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* three years */
+.yrs{display:grid;gap:1px;background:var(--rail);border:1px solid var(--rail);border-radius:3px;overflow:hidden;margin-top:16px}
+@media(min-width:860px){.yrs{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.yrs .y{background:var(--surface);padding:16px 18px 18px;display:flex;flex-direction:column;gap:10px}
+.yrs .y h4{font-family:var(--display);font-size:18px;margin:0;font-weight:600}
+.yrs .y .story{font-size:13px;color:var(--ink-2);line-height:1.5;margin:0}
+.bar{display:flex;height:26px;border-radius:2px;overflow:hidden;border:1px solid var(--rail)}
+.bar .t{background:color-mix(in srgb,var(--olive) 70%,transparent)}
+.bar .g{background:color-mix(in srgb,var(--gold) 70%,transparent)}
+.bar .o{background:color-mix(in srgb,var(--teal) 45%,transparent)}
+.barkey{display:flex;flex-wrap:wrap;gap:12px;font-size:11px;color:var(--ink-3)}
+.barkey span::before{content:"";display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.barkey .kt::before{background:color-mix(in srgb,var(--olive) 70%,transparent)}
+.barkey .kg::before{background:color-mix(in srgb,var(--gold) 70%,transparent)}
+.barkey .ko::before{background:color-mix(in srgb,var(--teal) 45%,transparent)}
+.yrs .rows{display:grid;gap:0;margin-top:2px}
+.yrs .rows div{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;padding:5px 0;border-bottom:1px solid var(--rail)}
+.yrs .rows div:last-child{border-bottom:0}
+.yrs .rows b{font-family:var(--mono);font-weight:500;font-variant-numeric:tabular-nums}
+.yrs .job{font-size:12.5px;color:var(--ink-2);line-height:1.5;margin:0;padding-top:2px;border-top:1px solid var(--rail)}
 </style>
 
 <button class="themebtn" id="themebtn" type="button">theme</button>
@@ -261,6 +282,7 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--rail);font-si
     <li><a href="#impact"><span class="n">&#9679;</span>What can be evidenced</a></li>
     <li><a href="#need">What each funder needs</a></li>
     <li><a href="#calendar">The calendar</a></li>
+    <li><a href="#threeyear">Three years</a></li>
     <li><a href="#stand"><span class="n">01</span>Where it stands</a></li>
     <li><a href="#model"><span class="n">02</span>The model in four answers</a></li>
     <li><a href="#play"><span class="n">03</span>Play the model</a></li>
@@ -570,6 +592,92 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--rail);font-si
     </div>
   </section>
 
+
+
+  <section id="threeyear">
+    <h2>Three years, for Tim Fairfax</h2>
+    <p class="lede">Katie Norman invited a three-year application and named the resilience of
+      organisations. Every model here ran one year, so there was nothing to answer it with. This is
+      the three-year shape, built on one fact that was already locked.</p>
+
+    <div class="callout">
+      <b>628 beds a year carries the whole organisation</b>
+      <p>Running Goods on Country costs $297,550 and a bed hands back $474. Year one plans 400 beds.
+        The three years are the distance between those two numbers, and the grant shrinks as that
+        distance closes. Guarded in <span class="mono">three-year-plan.ts</span>, 18 tests.</p>
+    </div>
+
+    <div class="yrs">
+      <div class="y">
+        <h4>Year one, to June 2027</h4>
+        <p class="story">The plants are built and commissioned and Witta makes the first stock. Trade
+          covers two thirds of the organisation and a grant covers the rest.</p>
+        <div class="bar"><div class="t" style="flex:189600"></div><div class="g" style="flex:100000"></div><div class="o" style="flex:7950"></div></div>
+        <div class="rows">
+          <div><span>Beds sold, a target inside 576 of capacity</span><b>400</b></div>
+          <div><span>What they contribute</span><b>$189,600</b></div>
+          <div><span>Running the organisation</span><b>$297,550</b></div>
+          <div><span>Short before the grant</span><b>$107,950</b></div>
+          <div><span>Trade covers</span><b>64%</b></div>
+        </div>
+        <p class="job">The $100,000 keeps the lights on. It is a third of what the year costs.</p>
+      </div>
+
+      <div class="y">
+        <h4>Year two, to June 2028</h4>
+        <p class="story">Two community plants are running and Witta presses parts for them. The
+          organisation reaches the number that carries it.</p>
+        <div class="bar"><div class="t" style="flex:297672"></div><div class="g" style="flex:100000"></div></div>
+        <div class="rows">
+          <div><span>Beds sold, inside 976 of capacity</span><b>628</b></div>
+          <div><span>What they contribute</span><b>$297,672</b></div>
+          <div><span>Running the organisation</span><b>$297,550</b></div>
+          <div><span>Short before the grant</span><b>$0</b></div>
+          <div><span>Trade covers</span><b>100%</b></div>
+        </div>
+        <p class="job">The $100,000 becomes the reserve that lets a bad quarter happen without a
+          redundancy. That is what resilience means on a cashflow.</p>
+      </div>
+
+      <div class="y">
+        <h4>Year three, to June 2029</h4>
+        <p class="story">The plants move toward community hands. Goods earns more than it costs to
+          run, and the grant turns to paying for the transfer.</p>
+        <div class="bar"><div class="t" style="flex:426600"></div><div class="g" style="flex:100000"></div></div>
+        <div class="rows">
+          <div><span>Beds sold, inside 2,216 of capacity</span><b>900</b></div>
+          <div><span>What they contribute</span><b>$426,600</b></div>
+          <div><span>Running the organisation</span><b>$297,550</b></div>
+          <div><span>Over, before the grant</span><b>$129,050</b></div>
+          <div><span>Trade covers</span><b>143%</b></div>
+        </div>
+        <p class="job">The $100,000 funds the handover: the legal work, the training and the asset
+          transfer that turn a plant Goods owns into a plant a community owns.</p>
+      </div>
+    </div>
+    <div class="barkey" style="margin-top:10px">
+      <span class="kt">What trade contributes</span>
+      <span class="kg">The Tim Fairfax payment</span>
+      <span class="ko">Still short</span>
+    </div>
+
+    <div class="callout">
+      <b>Four things nobody has ruled on</b>
+      <p>Bed volumes are targets that fit inside measured capacity. No buyer has ordered year two or
+        year three. And the running cost is held flat at $297,550 across all three years while two
+        plants and six communities are added. Nobody has decided that; it is an assumption.</p>
+      <ol style="margin:8px 0 0;padding-left:20px">
+        <li>Does the running cost stay at $297,550 for three years, or does it grow.</li>
+        <li>Does founder pay move off $151,200 once trade carries the organisation.</li>
+        <li>Who carries freight from year two. It moves break-even from 628 beds to 918.</li>
+        <li>Whether year three pays for the handover, which is the only line here that is not an operating cost.</li>
+      </ol>
+    </div>
+
+    <p class="note">Facilitation is billed at $10,000 a community and costs about the same to deliver,
+      so it is kept out of the income line. Counting it as income without its cost is the same
+      mistake that produced the $937,550.</p>
+  </section>
 
   <section id="need">
     <h2>What each funder still needs</h2>
