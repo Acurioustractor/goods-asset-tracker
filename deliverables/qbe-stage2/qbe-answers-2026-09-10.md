@@ -335,6 +335,82 @@ which needs a consented follow-up at delivery, six weeks and three months.
 
 ---
 
+## Q11. Existing impact measurement materials
+
+Three records already run, and we would upload all three. None of them was built for a funder.
+
+### The asset register
+
+One row per bed, carrying an asset identifier, a community, a product and a date. On 8 September
+2026 we read all 609 rows and reconciled them: 540 beds deployed across eleven communities, being
+177 Stretch and 363 Basket, and 22 washing machines.
+
+It is reconciled against Xero. 320 of those beds appear on five invoices from four organisations
+totalling $273,966, and every one traces to a batch. The Centrecorp reconciliation closed on
+11 September: 167 bought and paid for, 147 deployed, 20 made and waiting at Alice Springs.
+
+The register is also how we find a bed again when somebody reports a fault, which is why it exists
+and why it is accurate.
+
+### The consented story registry
+
+The record that governs what may be printed. Thirty-four people are cleared at external tier with
+approved quotes, and it wins over any other consent source we hold. Palm Island has seven, more
+than anywhere else.
+
+Every quote in this application comes from it. People who have not cleared a quote are not quoted,
+and people cleared for other projects are not borrowed for this one.
+
+### The production log
+
+Opened in September 2026 to record paid hours against completed beds, day by day. **It has no
+entries yet.** We are uploading it as a blank template and labelling it that way, because the next
+production run is what fills it.
+
+---
+
+### What the three records let us say
+
+| Measure | Where it stands | What it rests on |
+|---|---|---|
+| A person off the floor | **Counted** | The register, bed by bed, with a community and a date against each |
+| Two hours of paid making a bed | Modelled | Taken from the build. Nobody has counted it in the field, and the production log is what changes that |
+| 20 kg of plastic in a finished bed | Modelled | Design mass. 36 kg goes through the press and yield has never been weighed |
+| Money kept in community | A settled rule with no trade behind it yet | The full $750 stays with the community enterprise. No enterprise is trading yet |
+
+One of four is counted. We print the other three with that ceiling on them.
+
+Health is deliberately not a row. Scabies and the path it runs to rheumatic heart disease is why a
+bed is washable and off the ground, and we do not claim a health outcome from delivering one.
+
+### What we do not have
+
+No follow-up collection after delivery. No weighed plastic yield. And no count of how many people
+in a community sleep without a bed, which is the measure our own work is supposed to change.
+
+That last one matters most and we would rather say it than dress up what we have. Every need figure
+we hold is somebody's impression of a population nobody has counted.
+
+### What we propose, labelled as proposed
+
+**A household count, done by a local person who is paid for the work.** Four questions per
+household, short enough to do walking: how many people sleep here, how many have a bed of their
+own, how many sleep on the floor or outside, and who would use a new bed first. The count belongs
+to the community organisation. Goods receives a total and a delivery list. The household register
+stays where it was made.
+
+The Census counts who lives in a place. This counts who sleeps there, and in these communities
+those are different numbers. One community doing it properly would turn our main impact measure
+from an inference into a measurement.
+
+**Three follow-up points on the beds themselves**: at delivery, at six weeks and at three months.
+Fifty beds in the next programme, being 20 made at Witta and 15 at each new site.
+
+None of this has been done. It is a plan for collection and we would not describe it as an
+evaluation.
+
+---
+
 ## Q19. Governance, team, financial and delivery readiness
 
 DRAFT, 10 September 2026. 538 words. Owner Nic. Not ready to submit. Every outstanding item

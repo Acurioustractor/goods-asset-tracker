@@ -11,10 +11,10 @@ model and the impact measure read the same way. Published in the two pages:
 
 | State | Count | Questions |
 |---|---|---|
-| Answered and final | 8 | Q5, Q6, Q7, Q8, Q9, Q10, Q18, Q23 |
+| Answered and final | 9 | Q5, Q6, Q7, Q8, Q9, Q10, Q11, Q18, Q23 |
 | Written, held on the siting ruling | 0 | none left |
 | Ready, pending a check | 3 | Q1, Q2, and Q19's text |
-| A document is owed | 9 | Q3, Q4, Q11, Q14, Q15, Q19, Q20, Q21, Q22 |
+| A document is owed | 8 | Q3, Q4, Q14, Q15, Q19, Q20, Q21, Q22 |
 | Only a person can answer | 5 | Q13, Q16, Q17, Q24, Q25 |
 | Blocked on a missing file | 1 | Q12 |
 
@@ -34,7 +34,7 @@ Q19 has text and sits in the document column because of its six attachments.
    minute from Oonchiumpa. Ben, Monday.
 6. **Structure diagram against the transfer records, and A Curious Tractor's extracts** (Q3, Q4). Ben.
 7. **Funder bundle refresh** (Q14, Q15): conditions, recipient, dates. Ben.
-8. **Consented record selection for Q11**, with proposed collection labelled as proposed.
+8. **Pick the consented records for Q11.** The answer is written and labels proposed collection as proposed. Ben chooses which records attach.
 9. **Solvency assessment** (Q24) once a current balance has been read. Opening cash is recorded as
    unknown, and unknown is not zero.
 10. **The four declarations** (Q13, Q16, Q17, Q25), last.
