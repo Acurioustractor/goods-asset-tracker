@@ -247,6 +247,29 @@ itself, on the same three-part test: they asked, someone local can run it, beds 
 
 The page is now ten plates.
 
+**Plate 07 rebuilt as three routes, after Ben said we already buy Defy leg panels.** The
+9 September Defy record says the opposite and it is worth holding: **"Shred, not panels, is the
+standing order"**, panels are **"only as a surge"**, and Defy plastic is about $200 a bed against
+$36 to $65 of shred pressed at Witta, **"which is the whole reason Witta presses its own sheets"**.
+Panels have been bought three times, 20 in March, 20 in June and 3.5 in August.
+
+**Ben's six beds a day is right about the press and wrong about the line.** On Defy legs the press
+only makes the tab sheet, so six sheets is six beds. Assembly then caps it at five. Open Item 20 says
+the Defy route is not modelled and needs a decision, so this is a live disagreement about what the
+standing route actually is, and Nic should settle it.
+
+| Route | Beds/day | A week at 80% | A month | A year | Plastic a bed | Make cost |
+|---|---:|---:|---:|---:|---:|---:|
+| Press our own panels, the standing order | 3 | 12 | 48 | 576 | $36-$65 | $275.74 |
+| Buy Defy leg panels, a surge | 5 | 20 | 80 | 960 | about $200 | about $421 |
+| A second press, own panels | 5 | 20 | 80 | 960 | $36-$65 | $275.74 |
+
+**The second press and the Defy panels buy the same output.** Both take the line from twelve beds a
+week to twenty. The panel route adds about $145 to every bed and drops what stays with Goods from
+$474 to about $329. Across the 630 that is about $91,000. Fifty panels is $22,525 delivered and
+covers 100 beds, which is the same money as the second press, and the press adds nothing to any bed
+ever. The recorded conclusion is to buy the press unless it cannot be running by mid October.
+
 ## Deck alignment, 11 September 2026
 
 Every text node in all nineteen frames of board `BEXfI` read and checked. Nothing changed; slides get
