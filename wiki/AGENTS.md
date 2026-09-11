@@ -54,6 +54,35 @@ wiki/
 9. **Don't duplicate the v2 codebase.** For product specs, cross-link to `v2/src/lib/data/products.ts`.
 10. **No em dashes.** Use colons, periods, parentheticals.
 11. **Always "On-Country" / "On Country"** (capitalised — Country is a proper noun).
+12. **Every article carries frontmatter.** An article with no frontmatter is unversioned and cannot
+    be trusted or cited. The shape:
+
+    ```yaml
+    ---
+    reviewed: 2026-09-12                            # when a human last read it against its sources
+    ruling: Ben, 12 Sep 2026, the flat-pack route   # the ruling that governs it, if one does
+    canon: [year.needs, year.gap]                   # the settled figures it prints, by canon key
+    sources: [v2/src/lib/data/the-year-and-the-raise.ts]
+    supersedes: [program/stage-2-funding]           # articles this replaces, if any
+    ---
+    ```
+
+13. **Never retype a settled figure. Cite its canon key.** The figures live in
+    `v2/src/lib/data/sheet-canon.ts`, which imports every one of them from a guarded module. List
+    the keys an article prints in `canon:` and `node tools/check-wiki-canon.mjs` fails by name when
+    a module moves underneath it. `node tools/check-wiki-canon.mjs --keys` shows what is available.
+    A figure with no canon key does not belong in an article yet: give it a key first.
+14. **Superseding is an edit, never an addition.** When a ruling retires something, change the
+    article and record the retirement in `capital/what-we-no-longer-say.md`, which is the one place
+    that holds the old figure, what replaced it and the ruling that did it. Nine articles here
+    still said QBE money was match-funded long after ruling V retired that, because nothing made
+    retirement a step.
+15. **A provisional figure says so in the sentence that prints it.** Canon marks some values
+    provisional, for example the cost to make a bed while the flat-pack route is being costed.
+    Print the word, not a footnote. A funder reading a number cannot see a footnote nobody wrote.
+
+**The gate before publishing:** `node tools/check-wiki-canon.mjs` for the figures and the frontmatter,
+`node tools/check-ai-tells.mjs <file>` for the writing rules.
 
 ## Canonical Sources (don't duplicate, cross-reference)
 
