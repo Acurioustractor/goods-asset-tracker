@@ -332,8 +332,8 @@ anybody having to remember a footnote.
 
 ## The two Xero edits cannot be made through the API
 
-Attempted 11 September 2026. Xero refused, and the refusal is Xero's own rule rather than a
-permission problem:
+Attempted 11 September 2026. Xero refused. This is Xero's own rule, and no permission setting
+changes it:
 
 > This Bank Transaction cannot be edited as it has been reconciled with a Bank Statement.
 
