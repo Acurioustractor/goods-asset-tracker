@@ -240,7 +240,7 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--rail);font-si
     <li><a href="#play"><span class="n">03</span>Play the model</a></li>
     <li class="grp">The evidence</li>
     <li><a href="#claims"><span class="n">04</span>Every claim</a></li>
-    <li><a href="#money"><span class="n">05</span>Every funder line</a></li>
+    <li><a href="#funders"><span class="n">05</span>Every funder line</a></li>
     <li><a href="#questions"><span class="n">06</span>The 25 questions</a></li>
     <li><a href="#attach"><span class="n">07</span>What each upload needs</a></li>
     <li class="grp">The record</li>
@@ -413,36 +413,108 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--rail);font-si
 
   <section id="money">
     <h2>The money, and what is still to find</h2>
-    <p class="lede">Everything the year needs, everything that has been asked for, and the distance
-      between them. Read 11 September 2026.</p>
+    <p class="lede">How the year's number is built, what has been asked for against it, and what the
+      Commonwealth plant money does to the answer. Rebuilt 11 September 2026 after the first figure
+      was found to count the bed money twice.</p>
+
+    <div class="callout">
+      <b>Correction: the year needs $747,950, not $937,550</b>
+      <p>The first figure added 400 beds at the $750 sale price to the full $297,550 running cost.
+        A bed sold at $750 pays its own $276 of making and hands $474 to the organisation, so the
+        running cost was being charged twice. The overlap is $189,600. It is now a guard in
+        <span class="mono">the-year-and-the-raise.ts</span>, 29 tests, so the old figure cannot come back.</p>
+    </div>
+
     <dl class="gap">
-      <div><dt>The year needs</dt><dd>$937,550</dd><div class="sub">Two plants, 400 beds of first stock, facilitation in four communities, and running the organisation</div></div>
-      <div><dt>Asked for</dt><dd>$600,000</dd><div class="sub">Across five asks, one of which has not been sent</div></div>
-      <div class="bad"><dt>Secured</dt><dd>$0</dd><div class="sub">Every line is an invitation or a conversation</div></div>
+      <div><dt>The year needs</dt><dd>$747,950</dd><div class="sub">$807,950 if Goods carries freight instead of the buyer</div></div>
+      <div><dt>Asked for</dt><dd>$600,000</dd><div class="sub">Five asks, one of which has not been sent</div></div>
+      <div class="bad"><dt>Still to find</dt><dd>$147,950</dd><div class="sub">187 beds of stock and a year of running costs</div></div>
     </dl>
+
+    <h3>How the number is built</h3>
     <div class="scroll">
       <table>
-        <thead><tr><th>What the year needs</th><th class="r">Amount</th><th>Who is asked</th><th>Where it stands</th></tr></thead>
+        <thead><tr><th>What the year does</th><th class="r">Cash out</th><th>How it is priced</th></tr></thead>
         <tbody>
-          <tr><td>Two community plants</td><td class="r">$300,000</td><td>QBE</td><td>Applying, closes 25 September</td></tr>
-          <tr><td>400 beds of first stock at $750</td><td class="r">$300,000</td><td>Tim Fairfax $100,000, Brian M. Davis $60,000, a Snow ask of $100,000</td><td>Two invited, one not sent</td></tr>
-          <tr><td>Facilitation, four communities</td><td class="r">$40,000</td><td>Brian M. Davis</td><td>Invited, due 25 September</td></tr>
-          <tr><td>Running the organisation</td><td class="r">$297,550</td><td>Tim Fairfax is the only operating ask, at $100,000</td><td><b>$197,550 of it is not asked for anywhere</b></td></tr>
-          <tr class="tot"><td>The year</td><td class="r">$937,550</td><td>$600,000 asked</td><td>$0 secured</td></tr>
+          <tr><td>Two community plants</td><td class="r">$300,000</td><td>$150,000 each, an allowance against modules priced $95,767 to $142,467</td></tr>
+          <tr><td>Making 400 beds</td><td class="r">$110,400</td><td>$276 a bed, labour inside it, freight after</td></tr>
+          <tr><td>Facilitation, four communities</td><td class="r">$40,000</td><td>$10,000 a community, already billed once at that rate</td></tr>
+          <tr><td>Running the organisation</td><td class="r">$297,550</td><td>Founders $151,200, travel $51,000, accounting $50,000, Witta rent $27,000, marketing $10,000, maintenance $8,350</td></tr>
+          <tr class="tot"><td>The year</td><td class="r">$747,950</td><td>Add $60,000 if Goods carries freight on all 400</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">The 400 beds sell for $300,000. That money is not a fifth line on top, it is the
+      $110,400 of making plus $189,600 toward the running cost. Counting it as both is what produced
+      the $937,550.</p>
+
+    <h3>What has been asked for against it</h3>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Funder</th><th class="r">Amount</th><th>Job</th><th>Where it stands</th></tr></thead>
+        <tbody>
+          <tr><td>QBE Foundation, Stage 2</td><td class="r">$300,000</td><td>Two plants</td><td>Applying, closes 25 September at noon</td></tr>
+          <tr><td>Tim Fairfax Family Foundation</td><td class="r">$100,000</td><td>Running the organisation</td><td>Invited. Year one of $300,000 over three years. Katie Norman names the resilience of organisations, so it belongs here and not against beds</td></tr>
+          <tr><td>Brian M. Davis</td><td class="r">$60,000</td><td>80 beds</td><td>Invited, due 25 September</td></tr>
+          <tr><td>Brian M. Davis</td><td class="r">$40,000</td><td>Facilitation</td><td>The other half of the same invitation</td></tr>
+          <tr><td>Snow Foundation</td><td class="r">$100,000</td><td>133 beds</td><td><b>Not sent</b></td></tr>
+          <tr class="tot"><td>Asked</td><td class="r">$600,000</td><td>Secured $0</td><td>Gap $147,950</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Tim Fairfax was previously counted against beds as well as against operating.
+      One invitation, one job. Fixing it is why the bed gap moved from 54 to 187.</p>
+
+    <h3>The Commonwealth plant money, and what it changes</h3>
+    <p>Ben, 11 September: the $150,000 for the Alice Springs facility is approved and ready, and a
+      second $150,000 for a Goods facility on the same route is highly likely. A plant costs
+      $150,000 and a plant grant brings $150,000, so this money does something unusual to the
+      arithmetic.</p>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Scenario</th><th class="r">Plants</th><th class="r">The year needs</th><th class="r">Funded</th><th class="r">Gap</th></tr></thead>
+        <tbody>
+          <tr><td>The raise as it stands</td><td class="r">2</td><td class="r">$747,950</td><td class="r">$600,000</td><td class="r">$147,950</td></tr>
+          <tr><td>Alice Springs counted in, as a third site</td><td class="r">3</td><td class="r">$897,950</td><td class="r">$750,000</td><td class="r">$147,950</td></tr>
+          <tr><td>Both land, both on new sites</td><td class="r">4</td><td class="r">$1,047,950</td><td class="r">$900,000</td><td class="r">$147,950</td></tr>
+          <tr class="tot"><td><b>The second facility takes one of the two QBE sites</b></td><td class="r">3</td><td class="r">$897,950</td><td class="r">$900,000</td><td class="r"><b>$0</b></td></tr>
         </tbody>
       </table>
     </div>
     <div class="callout">
-      <b>Two gaps, and only one of them is on the slide</b>
-      <p><b>The bed gap.</b> If Tim Fairfax, Brian M. Davis and a Snow ask all land, 346 of the 400 beds are
-         funded and <b>54 are left to find, which is $40,500</b>. If the Snow ask is not sent it is 187 beds and
-         $140,250. That gap is on the deck.</p>
-      <p><b>The operating gap is bigger and is not on the deck.</b> Running the organisation is $297,550 and
-         the only operating ask is Tim Fairfax at $100,000. The other <b>$197,550 is carried by trade</b>:
-         beds, washing machines, facilitation, program support and plant builds. That is the price model
-         working as designed, and it is also the number a funder will ask about.</p>
-      <p><b>The second press is asked for nowhere.</b> About $22,500, unpriced until Monday, and it decides
-         whether the 400 lands in June or August.</p>
+      <b>Adding plants never closes the gap. Freeing QBE money does.</b>
+      <p>In the first three rows both sides move by the same $150,000, so the year gains a plant and
+        the hole stays exactly where it was. The gap only closes in the last row, where the
+        Commonwealth pays for a plant QBE was already being asked to pay for, and $150,000 of the
+        QBE request moves from plants to beds.</p>
+      <p><b>That last row is also the one with a disclosure in it.</b> If the second $150,000 lands on
+        Palm Island or Maningrida it funds an activity QBE is being asked to fund, and Q14 and Q15
+        have to carry it as other funding for the same purpose. If it lands on a third site it is
+        additional capacity and the application is untouched. <b>Ben names the site, and that one
+        answer is worth $147,950.</b></p>
+    </div>
+
+    <h3>Where the gap actually lives</h3>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Line</th><th class="r">Needed</th><th class="r">Asked</th><th class="r">Short</th><th>What that means</th></tr></thead>
+        <tbody>
+          <tr><td>Plants</td><td class="r">$300,000</td><td class="r">$300,000</td><td class="r">$0</td><td>Plant money arrives in $150,000 pieces that match the $150,000 cost. A plant either happens or it does not, and it never leaves a hole.</td></tr>
+          <tr><td>Beds of first stock</td><td class="r">400</td><td class="r">213</td><td class="r">187</td><td>$140,250 at the sale price. It looks like working capital, which is the hardest thing to raise against.</td></tr>
+          <tr><td>Facilitation</td><td class="r">$40,000</td><td class="r">$40,000</td><td class="r">$0</td><td>Covered, and already proven at this rate on a paid invoice.</td></tr>
+          <tr><td>Running the organisation</td><td class="r">$297,550</td><td class="r">$100,000</td><td class="r">$197,550</td><td>Carried by trade: beds, washing machines, facilitation, program support and plant builds. That is the price model working as designed.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <b>The cheapest way to fund the organisation is to fund beds</b>
+      <p>Every dollar of bed money does two jobs. It pays the $276 of making and hands $474 to the
+        organisation. So the 187 unfunded beds are $140,250 of stock and $88,638 of the running cost
+        at the same time, which is why the bed line and the operating line cannot be added together.</p>
+      <p>It is also the only ask with a product at the end of it. A funder who will not write a
+        cheque for accounting fees will write one for beds, and the beds pay the accounting fees.</p>
+      <p><b>The second press is in no ask.</b> About $22,500, unpriced until Monday, and it decides
+        whether the 400 beds land in June or August.</p>
     </div>
   </section>
 
@@ -604,7 +676,7 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--rail);font-si
     </div>
   </section>
 
-  <section id="money">
+  <section id="funders">
     <h2><span class="n">05</span>Every funder line</h2>
     <p class="lede">The funding register from the workbook, one row per source, with its evidence stage and the
       condition that has to be satisfied. Secured total is zero. An invitation is not an award, and a

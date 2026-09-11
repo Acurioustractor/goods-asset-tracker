@@ -41,24 +41,72 @@ Q19 has text and sits in the document column because of its six attachments.
 
 ## The money model
 
-| | |
-|---|---|
-| The year needs | $937,550 |
-| Asked for, across five asks | $600,000 |
-| Secured | $0 |
-| Beds left to find if all three asks land | 54, or $40,500 |
-| Beds left to find without the Snow ask | 187, or $140,250 |
-| Operating cost asked for nowhere | $197,550 |
-| The second press, asked for nowhere | about $22,500 |
+**Corrected 11 September.** The first figure of $937,550 added 400 beds at the $750 sale price to
+the full $297,550 running cost. A bed sold at $750 pays its own $276 of making and hands $474 to
+the organisation, so the running cost was charged twice. The overlap is $189,600. Guarded in
+`v2/src/lib/data/the-year-and-the-raise.ts`, 29 tests.
 
-The $937,550 is two plants at $300,000, 400 beds of first stock at $300,000, facilitation in four
-communities at $40,000, and running the organisation at $297,550.
+### How the year is built
 
-The bed gap is the one on the deck and it is small. The operating gap is three times larger and is
-carried by trade: beds, washing machines, facilitation, program support and plant builds. That is
-the price model working as designed, and it is also the first thing an assessor will ask about.
+| What the year does | Cash out | How it is priced |
+|---|---|---|
+| Two community plants | $300,000 | $150,000 each, against modules priced $95,767 to $142,467 |
+| Making 400 beds | $110,400 | $276 a bed, labour in, freight after |
+| Facilitation, four communities | $40,000 | $10,000 each, already billed once at that rate |
+| Running the organisation | $297,550 | Founders $151,200, travel $51,000, accounting $50,000, Witta rent $27,000, marketing $10,000, maintenance $8,350 |
+| **The year** | **$747,950** | Add $60,000 if Goods carries freight on all 400 |
 
-The second press decides whether the 400 beds land in June or August, and no ask contains it.
+### The asks against it
+
+| Funder | Amount | Job | Stage |
+|---|---|---|---|
+| QBE Foundation, Stage 2 | $300,000 | Two plants | Applying, closes 25 September |
+| Tim Fairfax Family Foundation | $100,000 | Running the organisation | Invited. Year one of $300,000 over three years |
+| Brian M. Davis | $60,000 | 80 beds | Invited |
+| Brian M. Davis | $40,000 | Facilitation | Invited |
+| Snow Foundation | $100,000 | 133 beds | Not sent |
+| **Asked** | **$600,000** | Secured $0 | **Gap $147,950** |
+
+Tim Fairfax was previously counted against beds as well as operating. One invitation, one job.
+Fixing it is why the bed gap moved from 54 to 187.
+
+### The Commonwealth plant money
+
+Ben, 11 September, as a director: the $150,000 for the Alice Springs facility is approved and
+ready, and a second $150,000 for a Goods facility on the same route is highly likely.
+
+| Scenario | Plants | Needs | Funded | Gap |
+|---|---|---|---|---|
+| The raise as it stands | 2 | $747,950 | $600,000 | $147,950 |
+| Alice Springs in, as a third site | 3 | $897,950 | $750,000 | $147,950 |
+| Both land, both on new sites | 4 | $1,047,950 | $900,000 | $147,950 |
+| **The second takes a QBE site** | 3 | $897,950 | $900,000 | **$0** |
+
+A plant costs $150,000 and a plant grant brings $150,000, so adding plants never moves the gap.
+It only closes when the Commonwealth pays for a plant QBE was already being asked to fund, and
+$150,000 of the QBE request moves from plants to beds.
+
+**The disclosure.** If the second $150,000 lands on Palm Island or Maningrida it funds an activity
+QBE is being asked to fund, and Q14 and Q15 must carry it as other funding for the same purpose.
+If it lands on a third site the application is untouched. Ben names the site, and that answer is
+worth $147,950.
+
+### Where the gap lives
+
+| Line | Needed | Asked | Short |
+|---|---|---|---|
+| Plants | $300,000 | $300,000 | $0 |
+| Beds of first stock | 400 | 213 | 187, or $140,250 |
+| Facilitation | $40,000 | $40,000 | $0 |
+| Running the organisation | $297,550 | $100,000 | $197,550 |
+
+Every dollar of bed money does two jobs: it pays the $276 of making and hands $474 to the
+organisation. The 187 unfunded beds are $140,250 of stock and $88,638 of the running cost at the
+same time, which is why the bed line and the operating line cannot be added together. It is also
+the only ask with a product at the end of it.
+
+The second press is in no ask. About $22,500, and it decides whether the 400 beds land in June or
+August.
 
 ## How much of the impact measure is finished
 
