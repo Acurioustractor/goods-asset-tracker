@@ -100,58 +100,80 @@ described as one. It is most of a day a week.
 A plant is demand-limited in its first years, so the hours are set by how many beds a community can
 sell, and nothing about the equipment changes that.
 
-## The community facility as Ben describes it
+## Community wages are not a Goods cost
 
-Five or six beds a day, 48 weeks, up to five people at about twenty hours a week each. Run through:
+**Ben's ruling, 11 September 2026.** The wages at a community facility are the community-led
+enterprise's to cover, from its own programs and funding. They do not go into Goods' cost model.
+What Goods does is **capture the numbers, because Goods provided the resource that made the work
+possible.**
+
+That is a cleaner split than the one this page started with, and it fixes something.
+
+**The employment row stops being the weak one.** It was weak because it was being measured as Goods'
+own wage line, where a plant's first year looked like 400 hours and six hours a week. Measured
+properly it is the hours a community enterprise pays for in a facility Goods built, funded by
+programs that exist to fund exactly that.
+
+**Oonchiumpa is the worked example, and it is already running.** The Commonwealth offered Oonchiumpa
+$1,695,000 over four years. That is employment money. Goods is paid about $150,000 of it to build the
+plant. The wages in that plant come from the rest of the program, not from a bed price and not from
+Goods.
+
+**What Goods may and may not say.** It may report the hours of paid work that happened in a facility
+it built, and it may report them per bed. It may never claim to have paid for those hours, and it
+may never count hours a program has already counted, which would be the same work claimed twice.
+
+---
+
+## The community facility, as a capacity and impact model
+
+Five or six beds a day, 48 weeks, up to five people at about twenty hours a week each. These are
+**impact numbers.** None of the wage figures below is a Goods cost.
 
 **The shape.** 48 weeks at five days is **240 production days**. Five people at twenty hours over
-48 weeks is **4,800 hours a year**. That is 20 labour-hours a day across the site.
+48 weeks is **4,800 hours a year**, which is 20 labour-hours a day across the site.
 
 | | 5 beds a day | 6 beds a day |
 |---|---:|---:|
 | Beds a year | 1,200 | 1,440 |
-| Labour hours a bed | 4.00 | 3.33 |
+| Hours of local paid work a year | 4,800 | 4,800 |
+| Hours in every bed | 4.00 | 3.33 |
 | Local revenue if the enterprise sells them all | $900,000 | $1,080,000 |
 
-**What the wage bill is, at 4,800 hours.**
-
-| Rate | A year | 5 a day, per bed | 6 a day, per bed |
-|---|---:|---:|---:|
-| $30 an hour | $144,000 | $120.00 | $100.00 |
-| $35 an hour | $168,000 | $140.00 | $116.67 |
-| $40 an hour | $192,000 | $160.00 | $133.33 |
-| $50 an hour | $240,000 | $200.00 | $166.67 |
+**Five people at twenty hours is five part-time positions**, which may be exactly right for a
+community roster. It is a different claim from five jobs, and the deck should use whichever words are
+true.
 
 ### Three things this shape settles
 
-**It lands on the community labour figure the cost model already carries.** `cost-model-scenarios`
-prices community labour at **$130 a bed, band $100 to $160**. At six beds a day that band is $30 to
-$48 an hour; at five it is $25 to $40. So the staffing shape and the cost model agree without being
-made to, which is the strongest kind of agreement.
+**Four hours a bed is the community number.** The two hours in the model is a Witta figure, from $400
+a day over five beds with one person on the line. A facility with a crew of five is a different
+labour model and carries its own number. Four hours is also much closer to the withdrawn 6.5 than to
+the two.
 
-**It is four hours a bed.** Twenty labour-hours a day over five beds is four hours of paid
-work in every bed. The two-hour figure is a Witta number, from $400 a day over five beds with one
-person on the line. **A community facility with five people is a different labour model and should
-carry its own number.** Four hours a bed is also much closer to the withdrawn 6.5 than to the two.
+**It breaks the assembly ceiling, and that is the point.** The five-beds-a-day cap is a one or
+two-person figure. With five people, assembly stops being the constraint and six a day is reachable,
+which is why the 1,440 in the older documents describes a differently staffed line.
 
-**It breaks the assembly ceiling, and that is the point.** The five-beds-a-day assembly cap is a
-one-or-two-person figure. With five people, assembly stops being the constraint and six a day is
-reachable, which is why the 1,440 in the older documents describes a differently staffed line.
+**The press still has to keep up.** Six beds a day needs six tab sheets and six leg sheets, and one
+press cooks six sheets. So six a day still means bought leg panels, a second press, or two shifts.
+Five people do not change what the press does.
 
-### What it does not solve
+### One thing to check in the cost model
 
-**The press still has to keep up.** Six beds a day needs six tab sheets and six leg sheets. One press
-cooks six sheets. So at six beds a day the leg panels are bought, or there is a second press, or the
-plant presses for two shifts. Five people do not change what the press does.
+`cost-model-scenarios.json` carries `community_labour_per_bed` at **$130, band $100 to $160**, inside
+build state 5, which produces a direct cost of $270.74 a bed. At the staffing shape above that band
+is $25 to $48 an hour, so the number itself is sound.
 
-**It is a steady-state plant.** The deck says a plant starts at about 200 beds
-and reaches 720 on the same equipment. This shape is 1,200 to 1,440, which is the plant at full tilt
-with a full crew. The distance between 200 and 1,200 is several years and a market, and the deck
-should not let those two numbers sit near each other without saying so.
+**What needs deciding is whose line it is.** If community wages are the enterprise's, that $130
+describes what a bed truly costs to make in community, and it is not a cost Goods carries. Say which
+on the face of the model, because a reader will otherwise assume Goods pays it.
 
-**Twenty hours is a real choice that needs saying out loud.** Five people at twenty hours is five
-part-time positions, which may be exactly right for a community roster and is not the same claim as
-five jobs. Whichever it is, say it in those words.
+### It is a steady-state plant
+
+The deck says a plant starts at about 200 beds and reaches 720 on the same equipment. This shape is
+1,200 to 1,440, which is the plant at full tilt with a full crew. Several years and a market sit
+between those numbers, and the deck should not let them sit near each other without saying so.
 
 ## So where does the employment in a community actually come from
 
