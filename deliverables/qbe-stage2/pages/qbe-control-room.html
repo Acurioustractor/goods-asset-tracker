@@ -293,6 +293,25 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--rail);font-si
 .mach .slow .val{color:var(--bad)}
 .mach .cap2 .val{color:var(--gold)}
 .mach .sub{font-size:11.5px;color:var(--ink-3);margin-top:2px}
+
+/* the ladder */
+.lad{display:grid;gap:1px;background:var(--rail);border:1px solid var(--rail);border-radius:3px;overflow:hidden;margin-top:16px}
+.lad .r{background:var(--surface);padding:14px 16px 15px;display:grid;gap:7px}
+@media(min-width:840px){.lad .r{grid-template-columns:210px minmax(0,1fr);gap:8px 22px;align-items:start}}
+.lad .r.top{background:color-mix(in srgb,var(--olive) 8%,var(--surface))}
+.lad .r.weak{opacity:.82}
+.lad .hd h4{font-family:var(--display);font-size:16px;margin:0 0 3px;font-weight:600}
+.lad .hd .t{font-size:11.5px;color:var(--ink-3);font-style:italic}
+.lad .hd .cnt{font-family:var(--mono);font-size:11.5px;color:var(--clay);font-weight:600;margin-top:4px}
+.lad .who{display:grid;gap:8px}
+.lad .who .a{font-size:13px;line-height:1.5}
+.lad .who .a b{color:var(--ink)}
+.lad .who .a .cap{color:var(--ink-3);font-size:11.5px}
+.lad .who .a .sc{color:var(--warn,var(--bad));font-size:11.5px}
+.say{margin-top:16px;display:grid;gap:1px;background:var(--rail);border:1px solid var(--rail);border-radius:3px;overflow:hidden}
+.say div{background:var(--surface);padding:11px 15px;font-size:13px;line-height:1.5;display:flex;gap:11px}
+.say div::before{content:counter(sayc);counter-increment:sayc;font-family:var(--mono);font-size:11px;color:var(--clay);font-weight:600;flex:0 0 16px}
+.say{counter-reset:sayc}
 </style>
 
 <button class="themebtn" id="themebtn" type="button">theme</button>
@@ -310,6 +329,7 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--rail);font-si
     <li><a href="#calendar">The calendar</a></li>
     <li><a href="#threeyear">Three years</a></li>
     <li><a href="#capacity">Witta capacity</a></li>
+    <li><a href="#asked">Who has asked</a></li>
     <li><a href="#stand"><span class="n">01</span>Where it stands</a></li>
     <li><a href="#model"><span class="n">02</span>The model in four answers</a></li>
     <li><a href="#play"><span class="n">03</span>Play the model</a></li>
@@ -442,14 +462,107 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--rail);font-si
     </div>
 
     <div class="callout">
-      <b>What the demand side now says</b>
-      <p>778 beds are recorded as wanted. Twenty of them carry a named person and a way of paying, which is
-         Dianne Stokes offering to self-fund twenty at Tennant Creek. Utopia's hundred and fifty carry a real
-         rule, beds for every child, and no name against it. The remaining 758 are conversations.</p>
-      <p>That gap is the facilitation argument. Buyers have already paid $50,000 for the work of closing it,
-         across ten billed community-build and program-support visits.</p>
+      <b>We do not have a demand number, and we should stop implying one</b>
+      <p>Every bed figure on the record is somebody's impression of a population nobody has counted.
+        Adding them makes 778, which puts a figure scoped to one Elder's wallet alongside one scoped
+        to the children of an outstation and one with no scope written down at all. It is not a
+        quantity of anything and it cannot survive a second question.</p>
+      <p><b>So present the acts instead.</b> An act is a thing somebody did. Money moved. A council
+        wrote. An Elder said she would pay for them herself. Those are checkable by anyone, and they
+        are the only part of the demand record that is evidence.</p>
     </div>
   </section>
+
+  <section id="asked">
+    <h2>Who has asked, and who has paid</h2>
+    <p class="lede">The same record, ordered by what people actually did.
+      The bed counts move to the end of each line. Guarded in <span class="mono">who-has-asked.ts</span>, 18 tests, with no
+      function anywhere that adds beds across rungs.</p>
+
+    <div class="lad">
+      <div class="r top">
+        <div class="hd">
+          <h4>Money has moved</h4>
+          <div class="t">Is there a settled invoice?</div>
+          <div class="cnt">320 beds &middot; $273,966 &middot; 4 organisations</div>
+        </div>
+        <div class="who">
+          <div class="a"><b>Centrecorp Foundation</b> &middot; 167 beds <span class="cap">Aboriginal charitable trust, Central Australia. Two invoices, 147 deployed and 20 waiting.</span></div>
+          <div class="a"><b>ALIVE National Centre, University of Melbourne</b> &middot; 100 beds <span class="cap">Paid $92,000 net up front, before a single bed was made.</span></div>
+          <div class="a"><b>Homeland School Company</b> &middot; 40 beds <span class="cap">Bought the first full run off our own press, assembled at Gamardi by local workers.</span></div>
+          <div class="a"><b>Mala'la Health Service Aboriginal Corporation</b> &middot; 13 beds <span class="cap">The second Maningrida organisation to buy from us.</span></div>
+        </div>
+      </div>
+
+      <div class="r">
+        <div class="hd">
+          <h4>They said how they would pay</h4>
+          <div class="t">Did they name a source of money, without an invoice yet?</div>
+          <div class="cnt">20 beds &middot; 1 person</div>
+        </div>
+        <div class="who">
+          <div class="a"><b>Dianne Stokes</b> &middot; 20 beds <span class="cap">Warumungu Elder, Tennant Creek. Offered to self-fund them. She named the Pakkimjalki Kari washing machines in Warumungu, so this is a long relationship.</span></div>
+        </div>
+      </div>
+
+      <div class="r">
+        <div class="hd">
+          <h4>A body with authority asked</h4>
+          <div class="t">Did an organisation that can decide for that place ask us?</div>
+          <div class="cnt">3 organisations</div>
+        </div>
+        <div class="who">
+          <div class="a"><b>Utopia Homelands</b> &middot; 150 beds <span class="cap">A rule: beds for every child. Nobody is recorded as having said it.</span></div>
+          <div class="a"><b>Homeland Schools Co.</b> &middot; 65 beds <span class="cap">Beds for kids in the Maningrida homelands. The same organisation has since paid for forty.</span></div>
+          <div class="a"><b>Palm Island Community Company</b> &middot; 40 beds <span class="sc">A figure from a partner update. No rule, no scope and no name behind it, and it is the one inside the QBE application.</span></div>
+        </div>
+      </div>
+
+      <div class="r">
+        <div class="hd">
+          <h4>A named person asked for themselves</h4>
+          <div class="t">Did an individual ask for something we could deliver tomorrow?</div>
+          <div class="cnt">3 beds &middot; 1 person</div>
+        </div>
+        <div class="who">
+          <div class="a"><b>Norman Frank</b> &middot; 3 beds, maroon <span class="cap">Tennant Creek. Somebody who has chosen a colour is further along than an enquiry about five hundred.</span></div>
+        </div>
+      </div>
+
+      <div class="r weak">
+        <div class="hd">
+          <h4>It came up in a meeting</h4>
+          <div class="t">Was it mentioned, with nothing following it?</div>
+          <div class="cnt">500 beds &middot; the largest figure we hold</div>
+        </div>
+        <div class="who">
+          <div class="a"><b>Simone Grimmond, WHSAC</b> &middot; 500 beds <span class="sc">One meeting, alongside 300 washing machines. Logged as exploring. Nothing quoted, no order discussed. Print the status beside it or leave it out.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <h3>How to say it</h3>
+    <div class="say">
+      <div>Lead with what was paid. Four organisations, 320 beds, $273,966 settled. It is the only rung nobody can push back on, and it proves the price at the same time.</div>
+      <div>Name the organisation and let the number follow it. "Palm Island Community Company asked" is evidence. "Palm Island needs 40 beds" is an impression wearing a number.</div>
+      <div>When a number is used, it stays attached to the act that produced it and to what it covers. A figure with no scope is printed with its scope missing.</div>
+      <div>Never state a demand total. If asked for one, say we do not have a demand measure, say why, and offer the household count instead.</div>
+      <div>Two organisations in Maningrida have bought from us and one of them asked for more. Repeat buyers in one place say more about demand than any count.</div>
+      <div>The largest number on the record came up once in a meeting and is the weakest thing we hold.</div>
+    </div>
+
+    <div class="callout">
+      <b>When a funder asks what the demand is</b>
+      <p>They are asking whether anyone will take these beds. The answer is that four organisations
+        have already paid for 320, including a research centre that paid for a hundred up front
+        before one was made, and a schools operator in Maningrida that bought the first full run off
+        our own press. Five more communities have asked and we can name who asked in every case.</p>
+      <p>What we cannot give them is a number for how many beds are needed, and we say so. One
+        community counting properly would change that: four questions per household, done by a local
+        person paid for the work. Nobody has done it yet.</p>
+    </div>
+  </section>
+
 
 
   <section id="confirm">
@@ -1208,7 +1321,7 @@ const CLAIMS = [
   ["Facilitation buyers have already paid for","$50,000","verified","Ten billed community-build and program-support visits at $3,000 to $8,000 each, settled alongside the bed lines: Centrecorp five at $6,000, Homeland one trip at $8,000, ALIVE four half-shares at $3,000. This is what prices the facilitation line in the ask. Xero read direct 11 September 2026, org Nicholas Marchesi sole trader ABN 21 591 780 066. Locked in v2/src/lib/data/demand-and-buyers.ts with 26 guards."],
   ["What a buyer has actually paid per bed","$370 rising to $800","verified","Centrecorp $370 (Aug 2025, Basket Bed) then $560 (Nov 2025, Stretch Bed), Mala'la $380 (Oct 2025, Basket Bed), Homeland $750 (May 2026), ALIVE $800 (Jul 2026). The last two are at or above the $750 list price. The Basket Bed is discontinued, so its prices do not describe what Goods sells now. Xero read direct 11 September 2026, org Nicholas Marchesi sole trader ABN 21 591 780 066. Locked in v2/src/lib/data/demand-and-buyers.ts with 26 guards."],
   ["Value Goods carried rather than charged","$17,390","verified","A $14,190 in-kind partnership line deducted on the Homeland invoice, and $3,200 of Mala'la shipping quoted on its own line and zeroed. The second is why freight is now its own line charged at cost. Xero read direct 11 September 2026, org Nicholas Marchesi sole trader ABN 21 591 780 066. Locked in v2/src/lib/data/demand-and-buyers.ts with 26 guards."],
-  ["Open recorded demand, held apart from trade","778 beds, of which 20 are owned","verified","Groote 500 (exploring, one meeting), Utopia 150 (beds for every child, no name), Maningrida 65 (Homeland Schools Co.), Palm Island 40 (a partner update), Tennant Creek 20 (Dianne Stokes, offered to self-fund) and 3 (Norman Frank). Only Dianne Stokes' twenty carries a person and a way of paying. 758 are conversations. The 107 paid Centrecorp beds are excluded so nothing is counted twice. Table community_demand, Goods v2 project, read 11 September 2026."],
+  ["Who has asked, held apart from trade","5 communities, 1 with money named","verified","Groote 500 (exploring, one meeting), Utopia 150 (beds for every child, no name), Maningrida 65 (Homeland Schools Co.), Palm Island 40 (a partner update), Tennant Creek 20 (Dianne Stokes, offered to self-fund) and 3 (Norman Frank). Only Dianne Stokes' twenty carries a person and a way of paying. 758 are conversations. The 107 paid Centrecorp beds are excluded so nothing is counted twice. Table community_demand, Goods v2 project, read 11 September 2026."],
   ["Beds recorded as deployed in the register","540: 177 Stretch, 363 Basket","verified","Paginated register check 8 Sep 2026, all 609 asset rows, 11 communities. Recorded deployment, not a household survey."],
   ["Deployed against sold-and-paid","540 against 320","verified","CONFLICT CLOSED 11 Sep for the Centrecorp part, which is the part that held it up. The overlap is now exact: of the 167 beds Centrecorp paid for, 147 are inside the 540 and 20 are made and waiting at Alice Springs, so they sit outside it. The two counts stay separate because the register counts what reached a community, including prototypes and gifted beds, and the invoice record counts what somebody paid for. A bed can be in one, the other or both, and the two are never added. Register read direct 11 September 2026, 609 asset rows in the Goods v2 project, counted in units because a row can carry more than one. Locked in v2/src/lib/data/demand-and-buyers.ts."],
   ["Two different 147s, which must never be swapped","Utopia 147 against Centrecorp 147","verified","Utopia's community total is 147 and Centrecorp's deployed total is also 147. They share a number and not a single set of beds. Utopia holds 60 Basket and 79 Stretch from the Centrecorp batches, plus 8 Stretch from batch GB0-152 that Centrecorp did not pay for. Centrecorp's 147 includes 8 beds deployed at Alice Springs and excludes those 8. Only 139 beds are in both. Register read direct 11 September 2026, 609 asset rows in the Goods v2 project, counted in units because a row can carry more than one. Locked in v2/src/lib/data/demand-and-buyers.ts."],
