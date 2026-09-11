@@ -59,8 +59,33 @@ export const PANELS_PER_SHEET =
 
 export const PANELS_ON_THE_INVOICE = INV_2021.sheets * PANELS_PER_SHEET;
 
-export const REFERENCE_MISMATCH =
-  'The reference reads "105 x 19mm Panels" and the lines bill 25 sheets of 1200 by 2400. Cut to 800 by 1200 that is three panels a sheet with no offcut, so 75 panels, not 105. Ask Sam Davies whether the reference is a carried-over quote number or 30 panels are missing from the order.';
+/**
+ * The 105 in the reference is the parent order, resolved from the email thread on 11 September.
+ * Nic asked Sam Davies on 26 August 2026 for "another 105 sheets and 8 bulka bags". So 105 counts
+ * SHEETS, and this invoice is 25 of them. Sam's covering note calls it "another 25 panels", using
+ * panel and sheet interchangeably, which is where the confusion comes from.
+ */
+export const REFERENCE_RESOLVED =
+  'The reference reads "105 x 19mm Panels" and bills 25 sheets. The 105 is the parent order Nic asked for on 26 August, 105 sheets and 8 bulka bags of shred. This invoice is 25 sheets of that, so 80 sheets are still to come.';
+
+export const PARENT_ORDER_SHEETS = 105;
+export const PARENT_ORDER_BULKA_BAGS = 8;
+export const SHEETS_STILL_TO_COME = PARENT_ORDER_SHEETS - INV_2021.sheets;
+
+/** Sam Davies, 27 August 2026. */
+export const SLOT_TERMS =
+  'Defy needed the order confirmed and deposits paid by 4 September to hold the production slot, then held it seven more days from 28 August. Both quotes, QU0494 and QU0495, complete late October to early November. Xanthe Mitchell runs panel operations and was still to confirm timing.';
+
+/** Nic to Sam, 28 August 2026. */
+export const SHRED_BURN_KG_A_WEEK = 450;
+export const SHRED_WEEKS_LEFT_AT_28_AUG = 3;
+export const SHRED_RUNS_OUT = '2026-09-18';
+
+export const SHRED_WARNING =
+  'Nic told Defy on 28 August that Witta burns about 450 kg of shred a week and had three weeks of stock. That runs out on 18 September, which is the same day this invoice falls due.';
+
+/** A bulka bag, from the 630-beds-against-Witta reckoning of 21 bags for 22,680 kg. */
+export const BULKA_BAG_KG = 1_000;
 
 // ---------------------------------------------------------------------------
 // What a panel is, and how many a bed takes
@@ -194,13 +219,33 @@ export const PANEL_PREMIUM_PER_BED_AUD = PANEL_PATH_PER_BED_AUD - OWN_PRESS_PLAS
 export const PRESS_PAYBACK_BEDS = Math.ceil(SECOND_PRESS_AUD / PANEL_PREMIUM_PER_BED_AUD);
 
 export const THE_TRADE =
-  'A second press costs about $22,500 once and takes press capacity to six beds a day, at which point assembly at five a day becomes the constraint and the line runs as fast as the panel path. The panel premium is about $199 a bed, so the press pays for itself in 113 beds. On the 400 the premium is about $79,800 against $22,500 of machine. The press wins on money and loses on time, because panels arrive next week and a press has to be bought, installed and fed.';
+  'A second press costs about $22,500 once and takes press capacity to six beds a day, at which point assembly at five a day becomes the constraint and no bought panel adds anything. The panel premium is about $199 a bed, so the press pays for itself in 113 beds, and on the 400 the premium is about $79,800 against $22,500 of machine. The press wins on money. Panels win on time and on feedstock, because they arrive in weeks and need no shred at all.';
 
 export const THE_CATCH =
   'Pressing our own needs feedstock. 400 beds is 14.4 tonnes of shred, which is about 21 bulka bags, and collection is not costed anywhere in the raise. The panel path buys the plastic problem away at a known price.';
 
+// ---------------------------------------------------------------------------
+// The correction that matters: panels ADD to the press, they do not replace it
+// ---------------------------------------------------------------------------
+
+export const PANELS_ARE_ADDITIVE =
+  'Witta is pressing today and burning 450 kg of shred a week, which is about three beds a day and the press running near flat out. Bought panels do not replace that. They go through the router alongside it and lift the line to the assembly ceiling of five a day. The question to answer is whether the two beds a day that only bought panels can make are worth what the panels cost.';
+
+/** The beds a day that exist only because panels were bought. */
+export const MARGINAL_BEDS_A_DAY = ASSEMBLY_BEDS_A_DAY - PRESS_BEDS_A_DAY;
+export const MARGINAL_BEDS_A_MONTH = MARGINAL_BEDS_A_DAY * RUN_DAYS_A_MONTH;
+
+export const BED_PRICE_AUD = 750;
+
+export const MARGINAL_PANEL_SPEND_A_MONTH_AUD =
+  MARGINAL_BEDS_A_MONTH * PANEL_PATH_PER_BED_AUD;
+export const MARGINAL_SALES_A_MONTH_AUD = MARGINAL_BEDS_A_MONTH * BED_PRICE_AUD;
+
+export const THE_MARGIN_ANSWER =
+  'Thirty two extra beds a month need about $8,142 of panels and sell for $24,000. Even if every other cost of those beds is the full $276 of making, they clear about $220 each. While assembly has idle capacity, buying panels is a margin decision and it is clearly positive.';
+
 export const WHAT_TO_ASK_DEFY: readonly string[] = [
-  'Whether the 105 in the reference is a quote number or 30 missing panels.',
+  'Confirm the remaining 80 sheets of the 105 and whether the production slot still stands, because the 4 September deposit date has passed.',
   'Whether the 20% scale discount holds for a 267-sheet order, which is what 400 beds needs.',
   'What the lead time is on 267 sheets, because 21 days on 50 kits is the only lead time we have on record.',
   'Whether they will quote cutting to the finished leg profile rather than to 800 by 1200, and what that does to the $344.05 kit price.',

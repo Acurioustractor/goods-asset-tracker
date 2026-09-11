@@ -21,7 +21,20 @@ import {
   PRESSED_KG_PER_BED,
   PRESS_BEDS_A_DAY,
   PRESS_PAYBACK_BEDS,
-  REFERENCE_MISMATCH,
+  REFERENCE_RESOLVED,
+  PARENT_ORDER_SHEETS,
+  PARENT_ORDER_BULKA_BAGS,
+  SHEETS_STILL_TO_COME,
+  SHRED_BURN_KG_A_WEEK,
+  SHRED_RUNS_OUT,
+  BULKA_BAG_KG,
+  MARGINAL_BEDS_A_DAY,
+  MARGINAL_BEDS_A_MONTH,
+  MARGINAL_PANEL_SPEND_A_MONTH_AUD,
+  MARGINAL_SALES_A_MONTH_AUD,
+  PANELS_ARE_ADDITIVE,
+  SHRED_WARNING,
+  SLOT_TERMS,
   SECOND_PRESS_AUD,
   SHEET_ALL_IN_AUD,
   SHEET_MASS_KG,
@@ -71,21 +84,61 @@ describe('INV-2021 adds up', () => {
   });
 });
 
-describe('the reference does not match the lines', () => {
+describe('the 105 in the reference', () => {
   it('a 1200 by 2400 sheet yields exactly three 800 by 1200 panels, with no offcut', () => {
     expect(PANELS_PER_SHEET).toBe(3);
     expect(3 * 800).toBe(INV_2021.sheetSizeMm.l);
-  });
-
-  it('25 sheets is 75 panels, and the reference says 105', () => {
     expect(PANELS_ON_THE_INVOICE).toBe(75);
-    expect(INV_2021.reference).toContain('105');
-    expect(REFERENCE_MISMATCH).toContain('75 panels');
   });
 
-  it('the mismatch is carried as a question for the supplier', () => {
-    expect(WHAT_TO_ASK_DEFY[0]).toContain('105');
+  it('counts sheets in the parent order, never panels on this invoice', () => {
+    expect(INV_2021.reference).toContain('105');
+    expect(PARENT_ORDER_SHEETS).toBe(105);
+    expect(PARENT_ORDER_BULKA_BAGS).toBe(8);
+    expect(SHEETS_STILL_TO_COME).toBe(80);
+    expect(REFERENCE_RESOLVED).toContain('80 sheets are still to come');
+  });
+
+  it('carries the slot terms, because the deposit date has passed', () => {
+    expect(SLOT_TERMS).toContain('4 September');
+    expect(WHAT_TO_ASK_DEFY[0]).toContain('80 sheets');
     expect(WHAT_TO_ASK_DEFY.length).toBeGreaterThanOrEqual(4);
+  });
+});
+
+describe('the shred clock', () => {
+  it('450 kg a week against three weeks of stock runs out on 18 September', () => {
+    expect(SHRED_BURN_KG_A_WEEK).toBe(450);
+    expect(SHRED_RUNS_OUT).toBe('2026-09-18');
+    expect(SHRED_RUNS_OUT).toBe(INV_2021.due);
+  });
+
+  it('the burn rate agrees with the press running near flat out', () => {
+    const bedsAWeek = SHRED_BURN_KG_A_WEEK / PRESSED_KG_PER_BED;
+    expect(bedsAWeek).toBeGreaterThan(11);
+    expect(bedsAWeek).toBeLessThan(14);
+  });
+
+  it('eight bulka bags is about 222 beds of shred', () => {
+    expect(Math.floor((PARENT_ORDER_BULKA_BAGS * BULKA_BAG_KG) / PRESSED_KG_PER_BED)).toBe(222);
+  });
+});
+
+describe('panels add to the press rather than replacing it', () => {
+  it('the marginal beds are the gap between the press and assembly', () => {
+    expect(MARGINAL_BEDS_A_DAY).toBe(2);
+    expect(MARGINAL_BEDS_A_MONTH).toBe(32);
+    expect(PANELS_ARE_ADDITIVE).toContain('two beds a day');
+  });
+
+  it('those beds sell for about three times what their panels cost', () => {
+    expect(MARGINAL_PANEL_SPEND_A_MONTH_AUD).toBeCloseTo(8_142.4, 0);
+    expect(MARGINAL_SALES_A_MONTH_AUD).toBe(24_000);
+    expect(MARGINAL_SALES_A_MONTH_AUD / MARGINAL_PANEL_SPEND_A_MONTH_AUD).toBeGreaterThan(2.5);
+  });
+
+  it('says the shred burn is why this is additive, not a swap', () => {
+    expect(SHRED_WARNING).toContain('450 kg');
   });
 });
 
