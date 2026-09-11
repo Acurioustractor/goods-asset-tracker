@@ -1,0 +1,305 @@
+<title>Three Plates for the Deck</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#F5F0E6; --surface:#FFFCF6; --surface-2:#EDE4D5; --rail:#DCD0BC;
+  --ink:#201D18; --ink-2:#4E4739; --ink-3:#837A69;
+  --goods:#A85B34; --community:#3F7A6A; --gold:#9C7C2B; --bad:#A33C22; --ok:#4C7A4E;
+  --display:"Fraunces",Georgia,serif;
+  --body:"Inter",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#15130F; --surface:#1D1A15; --surface-2:#262119; --rail:#3B3428;
+  --ink:#F1EADC; --ink-2:#C5BCA9; --ink-3:#8F8574;
+  --goods:#D08A5E; --community:#6FB3A0; --gold:#CCA84F; --bad:#DE7A5C; --ok:#8CB78E;
+}}
+:root[data-theme="dark"]{
+  --ground:#15130F; --surface:#1D1A15; --surface-2:#262119; --rail:#3B3428;
+  --ink:#F1EADC; --ink-2:#C5BCA9; --ink-3:#8F8574;
+  --goods:#D08A5E; --community:#6FB3A0; --gold:#CCA84F; --bad:#DE7A5C; --ok:#8CB78E;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--display);font-weight:600;text-wrap:balance;margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px 90px}
+@media(min-width:880px){.wrap{padding:0 30px 110px}}
+.mast{padding:38px 0 18px;border-bottom:2px solid var(--ink)}
+.mast .eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--goods);font-weight:700}
+.mast h1{font-size:clamp(30px,5.5vw,50px);line-height:1.02;letter-spacing:-.025em;margin:10px 0 10px}
+.mast p{margin:0;color:var(--ink-2);max-width:66ch}
+.plate{margin-top:34px;border:1px solid var(--rail);border-radius:4px;background:var(--surface);overflow:hidden}
+.plate > header{padding:15px 20px 14px;border-bottom:1px solid var(--rail);background:var(--surface-2);display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+.plate > header .n{font-family:var(--mono);font-size:12px;color:var(--goods);font-weight:700}
+.plate > header h2{font-size:20px;flex:1 1 240px}
+.plate > header .frame{font-family:var(--mono);font-size:11px;color:var(--ink-3);border:1px solid var(--rail);border-radius:2px;padding:3px 8px;background:var(--surface)}
+.canvas{padding:8px 8px 0;overflow-x:auto}
+svg{display:block;width:100%;height:auto;min-width:760px;background:var(--surface)}
+.copy{display:grid;gap:1px;background:var(--rail);border-top:1px solid var(--rail)}
+@media(min-width:820px){.copy{grid-template-columns:1fr 1fr}}
+.copy > div{background:var(--surface);padding:15px 18px 17px}
+.copy h3{font-family:var(--body);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:700;margin:0 0 7px}
+.copy p{margin:0 0 8px;font-size:13.5px;color:var(--ink-2);line-height:1.55}
+.copy p:last-child{margin:0}
+.copy .head{font-family:var(--display);font-size:19px;color:var(--ink);line-height:1.25;margin:0 0 8px}
+.copy b{color:var(--ink)}
+.copy ul{margin:0;padding-left:17px;font-size:13px;color:var(--ink-2)}
+.copy li{margin-bottom:5px}
+footer{margin-top:38px;padding-top:16px;border-top:1px solid var(--rail);font-size:12.5px;color:var(--ink-3)}
+.themebtn{position:fixed;top:12px;right:12px;z-index:20;font-family:var(--body);font-size:11px;font-weight:600;padding:6px 10px;border:1px solid var(--rail);background:var(--surface);color:var(--ink-2);border-radius:2px;cursor:pointer}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<button class="themebtn" id="themebtn" type="button">theme</button>
+
+<div class="wrap">
+  <div class="mast">
+    <div class="eyebrow">Goods on Country &middot; deck plates &middot; 11 September 2026</div>
+    <h1>Three Plates for the Deck</h1>
+    <p>Three questions a reader hits that the deck currently answers in prose or not at all. Each
+      plate is drawn at slide proportions with the copy that goes beside it and the frame it belongs
+      to. None is built in Pencil yet.</p>
+  </div>
+
+  <!-- PLATE 1 -->
+  <div class="plate">
+    <header>
+      <span class="n">Plate 1</span>
+      <h2>Can you actually make 400?</h2>
+      <span class="frame">new, before S17</span>
+    </header>
+    <div class="canvas">
+      <svg viewBox="0 0 1600 900" role="img" aria-label="Three machines drawn as bars. The press makes three beds a day, assembly five, the router 8.56. The press is the constraint, so the line makes 48 beds a month. Two ways lift it to 80.">
+        <text x="90" y="112" font-family="var(--display)" font-size="54" font-weight="600" fill="var(--ink)">The press is the slowest machine.</text>
+        <text x="90" y="168" font-size="27" fill="var(--ink-2)">Everything else waits for it, so the line runs at three beds a day.</text>
+
+        <!-- bars -->
+        <g font-size="23">
+          <text x="90" y="268" fill="var(--ink-3)" font-weight="600" letter-spacing="2">THE PRESS</text>
+          <rect x="330" y="240" width="216" height="52" rx="3" fill="var(--bad)"/>
+          <text x="566" y="277" fill="var(--ink)" font-weight="700" font-size="27">3 a day</text>
+          <text x="700" y="277" fill="var(--bad)" font-weight="700" font-size="21">the constraint</text>
+
+          <text x="90" y="368" fill="var(--ink-3)" font-weight="600" letter-spacing="2">ASSEMBLY</text>
+          <rect x="330" y="340" width="360" height="52" rx="3" fill="var(--gold)"/>
+          <text x="710" y="377" fill="var(--ink)" font-weight="700" font-size="27">5 a day</text>
+          <text x="840" y="377" fill="var(--ink-3)" font-size="21">the ceiling</text>
+
+          <text x="90" y="468" fill="var(--ink-3)" font-weight="600" letter-spacing="2">THE ROUTER</text>
+          <rect x="330" y="440" width="616" height="52" rx="3" fill="var(--community)" opacity=".55"/>
+          <text x="966" y="477" fill="var(--ink)" font-weight="700" font-size="27">8.56 a day</text>
+          <text x="1140" y="477" fill="var(--ink-3)" font-size="21">never in the way</text>
+        </g>
+
+        <line x1="330" y1="212" x2="330" y2="520" stroke="var(--rail)" stroke-width="2"/>
+
+        <!-- today / possible -->
+        <g>
+          <rect x="90" y="596" width="480" height="190" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+          <text x="122" y="644" font-size="21" letter-spacing="2" font-weight="600" fill="var(--ink-3)">TODAY</text>
+          <text x="122" y="712" font-family="var(--display)" font-size="60" font-weight="600" fill="var(--ink)">48</text>
+          <text x="234" y="712" font-size="25" fill="var(--ink-2)">beds a month</text>
+          <text x="122" y="756" font-size="21" fill="var(--ink-3)">The 400 takes 8.3 months</text>
+
+          <rect x="610" y="596" width="480" height="190" rx="4" fill="var(--surface-2)" stroke="var(--ok)" stroke-width="2"/>
+          <text x="642" y="644" font-size="21" letter-spacing="2" font-weight="600" fill="var(--ok)">EITHER LIFT</text>
+          <text x="642" y="712" font-family="var(--display)" font-size="60" font-weight="600" fill="var(--ink)">80</text>
+          <text x="754" y="712" font-size="25" fill="var(--ink-2)">beds a month</text>
+          <text x="642" y="756" font-size="21" fill="var(--ink-3)">The 400 takes 5 months</text>
+
+          <rect x="1130" y="596" width="380" height="190" rx="4" fill="none" stroke="var(--rail)"/>
+          <text x="1160" y="640" font-size="20" fill="var(--ink-2)">Buy panels from Defy</text>
+          <text x="1160" y="672" font-size="20" font-weight="700" fill="var(--ink)">$40,712 across the 400</text>
+          <text x="1160" y="722" font-size="20" fill="var(--ink-2)">Or a second press</text>
+          <text x="1160" y="754" font-size="20" font-weight="700" fill="var(--ink)">$22,500, once</text>
+        </g>
+        <text x="90" y="838" font-size="19" fill="var(--ink-3)">Sixteen run days a month, at the 80% availability set 10 September. Doing both buys nothing: assembly caps the line either way.</text>
+      </svg>
+    </div>
+    <div class="copy">
+      <div>
+        <h3>On the slide</h3>
+        <p class="head">The press is the slowest machine.</p>
+        <p>Everything else waits for it, so the line runs at three beds a day and 48 a month. The
+          400 takes 8.3 months.</p>
+        <p><b>Two things lift it to 80 a month and five months.</b> Buy panels from Defy at $40,712
+          across the run, or buy a second press once at $22,500. Doing both buys nothing, because
+          assembly caps the line at five a day either way.</p>
+      </div>
+      <div>
+        <h3>Why this plate</h3>
+        <p>S17 already claims 48 beds a month and nothing shows why. This is the slide that survives
+          the question a manufacturer on the panel will ask.</p>
+        <p>It also turns the second press into a visible decision. The two lifts cost the same across the
+          400 when shred lands at $3.16 a kilogram, and the quotes that carry that price have not
+          been opened.</p>
+        <p><b>Do not print the $3.16 on the slide.</b> It invites a question we cannot answer yet.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLATE 2 -->
+  <div class="plate">
+    <header>
+      <span class="n">Plate 2</span>
+      <h2>Where does the money stop?</h2>
+      <span class="frame">COJmo &middot; S13 The model</span>
+    </header>
+    <div class="canvas">
+      <svg viewBox="0 0 1600 900" role="img" aria-label="Two loops side by side. The Goods loop is funded by catalytic capital and closes on trade. The community loop is funded by institutional buyers and closes in community. Beds cross one way. Money does not cross back.">
+        <defs>
+          <marker id="p2a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+            <path d="M0,1 L9,5 L0,9 z" fill="currentColor"/>
+          </marker>
+        </defs>
+        <text x="90" y="104" font-family="var(--display)" font-size="52" font-weight="600" fill="var(--ink)">Two kinds of money that never meet.</text>
+        <text x="90" y="156" font-size="26" fill="var(--ink-2)">Catalytic capital pays Goods. Buyers pay the community enterprise.</text>
+
+        <g style="color:var(--goods)">
+          <ellipse cx="440" cy="530" rx="264" ry="196" fill="none" stroke="currentColor" stroke-width="3" opacity=".5"/>
+          <path d="M440 334 A264 196 0 0 1 660 450" fill="none" stroke="currentColor" stroke-width="4" marker-end="url(#p2a)"/>
+          <path d="M690 598 A264 196 0 0 1 440 726" fill="none" stroke="currentColor" stroke-width="4" marker-end="url(#p2a)"/>
+          <path d="M186 630 A264 196 0 0 1 186 438" fill="none" stroke="currentColor" stroke-width="4" marker-end="url(#p2a)"/>
+        </g>
+        <text x="440" y="522" text-anchor="middle" font-family="var(--display)" font-size="34" font-weight="600" fill="var(--goods)">The Goods loop</text>
+        <text x="440" y="558" text-anchor="middle" font-size="21" fill="var(--ink-2)">628 paid beds a year carries it</text>
+
+        <g style="color:var(--community)">
+          <ellipse cx="1160" cy="530" rx="264" ry="196" fill="none" stroke="currentColor" stroke-width="3" opacity=".5"/>
+          <path d="M1160 334 A264 196 0 0 1 1390 462" fill="none" stroke="currentColor" stroke-width="4" marker-end="url(#p2a)"/>
+          <path d="M1404 608 A264 196 0 0 1 1160 726" fill="none" stroke="currentColor" stroke-width="4" marker-end="url(#p2a)"/>
+          <path d="M910 630 A264 196 0 0 1 910 438" fill="none" stroke="currentColor" stroke-width="4" marker-end="url(#p2a)"/>
+        </g>
+        <text x="1160" y="522" text-anchor="middle" font-family="var(--display)" font-size="34" font-weight="600" fill="var(--community)">The community loop</text>
+        <text x="1160" y="558" text-anchor="middle" font-size="21" fill="var(--ink-2)">the enterprise keeps the whole sale</text>
+
+        <g font-size="20" fill="var(--ink)">
+          <rect x="300" y="286" width="280" height="62" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+          <text x="440" y="324" text-anchor="middle" font-weight="700">Catalytic capital</text>
+          <rect x="560" y="438" width="250" height="62" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+          <text x="685" y="476" text-anchor="middle" font-weight="700">Made at Witta</text>
+          <rect x="300" y="714" width="280" height="62" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+          <text x="440" y="744" text-anchor="middle" font-weight="700">Goods paid $750 a bed</text>
+          <text x="440" y="767" text-anchor="middle" font-size="17" fill="var(--ink-2)">$276 makes it, $474 carries the business</text>
+          <rect x="70" y="438" width="230" height="62" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+          <text x="185" y="476" text-anchor="middle" font-weight="700">The next bed</text>
+
+          <rect x="1020" y="286" width="280" height="62" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+          <text x="1160" y="316" text-anchor="middle" font-weight="700">First stock arrives</text>
+          <text x="1160" y="338" text-anchor="middle" font-size="17" fill="var(--ink-2)">100 beds, four communities</text>
+          <rect x="1300" y="438" width="250" height="62" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+          <text x="1425" y="476" text-anchor="middle" font-weight="700">Buyers pay</text>
+          <rect x="1020" y="714" width="280" height="62" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+          <text x="1160" y="744" text-anchor="middle" font-weight="700">Local capital</text>
+          <text x="1160" y="767" text-anchor="middle" font-size="17" fill="var(--ink-2)">$75,000 a pool, and it stays there</text>
+          <rect x="890" y="438" width="230" height="62" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+          <text x="1005" y="476" text-anchor="middle" font-weight="700">Local production</text>
+        </g>
+
+        <g style="color:var(--gold)">
+          <path d="M700 296 C 790 268, 900 268, 1000 300" fill="none" stroke="currentColor" stroke-width="5" marker-end="url(#p2a)"/>
+        </g>
+        <text x="850" y="258" text-anchor="middle" font-size="22" font-weight="700" fill="var(--gold)">beds cross</text>
+
+        <g style="color:var(--bad)">
+          <path d="M1000 800 C 900 830, 700 830, 600 800" fill="none" stroke="currentColor" stroke-width="3.5" stroke-dasharray="10 10" opacity=".7"/>
+          <line x1="770" y1="798" x2="806" y2="838" stroke="currentColor" stroke-width="5"/>
+          <line x1="806" y1="798" x2="770" y2="838" stroke="currentColor" stroke-width="5"/>
+        </g>
+        <text x="788" y="874" text-anchor="middle" font-size="21" font-weight="700" fill="var(--bad)">no money returns to Goods, by design</text>
+      </svg>
+    </div>
+    <div class="copy">
+      <div>
+        <h3>On the slide</h3>
+        <p class="head">Two kinds of money that never meet.</p>
+        <p>Catalytic capital pays Goods $750 for a community's first stock. Buyers pay the community
+          enterprise, and that money never reaches Goods.</p>
+        <p>The enterprise keeps the whole sale. A hundred beds is <b>$75,000</b> of local capital and
+          it funds whatever the community decides next.</p>
+      </div>
+      <div>
+        <h3>Why this plate</h3>
+        <p>S13 already carries this sentence in its footer, and draws the model as five numbered steps. A
+          numbered list reads as a process. This is a structure.</p>
+        <p><b>The red cross is the point.</b> A funder looking at one loop assumes Goods is repaid
+          out of community sales and asks why the grant is needed again next year. Two loops answers
+          that before it is asked, and the answer is that Goods is carried by its own trade.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLATE 3 -->
+  <div class="plate">
+    <header>
+      <span class="n">Plate 3</span>
+      <h2>How do you know anyone wants them?</h2>
+      <span class="frame">LX4ci &middot; S12, beside the paid trade</span>
+    </header>
+    <div class="canvas">
+      <svg viewBox="0 0 1600 900" role="img" aria-label="A ladder of five rungs ordered by what people did. Money moved at the top with 320 beds paid. It came up in a meeting at the bottom with the largest figure of 500 beds.">
+        <text x="90" y="104" font-family="var(--display)" font-size="52" font-weight="600" fill="var(--ink)">We do not have a demand number.</text>
+        <text x="90" y="156" font-size="26" fill="var(--ink-2)">We have a list of who asked, and a separate list of who paid.</text>
+
+        <g font-size="22">
+          <rect x="90" y="206" width="1420" height="112" rx="4" fill="var(--surface-2)" stroke="var(--ok)" stroke-width="2.5"/>
+          <text x="120" y="248" font-size="19" letter-spacing="2" font-weight="700" fill="var(--ok)">MONEY HAS MOVED</text>
+          <text x="120" y="292" font-family="var(--display)" font-size="36" font-weight="600" fill="var(--ink)">320 beds &middot; $273,966 &middot; four organisations</text>
+          <text x="1480" y="292" text-anchor="end" font-size="19" fill="var(--ink-3)">Centrecorp &middot; ALIVE &middot; Homeland School Company &middot; Mala'la</text>
+
+          <rect x="90" y="336" width="1420" height="96" rx="4" fill="var(--surface)" stroke="var(--rail)"/>
+          <text x="120" y="374" font-size="19" letter-spacing="2" font-weight="700" fill="var(--ink-3)">THEY SAID HOW THEY WOULD PAY</text>
+          <text x="120" y="412" font-size="28" fill="var(--ink)">Dianne Stokes offered to self-fund twenty</text>
+
+          <rect x="90" y="450" width="1420" height="96" rx="4" fill="var(--surface)" stroke="var(--rail)"/>
+          <text x="120" y="488" font-size="19" letter-spacing="2" font-weight="700" fill="var(--ink-3)">A BODY WITH AUTHORITY ASKED</text>
+          <text x="120" y="526" font-size="28" fill="var(--ink)">Utopia Homelands &middot; Homeland Schools Co. &middot; Palm Island Community Company</text>
+
+          <rect x="90" y="564" width="1420" height="96" rx="4" fill="var(--surface)" stroke="var(--rail)"/>
+          <text x="120" y="602" font-size="19" letter-spacing="2" font-weight="700" fill="var(--ink-3)">A PERSON ASKED FOR THEMSELVES</text>
+          <text x="120" y="640" font-size="28" fill="var(--ink)">Norman Frank, three beds, in the maroon</text>
+
+          <rect x="90" y="678" width="1420" height="96" rx="4" fill="var(--surface)" stroke="var(--rail)" opacity=".72"/>
+          <text x="120" y="716" font-size="19" letter-spacing="2" font-weight="700" fill="var(--ink-3)">IT CAME UP IN A MEETING</text>
+          <text x="120" y="754" font-size="28" fill="var(--ink-2)">Five hundred beds, mentioned once, nothing quoted</text>
+        </g>
+        <text x="90" y="828" font-size="21" fill="var(--ink-3)">Ordered by what people did. The largest figure sits on the weakest rung.</text>
+        <text x="90" y="866" font-size="21" fill="var(--ink-3)">Somebody who has chosen a colour is further along than an enquiry about five hundred.</text>
+      </svg>
+    </div>
+    <div class="copy">
+      <div>
+        <h3>On the slide</h3>
+        <p class="head">We do not have a demand number.</p>
+        <p>We have a list of who asked and a separate list of who paid. Four organisations have
+          already paid for 320 beds, including a research centre that paid for a hundred up front
+          before one was made.</p>
+        <p>Ordered by what people did, <b>the largest figure sits on the weakest rung</b>.</p>
+      </div>
+      <div>
+        <h3>Why this plate</h3>
+        <p>Every applicant in the room will show a demand pipeline. Saying we do not have one, and
+          showing why the number would be meaningless, is the strongest thing on the page.</p>
+        <p>It also protects the application. The 778 that used to be quoted adds a figure scoped to
+          one Elder's wallet to one scoped to the children of an outstation. An assessor who reads the
+          register finds that in a minute.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Figures from the guarded modules: <span class="frame" style="font-family:var(--mono)">production-scenarios</span>,
+    <span style="font-family:var(--mono)">the-year-and-the-raise</span>,
+    <span style="font-family:var(--mono)">who-has-asked</span> and
+    <span style="font-family:var(--mono)">demand-and-buyers</span>. Nothing here is built in Pencil.
+    Each plate names the frame it belongs to, and slides get built one at a time on Ben's word.
+  </footer>
+</div>
+
+<script>
+document.getElementById('themebtn').addEventListener('click', () => {
+  const cur = document.documentElement.getAttribute('data-theme');
+  const dark = cur ? cur === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.setAttribute('data-theme', dark ? 'light' : 'dark');
+});
+</script>
