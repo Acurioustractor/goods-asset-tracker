@@ -51,6 +51,30 @@ nav.rail{display:none}
 }
 main{min-width:0;padding-top:36px}
 
+/* funder needs and calendar */
+.fnd{display:grid;gap:1px;background:var(--rail);border:1px solid var(--rail);border-radius:3px;overflow:hidden;margin-top:16px}
+.fnd .f{background:var(--surface);padding:15px 17px 16px}
+.fnd .f .top{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;justify-content:space-between}
+.fnd .f h4{font-family:var(--display);font-size:19px;margin:0;font-weight:600}
+.fnd .f .amt{font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums;color:var(--ink-2)}
+.fnd .f .due{font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:600;color:var(--terracotta);margin-top:3px}
+.fnd .f .has,.fnd .f .light{margin:9px 0 0;font-size:13px;line-height:1.5;color:var(--ink-2)}
+.fnd .f .light{color:var(--ink)}
+.fnd .f .light b{color:var(--bad)}
+.cal{margin-top:16px}
+.cal .band{margin-bottom:22px}
+.cal .band>h4{font-family:var(--body);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--clay);font-weight:600;margin:0 0 3px}
+.cal .band>.sub{font-size:12.5px;color:var(--ink-3);margin:0 0 10px}
+.cal ol{list-style:none;margin:0;padding:0;border-left:2px solid var(--rail);display:grid;gap:0}
+.cal li{position:relative;padding:9px 0 9px 20px}
+.cal li::before{content:"";position:absolute;left:-5px;top:15px;width:8px;height:8px;border-radius:50%;background:var(--rail);border:2px solid var(--surface)}
+.cal li.key::before{background:var(--terracotta)}
+.cal li.done::before{background:var(--ok)}
+.cal .d{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);letter-spacing:.02em}
+.cal .w{font-size:13.5px;margin-top:1px}
+.cal li.key .w{font-weight:600}
+.cal .who{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--clay);margin-top:2px}
+
 /* masthead */
 .mast{border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:0}
 .mast .eyebrow{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--clay);font-weight:600}
@@ -235,6 +259,8 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--rail);font-si
     <li><a href="#rulings"><span class="n">&#9679;</span>Twelve rulings</a></li>
     <li><a href="#money"><span class="n">&#9679;</span>The money and the gap</a></li>
     <li><a href="#impact"><span class="n">&#9679;</span>What can be evidenced</a></li>
+    <li><a href="#need">What each funder needs</a></li>
+    <li><a href="#calendar">The calendar</a></li>
     <li><a href="#stand"><span class="n">01</span>Where it stands</a></li>
     <li><a href="#model"><span class="n">02</span>The model in four answers</a></li>
     <li><a href="#play"><span class="n">03</span>Play the model</a></li>
@@ -541,6 +567,117 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--rail);font-si
          makes about a measured cost. The third has a settled rule and no trading enterprise behind it yet.</p>
       <p>Saying that plainly is stronger than presenting four numbers as though they were the same kind of
          thing. It is also what the first fifty beds off each line are for.</p>
+    </div>
+  </section>
+
+
+  <section id="need">
+    <h2>What each funder still needs</h2>
+    <p class="lede">Five money conversations, each at a different stage, each short of something
+      different. The column that matters is the last one.</p>
+    <div class="fnd">
+      <div class="f">
+        <div class="top"><h4>QBE Foundation, Stage 2</h4><span class="amt">$300,000 &middot; two plants</span></div>
+        <div class="due">Closes Friday 25 September, noon AEST</div>
+        <p class="has">Has: six final answers, nine with drafted text, the deck at 19 pages and 4.7MB,
+          the workbook, the model and the money map, all inside the 10MB upload cap.</p>
+        <p class="light"><b>Light:</b> Butterfly's constitution, which is not located and blocks Q12 and
+          Q22. Current management cashflow and reconciled opening balances. A site letter and a quote
+          basis for each plant. Kristy Bloomfield's related-party minute. And a named site for the
+          second Commonwealth $150,000, because if it lands on Palm Island or Maningrida it has to be
+          declared here as other funding for the same purpose.</p>
+      </div>
+      <div class="f">
+        <div class="top"><h4>Tim Fairfax Family Foundation</h4><span class="amt">$300,000 over three years</span></div>
+        <div class="due">SmartyGrants MYGOS FY27 closes Thursday 9 October, 5pm AEST</div>
+        <p class="has">Has: a written invitation from Katie Norman naming three equal payments and the
+          resilience of organisations as the reason. The $297,550 running cost is broken into six lines.</p>
+        <p class="light"><b>Light:</b> a three-year organisational budget, which has never been written.
+          The model runs one year. Their money is the only unrestricted line in the raise and it is the
+          one we have the least paper behind. HighLevel still shows $150,000 against an invitation for
+          $300,000.</p>
+      </div>
+      <div class="f">
+        <div class="top"><h4>Brian M. Davis Charitable Foundation</h4><span class="amt">$100,000 &middot; 80 beds and facilitation</span></div>
+        <div class="due">Due Friday 25 September, board Wednesday 19 November</div>
+        <p class="has">Has: an invitation from Miranda Campbell for an initial twelve-month grant of up
+          to $100,000. Facilitation is already proven at $10,000 a community on a paid invoice.</p>
+        <p class="light"><b>Light:</b> the application itself, due the same day as QBE and not started.
+          Their budget template carries a full-funding condition in cell B16 that appears nowhere in the
+          conditions PDF, so it has to be answered inside the template. The pitch has to lead with youth
+          employment, school and community engagement and plastics recycling, which is a different
+          framing from the QBE one. HighLevel shows $0.</p>
+      </div>
+      <div class="f">
+        <div class="top"><h4>Snow Foundation</h4><span class="amt">$100,000 &middot; 133 beds</span></div>
+        <div class="due">No date, because nothing has been sent</div>
+        <p class="has">Has: a booked catch-up and a first-mover pathway in the CRM.</p>
+        <p class="light"><b>Light:</b> everything. One page, subject to board, with the amount, the
+          instrument, the legal name and a person who can be called. It is the smallest document in the
+          raise and it is worth $100,000. HighLevel carries $150,000 against Ben's $100,000.</p>
+      </div>
+      <div class="f">
+        <div class="top"><h4>The Commonwealth plant route</h4><span class="amt">$150,000 approved, $150,000 likely</span></div>
+        <div class="due">Alice Springs is approved and ready</div>
+        <p class="has">Has: an approved $150,000 for the Alice Springs facility through Oonchiumpa
+          against the DEWR offer, and Ben's judgement that a second $150,000 on the same route is highly
+          likely.</p>
+        <p class="light"><b>Light:</b> the site for the second one. Naming it is worth $147,950, because
+          a plant grant and a plant cost are the same $150,000 and the gap only closes when new money
+          lands on a plant QBE was already being asked to fund.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="calendar">
+    <h2>The calendar</h2>
+    <p class="lede">Three bands. The fortnight that ends at noon on 25 September, the decisions that
+      land between October and late November, and the year the money buys.</p>
+
+    <div class="cal">
+      <div class="band">
+        <h4>The fortnight</h4>
+        <p class="sub">Every working day to the QBE close. Two applications are due on the last day.</p>
+        <ol>
+          <li class="key"><div class="d">Friday 12 September</div><div class="w">Name the site for the second Commonwealth $150,000, and send the Snow one-pager.</div><div class="who">Ben</div></li>
+          <li class="key"><div class="d">Monday 14 September</div><div class="w">Butterfly board. Minute Kristy Bloomfield's related-party declaration and ask Oonchiumpa to minute the same. Start the constitution search in the same meeting.</div><div class="who">Board, Eloise</div></li>
+          <li><div class="d">Tuesday 15 September</div><div class="w">Rewrite Q6 and Q7 against the siting ruling. Price the second press.</div><div class="who">Here, and Nic on the press</div></li>
+          <li><div class="d">Wednesday 16 September</div><div class="w">A site letter and a quote basis for each plant. Neither community is told it is in a grant application before it has agreed.</div><div class="who">Nic</div></li>
+          <li><div class="d">Thursday 17 September</div><div class="w">Current management cashflow and reconciled opening balances for the applicant.</div><div class="who">Eloise</div></li>
+          <li><div class="d">Friday 18 September</div><div class="w">Correct the structure diagram against the actual transfer records. Pull A Curious Tractor's director and ownership extracts.</div><div class="who">Ben</div></li>
+          <li><div class="d">Monday 21 September</div><div class="w">Refresh the funder bundle: conditions, recipient, dates. Select the consented records for Q11 and label proposed collection as proposed.</div><div class="who">Ben</div></li>
+          <li><div class="d">Tuesday 22 September</div><div class="w">Full read-through of all 25 with every upload assembled. Last day anything can still be missing.</div><div class="who">Ben, Nic</div></li>
+          <li><div class="d">Wednesday 23 September</div><div class="w">Write the Brian M. Davis application off the same evidence, in their framing, answering cell B16.</div><div class="who">Ben</div></li>
+          <li><div class="d">Thursday 24 September</div><div class="w">The declarations. Read the current balance, then make the solvency assessment. Nothing here is pre-ticked.</div><div class="who">Ben</div></li>
+          <li class="key"><div class="d">Friday 25 September</div><div class="w">QBE Stage 2 closes at noon AEST. Brian M. Davis due the same day.</div><div class="who">Ben</div></li>
+        </ol>
+      </div>
+
+      <div class="band">
+        <h4>The decisions</h4>
+        <p class="sub">Three dates sit the wrong way round. QBE wants pre-conditions met on 13 November, and both bed funders decide after that. Q18 puts the question to QBE directly.</p>
+        <ol>
+          <li><div class="d">Wednesday 7 October, 9:45am</div><div class="w">QBE review meeting.</div><div class="who">Ben, Nic</div></li>
+          <li class="key"><div class="d">Thursday 9 October, 5pm</div><div class="w">Tim Fairfax SmartyGrants closes. Needs a three-year organisational budget that does not exist yet.</div><div class="who">Ben</div></li>
+          <li><div class="d">Friday 23 October</div><div class="w">QBE conditional outcomes, four weeks before the Brian M. Davis board.</div><div class="who">QBE</div></li>
+          <li class="key"><div class="d">Friday 13 November</div><div class="w">QBE funding pre-conditions due, before either bed funder has decided.</div><div class="who">Applicant</div></li>
+          <li><div class="d">Wednesday 19 November</div><div class="w">Brian M. Davis board.</div><div class="who">BMDCF</div></li>
+          <li><div class="d">Late November</div><div class="w">Tim Fairfax board decides. Three accounts of the date exist, so say late November.</div><div class="who">TFFF</div></li>
+        </ol>
+      </div>
+
+      <div class="band">
+        <h4>The year the money buys</h4>
+        <p class="sub">From a signed grant to 400 beds. Witta runs three beds a day at the 80% availability ruling, which is 576 a year and 176 beds of headroom on the target.</p>
+        <ol>
+          <li><div class="d">Month 1</div><div class="w">Site agreement, pad and power at the first plant. Order the modules against the priced list.</div><div class="who">Nic</div></li>
+          <li><div class="d">Month 2</div><div class="w">Install and commission. A local operator is hired and trained on country.</div><div class="who">Community and Nic</div></li>
+          <li class="key"><div class="d">Month 3</div><div class="w">First bed off the new plant. This is the three-month money-to-first-bed figure in Q6.</div><div class="who">Community</div></li>
+          <li><div class="d">Months 3 to 8</div><div class="w">The run. Witta presses and cuts while the plants come up, and the second press decides whether this band is five months or seven.</div><div class="who">Witta and both plants</div></li>
+          <li class="key"><div class="d">Winter</div><div class="w">400 beds finished and moving. Beds arrive before the cold, which is the whole point of the date.</div><div class="who">Everyone</div></li>
+          <li><div class="d">Through the year</div><div class="w">Facilitation in four communities at $10,000 each, and the first community sale, which is the moment money kept in community stops being a rule and becomes a measure.</div><div class="who">Community enterprises</div></li>
+        </ol>
+      </div>
     </div>
   </section>
 

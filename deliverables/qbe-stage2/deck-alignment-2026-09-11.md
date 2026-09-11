@@ -112,3 +112,29 @@ Fifteen nodes across six frames, by `Update` so every one repaints.
 
 S12's panel was restructured, because it only had room for two entries and the largest paid bed
 order Goods has was one of the two it left out.
+
+---
+
+## Second pass, 11 September evening: the Tim Fairfax double count
+
+Correcting the money model found the same error printed on three slides. Tim Fairfax was counted
+against beds **and** against operating. The invitation from Katie Norman names the resilience of
+organisations, so it belongs on the operating line alone.
+
+The bed arithmetic was right either way, because Snow's $100,000 buys the same 133 beds Tim Fairfax
+was wrongly credited with. Only the attribution changed, and 187 beds still to find is unchanged.
+
+| Frame | Node | Was | Now |
+|---|---|---|---|
+| `TiKvy` S15 | `imF1U` | Who pays for the 400: Tim Fairfax 133 beds, Brian M. Davis 80 | Brian M. Davis 80, Snow 133 as an unsent ask, 187 still to find, and Tim Fairfax named as paying for the organisation |
+| `TiKvy` S15 | `i7ioiS` | Alice Springs is funded through Oonchiumpa | approved through Oonchiumpa (Ben, 11 Sep) |
+| `F93w1o` S16 | `kwmTX` | Tim Fairfax 133 beds, Brian M. Davis 80, Snow and Dusseldorp to ask | Brian M. Davis 80 beds, Snow 133 to ask, Dusseldorp a top-up |
+| `F93w1o` S16 | `ubBZu` | QBE $300,000, DEWR and NIAA through Oonchiumpa | QBE $300,000, Alice Springs approved through Oonchiumpa |
+| `tVcLc` S18 | `tvMZp` | the beds are paid at $750 by Tim Fairfax, Brian M. Davis and the asks in progress | Brian M. Davis and the asks in progress |
+
+**What the deck does not print, and therefore did not break.** No slide carries a year total or a
+funding gap, so the $937,550 correction touches nothing else. S16 and S18 were re-read in full.
+
+**What is left on the deck.** S12A and S12B, the two siting slides, written and sitting at the
+bottom of the Notion deck master. They were held on the Q6 and Q7 siting question, which Ben ruled
+on 11 September. They can be built.
