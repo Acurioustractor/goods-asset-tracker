@@ -308,6 +308,26 @@ Patched in the artifact and in both source files.
 **Q19 gained today's two closures in its evidence panel**: The Harvest at 576 beds a year with 176 of
 headroom against the 400 target, and freight at $150 all up.
 
+## Two corrections from Ben, 11 September
+
+**Centrecorp comes out of the demand. Those beds are already delivered.** The 130 on quote QU-0014 is
+not future demand. **Witta's recorded demand is 500, being ALIVE's 100 and the 400 of first stock.**
+That is 1,000 cooked sheets and about 17 bulka bags. Clearing it takes **10.4 months on one press,
+about October 2027**, or **6.3 months on two, about June 2027**. The plastic difference between the
+two routes falls from about $102,000 to **$81,000**.
+
+**Plate 04 broke the standing rule and it looked terrible.** It divided the organisation by beds, so
+the biggest single block in a $750 bed read "$240.76 the two founders". That is exactly what
+[[feedback-price-model-not-cost-plus]] forbids: never divide the organisation by beds alone.
+
+The plate now shows **two separate things**. One bed: $750, $275.74 to make with the $80 wage inside
+it, and $474.26 that stays, as a single unbroken block. Then the year, in a year's money: $297,550
+across founders $151,200, travel $51,000, accounting $50,000, Witta $35,350 and marketing $10,000.
+
+**The 628 beds stays as a ceiling and never as a per-bed division.** Beds are not the only thing
+Goods sells, and the caption says so. Founder wages now read as two people running a business that
+turned over $1.46M, which is what they are.
+
 ## The wider field of plant candidates, and the question it raises
 
 Ben, 11 September: Palm Island and Maningrida are the two most likely, with Mount Isa, Tennant Creek,
