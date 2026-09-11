@@ -328,6 +328,43 @@ across founders $151,200, travel $51,000, accounting $50,000, Witta $35,350 and 
 Goods sells, and the caption says so. Founder wages now read as two people running a business that
 turned over $1.46M, which is what they are.
 
+## Stock, the queue, and three corrections Ben made
+
+**The queue is 500: ALIVE's 100 and the 400 of first stock.** Centrecorp is out entirely and now has
+its own memory file, because it came back three times. [[goods-centrecorp-is-delivered]]
+
+**Parts on the floor are 87, never 143.** 81 beds of legs cut and ready, plus 7 more leg sheets from
+the 145 kg of weighed shred. **Legs are the limit**, and there are tabs for 101 plus 59 uncut tab
+sheets. The 143 assumes the roughly 1,150 kg of unweighed buckets, offcuts and router skeletons is
+all recovered and pressed, about 55 more leg sheets. That is potential, and 87 is countable.
+
+**Months convert at 16 run days, never 20.** 20 is the planning days; the ruled 80% availability means
+16 of them run, which is where 48 beds a month comes from. Dividing production days by 20 gives the
+downtime allowance back and makes the queue look two months shorter than it is.
+
+| | Beds from raw | Run days | Months |
+|---|---:|---:|---:|
+| 6 sheets, cooking both, 48 a month | 413 | 138 | **8.6** |
+| Legs bought or a second press, 80 a month | 413 | 83 | **5.2** |
+
+Making cost is **$113,881**, not the $98,439 that 143 gave.
+
+**ALIVE's 100 beds do not exist.** Paid $101,200 and settled 20 August, and the register has zero rows
+referencing ALIVE or Melbourne. They are made in November, so on schedule, but the largest paid bed
+order has nothing behind it yet.
+
+**The Stretch Bed register, 314 units after the deletion:** 177 deployed, 20 ready at Alice Springs,
+6 in transit to Mutitjulu, 3 demo. 206 beds exist.
+
+**Deleted from the register on Ben's word:** `REQ-CENTRECORP-2026`, 108 units, Tennant Creek, created
+13 March 2026, carrying a note "Approved Jan 2026" that was wrong. It never got approved and never
+happened. Full row saved in the session scratchpad. `check:asset-drift` still green.
+
+**The ramp redrawn on both corrections.** ALIVE's hundred uses all 87 parts, so the 400 starts from
+nothing in December. One press lands it **early August**, at the end of winter. A second press from
+March lands it **early June**, as winter starts. **There is no version that finishes comfortably
+before winter.**
+
 ## The wider field of plant candidates, and the question it raises
 
 Ben, 11 September: Palm Island and Maningrida are the two most likely, with Mount Isa, Tennant Creek,
