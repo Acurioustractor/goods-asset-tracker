@@ -11,7 +11,7 @@
     },
     {
       "key": "bed.make",
-      "label": "Cost to make a bed",
+      "label": "Legacy making allowance; current route needs costing",
       "value": 276,
       "unit": "AUD",
       "from": "the-year-and-the-raise"
@@ -25,45 +25,45 @@
     },
     {
       "key": "bed.contribution",
-      "label": "Contribution a bed, buyer pays freight",
+      "label": "Provisional contribution, legacy making allowance",
       "value": 474,
       "unit": "AUD",
       "from": "the-year-and-the-raise"
     },
     {
       "key": "bed.contribution.goodsFreight",
-      "label": "Contribution a bed, Goods pays freight",
+      "label": "Provisional contribution with Goods freight",
       "value": 324,
       "unit": "AUD",
       "from": "the-year-and-the-raise"
     },
     {
       "key": "bed.pressedKg",
-      "label": "Shred pressed for one bed",
-      "value": 36,
+      "label": "Gross tab shred per dispatched kit",
+      "value": 15,
       "unit": "kg",
       "from": "production-scenarios",
-      "drift": "Decision D06 still records 40 kg"
+      "drift": "The old 36 kg included leg pressing; D06 also recorded 40 kg. Current factory pressing is tabs only."
     },
     {
       "key": "line.pressPerDay",
-      "label": "Press, beds a day",
-      "value": 3,
+      "label": "Tab press, kits a day",
+      "value": 6,
       "unit": "beds",
       "from": "production-scenarios"
     },
     {
       "key": "line.cncPerDay",
-      "label": "Router, beds a day",
+      "label": "Router, kits a day",
       "value": 8.56,
       "unit": "beds",
       "from": "production-scenarios"
     },
     {
       "key": "line.assemblyPerDay",
-      "label": "Assembly, beds a day",
-      "value": 5,
-      "unit": "beds",
+      "label": "Assembly location; no factory limit",
+      "value": "In community",
+      "unit": "status",
       "from": "production-scenarios"
     },
     {
@@ -76,23 +76,23 @@
     },
     {
       "key": "line.bedsPerMonth",
-      "label": "Beds a month today",
-      "value": 48,
+      "label": "Flat-packed kits a month today",
+      "value": 96,
       "unit": "beds",
       "from": "derived",
-      "drift": "Home tab equipment ceiling reads 60"
+      "drift": "Remove the two-pressed-sheet and factory-assembly assumptions. Preserve the separate full-availability ceiling."
     },
     {
       "key": "line.bedsPerMonthLifted",
-      "label": "Beds a month at the assembly ceiling",
-      "value": 80,
+      "label": "Kits a month at the router ceiling",
+      "value": 136,
       "unit": "beds",
       "from": "derived"
     },
     {
       "key": "line.wittaPerYear",
-      "label": "Witta beds a year",
-      "value": 576,
+      "label": "Current facility kits a year, modelled",
+      "value": 1152,
       "unit": "beds",
       "from": "three-year-plan"
     },
@@ -102,6 +102,41 @@
       "value": 1000,
       "unit": "kg",
       "from": "production-scenarios"
+    },
+    {
+      "key": "line.pressSheetsPerDay",
+      "label": "Tab sheets pressed each productive day",
+      "value": 6,
+      "unit": "count",
+      "from": "production-route Ben 12 Sep"
+    },
+    {
+      "key": "line.pressedSheetsPerKit",
+      "label": "Pressed tab sheets per dispatched kit",
+      "value": 1,
+      "unit": "count",
+      "from": "production-route Ben 12 Sep"
+    },
+    {
+      "key": "bed.costStatus",
+      "label": "Status of the current route cost",
+      "value": "Provisional: bought legs and tab production need costing",
+      "unit": "status",
+      "from": "production-route Ben 12 Sep"
+    },
+    {
+      "key": "plastic.panelEach",
+      "label": "Invoiced 800 x 1200 panel, ex GST",
+      "value": 127.22666666666667,
+      "unit": "AUD",
+      "from": "defy-supply INV-2021"
+    },
+    {
+      "key": "plastic.kitsPerPanel",
+      "label": "Leg kits per purchased panel",
+      "value": "Needs panel yield",
+      "unit": "status",
+      "from": "production-route awaiting cut yield"
     },
     {
       "key": "plant.count",
@@ -261,24 +296,24 @@
     },
     {
       "key": "plastic.panelPerBed",
-      "label": "Defy panels a bed",
-      "value": 254.45,
-      "unit": "AUD",
+      "label": "Bought leg panels per kit: cost status",
+      "value": "Needs panel yield",
+      "unit": "status",
       "from": "defy-supply INV-2021",
       "drift": "Calculator plastic reads $55 with no supply-path choice"
     },
     {
       "key": "plastic.kitPerBed",
-      "label": "Defy finished kit a bed",
+      "label": "Defy finished leg kit, excluding tabs",
       "value": 344.05,
       "unit": "AUD",
       "from": "defy-supply INV-1602"
     },
     {
       "key": "plastic.breakEvenShred",
-      "label": "Shred price where press and panels cost the same",
-      "value": 3.1618055555555555,
-      "unit": "AUD/kg",
+      "label": "Shred break-even: withdrawn for old route",
+      "value": "Needs route costing",
+      "unit": "status",
       "from": "production-scenarios",
       "drift": "Not in the workbook at all"
     },

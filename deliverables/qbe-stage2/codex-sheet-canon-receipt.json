@@ -1,0 +1,207 @@
+{
+  "date": "2026-09-12",
+  "spreadsheetId": "1Sh0Kk0CI0NSeO_H0T8P91H8skBJLpKkRfcQjRWTd-5Y",
+  "canonKeys": [
+    {
+      "key": "bed.price",
+      "value": 750
+    },
+    {
+      "key": "bed.make",
+      "value": 276
+    },
+    {
+      "key": "bed.freight",
+      "value": 150
+    },
+    {
+      "key": "bed.contribution",
+      "value": 474
+    },
+    {
+      "key": "bed.contribution.goodsFreight",
+      "value": 324
+    },
+    {
+      "key": "bed.pressedKg",
+      "value": 36
+    },
+    {
+      "key": "line.pressPerDay",
+      "value": 3
+    },
+    {
+      "key": "line.cncPerDay",
+      "value": 8.56
+    },
+    {
+      "key": "line.assemblyPerDay",
+      "value": 5
+    },
+    {
+      "key": "line.runDaysPerMonth",
+      "value": 16
+    },
+    {
+      "key": "line.bedsPerMonth",
+      "value": 48
+    },
+    {
+      "key": "line.bedsPerMonthLifted",
+      "value": 80
+    },
+    {
+      "key": "line.wittaPerYear",
+      "value": 576
+    },
+    {
+      "key": "line.bulkaBagKg",
+      "value": 1000
+    },
+    {
+      "key": "plant.count",
+      "value": 2
+    },
+    {
+      "key": "plant.allowance",
+      "value": 150000
+    },
+    {
+      "key": "plant.modulesLow",
+      "value": 95767
+    },
+    {
+      "key": "plant.modulesHigh",
+      "value": 142467
+    },
+    {
+      "key": "plant.firstYearBeds",
+      "value": 200
+    },
+    {
+      "key": "plant.matureBeds",
+      "value": 720
+    },
+    {
+      "key": "plant.secondPress",
+      "value": 22500
+    },
+    {
+      "key": "year.beds",
+      "value": 400
+    },
+    {
+      "key": "year.pools",
+      "value": 4
+    },
+    {
+      "key": "year.poolSize",
+      "value": 100
+    },
+    {
+      "key": "year.facilitationEach",
+      "value": 10000
+    },
+    {
+      "key": "year.facilitation",
+      "value": 40000
+    },
+    {
+      "key": "year.running",
+      "value": 297550
+    },
+    {
+      "key": "year.breakEvenBeds",
+      "value": 628
+    },
+    {
+      "key": "year.needs",
+      "value": 747950
+    },
+    {
+      "key": "year.needsGoodsFreight",
+      "value": 807950
+    },
+    {
+      "key": "year.asked",
+      "value": 600000
+    },
+    {
+      "key": "year.secured",
+      "value": 0
+    },
+    {
+      "key": "year.gap",
+      "value": 147950
+    },
+    {
+      "key": "year.bedSurplus",
+      "value": 49600
+    },
+    {
+      "key": "year.bedsUnfunded",
+      "value": 187
+    },
+    {
+      "key": "year.bedsUnfundedAud",
+      "value": 140250
+    },
+    {
+      "key": "plastic.panelPerBed",
+      "value": 254.45
+    },
+    {
+      "key": "plastic.kitPerBed",
+      "value": 344.05
+    },
+    {
+      "key": "plastic.breakEvenShred",
+      "value": 3.1618055555555555
+    },
+    {
+      "key": "trade.bedsPaid",
+      "value": 320
+    },
+    {
+      "key": "trade.paidNet",
+      "value": 247770
+    }
+  ],
+  "verification": {
+    "guardsPassed": 12,
+    "canonRowsMatched": 41,
+    "formulaCount": 5200,
+    "errors": [],
+    "supplyPathPlasticValues": [
+      55,
+      254.45,
+      344.05
+    ],
+    "duplicateCheck": "Both BMD rows flagged in Funding timing and Money when their Jobs matched; tested in temporary copy then deleted.",
+    "serviceAccountCheck": "403 PERMISSION_DENIED. Verified all 41 keys and values through authenticated Sheets connector.",
+    "visualReview": "Money year totals, funding Job/Check columns, Calculator supply selector and reference values inspected in browser."
+  },
+  "changedRanges": [
+    "Canon!A1:E43",
+    "Capacity!B8,B44,D44,D49:D50",
+    "Calculator!G11,C16,D18,D27:D28,E14,A24,A26",
+    "Money!A19:H37,A39",
+    "Funding timing!A5:P17",
+    "Claims!B5:B13,B15,B23,D8:D9,D11,D14:D15",
+    "Asks!C7,A18,F18",
+    "Cheat sheet!B5:B9,B13,B21,C8,C10:C12",
+    "Inputs!E27",
+    "Model comparison!C16,D21",
+    "Read me!A42:B42",
+    "Calculator!G27 (Canon freight reference); D23 note"
+  ],
+  "structure": "Funding timing inserted 1 row before old row 8 and 2 before old row 11. Money inserted 1 row before old row 25, 2 before old row 29, and 6 before old row 19. Original tabs and IDs preserved; formula references adjusted by Sheets.",
+  "exceptions": [
+    "Source has 41 keys, not 43.",
+    "Native workbook has 5200 formulas after changes; 42429 is not the native sheet count.",
+    "No Decisions tab or editable D06 record exists. Claims D14 contained a historical 40kg note; clarified gross36 versus net20.",
+    "20 planning days and scenario input costs preserved. 80% applies once.",
+    "Three-year asks subtotal is800000, year-one asks600000, December receipts500000.",
+    "Shred break-even exact exported number preserved, approximately3.1618."
+  ]
+}

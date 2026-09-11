@@ -19,6 +19,16 @@
 
 ---
 
+## 2026-09-12: current flat-pack production route
+
+Ben confirmed that the current production facility presses tab sheets, buys leg sheets and sends flat-packed kits for young people to assemble in community. Factory assembly does not constrain kit output. Bought legs and pressed tabs are complementary inputs, not additive bed production routes.
+
+Supersedes the two-pressed-sheet and factory-assembly assumptions in the current production scenario. Purchased leg-panel yield must be confirmed from cutting evidence. Unknown yield and route costs remain explicit unknowns. Previous making costs and contributions remain provisional pending this review.
+
+Sweep: production-route, production-scenarios, defy-supply, three-year-plan capacity, sheet-canon, the generated workbook brief, and the live Capacity, Calculator, Stock plan and Production detail consumers. Community assembly is recorded separately.
+
+---
+
 ## 2026-08-28 — one operating home
 Ben ruling, made while correcting the Goods on Country governance model and LGANT story.
 ### X. Goods on Country owns and runs the whole model. The separate "Goods." layer is retired.

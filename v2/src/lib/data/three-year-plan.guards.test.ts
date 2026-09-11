@@ -44,7 +44,7 @@ describe('capacity', () => {
   });
 
   it('capacity is built from Witta plus plants, never asserted', () => {
-    expect(WITTA_BEDS_A_YEAR).toBe(576);
+    expect(WITTA_BEDS_A_YEAR).toBe(1152);
     expect(YEARS.find((y) => y.id === 'fy27')!.capacityBeds).toBe(WITTA_BEDS_A_YEAR);
     expect(YEARS.find((y) => y.id === 'fy28')!.capacityBeds).toBe(
       WITTA_BEDS_A_YEAR + 2 * PLANT_FIRST_YEAR_BEDS,

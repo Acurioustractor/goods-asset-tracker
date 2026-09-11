@@ -1,49 +1,35 @@
 /**
- * How fast Witta can make beds, and what each way of getting there costs.
- *
- * Three machines and one choice. The press makes three beds a day, the router 8.56 and assembly
- * five, so the press is the constraint and the line runs at three. There are two ways to lift it
- * to the assembly ceiling of five, and they cost very different things:
- *
- *   BUY PANELS from Defy, which arrive ready to route and need no shred at all.
- *   BUY A SECOND PRESS, which is a one-off and needs 66% more shred a month to feed it.
- *
- * Doing both buys nothing, because assembly caps the line at five a day either way.
- *
- * The decision turns on the price of a bulka bag of shred, which we do not have. Quotes QU0494 and
- * QU0495 carry it. `breakEvenShredPriceKg` says what that price has to beat.
+ * Flat-packed kits from the current production facility.
+ * Ben corrected the route on 12 September: tabs pressed here, legs bought,
+ * assembly by young people in community. A bought leg panel is not another
+ * complete bed and cannot be added to tab output.
  */
-
-export const READ_AT = '2026-09-11';
-
-// ---------------------------------------------------------------------------
-// The line
-// ---------------------------------------------------------------------------
-
-export const PRESS_BEDS_A_DAY = 3;
-export const CNC_BEDS_A_DAY = 8.56;
-export const ASSEMBLY_BEDS_A_DAY = 5;
-export const RUN_DAYS_A_MONTH = 16;
-
+import {
+  ROUTE_READ_AT, ROUTE_RULING, PRESS_SHEETS_A_DAY, PRESSED_SHEETS_PER_KIT,
+  CNC_KITS_A_DAY, TAB_SHEET_GROSS_KG, RUN_DAYS_A_MONTH as ROUTE_RUN_DAYS,
+  ASSEMBLY_LOCATION, FACTORY_ASSEMBLY_LIMIT, BOUGHT_LEG_COST_STATUS,
+  SHRED_BREAK_EVEN_STATUS, factoryKitsADay, factoryKitsAMonth,
+} from './production-route';
+export { ROUTE_RULING, PRESS_SHEETS_A_DAY, PRESSED_SHEETS_PER_KIT, ASSEMBLY_LOCATION,
+  BOUGHT_LEG_COST_STATUS, SHRED_BREAK_EVEN_STATUS };
+export const READ_AT = ROUTE_READ_AT;
+export const PRESS_BEDS_A_DAY = PRESS_SHEETS_A_DAY / PRESSED_SHEETS_PER_KIT;
+export const CNC_BEDS_A_DAY = CNC_KITS_A_DAY;
+export const ASSEMBLY_BEDS_A_DAY = FACTORY_ASSEMBLY_LIMIT;
+export const RUN_DAYS_A_MONTH = ROUTE_RUN_DAYS;
 export const AVAILABILITY_RULING =
-  'Twenty planning days a month at 80% availability, which is sixteen run days. Ben set the 80% on 10 September 2026.';
-
-export const PRESSED_KG_PER_BED = 36;
+  'Twenty planning days at 80% availability give sixteen run days. Ben set the 80% on 10 September 2026.';
+export const PRESSED_KG_PER_BED = TAB_SHEET_GROSS_KG;
 export const BED_PRICE_AUD = 750;
-
-/** This invoice: $381.68 a sheet all up, three panels a sheet, two panels a bed. */
-export const PANEL_PLASTIC_PER_BED_AUD = 254.45;
+/** Invoice cost per purchased leg kit cannot be derived before panel yield is confirmed. */
+export const PANEL_PLASTIC_PER_BED_AUD: number | null = null;
+/** Supplier finished leg kit only; excludes factory tab production and other bed parts. */
 export const FINISHED_KIT_PER_BED_AUD = 344.05;
 export const SECOND_PRESS_AUD = 22_500;
 export const BULKA_BAG_KG = 1_000;
 
-// ---------------------------------------------------------------------------
-// The four ways to run it
-// ---------------------------------------------------------------------------
-
-export type DefyChoice = 'none' | 'panels' | 'kits';
+export type DefyChoice = 'panels' | 'kits';
 export type WittaChoice = 'one-press' | 'two-presses';
-
 export interface Scenario {
   readonly id: string;
   readonly name: string;
@@ -51,155 +37,64 @@ export interface Scenario {
   readonly witta: WittaChoice;
   readonly what: string;
 }
-
 export const SCENARIOS: readonly Scenario[] = [
-  {
-    id: 'A',
-    name: 'One press, nothing bought in',
-    defy: 'none',
-    witta: 'one-press',
-    what: 'What Witta does today. Every bed pressed here from our own shred, and the press decides the pace.',
-  },
-  {
-    id: 'B',
-    name: 'One press, panels from Defy',
-    defy: 'panels',
-    witta: 'one-press',
-    what: 'The press keeps running and bought panels go through the router beside it. The extra beds exist only because the panels were bought.',
-  },
-  {
-    id: 'C',
-    name: 'Two presses, nothing bought in',
-    defy: 'none',
-    witta: 'two-presses',
-    what: 'A second press reaches the same output with no bought plastic at all, and needs two thirds more shred a month to do it.',
-  },
-  {
-    id: 'D',
-    name: 'Two presses and panels',
-    defy: 'panels',
-    witta: 'two-presses',
-    what: 'Buys nothing. Assembly caps the line at five a day whatever is feeding it, so the panels sit in the yard.',
-  },
-  {
-    id: 'E',
-    name: 'One press, finished kits from Defy',
-    defy: 'kits',
-    witta: 'one-press',
-    what: 'The fallback. Same speed as panels and $89.60 a bed more, because Defy does the routing we can already do.',
-  },
+  { id: 'A', name: 'Tabs pressed here, leg panels bought', defy: 'panels', witta: 'one-press',
+    what: 'Current route. One pressed tab sheet per kit. Leg panels are bought, routed and packed with the tabs and other parts. Young people assemble in community.' },
+  { id: 'B', name: 'More bought leg panels, same press', defy: 'panels', witta: 'one-press',
+    what: 'Additional leg stock can remove a material shortage but does not increase tab-press capacity.' },
+  { id: 'C', name: 'Two tab presses, leg panels bought', defy: 'panels', witta: 'two-presses',
+    what: 'Two presses can feed the router to its entered rate. Bought legs, feedstock, staffing and packing still need to support dispatch.' },
+  { id: 'D', name: 'Two tab presses and more leg stock', defy: 'panels', witta: 'two-presses',
+    what: 'Same equipment rate as C. Extra purchased stock affects supply coverage, not the router rate.' },
+  { id: 'E', name: 'Tabs pressed here, finished leg kits bought', defy: 'kits', witta: 'one-press',
+    what: 'Defy supplies finished legs. The tab sheets are still pressed here. Kits are dispatched for community assembly.' },
 ];
-
 export function pressBedsADay(s: Scenario): number {
-  return s.witta === 'two-presses' ? PRESS_BEDS_A_DAY * 2 : PRESS_BEDS_A_DAY;
+  return PRESS_BEDS_A_DAY * (s.witta === 'two-presses' ? 2 : 1);
 }
-
-/** Bought plastic can feed the router up to its own ceiling, so the line is capped by assembly. */
 export function bedsADay(s: Scenario): number {
-  const fed = s.defy === 'none' ? pressBedsADay(s) : Math.min(CNC_BEDS_A_DAY, ASSEMBLY_BEDS_A_DAY);
-  return Math.min(fed, ASSEMBLY_BEDS_A_DAY, CNC_BEDS_A_DAY);
+  return factoryKitsADay(s.witta === 'two-presses' ? 2 : 1);
 }
-
 export function bedsAMonth(s: Scenario): number {
-  return bedsADay(s) * RUN_DAYS_A_MONTH;
+  return factoryKitsAMonth(s.witta === 'two-presses' ? 2 : 1);
 }
-
 export function limitedBy(s: Scenario): string {
-  const d = bedsADay(s);
-  if (d === ASSEMBLY_BEDS_A_DAY) return 'Assembly';
-  if (d === pressBedsADay(s)) return s.witta === 'two-presses' ? 'Two presses' : 'One press';
-  return 'The router';
+  return pressBedsADay(s) <= CNC_BEDS_A_DAY ? 'Tab press' : 'The router';
 }
-
-/** Beds a month that come off bought plastic, over and above what the press makes. */
-export function boughtBedsAMonth(s: Scenario): number {
-  return Math.max(0, bedsAMonth(s) - pressBedsADay(s) * RUN_DAYS_A_MONTH);
+/** All kits need bought legs. These are the SAME kits counted by pressedBedsAMonth. */
+export function boughtBedsAMonth(s: Scenario): number { return bedsAMonth(s); }
+/** All kits need a factory-pressed tab sheet; never add this to boughtBedsAMonth. */
+export function pressedBedsAMonth(s: Scenario): number { return bedsAMonth(s); }
+export function shredKgAMonth(s: Scenario): number { return bedsAMonth(s) * PRESSED_KG_PER_BED; }
+export function boughtPlasticPerBedAud(s: Scenario): number | null {
+  return s.defy === 'kits' ? FINISHED_KIT_PER_BED_AUD : PANEL_PLASTIC_PER_BED_AUD;
 }
-
-export function pressedBedsAMonth(s: Scenario): number {
-  return bedsAMonth(s) - boughtBedsAMonth(s);
+export function boughtPlasticAMonthAud(s: Scenario): number | null {
+  const unit = boughtPlasticPerBedAud(s);
+  return unit === null ? null : bedsAMonth(s) * unit;
 }
-
-export function shredKgAMonth(s: Scenario): number {
-  return pressedBedsAMonth(s) * PRESSED_KG_PER_BED;
-}
-
-export function boughtPlasticPerBedAud(s: Scenario): number {
-  if (s.defy === 'kits') return FINISHED_KIT_PER_BED_AUD;
-  if (s.defy === 'panels') return PANEL_PLASTIC_PER_BED_AUD;
-  return 0;
-}
-
-export function boughtPlasticAMonthAud(s: Scenario): number {
-  return boughtBedsAMonth(s) * boughtPlasticPerBedAud(s);
-}
-
-export function capitalAud(s: Scenario): number {
-  return s.witta === 'two-presses' ? SECOND_PRESS_AUD : 0;
-}
-
-// ---------------------------------------------------------------------------
-// The run
-// ---------------------------------------------------------------------------
-
+export function capitalAud(s: Scenario): number { return s.witta === 'two-presses' ? SECOND_PRESS_AUD : 0; }
 export const FIRST_STOCK_BEDS = 400;
 export const ALIVE_BEDS = 100;
-
-export function monthsFor(s: Scenario, beds: number): number {
-  return beds / bedsAMonth(s);
+export function monthsFor(s: Scenario, beds: number): number { return beds / bedsAMonth(s); }
+export function boughtBedsOverRun(_s: Scenario, beds: number): number { return beds; }
+export function shredKgOverRun(_s: Scenario, beds: number): number { return beds * PRESSED_KG_PER_BED; }
+export function bagsOverRun(s: Scenario, beds: number): number { return shredKgOverRun(s, beds) / BULKA_BAG_KG; }
+/** Bought legs plus capital only. Null preserves the missing panel-to-kit yield. */
+export function knownSpendOverRun(s: Scenario, beds: number): number | null {
+  const unit = boughtPlasticPerBedAud(s);
+  return unit === null ? null : beds * unit + capitalAud(s);
 }
-
-export function boughtBedsOverRun(s: Scenario, beds: number): number {
-  return boughtBedsAMonth(s) * monthsFor(s, beds);
-}
-
-export function shredKgOverRun(s: Scenario, beds: number): number {
-  return (beds - boughtBedsOverRun(s, beds)) * PRESSED_KG_PER_BED;
-}
-
-export function bagsOverRun(s: Scenario, beds: number): number {
-  return shredKgOverRun(s, beds) / BULKA_BAG_KG;
-}
-
-/** Bought plastic plus capital. Excludes shred, which has no price yet. */
-export function knownSpendOverRun(s: Scenario, beds: number): number {
-  return boughtBedsOverRun(s, beds) * boughtPlasticPerBedAud(s) + capitalAud(s);
-}
-
-// ---------------------------------------------------------------------------
-// The number that decides it, and the one we are missing
-// ---------------------------------------------------------------------------
-
-/**
- * Panels and the second press reach the same output. Over a run of `beds`, panels cost the panel
- * price on the marginal beds; the press costs $22,500 once plus the shred those same beds need.
- * They are equal at this shred price a kilogram. Below it the press wins, above it the panels do.
- */
-export function breakEvenShredPriceKg(beds: number): number {
-  const panels = SCENARIOS.find((s) => s.id === 'B')!;
-  const press = SCENARIOS.find((s) => s.id === 'C')!;
-  const marginal = boughtBedsOverRun(panels, beds);
-  const extraShredKg = marginal * PRESSED_KG_PER_BED;
-  return (boughtBedsOverRun(panels, beds) * PANEL_PLASTIC_PER_BED_AUD - capitalAud(press)) / extraShredKg;
-}
-
+/** The retired calculation compared purchased legs with tab pressing as substitutes. */
+export function breakEvenShredPriceKg(_beds: number): null { return null; }
 export const BREAK_EVEN_ON_THE_400 = breakEvenShredPriceKg(FIRST_STOCK_BEDS);
-
-/**
- * The only prices a kilogram we hold. Both are for finished pressed panel, and shred is a different material at a different price.
- * A 1200 by 2400 by 19mm sheet weighs about 51.98 kg.
- */
 export const PANEL_MATERIAL_PER_KG_AUD = 356.88 / 51.98;
 export const PANEL_ALL_IN_PER_KG_AUD = 381.68 / 51.98;
-
 export const THE_MISSING_NUMBER =
-  'We do not know what a bulka bag of shred costs. Quotes QU0494 and QU0495 from Sam Davies on 27 August price the 105 sheets and the 8 bags, and neither is in the repo. Without the bag price the choice between a second press and bought panels cannot be closed, because that is the only variable it turns on.';
-
+  'Quotes QU0494 and QU0495 are still needed for current shred pricing. Confirm the number of leg sets cut from each invoiced panel, then cost purchased legs and factory tab production separately.';
 export const THE_RULE_OF_THUMB =
-  'On the 400, panels and a second press cost the same when shred lands at about $3.16 a kilogram. Below that the press wins and above it the panels do. The only prices a kilogram we hold are $6.87 for panel material and $7.34 with the cutting. Both are for finished pressed panel, and shred should come in well under either, so the press is the likely answer once the bag price arrives. A longer run moves the line further in the press\'s favour, because the machine is bought once.';
-
+  'The previous shred break-even is withdrawn. Purchased leg panels and pressed tab sheets are complementary inputs, not alternative ways to make an entire kit.';
 export const WHAT_THE_PRESS_DOES_NOT_SOLVE =
-  'A second press only helps if there is shred to feed it. At the assembly ceiling it needs 2,880 kg a month, which is two thirds more than the line burns today, and Witta had three weeks of stock on 28 August. Buying the press without buying the bags changes nothing.';
-
+  'A second tab press still needs bought legs, sufficient shred, staff and packing capacity. Its modelled ceiling is the router; community assembly is separate. The tab sheet mass remains a planning assumption until weighed.';
 export const DO_NOT_DO_BOTH =
-  'Scenario D adds a second press and bought panels together and produces exactly what either produces alone, because assembly caps the line at five beds a day. Whichever is chosen, the other is wasted.';
+  'Compare a second tab press with the actual tab bottleneck. Bought leg stock is needed on both routes and must never be counted as extra complete kits.';

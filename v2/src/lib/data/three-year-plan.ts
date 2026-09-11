@@ -12,12 +12,14 @@
  *
  * What is locked and what is a target
  *  - Running cost, bed price, make cost and contribution are canon and guarded elsewhere.
- *  - Capacity is the 80% availability ruling: Witta 576 a year at three a day.
+ *  - Capacity is the 80% availability ruling: current facility 1,152 kits a year, with bought legs and community assembly.
  *  - BED VOLUMES ARE TARGETS, NEVER FORECASTS. They are capacity-checked and nothing more.
  *    Every one carries `basis` saying which.
  */
 
-export const READ_AT = '2026-09-11';
+import { factoryKitsAMonth } from './production-route';
+
+export const READ_AT = '2026-09-12';
 
 export const WHY_THIS_EXISTS =
   'Tim Fairfax invited a three-year application on 31 August 2026 and named the resilience of organisations as the reason. Every model in the repo runs one year, so there was nothing to answer it with.';
@@ -38,12 +40,12 @@ export const BREAK_EVEN_NOTE =
 // Capacity, so no target is written that cannot be made
 // ---------------------------------------------------------------------------
 
-export const WITTA_BEDS_A_YEAR = 576;
+export const WITTA_BEDS_A_YEAR = factoryKitsAMonth() * 12;
 export const PLANT_FIRST_YEAR_BEDS = 200;
 export const PLANT_MATURE_BEDS = 720;
 
 export const CAPACITY_NOTE =
-  'Witta makes 576 a year at three beds a day, twenty planning days a month and the 80% availability Ben set on 10 September, which is sixteen run days. A new plant makes about 200 in its first year and reaches 720 on the same press.';
+  'The current facility models 96 flat-packed kits a month, or 1,152 over twelve months: six tab sheets a day, one per kit, at 80% availability. Leg sheets are bought and young people assemble in community. This is capacity, not orders or measured output. Future-plant ramp assumptions remain separate.';
 
 // ---------------------------------------------------------------------------
 // The three years
@@ -76,7 +78,7 @@ export const YEARS: readonly PlanYear[] = [
     story:
       'The plants are built and commissioned and Witta makes the first stock. Trade covers two thirds of the organisation and a grant covers the rest.',
     plants: 0,
-    capacityBeds: 576,
+    capacityBeds: WITTA_BEDS_A_YEAR,
     bedsSold: 400,
     bedsBasis: 'target',
     facilitationCommunities: 4,
@@ -92,7 +94,7 @@ export const YEARS: readonly PlanYear[] = [
     story:
       'Two community plants are running and Witta presses parts for them. The organisation reaches the number that carries it, and the grant stops being the thing that keeps the lights on.',
     plants: 2,
-    capacityBeds: 576 + 2 * 200,
+    capacityBeds: WITTA_BEDS_A_YEAR + 2 * PLANT_FIRST_YEAR_BEDS,
     bedsSold: 628,
     bedsBasis: 'target',
     facilitationCommunities: 4,
@@ -108,7 +110,7 @@ export const YEARS: readonly PlanYear[] = [
     story:
       'The plants move toward community hands. Goods earns more than it costs to run, and the grant turns to paying for the handover.',
     plants: 3,
-    capacityBeds: 576 + 2 * 720 + 200,
+    capacityBeds: WITTA_BEDS_A_YEAR + 2 * PLANT_MATURE_BEDS + PLANT_FIRST_YEAR_BEDS,
     bedsSold: 900,
     bedsBasis: 'target',
     facilitationCommunities: 6,
@@ -162,7 +164,7 @@ export const TRADE_SHARE = YEARS.map((y) => ({
 // ---------------------------------------------------------------------------
 
 export const CLAIM_CEILING =
-  'Bed volumes are targets that fit inside measured capacity. They are not forecasts and no buyer has ordered year two or year three. The running cost is Ben\'s provision for year one and is held flat across three years, which is an assumption nobody has ruled on: it holds founders, travel, accounting, rent, marketing and maintenance at today\'s level while the work grows.';
+  'The $276 making cost and its contribution remain provisional for the corrected bought-leg route. Bed volumes are targets that fit inside modelled capacity. They are not forecasts and no buyer has ordered year two or year three. The running cost is Ben\'s provision for year one and is held flat across three years, which is an assumption nobody has ruled on: it holds founders, travel, accounting, rent, marketing and maintenance at today\'s level while the work grows.';
 
 export const WHAT_NEEDS_A_RULING: readonly string[] = [
   'Does the running cost stay at $297,550 for three years while two plants and six communities are added, or does it grow.',

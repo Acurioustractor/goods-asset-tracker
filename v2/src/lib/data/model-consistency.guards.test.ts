@@ -41,9 +41,9 @@ describe('the bed', () => {
     expect(year.BED_MAKE_AUD + year.BED_FREIGHT_AUD).toBe(Number(canonValue('marginal-factory')));
   });
 
-  it('takes 36 kg through the press wherever that is stated', () => {
+  it('takes 15 kg through the tab press wherever that is stated', () => {
     expect(scen.PRESSED_KG_PER_BED).toBe(defy.PRESSED_KG_PER_BED);
-    expect(scen.PRESSED_KG_PER_BED).toBe(36);
+    expect(scen.PRESSED_KG_PER_BED).toBe(15);
   });
 });
 
@@ -70,7 +70,7 @@ describe('the line', () => {
 
 describe('the plastic', () => {
   it('the panel path and the finished kit agree across both modules', () => {
-    expect(scen.PANEL_PLASTIC_PER_BED_AUD).toBeCloseTo(defy.PANEL_PATH_PER_BED_AUD, 2);
+    expect(scen.PANEL_PLASTIC_PER_BED_AUD).toBe(defy.PANEL_PATH_PER_BED_AUD);
     expect(scen.FINISHED_KIT_PER_BED_AUD).toBe(defy.FINISHED_KIT_PER_BED_AUD);
   });
 

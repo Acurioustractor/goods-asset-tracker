@@ -13,10 +13,14 @@ describe('the canon list', () => {
     for (const k of keys) expect(k).toMatch(/^[a-z]+(\.[A-Za-z]+)+$/);
   });
 
-  it('every cell names where it came from and carries a real number', () => {
+  it('every cell names its source and carries a number or explicit status', () => {
     for (const c of CANON) {
       expect(c.from.length, c.key).toBeGreaterThan(6);
-      expect(Number.isFinite(c.value), c.key).toBe(true);
+      if (typeof c.value === 'number') expect(Number.isFinite(c.value), c.key).toBe(true);
+      else {
+        expect(c.unit, c.key).toBe('status');
+        expect(c.value.length, c.key).toBeGreaterThan(3);
+      }
       expect(c.label.length, c.key).toBeGreaterThan(4);
     }
   });

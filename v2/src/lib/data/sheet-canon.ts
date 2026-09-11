@@ -31,10 +31,13 @@ import {
   FACILITATION_PER_COMMUNITY_AUD,
 } from './three-year-plan';
 import {
-  PRESS_BEDS_A_DAY, CNC_BEDS_A_DAY, ASSEMBLY_BEDS_A_DAY, RUN_DAYS_A_MONTH,
+  PRESS_BEDS_A_DAY, CNC_BEDS_A_DAY, ASSEMBLY_LOCATION, RUN_DAYS_A_MONTH,
+  PRESS_SHEETS_A_DAY, PRESSED_SHEETS_PER_KIT, BOUGHT_LEG_COST_STATUS, SHRED_BREAK_EVEN_STATUS,
   PRESSED_KG_PER_BED, PANEL_PLASTIC_PER_BED_AUD, FINISHED_KIT_PER_BED_AUD,
-  BREAK_EVEN_ON_THE_400, BULKA_BAG_KG,
+  BULKA_BAG_KG,
 } from './production-scenarios';
+import { BATCH_COST_STATUS, BOUGHT_LEG_PANEL_YIELD } from './production-route';
+import { PANEL_ALL_IN_AUD } from './defy-supply';
 import { GAP_AUD, bedSurplusAud } from './capital-stack-flex';
 import { BEDS_PAID_FOR, PAID_NET_AUD } from './demand-and-buyers';
 
@@ -42,8 +45,8 @@ export interface CanonCell {
   /** Stable key. The workbook references this, so it must never be renamed casually. */
   readonly key: string;
   readonly label: string;
-  readonly value: number;
-  readonly unit: 'AUD' | 'beds' | 'kg' | 'days' | 'count' | 'AUD/kg' | 'percent';
+  readonly value: number | string;
+  readonly unit: 'AUD' | 'beds' | 'kg' | 'days' | 'count' | 'AUD/kg' | 'percent' | 'status';
   readonly from: string;
   /** Where in the workbook this figure is wrong today, when it is. */
   readonly drift?: string;
@@ -52,21 +55,28 @@ export interface CanonCell {
 export const CANON: readonly CanonCell[] = [
   // The bed
   { key: 'bed.price', label: 'Bed price', value: BED_PRICE_AUD, unit: 'AUD', from: 'canon stretch-price' },
-  { key: 'bed.make', label: 'Cost to make a bed', value: BED_MAKE_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
+  { key: 'bed.make', label: 'Legacy making allowance; current route needs costing', value: BED_MAKE_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
   { key: 'bed.freight', label: 'Freight a bed, all up', value: BED_FREIGHT_AUD, unit: 'AUD', from: 'demand-and-buyers FREIGHT_RULING' },
-  { key: 'bed.contribution', label: 'Contribution a bed, buyer pays freight', value: CONTRIBUTION_BUYER_FREIGHT_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
-  { key: 'bed.contribution.goodsFreight', label: 'Contribution a bed, Goods pays freight', value: CONTRIBUTION_GOODS_FREIGHT_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
-  { key: 'bed.pressedKg', label: 'Shred pressed for one bed', value: PRESSED_KG_PER_BED, unit: 'kg', from: 'production-scenarios', drift: 'Decision D06 still records 40 kg' },
+  { key: 'bed.contribution', label: 'Provisional contribution, legacy making allowance', value: CONTRIBUTION_BUYER_FREIGHT_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
+  { key: 'bed.contribution.goodsFreight', label: 'Provisional contribution with Goods freight', value: CONTRIBUTION_GOODS_FREIGHT_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
+  { key: 'bed.pressedKg', label: 'Gross tab shred per dispatched kit', value: PRESSED_KG_PER_BED, unit: 'kg', from: 'production-scenarios', drift: 'The old 36 kg included leg pressing; D06 also recorded 40 kg. Current factory pressing is tabs only.' },
 
   // The line
-  { key: 'line.pressPerDay', label: 'Press, beds a day', value: PRESS_BEDS_A_DAY, unit: 'beds', from: 'production-scenarios' },
-  { key: 'line.cncPerDay', label: 'Router, beds a day', value: CNC_BEDS_A_DAY, unit: 'beds', from: 'production-scenarios' },
-  { key: 'line.assemblyPerDay', label: 'Assembly, beds a day', value: ASSEMBLY_BEDS_A_DAY, unit: 'beds', from: 'production-scenarios' },
+  { key: 'line.pressPerDay', label: 'Tab press, kits a day', value: PRESS_BEDS_A_DAY, unit: 'beds', from: 'production-scenarios' },
+  { key: 'line.cncPerDay', label: 'Router, kits a day', value: CNC_BEDS_A_DAY, unit: 'beds', from: 'production-scenarios' },
+  { key: 'line.assemblyPerDay', label: 'Assembly location; no factory limit', value: ASSEMBLY_LOCATION, unit: 'status', from: 'production-scenarios' },
   { key: 'line.runDaysPerMonth', label: 'Run days a month, at 80% availability', value: RUN_DAYS_A_MONTH, unit: 'days', from: 'Ben ruling 10 Sep', drift: 'Calculator availability still reads 100% and working days 20' },
-  { key: 'line.bedsPerMonth', label: 'Beds a month today', value: PRESS_BEDS_A_DAY * RUN_DAYS_A_MONTH, unit: 'beds', from: 'derived', drift: 'Home tab equipment ceiling reads 60' },
-  { key: 'line.bedsPerMonthLifted', label: 'Beds a month at the assembly ceiling', value: ASSEMBLY_BEDS_A_DAY * RUN_DAYS_A_MONTH, unit: 'beds', from: 'derived' },
-  { key: 'line.wittaPerYear', label: 'Witta beds a year', value: WITTA_BEDS_A_YEAR, unit: 'beds', from: 'three-year-plan' },
+  { key: 'line.bedsPerMonth', label: 'Flat-packed kits a month today', value: PRESS_BEDS_A_DAY * RUN_DAYS_A_MONTH, unit: 'beds', from: 'derived', drift: 'Remove the two-pressed-sheet and factory-assembly assumptions. Preserve the separate full-availability ceiling.' },
+  { key: 'line.bedsPerMonthLifted', label: 'Kits a month at the router ceiling', value: Math.floor(CNC_BEDS_A_DAY * RUN_DAYS_A_MONTH), unit: 'beds', from: 'derived' },
+  { key: 'line.wittaPerYear', label: 'Current facility kits a year, modelled', value: WITTA_BEDS_A_YEAR, unit: 'beds', from: 'three-year-plan' },
   { key: 'line.bulkaBagKg', label: 'A bulka bag of shred', value: BULKA_BAG_KG, unit: 'kg', from: 'production-scenarios' },
+
+  { key: 'line.pressSheetsPerDay', label: 'Tab sheets pressed each productive day', value: PRESS_SHEETS_A_DAY, unit: 'count', from: 'production-route Ben 12 Sep' },
+  { key: 'line.pressedSheetsPerKit', label: 'Pressed tab sheets per dispatched kit', value: PRESSED_SHEETS_PER_KIT, unit: 'count', from: 'production-route Ben 12 Sep' },
+  { key: 'bed.costStatus', label: 'Status of the current route cost', value: BATCH_COST_STATUS, unit: 'status', from: 'production-route Ben 12 Sep' },
+
+  { key: 'plastic.panelEach', label: 'Invoiced 800 x 1200 panel, ex GST', value: PANEL_ALL_IN_AUD, unit: 'AUD', from: 'defy-supply INV-2021' },
+  { key: 'plastic.kitsPerPanel', label: 'Leg kits per purchased panel', value: BOUGHT_LEG_PANEL_YIELD ?? BOUGHT_LEG_COST_STATUS, unit: 'status', from: 'production-route awaiting cut yield' },
 
   // Plants
   { key: 'plant.count', label: 'Plants in the QBE ask', value: PLANTS_IN_THE_ASK, unit: 'count', from: 'the-year-and-the-raise' },
@@ -95,9 +105,9 @@ export const CANON: readonly CanonCell[] = [
   { key: 'year.bedsUnfundedAud', label: 'Beds unfunded, at the price', value: BEDS_UNFUNDED_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
 
   // Plastic supply
-  { key: 'plastic.panelPerBed', label: 'Defy panels a bed', value: PANEL_PLASTIC_PER_BED_AUD, unit: 'AUD', from: 'defy-supply INV-2021', drift: 'Calculator plastic reads $55 with no supply-path choice' },
-  { key: 'plastic.kitPerBed', label: 'Defy finished kit a bed', value: FINISHED_KIT_PER_BED_AUD, unit: 'AUD', from: 'defy-supply INV-1602' },
-  { key: 'plastic.breakEvenShred', label: 'Shred price where press and panels cost the same', value: BREAK_EVEN_ON_THE_400, unit: 'AUD/kg', from: 'production-scenarios', drift: 'Not in the workbook at all' },
+  { key: 'plastic.panelPerBed', label: 'Bought leg panels per kit: cost status', value: PANEL_PLASTIC_PER_BED_AUD ?? BOUGHT_LEG_COST_STATUS, unit: 'status', from: 'defy-supply INV-2021', drift: 'Calculator plastic reads $55 with no supply-path choice' },
+  { key: 'plastic.kitPerBed', label: 'Defy finished leg kit, excluding tabs', value: FINISHED_KIT_PER_BED_AUD, unit: 'AUD', from: 'defy-supply INV-1602' },
+  { key: 'plastic.breakEvenShred', label: 'Shred break-even: withdrawn for old route', value: SHRED_BREAK_EVEN_STATUS, unit: 'status', from: 'production-scenarios', drift: 'Not in the workbook at all' },
 
   // Trade
   { key: 'trade.bedsPaid', label: 'Beds bought and paid for', value: BEDS_PAID_FOR, unit: 'beds', from: 'demand-and-buyers' },

@@ -1,26 +1,16 @@
 /**
- * Buying plastic from Defy, and what it is worth against making it at Witta.
- *
- * Defy Manufacturing in Botany supplies the recycled HDPE the Stretch Bed legs are made from.
- * There are three ways to get that plastic and they cost very different amounts and move at very
- * different speeds. This module holds the invoice evidence for each and the comparison between
- * them, because the choice decides both the bed cost and whether the 400 land in June or August.
- *
- * The three paths
- *   1. FINISHED KIT. Defy presses, cuts and finishes a leg kit. $344.05 a bed, verified on two
- *      invoices. Witta assembles only.
- *   2. PANELS. Defy presses sheets and cuts them to size. Witta routes them to shape and
- *      assembles. This is what INV-2021 buys and what Witta does today.
- *   3. OUR OWN PRESS. Witta shreds and presses its own sheets. Cheapest per bed and the slowest,
- *      because the press is the bottleneck at three beds a day.
- *
- * Sources
- *   - INV-2021, Defy Manufacturing Pty Limited to A Curious Tractor, issued 11 September 2026.
- *   - INV-1602 and INV-1732 for the $344.05 finished kit, already in supplier-quotes.ts.
- *   - Capacity figures from the 80% availability ruling, Ben 10 September 2026.
+ * Defy invoice evidence and the current purchased-leg supply route.
+ * Ben, 12 September: only tab sheets are pressed here. Leg sheets are bought,
+ * routed and flat packed; young people assemble the kits in community.
+ * Invoice sheet quantities do not establish the number of leg sets per panel.
  */
+import {
+  ROUTE_READ_AT, PRESS_SHEETS_A_DAY, PRESSED_SHEETS_PER_KIT, CNC_KITS_A_DAY,
+  TAB_SHEET_GROSS_KG, RUN_DAYS_A_MONTH as ROUTE_RUN_DAYS,
+  FACTORY_ASSEMBLY_LIMIT, BOUGHT_LEG_PANEL_YIELD,
+} from './production-route';
 
-export const READ_AT = '2026-09-11';
+export const READ_AT = ROUTE_READ_AT;
 
 // ---------------------------------------------------------------------------
 // INV-2021, read off the invoice
@@ -101,11 +91,11 @@ function massKg(w: number, l: number, t: number): number {
 export const SHEET_MASS_KG = massKg(1200, 2400, 19);
 export const PANEL_MASS_KG = massKg(800, 1200, 19);
 
-export const PANELS_PER_BED = 2;
-export const PRESSED_KG_PER_BED = 36;
+export const PANELS_PER_BED: number | null = BOUGHT_LEG_PANEL_YIELD === null ? null : 1 / BOUGHT_LEG_PANEL_YIELD;
+export const PRESSED_KG_PER_BED = TAB_SHEET_GROSS_KG;
 
 export const MASS_CHECK =
-  'Two 800 by 1200 panels weigh about 34.7 kg, against the 36 kg of shred the workbook says is pressed for one bed. Close enough to confirm that two panels make a bed, and the difference is the offcut the press figure includes.';
+  'Panel dimensions establish panel mass, not leg yield. The previous two-panels-per-bed inference is withdrawn. Confirm how many leg sets come from an 800 by 1200 panel. Factory press mass counts the tab sheet only.';
 
 // ---------------------------------------------------------------------------
 // Cost per bed on each path
@@ -113,7 +103,7 @@ export const MASS_CHECK =
 
 export const SHEET_ALL_IN_AUD = INV_2021.subtotalAud / INV_2021.sheets;
 export const PANEL_ALL_IN_AUD = SHEET_ALL_IN_AUD / PANELS_PER_SHEET;
-export const PANEL_PATH_PER_BED_AUD = PANEL_ALL_IN_AUD * PANELS_PER_BED;
+export const PANEL_PATH_PER_BED_AUD = PANELS_PER_BED === null ? null : PANEL_ALL_IN_AUD * PANELS_PER_BED;
 
 /** Verified on INV-1602 and INV-1732. */
 export const FINISHED_KIT_PER_BED_AUD = 344.05;
@@ -122,131 +112,90 @@ export const FINISHED_KIT_PER_BED_AUD = 344.05;
 export const OWN_PRESS_PLASTIC_LOW_AUD = 40;
 export const OWN_PRESS_PLASTIC_HIGH_AUD = 55;
 
-export const PANEL_SAVING_VS_KIT_AUD = FINISHED_KIT_PER_BED_AUD - PANEL_PATH_PER_BED_AUD;
+export const PANEL_SAVING_VS_KIT_AUD = PANEL_PATH_PER_BED_AUD === null ? null : FINISHED_KIT_PER_BED_AUD - PANEL_PATH_PER_BED_AUD;
 
-export const OWN_PRESS_SAVING_VS_PANEL_LOW_AUD =
-  PANEL_PATH_PER_BED_AUD - OWN_PRESS_PLASTIC_HIGH_AUD;
-export const OWN_PRESS_SAVING_VS_PANEL_HIGH_AUD =
-  PANEL_PATH_PER_BED_AUD - OWN_PRESS_PLASTIC_LOW_AUD;
-
+/** Withdrawn: the old comparison substituted tab pressing for bought legs. */
+export const OWN_PRESS_SAVING_VS_PANEL_LOW_AUD = null;
+export const OWN_PRESS_SAVING_VS_PANEL_HIGH_AUD = null;
 export const OWN_PRESS_CEILING =
-  'The $40 to $55 is raw plastic only, and it is modelled. No invoice carries it. It excludes press time, power, the labour of shredding and the collection that puts feedstock in the bag, so treat it as the floor of the own press path.';
+  'The former $40 to $55 raw-plastic floor was modelled for another route. It is not the cost of bought legs plus pressed tabs. Current hybrid production needs its own BOM; do not use the legacy floor as a complete kit cost.';
 
 // ---------------------------------------------------------------------------
 // What each path does to speed
 // ---------------------------------------------------------------------------
 
-export const PRESS_BEDS_A_DAY = 3;
-export const CNC_BEDS_A_DAY = 8.56;
-export const ASSEMBLY_BEDS_A_DAY = 5;
-export const RUN_DAYS_A_MONTH = 16;
+export const PRESS_BEDS_A_DAY = PRESS_SHEETS_A_DAY / PRESSED_SHEETS_PER_KIT;
+export const CNC_BEDS_A_DAY = CNC_KITS_A_DAY;
+export const ASSEMBLY_BEDS_A_DAY = FACTORY_ASSEMBLY_LIMIT;
+export const RUN_DAYS_A_MONTH = ROUTE_RUN_DAYS;
 
 export interface SupplyPath {
   readonly id: 'kit' | 'panel' | 'own-press';
   readonly name: string;
-  readonly perBedAud: number;
+  /** Purchased leg cost only, not the complete bed-kit cost. */
+  readonly perBedAud: number | null;
   readonly bedsADay: number;
   readonly limitedBy: string;
   readonly note: string;
 }
-
 export const PATHS: readonly SupplyPath[] = [
-  {
-    id: 'kit',
-    name: 'Finished kit from Defy',
-    perBedAud: FINISHED_KIT_PER_BED_AUD,
-    bedsADay: ASSEMBLY_BEDS_A_DAY,
-    limitedBy: 'Assembly at Witta',
-    note: 'Defy presses, cuts and finishes. Witta assembles. The most expensive plastic and the least work here. Verified on two invoices.',
-  },
-  {
-    id: 'panel',
-    name: 'Panels from Defy, routed at Witta',
-    perBedAud: PANEL_PATH_PER_BED_AUD,
-    bedsADay: ASSEMBLY_BEDS_A_DAY,
-    limitedBy: 'Assembly at Witta',
-    note: 'What INV-2021 buys and what Witta does now. The router handles 8.56 beds a day, so it never becomes the constraint. Same speed as the kit path for less money.',
-  },
-  {
-    id: 'own-press',
-    name: 'Pressed at Witta from our own shred',
-    perBedAud: (OWN_PRESS_PLASTIC_LOW_AUD + OWN_PRESS_PLASTIC_HIGH_AUD) / 2,
-    bedsADay: PRESS_BEDS_A_DAY,
-    limitedBy: 'One press',
-    note: 'The cheapest plastic and the slowest line. Needs 36 kg of shred a bed, so 400 beds is 14.4 tonnes through the shredder before anything is pressed.',
-  },
+  { id: 'kit', name: 'Finished leg kit from Defy; tabs pressed here',
+    perBedAud: FINISHED_KIT_PER_BED_AUD, bedsADay: Math.min(PRESS_BEDS_A_DAY, CNC_BEDS_A_DAY),
+    limitedBy: 'Tab press',
+    note: 'Supplier leg-kit price only. Tabs and other parts are additional. Flat-packed dispatch precedes community assembly.' },
+  { id: 'panel', name: 'Leg panels from Defy; tabs pressed here',
+    perBedAud: PANEL_PATH_PER_BED_AUD, bedsADay: Math.min(PRESS_BEDS_A_DAY, CNC_BEDS_A_DAY),
+    limitedBy: 'Tab press',
+    note: 'Current route. The invoice proves the panel price; leg sets per panel still need confirmation. Bought legs and pressed tabs belong to the same kits.' },
+  { id: 'own-press', name: 'Tab production within the purchased-leg route',
+    perBedAud: null, bedsADay: Math.min(PRESS_BEDS_A_DAY, CNC_BEDS_A_DAY),
+    limitedBy: 'Tab press',
+    note: 'This is the tab stage of the same route, not an alternative to buying legs. Never add its output to the panel-path output.' },
 ];
-
-export function bedsAMonth(p: SupplyPath): number {
-  return p.bedsADay * RUN_DAYS_A_MONTH;
-}
-
-export function monthsFor(p: SupplyPath, beds: number): number {
-  return beds / bedsAMonth(p);
-}
-
-export function plasticCostFor(p: SupplyPath, beds: number): number {
-  return p.perBedAud * beds;
+export function bedsAMonth(p: SupplyPath): number { return Math.floor(p.bedsADay * RUN_DAYS_A_MONTH); }
+export function monthsFor(p: SupplyPath, beds: number): number { return beds / bedsAMonth(p); }
+export function plasticCostFor(p: SupplyPath, beds: number): number | null {
+  return p.perBedAud === null ? null : p.perBedAud * beds;
 }
 
 // ---------------------------------------------------------------------------
 // The order in front of us, and the run behind it
 // ---------------------------------------------------------------------------
 
-export const BEDS_ON_THIS_INVOICE = Math.floor(PANELS_ON_THE_INVOICE / PANELS_PER_BED);
-export const SPARE_PANELS = PANELS_ON_THE_INVOICE - BEDS_ON_THIS_INVOICE * PANELS_PER_BED;
-
+export const BEDS_ON_THIS_INVOICE = PANELS_PER_BED === null ? null : Math.floor(PANELS_ON_THE_INVOICE / PANELS_PER_BED);
+export const SPARE_PANELS = PANELS_PER_BED === null || BEDS_ON_THIS_INVOICE === null ? null : PANELS_ON_THE_INVOICE - BEDS_ON_THIS_INVOICE * PANELS_PER_BED;
 export const ALIVE_BEDS_DUE = 100;
 export const FIRST_STOCK_BEDS = 400;
 
-export function sheetsFor(beds: number): number {
-  return Math.ceil((beds * PANELS_PER_BED) / PANELS_PER_SHEET);
+/** Explicit yield input allows a confirmed cut plan to determine a purchase quantity. */
+export function sheetsFor(beds: number, kitsPerPanel: number | null = BOUGHT_LEG_PANEL_YIELD): number | null {
+  if (kitsPerPanel === null) return null;
+  if (!Number.isFinite(kitsPerPanel) || kitsPerPanel <= 0 || !Number.isFinite(beds) || beds < 0) throw new RangeError('Invalid panel yield or kit count');
+  return Math.ceil(beds / kitsPerPanel / PANELS_PER_SHEET);
 }
-
-export function panelOrderCostAud(beds: number): number {
-  return sheetsFor(beds) * SHEET_ALL_IN_AUD;
+export function panelOrderCostAud(beds: number, kitsPerPanel: number | null = BOUGHT_LEG_PANEL_YIELD): number | null {
+  const sheets = sheetsFor(beds, kitsPerPanel);
+  return sheets === null ? null : sheets * SHEET_ALL_IN_AUD;
 }
-
-// ---------------------------------------------------------------------------
-// The second press, priced against the panel premium
-// ---------------------------------------------------------------------------
-
 export const SECOND_PRESS_AUD = 22_500;
-
-/** Extra paid per bed for buying panels instead of pressing our own, at the cheap end. */
-export const PANEL_PREMIUM_PER_BED_AUD = PANEL_PATH_PER_BED_AUD - OWN_PRESS_PLASTIC_HIGH_AUD;
-
-export const PRESS_PAYBACK_BEDS = Math.ceil(SECOND_PRESS_AUD / PANEL_PREMIUM_PER_BED_AUD);
-
+export const PANEL_PREMIUM_PER_BED_AUD = null;
+export const PRESS_PAYBACK_BEDS = null;
 export const THE_TRADE =
-  'A second press costs about $22,500 once and takes press capacity to six beds a day, at which point assembly at five a day becomes the constraint and no bought panel adds anything. The panel premium is about $199 a bed, so the press pays for itself in 113 beds, and on the 400 the premium is about $79,800 against $22,500 of machine. The press wins on money. Panels win on time and on feedstock, because they arrive in weeks and need no shred at all.';
-
+  'A second tab press raises modelled dispatch to the router rate. It does not replace purchased legs. The old panel-premium payback is withdrawn until the corrected route is costed.';
 export const THE_CATCH =
-  'Pressing our own needs feedstock. 400 beds is 14.4 tonnes of shred, which is about 21 bulka bags, and collection is not costed anywhere in the raise. The panel path buys the plastic problem away at a known price.';
-
-// ---------------------------------------------------------------------------
-// The correction that matters: panels ADD to the press, they do not replace it
-// ---------------------------------------------------------------------------
-
+  'At the current planning mass, 400 tab sheets require 6 tonnes through the factory press. Bought leg material is additional. Recovery has not been credited and collection is not costed.';
 export const PANELS_ARE_ADDITIVE =
-  'Witta is pressing today and burning 450 kg of shred a week, which is about three beds a day and the press running near flat out. Bought panels do not replace that. They go through the router alongside it and lift the line to the assembly ceiling of five a day. The question to answer is whether the two beds a day that only bought panels can make are worth what the panels cost.';
-
-/** The beds a day that exist only because panels were bought. */
-export const MARGINAL_BEDS_A_DAY = ASSEMBLY_BEDS_A_DAY - PRESS_BEDS_A_DAY;
+  'Bought leg panels and pressed tab sheets are complementary parts of the same bed kit. Extra leg panels can cover a supply shortage, but cannot be counted as extra finished kits above tab capacity.';
+export const MARGINAL_BEDS_A_DAY = 0;
 export const MARGINAL_BEDS_A_MONTH = MARGINAL_BEDS_A_DAY * RUN_DAYS_A_MONTH;
-
 export const BED_PRICE_AUD = 750;
-
-export const MARGINAL_PANEL_SPEND_A_MONTH_AUD =
-  MARGINAL_BEDS_A_MONTH * PANEL_PATH_PER_BED_AUD;
+export const MARGINAL_PANEL_SPEND_A_MONTH_AUD = null;
 export const MARGINAL_SALES_A_MONTH_AUD = MARGINAL_BEDS_A_MONTH * BED_PRICE_AUD;
-
 export const THE_MARGIN_ANSWER =
-  'Thirty two extra beds a month need about $8,142 of panels and sell for $24,000. Even if every other cost of those beds is the full $276 of making, they clear about $220 each. While assembly has idle capacity, buying panels is a margin decision and it is clearly positive.';
-
+  'No additional complete kits arise from adding leg panels to a tab-constrained line. Price bought legs and tab production separately before claiming a per-kit margin.';
 export const WHAT_TO_ASK_DEFY: readonly string[] = [
-  'Confirm the remaining 80 sheets of the 105 and whether the production slot still stands, because the 4 September deposit date has passed.',
-  'Whether the 20% scale discount holds for a 267-sheet order, which is what 400 beds needs.',
-  'What the lead time is on 267 sheets, because 21 days on 50 kits is the only lead time we have on record.',
-  'Whether they will quote cutting to the finished leg profile instead of 800 by 1200, and what that does to the $344.05 kit price.',
+  'Confirm the remaining 80 sheets of the 105 and the current production slot.',
+  'Confirm how many complete leg sets come from one 800 by 1200 panel.',
+  'Confirm current shred prices and the quantities and timing on QU0494 and QU0495.',
+  'Confirm what the finished leg-kit price includes; factory tabs and other bed parts remain separate.',
 ];
