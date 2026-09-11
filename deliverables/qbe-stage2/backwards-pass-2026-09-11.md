@@ -11,14 +11,15 @@ model and the impact measure read the same way. Published in the two pages:
 
 | State | Count | Questions |
 |---|---|---|
-| Answered and final | 6 | Q5, Q8, Q9, Q10, Q18, Q23 |
-| Written, held on the siting ruling | 2 | Q6, Q7 |
+| Answered and final | 8 | Q5, Q6, Q7, Q8, Q9, Q10, Q18, Q23 |
+| Written, held on the siting ruling | 0 | none left |
 | Ready, pending a check | 3 | Q1, Q2, and Q19's text |
 | A document is owed | 9 | Q3, Q4, Q11, Q14, Q15, Q19, Q20, Q21, Q22 |
 | Only a person can answer | 5 | Q13, Q16, Q17, Q24, Q25 |
 | Blocked on a missing file | 1 | Q12 |
 
-Nine questions have drafted text. Six of those are checker-clean and reconciled to the workbook.
+Nine questions have drafted text. Eight are checker-clean and reconciled to the workbook. Q6 and
+Q7 were rewritten on the evening of 11 September against the siting ruling, so nothing is held.
 Q19 has text and sits in the document column because of its six attachments.
 
 ## What needs work, in the order it unblocks the most
@@ -31,7 +32,6 @@ Q19 has text and sits in the document column because of its six attachments.
    forecast is not entity cashflow.
 4. **Kristy Bloomfield's related-party minute** (Q8, Q22) at the 14 September board, with a matching
    minute from Oonchiumpa. Ben, Monday.
-5. **Q6 and Q7 rewrites** from the siting ruling. Can be done here, no new information needed.
 6. **Structure diagram against the transfer records, and A Curious Tractor's extracts** (Q3, Q4). Ben.
 7. **Funder bundle refresh** (Q14, Q15): conditions, recipient, dates. Ben.
 8. **Consented record selection for Q11**, with proposed collection labelled as proposed.

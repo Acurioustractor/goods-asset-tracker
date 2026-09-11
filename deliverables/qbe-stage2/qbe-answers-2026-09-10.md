@@ -30,7 +30,7 @@ are in Q6.
 
 ## Q6. Proposed use of funds
 
-$300,000 builds two production plants in communities that have asked for one.
+$300,000 builds two production plants, in Palm Island and Maningrida.
 
 A community does not buy a facility. It chooses modules in feed order on top of a site base, and
 each module has a supplier behind it.
@@ -39,36 +39,65 @@ each module has a supplier behind it.
 |---|---:|---:|---|
 | Site base: 40ft and 20ft containers, genset, crane, electrical, ventilation, pad, PPE | $31,800 | $64,000 | Modelled. Crane and containers quoted. |
 | Collection and sorting | $5,000 | $19,500 | Estimated |
-| Shredding | $19,800 | $19,800 | Telford Smith |
-| Pressing, CNC and finishing | $32,780 | $32,780 | Circularity bundle |
+| Shredding | $19,800 | $19,800 | Telford Smith quote |
+| Pressing, CNC and finishing | $32,780 | $32,780 | Circularity Group INV-0054, paid 17 December 2025 for our own plant |
 | Assembly and workshop | $6,387 | $6,387 | Carbatec |
 | All modules and the site base | $95,767 | $142,467 | |
 
 The $150,000 we have allowed is an allowance, not a quote. It sits above the high column so that
 a site with a harder pad, a longer power run or a container that has to be barged does not stop
-the build.
+the build. We know the middle row is right because we bought it: that exact bundle of machinery
+went into our own facility last December and has been making beds since.
 
-A plant goes where a community has 200 beds a year of recorded need and a local operator to run
-it. Five communities have asked us for their own plant: Palm Island, Alice Springs, Maningrida,
-Utopia and Tennant Creek. Alice Springs is already funded through Oonchiumpa's Commonwealth
-money and is outside this request. The two we plan to build with this grant are Palm Island,
-first, and Maningrida.
+### Where a plant goes, and what we do not use to decide
 
-A plant takes about three months from money to first bed. It starts at 200 beds a year on a
-single press and can reach 720 on the same equipment as the local crew builds speed. Maningrida
-has already made beds with us: 40 pressed at our facility, sent north, and assembled at Gamardi
-by young people with Homeland School Company. Palm Island's council, the community and PICC have
-each asked for a facility.
+We do not site a plant on recorded demand. The largest open demand on our record sits in a
+community where we have delivered nothing and know nobody, and a plant is not a warehouse. It is
+a workplace that somebody local has to run on a Monday morning.
 
-Separate asks to the Tim Fairfax Family Foundation, the Brian M. Davis Charitable Foundation
-and the Snow Foundation would fund the first stock. All three remain unawarded. QBE's $300,000
-request is allocated to the two plants, with bed production and support funded separately.
+Four things have to be true, and they are all checkable:
 
-What the money produces that we can count: two plants standing and pressing; the beds they make
-in their first year; the hours of paid local work that go into them; and the plastic that goes
-through the shredder instead of the tip. At month six we ask four questions at each site that
-have a yes or a no. Who holds the keys. Who runs the payroll. Who invoices the buyer. Whether at
-least half the production is local.
+1. **Beds are already there.** The community has used the product, so this is not a promise about
+   an object nobody has handled.
+2. **The community organisation has asked**, in its own words, for a facility.
+3. **Somebody local wants to run it.**
+4. **People there have agreed to be quoted publicly**, which is the plainest evidence we have that
+   the relationship is real. Nobody clears a quote for a stranger.
+
+**Palm Island passes all four and goes first.** 131 beds are deployed there, the third largest
+count of our eleven communities. The council, the community and PICC have each asked for a
+facility. Seven people on Palm Island have cleared quotes in our storyteller register, more than
+anywhere else we work.
+
+**Maningrida passes all four and goes second.** 58 beds and 8 washing machines are in community
+there. Maningrida has already made beds with us: 40 were pressed at our facility, sent north and
+assembled at Gamardi by young people with the Homeland School Company. Two separate organisations
+in that one community have bought from us, Mala'la Health Service in October 2025 and the
+Homeland School Company in May 2026.
+
+Neither community has yet agreed to a build, and neither will be told it is in a funding
+application before it has. If either declines, the plant goes to another community that passes the
+same four tests.
+
+Alice Springs is a third site and is not in this request. Its $150,000 is approved through
+Oonchiumpa's Commonwealth money.
+
+### What the money produces
+
+A plant takes about three months from money to first bed. It starts at 200 beds a year on a single
+press and can reach 720 on the same equipment as the local crew builds speed.
+
+What we can count: two plants standing and pressing; the beds they make in their first year; the
+hours of paid local work that go into them; and the plastic that goes through the shredder instead
+of the tip.
+
+At month six we ask four questions at each site that have a yes or a no. Who holds the keys. Who
+runs the payroll. Who invoices the buyer. Whether at least half the production is local.
+
+The beds themselves are funded separately, by asks to the Brian M. Davis Charitable Foundation and
+the Snow Foundation. The Tim Fairfax Family Foundation has invited a three-year application for
+the organisation itself, and their money is counted on that line alone. All of those remain unawarded. QBE's $300,000 is allocated
+to the two plants and to nothing else.
 
 ---
 
@@ -76,12 +105,16 @@ least half the production is local.
 
 `150000`
 
-$150,000 builds one plant. It goes to Palm Island, where the council, the community and PICC have
-all asked for one and where the recorded demand is largest.
+$150,000 builds one plant, and it goes to Palm Island.
 
-Nothing about the model changes. The modules, the site base, the three months to first bed and
-the four questions at month six are the same. Maningrida waits for its plant and keeps taking
-beds pressed at our facility in the meantime, which is how the 40 beds at Gamardi were made.
+Palm Island's case does not rest on demand size. It rests on 131 beds already deployed, the third
+largest count of our eleven communities; on a council, a community and PICC that have each asked
+for a facility; and on seven people there who have cleared quotes for us to use publicly, more
+than anywhere else we work.
+
+Nothing about the model changes. The modules, the site base, the three months to first bed and the
+four questions at month six are the same. Maningrida waits for its plant and keeps taking beds
+pressed at our facility in the meantime, which is how the 40 beds at Gamardi were made.
 
 Every dollar between $150,000 and $300,000 buys the same thing at the same rate, because a plant
 is a fixed list of modules and not a variable.
