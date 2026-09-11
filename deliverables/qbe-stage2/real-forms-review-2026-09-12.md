@@ -85,6 +85,7 @@ $276 a bed. At $474 a bed, 101 paid beds a year services $200,000.
 
 | Page | Notion |
 |---|---|
+| **Start here, the front door** | `3d8ebcf981cf8128bd9aee918f49733f` |
 | QBE final application, with the attachment register | `3c6ebcf981cf809aad0eeafda8e8e9fa` |
 | QBE Stage 2 submission pack | `3d8ebcf981cf8152a7d9fb114e39e2ef` |
 | Brian M. Davis | `3d8ebcf981cf81dbb2defb430458ea50` |
