@@ -71,3 +71,33 @@ inflated a single 100-bed pool by 300. It does not. **Ruling 7 is four 100-bed p
 Tennant Creek, Utopia, Palm Island and Maningrida, at $10,000 of facilitation each. Four pools of
 100 is 400 beds and $40,000 of facilitation, which is exactly the first-stock line and exactly the
 facilitation line. The numbers tie.
+
+---
+
+## The deck read against the new language, 11 September evening
+
+**S14 needs nothing.** The four outcomes already read the way the rules require. Health is
+"A bed off the floor / The reason, not a claim / No clinical outcome is claimed." Community
+enterprise is "4 communities, 100 beds each / A community organisation holds the stock and keeps
+every dollar it sells." That is ruling 7 and ruling 9, already on the slide, already right.
+
+Procurement shifted does not belong on S14. The footer says every outcome is counted per bed, and
+procurement shifted is counted per sale. It belongs on S13, which is where the model is.
+
+**S13 has one line worth changing, and it is Ben's call.**
+
+| | |
+|---|---|
+| Says now | Reroute existing spend through a community-owned channel. |
+| Could say | Buying something a community already wants is how a community-owned factory gets started. |
+
+The current line is the right idea in repo vocabulary. "Reroute" and "channel" are both on the
+banned list for slide copy, and the standing rule is to write from how the founders say it. The
+replacement is the sharpened thesis from the pitch session and it survives the checker.
+
+What would be lost: the current line names the mechanism, and the replacement names the purpose.
+S13's body already carries the mechanism twice, in "Philanthropy pays Goods $750 a bed for a
+community enterprise's first trading stock" and in the footer's "two kinds of money that never
+meet", so the subhead does not have to.
+
+**Not built.** One slide at a time, and the copy is Ben's to rule on.

@@ -30,7 +30,9 @@ h1,h2,h3{font-family:var(--display);font-weight:600;text-wrap:balance;margin:0}
 .mast{padding:38px 0 18px;border-bottom:2px solid var(--ink)}
 .mast .eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--goods);font-weight:700}
 .mast h1{font-size:clamp(32px,6vw,54px);line-height:1;letter-spacing:-.025em;margin:10px 0 10px}
-.mast p{margin:0;color:var(--ink-2);max-width:64ch}
+.mast p{margin:0 0 10px;color:var(--ink-2);max-width:64ch}
+.mast p:last-child{margin-bottom:0}
+.mast p.thesis{font-family:var(--display);font-size:clamp(19px,2.6vw,25px);line-height:1.28;color:var(--ink);max-width:22ch;border-left:3px solid var(--goods);padding-left:14px}
 .figure{margin:26px 0 0;border:1px solid var(--rail);background:var(--surface);border-radius:4px;padding:10px 6px 4px;overflow-x:auto}
 svg{display:block;min-width:860px;width:100%;height:auto}
 .cap{font-size:12.5px;color:var(--ink-3);padding:6px 12px 10px;max-width:78ch}
@@ -67,9 +69,12 @@ footer{margin-top:38px;padding-top:16px;border-top:1px solid var(--rail);font-si
   <div class="mast">
     <div class="eyebrow">Goods on Country &middot; the model, drawn</div>
     <h1>The Two Loops</h1>
-    <p>Catalytic capital pays Goods for a community's first stock. Buyers pay the community
-      enterprise, and that money never reaches Goods. Drawing it as one circle would say the
-      opposite, so it is drawn as two.</p>
+    <p class="thesis">Buying something a community already wants is how a community-owned factory
+      gets started.</p>
+    <p>That is the whole model, and it only works if the money stops in the right place. Catalytic
+      capital pays Goods for a community's first stock. Buyers pay the community enterprise, and
+      that money never reaches Goods. Drawing it as one circle would say the opposite, so it is
+      drawn as two.</p>
   </div>
 
   <div class="figure">
