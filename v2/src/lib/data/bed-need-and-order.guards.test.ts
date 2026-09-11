@@ -8,8 +8,10 @@ import {
   NEEDS,
   NEVER_ADD_THEM,
   ORDERS,
-  ORDER_RATE_MEAN,
-  ORDER_SPREAD_PER_CROWDED,
+  NO_RATE_EXISTS,
+  COMPARABLE,
+  SCOPE_NOT_STATED,
+  isComparable,
   QUESTIONS,
   RULES,
   SPREAD_PER_CROWDED,
@@ -53,30 +55,41 @@ describe('the figures match their sources', () => {
 });
 
 describe('the finding', () => {
-  it('per head the four span a factor of about 43', () => {
+  it('per head the four span a factor of about 43, which is not a measure of anything', () => {
     expect(SPREAD_PER_HEAD).toBeGreaterThan(40);
     expect(SPREAD_PER_HEAD).toBeLessThan(45);
   });
 
-  it('per crowded dwelling the three order figures agree within 1.4', () => {
-    expect(ORDER_SPREAD_PER_CROWDED).toBeLessThan(1.4);
-    expect(ORDER_RATE_MEAN).toBeCloseTo(0.26, 2);
+  it('names the near miss so nobody rediscovers it as a rate', () => {
+    expect(NO_RATE_EXISTS).toContain('0.22 and 0.30');
+    expect(NO_RATE_EXISTS).toContain('They are not');
+    expect(NO_RATE_EXISTS).toContain('homelands');
   });
 
-  it('mixing the questions back in widens it by more than ten times', () => {
-    expect(SPREAD_PER_CROWDED / ORDER_SPREAD_PER_CROWDED).toBeGreaterThan(10);
+  it('only one figure carries a question, a scope and an owner', () => {
+    expect(COMPARABLE).toHaveLength(1);
+    expect(COMPARABLE[0].communityId).toBe('tennant-creek');
+    for (const f of FIGURES) expect(isComparable(f)).toBe(f.communityId === 'tennant-creek');
   });
 
-  it('Utopia is the outlier and it is the only need figure', () => {
-    expect(NEEDS).toHaveLength(1);
-    expect(NEEDS[0].communityId).toBe('utopia');
-    const u = bedsPerCrowdedDwelling(NEEDS[0]);
-    for (const o of ORDERS) expect(u).toBeGreaterThan(bedsPerCrowdedDwelling(o) * 10);
+  it('Palm Island states no scope at all, and it is the one in the QBE application', () => {
+    expect(SCOPE_NOT_STATED).toHaveLength(1);
+    expect(SCOPE_NOT_STATED[0].communityId).toBe('palm-island');
   });
 
-  it('states the finding in words, with both spreads', () => {
-    expect(THE_FINDING).toContain('43');
-    expect(THE_FINDING).toContain('4.41');
+  it('the two need figures are both scoped to a part of a community', () => {
+    expect(NEEDS).toHaveLength(2);
+    for (const n of NEEDS) expect(n.scope).toBe('a-part-of-it');
+    expect(NEEDS.map((n) => n.communityId).sort()).toEqual(['maningrida', 'utopia']);
+  });
+
+  it('every figure says what its scope covers, in words', () => {
+    for (const f of FIGURES) expect(f.scopeNote.length).toBeGreaterThan(50);
+  });
+
+  it('states the finding without claiming a rate', () => {
+    expect(THE_FINDING).toContain('scope');
+    expect(THE_FINDING).not.toMatch(/0\.2[0-9]/);
   });
 });
 
@@ -93,9 +106,14 @@ describe('the arithmetic', () => {
 });
 
 describe('what the module refuses to do', () => {
-  it('says the rate is a check and never a generator', () => {
-    expect(THE_RATE_IS_NOT_A_FORMULA).toContain('never a way to generate one');
+  it('forbids generating a number for a community we have not spoken to', () => {
+    expect(THE_RATE_IS_NOT_A_FORMULA).toContain('may be used to generate');
     expect(THE_RATE_IS_NOT_A_FORMULA).toContain('place-denominator');
+  });
+
+  it('keeps the wrong first reading on the record instead of deleting it', () => {
+    expect(SRC).toContain('THE FIRST READING WAS WRONG');
+    expect(SRC).toContain('artefact');
   });
 
   it('forbids summing need and order', () => {
@@ -104,8 +122,9 @@ describe('what the module refuses to do', () => {
   });
 
   it('does not reopen the ruling against deriving beds from overcrowding', () => {
-    expect(SRC).toContain('that ruling stands');
-    expect(SRC).toContain('CNOS counts BEDROOMS');
+    const flat = SRC.replace(/\s*\n\s*\*?\s*/g, ' ');
+    expect(flat).toContain('that ruling stands');
+    expect(flat).toContain('CNOS counts BEDROOMS');
   });
 
   it('exports no total of any kind', () => {
@@ -137,8 +156,8 @@ describe('the count that does not exist yet', () => {
 });
 
 describe('the rules that come out of it', () => {
-  it('there are five and siting is not one of the things demand decides', () => {
-    expect(RULES).toHaveLength(5);
+  it('there are six and siting is not one of the things demand decides', () => {
+    expect(RULES).toHaveLength(6);
     expect(RULES.some((r) => r.includes('Demand size sites nothing'))).toBe(true);
   });
 
