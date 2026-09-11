@@ -308,6 +308,24 @@ Patched in the artifact and in both source files.
 **Q19 gained today's two closures in its evidence panel**: The Harvest at 576 beds a year with 176 of
 headroom against the 400 target, and freight at $150 all up.
 
+## The ramp to 400, and whether it lands in winter
+
+Modelled 11 September. First stock is ordered once the boards sit, so the line starts in December
+with about **43 beds of parts left over** after ALIVE's hundred comes out of the 143 possible at
+Witta. Centrecorp's 130 rides alongside on the same line.
+
+| | Crosses 400 |
+|---|---|
+| One press, 48 a month | **July**, inside winter |
+| A second press from March, 80 a month | **May**, before winter starts |
+
+So the answer depends on what "finished in winter" means. **Done by the end of winter needs nothing
+new.** One press gets there in July on its own. **Done before winter starts needs the second press
+running by March**, which means Nic prices it Monday and it is ordered before Christmas.
+
+The 43 beds of leftover parts are worth about a month on their own, which is the cheapest month in
+the whole ramp.
+
 ## PARKED: capacity, workers and dollars
 
 Ben is coming back to this. What is settled and what is waiting:
