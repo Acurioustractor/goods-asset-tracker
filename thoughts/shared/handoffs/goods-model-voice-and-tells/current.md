@@ -308,6 +308,30 @@ Patched in the artifact and in both source files.
 **Q19 gained today's two closures in its evidence panel**: The Harvest at 576 beds a year with 176 of
 headroom against the 400 target, and freight at $150 all up.
 
+## PARKED: capacity, workers and dollars
+
+Ben is coming back to this. What is settled and what is waiting:
+
+**Settled.** Six sheets a day is the facility. A bed is two cooked sheets, a 21 kg leg and a 15 kg
+tab. One bought panel does one bed's legs. Assembly holds the line at five beds a day whichever way
+the leg sheet arrives.
+
+**The workers arithmetic, pre-computed at two hours and $80 a bed:**
+
+| | Beds a week at 80% | Hours of paid making a week | A year | Wages a year |
+|---|---:|---:|---:|---:|
+| Six sheets, cooking both | 12 | 24 | 576 beds | $46,080 |
+| Legs bought, or a second press | 20 | **40** | 960 beds | $76,800 |
+
+**Twenty beds a week is exactly one full-time position of paid making.** Forty hours. That is the
+cleanest way the capacity question and the employment question meet, and neither the deck nor the
+explainer says it yet.
+
+**Still open.** Open Item 20, the Defy order quantities, freight and timing, from Nic. The press
+price from Monday's Defy conversation. And whether the hours figure survives the production log,
+since two hours a bed is a wage allowance divided by an assumed daily output and has never been
+time-studied.
+
 ## Capacity is a sheets model
 
 Ben's clarification, 11 September: **six sheets a day cooked is the facility.** Routing, edging,
