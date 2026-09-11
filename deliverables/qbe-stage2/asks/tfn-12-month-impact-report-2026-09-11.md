@@ -25,23 +25,39 @@ Paid to A Curious Tractor. The event fee of $6,500 was paid on 3 September 2025.
 
 ---
 
-## ⚠ Read this before answering question 8
+## The books are fine. Read this correction.
 
-**The $144,558 has never been recognised as income in Xero.** Dext scanned the two TFN grant
-letters and created them as ACCPAY bills, money owed, in the wrong direction and against the wrong
-division. Both were still sitting there unchanged at the last check on 16 June 2026:
-`a23c77b7-5c83-4939-b9ba-a03de5074d20` for $89,361 and `0115a78d-518c-47f5-99ce-4002846c763c` for
-$55,197. No ACCREC income invoice to TFN exists, and the deposit has never been located in the bank
-reconciliation.
+**An earlier note in this repo said the TFN money had never been recognised as income and the
+deposit could not be found. Both statements were true in June 2026 and both are now wrong.** Xero
+was read live on 11 September 2026. The bookkeeper has done the work.
 
-So the books cannot currently produce a clean acquittal of this grant. Question 8 asks for a budget
-breakdown of how the funds were used, and the honest position is that we know what the money built
-and we cannot yet print a line-by-line from the ledger.
+| What was wrong in June | Where it stands now |
+|---|---|
+| Two phantom ACCPAY bills overstating expenses and liabilities by $144,558 | **Both VOIDED.** `a23c77b7` dated 27 Nov and `0115a78d` dated 17 Dec, each still visible with its Dext import reference, each with no effect on the ledger. |
+| The deposit could not be located in the bank reconciliation | **Both found, reconciled, against the contact The Funding Network.** $89,361 on 28 November 2025 and $55,197 on 19 December 2025, in NJ Marchesi T/as ACT Everyday. |
+| The income was missing | **Booked to account 262, Grants Received, a revenue account, GST free.** |
 
-**Two options.** Answer question 8 from the capital workpaper, which is what is below, and get the
-bookkeeper to void and rebook in the same week. Or fix the books first and answer from them. The
-fix is a single sitting with the bookkeeper: find the deposit, void the two bills, book the income
-against project ACT-GD, and stop the Dext rule that recreates them.
+### One field is still wrong
+
+The first receipt, **$89,361 on 28 November 2025, carries no tracking at all.** The second receipt
+carries both, Business Divisions set to A Curious Tractor and Project Tracking set to ACT-GD Goods.
+
+So $55,197 of the grant reaches Goods in any report filtered by project and $89,361 does not. It is
+one edit on one transaction, the date sits after the 30 September 2025 period lock so it is
+editable, and it is the difference between the Goods project showing $55,197 of TFN money and
+showing the whole $144,558.
+
+**This is a write to a system of record and it is yours to make or to hand to the bookkeeper.**
+
+### A second thing the read turned up
+
+The **Multicam CNC router, $18,000, paid 8 June 2026**, is booked to account 750 as an asset and
+tracked to **ACT-FM, The Farm**. Its own description in Xero reads "its a asset - a Multicam CNC
+router purchased for goods on country production". The description and the tracking disagree, and
+on the description it belongs to ACT-GD Goods.
+
+Worth fixing in the same sitting, because it is $18,000 of Goods plant currently sitting under a
+different project.
 
 ---
 
@@ -128,19 +144,24 @@ is approved for Alice Springs through Oonchiumpa.
 
 ### 8. Budget breakdown of how the funds raised were used
 
-Answer from the capital workpaper, and say plainly that it is a workpaper.
+The ledger can now answer this, and one line does most of the work.
 
-| What the money bought | Amount |
-|---|---|
-| Plant and equipment at the production facility: hydraulic press, computer-controlled router, plastic shredder, tooling and install | $110,046 |
-| Balance, against facility setup, first production runs and freight | **NEEDS BEN, about $34,500** |
-| **Net TFN funds received** | **$144,558** |
+| What the money bought | Amount | Evidence |
+|---|---|---|
+| Machinery: CNC, hot and cold presses, sheet storage, prep table | $32,780 | Circularity Group INV-0054, paid 17 December 2025, booked to account 750 as an asset and tracked to ACT-GD Goods. The description in Xero is exactly that list. |
+| The balance of the production plant: press, shredder, tooling, install and electrical | about $77,300 | Part of the $110,046 sunk capital workpaper. Ben ruled the total actual on 25 July 2026. About $43,700 of the workpaper is evidenced at bill level. |
+| **Total plant** | **$110,046** | |
+| **Net TFN funds received** | **$144,558** | Two bank receipts, both reconciled |
 
-Of the $110,046, about $43,700 is evidenced at bill level today. Ben ruled on 25 July 2026 that the
-full figure is actual. The balance is owned plant with paperwork still outstanding.
+The Circularity Group line is the one to quote if TFN wants a single citable purchase. It is dated
+two days before their second distribution arrived, it is tracked to the Goods project, and its
+description names the presses the pitch asked for.
 
-**Do not submit the second row until someone can say what it was.** Either find it in the ledger, or
-report only the $110,046 and say the remainder is being reconciled.
+**About $34,500 sits between the plant total and the funds received.** It went into the same build,
+in freight, install, the shed and the first production runs. The ledger does not separate it out as
+TFN money, because grant income is never tagged to individual purchases. Say that plainly. If TFN
+want every dollar traced, the honest answer is that the grant was not ring fenced, and the plant it
+funded cost $110,046 of identifiable capital.
 
 ### 9. A short story about someone who has benefitted
 
@@ -283,8 +304,9 @@ Draft:
 
 ## What Ben has to supply, in one list
 
-1. **The missing ~$34,500.** The books cannot currently show it. Decide whether to report only the
-   $110,046 or to find it first.
+1. **How to describe the ~$34,500** between the $110,046 of plant and the $144,558 received. The
+   grant was never ring fenced, so it cannot be traced purchase by purchase. Say so, or say nothing
+   beyond the plant total.
 2. Whether to tick pro bono and in-kind at questions 1 and 21.
 3. Expanded staff or volunteers, and increased corporate sponsorship, at question 2.
 4. Question 5, which turns on whether "secure" means received. Nothing is signed.
@@ -295,7 +317,13 @@ Draft:
 
 ## And one thing to fix regardless
 
-Get the bookkeeper to void the two phantom bills and book the $144,558 as grant income against
-project ACT-GD. It is wrong in two directions at once: it overstates expenses by $144,558 and
-liabilities by the same, while the income is missing entirely. TFN asking for a budget breakdown is
-the prompt to finally do it.
+Two edits in Xero, both small, both after the period lock so both editable.
+
+1. **Add tracking to the $89,361 receipt of 28 November 2025.** Business Divisions to A Curious
+   Tractor, Project Tracking to ACT-GD Goods, matching the second receipt. Without it, two thirds
+   of the TFN grant is invisible in any Goods project report.
+2. **Retrack the $18,000 Multicam CNC router from ACT-FM to ACT-GD.** Its own description says it
+   was bought for Goods on Country production.
+
+Neither is urgent for this report. Both make the next twelve months of reporting honest without
+anybody having to remember a footnote.
