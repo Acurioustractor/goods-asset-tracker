@@ -327,3 +327,36 @@ Two edits in Xero, both small, both after the period lock so both editable.
 
 Neither is urgent for this report. Both make the next twelve months of reporting honest without
 anybody having to remember a footnote.
+
+---
+
+## The two Xero edits cannot be made through the API
+
+Attempted 11 September 2026. Xero refused, and the refusal is Xero's own rule rather than a
+permission problem:
+
+> This Bank Transaction cannot be edited as it has been reconciled with a Bank Statement.
+
+Nothing was written. Both the $89,361 TFN receipt and the $18,000 Multicam router are reconciled,
+so both refuse the same way.
+
+**Two ways round it, and the first is cleaner.**
+
+1. **In the Xero screen.** Open the transaction, unreconcile it or use Remove and Redo, add the
+   tracking, re-reconcile. About two minutes each for a bookkeeper. The tracking IDs are
+   Business Divisions `91448ff3-eb13-437a-9d97-4d2e52c86ca4` option A Curious Tractor
+   `1973a257-0d96-42c3-bca0-99623cb52923`, and Project Tracking
+   `1a1ad7c5-249a-4b1f-842d-06ba2a63a0fe` option ACT-GD Goods
+   `63aee6ea-0005-48b8-8019-5fe9666ead29`.
+2. **A manual journal** that moves the attribution without touching the reconciled item: debit
+   account 262 for $89,361 with no tracking and credit the same account with ACT-GD tracking. Net
+   zero to the profit and loss, correct on the project. Same shape on account 750 for the router.
+   This is the accountant's call on presentation, and it leaves a journal in the ledger that
+   nobody asked for.
+
+**The transaction ids**, so nobody has to search:
+
+| What | BankTransactionID |
+|---|---|
+| TFN tranche 1, $89,361, 28 Nov 2025 | `e5b115f7-73f7-4cff-9352-36d8c921dc70` |
+| Multicam CNC router, $18,000, 8 Jun 2026 | `aaa306fa-9922-425d-a1bf-6b8466d924ab` |

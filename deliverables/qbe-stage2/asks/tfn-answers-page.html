@@ -1,0 +1,345 @@
+<title>TFN Impact Report Answers</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#F6F2EC; --surface:#FFFFFF; --surface-2:#EFE8DE; --rail:#DED4C6;
+  --ink:#1F1C18; --ink-2:#4C463D; --ink-3:#7E7668;
+  --ink-accent:#1D5B52; --warm:#B4552D; --gold:#9A7B2E; --ok:#3F6B4A; --bad:#A63A20;
+  --display:"Fraunces",Georgia,serif;
+  --body:"Inter",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#141311; --surface:#1C1A17; --surface-2:#24211C; --rail:#38332B;
+  --ink:#F0EAE0; --ink-2:#C4BCAE; --ink-3:#8F8677;
+  --ink-accent:#6FB3A5; --warm:#E08A5E; --gold:#CDAC58; --ok:#7FA98A; --bad:#E07C5E;
+}}
+:root[data-theme="dark"]{
+  --ground:#141311; --surface:#1C1A17; --surface-2:#24211C; --rail:#38332B;
+  --ink:#F0EAE0; --ink-2:#C4BCAE; --ink-3:#8F8677;
+  --ink-accent:#6FB3A5; --warm:#E08A5E; --gold:#CDAC58; --ok:#7FA98A; --bad:#E07C5E;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--ink-accent)}
+h1,h2,h3{font-family:var(--display);font-weight:600;text-wrap:balance;margin:0}
+.wrap{max-width:840px;margin:0 auto;padding:0 20px 100px}
+@media(min-width:820px){.wrap{padding:0 28px 120px}}
+
+.mast{padding:40px 0 20px;border-bottom:2px solid var(--ink)}
+.mast .eyebrow{font-size:11px;letter-spacing:.17em;text-transform:uppercase;color:var(--warm);font-weight:700}
+.mast h1{font-size:clamp(30px,5.5vw,46px);line-height:1.03;letter-spacing:-.02em;margin:10px 0 10px}
+.mast p{margin:0;color:var(--ink-2);font-size:15px;max-width:62ch}
+.mast .meta{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-family:var(--mono);font-size:11px;border:1px solid var(--rail);border-radius:2px;padding:3px 8px;color:var(--ink-2);background:var(--surface)}
+
+.how{margin:22px 0 0;border:1px solid var(--rail);border-left:3px solid var(--warm);background:var(--surface);padding:15px 17px;border-radius:2px}
+.how b{display:block;margin-bottom:5px}
+.how p{margin:0 0 7px;font-size:13.5px;color:var(--ink-2)}
+.how p:last-child{margin-bottom:0}
+
+.q{margin-top:30px;border:1px solid var(--rail);border-radius:3px;background:var(--surface);overflow:hidden}
+.q>header{padding:13px 17px;background:var(--surface-2);border-bottom:1px solid var(--rail);display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.q>header .n{font-family:var(--mono);font-size:12px;color:var(--warm);font-weight:600;flex:0 0 auto}
+.q>header h2{font-size:16.5px;font-family:var(--body);font-weight:600;line-height:1.35;flex:1 1 260px}
+.pill{font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:3px 7px;border-radius:2px;flex:0 0 auto}
+.pill.ready{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
+.pill.you{background:color-mix(in srgb,var(--bad) 14%,transparent);color:var(--bad)}
+.pill.pick{background:color-mix(in srgb,var(--gold) 18%,transparent);color:var(--gold)}
+
+.body{padding:15px 17px 17px}
+.ticks{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:6px}
+.ticks li{display:flex;gap:9px;font-size:13.5px;align-items:flex-start}
+.ticks li::before{content:"✓";color:var(--ok);font-weight:700;flex:0 0 auto;line-height:1.5}
+.ticks li.no::before{content:"?";color:var(--gold)}
+.ticks li small{display:block;color:var(--ink-3);font-size:12px}
+
+.copyblock{position:relative;margin:10px 0 0}
+.copyblock textarea{width:100%;border:1px solid var(--rail);border-radius:2px;background:var(--ground);color:var(--ink);font-family:var(--body);font-size:13.5px;line-height:1.6;padding:13px 15px 13px;resize:vertical;min-height:90px}
+.copyblock textarea:focus{outline:2px solid var(--ink-accent);outline-offset:1px}
+.cbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:6px}
+.wc{font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+.wc.over{color:var(--bad);font-weight:600}
+button.copy{font-family:var(--body);font-size:12px;font-weight:600;border:1px solid var(--ink-accent);color:var(--ink-accent);background:transparent;border-radius:2px;padding:5px 12px;cursor:pointer}
+button.copy:hover{background:color-mix(in srgb,var(--ink-accent) 10%,transparent)}
+button.copy:focus-visible{outline:2px solid var(--ink-accent);outline-offset:2px}
+button.copy.done{background:var(--ink-accent);color:var(--ground);border-color:var(--ink-accent)}
+
+.note{margin:11px 0 0;font-size:12.5px;color:var(--ink-2);border-top:1px solid var(--rail);padding-top:10px}
+.note b{color:var(--ink)}
+.scroll{overflow-x:auto;margin-top:10px}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:380px}
+th{text-align:left;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:700;padding:7px 10px;background:var(--surface-2);border-bottom:1px solid var(--rail)}
+td{padding:8px 10px;border-bottom:1px solid var(--rail);vertical-align:top}
+td.r{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:0}
+.mono{font-family:var(--mono);font-size:12.5px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--rail);font-size:12.5px;color:var(--ink-3)}
+.themebtn{position:fixed;top:12px;right:12px;z-index:20;font-family:var(--body);font-size:11px;font-weight:600;padding:6px 10px;border:1px solid var(--rail);background:var(--surface);color:var(--ink-2);border-radius:2px;cursor:pointer}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<button class="themebtn" id="themebtn" type="button">theme</button>
+
+<div class="wrap">
+  <div class="mast">
+    <div class="eyebrow">The Funding Network &middot; Healthy People, Healthy Planet &middot; 2 September 2025</div>
+    <h1>TFN Impact Report Answers</h1>
+    <p>Every written answer on the 12 month form, sized to its word limit and ready to copy. The
+      tick-box questions show what to select and why. Three still need a decision only Ben can make,
+      and they are marked.</p>
+    <div class="meta">
+      <span class="tag">Pitched $250,000</span>
+      <span class="tag">Received $144,558 net</span>
+      <span class="tag">Gross $160,620</span>
+      <span class="tag">Two distributions</span>
+    </div>
+  </div>
+
+  <div class="how">
+    <b>How to use this</b>
+    <p>Each box is editable. Change the words in the box before you copy, and the word count updates
+      as you type. The count turns red when it goes over TFN's limit.</p>
+    <p>Green means the answer is ready. Amber means pick one of the options underneath. Red means
+      nobody but you can answer it.</p>
+  </div>
+
+  <div id="qs"></div>
+
+  <footer>
+    Built 11 September 2026 from the pitch transcript, the two TFN grant letters, the Goods asset
+    register and a live read of Xero. Figures trace to guarded modules in the repo. Nothing in this
+    page is submitted until you paste it.
+  </footer>
+</div>
+
+<script>
+const Q = [
+{n:"1", t:"Benefits of participating in TFN. Select all that apply.", state:"ready",
+ ticks:[
+  ["The funding received at the event","The pledges on the night."],
+  ["The funding received after the event","Anne Gripper's transfer arrived in December, in time for the Bupa matched funding to still apply."],
+  ["Access to a new supporter base and networks",""],
+  ["Increased awareness of my organisation and its cause",""],
+  ["Increased confidence and credibility",""],
+  ["Marketing and promotion provided by TFN",""],
+  ["Meeting like-minded people and organisations","Farm My School and CORENA, still in contact through the 6-month update thread in March 2026."],
+  ["Pitch coaching and experience",""]],
+ unsure:[["Probono and In-kind donations","Nothing in the record shows pro bono support arriving through TFN. Question 21 asks it directly."]]},
+
+{n:"2", t:"How the organisation has changed in the past 12 months. Select all that apply.", state:"ready",
+ ticks:[
+  ["Growth in revenue","320 beds bought and paid for by four organisations, $273,966, including 100 beds paid up front by ALIVE at the University of Melbourne in August 2026."],
+  ["Improved services","The Stretch Bed replaced the Basket Bed. Recycled-plastic legs, structural washable canvas, every part replaceable."],
+  ["Increased organisational capacity","The facility the pitch asked for now exists and runs."],
+  ["Changed/expanded geographical locations","Eleven communities, Palm Island to Maningrida to Utopia to Tennant Creek."],
+  ["Improved in impact evaluation","Every bed recorded against a community, a date and a batch, reconciled to invoices. A production log opened in September 2026."],
+  ["Increased sustainability","A published price of $750 a bed, of which $474 carries the organisation. 628 paid beds a year covers it."]],
+ unsure:[["Expanded staff and/or volunteers",""],["Increased corporate sponsorship",""]]},
+
+{n:"3", t:"Have you continued to use the skills gained in the Pitch Coaching Workshop?", state:"ready",
+ pick:["Yes"],
+ note:"The pitch structure has shaped every funder conversation since, including the QBE Foundation Stage 2 application closing 25 September 2026."},
+
+{n:"4", t:"Did you share the skills you learnt with other people in your organisation?", state:"ready",
+ pick:["Yes"]},
+
+{n:"5", t:"Has TFN Pitch Coaching helped you successfully secure funding from other sources after the TFN Event?", state:"you",
+ note:"This turns on what secure means, and it is worth getting right. Since the event the Tim Fairfax Family Foundation has invited a three-year application for $300,000 and the Brian M. Davis Charitable Foundation has invited an application for up to $100,000. Neither is secured. Nothing in the current raise is signed. If secure means money in the bank the answer is No. If it means doors opened, the answer is Yes and the invitations are the evidence."},
+
+{n:"6", t:"How valuable were the financial donations received?", state:"ready",
+ pick:["Extremely Valuable"],
+ note:"They paid for the plant that everything since has been made on."},
+
+{n:"7", t:"Please describe how the funding was used and the implementation of the project.", state:"ready",
+ text:`The money built the facility.
+
+We put a hydraulic press, a computer-controlled router and a plastic shredder into a shed at Witta in Queensland and started turning waste plastic into bed parts. The press runs at 180 degrees. Each bed takes 36 kg of shredded plastic through it and carries 20 kg in the finished product.
+
+The proof that it works is Maningrida. Forty beds were pressed end to end at our facility, freighted to Arnhem Land, assembled at Gamardi by local workers, and bought by the Homeland School Company in May 2026. Before the facility we bought parts in. After it, we made them.
+
+Since then every Stretch Bed has been routed and assembled at this facility. 177 Stretch Beds are now deployed across eleven communities, alongside 363 Basket Beds from the earlier design, and 22 washing machines.
+
+The facility is also what makes the next step possible. Because we now know what it costs to make a bed and how long it takes, we can build the same plant in a community and hand it over. Two community plants are the subject of our current application to the QBE Foundation, and a third is approved for Alice Springs through Oonchiumpa.`},
+
+{n:"8", t:"Please provide a budget breakdown of how the funds raised were used.", state:"ready",
+ text:`Machinery: CNC, hot and cold presses, sheet storage and prep table, $32,780. Circularity Group invoice INV-0054, paid 17 December 2025, booked as a fixed asset against the Goods project.
+
+The balance of the production plant, being press, shredder, tooling, install and electrical, about $77,266.
+
+Total identifiable plant: $110,046.
+
+Net TFN funds received: $144,558, in two distributions of $89,361 on 28 November 2025 and $55,197 on 19 December 2025.
+
+The grant was not ring fenced to individual purchases, so the remainder went into the same build in freight, install, the shed and the first production runs. We can evidence the plant total and the Circularity purchase precisely, and we would rather say that than present a reconstruction.`,
+ tbl:[["Machinery, Circularity Group INV-0054","$32,780"],["Balance of the production plant","about $77,266"],["Total plant","$110,046"],["Net TFN funds received","$144,558"]],
+ note:"<b>Checked in Xero on 11 September 2026.</b> Both distributions are reconciled against the contact The Funding Network and booked to account 262 Grants Received. The two phantom bills that used to sit against this grant are voided. One field is still wrong: the $89,361 receipt carries no project tracking, which has to be fixed in the Xero screen because the API refuses to edit a reconciled bank transaction."},
+
+{n:"9", t:"Please tell us a short story about someone who has benefitted from this funding.", state:"pick",
+ text:`When Nic pitched in Melbourne he told the room about Dianne Stokes, a Warumungu Elder in Tennant Creek who had described beds that could not be cleaned and washing machines that ended up burned in the community tip. He said that the next time he saw her, he hoped they would be building beds from plastic out of her own community.
+
+The first full run off the press went to Maningrida, in Arnhem Land. Forty beds, pressed from shredded plastic at our facility in Queensland, freighted up, and put together at Gamardi by local workers who were paid for the work. That is the whole loop the donors were asked to fund: waste plastic in one end, a bed a family can wash in the other, and a local person paid in the middle.
+
+Maningrida has now bought from us twice. Mala'la Health Service took 13 beds in October 2025, and the Homeland School Company bought the forty that came off our own press in May 2026.`,
+ note:"<b>Decide whether to name an individual.</b> The registry holds cleared quotes from people who received beds, including Ray Nelson at Utopia on no longer waking with back pain and Margaret Lloyd on what sleeping on the floor was like. Neither of those beds traces to the facility specifically, so using them here is a small stretch. The Maningrida version above keeps the chain exact."},
+
+{n:"10", t:"Did you achieve what you pitched for at the event?", state:"ready",
+ pick:["Other"],
+ text:`We pitched for $250,000 to build the first on-country manufacturing facility. The room gave $160,620, which reached us as $144,558 after TFN's fee. We built the facility anyway, at a capital cost of $110,046, and it has been making beds since.
+
+What we have not yet done is the second half of the sentence, which was a facility owned and run by a community. That is what our current raise is for, and the first community plant is now approved for Alice Springs.`},
+
+{n:"11", t:"Primary beneficiary group supported through your project.", state:"ready",
+ pick:["First Nations people"]},
+
+{n:"12", t:"Secondary beneficiary group.", state:"ready",
+ pick:["Rural and regional communities"]},
+
+{n:"13", t:"What impact area did your project support?", state:"pick",
+ pick:["Health and Wellbeing","Employment and Training"],
+ note:"<b>Health and Wellbeing</b> matches what the room was asked for. The pitch was about health hardware and the chain from skin infection to rheumatic heart disease. <b>Employment and Training</b> is the honest alternative, because the facility is about who makes things. Pick one."},
+
+{n:"14", t:"How many beneficiaries have been supported by programs or activities funded through TFN?", state:"you",
+ pick:["177"],
+ note:"<b>177 is the defensible number.</b> Every Stretch Bed deployed has been routed and assembled at the facility TFN funded, and each sits in a household. Forty of those were pressed end to end there. Decide whether TFN wants households or people. If people, the basis has to be a stated household size with a source, and we do not have one. Do not estimate it in the box."},
+
+{n:"15", t:"Did any connections made during the event result in additional financial support?", state:"ready",
+ pick:["Yes"],
+ note:"Anne Gripper's contribution came after the event, reached us in time for the Bupa matched funding, and led to a direct conversation in December 2025 about impact reporting."},
+
+{n:"16", t:"Over the past 12 months, how important has your involvement with TFN been?", state:"pick",
+ pick:["Critical","Important"],
+ note:"<b>Critical is defensible and true.</b> TFN paid for the plant every product since has been made on. Important is the modest reading, that it was one of several funders."},
+
+{n:"17", t:"To what extent has TFN helped increase your credibility with donors and the philanthropic sector?", state:"pick",
+ pick:["Important","Moderate"],
+ note:"Important is the honest read. The raise since has drawn invitations from Tim Fairfax and Brian M. Davis, though neither can be attributed to TFN directly."},
+
+{n:"18", t:"Did you meet any new people through the TFN event that you have continued to work with?", state:"ready",
+ ticks:[
+  ["I met people who became donors of my organisation","Anne Gripper."],
+  ["I kept up relationships with the other presenters from my event","Farm My School and CORENA, through the 6-month update exchange in March 2026."]],
+ unsure:[["I met people who have introduced me to others in their networks",""],["I met people who became supporters in ways other than monetary donations",""],["I met people who have helped spread our message",""]]},
+
+{n:"19", t:"How valuable were the relationships and networks gained through TFN?", state:"pick",
+ pick:["Very Valuable","Extremely Valuable"],
+ note:"Very Valuable is what the evidence held supports."},
+
+{n:"20", t:"Can you share a story about a beneficial relationship you formed as a result of a TFN event?", state:"you",
+ text:`Anne Gripper reached out after the event and made a contribution that arrived in December, in time for the Bupa matched funding to still count. What mattered as much was the conversation that came with it. She was working on impact reporting with her own foundation and wanted to talk about how we do it. Twelve months on, the way we record impact has changed: every bed is now logged against a community, a date and a batch, and we can produce that record on request.`,
+ note:"<b>Confirm the substance before sending.</b> This draft credits a conversation with influencing how we record impact, and only you know whether that is fair to say."},
+
+{n:"21", t:"Did you receive any probono or in-kind support as a result of a connection made at the TFN event?", state:"you",
+ note:"Nothing in the record shows any. If something happened that was never written down, this is the place for it."},
+
+{n:"22", t:"How has the TFN Alumni Program increased your organisation's capacity to deliver impact?", state:"you",
+ pick:["Significantly Increased","Increased","Neutral","No Impact"],
+ note:"Nothing in the record answers this."},
+
+{n:"23", t:"How has the TFN Alumni Program contributed to your professional development?", state:"you",
+ pick:["Significantly Contributed","Contributed","Neutral","Not Contributed"],
+ note:"Nothing in the record answers this."},
+
+{n:"24", t:"Have you collaborated with any other TFN Alumni organisations?", state:"you",
+ note:"Farm My School and CORENA are the relationships. Staying in touch through the update thread is not the same as collaborating, so this is yours to judge."},
+
+{n:"25", t:"Have you benefitted from any TFN Alumni Alliance partnerships, for example Kilfinan Australia or Vu Consulting?", state:"you",
+ note:"Nothing in the record answers this."},
+
+{n:"26", t:"Any other comments or feedback on the TFN experience?", state:"ready",
+ text:`The pitch asked for a facility and the room paid for one. Twelve months on it exists, it runs, and the first forty beds made entirely on it went to Maningrida and were put together by local workers. Everything we are now asking other funders for rests on it.
+
+Thank you, and thank you to the donors who backed a shed full of machinery. It was never the easiest thing in that room to photograph.`},
+];
+
+const LABEL = {ready:["ready","ready to paste"], you:["you","needs you"], pick:["pick","pick one"]};
+
+function el(tag, cls, txt){ const n=document.createElement(tag); if(cls) n.className=cls; if(txt!=null) n.textContent=txt; return n; }
+function words(s){ return (s.trim().match(/\S+/g)||[]).length; }
+
+const host = document.getElementById('qs');
+for (const q of Q) {
+  const sec = el('div','q');
+  const h = el('header');
+  h.appendChild(el('span','n','Q'+q.n));
+  h.appendChild(el('h2',null,q.t));
+  const [pc, pt] = LABEL[q.state];
+  h.appendChild(el('span','pill '+pc, pt));
+  sec.appendChild(h);
+
+  const b = el('div','body');
+
+  if (q.ticks) {
+    const ul = el('ul','ticks');
+    for (const [t,why] of q.ticks){
+      const li = el('li'); const d=el('div'); d.appendChild(el('span',null,t));
+      if(why) d.appendChild(el('small',null,why));
+      li.appendChild(d); ul.appendChild(li);
+    }
+    b.appendChild(ul);
+  }
+  if (q.unsure) {
+    const ul = el('ul','ticks');
+    for (const [t,why] of q.unsure){
+      const li = el('li','no'); const d=el('div');
+      d.appendChild(el('span',null,t+'  (only if true)'));
+      if(why) d.appendChild(el('small',null,why));
+      li.appendChild(d); ul.appendChild(li);
+    }
+    b.appendChild(ul);
+  }
+  if (q.pick) {
+    const ul = el('ul','ticks');
+    q.pick.forEach((p,i) => {
+      const li = el('li', q.pick.length>1 ? 'no' : '');
+      li.appendChild(el('div',null,p));
+      ul.appendChild(li);
+    });
+    b.appendChild(ul);
+  }
+  if (q.tbl) {
+    const w = el('div','scroll'); const tb = el('table');
+    const body = el('tbody');
+    for (const [k,v] of q.tbl){
+      const tr=el('tr'); tr.appendChild(el('td',null,k));
+      const td=el('td','r'); td.textContent=v; tr.appendChild(td); body.appendChild(tr);
+    }
+    tb.appendChild(body); w.appendChild(tb); b.appendChild(w);
+  }
+  if (q.text) {
+    const cb = el('div','copyblock');
+    const ta = el('textarea');
+    ta.value = q.text;
+    ta.rows = Math.min(22, Math.max(4, q.text.split('\n').length + Math.round(q.text.length/95)));
+    cb.appendChild(ta);
+    const bar = el('div','cbar');
+    const wc = el('span','wc');
+    const upd = () => { wc.textContent = words(ta.value) + ' words'; };
+    upd(); ta.addEventListener('input', upd);
+    bar.appendChild(wc);
+    const btn = el('button','copy','Copy');
+    btn.type='button';
+    btn.addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(ta.value); }
+      catch(e){ ta.select(); try{ document.execCommand('copy'); }catch(_){} }
+      btn.textContent='Copied'; btn.classList.add('done');
+      setTimeout(()=>{ btn.textContent='Copy'; btn.classList.remove('done'); }, 1400);
+    });
+    bar.appendChild(btn);
+    cb.appendChild(bar);
+    b.appendChild(cb);
+  }
+  if (q.note) {
+    const n = el('div','note'); n.innerHTML = q.note; b.appendChild(n);
+  }
+  sec.appendChild(b);
+  host.appendChild(sec);
+}
+
+const tb = document.getElementById('themebtn');
+tb.addEventListener('click', () => {
+  const cur = document.documentElement.getAttribute('data-theme');
+  const dark = cur ? cur === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.setAttribute('data-theme', dark ? 'light' : 'dark');
+});
+</script>

@@ -267,6 +267,32 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--rail);font-si
 .yrs .rows div:last-child{border-bottom:0}
 .yrs .rows b{font-family:var(--mono);font-weight:500;font-variant-numeric:tabular-nums}
 .yrs .job{font-size:12.5px;color:var(--ink-2);line-height:1.5;margin:0;padding-top:2px;border-top:1px solid var(--rail)}
+
+/* capacity */
+.cap{display:grid;gap:1px;background:var(--rail);border:1px solid var(--rail);border-radius:3px;overflow:hidden;margin-top:16px}
+@media(min-width:900px){.cap{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.cap .s{background:var(--surface);padding:16px 18px 17px;display:flex;flex-direction:column;gap:9px}
+.cap .s.best{background:color-mix(in srgb,var(--olive) 7%,var(--surface))}
+.cap .s.dead{opacity:.72}
+.cap .s .hd{display:flex;gap:10px;align-items:baseline;justify-content:space-between;flex-wrap:wrap}
+.cap .s h4{font-family:var(--display);font-size:17px;margin:0;font-weight:600}
+.cap .s .rate{font-family:var(--mono);font-size:12.5px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.cap .s p{margin:0;font-size:12.5px;color:var(--ink-2);line-height:1.5}
+.cap .s .rows{display:grid;gap:0}
+.cap .s .rows div{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;padding:5px 0;border-bottom:1px solid var(--rail)}
+.cap .s .rows div:last-child{border-bottom:0}
+.cap .s .rows b{font-family:var(--mono);font-weight:500;font-variant-numeric:tabular-nums}
+.cap .s .verdict{font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:700}
+.cap .s.best .verdict{color:var(--ok)}
+.cap .s.dead .verdict{color:var(--bad)}
+.mach{display:flex;gap:0;margin-top:14px;border:1px solid var(--rail);border-radius:3px;overflow:hidden}
+.mach div{flex:1 1 0;padding:11px 13px;background:var(--surface);border-right:1px solid var(--rail)}
+.mach div:last-child{border-right:0}
+.mach .lbl{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+.mach .val{font-family:var(--display);font-size:23px;line-height:1.1;margin-top:3px}
+.mach .slow .val{color:var(--bad)}
+.mach .cap2 .val{color:var(--gold)}
+.mach .sub{font-size:11.5px;color:var(--ink-3);margin-top:2px}
 </style>
 
 <button class="themebtn" id="themebtn" type="button">theme</button>
@@ -283,6 +309,7 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--rail);font-si
     <li><a href="#need">What each funder needs</a></li>
     <li><a href="#calendar">The calendar</a></li>
     <li><a href="#threeyear">Three years</a></li>
+    <li><a href="#capacity">Witta capacity</a></li>
     <li><a href="#stand"><span class="n">01</span>Where it stands</a></li>
     <li><a href="#model"><span class="n">02</span>The model in four answers</a></li>
     <li><a href="#play"><span class="n">03</span>Play the model</a></li>
@@ -677,6 +704,108 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--rail);font-si
     <p class="note">Facilitation is billed at $10,000 a community and costs about the same to deliver,
       so it is kept out of the income line. Counting it as income without its cost is the same
       mistake that produced the $937,550.</p>
+  </section>
+
+
+  <section id="capacity">
+    <h2>Witta capacity, and the one decision left</h2>
+    <p class="lede">Three machines, one constraint, and two ways past it that cost completely
+      different things. Guarded in <span class="mono">production-scenarios.ts</span> and
+      <span class="mono">defy-supply.ts</span>, 53 tests between them.</p>
+
+    <div class="mach">
+      <div class="slow"><div class="lbl">The press</div><div class="val">3 a day</div><div class="sub">The constraint. 36 kg of shred a bed.</div></div>
+      <div><div class="lbl">The router</div><div class="val">8.56 a day</div><div class="sub">Never the constraint.</div></div>
+      <div class="cap2"><div class="lbl">Assembly</div><div class="val">5 a day</div><div class="sub">The ceiling. Nothing gets past it.</div></div>
+    </div>
+    <p class="note">Sixteen run days a month, from the 80% availability Ben set on 10 September.
+      So the line makes 48 beds a month today and could make 80.</p>
+
+    <div class="callout">
+      <b>The shred runs out on 18 September</b>
+      <p>Nic told Defy on 28 August that Witta burns about 450 kg of shred a week and had three
+        weeks of stock. That is the press running near flat out, and three weeks from 28 August is
+        18 September, which is the day the current Defy invoice falls due.</p>
+    </div>
+
+    <div class="cap">
+      <div class="s">
+        <div class="hd"><h4>A. One press, nothing bought in</h4><span class="rate">48 a month</span></div>
+        <p>What Witta does today. Every bed pressed here from our own shred.</p>
+        <div class="rows">
+          <div><span>The 400 takes</span><b>8.3 months</b></div>
+          <div><span>Shred a month</span><b>1,728 kg</b></div>
+          <div><span>Money out</span><b>shred only</b></div>
+        </div>
+        <div class="verdict" style="color:var(--ink-3)">The 400 lands in spring</div>
+      </div>
+
+      <div class="s">
+        <div class="hd"><h4>B. One press, panels from Defy</h4><span class="rate">80 a month</span></div>
+        <p>The press keeps running and bought panels go through the router beside it. The extra 32 beds a month exist only because the panels were bought.</p>
+        <div class="rows">
+          <div><span>The 400 takes</span><b>5 months</b></div>
+          <div><span>Shred a month</span><b>1,728 kg</b></div>
+          <div><span>Panels across the 400</span><b>$40,712</b></div>
+          <div><span>Beds off bought panels</span><b>160 of 400</b></div>
+        </div>
+        <div class="verdict" style="color:var(--gold)">Fastest to start, most expensive to finish</div>
+      </div>
+
+      <div class="s best">
+        <div class="hd"><h4>C. Two presses, nothing bought in</h4><span class="rate">80 a month</span></div>
+        <p>A second press reaches the same output with no bought plastic at all, and needs two thirds more shred a month to do it.</p>
+        <div class="rows">
+          <div><span>The 400 takes</span><b>5 months</b></div>
+          <div><span>Shred a month</span><b>2,880 kg</b></div>
+          <div><span>The machine, once</span><b>$22,500</b></div>
+          <div><span>Shred across the 400</span><b>14.4 tonnes</b></div>
+        </div>
+        <div class="verdict">Cheapest on the numbers we hold</div>
+      </div>
+
+      <div class="s dead">
+        <div class="hd"><h4>D. Two presses and panels</h4><span class="rate">80 a month</span></div>
+        <p>Buys nothing. Assembly caps the line at five a day whatever is feeding it, so whichever you choose, the other is wasted.</p>
+        <div class="rows">
+          <div><span>Extra beds over B or C</span><b>0</b></div>
+          <div><span>Extra cost</span><b>$22,500 plus panels</b></div>
+        </div>
+        <div class="verdict">Do not do this</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <b>The decision turns on one price we do not have</b>
+      <p>Panels and a second press reach the same 80 beds a month. Across the 400 they cost the same
+        when shred lands at about <b>$3.16 a kilogram</b>. Below that the press wins and above it the
+        panels do, and a longer run moves the line further toward the press because the machine is
+        bought once.</p>
+      <p>The only prices a kilogram we hold are <b>$6.87 and $7.34</b>. Both are for finished pressed
+        panel, and shred should come in well under either, so the press is the likely answer. It
+        cannot be settled until somebody reads the bag price.</p>
+      <p><b>Quotes QU0494 and QU0495</b>, sent by Sam Davies on 27 August, price the 105 sheets and
+        the 8 bulka bags. Neither is in the repo. That is the whole blocker.</p>
+    </div>
+
+    <h3>What happens next, in order</h3>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>When</th><th>What</th><th>Why it cannot wait</th></tr></thead>
+        <tbody>
+          <tr><td class="r">Now</td><td>Send QU0494 and QU0495 through, and the shred invoice from 28 August.</td><td>They carry the bag price, which is the only number standing between us and this decision.</td></tr>
+          <tr><td class="r">This week</td><td>Ask Defy whether the production slot still stands.</td><td>Deposits were due 4 September to hold it. That date has passed.</td></tr>
+          <tr><td class="r">Thu 18 Sep</td><td>Shred runs out, and the current Defy invoice of $10,496.20 falls due.</td><td>Same day. The line stops without one or the other.</td></tr>
+          <tr><td class="r">Late Oct to early Nov</td><td>The 105 sheets and 8 bags land, if confirmed.</td><td>Sam's own estimate, subject to Xanthe Mitchell who runs panel operations.</td></tr>
+          <tr><td class="r">November</td><td>ALIVE's 100 beds are made.</td><td>Already paid for, 2 July 2026, $92,000 net.</td></tr>
+          <tr><td class="r">December</td><td>The 400 of first stock starts.</td><td>Five months at 80 a month lands in winter. Eight and a third at 48 lands in spring.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="note">The parent Defy order, 105 sheets and 8 bulka bags, makes about 379 beds: 157 from
+      panels and 222 from pressing the shred. That is near enough the 400 of first stock that the
+      end-of-year Defy order and the first-stock run are the same thing.</p>
   </section>
 
   <section id="need">
