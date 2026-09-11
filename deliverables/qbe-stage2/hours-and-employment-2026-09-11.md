@@ -60,24 +60,45 @@ number may be the honest one.
 
 ## Hours a week, in community and at Witta
 
-At $400 a day, $50 an hour, eight-hour days, and 192 production days a year, being twenty planning
-days a month at the 80% availability Ben set.
+**Two different things drive these numbers and they must not be put in one column.**
 
-| | Beds a year | Production days | Making wage | Hours a year | Hours a week |
+**The wage per bed depends only on the daily rate.** $400 a day divided by beds a day. Days worked
+make no difference to it.
+
+| Beds a day | Wage a bed |
+|---|---:|
+| 3, cooking both sheets | $133.33 |
+| 5, leg panel bought or a second press | $80.00 |
+
+**The hours depend only on how many days you run**, which depends on whether demand or capacity is
+the binding thing. At $400 a day and $50 an hour that is an eight-hour day.
+
+| What you are making | Beds a day | Days run | Hours a year | Hours a week | Wage bill |
 |---|---:|---:|---:|---:|---:|
-| **Witta, 3 beds a day** | 576 | 192 | $76,800 | 1,536 | 32 |
-| **Witta, 5 beds a day** | 960 | 192 | $76,800 | 1,536 | 32 |
-| **A plant, year one** | 200 | 40 | $16,000 | 320 | **6.7** |
-| **A plant at 400** | 400 | 80 | $32,000 | 640 | 13.3 |
-| **A plant at 720** | 720 | 144 | $57,600 | 1,152 | 24.0 |
-| **A plant at capacity** | 960 | 192 | $76,800 | 1,536 | 32.0 |
+| 576 beds, the capacity ceiling at 3 a day | 3 | 192 | 1,536 | 32.0 | $76,800 |
+| The same 576 beds at 5 a day | 5 | 115 | 922 | 19.2 | $46,080 |
+| 960 beds, the ceiling at 5 a day | 5 | 192 | 1,536 | 32.0 | $76,800 |
+| The 630 already spoken for, at 3 a day | 3 | 210 | 1,680 | 35.0 | $84,000 |
+| The same 630 at 5 a day | 5 | 126 | 1,008 | 21.0 | $50,400 |
+
+**Witta is capacity-limited today**, with 630 beds of recorded demand against 576 a year at three a
+day. So the live numbers are the fourth row: 210 production days, more than the 192 the availability
+allowance gives, which is why the 630 takes over a year.
+
+### A community plant
+
+| Beds in year one | Beds a day | Days run | Hours a year | Hours a week | Wage bill |
+|---|---:|---:|---:|---:|---:|
+| 200 | 5 | 40 | 320 | **6.7** | $16,000 |
+| 400 | 5 | 80 | 640 | 13.3 | $32,000 |
+| 720 | 5 | 144 | 1,152 | 24.0 | $57,600 |
+| 960 | 5 | 192 | 1,536 | 32.0 | $76,800 |
 
 **A plant's first year is 6.7 hours a week of paid making.** That is not a job and it should never be
 described as one. It is most of a day a week.
 
-Even a plant running at its ceiling is 32 hours a week of making, which is four days.
-
----
+A plant is demand-limited in its first years, so the hours are set by how many beds a community can
+sell, and nothing about the equipment changes that.
 
 ## So where does the employment in a community actually come from
 
