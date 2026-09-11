@@ -1,0 +1,293 @@
+<title>The Model</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#F5F0E6; --surface:#FFFCF6; --surface-2:#EDE4D5; --rail:#DCD0BC;
+  --ink:#201D18; --ink-2:#4E4739; --ink-3:#837A69;
+  --goods:#A85B34; --community:#3F7A6A; --gold:#9C7C2B; --bad:#A33C22; --ok:#4C7A4E; --plum:#79506B;
+  --display:"Fraunces",Georgia,serif;
+  --body:"Inter",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#15130F; --surface:#1D1A15; --surface-2:#262119; --rail:#3B3428;
+  --ink:#F1EADC; --ink-2:#C5BCA9; --ink-3:#8F8574;
+  --goods:#D08A5E; --community:#6FB3A0; --gold:#CCA84F; --bad:#DE7A5C; --ok:#8CB78E; --plum:#B892AA;
+}}
+:root[data-theme="dark"]{
+  --ground:#15130F; --surface:#1D1A15; --surface-2:#262119; --rail:#3B3428;
+  --ink:#F1EADC; --ink-2:#C5BCA9; --ink-3:#8F8574;
+  --goods:#D08A5E; --community:#6FB3A0; --gold:#CCA84F; --bad:#DE7A5C; --ok:#8CB78E; --plum:#B892AA;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--display);font-weight:600;text-wrap:balance;margin:0}
+a{color:var(--goods)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 90px}
+@media(min-width:880px){.wrap{padding:0 30px 110px}}
+.mast{padding:40px 0 20px;border-bottom:2px solid var(--ink)}
+.mast .eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--goods);font-weight:700}
+.mast h1{font-size:clamp(34px,7vw,64px);line-height:.98;letter-spacing:-.03em;margin:12px 0 16px}
+.thesis{font-family:var(--display);font-size:clamp(20px,2.9vw,28px);line-height:1.25;max-width:24ch;border-left:3px solid var(--goods);padding-left:16px;margin:0 0 14px}
+.mast p{margin:0;color:var(--ink-2);max-width:66ch}
+.sec{margin-top:40px}
+.sec > h2{font-size:clamp(23px,3.4vw,31px);letter-spacing:-.015em}
+.sec > .lede{margin:7px 0 0;color:var(--ink-2);max-width:70ch}
+.fig{margin:18px 0 0;border:1px solid var(--rail);background:var(--surface);border-radius:4px;padding:10px 8px 2px;overflow-x:auto}
+svg{display:block;width:100%;height:auto;min-width:700px}
+.cap{font-size:12.5px;color:var(--ink-3);padding:8px 12px 12px;max-width:80ch;margin:0}
+.grid{display:grid;gap:1px;background:var(--rail);border:1px solid var(--rail);border-radius:3px;overflow:hidden;margin-top:18px}
+@media(min-width:820px){.grid.g2{grid-template-columns:1fr 1fr}.grid.g3{grid-template-columns:repeat(3,1fr)}}
+.grid > div{background:var(--surface);padding:15px 17px 17px}
+.grid h3{font-size:16.5px;margin:0 0 7px}
+.grid p{margin:0 0 8px;font-size:13.5px;color:var(--ink-2);line-height:1.55}
+.grid p:last-child{margin:0}
+.grid b{color:var(--ink)}
+.note{margin:18px 0 0;border:1px solid var(--rail);border-left:3px solid var(--gold);background:var(--surface);padding:15px 17px;border-radius:2px}
+.note.red{border-left-color:var(--bad)}
+.note b{display:block;margin-bottom:5px}
+.note p{margin:0 0 8px;font-size:13.5px;color:var(--ink-2)}
+.note p:last-child{margin:0}
+.scroll{overflow-x:auto;margin-top:16px}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:460px}
+th{text-align:left;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:700;padding:8px 11px;background:var(--surface-2);border-bottom:1px solid var(--rail)}
+td{padding:9px 11px;border-bottom:1px solid var(--rail);vertical-align:top}
+td.r{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:0}
+tr.tot td{font-weight:700;background:var(--surface-2)}
+.links{display:grid;gap:1px;background:var(--rail);border:1px solid var(--rail);border-radius:3px;overflow:hidden;margin-top:18px}
+.links a{background:var(--surface);padding:13px 16px;display:flex;gap:12px;align-items:baseline;text-decoration:none;color:var(--ink);flex-wrap:wrap}
+.links a:hover{background:var(--surface-2)}
+.links .t{font-weight:600;flex:0 0 auto}
+.links .d{font-size:12.5px;color:var(--ink-3)}
+footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--rail);font-size:12.5px;color:var(--ink-3)}
+.themebtn{position:fixed;top:12px;right:12px;z-index:20;font-family:var(--body);font-size:11px;font-weight:600;padding:6px 10px;border:1px solid var(--rail);background:var(--surface);color:var(--ink-2);border-radius:2px;cursor:pointer}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<button class="themebtn" id="themebtn" type="button">theme</button>
+
+<div class="wrap">
+  <div class="mast">
+    <div class="eyebrow">Goods on Country &middot; the model, drawn &middot; 12 September 2026</div>
+    <h1>The Model</h1>
+    <p class="thesis">Buying something a community already wants is how a community-owned factory
+      gets started.</p>
+    <p>Three drawings and one sentence. The money, the migration and the measures. Every figure
+      comes from a guarded module, so this page and the spreadsheet cannot drift apart.</p>
+  </div>
+
+  <div class="sec">
+    <h2>One. Where the money stops</h2>
+    <p class="lede">Two loops, and they never join. This is the drawing that answers the question a
+      funder asks in year two.</p>
+    <div class="fig">
+      <svg viewBox="0 0 1000 470" role="img" aria-label="Two loops. Catalytic capital funds the Goods loop, which closes on trade at 628 beds a year. Institutional buyers fund the community loop, which closes in community. Beds cross one way and money does not cross back.">
+        <defs><marker id="m1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 z" fill="currentColor"/></marker></defs>
+        <g style="color:var(--goods)">
+          <ellipse cx="252" cy="250" rx="176" ry="140" fill="none" stroke="currentColor" stroke-width="2.6" opacity=".45"/>
+          <path d="M252 110 A176 140 0 0 1 396 200" fill="none" stroke="currentColor" stroke-width="3.2" marker-end="url(#m1)"/>
+          <path d="M414 296 A176 140 0 0 1 252 390" fill="none" stroke="currentColor" stroke-width="3.2" marker-end="url(#m1)"/>
+          <path d="M90 314 A176 140 0 0 1 90 186" fill="none" stroke="currentColor" stroke-width="3.2" marker-end="url(#m1)"/>
+        </g>
+        <text x="252" y="246" text-anchor="middle" font-family="var(--display)" font-size="25" font-weight="600" fill="var(--goods)">The Goods loop</text>
+        <text x="252" y="270" text-anchor="middle" font-size="13" fill="var(--ink-2)">628 paid beds a year carries it</text>
+        <g style="color:var(--community)">
+          <ellipse cx="748" cy="250" rx="176" ry="140" fill="none" stroke="currentColor" stroke-width="2.6" opacity=".45"/>
+          <path d="M748 110 A176 140 0 0 1 898 208" fill="none" stroke="currentColor" stroke-width="3.2" marker-end="url(#m1)"/>
+          <path d="M906 300 A176 140 0 0 1 748 390" fill="none" stroke="currentColor" stroke-width="3.2" marker-end="url(#m1)"/>
+          <path d="M592 314 A176 140 0 0 1 592 186" fill="none" stroke="currentColor" stroke-width="3.2" marker-end="url(#m1)"/>
+        </g>
+        <text x="748" y="246" text-anchor="middle" font-family="var(--display)" font-size="25" font-weight="600" fill="var(--community)">The community loop</text>
+        <text x="748" y="270" text-anchor="middle" font-size="13" fill="var(--ink-2)">the enterprise keeps the whole sale</text>
+        <g font-size="12.5" fill="var(--ink)">
+          <rect x="140" y="74" width="224" height="46" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+          <text x="252" y="95" text-anchor="middle" font-weight="700">Catalytic capital</text>
+          <text x="252" y="111" text-anchor="middle" font-size="11" fill="var(--ink-2)">QBE, Tim Fairfax, Brian M. Davis, Snow</text>
+          <rect x="300" y="192" width="176" height="46" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+          <text x="388" y="220" text-anchor="middle" font-weight="700">Made at Witta</text>
+          <rect x="140" y="382" width="224" height="48" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+          <text x="252" y="402" text-anchor="middle" font-weight="700">Goods paid $750 a bed</text>
+          <text x="252" y="419" text-anchor="middle" font-size="11" fill="var(--ink-2)">$276 makes it &middot; $474 carries the business</text>
+          <rect x="26" y="192" width="176" height="46" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+          <text x="114" y="220" text-anchor="middle" font-weight="700">The next bed</text>
+          <rect x="636" y="74" width="224" height="46" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+          <text x="748" y="95" text-anchor="middle" font-weight="700">First stock arrives</text>
+          <text x="748" y="111" text-anchor="middle" font-size="11" fill="var(--ink-2)">100 beds, in each of four communities</text>
+          <rect x="806" y="192" width="176" height="46" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+          <text x="894" y="220" text-anchor="middle" font-weight="700">Buyers pay</text>
+          <rect x="636" y="382" width="224" height="48" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+          <text x="748" y="402" text-anchor="middle" font-weight="700">Local capital</text>
+          <text x="748" y="419" text-anchor="middle" font-size="11" fill="var(--ink-2)">$75,000 a pool, and it stays there</text>
+          <rect x="524" y="192" width="176" height="46" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
+          <text x="612" y="220" text-anchor="middle" font-weight="700">Local production</text>
+        </g>
+        <g style="color:var(--gold)"><path d="M448 88 C 510 66, 570 66, 622 84" fill="none" stroke="currentColor" stroke-width="3.6" marker-end="url(#m1)"/></g>
+        <text x="534" y="60" text-anchor="middle" font-size="13" font-weight="700" fill="var(--gold)">beds cross</text>
+        <g style="color:var(--bad)">
+          <path d="M620 442 C 550 462, 450 462, 380 442" fill="none" stroke="currentColor" stroke-width="2.6" stroke-dasharray="8 8" opacity=".7"/>
+          <line x1="482" y1="440" x2="508" y2="466" stroke="currentColor" stroke-width="3.6"/>
+          <line x1="508" y1="440" x2="482" y2="466" stroke="currentColor" stroke-width="3.6"/>
+        </g>
+      </svg>
+      <p class="cap">The gold arrow is the only crossing and it carries beds. The red cross marks
+        the arrow a funder expects to find and will not. Goods is carried by the left loop.</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>Two. How the making moves</h2>
+    <p class="lede">Witta carries the first beds. The plants take over as the need grows, and Witta
+      changes job. This is what the $300,000 is for.</p>
+    <div class="fig">
+      <svg viewBox="0 0 1000 430" role="img" aria-label="Three years of production. Year one Witta makes all 400 beds. Year two two plants make 400 of 628 and Witta makes 228. Year three three plants make all 900 and Witta moves to pressing parts.">
+        <text x="60" y="44" font-size="14" letter-spacing="2" font-weight="700" fill="var(--ink-3)">WHO MAKES THE BEDS</text>
+
+        <g font-size="14">
+          <text x="60" y="104" font-weight="700" fill="var(--ink)">Year one</text>
+          <text x="60" y="124" font-size="12" fill="var(--ink-3)">to June 2027</text>
+          <rect x="200" y="82" width="560" height="46" rx="3" fill="var(--goods)"/>
+          <text x="480" y="111" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFCF6">Witta makes all 400</text>
+          <text x="782" y="111" font-size="13" fill="var(--ink-3)">plants being built</text>
+
+          <text x="60" y="204" font-weight="700" fill="var(--ink)">Year two</text>
+          <text x="60" y="224" font-size="12" fill="var(--ink-3)">to June 2028</text>
+          <rect x="200" y="182" width="203" height="46" rx="3" fill="var(--goods)"/>
+          <text x="301" y="211" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFCF6">Witta 228</text>
+          <rect x="407" y="182" width="472" height="46" rx="3" fill="var(--community)"/>
+          <text x="643" y="211" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFCF6">Two community plants make 400</text>
+
+          <text x="60" y="304" font-weight="700" fill="var(--ink)">Year three</text>
+          <text x="60" y="324" font-size="12" fill="var(--ink-3)">to June 2029</text>
+          <rect x="200" y="282" width="679" height="46" rx="3" fill="var(--community)"/>
+          <text x="540" y="311" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFCF6">Three community plants make all 900</text>
+        </g>
+
+        <line x1="200" y1="66" x2="200" y2="344" stroke="var(--rail)" stroke-width="2"/>
+
+        <g>
+          <rect x="200" y="358" width="679" height="48" rx="4" fill="var(--surface-2)" stroke="var(--gold)" stroke-width="2"/>
+          <text x="222" y="379" font-size="13" font-weight="700" fill="var(--gold)">WITTA DOES NOT CLOSE</text>
+          <text x="222" y="398" font-size="13" fill="var(--ink-2)">It moves from making whole beds to pressing the parts the community plants assemble.</text>
+        </g>
+      </svg>
+      <p class="cap">Bed counts are targets that sit inside measured capacity. Witta makes
+        576 a year at three beds a day. A new plant makes about 200 in its first year and reaches
+        720 on the same press.</p>
+    </div>
+
+    <div class="note">
+      <b>What $300,000 proves in twelve months</b>
+      <p>That making can move to a community without stranding the equipment that got it started.
+        Witta does not become a spare factory. It becomes the parts supplier for the places now
+        doing the assembly.</p>
+      <p>The sequence matters and it is the opposite of the usual one. <b>The demand is already
+        there before the plant is.</b> Palm Island has 131 beds deployed and three organisations
+        asking. Maningrida has 58 beds, eight washing machines and two organisations that have paid.
+        The plant follows the relationship home.</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>Three. What gets counted</h2>
+    <p class="lede">Three tiers and one number in the middle. Every question a funder asks hangs off
+      one of these.</p>
+    <div class="grid g3">
+      <div>
+        <h3 style="color:var(--goods)">The capital model</h3>
+        <p>Where every dollar goes and what job it does. $300,000 into two plants, $110,400 into
+          making 400 beds, $40,000 into facilitation, $297,550 into running the organisation.</p>
+        <p><b>$747,950 for the year.</b> $600,000 asked, $0 secured.</p>
+      </div>
+      <div>
+        <h3 style="color:var(--community)">The enterprise model</h3>
+        <p>400 beds into four community pools of 100. Each pool sells at $750 and keeps
+          <b>$75,000</b> of local capital.</p>
+        <p>Then the question that matters: how much of the next production cycle can each one fund
+          itself.</p>
+      </div>
+      <div>
+        <h3 style="color:var(--plum)">The impact measures</h3>
+        <p>Five rows, and one of them is counted. A person off the floor comes from the register,
+          bed by bed.</p>
+        <p>Paid making and plastic are modelled. Money kept is a rule with no trade behind it yet.
+          Health carries no number.</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <b>Procurement shifted, the number in the middle</b>
+      <p>Institutional dollars that now land in a community enterprise instead of a southern
+        supplier. It names the counterfactual that money kept in community never did:
+        <b>that money was going to be spent anyway, somewhere else.</b></p>
+      <p>It is countable one sale at a time, it is the difference between catalytic and charitable,
+        and <b>nobody is counting it yet</b> because no community enterprise is trading. The first
+        sale out of a 100-bed pool is the first number.</p>
+    </div>
+
+    <div class="scroll">
+      <table>
+        <thead><tr><th>Measure</th><th>Per bed</th><th>Where it stands</th></tr></thead>
+        <tbody>
+          <tr><td><b>Procurement shifted</b></td><td class="r">up to $750</td><td>Not yet counted. No enterprise is trading</td></tr>
+          <tr><td><b>A person off the floor</b></td><td class="r">1</td><td>Counted, from the register, with a community and a date</td></tr>
+          <tr><td><b>Paid making</b></td><td class="r">2 hours, $80</td><td>Modelled from the build. The production log is what changes it</td></tr>
+          <tr><td><b>Plastic kept in use</b></td><td class="r">20 kg</td><td>Design mass. 36 kg goes through the press and yield is unweighed</td></tr>
+          <tr><td><b>Health</b></td><td class="r">no number</td><td>The reason the work exists. Never a claimed outcome</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>What is true today</h2>
+    <div class="scroll">
+      <table>
+        <tbody>
+          <tr><td>Beds deployed, eleven communities</td><td class="r">540</td></tr>
+          <tr><td>Beds bought and paid for, four organisations</td><td class="r">320 &middot; $273,966</td></tr>
+          <tr><td>Made end to end at our own facility</td><td class="r">40</td></tr>
+          <tr><td>Communities that have asked for a plant</td><td class="r">5</td></tr>
+          <tr class="tot"><td>Community enterprises trading</td><td class="r">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="cap">That last row is what the year changes, and it is why the model is drawn as two loops.</p>
+
+    <div class="note red">
+      <b>We do not have a demand number and do not claim one</b>
+      <p>Every bed figure on the record is somebody's impression of a population nobody has counted.
+        We present what people did instead: money moved, money named, an organisation asked, a
+        person asked, it came up in a meeting. The largest figure we hold sits on the weakest rung.</p>
+      <p>The plainest thing we can say needs no model at all. <b>Beds have gone to eleven
+        communities and not one has come back to say it has enough.</b></p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>The other drawings</h2>
+    <div class="links">
+      <a href="https://claude.ai/code/artifact/69266095-8cfc-43ab-b81f-ed71b4e2b3de"><span class="t">Three Plates for the Deck</span><span class="d">The bottleneck, the two loops and the ladder of who has asked, at slide size</span></a>
+      <a href="https://claude.ai/code/artifact/58d96a4b-616e-49ac-b274-8237929ae68a"><span class="t">The Two Loops</span><span class="d">The money drawing on its own, with the full argument</span></a>
+      <a href="https://claude.ai/code/artifact/90e5a525-b65b-48ae-8a34-95bf6268a728"><span class="t">How a Bed Becomes an Enterprise</span><span class="d">Eleven plates, the long walkthrough</span></a>
+      <a href="https://claude.ai/code/artifact/b45c45a0-378b-41a0-b635-eaa461d0957f"><span class="t">QBE Control Room</span><span class="d">The money, Witta capacity, who has asked, the calendar</span></a>
+    </div>
+  </div>
+
+  <footer>
+    Figures from <span style="font-family:var(--mono)">the-year-and-the-raise</span>,
+    <span style="font-family:var(--mono)">three-year-plan</span>,
+    <span style="font-family:var(--mono)">production-scenarios</span>,
+    <span style="font-family:var(--mono)">who-has-asked</span> and
+    <span style="font-family:var(--mono)">capital-stack-flex</span>, with 29 cross-module guards
+    holding them in agreement. Bed volumes are targets inside measured capacity.
+  </footer>
+</div>
+
+<script>
+document.getElementById('themebtn').addEventListener('click', () => {
+  const cur = document.documentElement.getAttribute('data-theme');
+  const dark = cur ? cur === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.setAttribute('data-theme', dark ? 'light' : 'dark');
+});
+</script>

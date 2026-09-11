@@ -101,3 +101,56 @@ community enterprise's first trading stock" and in the footer's "two kinds of mo
 meet", so the subhead does not have to.
 
 **Not built.** One slide at a time, and the copy is Ben's to rule on.
+
+
+---
+
+## Second pass, 12 September: the fuller transcript
+
+Ben re-sent the session with a middle section the first paste did not carry. Two things in it are
+worth keeping and one needs rework.
+
+### Keep: migration without stranding
+
+> In 12 months, QBE's three hundred proves that a central production model can deliberately migrate
+> productive capacity into communities without stranding infrastructure.
+
+**"Without stranding infrastructure" is the sharp part.** A funder looking at $300,000 of plant
+asks what happens to the first factory when the work moves. The answer is now drawn: Witta goes
+from making whole beds to pressing the parts the community plants assemble.
+
+The arithmetic behind it, from `three-year-plan.ts`:
+
+| | Target | Plants make | Witta makes | Witta share |
+|---|---:|---:|---:|---:|
+| Year one | 400 | 0 | 400 | 100% |
+| Year two | 628 | 400 | 228 | 36% |
+| Year three | 900 | 900 | 0 | 0% |
+
+Year three is the striking row and it is the one that needs the caption. **Witta making zero beds
+is not Witta closing.** It is the parts supplier for three plants, and saying that plainly is what
+stops the row reading as a factory being abandoned.
+
+### Rework: the sequencing line
+
+> We don't build factories then hunt for demand. We grow demand, then migrate production.
+
+Good thinking, and it is the banned shape. Negative parallelism, and the checker rejects it.
+
+What survives, and keeps the information: **the demand is already there before the plant is.** Palm
+Island has 131 beds deployed and three organisations asking. Maningrida has 58 beds, eight washing
+machines and two organisations that have paid. The plant follows the relationship home.
+
+That version also happens to be provable, where the original was a claim about how we work.
+
+### The open question the session left
+
+> whether institutional demand can be credibly aggregated so that communities aren't starting from
+> zero when production shifts
+
+This is the right question and we have a partial answer. Four organisations have paid for 320 beds,
+and two of them are in the same community. What we do not have is any aggregation mechanism: no
+standing offer, no panel, no framework agreement. A community plant coming online in year two
+inherits a relationship. The pipeline would have to be built.
+
+Name it as a gap. The shared-service idea can otherwise be read as though it is already solved.
