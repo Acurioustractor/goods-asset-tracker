@@ -308,6 +308,31 @@ Patched in the artifact and in both source files.
 **Q19 gained today's two closures in its evidence panel**: The Harvest at 576 beds a year with 176 of
 headroom against the 400 target, and freight at $150 all up.
 
+## Capacity is a sheets model
+
+Ben's clarification, 11 September: **six sheets a day cooked is the facility.** Routing, edging,
+buying sheets and assembly are all faster and none is the thing you wait on. So the only question is
+what the six sheets become.
+
+**One bed needs two cooked sheets:** a leg sheet at 21 kg, about $38 of shred, and a tab sheet at
+15 kg, about $27. That is 36 kg through the press, of which about 16 kg of melt edge and router
+skeleton returns to the shredder, so net new shred is 20 kg, about $36.
+
+| Sheets cooked a day | Legs | Beds a day | A week at 80% | A year | Plastic a bed | Shred a year |
+|---|---|---:|---:|---:|---:|---:|
+| 6, one press, today | cooked here | 3 | 12 | 576 | $36 net | 19 bags |
+| 6, tabs only | bought from Defy | 5 | 20 | 960 | about $200 | 16 bags |
+| 12, a second press | cooked here | 5 | 20 | 960 | $36 net | 32 bags |
+
+**Freeing a cooking slot by buying costs about $162 a bed**, every bed, for as long as you use it. A
+Defy half sheet is $200 and the shred to cook the same leg sheet is about $38. The second press buys
+the same capacity once for about $22,500 and then costs nothing a bed. Across the 630 that is about
+$102,000.
+
+**An ambiguity Nic has to settle.** The Defy record says a half sheet makes one bed's worth of parts,
+which would free both cooking slots. The same route is described elsewhere as leg panels only, which
+frees one. The table takes the cautious reading, and Open Item 20 says the route is not modelled.
+
 ## The Model artifact corrected, 11 September 2026
 
 Read in full and fixed. It was the last stale one of the five and it is one of the four files Q23
