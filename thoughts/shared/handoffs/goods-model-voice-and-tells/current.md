@@ -329,9 +329,13 @@ Defy half sheet is $200 and the shred to cook the same leg sheet is about $38. T
 the same capacity once for about $22,500 and then costs nothing a bed. Across the 630 that is about
 $102,000.
 
-**An ambiguity Nic has to settle.** The Defy record says a half sheet makes one bed's worth of parts,
-which would free both cooking slots. The same route is described elsewhere as leg panels only, which
-frees one. The table takes the cautious reading, and Open Item 20 says the route is not modelled.
+**Settled by Ben, 11 September: one panel does the legs for one bed.** So buying frees the leg slot
+and the tab sheet is still cooked here, which is why six sheets a day becomes six beds and not
+twelve. The Defy invoice record describes the same panel as a bed's worth of parts and that reading
+is retired. **Do not use "half sheet" language; Ben does not recognise it.** The plastic on the
+bought route is about $227 a bed, being the $200 panel plus about $27 of shred for the tab sheet,
+against about $65 gross when both are cooked here. Open Item 20 still wants the order quantities and
+the timing from Nic.
 
 ## The Model artifact corrected, 11 September 2026
 
