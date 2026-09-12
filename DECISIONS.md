@@ -19,6 +19,54 @@
 
 ---
 
+## 2026-09-12: three page assertions ruled
+
+Ben ruling, made on the three page assertions left open by the 12 September sweep. All three
+govern how a figure may be used on a funder-facing surface. None of them change the figure.
+
+### The Control Room calculator defaults to Snow off
+The Snow ask is unsent and nothing is secured against it, so a default that switches it on prints a
+funded position that does not exist. The stated bed gap becomes **320**, and 187 is what the page
+shows once Snow is switched on. One line carries the relationship: 320 still to find, 133 of which
+an unsent Snow ask would cover.
+
+Supersedes the static 187, which the Control Room page stated six times while its own calculator
+computed 320.
+
+Sweep: the Control Room artifact `b45c45a0-378b-41a0-b635-eaa461d0957f` and its calculator default,
+every static statement of 187 on that page, and any deck slide carrying the bed gap.
+
+### No Snow percentage is printable, in either scope
+57% divides a two-entity numerator by a one-entity denominator and cannot be traced to a cell. The
+sole-trader-scoped 37.9% is arithmetically sound but its denominator is the trading org alone, so it
+understates concentration across the group. This is a concentration-risk disclosure to a funder, and
+understating it is the worse of the two errors, which rules out the safe-looking number.
+
+Print the dollars with the scope named instead: Snow, FY26, trading org, invoice-date basis,
+$247,544.88, with a further $127,455.12 placed in the A Curious Tractor ledger and unread.
+
+Connecting the A Curious Tractor Pty Ltd Xero org is the single action that lifts this.
+
+Sweep: the Model artifact `0b235115-7bbb-436f-bbe8-f716c283dcf5` section 5 tile and the who-paid
+chart caption, the Money Map, the Raise Review, and any funder answer stating Snow as a share.
+
+### The 87 is an inventory fact and is no longer a readiness figure
+87 rests on one sentence, that legs are the limit. The flat-pack route buys leg sheets, which
+retires that constraint. So 87 survives as 87 sets of legs already cut, a saving against the first
+purchase order, and it stops being the beds-ready number.
+
+No replacement ceiling is printed until Nic confirms the bought leg panel yield, because that
+unknown sets it.
+
+Supersedes "parts on the floor are 87" read as beds ready, ruled 11 September under the pressed-leg
+route.
+
+Sweep: the ramp that has ALIVE's hundred consuming all 87 parts and the 400 starting from nothing in
+December, which is built on the retired constraint and must be redone. Also S11's stock note, the
+Control Room stock section and the Capacity and Stock plan consumers.
+
+---
+
 ## 2026-09-12: current flat-pack production route
 
 Ben confirmed that the current production facility presses tab sheets, buys leg sheets and sends flat-packed kits for young people to assemble in community. Factory assembly does not constrain kit output. Bought legs and pressed tabs are complementary inputs, not additive bed production routes.
