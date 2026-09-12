@@ -47,18 +47,19 @@ describe('the canon list', () => {
 });
 
 describe('the drift list', () => {
-  it('names where the workbook is wrong today', () => {
-    expect(DRIFTED.length).toBeGreaterThanOrEqual(5);
+  it('every drift note says something, and none is left behind once the workbook is fixed', () => {
+    // These used to assert a fixed list of drifted cells, which meant the canon kept asserting the
+    // workbook was wrong after somebody had fixed it. Verified against the live workbook on
+    // 12 September 2026: availability reads 80%, the Money tab carries the year and the gap, the
+    // shred break-even is present as a status, and the Calculator names the route. All those notes
+    // are cleared. What the guard protects now is the shape, not a count that goes stale.
     for (const d of DRIFTED) expect(d.drift!.length).toBeGreaterThan(15);
   });
 
-  it('includes the availability cell, which drives three others', () => {
-    const run = CANON.find((c) => c.key === 'line.runDaysPerMonth')!;
-    expect(run.drift).toContain('100%');
-  });
-
-  it('includes D06, still recording 40 kg against a 36 kg ruling', () => {
-    expect(CANON.find((c) => c.key === 'bed.pressedKg')!.drift).toContain('40 kg');
+  it('every remaining drift note is about a key the Canon tab does not carry yet', () => {
+    // The only real drift left is the three figures added on 12 September, which the hand-built
+    // Canon tab predates. A push closes this, and the note is how anyone knows it is owed.
+    for (const d of DRIFTED) expect(d.drift).toContain('Canon tab');
   });
 });
 

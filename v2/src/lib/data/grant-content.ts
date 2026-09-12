@@ -84,16 +84,16 @@ export const problemStatement = {
     'Strep A → rheumatic fever → Rheumatic Heart Disease',
     'RHD → death certificates for children',
   ],
+  // The claim ceiling, rhd-problem.ts:44. These figures describe the disease and the risk factor.
+  // Goods has never run a clinical study and never claims a bed or a machine prevented a case.
   prevention:
-    'A washing machine interrupts the cascade. Clean bedding breaks the scabies cycle.',
+    'Scabies and rheumatic heart disease are why a bed is washable and off the ground and why a working washing machine matters. That is where the claim stops.',
   stats: [
     { claim: 'Remote homes lacking washing machines', value: '59%' },
     { claim: 'Children with scabies at any time', value: '1 in 3' },
     { claim: 'Very remote First Nations homes overcrowded', value: '55%' },
     { claim: 'Mattress cost in remote', value: '$1,200+ (2x city)' },
     { claim: 'Washing machines sold → dumps, Alice Springs', value: '$3M/year' },
-    { claim: 'Remote laundries reduce scabies', value: '60% reduction' },
-    { claim: 'Healthcare savings per $1 washing investment', value: '$6 saved' },
   ],
 };
 
@@ -201,7 +201,7 @@ export const communityQuotes = {
 
 export const grantAnswers = {
   whatDoYouDo: {
-    short: 'We design and manufacture essential household goods — beds, washing machines, and refrigerators — with remote Indigenous communities in Australia, using recycled plastic and local production to create health outcomes, jobs, and community ownership.',
+    short: 'We design and manufacture essential household goods — beds, washing machines, and refrigerators — with remote Indigenous communities in Australia, using recycled plastic and local production to create jobs and a pathway to community ownership.',
     medium: `Goods on Country transforms essential household goods into community-owned assets that improve lives in remote Australia. Our flagship product, the Stretch Bed, is a flat-packable, washable bed made from recycled HDPE plastic, galvanised steel, and heavy-duty canvas. Each bed diverts 20kg of plastic from landfill and is designed to last 10+ years. We've deployed 540 bed units across 11 communities in multiple states and territories, with washing-machine prototypes in several communities. Our containerised production facility is being set up so communities can manufacture goods from local waste plastic On-Country.`,
   },
   whatProblemDoYouSolve: {
@@ -213,7 +213,7 @@ export const grantAnswers = {
     medium: `Three things differentiate Goods: (1) Community-led design. Every product decision is shaped in community with the people who use the thing. 500+ minutes of recorded community input drove the evolution from V1 Basket Beds to the V4 Stretch Bed. (2) Local production. Our containerised production facility ($100K invested) is being set up to turn waste plastic into bed components On-Country, creating jobs and a circular economy as it comes online. (3) Ownership pathway. The model is built to transfer capability to communities over time, with full training, capability and documentation, rather than a license.`,
   },
   whoDoYouWorkWith: 'We work with 9 remote Indigenous communities across QLD, NT, WA, and SA. Core community partners include Oonchiumpa Consultancy, Wilya Janta, and Palm Island Community Company. Health partners include Anyinginyi Health, Miwatj Health, Purple House, and Red Dust.',
-  howDoYouMeasureImpact: 'We track impact through: (1) Asset Register — 603 asset rows with QR-coded lifecycle monitoring. (2) Telemetry — 22 washing machines in community, with fleet telemetry not yet fleet-wide. (3) Community feedback — 500+ minutes recorded, 15+ verified storytellers via Empathy Ledger. (4) Environmental metrics — 3,540kg+ plastic diverted (177 Stretch beds x 20kg HDPE, Stretch only; Basket Beds are not a plastic product). (5) Health outcomes — tracking with health partners.',
+  howDoYouMeasureImpact: 'We track impact through: (1) Asset Register — 603 asset rows with QR-coded lifecycle monitoring. (2) Telemetry — 22 washing machines in community, with fleet telemetry not yet fleet-wide. (3) Community feedback — 500+ minutes recorded, 15+ verified storytellers via Empathy Ledger. (4) Environmental metrics — 3,540kg+ plastic diverted (177 Stretch beds x 20kg HDPE, Stretch only; Basket Beds are not a plastic product).',
   whatAreYourFinancials: `~$741.1K ACT-GD ACCREC paid to date, comprising ~$679.7K grant/philanthropic receipts and ~$61.4K commercial/buyer receipts. ~$143K remains outstanding in authorised receivables (Rotary $82.5K, Homeland School $44K, and Regional Arts $16.5K). $100K invested in the production facility. Demand materially exceeds current production capacity. Figures are Xero management data, not audited.`,
   howWillYouUseThisFunding: {
     beds: 'Each $600–850 funds one Stretch Bed deployed to a remote community, diverting 20kg of plastic and providing a 10+ year sleeping surface.',

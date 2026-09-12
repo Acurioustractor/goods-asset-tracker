@@ -42,8 +42,7 @@
       "label": "Gross tab shred per dispatched kit",
       "value": 15,
       "unit": "kg",
-      "from": "production-scenarios",
-      "drift": "The old 36 kg included leg pressing; D06 also recorded 40 kg. Current factory pressing is tabs only."
+      "from": "production-scenarios"
     },
     {
       "key": "line.pressPerDay",
@@ -71,16 +70,14 @@
       "label": "Run days a month, at 80% availability",
       "value": 16,
       "unit": "days",
-      "from": "Ben ruling 10 Sep",
-      "drift": "Calculator availability still reads 100% and working days 20"
+      "from": "Ben ruling 10 Sep"
     },
     {
       "key": "line.bedsPerMonth",
       "label": "Flat-packed kits a month today",
       "value": 96,
       "unit": "beds",
-      "from": "derived",
-      "drift": "Remove the two-pressed-sheet and factory-assembly assumptions. Preserve the separate full-availability ceiling."
+      "from": "derived"
     },
     {
       "key": "line.bedsPerMonthLifted",
@@ -242,15 +239,14 @@
       "value": 919,
       "unit": "beds",
       "from": "three-year-plan",
-      "drift": "The workbook and a Control Room widget both read 796"
+      "drift": "Not in the Canon tab yet; the workbook has no break-even-with-freight cell"
     },
     {
       "key": "year.needs",
       "label": "The year needs",
       "value": 747950,
       "unit": "AUD",
-      "from": "the-year-and-the-raise",
-      "drift": "No tab carries this figure"
+      "from": "the-year-and-the-raise"
     },
     {
       "key": "year.needsGoodsFreight",
@@ -264,8 +260,7 @@
       "label": "Asked across five lines",
       "value": 600000,
       "unit": "AUD",
-      "from": "the-year-and-the-raise",
-      "drift": "Money tab December receipts read $700,000 including a Sefa line that is ours"
+      "from": "the-year-and-the-raise"
     },
     {
       "key": "year.secured",
@@ -286,7 +281,8 @@
       "label": "Operating line, short",
       "value": 197550,
       "unit": "AUD",
-      "from": "capital-stack-flex"
+      "from": "capital-stack-flex",
+      "drift": "Not in the Canon tab yet"
     },
     {
       "key": "year.bedSurplus",
@@ -314,8 +310,7 @@
       "label": "Bought leg panels per kit: cost status",
       "value": "Needs panel yield",
       "unit": "status",
-      "from": "defy-supply INV-2021",
-      "drift": "Calculator plastic reads $55 with no supply-path choice"
+      "from": "defy-supply INV-2021"
     },
     {
       "key": "plastic.kitPerBed",
@@ -329,8 +324,7 @@
       "label": "Shred break-even: withdrawn for old route",
       "value": "Needs route costing",
       "unit": "status",
-      "from": "production-scenarios",
-      "drift": "Not in the workbook at all"
+      "from": "production-scenarios"
     },
     {
       "key": "trade.bedsPaid",
@@ -351,7 +345,8 @@
       "label": "Paid, including GST",
       "value": 273966,
       "unit": "AUD",
-      "from": "demand-and-buyers"
+      "from": "demand-and-buyers",
+      "drift": "Not in the Canon tab yet"
     }
   ],
   "runningBreakdown": [

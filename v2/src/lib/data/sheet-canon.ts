@@ -3,10 +3,16 @@
  *
  * Ben, 12 September 2026: make the sheet the core that aligns all numbers at all times.
  *
- * The sheet cannot be that core, and it is worth saying why. It has no guards, nobody can run a
- * test against it, and it has already drifted from the modules in eleven places, including an
- * availability cell still reading 100% four days after Ben set 80%. A surface that anyone can edit
- * and nothing can check will always drift.
+ * The sheet cannot be that core, and it is worth saying why. It has no guards and nobody can run a
+ * test against it. On 10 September it had drifted from the modules in eleven places, including an
+ * availability cell reading 100% four days after Ben set 80%. A surface that anyone can edit and
+ * nothing can check will always drift, and the point is not that it did once: it is that nothing
+ * would have told you.
+ *
+ * As at 12 September the workbook is back in step, rebuilt to the flat-pack route, and the Canon tab
+ * matches these figures except for the three added that day. The `drift` field below is the record
+ * of what is out of step RIGHT NOW, so it is cleared as each one is fixed. A stale drift note is the
+ * same failure in the other direction: canon asserting the sheet is wrong after somebody fixed it.
  *
  * So the arrangement is the other way round. **The modules are the core and the sheet is a view of
  * them.** Every figure below is imported from a guarded module, never retyped here, so this file
@@ -59,14 +65,14 @@ export const CANON: readonly CanonCell[] = [
   { key: 'bed.freight', label: 'Freight a bed, all up', value: BED_FREIGHT_AUD, unit: 'AUD', from: 'demand-and-buyers FREIGHT_RULING' },
   { key: 'bed.contribution', label: 'Provisional contribution, legacy making allowance', value: CONTRIBUTION_BUYER_FREIGHT_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
   { key: 'bed.contribution.goodsFreight', label: 'Provisional contribution with Goods freight', value: CONTRIBUTION_GOODS_FREIGHT_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
-  { key: 'bed.pressedKg', label: 'Gross tab shred per dispatched kit', value: PRESSED_KG_PER_BED, unit: 'kg', from: 'production-scenarios', drift: 'The old 36 kg included leg pressing; D06 also recorded 40 kg. Current factory pressing is tabs only.' },
+  { key: 'bed.pressedKg', label: 'Gross tab shred per dispatched kit', value: PRESSED_KG_PER_BED, unit: 'kg', from: 'production-scenarios' },
 
   // The line
   { key: 'line.pressPerDay', label: 'Tab press, kits a day', value: PRESS_BEDS_A_DAY, unit: 'beds', from: 'production-scenarios' },
   { key: 'line.cncPerDay', label: 'Router, kits a day', value: CNC_BEDS_A_DAY, unit: 'beds', from: 'production-scenarios' },
   { key: 'line.assemblyPerDay', label: 'Assembly location; no factory limit', value: ASSEMBLY_LOCATION, unit: 'status', from: 'production-scenarios' },
-  { key: 'line.runDaysPerMonth', label: 'Run days a month, at 80% availability', value: RUN_DAYS_A_MONTH, unit: 'days', from: 'Ben ruling 10 Sep', drift: 'Calculator availability still reads 100% and working days 20' },
-  { key: 'line.bedsPerMonth', label: 'Flat-packed kits a month today', value: PRESS_BEDS_A_DAY * RUN_DAYS_A_MONTH, unit: 'beds', from: 'derived', drift: 'Remove the two-pressed-sheet and factory-assembly assumptions. Preserve the separate full-availability ceiling.' },
+  { key: 'line.runDaysPerMonth', label: 'Run days a month, at 80% availability', value: RUN_DAYS_A_MONTH, unit: 'days', from: 'Ben ruling 10 Sep' },
+  { key: 'line.bedsPerMonth', label: 'Flat-packed kits a month today', value: PRESS_BEDS_A_DAY * RUN_DAYS_A_MONTH, unit: 'beds', from: 'derived' },
   { key: 'line.bedsPerMonthLifted', label: 'Kits a month at the router ceiling', value: Math.floor(CNC_BEDS_A_DAY * RUN_DAYS_A_MONTH), unit: 'beds', from: 'derived' },
   { key: 'line.wittaPerYear', label: 'Current facility kits a year, modelled', value: WITTA_BEDS_A_YEAR, unit: 'beds', from: 'three-year-plan' },
   { key: 'line.bulkaBagKg', label: 'A bulka bag of shred', value: BULKA_BAG_KG, unit: 'kg', from: 'production-scenarios' },
@@ -95,26 +101,26 @@ export const CANON: readonly CanonCell[] = [
   { key: 'year.facilitation', label: 'Facilitation, all four', value: FACILITATION_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
   { key: 'year.running', label: 'Running the organisation', value: RUNNING_AUD, unit: 'AUD', from: 'Ben provision 9 Sep' },
   { key: 'year.breakEvenBeds', label: 'Beds a year that carry the organisation', value: BREAK_EVEN_BEDS, unit: 'beds', from: 'three-year-plan' },
-  { key: 'year.breakEvenBeds.goodsFreight', label: 'Beds a year that carry it when Goods pays freight', value: BREAK_EVEN_BEDS_GOODS_FREIGHT, unit: 'beds', from: 'three-year-plan', drift: 'The workbook and a Control Room widget both read 796' },
-  { key: 'year.needs', label: 'The year needs', value: NEED_BUYER_FREIGHT_AUD, unit: 'AUD', from: 'the-year-and-the-raise', drift: 'No tab carries this figure' },
+  { key: 'year.breakEvenBeds.goodsFreight', label: 'Beds a year that carry it when Goods pays freight', value: BREAK_EVEN_BEDS_GOODS_FREIGHT, unit: 'beds', from: 'three-year-plan', drift: 'Not in the Canon tab yet; the workbook has no break-even-with-freight cell' },
+  { key: 'year.needs', label: 'The year needs', value: NEED_BUYER_FREIGHT_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
   { key: 'year.needsGoodsFreight', label: 'The year needs, Goods pays freight', value: NEED_GOODS_FREIGHT_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
-  { key: 'year.asked', label: 'Asked across five lines', value: ASKED_AUD, unit: 'AUD', from: 'the-year-and-the-raise', drift: 'Money tab December receipts read $700,000 including a Sefa line that is ours' },
+  { key: 'year.asked', label: 'Asked across five lines', value: ASKED_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
   { key: 'year.secured', label: 'Secured', value: SECURED_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
   { key: 'year.gap', label: 'Still to find', value: GAP_AUD, unit: 'AUD', from: 'capital-stack-flex' },
-  { key: 'year.operatingShort', label: 'Operating line, short', value: OPERATING_SHORTFALL_AUD, unit: 'AUD', from: 'capital-stack-flex' },
+  { key: 'year.operatingShort', label: 'Operating line, short', value: OPERATING_SHORTFALL_AUD, unit: 'AUD', from: 'capital-stack-flex', drift: 'Not in the Canon tab yet' },
   { key: 'year.bedSurplus', label: 'Bed money over the making line', value: bedSurplusAud(), unit: 'AUD', from: 'capital-stack-flex' },
   { key: 'year.bedsUnfunded', label: 'Beds unfunded', value: BEDS_UNFUNDED, unit: 'beds', from: 'the-year-and-the-raise' },
   { key: 'year.bedsUnfundedAud', label: 'Beds unfunded, at the price', value: BEDS_UNFUNDED_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
 
   // Plastic supply
-  { key: 'plastic.panelPerBed', label: 'Bought leg panels per kit: cost status', value: PANEL_PLASTIC_PER_BED_AUD ?? BOUGHT_LEG_COST_STATUS, unit: 'status', from: 'defy-supply INV-2021', drift: 'Calculator plastic reads $55 with no supply-path choice' },
+  { key: 'plastic.panelPerBed', label: 'Bought leg panels per kit: cost status', value: PANEL_PLASTIC_PER_BED_AUD ?? BOUGHT_LEG_COST_STATUS, unit: 'status', from: 'defy-supply INV-2021' },
   { key: 'plastic.kitPerBed', label: 'Defy finished leg kit, excluding tabs', value: FINISHED_KIT_PER_BED_AUD, unit: 'AUD', from: 'defy-supply INV-1602' },
-  { key: 'plastic.breakEvenShred', label: 'Shred break-even: withdrawn for old route', value: SHRED_BREAK_EVEN_STATUS, unit: 'status', from: 'production-scenarios', drift: 'Not in the workbook at all' },
+  { key: 'plastic.breakEvenShred', label: 'Shred break-even: withdrawn for old route', value: SHRED_BREAK_EVEN_STATUS, unit: 'status', from: 'production-scenarios' },
 
   // Trade
   { key: 'trade.bedsPaid', label: 'Beds bought and paid for', value: BEDS_PAID_FOR, unit: 'beds', from: 'demand-and-buyers' },
   { key: 'trade.paidNet', label: 'Paid, net', value: PAID_NET_AUD, unit: 'AUD', from: 'demand-and-buyers' },
-  { key: 'trade.paidInclGst', label: 'Paid, including GST', value: PAID_INCL_GST_AUD, unit: 'AUD', from: 'demand-and-buyers' },
+  { key: 'trade.paidInclGst', label: 'Paid, including GST', value: PAID_INCL_GST_AUD, unit: 'AUD', from: 'demand-and-buyers', drift: 'Not in the Canon tab yet' },
 ];
 
 export const RUNNING_BREAKDOWN = RUNNING_LINES;
