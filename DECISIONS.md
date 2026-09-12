@@ -19,6 +19,40 @@
 
 ---
 
+## 2026-09-12: one entity, renamed Goods on Country
+
+Ben ruling, made when the SEFA Backing the Bold expression of interest forced the entity field.
+
+**The Butterfly Movement Ltd is the entity, and its name changes to Goods on Country.** Goods on
+Country stops being a registered business name sitting over a charity and becomes the legal name of
+the charity itself. All funds flow through it, people are paid from it, and it holds the resources.
+
+This closes the half of the entity question that ruling AA left open. Ruling AA settled that
+Butterfly is the applicant and recipient. This settles that Butterfly also holds the trade revenue,
+so grants, trade, wages and assets all have the same home.
+
+Supersedes the open question in `wiki/articles/governance/the-entity-question.md`, and the
+trading-entity option on every surface that offered a choice. The sole trader remains the historic
+ledger that carries FY26 and nothing further.
+
+**What the ruling makes harder, and is ruled anyway.** SEFA's expression of interest asks four
+years of EBITDA and the percentage of revenue from trade. Answered as Butterfly, that is a charity
+with an FY26 result of about negative $42,854, almost no trade revenue, and a dormant shell behind
+it in FY23 to FY25. The lending case is weaker as one entity than it would have been as the trading
+company, so the call with Joel Bird and Tanya at SEFA is what carries the application. The form text
+will not.
+
+Sweep: the constitution, which already blocks QBE Q12 and Q22 and TFFF 4.1, so the amendment and
+the name change are one piece of work and not two · the ACNC and ASIC name change, the board
+resolution behind it, and every place the legal name is printed · the transfer of trade from the
+sole trader to the charity, which is a related-party transaction and needs documenting before a
+funder finds it · whether trading sits inside the charitable purposes and what it does to DGR,
+which is MinterEllison's to answer and nobody else's · the shop's seller of record and the terms
+page, ruling K · `the-entity-question.md`, `sefa.md`, `the-blockers.md` and the raise modules that
+still carry two candidate entities.
+
+---
+
 ## 2026-09-12: three page assertions ruled
 
 Ben ruling, made on the three page assertions left open by the 12 September sweep. All three
