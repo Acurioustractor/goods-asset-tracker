@@ -263,21 +263,45 @@ export function gapAud(s: Scenario): number {
 // Where the gap actually lives
 // ---------------------------------------------------------------------------
 
+/**
+ * Ben, 12 September 2026: an ask that has not been sent does not cover a bed.
+ * So the stated gap counts only the asks that are with a funder, and the Snow
+ * line is what closes it from 320 to 187 once it goes out.
+ */
+export const BEDS_COVERED_BY_SENT_ASKS = Math.floor(
+  ASKS.filter((a) => a.job === 'beds' && a.stage !== 'not-sent')
+    .reduce((n, a) => n + a.amountAud, 0) / BED_PRICE_AUD,
+);
+
+/** The figure every funder-facing surface prints. */
+export const BEDS_TO_FIND = BEDS_YEAR_ONE - BEDS_COVERED_BY_SENT_ASKS;
+export const BEDS_TO_FIND_AUD = BEDS_TO_FIND * BED_PRICE_AUD;
+
+/** What the unsent Snow ask would cover, at the sale price. */
+export const BEDS_IN_UNSENT_ASKS = Math.floor(
+  ASKS.filter((a) => a.job === 'beds' && a.stage === 'not-sent')
+    .reduce((n, a) => n + a.amountAud, 0) / BED_PRICE_AUD,
+);
+
+/** Every bed ask counted, sent or not. This is the 187, and it is the switched-on case. */
 export const BEDS_FUNDED = Math.floor(
   ASKS.filter((a) => a.job === 'beds').reduce((n, a) => n + a.amountAud, 0) / BED_PRICE_AUD,
 );
 export const BEDS_UNFUNDED = BEDS_YEAR_ONE - BEDS_FUNDED;
 export const BEDS_UNFUNDED_AUD = BEDS_UNFUNDED * BED_PRICE_AUD;
 
+export const BED_GAP_RULE =
+  'Ben, 12 September 2026: the stated bed gap is 320 and the Snow line is off by default, because the ask has not been sent. 133 beds is what sending it would cover, and 187 is the position after it lands. A default that switches an unsent ask on prints a funded position that does not exist.';
+
 export const OPERATING_ASKED_AUD = ASKS
   .filter((a) => a.job === 'operating')
   .reduce((n, a) => n + a.amountAud, 0);
 
 export const WHERE_THE_GAP_LIVES =
-  'The gap is not in the plants. Plant money arrives in $150,000 pieces that match the $150,000 cost, so a plant either happens or it does not and it never leaves a hole. The gap is 187 beds of first stock and a year of running the organisation, and those are the two hardest things to raise against because one looks like working capital and the other looks like overhead.';
+  'The gap is not in the plants. Plant money arrives in $150,000 pieces that match the $150,000 cost, so a plant either happens or it does not and it never leaves a hole. The gap is 320 beds of first stock and a year of running the organisation, and those are the two hardest things to raise against because one looks like working capital and the other looks like overhead.';
 
 export const THE_LEVER =
-  'Every dollar of bed money does two jobs: it pays the $276 of making and hands $474 to the organisation. So 187 unfunded beds are not just $140,250 of stock, they are $88,638 of the running cost as well. Funding beds is the cheapest way to fund the organisation, and it is the only ask that a funder can see a product at the end of.';
+  'Every dollar of bed money does two jobs: it pays the $276 of making and hands $474 to the organisation. So the 320 beds still to find carry $240,000 of stock and $151,680 of the running cost with them. Funding beds is the cheapest way to fund the organisation, and it is the only ask that a funder can see a product at the end of.';
 
 export const SECOND_PRESS_AUD = 22_500;
 export const SECOND_PRESS_NOTE =

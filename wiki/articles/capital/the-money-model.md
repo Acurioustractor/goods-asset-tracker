@@ -1,7 +1,7 @@
 ---
 reviewed: 2026-09-12
 ruling: Ben, 12 Sep 2026, the flat-pack route, which leaves the making allowance and the contribution provisional; with the 11 Sep correction that separated bed money from operating money
-canon: [bed.price, bed.make, bed.contribution, bed.contribution.goodsFreight, bed.freight, bed.costStatus, year.beds, year.running, year.breakEvenBeds, year.needs, year.needsGoodsFreight, year.asked, year.secured, year.gap, year.bedsUnfunded, year.bedsUnfundedAud, year.facilitationEach, plant.count, plant.allowance, plant.secondPress, year.breakEvenBeds.goodsFreight]
+canon: [bed.price, bed.make, bed.contribution, bed.contribution.goodsFreight, bed.freight, bed.costStatus, year.beds, year.running, year.breakEvenBeds, year.needs, year.needsGoodsFreight, year.asked, year.secured, year.gap, year.bedsToFind, year.bedsToFindAud, year.facilitationEach, plant.count, plant.allowance, plant.secondPress, year.breakEvenBeds.goodsFreight]
 sources: [v2/src/lib/data/the-year-and-the-raise.ts, v2/src/lib/data/three-year-plan.ts, v2/src/lib/data/production-route.ts, v2/src/lib/data/capital-stack-flex.ts, v2/src/lib/data/demand-and-buyers.ts, v2/src/lib/data/defy-supply.ts, v2/src/lib/data/sheet-canon.ts, deliverables/qbe-stage2/sheet-realignment-2026-09-11.md]
 ---
 
@@ -122,7 +122,7 @@ buyers have tested. Counting it as income without its cost would repeat the mist
 $937,550.
 
 The gap lives in the two hardest lines to raise against. $600,000 is asked across five lines, $0 is
-secured, and the gap is $147,950. In beds, 187 of the 400 are unfunded, which is $140,250 of stock
+secured, and the gap is $147,950. In beds, 320 of the 400 have no sent ask against them, which is $240,000 of stock
 and, at the provisional contribution, about $88,638 of running cost as well. Bed money is the
 cheapest way to fund the organisation and the only ask with a product at the end of it.
 

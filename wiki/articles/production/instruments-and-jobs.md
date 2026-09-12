@@ -1,7 +1,7 @@
 ---
 reviewed: 2026-09-12
 ruling: Ben 8 Sep 2026 · a community's own resale proceeds repay nothing · with Ben 11 Sep 2026 · every dollar carries a job
-canon: [plant.count, plant.allowance, plant.secondPress, year.beds, year.poolSize, year.facilitationEach, year.facilitation, year.running, year.breakEvenBeds, year.needs, year.asked, year.secured, year.gap, year.bedsUnfunded, year.bedsUnfundedAud, bed.price, bed.contribution, bed.costStatus]
+canon: [plant.count, plant.allowance, plant.secondPress, year.beds, year.poolSize, year.facilitationEach, year.facilitation, year.running, year.breakEvenBeds, year.needs, year.asked, year.secured, year.gap, year.bedsToFind, year.bedsToFindAud, bed.price, bed.contribution, bed.costStatus]
 sources: [v2/src/lib/data/capital-stack-flex.ts:24-265, v2/src/lib/data/the-year-and-the-raise.ts:20-110, v2/src/lib/data/community-loop.ts:104-135, v2/src/lib/data/production-scenarios.ts:28 and 76-99, v2/src/lib/data/defy-supply.ts:60-75, v2/src/lib/data/sheet-canon.ts:55-115]
 ---
 
@@ -112,7 +112,7 @@ Three small pieces of code would hold the four sentences above:
 3. A fifth job, capital at an existing site, so the second press has somewhere to sit and shows up
    in a total that somebody is asked for.
 
-The beds line is where this pays first. 187 of the 400 beds are unfunded, which is $140,250 of
+The beds line is where this pays first. 320 of the 400 beds have no sent ask against them, which is $240,000 of
 stock at the $750 price, and it is the only ask with a product at the end of it. Whether that
 $140,250 is grant money or borrowed money changes what has to be true about the buyer, and the
 model should refuse to let anyone answer that by habit.

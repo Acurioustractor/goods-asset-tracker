@@ -1,7 +1,7 @@
 ---
 reviewed: 2026-09-12
 ruling: Ben, 11 Sep 2026, a stack that scales up and down by who is missing
-canon: [year.needs, year.needsGoodsFreight, year.asked, year.secured, year.gap, year.running, year.beds, year.pools, year.poolSize, year.facilitation, year.facilitationEach, year.bedSurplus, year.bedsUnfunded, year.bedsUnfundedAud, year.breakEvenBeds, bed.price, bed.make, bed.contribution, bed.contribution.goodsFreight, bed.freight, bed.pressedKg, plant.count, plant.allowance, plant.firstYearBeds, plant.matureBeds, plant.modulesLow, plant.modulesHigh, plant.secondPress, trade.bedsPaid, trade.paidNet, year.operatingShort, trade.paidInclGst]
+canon: [year.needs, year.needsGoodsFreight, year.asked, year.secured, year.gap, year.running, year.beds, year.pools, year.poolSize, year.facilitation, year.facilitationEach, year.bedSurplus, year.bedsToFind, year.bedsToFindAud, year.breakEvenBeds, bed.price, bed.make, bed.contribution, bed.contribution.goodsFreight, bed.freight, bed.pressedKg, plant.count, plant.allowance, plant.firstYearBeds, plant.matureBeds, plant.modulesLow, plant.modulesHigh, plant.secondPress, trade.bedsPaid, trade.paidNet, year.operatingShort, trade.paidInclGst]
 sources: [v2/src/lib/data/capital-stack-flex.ts, v2/src/lib/data/capital-stack-flex.guards.test.ts, v2/src/lib/data/the-year-and-the-raise.ts, v2/src/lib/data/sheet-canon.ts, deliverables/qbe-stage2/backwards-pass-2026-09-11.md, deliverables/qbe-stage2/real-forms-review-2026-09-12.md]
 supersedes: [program/stage-2-funding]
 ---
@@ -64,7 +64,7 @@ Bed money is asked at the $750 price and the bed cost line is the provisional $2
 
 $160,000 of bed money against a $110,400 making line leaves $49,600. The operating line is short $197,550. The difference between those two is $147,950, which is the gap seen from the other end.
 
-The same gap in beds: 187 beds of the 400 are unfunded, $140,250 at the published price. Every one of them does two jobs, paying its own making and handing the provisional $474 to the organisation, so bed money is the cheapest way to fund the organisation and the only ask with a product at the end of it.
+The same gap in beds: 320 of the 400 have no sent ask against them, $240,000 at the published price. Sending the Snow ask covers 133 and takes it to 187. Every one of them does two jobs, paying its own making and handing the provisional $474 to the organisation, so bed money is the cheapest way to fund the organisation and the only ask with a product at the end of it.
 
 The $99,500 double count that sat under the old figure came from charging Tim Fairfax against beds and against operating at the same time. One invitation, one job.
 
@@ -110,7 +110,7 @@ Four places the rest can come from, trade first:
 - **Trade.** 628 paid beds a year carry the organisation with no grant at all, on the provisional contribution. The year plans 400. The distance between those two numbers is the operating shortfall.
 - **SEFA Backing the Bold.** $50,000 to $200,000 of debt, which suits the second press and working capital because both have a repayment source in the provisional $474 a bed.
 - **Dusseldorp Forum at $50,000 and Minderoo at $100,000.** Both figures are ours. Neither funder has named one.
-- **Selling more beds.** The gap is 187 beds at the published price, and four organisations have already bought 320, paid, $247,770 net of GST and $273,966 including GST across five settled invoices.
+- **Selling more beds.** The gap is 320 beds at the published price, and four organisations have already bought 320, paid, $247,770 net of GST and $273,966 including GST across five settled invoices.
 
 ## What this replaces
 

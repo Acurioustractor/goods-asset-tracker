@@ -30,7 +30,7 @@ import {
   PLANT_MODULES_LOW_AUD, PLANT_MODULES_HIGH_AUD, BEDS_YEAR_ONE,
   FACILITATION_COMMUNITIES, FACILITATION_AUD,
   NEED_BUYER_FREIGHT_AUD, NEED_GOODS_FREIGHT_AUD, ASKED_AUD, SECURED_AUD,
-  BEDS_UNFUNDED, BEDS_UNFUNDED_AUD, SECOND_PRESS_AUD,
+  BEDS_UNFUNDED, BEDS_UNFUNDED_AUD, BEDS_TO_FIND, BEDS_TO_FIND_AUD, SECOND_PRESS_AUD,
 } from './the-year-and-the-raise';
 import {
   BREAK_EVEN_BEDS, BREAK_EVEN_BEDS_GOODS_FREIGHT, WITTA_BEDS_A_YEAR, PLANT_FIRST_YEAR_BEDS, PLANT_MATURE_BEDS,
@@ -111,6 +111,8 @@ export const CANON: readonly CanonCell[] = [
   { key: 'year.bedSurplus', label: 'Bed money over the making line', value: bedSurplusAud(), unit: 'AUD', from: 'capital-stack-flex' },
   { key: 'year.bedsUnfunded', label: 'Beds unfunded', value: BEDS_UNFUNDED, unit: 'beds', from: 'the-year-and-the-raise' },
   { key: 'year.bedsUnfundedAud', label: 'Beds unfunded, at the price', value: BEDS_UNFUNDED_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
+  { key: 'year.bedsToFind', label: 'Beds still to find', value: BEDS_TO_FIND, unit: 'beds', from: 'the-year-and-the-raise', drift: 'Not in the Canon tab yet' },
+  { key: 'year.bedsToFindAud', label: 'Beds still to find, at the price', value: BEDS_TO_FIND_AUD, unit: 'AUD', from: 'the-year-and-the-raise', drift: 'Not in the Canon tab yet' },
 
   // Plastic supply
   { key: 'plastic.panelPerBed', label: 'Bought leg panels per kit: cost status', value: PANEL_PLASTIC_PER_BED_AUD ?? BOUGHT_LEG_COST_STATUS, unit: 'status', from: 'defy-supply INV-2021' },

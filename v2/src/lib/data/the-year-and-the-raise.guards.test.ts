@@ -7,6 +7,10 @@ import {
   BEDS_AT_COST_AUD,
   BEDS_AT_PRICE_AUD,
   BEDS_FUNDED,
+  BEDS_COVERED_BY_SENT_ASKS,
+  BEDS_IN_UNSENT_ASKS,
+  BEDS_TO_FIND,
+  BEDS_TO_FIND_AUD,
   BEDS_UNFUNDED,
   BEDS_UNFUNDED_AUD,
   BEDS_YEAR_ONE,
@@ -35,6 +39,8 @@ import {
   RUNNING_LINES,
   SCENARIOS,
   SECURED_AUD,
+  THE_LEVER,
+  WHERE_THE_GAP_LIVES,
   gapAud,
 } from './the-year-and-the-raise';
 
@@ -147,6 +153,23 @@ describe('where the gap lives', () => {
     expect(BEDS_UNFUNDED).toBe(187);
     expect(BEDS_FUNDED + BEDS_UNFUNDED).toBe(BEDS_YEAR_ONE);
     expect(BEDS_UNFUNDED_AUD).toBe(140_250);
+  });
+
+  it('an unsent ask covers no beds, so the stated gap is 320', () => {
+    expect(BEDS_COVERED_BY_SENT_ASKS).toBe(80);
+    expect(BEDS_TO_FIND).toBe(320);
+    expect(BEDS_TO_FIND_AUD).toBe(240_000);
+  });
+
+  it('the unsent Snow ask is what takes 320 to 187', () => {
+    expect(BEDS_IN_UNSENT_ASKS).toBe(133);
+    expect(BEDS_TO_FIND - BEDS_IN_UNSENT_ASKS).toBe(BEDS_UNFUNDED);
+  });
+
+  it('the prose states the gap as 320 and never as 187', () => {
+    expect(WHERE_THE_GAP_LIVES).toContain('320 beds');
+    expect(WHERE_THE_GAP_LIVES).not.toContain('187');
+    expect(THE_LEVER).not.toContain('187');
   });
 
   it('the gap as it stands is the need less what has been asked', () => {

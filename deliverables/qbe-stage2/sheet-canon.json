@@ -306,6 +306,22 @@
       "from": "the-year-and-the-raise"
     },
     {
+      "key": "year.bedsToFind",
+      "label": "Beds still to find",
+      "value": 320,
+      "unit": "beds",
+      "from": "the-year-and-the-raise",
+      "drift": "Not in the Canon tab yet"
+    },
+    {
+      "key": "year.bedsToFindAud",
+      "label": "Beds still to find, at the price",
+      "value": 240000,
+      "unit": "AUD",
+      "from": "the-year-and-the-raise",
+      "drift": "Not in the Canon tab yet"
+    },
+    {
       "key": "plastic.panelPerBed",
       "label": "Bought leg panels per kit: cost status",
       "value": "Needs panel yield",

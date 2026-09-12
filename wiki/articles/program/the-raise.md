@@ -1,7 +1,7 @@
 ---
 reviewed: 2026-09-12
 ruling: Ben, 12 Sep 2026, the flat-pack route. With the 11 Sep correction that stopped bed money and operating money being counted as two separate piles.
-canon: [year.needs, year.asked, year.secured, year.gap, year.beds, year.running, year.facilitation, year.bedSurplus, year.bedsUnfunded, year.bedsUnfundedAud, year.breakEvenBeds, plant.count, plant.allowance, plant.secondPress, bed.price, bed.freight, bed.contribution, trade.bedsPaid, trade.paidNet, year.operatingShort, trade.paidInclGst]
+canon: [year.needs, year.asked, year.secured, year.gap, year.beds, year.running, year.facilitation, year.bedSurplus, year.bedsToFind, year.bedsToFindAud, year.breakEvenBeds, plant.count, plant.allowance, plant.secondPress, bed.price, bed.freight, bed.contribution, trade.bedsPaid, trade.paidNet, year.operatingShort, trade.paidInclGst]
 sources: [v2/src/lib/data/the-year-and-the-raise.ts, v2/src/lib/data/capital-stack-flex.ts, v2/src/lib/data/asset-canonical.ts, v2/src/lib/data/three-year-plan.ts, v2/src/lib/data/demand-and-buyers.ts, v2/src/lib/data/production-route.ts, v2/src/lib/data/sheet-canon.ts, deliverables/qbe-stage2/real-forms-review-2026-09-12.md, deliverables/qbe-stage2/backwards-pass-2026-09-11.md, thoughts/shared/handoffs/goods-model-voice-and-tells/current.md, Notion 3d8ebcf981cf8128bd9aee918f49733f]
 ---
 
@@ -37,7 +37,7 @@ One article holds each application. [[program/qbe-stage-2-form]] reads the QBE f
 
 Three things follow from that table and each one is worth knowing before a call.
 
-**187 of the 400 beds have no funder against them**, which is $140,250 at the published $750. Beds are the cheapest ask to fill, because bed money pays for its own making and hands the balance to the organisation, so a funder who buys beds also pays for part of the year.
+**320 of the 400 beds have no sent ask against them**, which is $240,000 at the published $750. The unsent Snow ask is 133 of those, and sending it takes the gap to 187. Beds are the cheapest ask to fill, because bed money pays for its own making and hands the balance to the organisation, so a funder who buys beds also pays for part of the year.
 
 **Plant money never moves the gap.** A plant costs $150,000 and a plant grant brings $150,000, so a plant either happens or it does not, and it leaves no hole behind it. The one exception is the second Commonwealth $150,000: if Ben names a site QBE is already being asked to fund, that money lands on a funded cost and closes the gap, and it then has to be declared at QBE Q14 and Q15.
 
