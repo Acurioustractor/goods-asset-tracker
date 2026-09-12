@@ -21,14 +21,15 @@ A grant asks what the money achieves. Debt asks whether the money generates enou
 Writing it as a grant application would not answer the question SEFA is asking.
 
 **The loan can now be sized.** The 10 September ruling was to size it to the press and working
-capital and wait, because the press was unpriced. It is now $22,500, and working capital is $276 a
-bed. A first ask of $50,000 to $100,000 sits inside the programme band, and 101 paid beds a year
-services $200,000 at the $474 a bed.
+capital and wait, because the press was unpriced. It is now $22,500, and working capital is a
+provisional $276 a bed. A first ask of $50,000 to $100,000 sits inside the programme band, and
+101 paid beds a year services $200,000 at the provisional $474 a bed.
 
 ## Why they are not interchangeable
 
 QBE buys plants. Tim Fairfax buys the organisation. Brian M. Davis buys beds and facilitation.
-SEFA lends. Treating them as one pool is what produced the $99,500 double count on Tim Fairfax.
+SEFA lends. Treating them as one pool is what put Tim Fairfax on the bed line and the operating
+line at the same time. One funder is never counted against two jobs.
 
 A grant funder will not buy a press. A lender will, because a press produces the cash that repays
 it. That is the cleanest division of labour across the four.
@@ -38,10 +39,14 @@ it. That is the cleanest division of labour across the four.
 The operating line is $197,550 short and the gap is $147,950. The $49,600 difference is not an
 error and is now stated on the stack page.
 
-**Beds are bought at $750 and cost $276 to make.** $160,000 of bed money over-covers the $110,400
-making line by $49,600, and that surplus carries the organisation. It is the $474 doing its job,
-seen from the other end. `capital-stack-flex.ts` computes it from both ends, and a guard
-fails if the two ends stop agreeing.
+**Beds are bought at $750 and cost a provisional $276 to make.** $160,000 of bed money over-covers
+the $110,400 making line by $49,600, and that surplus carries the organisation. It is the
+provisional $474 doing its job, seen from the other end. `capital-stack-flex.ts` computes it from
+both ends, and a guard fails if the two ends stop agreeing.
+
+Both halves carry the word provisional because the 12 September route buys the leg sheets and the
+panel yield has not been costed. Nic owns that yield, and every figure built on the provisional $276 moves
+with it.
 
 ## Plant money behaves differently
 

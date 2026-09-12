@@ -1,6 +1,31 @@
 # Defy INV-2021, and what it is worth against making it at Witta
 
-Read 11 September 2026 off the invoice. Guarded in `v2/src/lib/data/defy-supply.ts`, 27 tests.
+Read 11 September 2026 off the invoice. Guarded in `v2/src/lib/data/defy-supply.ts`, 9 tests.
+
+## ⚠ Withdrawn on 12 September 2026
+
+Ben ruled the route on 12 September: press the tab sheets at Witta, buy the leg sheets, dispatch
+flat-packed kits to community, and run a programme where young people and others assemble and
+distribute them. The factory's job ends at dispatch.
+
+This paper was written the day before, on the retired route where a bed took two pressed sheets and
+Witta assembled it. Everything that hangs off "two panels a bed" is withdrawn.
+
+| Withdrawn | Why |
+|---|---|
+| **$254.45 of plastic a bed**, and the **37 beds** this invoice was said to cover | A kit takes one pressed tab sheet and bought legs. How many complete leg sets come off an 800 by 1200 panel is unknown: `BOUGHT_LEG_PANEL_YIELD` is null in `production-route.ts`, and Nic owns that number |
+| **$89.60 a bed** that panels beat the finished kit by, and **$35,840** across the 400 | Both sides of that subtraction needed the yield |
+| **67 sheets for ALIVE's 100** and **267 sheets for the 400**, with their costs | Sheet counts were derived from two panels a bed |
+| **$199 a bed** panel premium and the **113 beds** that paid a second press back | It priced bought panels against pressing legs here, which is not the route |
+| **2 extra beds a day** from buying panels, and the margin on them | Leg panels and tab sheets are parts of the same kit, so panels add no kits |
+| **$276 of making** | Canon labels `bed.make` a legacy making allowance. Any sentence printing 276, 474, 628 or 919 carries the word provisional |
+| **$3.16 a kilogram** shred break-even | Computed for the old route |
+| **36 kg of shred a bed** | Now 15 kg of tab shred a kit, itself a planning input Ben set on 9 September that has still to be weighed |
+| **3 beds a day, 48 a month, 8.3 months for the 400, 14.4 tonnes** | The line is 6 kits a day, 96 a month, 4.17 months for the 400, and 6.0 tonnes of tab shred |
+
+What the ruling does not touch: the invoice itself, the parent order and the 80 sheets still to
+come, the production slot, the shred running out on 18 September, and the two quotes nobody has
+opened. Those stand as read.
 
 ## The invoice
 
@@ -36,9 +61,13 @@ Mitchell, who runs panel operations, had still to confirm the timing. Ask whethe
 Nic told Defy on 28 August that Witta burns about **450 kg of shred a week** and had **three weeks
 of stock**. Three weeks from 28 August is **18 September**, which is the due date on this invoice.
 
-That burn rate is 12.5 beds a week at 36 kg a bed, which is the press running near flat out at
-three a day. It also means the eight bulka bags in the parent order are not optional. Eight bags at
-about a tonne each is 8 tonnes, or **222 beds of shred**, and about eighteen weeks of pressing.
+The old reading of that burn, 12.5 beds a week at 36 kg a bed with the press near flat out at three
+a day, goes with the route. At the current planning mass of 15 kg of tab shred a kit, 450 kg is
+about 30 kits a week, and that mass has never been weighed. Read the date as the hard fact and both
+conversions as provisional.
+
+Either way the eight bulka bags in the parent order are not optional. Eight bags at about a tonne
+each is 8 tonnes, which is about **eighteen weeks** at the observed burn.
 
 ## What it buys
 
@@ -47,92 +76,77 @@ about a tonne each is 8 tonnes, or **222 beds of shred**, and about eighteen wee
 | Cost of a sheet, all up | $381.68 |
 | Cost of a cut panel | $127.23 |
 | Mass of a cut panel | about 17.3 kg |
-| Panels a bed takes | 2 |
-| **Plastic cost a bed** | **$254.45** |
-| **Beds this invoice covers** | **37**, with one panel spare |
+| Cut panels on this invoice | 75 |
+| Complete leg sets a panel yields | **not confirmed**, Nic to establish |
+| **Plastic cost a bed** | **cannot be stated until the yield is confirmed** |
+| **Beds this invoice covers** | **cannot be stated until the yield is confirmed** |
 
-Two panels weigh 34.7 kg against the 36 kg of shred the workbook says goes through the press for
-one bed. The two agree, and the difference is the offcut the press figure counts and a cut panel
-does not.
+Three cut panels come out of a sheet, and the masses agree: 17.3 kg by three is the 52 kg sheet.
+Panel dimensions establish panel mass and nothing else. The old inference that a bed takes two
+panels came from matching 34.7 kg against the 36 kg the press was said to put through for one bed,
+and both halves of that comparison have gone.
 
-## The three ways to get the plastic
+## Where the leg plastic comes from now
 
-| Path | Plastic a bed | Beds a day | Limited by |
+These are not three ways to get a whole bed. Legs are bought, tabs are pressed here, and both
+belong to the same flat-packed kit. The prices below are supplier leg prices only, with tabs and
+the other bed parts on top.
+
+| Path | Leg cost a bed | Kits a day | Limited by |
 |---|---|---|---|
-| Finished kit from Defy | $344.05, verified on INV-1602 | 5 | Assembly at Witta |
-| **Panels from Defy, routed at Witta** | **$254.45**, this invoice | 5 | Assembly at Witta |
-| Pressed at Witta from our own shred | $40 to $55 of raw plastic, modelled | 3 | One press |
+| Finished leg kit from Defy | $344.05, verified on INV-1602 and INV-1732 | 6 | Tab press |
+| **Leg panels from Defy, routed at Witta** | panel price proven at **$127.23**; a kit's share needs the yield | 6 | Tab press |
+| Tab production inside the same route | not a leg cost at all | 6 | Tab press |
 
-**Panels beat the finished kit by $89.60 a bed and cost nothing in speed.** The router handles 8.56
-beds a day, so routing never becomes the constraint. Across the 400 that is $35,840 saved for the
-same throughput. If we are buying from Defy at all, we should be buying panels.
+The $344.05 is reconciled exactly. Defy's INV-1602 of 30 January 2026 bills $33,588.60 net, which
+is 92 leg kits at $344.05 plus 16 made from previously ordered sheets at $121 each. Both figures in
+the repo are right, and that invoice contains both.
 
-The $344.05 is now reconciled exactly. Defy's INV-1602 of 30 January 2026 bills $33,588.60 net,
-which is 92 beds at $344.05 plus 16 beds made from previously ordered sheets at $121 each. Both
-figures in the repo are right, and that invoice contains both.
+**The $40 to $55 of raw plastic is withdrawn as a path cost.** It was modelled for the route where
+Witta pressed the legs, so it is not the cost of bought legs plus pressed tabs. The current route
+needs its own bill of materials before any per-kit plastic figure goes in front of anyone.
 
-**Treat the $40 to $55 as a floor.** It is raw plastic only, modelled, and no invoice carries it.
-It excludes press time, power, the labour of shredding and the collection that puts feedstock in
-the bag.
+## Bought panels do not add kits
 
-## The correction that matters: panels add to the press
+Witta is pressing tabs and burning shred. Bought leg panels go alongside that, and they release the
+press from leg work, which is the point of buying them. They do not lift the number of kits that
+leaves the door, because the press sets that at 6 a day and every kit needs a tab sheet.
 
-Witta is pressing today and burning 450 kg of shred a week. Bought panels do not replace that. They
-go through the router alongside it and lift the line from the press ceiling of three beds a day to
-the assembly ceiling of five.
-
-**So the question to answer is whether the two beds a day that only bought panels can make are
-worth what the panels cost.**
-
-| | |
-|---|---|
-| Beds a day that exist only because panels were bought | 2 |
-| Beds a month | 32 |
-| Panels they need | about $8,142 |
-| What they sell for | $24,000 |
-
-Even if every other cost of those beds is the full $276 of making, they clear about $220 each. While
-assembly has idle capacity, buying panels is a margin decision, and it is clearly positive.
+Extra panels can cover a supply shortage. They cannot be counted as extra finished kits above what
+the tab press dispatches, and the marginal-beds table that used to sit here goes with the old
+assembly ceiling.
 
 ## What the run costs
 
 | | Sheets | Plastic cost, ex GST |
 |---|---|---|
 | This invoice | 25 | $9,542 |
-| ALIVE's 100, due November | 67 | about $25,600 |
-| The 400 of first stock | 267 | about $101,900 |
-| The 400 on finished kits instead | | $137,620 |
+| ALIVE's 100, due November | needs the yield | needs the yield |
+| The 400 of first stock | needs the yield | needs the yield |
+| The 400 as finished leg kits from Defy | | $137,620, legs only |
 
 ## Speed, which is the other half of the decision
 
-| Path | Beds a month | The 400 takes |
-|---|---|---|
-| Panels from Defy | 80 | 5 months |
-| Our own press | 48 | 8.3 months |
-
-At 16 run days a month under the 80% availability ruling. Buying panels is what turns a
-press-limited line into an assembly-limited one, and it is the difference between the 400 landing
-in winter and landing in spring.
-
-## The second press, priced against the panel premium
-
-A second press costs about $22,500 and takes press capacity to six beds a day, at which point
-assembly at five a day becomes the constraint and the line runs exactly as fast as the panel path.
-
 | | |
 |---|---|
-| Panel premium over pressing our own, a bed | about $199 |
-| Beds before a second press pays for itself | 113 |
-| Panel premium across the 400 | about $79,800 |
-| A second press | $22,500 |
+| Kits a month at the tab press | 96 |
+| The 400 takes | 4.17 months |
+| Router ceiling, kits a month | 136 |
 
-**On money the press wins by a wide margin. On time and on feedstock the panels win, because they
-arrive in weeks and need no shred at all.** A second press also only helps if there is shred to feed
-it, and at 450 kg a week eight bulka bags is eighteen weeks of stock.
+At 16 run days a month under the 80% availability ruling, 6 tab sheets a day and one a kit. Buying
+the legs is what keeps the press on tabs. Assembly no longer happens in the factory, so it sets no
+ceiling here at all.
 
-**The catch is feedstock.** 400 beds pressed in house is 14.4 tonnes of shred, about 21 bulka bags,
-and collection is costed nowhere in the raise. The panel path buys that problem away at a known
-price. That is the real trade, and it is not obvious which way it goes.
+## The second press
+
+A second press costs about $22,500 and would take tab pressing toward the router ceiling of 8.56
+kits a day, 136 a month. The panel premium and the 113-bed payback are withdrawn with the route
+they were computed on.
+
+**The catch is still feedstock.** 400 tab sheets at the 15 kg planning mass is **6.0 tonnes**, about
+six bulka bags, and bought leg material sits on top of that. A second press only helps if there is
+shred to feed it, and at 450 kg a week eight bulka bags is eighteen weeks of stock. Recovery is not
+credited anywhere and collection is costed nowhere in the raise.
 
 ## One more thing to check
 
@@ -141,41 +155,42 @@ $2.84 a kilogram. This invoice works out at **$6.87 a kilogram**. That is 2.4 ti
 sheet one millimetre thicker.
 
 The old quote has no invoice behind it and is described as base material for future products, so
-it may be a different grade or an aspirational number. Worth putting to Sam Davies, because on a
-267-sheet order the gap is large enough to matter.
+it may be a different grade or an aspirational number. Worth putting to Sam Davies, because on an
+order the size of the 105 the gap is large enough to matter.
 
 ## What to ask Defy now
 
 1. Confirm the remaining 80 sheets of the 105, and whether the production slot still stands. The
    4 September deposit date has passed.
-2. Whether the 20% scale discount holds for a 267-sheet order, which is what the 400 needs.
-3. The lead time on 267 sheets. The only lead time on record is 21 days on 50 kits.
-4. Whether they will cut to the finished leg profile instead of 800 x 1200, and what that does to
-   the $344.05 kit price. If profile cutting costs much less than the $89.60 gap, the kit path
-   comes back into play.
+2. **Confirm how many complete leg sets come from one 800 by 1200 panel.** Every per-kit plastic
+   figure in this paper is blocked on that one answer.
+3. Confirm current shred prices, and the quantities and timing on QU0494 and QU0495.
+4. Confirm what the finished leg-kit price of $344.05 includes. Factory tabs and the other bed parts
+   are separate.
 5. The price per kilogram, against the $2.84 in the standing sheet quote.
+6. Whether the 20% scale discount holds on the full 105.
 
 ## The parent order, priced
 
-| | Sheets or bags | Beds it makes | Cost, ex GST |
+| | Sheets or bags | What it carries | Cost, ex GST |
 |---|---|---|---|
-| 105 sheets | 105 | 157 | about $40,100 |
-| 8 bulka bags of shred | 8 | 222 | **unpriced here, needs the shred invoice** |
-| **Together** | | **379** | |
+| 105 sheets | 105 | 315 cut panels; kits **needs the yield** | about $40,100 |
+| 8 bulka bags of shred | 8 | about 533 tab sheets at the 15 kg planning mass, provisional | **unpriced here, needs the shred invoice** |
 
-Three hundred and seventy nine beds is close enough to the 400 of first stock that the end-of-year
-Defy order and the first-stock run are the same thing, split roughly forty percent bought panels
-and sixty percent our own pressing.
+The old closing line, that the parent order and the first-stock run are the same thing at 379 beds
+split forty percent bought and sixty percent pressed, rested on two panels a bed. It cannot be
+restated until the leg yield is confirmed.
 
 ## What is still missing from this analysis
 
-Three documents, none of them in the repo or the Downloads folder.
-
-1. **Quote QU0494 and Quote QU0495**, attached to Sam's email of 27 August. They price the 105
+1. **The leg yield.** How many complete leg sets come off an 800 by 1200 panel. Nic owns it, and
+   until it lands the cost of a bed on this route cannot be stated.
+2. **Quote QU0494 and Quote QU0495**, attached to Sam's email of 27 August. They price the 105
    sheets and the 8 bulka bags, and without them the shred half of the order has no number.
-2. **The shred invoice** attached on 28 August, which would give the cost a kilogram.
-3. Three Defy bills were paid in August 2026, on the 9th at $2,914.34, the 14th at $16,670.20 and
+3. **The shred invoice** attached on 28 August, which would give the cost a kilogram.
+4. Three Defy bills were paid in August 2026, on the 9th at $2,914.34, the 14th at $16,670.20 and
    the 30th at $8,608.51. Every line description in Xero reads "." so none of them says what it
    bought. One of them is probably the coloured shreds order from early August.
 
-Drop the two quotes and the shred invoice in and the whole end-of-year Defy position can be costed.
+Get the yield from Nic, drop the two quotes and the shred invoice in, and the whole end-of-year
+Defy position can be costed.

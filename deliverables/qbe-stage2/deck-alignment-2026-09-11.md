@@ -6,6 +6,26 @@ the guarded modules, the register, Xero and the rulings.
 **All seven were fixed on Ben's word the same day.** Fifteen nodes across six frames. The record
 below is what was wrong and what it now says.
 
+> **Read with three corrections, 12 September 2026.** This is a record of a review done on
+> 11 September, and three things in it have since been retired.
+>
+> **Demand.** Finding 5 gives a demand total and asks for it on S12. There is no demand total and
+> none may be stated, because the 778 added figures scoped to different populations. S12 carries
+> acts instead, strongest first: money moved, 320 beds paid by four organisations at $273,966
+> including GST; money named, Dianne Stokes, 20; an organisation asked, Utopia 150, Homeland
+> Schools 65, Palm Island Community Company 40; a person asked, Norman Frank, 3; raised in a
+> meeting, Groote 500, the largest figure and the weakest rung.
+>
+> **The route.** Ben ruled on 12 September that the tab sheets are pressed at Witta, the leg sheets
+> are bought, and flat-packed kits go out to community for young people to assemble. The line runs
+> 6 kits a day and 96 a month, on 16 run days at 80% availability. The forty-eight a month in
+> finding 4, and the change it drove on `rknzM` S17, went with the old route.
+>
+> **The cost of a bed.** The $276 and the $474 are provisional until Nic returns the bought leg
+> panel yield, so read them that way wherever they appear below. S14's plastic figures are
+> modelled: the press now makes one tab sheet a kit at 15 kg, which is 6.0 tonnes of shred across
+> the 400, and no finished-bed yield has been weighed.
+
 ## Seven findings, all fixed, worst first
 
 ### 1. Two slides print 130 beds as paid and delivered, six times between them
@@ -42,15 +62,24 @@ The $75,000 was never on an invoice.
 
 ### 4. S17 says sixty beds a month
 
-`rknzM` reads "then the 400 from December at sixty a month". Sixty is the ceiling at full
-availability. **Ben set availability at 80% on 10 September, which is 48 a month**, and Q19 is
-written on 48. The slide and the answer disagree.
+`rknzM` reads "then the 400 from December at sixty a month". Sixty was the ceiling at full
+availability on the old route of two pressed sheets a bed, and 80% availability made it 48 a month,
+which is what Q19 was written on. The slide and the answer disagreed.
+
+**Both figures were retired on 12 September.** The flat-pack route presses one tab sheet a kit and
+runs 6 kits a day, 96 a month on 16 run days. Q19 was rewritten the same day and now carries 96.
+S17 still says sixty and needs another pass.
 
 ### 5. S12 leaves out the two buyers that matter most
 
 `LX4ci` shows only Centrecorp and Maningrida. It omits **ALIVE, 100 beds, the largest paid bed order
-Goods has**, and Mala'la Health Service, 13 beds. It also carries no demand figures at all, while the
-demand record holds 778 open beds across five communities.
+Goods has**, and Mala'la Health Service, 13 beds. It also carries no demand figures at all.
+
+**Amended 12 September.** As written on 11 September this finding put the demand record at 778 open
+beds across five communities and asked for that on the slide. The 778 is retired, because it added
+figures scoped to different populations, and no demand total may be stated. What belongs on S12 is
+the ladder of acts, and the restructured panel already opens on its strongest rung: 320 beds paid by
+four organisations, $273,966 including GST.
 
 ### 6. S03's four statistics are not the four locked problem modules
 
@@ -75,9 +104,10 @@ $150,000 allowance look tighter than it is.
   communities, 3,540 kg. All match canon and the live register read the same day.
 - **S10** Maningrida: 40 beds delivered and paid, pressed at The Harvest, assembled at Gamardi.
 - **S13** the model: $750 a bed to Goods, buyers pay the enterprise, 400 of first stock.
-- **S14** the four outcomes: 20 kg, 8 tonnes across 400, two hours, $80 inside $276, and the
-  enterprise keeping the sale, which matches the 10 September ruling.
-- **S15** the bed economics: $750, $276 to make, $474 stays, freight on top at cost.
+- **S14** the four outcomes: 20 kg, 8 tonnes across 400, two hours, $80 inside a provisional $276,
+  and the enterprise keeping the sale, which matches the 10 September ruling.
+- **S15** the bed economics: $750, a provisional $276 to make, a provisional $474 stays, freight on
+  top at cost.
 - **S16** the funding design: every plant $150,000, every bed $750, freight carried by whoever pays
   for the bed, nothing signed.
 - **S18** the ask: $300,000 for two plants at $150,000, Palm Island first.
@@ -85,8 +115,12 @@ $150,000 allowance look tighter than it is.
 ## Held for a ruling
 
 S12A and S12B are written and sit at the bottom of the Notion deck master with three rulings
-attached. S12 is the frame they replace. Q6 and Q7 carry a siting claim the demand record
-contradicts, and both are held.
+attached. S12 is the frame they replace.
+
+**Amended 12 September.** Q6 and Q7 were recorded here as held, because their siting claim was
+read against the demand record. Ben ruled on the evening of 11 September that a plant is sited on
+relationship and readiness, and the size of a demand figure does not decide where one goes. Both
+answers were rewritten that night and both are final.
 
 
 ---

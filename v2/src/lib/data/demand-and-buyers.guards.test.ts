@@ -149,16 +149,29 @@ describe('what a buyer still owes is on the same page as what they paid', () => 
 });
 
 describe('recorded demand is held apart from trade, and graded honestly', () => {
-  it('is 778 beds, and 107 paid beds are excluded so nothing is counted twice', () => {
-    expect(RECORDED_DEMAND_BEDS).toBe(778);
+  it('sums to what the records hold, and excludes the 107 already paid so nothing is counted twice', () => {
+    // This used to assert 778, which pinned a retired total into the guard suite: the ruling of
+    // 11 September is that the records are scoped to different populations and must never be summed
+    // and stated. The sum is still checked for internal consistency, never against a fixed figure.
+    expect(RECORDED_DEMAND_BEDS).toBe(RECORDED_DEMAND.reduce((n, d) => n + d.beds, 0));
     expect(RECORDED_DEMAND.some((d) => d.beds === 107)).toBe(false);
+  });
+
+  it('never states the total in any prose this module exports', () => {
+    const total = String(RECORDED_DEMAND_BEDS);
+    const prose = readFileSync(join(process.cwd(), 'src/lib/data/demand-and-buyers.ts'), 'utf8')
+      .split('\n')
+      .filter((l) => /'|`/.test(l))
+      .join('\n');
+    expect(prose.includes(`${total} more`)).toBe(false);
+    expect(prose.includes(`${total} beds are`)).toBe(false);
   });
 
   it('has exactly one record with a person and a way of paying', () => {
     expect(DEMAND_WITH_MONEY_NAMED).toHaveLength(1);
     expect(DEMAND_WITH_MONEY_NAMED[0].askedBy).toBe('Dianne Stokes');
     expect(OWNED_DEMAND_BEDS).toBe(20);
-    expect(CONVERSATION_BEDS).toBe(758);
+    expect(CONVERSATION_BEDS).toBe(RECORDED_DEMAND_BEDS - OWNED_DEMAND_BEDS);
   });
 
   it('grades everything else unverified and says why', () => {

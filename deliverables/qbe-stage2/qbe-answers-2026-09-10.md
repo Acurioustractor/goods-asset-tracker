@@ -1,5 +1,6 @@
 ---
 date: 2026-09-10
+revised: 2026-09-12, for Ben's route ruling (production figures in Q19, and the cost of a bed)
 supersedes: deliverables/qbe-stage2/qbe-stage2-application-2026-09-03.md (Q5, Q6, Q7)
 applicant: The Butterfly Movement Ltd, trading as Goods on Country (ruling AA, 5 Sep)
 closes: Friday 25 September 2026, 12pm AEST
@@ -12,6 +13,11 @@ The 3 September draft asks QBE for $400,000 to buy 533 beds. That is no longer t
 9 September Ben ruled that the QBE money builds two production plants and that catalytic bed
 money comes from Tim Fairfax and Brian M. Davis. Every answer that carries the ask has to be
 rewritten from the new model.
+
+On 12 September Ben set the production route. We press the tab sheets at Witta, buy the leg sheets,
+dispatch the kits flat packed, and young people and others assemble and hand them out in community.
+That lifts the line from three beds a day to six kits a day, and it makes the cost of a bed
+provisional until the yield off a bought leg panel is confirmed. Q19 carries both changes.
 
 Answers below are the text that goes in the form. Working notes are for Ben and Nic and do not
 go anywhere near QBE.
@@ -198,11 +204,12 @@ future funding and borrowing decisions. Sefa is a possible source of repayable c
 is agreed. The Paul Ramsay and Atlassian partnership is a prospect we have identified, with no
 approach yet recorded.
 
-Our illustrative $200,000 loan has annual payments of about $47,523. At the current modelled
-contribution of $474.26 per bed, 101 bed contributions would cover those payments before
-organisation costs. That calculation alone cannot establish affordability. We need a forecast
-showing a repayment source after operating costs, and community resale proceeds remain with
-the community.
+Our illustrative $200,000 loan has annual payments of about $47,523. At a provisional contribution
+of $474.26 per bed, 101 bed contributions would cover those payments before organisation costs.
+The contribution is provisional because the leg sheets are bought in now, and the yield off a
+bought panel is still to be confirmed, so the 101 moves with it. That calculation alone cannot
+establish affordability either. We need a forecast showing a repayment source after operating
+costs, and community resale proceeds remain with the community.
 
 Can a conditional outcome or invitation from the other funders meet QBE's evidence requirement
 on 13 November, or would another arrangement be needed?
@@ -237,7 +244,9 @@ The workbook is the model. We maintain it week to week, and it was not assembled
 application. Yellow
 cells are inputs. Change an input and the beds, the cash by month, the break-even and the ten-year
 shape all move together. The loan test in it is the one we hold ourselves to: a $200,000 facility
-needs 101 paid beds a year to service.
+needs a provisional 101 paid beds a year to service. It is provisional because the contribution a
+bed makes is provisional while we are confirming the yield off a bought leg panel, and the workbook
+is being brought onto the 12 September route.
 
 Two things in the deck are worth saying in advance. Nothing in our funding is signed, and the
 deck says so on the slide where the money is. And the photographs show work already done, with no
@@ -330,8 +339,9 @@ from a delivery.
 
 Three things are not measured yet and we would rather name them than imply them. Paid hours a bed
 at working pace, which the first fifty beds out of each new plant will settle. Weighed yield, which
-needs input, accepted parts, offcuts and waste weighed per batch. And household use over time,
-which needs a consented follow-up at delivery, six weeks and three months.
+needs input, accepted parts, offcuts and waste weighed per batch, and now also needs the number of
+leg sets that come off a bought 800 by 1200 panel, which Nic holds with our supplier. And household
+use over time, which needs a consented follow-up at delivery, six weeks and three months.
 
 ---
 
@@ -375,7 +385,7 @@ production run is what fills it.
 |---|---|---|
 | A person off the floor | **Counted** | The register, bed by bed, with a community and a date against each |
 | Two hours of paid making a bed | Modelled | Taken from the build. Nobody has counted it in the field, and the production log is what changes that |
-| 20 kg of plastic in a finished bed | Modelled | Design mass. 36 kg goes through the press and yield has never been weighed |
+| 20 kg of plastic in a finished bed | Modelled | Design mass. 15 kg of tab shred a kit goes through our press and the leg sheets are bought in, so neither side of the yield has been weighed |
 | Money kept in community | A settled rule with no trade behind it yet | The full $750 stays with the community enterprise. No enterprise is trading yet |
 
 One of four is counted. We print the other three with that ceiling on them.
@@ -413,25 +423,32 @@ evaluation.
 
 ## Q19. Governance, team, financial and delivery readiness
 
-DRAFT, 10 September 2026. 538 words. Owner Nic. Not ready to submit. Every outstanding item
-below is a document someone has to supply.
+DRAFT, 10 September 2026, production and cost figures corrected 12 September. 713 words. Owner
+Nic. Not ready to submit. Every outstanding item below is a document someone has to supply.
 
 Goods on Country makes beds today. That is the readiness question answered in one line, and the
 rest is the detail behind it.
 
-**Delivery.** The press sets the pace at The Harvest. It makes six sheets a day and a bed takes
-two, one for the legs and one for the tabs, so the line runs at three beds a day. The router does
-8.56 a day and assembly does five, so neither is the constraint. On twenty working days a month,
-with an allowance of 80% for downtime, sickness and waiting on material, that is 48 beds a month
-and 576 a year. Those figures are modelled. The daily production log opened this week and has no
-entries in it, so the availability allowance is a planning assumption, and the log is what will
-replace it with a measured rate.
+**Delivery.** Ben set the route on 12 September. We press the tab sheets at Witta, buy the leg
+sheets in, and dispatch the kit flat packed to community, where young people and others assemble
+it and hand it out. The factory's job ends at dispatch.
+
+The tab press sets the pace at The Harvest. It makes six sheets a day and a kit takes one, so the
+line runs at six kits a day. The router does 8.56 a day, so it is not the constraint, and there is
+no assembly ceiling at the factory because the assembly happens in community. On twenty working
+days a month, with an allowance of 80% for downtime, sickness and waiting on material, that is
+sixteen run days, 96 kits a month and 1,152 a year. The 400 beds of first stock are 4.17 months on
+that line, and 6.0 tonnes of tab shred through the press with the leg material bought on top.
+Those figures are modelled. The daily production log opened this week and has no entries in it, so
+the availability allowance is a planning assumption, and the log is what will replace it with a
+measured rate.
 
 What is measured is the work already done. 320 beds sold and paid, across five invoices to four
 organisations, settling for $273,966. 540 beds sit on the register across eleven communities. Forty of them were pressed at
-Witta and assembled at Gamardi with the Maningrida crew, paid for and delivered. That
-run is the evidence that the making travels. On the floor today there are 81 cut
-plastic bed sets, and 87 once the weighed shred is pressed.
+Witta and assembled at Gamardi with the Maningrida crew, paid for and delivered. That run is the
+route above, done once already and paid for: pressed here, assembled there. On the floor today
+there are 81 cut plastic bed sets. The 87 we used to quote counted pressed shred as finished sets,
+which the current route does not do, so we hold it back until the floor is counted again.
 
 **Governance.** The applicant and recipient is The Butterfly Movement Ltd, trading as Goods on
 Country, ABN 22 155 132 684, ACN 155 132 684. Its directors are Kristy Bloomfield, Audrey Deemal
@@ -448,9 +465,13 @@ named at Q20.
 across to Butterfly under the transfer described at Q8. Butterfly's own unaudited FY26 shows income
 of $77,080 against expenses of $119,934 and closing cash of $4,041, and the full statements go to
 Q20 and Q21. Running the organisation costs $297,550 a year. A bed sells at $750 at the factory
-door, costs $275.74 to make with the $80 of paid making inside that, and leaves $474.26. Freight is
-charged on top, at cost, per community. Nothing in this application is secured yet, and twelve cost
-lines in the plan are still unpriced. Both of those are stated in full at Q14 and Q15.
+door. The $275.74 it costs to make and the $474.26 it leaves are both provisional: that making
+allowance was costed when we pressed both sheets ourselves, and now that the leg sheets are bought
+it is the yield off a bought panel that sets the number. Nic is confirming that yield with Defy.
+The $80 of paid making, about two hours, sits inside the provisional allowance and is the one part
+of it we have set ourselves. Freight is charged on top, at cost, per community. Nothing in this
+application is secured yet, and twelve cost lines in the plan are still unpriced. Both of those are
+stated in full at Q14 and Q15.
 
 **The two plants.** QBE's $300,000 builds two plants, working
 choices Palm Island and Maningrida, at $150,000 each. That allowance sits above the module total
@@ -458,7 +479,7 @@ of $95,767 to $142,467 and below the $207,450 it costs to hand a site over runni
 thirteen modules carry estimates. Site quotes follow.
 
 The plants do not make this year's beds. Neither has a start date, and every bed committed for the
-next twelve months comes off the line at The Harvest.
+next twelve months is pressed and packed at The Harvest and assembled in community.
 
 ---
 
@@ -475,13 +496,15 @@ next twelve months comes off the line at The Harvest.
 
 | Figure | Source | Grade |
 |---|---|---|
-| 3 beds a day, press-limited | Live model Facility plans, from NM Play B10, B45 | Modelled |
-| 48 beds a month, 576 a year | 20 days x 3 beds x 80% availability, Ben 10 Sep | Modelled |
-| 81 cut sets, 87 with weighed shred | Stock counts, 9 September count | Provisional |
+| 6 kits a day, tab-press-limited | Ben's route ruling 12 Sep; 6 tab sheets a day, 1 sheet a kit | Modelled |
+| 96 kits a month, 1,152 a year | 16 run days x 6 kits, being 20 days at 80% availability, Ben 12 Sep | Modelled |
+| 400 beds in 4.17 months, 6.0 tonnes of tab shred | 400 / 96 a month; 400 x 15 kg of tab shred a kit | Modelled |
+| 81 cut sets on the floor | Stock count, 9 September | Provisional |
 | 320 beds sold and paid, $273,966 | Five invoices, four organisations | Verified |
 | 540 on the register, eleven communities | Register check 8 September, 609 asset rows | Verified |
 | 40 beds pressed at Witta for Maningrida | Paid production run | Verified |
-| $750 / $275.74 / $474.26 | Live model One bed; cost engine stateFactory | Verified arithmetic, modelled cost |
+| $750 the price | Live model One bed | Verified |
+| $275.74 to make, $474.26 left, both provisional | Cost engine stateFactory, costed for the route where both sheets were pressed here. Bought leg panel yield is unknown and Nic holds it | Provisional |
 | $297,550 a year | Model!B25 | Verified |
 | Butterfly FY26 $77,080 / $119,934 / $4,041 | Butterfly FY26 sheet, unaudited and unsigned | Verified |
 | $95,767 to $142,467 modules, $207,450 turnkey | Live model plant budget; Capital!C32 | Modelled |
@@ -511,6 +534,21 @@ totalled. If Ben rules the share, add the row.
 
 **Three answers still hang off this one.** Q9's impact document, Q18's catalytic mechanism and
 Q23's deck all described a request that bought beds. They need the same rebuild.
+
+**What the 12 September route withdraws.** Three beds a day, 48 a month and 576 a year are gone,
+and so are the two pressed sheets a bed, the 36 kg through the press, the assembly ceiling of five
+a day and the 8.3 months and 14.4 tonnes for the 400. What replaces them is six kits a day, 96 a
+month, 1,152 a year, one pressed tab sheet a kit at 15 kg, no factory assembly limit with a router
+ceiling of 136 a month, and 4.17 months and 6.0 tonnes for the 400. The shred break-even of $3.16 a
+kilogram, the Defy plastic at $254.45 a bed and the $40,712 panel figure across the 400 were all
+computed for the old route and are withdrawn with it. Nic owns the bought panel yield, and until it
+lands the $275.74, the $474.26 and the break-even bed counts are provisional wherever they appear.
+
+**The deck and the workbook are not on the new route yet.** The deck carries the ask and the plant
+modules, which the route does not touch, but check any production rate on it before export. The
+workbook's own break-even of 796 beds is wrong, and 918 is wrong the other way: 918 leaves the
+organisation $118 short. Break-even is a provisional 628 paid beds with the buyer paying freight,
+and a provisional 919 if Goods carries it.
 
 **Q8 has one sentence that must be made true before submission.** The answer says Kristy declares
 her interest at both boards and takes no part in decisions between them. Get that declaration

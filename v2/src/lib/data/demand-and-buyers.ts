@@ -8,15 +8,19 @@
  * WHY THIS MODULE EXISTS
  * ---------------------------------------------------------------------------
  * Two numbers about demand were being carried side by side and read as the same kind of thing.
- * 320 beds have been invoiced and paid for. 778 more are recorded as wanted. Only the first is
- * trade. Of the 778, exactly 20 carry both a named person and a stated way of paying, which is
- * Dianne Stokes offering to self-fund twenty at Tennant Creek. The other 758 are conversations
- * held in a table.
+ * 320 beds have been invoiced and paid for, and a set of further beds is recorded as wanted. Only
+ * the first is trade.
  *
- * The gap between those two states is the work, and it has a price somebody has already paid.
- * Across the four buyers, $50,000 of community build and program-support time was billed and
- * settled alongside the beds. That is the evidence for facilitation money, and it is why the 758
- * belongs on the slide rather than behind it.
+ * SUPERSEDED, 11 September 2026: the recorded beds MUST NEVER BE SUMMED AND STATED. The records are
+ * scoped to different populations, so a total of them is not a quantity of anything. Present acts
+ * instead, strongest rung first: money moved, money named, an organisation asked, a person asked,
+ * raised in a meeting. `who-has-asked.ts` is the module that does that and is the one to read from.
+ * The sums below survive only so this module can say which record is most of what is written down,
+ * and they are never published.
+ *
+ * The gap between a paid bed and a recorded one is the work, and it has a price somebody has
+ * already paid. Across the four buyers, $50,000 of community build and program-support time was
+ * billed and settled alongside the beds. That is the evidence for facilitation money.
  *
  * ---------------------------------------------------------------------------
  * WHAT IS DELIBERATELY NOT HERE
@@ -341,7 +345,13 @@ export const WRITTEN_OFF_NET_AUD = PAID_TRADE.reduce((n, i) => n + i.writtenOffN
 export const ABSORBED_NOT_BILLED_AUD = PAID_TRADE.reduce((n, i) => n + i.absorbedNotBilledAud, 0);
 export const VALUE_FOREGONE_AUD = WRITTEN_OFF_NET_AUD + ABSORBED_NOT_BILLED_AUD;
 
-/** Open recorded demand in beds. Excludes the 107 already invoiced and paid on INV-0291. */
+/**
+ * Open recorded beds. Excludes the 107 already invoiced and paid on INV-0291.
+ *
+ * INTERNAL ONLY. This is not a demand figure and must never reach a funder, a slide or a page. It
+ * adds records scoped to different populations, so it measures nothing. It exists so the module can
+ * say that one record is most of what is written down. See `who-has-asked.ts` for what is published.
+ */
 export const RECORDED_DEMAND_BEDS = RECORDED_DEMAND.reduce((n, d) => n + d.beds, 0);
 
 /** Recorded demand with a named person and a stated way of paying. */
@@ -350,7 +360,7 @@ export const DEMAND_WITH_MONEY_NAMED = RECORDED_DEMAND.filter((d) => d.moneyName
 /** Beds in that state. */
 export const OWNED_DEMAND_BEDS = DEMAND_WITH_MONEY_NAMED.reduce((n, d) => n + d.beds, 0);
 
-/** Beds that are a conversation and nothing more. */
+/** Beds that are a conversation and nothing more. INTERNAL ONLY, for the same reason as above. */
 export const CONVERSATION_BEDS = RECORDED_DEMAND_BEDS - OWNED_DEMAND_BEDS;
 
 /** What each buyer paid per bed, in the order the price moved. */

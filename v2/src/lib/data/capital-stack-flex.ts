@@ -248,7 +248,7 @@ export const LADDER: readonly Rung[] = [
   { aud: 750, buys: 'One bed', andThen: 'One household off the floor, and $474 toward the organisation that makes the next one.' },
   { aud: 7_500, buys: 'Ten beds', andThen: 'Twenty hours of paid making, and 200 kg of plastic kept out of landfill.' },
   { aud: 10_000, buys: 'Facilitation in one community', andThen: 'The trips, the build days, the training and the delivery. Already proven at this rate on a paid invoice.' },
-  { aud: 22_500, buys: 'The second press', andThen: 'Thirty two more beds a month, because the press is the only machine slower than assembly.' },
+  { aud: 22_500, buys: 'The second press', andThen: 'Forty more kits a month, from 96 to 136. Assembly is no longer the ceiling because it happens in community, so the router becomes the constraint at 8.56 kits a day.' },
   { aud: 75_000, buys: 'A hundred beds, one community pool', andThen: 'A community enterprise with stock to sell and $75,000 of local capital when it does.' },
   { aud: 150_000, buys: 'One community plant', andThen: '200 beds in its first year, reaching 720 on the same press, and a local crew that owns the making.' },
   { aud: 300_000, buys: 'Two plants', andThen: 'What QBE is being asked for, and the year in which two communities start making beds themselves.' },

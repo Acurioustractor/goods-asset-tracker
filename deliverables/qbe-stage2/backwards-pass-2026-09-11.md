@@ -7,6 +7,14 @@ model and the impact measure read the same way. Published in the two pages:
 [The 25 Questions](https://claude.ai/code/artifact/92ad473f-91e5-4ec8-b68c-2c3580102cb5) and the
 [QBE Control Room](https://claude.ai/code/artifact/b45c45a0-378b-41a0-b635-eaa461d0957f).
 
+> **Read with one correction, 12 September 2026.** The money below is still the money: the year
+> needs $747,950, $600,000 is asked, $0 is secured, the gap is $147,950 and 187 beds are unfunded.
+> What moved the next day is the route. Ben ruled on 12 September that the tab sheets are pressed
+> at Witta, the leg sheets are bought, and flat-packed kits go out to community for young people
+> to assemble. The line runs 6 kits a day, 96 a month, 1,152 a year, on 15 kg of tab shred a kit.
+> The cost of making a bed is provisional until Nic returns the bought leg panel yield, so the
+> $276 and the $474 carry that word wherever they appear below.
+
 ## The 25, by what blocks them
 
 | State | Count | Questions |
@@ -32,26 +40,26 @@ Q19 has text and sits in the document column because of its six attachments.
    forecast is not entity cashflow.
 4. **Kristy Bloomfield's related-party minute** (Q8, Q22) at the 14 September board, with a matching
    minute from Oonchiumpa. Ben, Monday.
-6. **Structure diagram against the transfer records, and A Curious Tractor's extracts** (Q3, Q4). Ben.
-7. **Funder bundle refresh** (Q14, Q15): conditions, recipient, dates. Ben.
-8. **Pick the consented records for Q11.** The answer is written and labels proposed collection as proposed. Ben chooses which records attach.
-9. **Solvency assessment** (Q24) once a current balance has been read. Opening cash is recorded as
+5. **Structure diagram against the transfer records, and A Curious Tractor's extracts** (Q3, Q4). Ben.
+6. **Funder bundle refresh** (Q14, Q15): conditions, recipient, dates. Ben.
+7. **Pick the consented records for Q11.** The answer is written and labels proposed collection as proposed. Ben chooses which records attach.
+8. **Solvency assessment** (Q24) once a current balance has been read. Opening cash is recorded as
    unknown, and unknown is not zero.
-10. **The four declarations** (Q13, Q16, Q17, Q25), last.
+9. **The four declarations** (Q13, Q16, Q17, Q25), last.
 
 ## The money model
 
 **Corrected 11 September.** The first figure of $937,550 added 400 beds at the $750 sale price to
-the full $297,550 running cost. A bed sold at $750 pays its own $276 of making and hands $474 to
-the organisation, so the running cost was charged twice. The overlap is $189,600. Guarded in
-`v2/src/lib/data/the-year-and-the-raise.ts`, 29 tests.
+the full $297,550 running cost. A bed sold at $750 pays its own provisional $276 of making and
+hands a provisional $474 to the organisation, so the running cost was charged twice. The overlap
+is $189,600. Guarded in `v2/src/lib/data/the-year-and-the-raise.ts`, 29 tests.
 
 ### How the year is built
 
 | What the year does | Cash out | How it is priced |
 |---|---|---|
 | Two community plants | $300,000 | $150,000 each, against modules priced $95,767 to $142,467 |
-| Making 400 beds | $110,400 | $276 a bed, labour in, freight after |
+| Making 400 beds | $110,400 | A provisional $276 a bed, labour in, freight after |
 | Facilitation, four communities | $40,000 | $10,000 each, already billed once at that rate |
 | Running the organisation | $297,550 | Founders $151,200, travel $51,000, accounting $50,000, Witta rent $27,000, marketing $10,000, maintenance $8,350 |
 | **The year** | **$747,950** | Add $60,000 if Goods carries freight on all 400 |
@@ -100,13 +108,13 @@ worth $147,950.
 | Facilitation | $40,000 | $40,000 | $0 |
 | Running the organisation | $297,550 | $100,000 | $197,550 |
 
-Every dollar of bed money does two jobs: it pays the $276 of making and hands $474 to the
-organisation. The 187 unfunded beds are $140,250 of stock and $88,638 of the running cost at the
-same time, which is why the bed line and the operating line cannot be added together. It is also
-the only ask with a product at the end of it.
+Every dollar of bed money does two jobs: it pays the provisional $276 of making and hands a
+provisional $474 to the organisation. The 187 unfunded beds are $140,250 of stock and $88,638 of
+the running cost at the same time, which is why the bed line and the operating line cannot be
+added together. It is also the only ask with a product at the end of it.
 
-The second press is in no ask. About $22,500, and it decides whether the 400 beds land in June or
-August.
+The second press is in no ask. About $22,500. What it buys in schedule has to be recomputed on the
+12 September route, where 400 kits take 4.17 months at 96 a month on one press.
 
 ## How much of the impact measure is finished
 
@@ -114,7 +122,7 @@ August.
 |---|---|---|
 | A person off the floor | Verified | Counted from the asset register, bed by bed, community and date against each |
 | Two hours of paid making a bed | Modelled | From the build, not counted in the field |
-| 20 kg of plastic in the finished bed | Modelled | 36 kg pressed sits behind it; yield unmeasured |
+| 20 kg of plastic in the finished bed | Modelled | 15 kg of tab shred a kit goes through our press and the leg sheets are bought. No yield has been weighed |
 | Money kept in community | A rule with no trade behind it | The full $750 is settled; no community entity is trading against it yet |
 
 Health stays out of the measures. Scabies to rheumatic heart disease is the reason the work

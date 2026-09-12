@@ -13,6 +13,15 @@ The code is done. Six guarded modules now hold what the sheet should say:
 `demand-and-buyers.ts`, `community-economics.ts`, `the-year-and-the-raise.ts`, `three-year-plan.ts`,
 `defy-supply.ts` and `production-scenarios.ts`. 673 tests.
 
+> **Superseded in part, 12 September 2026.** Ben ruled the route that day: press the tab sheets at
+> Witta, buy the leg sheets, dispatch flat-packed kits, and have young people assemble them in
+> community. Items 1 to 4, 6, 7 and 8 below were written against the old route and must not be
+> typed into the workbook as they stand. The line now runs 6 kits a day, 96 a month across 16 run
+> days, 1,152 a year, on one pressed tab sheet and 15 kg of tab shred a kit. The $3.16 a kilogram
+> shred break-even, the $254.45 panel figure and the 36 kg pressed figure are withdrawn with the
+> route they were computed for, and the cost of a bed is provisional until Nic returns the bought
+> leg panel yield. Items 5, 9, 10 and 11 stand as written.
+
 ---
 
 ## Eleven cells that are wrong
@@ -49,6 +58,10 @@ this one "ceiling at 100%" and put the operating number on the tile.
 **Facility plan, row "Beds / month after downtime", is blank.** That is exactly the cell 48 belongs
 in, and filling it resolves items 3 and 4 without touching the ceiling.
 
+**Withdrawn 12 September, items 1 to 4.** The 80% availability and the 16 run days survive the route
+change. The 48 does not: one pressed tab sheet a kit at 6 a day gives 96 kits a month and 1,152 a
+year, and assembly no longer sits at Witta at all. Write 96, not 48.
+
 ### 5. The 143 is still there, and Ben rejected it
 
 **Home, "With estimated recovery, 143"** and **"Plastic sets incl estimated recovery, 143"**.
@@ -71,6 +84,9 @@ decision.
 The settled pair, for the note: **36 kg of shred is pressed for one bed, 21 kg for the leg sheet
 and 15 for the tab sheet. 20 kg ends up in the finished bed.**
 
+**Withdrawn 12 September.** The leg sheet is bought now, so 15 kg of tab shred a kit is what goes
+through our press. Do not paste the 36 into the note. The 40 still needs sweeping out of D06.
+
 ### 7. The Calculator has no way to choose where the plastic comes from
 
 **Calculator, "Plastic, $55.00 / bed".**
@@ -89,6 +105,10 @@ lifts the line from the press ceiling of three a day to the assembly ceiling of 
 **Add a supply-path selector to the Calculator** and drive the plastic cell from it.
 `production-scenarios.ts` holds the whole matrix.
 
+**Withdrawn 12 September.** The route is now one path, not a choice: tabs pressed here, legs bought.
+The $254.45 was computed for routing our own panels and goes with it. What the Calculator needs
+instead is the bought leg panel yield, which nobody has, and which Nic owns.
+
 ### 8. Nothing in the sheet carries the second press decision
 
 The decision worth the most money in the next fortnight is absent. Panels and a second press reach
@@ -97,6 +117,10 @@ kilogram**. Below that the press wins.
 
 The only prices a kilogram we hold are **$6.87** and **$7.34**, both for finished pressed panel.
 Quotes QU0494 and QU0495 carry the bag price and neither has been opened.
+
+**Withdrawn 12 September.** The $3.16 compared pressing both sheets against buying both. Under the
+flat-pack route the press only ever makes the tab sheet, so the comparison has to be rebuilt before
+a second press can be argued on price. The quotes still need opening.
 
 ### 9. The Money tab has no Defy purchases in it
 
@@ -117,7 +141,7 @@ three weeks left as at 28 August.
 and a stage. None says what the money is for.
 
 That is exactly the gap that let Tim Fairfax be counted against beds and against operating at the
-same time, which overstated the year by $99,500 until it was caught on 11 September.
+same time, caught on 11 September. One funder is never counted against two jobs.
 
 **Add a Job column** with four values: plant, beds, facilitation, operating. Then a funder can
 appear twice only if the split is deliberate, the way Brian M. Davis does.
@@ -151,16 +175,16 @@ Each one already exists as a guarded module, so this is transcription. None of i
 | New tab | From | What it settles |
 |---|---|---|
 | **The year and the raise** | `the-year-and-the-raise.ts` | The year needs $747,950, $600,000 is asked, $0 secured, gap $147,950. Carries the double count correction so it cannot come back. |
-| **Three years** | `three-year-plan.ts` | 628 beds a year carries the organisation. Year one 400 at 64%, year two 628 at 100%, year three 900 at 143%. This is the Tim Fairfax answer and it has never existed anywhere. |
-| **Supply and capacity** | `production-scenarios.ts` + `defy-supply.ts` | The four ways to run the line, what each consumes, and the $3.16 break-even. |
-| **Buyers and demand** | `demand-and-buyers.ts` | 320 beds paid, $273,966, four buyers. 20 beds of owned demand against 758 of conversation. |
+| **Three years** | `three-year-plan.ts` | A provisional 628 beds a year carries the organisation, provisional because it derives from the making allowance. Year one 400 at 64%, year two 628 at 100%, year three 900 at 143%. This is the Tim Fairfax answer and it has never existed anywhere. |
+| **Supply and capacity** | `production-scenarios.ts` + `production-route.ts` | The one route the line runs on and what it consumes. The $3.16 break-even is withdrawn with the route it was computed for. |
+| **Buyers and demand** | `demand-and-buyers.ts` | 320 beds paid, $273,966, four buyers. Demand goes in as acts on a ladder, strongest first, and never as a total. |
 
 ---
 
 ## What to fix first
 
-1. **The availability ruling**, items 1 to 4. One cell drives three others and every capacity number
-   in the workbook is wrong until it is set.
+1. **The route**, items 1 to 4, rewritten against the 12 September ruling first. One cell drives
+   three others and every capacity number in the workbook is wrong until 96 kits a month is in it.
 2. **The 143**, item 5, because it sits on the Home tab where anybody opening the sheet sees it.
 3. **The job column**, item 10, because it is the control that stops the double count recurring.
 4. Everything else.

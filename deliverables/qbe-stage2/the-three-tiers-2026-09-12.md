@@ -9,8 +9,9 @@ turning three text cards into three drawings. Five SVGs on the page now.
 Sources on the left, the four jobs in the middle, the year on the right.
 
 **The arrow in the middle is the one nobody had drawn.** Bed money is asked at the $750 sale price
-while the making line is the $276 cost, so $160,000 of bed money over-covers its own line by
-**$49,600**. That surplus is the $474 carrying the organisation.
+while the making line is the provisional $276 cost, so $160,000 of bed money over-covers its own
+line by **$49,600**. That surplus is the provisional $474 carrying the organisation. Both figures
+are provisional while the bought leg panel yield is unknown, and the drawings label them so.
 
 It is also why the arithmetic looks wrong until you see it. The operating line is short $197,550 and
 the gap is $147,950. The difference between those two is exactly that arrow.
@@ -23,7 +24,7 @@ keeps **$75,000**.
 | What $75,000 could fund | |
 |---|---|
 | Half a community plant | One costs $150,000 |
-| 271 beds of making | At $276 each |
+| 271 beds of making | At a provisional $276 each |
 | Wages, more stock, something else | Not ours to say |
 
 **And the arithmetic at the end is the catalytic argument.**

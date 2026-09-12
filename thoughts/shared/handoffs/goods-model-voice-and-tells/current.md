@@ -21,6 +21,14 @@ trade revenue · name the site for the second Commonwealth $150,000.
 holds 43 figures, `tools/sheet-canon.mjs` pushes and checks them, and the whole thing is blocked on
 one share to the service account.
 
+**The route, ruled 12 September.** Press the tab sheets at Witta, buy the leg sheets, dispatch
+flat-packed kits, and run the assembly in community. The line is 6 kits a day, 96 a month across 16
+run days at 80% availability, 1,152 a year, on one pressed tab sheet and 15 kg of tab shred a kit.
+The cost of a bed is provisional until Nic returns the bought leg panel yield, so $276, $474, 628
+and 919 each carry that word. The dated sections below still print the old route's 3 beds a day, 48
+a month, 576 a year, 36 kg a bed, $3.16 a kilogram and $254.45 a bed. Those are withdrawn with the
+route they were computed for, and the sections are kept as history.
+
 
 ## Where it stands, end of 11 September 2026
 
@@ -30,12 +38,13 @@ Fourteen days to the QBE close. 74 commits today, all pushed to
 ### The money was wrong and is now right
 
 **The year needs $747,950, not $937,550.** The old figure added 400 beds at the $750 sale price to
-the full $297,550 running cost. A $750 bed pays its own $276 of making and hands $474 to the
-organisation, so the running cost was charged twice. The overlap is $189,600.
+the full $297,550 running cost. A $750 bed pays its own provisional $276 of making and hands a
+provisional $474 to the organisation, so the running cost was charged twice. The overlap is
+$189,600.
 
 $600,000 is asked across five lines, $0 secured, gap $147,950. **Tim Fairfax was being counted
-against beds and against operating at once**, which is where $99,500 of the error came from. Their
-invitation names the resilience of organisations, so it sits on the operating line alone.
+against beds and against operating at once, and one funder is never counted against two jobs.**
+Their invitation names the resilience of organisations, so it sits on the operating line alone.
 
 The same error was on three deck slides and is fixed: `TiKvy` S15, `F93w1o` S16, `tVcLc` S18.
 
@@ -172,7 +181,7 @@ Both pages are republished and the third document is written.
   section, and the landing list now shows the seven closures with two smaller threads opened in
   their place: a batch of 15 beds no invoice accounts for, and the shared buyer table's broken key.
 - **The 25 Questions** `92ad473f-91e5-4ec8-b68c-2c3580102cb5` gained a backwards-pass board at the
-  top: the 25 sorted by what blocks them, a ten-item work list in unblock order, the money model and
+  top: the 25 sorted by what blocks them, a nine-item work list in unblock order, the money model and
   the impact grades.
 - `deliverables/qbe-stage2/backwards-pass-2026-09-11.md` carries the same in markdown.
 
@@ -181,10 +190,17 @@ ruling (Q6, Q7). Three ready pending a check (Q1, Q2, Q19's text). Nine owed a d
 Q11, Q14, Q15, Q19, Q20, Q21, Q22). Five that only a person can answer (Q13, Q16, Q17, Q24, Q25).
 One blocked on a missing file (Q12, the constitution, which also blocks Q22).
 
-**The money.** The year needs $937,550. $600,000 is asked across five asks, one unsent. $0 secured.
-The bed gap is 54 beds ($40,500) if all three land, 187 ($140,250) without Snow. **$197,550 of the
+**Moved the same night.** Q6, Q7 and Q11 were written against the siting ruling, so nine are final
+(Q5, Q6, Q7, Q8, Q9, Q10, Q11, Q18, Q23), nothing is held and eight are owed a document (Q3, Q4,
+Q14, Q15, Q19, Q20, Q21, Q22).
+
+**The money.** The year needs $747,950. $600,000 is asked across five asks, one unsent. $0 secured,
+gap $147,950. The bed gap is 187 beds ($140,250), being the 400 less Brian M. Davis's 80 and the
+unsent Snow ask of 133. Tim Fairfax is operating support and never counts against beds; counting it
+there as well is what produced the retired 54. **$197,550 of the
 operating cost is asked for nowhere** and is carried by trade. The second press, about $22,500, is
-in no ask and decides June against August for the 400 beds.
+in no ask. What it buys in schedule has to be recomputed on the 12 September route, where 400 kits
+take 4.17 months at 96 a month on one press.
 
 **The impact measure.** One of four is verified: a person off the floor, counted from the register.
 Two hours of paid making and 20 kg of plastic are modelled. Money kept in community is a settled
@@ -904,7 +920,7 @@ communities.
 [->] Three rulings on S12A and S12B, written at the bottom of the Notion deck master. S12 prints
     130 Centrecorp beds as paid when 130 is a quote quantity; section 5 says ALIVE does not buy
     beds when ALIVE is the largest paid bed order; section 5 keeps Tennant Creek and Groote out of
-    the demand schedule when they are 523 of the 778.
+    the demand schedule when they are the two largest rows in it.
 
 ### This Session
 - [x] Live sheet read path proven through the Google Drive connector. The service-account blocker is historical.
@@ -946,11 +962,14 @@ because only the first changed a total.
 as the bed order and past its 30 July due date. No beds on it. A receivables list reads worse than
 the bed trade does, so the slide's speaker notes carry it.
 
-**Demand, from `community_demand`, seven rows.** 778 open beds once the 107 paid Centrecorp beds
-come out: Groote 500 (exploring, one meeting, 64% of the total), Utopia 150 (beds for every child,
-no name), Maningrida 65 (Homeland Schools Co., who have paid before), Palm Island 40 (a partner
-update), Tennant Creek 20 (Dianne Stokes, offered to self-fund) and Tennant Creek 3 (Norman Frank,
-maroon). **Twenty carry a person and money. 758 are conversations.**
+**Demand, from `community_demand`, seven rows.** The 107 paid Centrecorp beds come out, because
+Centrecorp's beds are delivered and are never demand. The rows, and no total: Groote 500 (exploring,
+one meeting), Utopia 150 (beds for every child, no name), Maningrida 65 (Homeland Schools Co., who
+have paid before), Palm Island 40 (a partner update), Tennant Creek 20 (Dianne Stokes, offered to
+self-fund) and Tennant Creek 3 (Norman Frank, maroon). **Only Dianne Stokes' twenty carry a person
+and money. The rest are conversations.** Retired 12 September: the sum of these rows was quoted as a
+demand total, and it adds figures scoped to different populations. There is no total and none may be
+stated.
 
 The shared project's 4,562-row buyer table stays out until Palm Island's postcode 4895 is fixed.
 
@@ -964,21 +983,21 @@ The shared project's 4,562-row buyer table stays out until Palm Island's postcod
 - [ ] Apply `deliverables/qbe-stage2/fixes/palm-island-buyer-key-2026-09-11.sql` against project `tednluwflfhxyucgwigh`. Reversible, transactional, reads back 21 rows before commit. Blocked in auto mode, so Ben runs it.
 - [ ] FRRR SRC Round 30 by 17 September, or Round 31 by 3 December.
 - [x] GHL stage corrections written 11 September on Ben's word: Snow first-mover `ZzPJCLAq3nkAo0bG7ot3` moved Ask made to **Identified**; Minderoo `zQZWXJyILdvzwm8OACPr` moved Ask made to **Declined / Parked**, which is the pipeline's word for paused. Both stages set in two places, the pipeline stage and custom field `QbfHdeNpz2JiMe5iRESS`, because the row carries the stage twice.
-- [ ] Two GHL dollar figures held until Nic's Defy conversation on Mon 14 September, both flagged to Ben and agreed: **Sefa stays at $300,000** until the press has a price, because the 10 September ruling sizes the loan to the press and the press is still unpriced. **Snow's first-mover row stays at $150,000** against the $100,000 ask ruled on 10 September that moves the bed hole from 187 to 54; the row's own next-action note already asks whether $150,000 is current.
+- [ ] Two GHL dollar figures held until Nic's Defy conversation on Mon 14 September, both flagged to Ben and agreed: **Sefa stays at $300,000** until the press has a price, because the 10 September ruling sizes the loan to the press and the press is still unpriced. **Snow's first-mover row stays at $150,000** against the $100,000 ask ruled on 10 September that moves the bed hole to 187; the 54 counted Tim Fairfax against beds as well as operating and is retired; the row's own next-action note already asks whether $150,000 is current.
 - [ ] Sefa row `hBRVkCMhT93215aqTRRr` disagrees with itself: pipeline stage Cultivating, custom field `QbfHdeNpz2JiMe5iRESS` says "Signal", which is not a stage in this pipeline. Not touched, because only the two stage corrections were authorised.
 - [ ] Nic: Centrecorp's position. Section 5 of the deck master says they declined further funding; QU-0014 quotes 130 beds in May 2026.
 
 ### Decisions
 - Demand and trade are two different records and are never added. A paid invoice says what a buyer did, not what they will do next; a demand record is what somebody said, with a date and a name.
-- Recorded demand goes on the slide with its status attached. The distance between the twenty owned beds and the 758 conversations is the facilitation money, and hiding it removes the reason to fund the trips.
-- Availability 80% at The Harvest, so 48 beds a month, and the second press sets the schedule.
+- Recorded demand goes on the slide with its status attached. The distance between the twenty beds somebody has named money for and the conversations behind the rest is the facilitation money, and hiding it removes the reason to fund the trips. No total is stated on either side of that distance.
+- Availability 80% at The Harvest, which is 16 run days a month. The 48 beds a month it gave went with the old route on 12 September; the line dispatches 96 kits a month.
 - Sefa for the second press, sized to the press rather than the illustrative $200,000.
 - The funder and community picture is the GrantScope decision read, not a Notion master.
 - A bed denominator is set by a community with a rule and a name, never derived from overcrowding.
 - The problem section leads with health, and overcrowding is the shared risk measure under all four areas.
 
 ### Open Questions
-- UNCONFIRMED: freight is $100 in the sheet and $150 in the cost engine, which moves break-even from 796 to 918.
+- CLOSED 11 September: the sheet's $100 factory leg and $50 community leg sum to the cost engine's $150, so the two never disagreed. Where Goods carries freight the break-even is a provisional 919. 796 counted the factory leg alone and 918 rounds the wrong way, leaving the organisation $118 short.
 - UNCONFIRMED: GHL holds Snow historical at $397,384.91 against $375,000 published, reconciling to nothing.
 - UNCONFIRMED: the 19 May Snow grant letter names A Curious Tractor while INV-0321 sits in the sole trader's ledger.
 - UNCONFIRMED: $127,455.12 of Snow FY26 money should be in the A Curious Tractor Pty Ltd Xero org, which nobody has read.
@@ -1040,13 +1059,15 @@ The shared project's 4,562-row buyer table stays out until Palm Island's postcod
 > Before writing any prose for a slide, a funder document or a public page, run
 > `node tools/check-ai-tells.mjs <file>`.
 >
-> QBE closes Friday 25 September at noon. Eight of 25 answers are written. Q19 is the last hard
+> QBE closes Friday 25 September at noon. Nine of 25 answers are final. Q19 is the last hard
 > blocker and Nic holds it.
 
 ### The model in four answers
 
-**What is a bed worth?** $750 at the factory door. $276 to make, which is $235.74 on the annual-staff
-basis plus the $40 assembly allowance, with $80 of paid making inside it. $474 stays with Goods.
+**What is a bed worth?** $750 at the factory door. A provisional $276 to make, which is $235.74 on
+the annual-staff basis plus the $40 assembly allowance, with $80 of paid making inside it. A
+provisional $474 stays with Goods. Both stay provisional until Nic returns the bought leg panel
+yield.
 Freight is charged on top at cost, its own line per community, paid by whoever buys the bed. A price
 model, and the organisation is never divided by beds alone.
 
@@ -1054,16 +1075,21 @@ model, and the organisation is never divided by beds alone.
 the applicant and the recipient. Directors are Kristy Bloomfield, Audrey Deemal and Jeremy Donovan.
 QBE is asked for $300,000 to build two plants at $150,000 each, working choices Palm Island and
 Maningrida, with $150,000 for one plant as the smaller case. Beds are separate: 400 of first stock, of
-which Tim Fairfax covers 133, Brian M. Davis 80 and a Snow ask 133, leaving 54 to find. Alice Springs
+which Brian M. Davis covers 80 and an unsent Snow ask 133, leaving 187 to find at $140,250. Tim
+Fairfax is operating support and never counts against beds. Alice Springs
 is funded through Oonchiumpa and sits outside the raise.
 
-**What already runs without any of it?** 320 beds sold and paid across ten invoices, $343,481 all
-time. FY26 Goods receipts were $653,246, of which Snow was $375,000, or 57%, and that share has never
-been traced to a workbook cell. FY26 whole-ledger income was $1,640,724 against $1,472,755 of
+**What already runs without any of it?** 320 beds sold and paid across five settled invoices,
+$273,966 including GST and $247,770 net. The wider all-time buyer basis is ten invoices and
+$343,481, which carries washing machines and other work as well, so name which basis is being used.
+FY26 Goods receipts were $653,246, of which Snow was $375,000, or 57%. That numerator spans two
+entities while the denominator is the sole trader alone, so do not print the 57% until the A Curious
+Tractor ledger is read. FY26 whole-ledger income was $1,640,724 against $1,472,755 of
 expenses, a net $167,970 before founder wages. Never call that a net loss.
 
-**What does one bed do?** Two hours of paid making. 36 kg of shred through the press, 20 kg of it in
-the finished bed. The full sale price kept in the community when the community sells it, per Ben on
+**What does one bed do?** Two hours of paid making. On the 12 September route, 15 kg of tab shred
+through the press and the leg sheets bought. The 20 kg in the finished bed is modelled and no yield
+has been weighed. The full sale price kept in the community when the community sells it, per Ben on
 10 September. One person off the floor. Health is the reason the hardware exists and is never claimed
 as an outcome.
 
