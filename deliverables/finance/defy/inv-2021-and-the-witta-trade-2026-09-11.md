@@ -125,7 +125,7 @@ assembly ceiling.
 | The 400 of first stock | needs the yield | needs the yield |
 | The 400 as finished leg kits from Defy | | $137,620, legs only |
 
-## Speed, which is the other half of the decision
+## Speed, on the one route we now have
 
 | | |
 |---|---|
