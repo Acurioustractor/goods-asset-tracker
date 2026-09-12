@@ -1,5 +1,5 @@
 ---
-date: 2026-09-12T21:00:00+10:00
+date: 2026-09-12T14:30:00+10:00
 session_name: goods-model-voice-and-tells
 branch: feat/ai-tells-gate-and-goods-model
 status: handoff
@@ -7,28 +7,27 @@ status: handoff
 
 ## ▶ START HERE
 
-**`RESUME-QBE.md` at the repo root is the paste-prompt.** Copy it into a fresh session.
+**Worktree `/Users/benknight/Code/goods-finance-wt`, branch `feat/ai-tells-gate-and-goods-model`,
+pushed to `b297b48`, clean, no PR.** Read the Ledger below first: it is current as at 14:30 on
+12 September and everything under it is older.
 
 Notion front door: **🛏️ Goods on Country, the raise, start here**, `3d8ebcf981cf8128bd9aee918f49733f`.
+It now opens with the flat-pack ruling and carries **the work list**, a database of 43 actions with
+an owner and a due date on each: `0eac4e79-dd38-452e-94d0-d25944c17b85`.
 
-Six Notion pages, eight artifacts, eleven guarded modules, 809 tests, branch pushed, no PR.
+**The wiki is the durable reference now.** `wiki/articles/program/the-raise.md` is the front door and
+the reading order. 27 articles, 45 canon keys, gated by `tools/check-wiki-canon.mjs`.
 
-**The five that decide it:** send the SEFA EOI because Jay wants debt in the stack · the
-accountant's letter has no owner · the constitution blocks two funders · which entity holds the
-trade revenue · name the site for the second Commonwealth $150,000.
+**The one thing that changed everything today:** Ben ruled the flat-pack route. The factory presses
+tab sheets and buys legs, kits ship flat and young people assemble them in community. Capacity
+doubled and **the cost of a bed became provisional**, so $276, $474 and break-even at 628 must all
+carry the word provisional until Nic confirms the bought leg panel yield.
 
-**The architecture:** the modules are the core and the workbook is a view of them. `sheet-canon.ts`
-holds 43 figures, `tools/sheet-canon.mjs` pushes and checks them, and the whole thing is blocked on
-one share to the service account.
+**QBE closes Friday 25 September at noon.** The five that still decide it: send the SEFA EOI because
+Jay wants debt in the stack · the accountant's letter has no owner · the constitution blocks two
+funders · which entity holds the trade revenue · name the site for the second Commonwealth $150,000.
 
-**The route, ruled 12 September.** Press the tab sheets at Witta, buy the leg sheets, dispatch
-flat-packed kits, and run the assembly in community. The line is 6 kits a day, 96 a month across 16
-run days at 80% availability, 1,152 a year, on one pressed tab sheet and 15 kg of tab shred a kit.
-The cost of a bed is provisional until Nic returns the bought leg panel yield, so $276, $474, 628
-and 919 each carry that word. The dated sections below still print the old route's 3 beds a day, 48
-a month, 576 a year, 36 kg a bed, $3.16 a kilogram and $254.45 a bed. Those are withdrawn with the
-route they were computed for, and the sections are kept as history.
-
+---
 
 ## Where it stands, end of 11 September 2026
 
@@ -386,14 +385,102 @@ Production purchases and labour still need reconciliation into cash. Opening bal
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-11T17:40:00+10:00
+**Updated:** 2026-09-12T14:30:00+10:00
 **Goal:** The QBE Stage 2 application goes in by Friday 25 September at noon carrying one model that
-holds together. Done when every question is answered or assigned to a named person, every figure
-traces to a source, and nothing ships with a writing tell.
+holds together, and the wiki is the durable reference behind it. Done when every question is
+answered or assigned to a named person, every funder-facing figure traces to a guarded module, and
+nothing ships with a writing tell.
 **Branch:** feat/ai-tells-gate-and-goods-model in worktree `/Users/benknight/Code/goods-finance-wt`.
-**36 commits, pushed 11 September. No PR open.**
-**Test:** `cd v2 && ./node_modules/.bin/vitest run && ./node_modules/.bin/tsc --noEmit -p tsconfig.json && npm run build`
-**Before publishing anything:** `node tools/check-ai-tells.mjs <file>`
+**PUSHED to b297b48. Zero unpushed. No PR open.**
+**Test:** `cd v2 && ./node_modules/.bin/vitest run && ./node_modules/.bin/tsc --noEmit -p tsconfig.json`
+**Before publishing:** `node tools/check-ai-tells.mjs <file>` · `node tools/check-wiki-canon.mjs` ·
+`node tools/check-module-prose.mjs <file.ts>` (the tells checker blanks script blocks, so module
+prose and HTML need the other two)
+
+### Now
+[->] Ben's three page-assertion rulings, then the deck master on Notion. The Control Room calculator
+defaults to Snow off, so it computes 320 still to find while the static page says 187 six times.
+
+### This Session (12 September 2026)
+- [x] **THE ROUTE RULING IS BEN'S AND IS NOW IN CODE.** Press tab sheets at Witta, buy leg sheets,
+      dispatch flat-packed kits, young people assemble in community. `production-route.ts` +
+      DECISIONS.md. Capacity 48/month to 96, 576/year to 1,152, 36 kg to 15 kg. THE COST OF A BED IS
+      NOW PROVISIONAL until Nic confirms the bought leg panel yield.
+- [x] Full review: 44 agents over 11 surfaces, 100 contradictions found, 24 verified adversarially,
+      10 confirmed. Then 76 more verified: 49 confirmed, 27 refuted, 9 live on the public site.
+- [x] **THE WIKI IS BUILT.** 27 articles in three clusters under `wiki/articles/`: program and
+      capital carry the raise, `trade/` the selling system, `production/` the making-to-money join.
+      45 canon keys cited. `tools/check-wiki-canon.mjs` fails by name when a module moves.
+      AGENTS.md rules 12 to 15 are the versioning contract.
+- [x] Five live public-site errors fixed: press boilerplate called us a project of A Curious Tractor,
+      health stated as cardiac prevention on two pages, the retired QBE dollar-for-dollar match on
+      the partner dashboard, and 10-year design life stated as fact.
+- [x] Three drifting figures derived and guarded: break-even with Goods freight (796 and 918 were
+      BOTH wrong, it is 919), the $197,550 operating shortfall, and $273,966 paid including GST.
+      Canon 46 to 49 keys.
+- [x] Grant application composer stopped claiming health outcomes (it feeds /api/admin/grants/compose).
+- [x] Canon's stale drift notes cleared: 7 of 8 described a workbook that no longer exists.
+- [x] 83 corrections swept across 12 deliverables, including Q19's retired production route.
+- [x] Two modules unpinned: `demand-and-buyers` had a guard asserting the retired 778 demand total;
+      `capital-stack-flex` said a second press buys 32 more beds a month on the retired assembly
+      ceiling (it is 40, 96 to 136, router-constrained).
+- [x] **Notion work list live on the front door**: 43 rows, owner and due date on each.
+      Database `0eac4e79-dd38-452e-94d0-d25944c17b85`.
+
+### Next
+- [ ] Ben's three page rulings: the Control Room calculator default (Snow on or off), whether the
+      sole-trader-scoped 37.9% Snow share may be printed, whether the 87 beds-ready figure survives.
+- [ ] The deck master on Notion `3d1ebcf981cf817598d8f15ee4f89c32`: ALIVE at $75,000, Tim Fairfax
+      counted twice on S15 and S16, the 778 on S12B, retired production rates. Deck copy is Ben's,
+      one slide at a time.
+- [ ] Republish the artifacts once Ben approves: Control Room `b45c45a0`, plates `69266095`,
+      how-a-bed `90e5a525`. All edited locally, none republished.
+- [ ] The terms page at /terms: seller of record and the retired "Goods." layer. Ruling K,
+      MinterEllison wording, Ben's.
+- [ ] Add the three new canon keys to the workbook Canon tab (the rest of the workbook is already
+      rebuilt to the flat-pack route).
+- [ ] The 13 pre-rule-12 wiki articles awaiting review. `check-wiki-canon.mjs --strict` fails on them.
+
+### Decisions
+- The flat-pack route (Ben, 12 Sep): the factory's job ends at dispatch and assembly becomes a
+  community programme, so there is no factory assembly ceiling and the router is the second
+  constraint.
+- Break-even with Goods carrying freight is 919, not 918 and not 796. 918 leaves the organisation
+  $118 short. Both prior figures were wrong and neither was guarded.
+- A stale drift note is the same failure as drift pointing the other way. Guards protect the shape,
+  never a fixed list.
+- The wiki lives at `wiki/articles/` and `v2/.wiki-content/` is a generated mirror (`npm run
+  wiki:sync`, wired to prebuild). Four checkouts carry copies; the worktree's was 15 files behind.
+- New material goes to a guarded module first; the wiki holds judgement and reasoning only.
+
+### Open Questions
+- UNCONFIRMED: whether the 14 September board meeting exists. Two governance records say the date
+  does not. Q8 is counted final on the strength of it.
+- UNCONFIRMED: whether INV-0342's invoice date is 2 July (the module) or 20 August (settled).
+- UNCONFIRMED: Tim Fairfax's decision date. Three versions on the record.
+- UNCONFIRMED: whether 450 kg of shred a week still describes the burn on the tab-only route. Nic
+  measured it on 28 August while the press was making legs too.
+- UNKNOWN and load-bearing: how many leg sets come off one bought 800 x 1200 panel. It sets the make
+  cost, the contribution, break-even and the panel-versus-press decision. Nic owns it.
+
+### Workflow State
+pattern: review-then-correct-then-build
+phase: 4
+total_phases: 5
+retries: 0
+max_retries: 3
+
+#### Resolved
+- goal: "Review all QBE information, build a gold-standard versioned wiki, load the work into tasks"
+- resource_allocation: aggressive (ultracode, 4 workflows, 88 agents)
+
+#### Unknowns
+- bought_leg_panel_yield: UNKNOWN, blocks every cost sentence
+- shred_bag_price: UNKNOWN, QU0494 and QU0495 unopened
+- entity_holding_trade_revenue: UNKNOWN, required SEFA field
+
+#### Last Failure
+(none this session)
 
 ## The landing list, 11 September 2026
 
