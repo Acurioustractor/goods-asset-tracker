@@ -55,7 +55,7 @@ export type DoorId = 'donate' | 'buy' | 'invest';
 const DOOR_VERBS: Record<DoorId, string> = {
   donate: 'Donate',
   buy: 'Buy / Order',
-  invest: 'Invest (repayable)',
+  invest: 'Lend (repayable)',
 };
 
 export function entityDoor(door: DoorId): EntityDoor {

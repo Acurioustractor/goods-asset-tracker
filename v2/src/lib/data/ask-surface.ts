@@ -185,9 +185,9 @@ export const ENTITY_DOORS: EntityDoor[] = [
     what: 'Bed and washing-machine orders at list price. Revenue, not philanthropy. $750 a bed.',
   },
   {
-    verb: 'Invest (repayable)',
-    entity: 'A Curious Tractor Pty Ltd, selling as Goods.',
-    what: 'Repayable finance sits in the trading company. Australian law puts it here: equity and loans go to the Pty Ltd, deductible gifts go to the DGR.',
+    verb: 'Lend (repayable)',
+    entity: 'The Butterfly Movement Ltd, trading as Goods on Country, and changing its name to Goods on Country.',
+    what: 'Ben, 12 September 2026: one entity holds the grants, the trade, the wages and the resources, so a loan is borrowed here alongside the gifts. Equity has no home at all, because a company limited by guarantee has no shares.',
   },
 ];
 export const ENTITY_NOTES = [

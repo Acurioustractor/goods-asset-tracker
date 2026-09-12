@@ -32,5 +32,5 @@ sources: [v2/src/lib/data/the-year-and-the-raise.ts, v2/src/lib/data/capital-sta
 
 - [[../program/the-raise]]: the front door, with the four applications and their dates
 - [[../investors/README|Investors]]: who provides each capital type
-- [[../governance/the-entity-question]]: which entity holds the trade revenue, which SEFA's EOI forces
+- [[../governance/the-entity-question]]: ruled 12 September, one entity, Butterfly renamed Goods on Country
 - [[../program/qbe-catalysing-impact-2026|QBE program]]: the program driving our 2026 raise

@@ -60,7 +60,7 @@ So QBE's precondition date lands before either of the other two boards has decid
 
 The Queensland stream of Backing the Bold is open with rolling acceptance and takes under fifteen minutes. The EOI is drafted and unsent. Nothing external is holding it.
 
-What is holding it is one required field: four years of EBITDA and the percentage of revenue that comes from trade. Butterfly's FY26 EBITDA is about negative $42,854 against roughly $168,000 in the trading entity, so the answer depends on which entity applies, and that decision belongs to Ben, Nic and Joel Bird together. Joel flagged exactly this on 21 August and offered a call with Tanya from the investment team. That call should happen before the EOI goes. See [[governance/the-entity-question]] and [[investors/sefa]].
+The entity that was holding it is ruled: one entity, Butterfly, renamed Goods on Country, Ben 12 September. What holds it now is the call. Answered as Butterfly the required field reads an FY26 EBITDA of about negative $42,854 with almost no trade revenue, so the four-year history is the weak part of the case and a conversation is the right place to put it. Joel Bird flagged exactly this on 21 August and offered a call with Tanya from the investment team. That call should happen before the EOI goes. See [[governance/the-entity-question]] and [[investors/sefa]].
 
 This is also the date that matters most to QBE. Jay Boolkin's steer for 2026 is that QBE wants corporate philanthropy to unlock debt or equity, and our $600,000 asked is 100% philanthropy. A sent EOI is the only thing in the calendar that changes that shape before 25 September.
 

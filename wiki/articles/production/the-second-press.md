@@ -37,7 +37,7 @@ That sits inside SEFA Backing the Bold, which lends $50,000 to $200,000 to impac
 
 Jay's steer makes the send urgent on its own terms. QBE in 2026 wants corporate philanthropy to unlock debt or equity, and the $600,000 Goods is asking for is 100% philanthropy. A live loan conversation changes what the QBE application can say about itself, and sending the EOI beats any wording change.
 
-The EOI carries a cost. It asks for four years of EBITDA and the percentage of revenue that comes from trade, which forces the entity question into the open: Butterfly's FY26 EBITDA is about negative $42,854 against roughly $168,000 in the trading entity (`deliverables/qbe-stage2/real-forms-review-2026-09-12.md`). Butterfly is applicant and recipient under ruling AA, and which entity holds the trade revenue is owned by Ben, Nic and Joel. See [[investors/sefa]] and [[governance/legal-structure]].
+The EOI carries a cost. It asks for four years of EBITDA and the percentage of revenue that comes from trade, and both are answered as the charity now that Ben has ruled one entity. Butterfly's FY26 EBITDA is about negative $42,854 against roughly $168,000 in the trading entity that will not be applying (`deliverables/qbe-stage2/real-forms-review-2026-09-12.md`), so the four-year history is the weak part of the case and the call with Joel and Tanya is where it gets explained. See [[investors/sefa]] and [[governance/legal-structure]].
 
 ## Why the QBE plants do not solve it
 
@@ -66,7 +66,7 @@ Service comes out of Goods' own margin on paid beds, which is the provisional $4
 |---|---|---|
 | Open QU0494 and QU0495 | Ben or Nic | The press against panels decision |
 | Send the SEFA EOI, drafted and unsent | Ben | The only debt line in the raise |
-| Settle which entity holds the trade revenue | Ben, Nic, Joel | The EBITDA and trade-revenue fields on the EOI |
+| ~~Settle which entity holds the trade revenue~~ ruled 12 Sep: one entity, Butterfly renamed Goods on Country. Now: the call with Joel and Tanya | Ben, Nic, Joel | The EBITDA and trade-revenue fields are answered as the charity, so the four-year history is the weak part of the case |
 
 ## Related
 

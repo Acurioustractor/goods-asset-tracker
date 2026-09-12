@@ -1,21 +1,29 @@
 ---
 reviewed: 2026-09-12
-ruling: Ruling AA (Ben 5 Sep 2026) the charity is the applicant and the home and the directors are the directors; read in the primary repo's DECISIONS.md because this worktree's copy does not carry it
+ruling: Ben, 12 September 2026, one entity: The Butterfly Movement Ltd holds the grants, the trade, the wages and the resources, and its name changes to Goods on Country. Sits above ruling AA (Ben 5 Sep 2026), which settled applicant and recipient and is read in the primary repo's DECISIONS.md because this worktree's copy does not carry it
 canon: [trade.bedsPaid, trade.paidNet, year.asked, bed.contribution, plant.secondPress, trade.paidInclGst]
 sources: [v2/src/lib/data/canon.ts:246-272, v2/src/lib/data/raise-stack.ts:376-405, v2/src/lib/data/ownership-problem.ts:115-128, v2/src/lib/data/ask-surface.ts:192-201, v2/src/lib/data/demand-and-buyers.ts:56-193, DECISIONS.md:604-640, deliverables/qbe-stage2/real-forms-review-2026-09-12.md:60-90, deliverables/qbe-stage2/qbe-answers-2026-09-10.md:440-495, deliverables/finance/goods-financial-plan/WORKED-OUT-2026-09-09.md:70-95, notion:3d8ebcf981cf8147aef9c629e6107483]
 ---
 
 # The entity question
 
-> Three applications are waiting on one piece of reasoning nobody has finished. Ruling AA settled
-> half of it on 5 September 2026: The Butterfly Movement Ltd is the applicant and the recipient,
-> Goods on Country is a registered business name of Butterfly, and the directors are the directors.
-> The half still open is which entity holds the trade revenue. SEFA's Backing the Bold EOI carries a
-> required field asking what percentage of revenue comes from trade, with EBITDA for FY26, FY25,
-> FY24 and FY23 beside it, and the two candidate entities answer that field in opposite directions.
-> Butterfly's unaudited FY26 shows income of $77,080 against expenses of $119,934, so EBITDA of
-> about negative $42,854. The trading side carries roughly $168,000 before founder wages and every
-> paid bed invoice Goods has ever raised. Ben, Nic and Joel own the decision and it is open.
+> The question is answered. Ben ruled on 12 September 2026 that there is one entity: The Butterfly
+> Movement Ltd holds the grants, the trade, the wages and the resources, and its name changes from
+> The Butterfly Movement Ltd to Goods on Country. Goods on Country stops being a business name
+> sitting over a charity and becomes the charity's own name. Ruling AA had settled half of this on
+> 5 September, that Butterfly is the applicant and the recipient. This settles the other half.
+>
+> The ruling was made knowing what it costs. SEFA's Backing the Bold EOI asks four years of EBITDA
+> and the percentage of revenue from trade. Answered as Butterfly that is an FY26 result of about
+> negative $42,854, almost no trade revenue and a dormant shell in FY23 to FY25, where the trading
+> side would have shown roughly $168,000 and every paid bed invoice. The lending case is weaker as
+> one entity, so the call with Joel Bird and Tanya at SEFA carries that application. The form text
+> will not.
+>
+> What is open now is execution, and two pieces of it are legal. Whether trading sits inside the
+> charitable purposes and what routing every bed invoice through a DGR does to that endorsement is
+> MinterEllison's question. Moving the trade across from the sole trader is a related-party
+> transaction and needs documenting before a funder finds it.
 
 ## What ruling AA settles
 
@@ -60,10 +68,10 @@ Two of those four are easy to conflate and the conflation has reached funder doc
 company on a domain named for the charity, which is why the shop's seller of record is still open
 with MinterEllison.
 
-## The numbers that force the decision
+## The numbers the ruling accepts
 
-SEFA's EOI asks one question that cannot be answered without choosing an entity: what percentage of
-revenue comes from trade, with four years of EBITDA behind it.
+SEFA's EOI asks what percentage of revenue comes from trade, with four years of EBITDA behind it.
+The ruling answers that field as Butterfly, and this is what a lender sees.
 
 | | Butterfly | The trading side |
 |---|---|---|
@@ -72,9 +80,9 @@ revenue comes from trade, with four years of EBITDA behind it.
 | Revenue from trade | almost none | all of the bed and washer invoices |
 | FY23 to FY25 | a dormant shell | where the history is |
 
-A lender reading four years of Butterfly sees one loss and three years of a shell. Applying as
-Butterfly makes a loan look unfundable. Applying as the trading side makes it fundable and opens
-the next question, which is which entity signs and which entity repays.
+A lender reading four years of Butterfly sees one loss and three years of a shell. That is the
+known cost of the ruling, and it is why the call carries the application. From FY27 the trade sits
+here and the four-year history starts repairing itself, but no lender reads FY27 this month.
 
 Two cautions travel with those figures. The $713,827 is a Goods-only carve-out prepared with the
 accountant as a workpaper. No accountant has signed it, so the figure may be cited and the word
@@ -85,7 +93,7 @@ yet, which is the same gap the accountant's letter is meant to close.
 Joel flagged this exact problem on 21 August and offered a call with Tanya from SEFA's investment
 team to look at the financials. That call belongs before the EOI goes.
 
-## The trade record is real and it is in the other entity
+## The trade record is real and it is moving in
 
 The reason the question bites is that Goods has a trade record worth showing. Four organisations
 have bought and paid for 320 beds across five settled invoices: $273,966 including GST, $247,770
@@ -93,9 +101,10 @@ net. Facilitation is a second thing buyers already pay for, $50,000 net across t
 $3,000, $6,000 and $8,000. ALIVE at the University of Melbourne paid $101,200 including GST for 100
 Stretch Beds and four half-share workshops on INV-0342.
 
-None of that paper is Butterfly's. It was invoiced out of the sole trader's ledger and is moving
-across under the transfer described at QBE Q8. So the applicant of record holds the least trade and
-the entity with the trade is the one ruling AA did not choose.
+None of that paper is Butterfly's yet. It was invoiced out of the sole trader's ledger and moves
+across under the transfer described at QBE Q8. The 12 September ruling makes that a complete
+transfer. Until those transfer documents exist, the applicant of record
+still holds the least trade, and that gap is a related-party transaction waiting to be papered.
 
 ## The constitution is the unread document
 
@@ -124,7 +133,9 @@ as a pathway on every surface.
 | Butterfly is applicant and recipient | Ruling AA, Ben, 5 September 2026 |
 | Goods on Country is a registered business name of Butterfly, from 23 July 2026 | Ruling K, confirmed on ABN Lookup 25 July 2026 |
 | DGR only through Butterfly | Canon `entity-dgr-home`, ABN Lookup |
-| Repayable capital sits in A Curious Tractor Pty Ltd | Australian law, recorded in `ask-surface.ts` |
+| One entity: Butterfly holds grants, trade, wages and resources | Ben, 12 September 2026 |
+| Butterfly's name changes to Goods on Country | Ben, 12 September 2026 |
+| Debt is borrowed by Butterfly. Equity has no home, because a company limited by guarantee has no shares | The 12 September ruling, read against the company form |
 | A Kind Tractor is dormant and carries no Goods role | Canon `entity-dormant` |
 | The directors are Kristy Bloomfield, Audrey Deemal and Jeremy Donovan | Ruling AA |
 | Ownership is a pathway and is never claimed complete | Standing rule, ruling J |
@@ -133,7 +144,9 @@ as a pathway on every surface.
 
 | Open question | Owner | What it blocks |
 |---|---|---|
-| Which entity holds the trade revenue, signs a SEFA loan and repays it | Ben, Nic, Joel, with Tanya's read of the financials | The SEFA EOI, drafted and unsent, Queensland stream open and rolling |
+| Whether trading sits inside the charitable purposes, and what routing every bed invoice through a DGR does to the endorsement | MinterEllison | The name change filings, and the first question due diligence asks |
+| Documenting the transfer of trade from the sole trader, a related-party transaction | Ben and Nic | QBE Q8 and Q22 |
+| The ACNC and ASIC name change and the board resolution behind it | The board | Every surface that prints the legal name |
 | Butterfly's constitution, unlocated | Eloise | QBE Q12 and Q22, TFFF 4.1, the 50% Indigenous business test, IBA eligibility |
 | The accountant's letter | Unassigned, recorded on the QBE final application page as the submission blocker | QBE submission |
 | Kristy Bloomfield's related-party minute, with a matching minute from Oonchiumpa | The board, 14 September | QBE Q8 and Q22 |
@@ -158,9 +171,10 @@ SEFA loan. A sensible first ask there is $50,000 to $100,000: the second press a
 working capital. At the provisional contribution of $474 a bed, 101 paid beds a year services
 $200,000, and provisional is the right word until the bought leg panel yield is counted.
 
-So the entity answer sits on the critical path of a philanthropic application, a governance
-application and a loan at once. It is a decision for Ben, Nic and Joel, and this article does not
-make it.
+So the entity answer sat on the critical path of a philanthropic application, a governance
+application and a loan at once. It is made. What remains is filings, legal advice and paper, and
+the name change can travel with the constitutional amendment that QBE Q12, QBE Q22 and TFFF 4.1
+are all waiting on, because both need the same board resolution.
 
 Related: [[governance/legal-structure]] · [[governance/board-structure]] · [[capital/the-money-model]] ·
 [[capital/the-blockers]] · [[trade/what-has-been-bought]] · [[investors/sefa]] · [[investors/iba]] ·

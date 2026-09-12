@@ -152,7 +152,10 @@ describe('doors', () => {
   it('sends donations to the charity and orders to the company, never the reverse', () => {
     expect(entityDoor('donate').entity).toMatch(/butterfly movement/i);
     expect(entityDoor('buy').entity).toMatch(/curious tractor/i);
-    expect(entityDoor('invest').entity).toMatch(/curious tractor/i);
+    // Ben, 12 September 2026: one entity. A loan is borrowed by the charity, so the invest door
+    // is Butterfly. The buy door is left alone on purpose: the shop's seller of record is ruling
+    // K and is open with MinterEllison, and this guard is not the place to pre-empt it.
+    expect(entityDoor('invest').entity).toMatch(/butterfly movement/i);
   });
 
   it('gives the internal and partner audiences no money door', () => {

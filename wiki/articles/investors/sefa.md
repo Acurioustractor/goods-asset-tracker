@@ -12,9 +12,11 @@ supersedes: []
 > trade. The Queensland stream is open with rolling acceptance and no closing date, Goods on
 > Country is Queensland based, and the expression of interest takes under fifteen minutes. It is
 > drafted and unsent. Two required fields decide it before a word of narrative matters: four years
-> of EBITDA, and the percentage of revenue that comes from trade. The Butterfly Movement Ltd shows
-> an FY26 EBITDA of about negative $42,854 and the trading entity shows roughly $168,000, so the
-> form makes Ben, Nic and Joel settle which entity applies. Jay's steer for QBE 2026 is that
+> of EBITDA, and the percentage of revenue that comes from trade. Ben settled the entity on
+> 12 September: one entity, The Butterfly Movement Ltd, renamed Goods on Country. That answers the
+> field as a charity with an FY26 EBITDA of about negative $42,854 and almost no trade revenue,
+> where the trading entity would have shown roughly $168,000, so the call with Joel Bird and Tanya
+> carries this application and the form text will not. Jay's steer for QBE 2026 is that
 > corporate philanthropy should unlock debt or equity, and the $600,000 asked across five lines is
 > all philanthropy, which is why sending this beats any wording change anywhere.
 
@@ -43,11 +45,12 @@ proposed borrowing until an EOI exists.
 | Referral | Joel Bird, SEFA, 21 August 2026 |
 | Our state | EOI drafted and unsent |
 
-## The two fields that decide it
+## The two fields, answered as one entity
 
 The EOI asks what percentage of revenue comes from trade, and for EBITDA across FY26, FY25, FY24
-and FY23. Joel flagged the entity question on 21 August as the thing to settle before approaching
-investors. The form now asks it directly, and the answer changes completely with the entity.
+and FY23. Joel flagged the entity question on 21 August as the thing to settle before approaching investors.
+Ben settled it on 12 September. The table below is kept because it is what SEFA will see and what
+the call has to talk through, and the left column is now the answer.
 
 | | The Butterfly Movement Ltd | The trading entity |
 |---|---|---|
@@ -58,9 +61,10 @@ investors. The form now asks it directly, and the answer changes completely with
 | FY23 to FY25 | A dormant shell, close to zero | Where the history is |
 
 Applying as Butterfly puts four years of a gifted shell in front of a lender, with a negative FY26
-at the end of it. That is not a lending case. Applying as the trading entity gives SEFA something
-to lend against and opens the question of which entity repays, because the bed revenue sits with
-the sole trader and the grants sit with the charity.
+at the end of it. On the four-year history alone that is not a lending case, and the ruling was
+made knowing it. What the call has to carry is the trade that is moving in: 320 beds bought and
+paid for across five settled invoices, and a transfer from the sole trader that has to be papered
+as a related-party transaction.
 
 This is a conversation between Ben, Nic and Joel before it is a writing task. Joel offered a call
 with Tanya from SEFA's investment team on 21 August to look at the financials together. That call
@@ -78,7 +82,7 @@ and A Curious Tractor's current director and shareholder record is still owed. S
 
 | Field | Answer |
 |---|---|
-| Organisation type | Charity or not-for-profit, if Butterfly applies |
+| Organisation type | Charity or not-for-profit |
 | Legal structure | Company limited by guarantee |
 | Where we operate | Queensland and the Northern Territory |
 | How long operating | Five years or more |
@@ -92,9 +96,9 @@ and A Curious Tractor's current director and shareholder record is still owed. S
 
 | Field | What is needed |
 |---|---|
-| Revenue from trade, as a percentage | Follows the entity decision |
+| Revenue from trade, as a percentage | Butterfly's. Almost none, and the form is answered honestly |
 | EBITDA for FY26, FY25, FY24 and FY23 | Four years. An estimate is accepted at EOI stage and statements come at application stage |
-| Total revenue FY26 | $77,080 for Butterfly, about $713,827 for the trading entity |
+| Total revenue FY26 | $77,080. The $713,827 is the sole trader's Goods carve-out and is not the applicant's |
 | Audited or management reporting | Management reporting. The FY26 set is unaudited and the declaration is unsigned |
 | Staff, FTE, paid or unpaid | Needs Ben. One paid employee at the facility was the August figure |
 

@@ -11,7 +11,7 @@ sources: [wiki/articles/governance/the-entity-question.md, wiki/articles/governa
 
 ## The open question
 
-- [[the-entity-question]]: what ruling AA settled on 5 September 2026, the half still open about which entity holds the trade revenue, and why SEFA's revenue-from-trade field forces a decision from Ben, Nic and Joel
+- [[the-entity-question]]: ruled 12 September, one entity holding grants, trade, wages and resources, with Butterfly renamed Goods on Country
 
 ## Articles
 

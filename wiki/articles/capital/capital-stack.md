@@ -101,7 +101,7 @@ Every rung is a real unit at a real price. Nothing here is a share of a total.
 
 Debt carries a repayment test that a grant does not. Joel Bird put it plainly on 21 August: the question is whether the capital drives enough growth to repay it. On the provisional $474 a bed, 101 paid beds a year services $200,000, which is inside one plant's output.
 
-What is unsettled is which entity the revenue flows through, and that decides where the debt can sit. Butterfly's FY26 EBITDA is about negative $42,854 against roughly $168,000 in the trading entity. SEFA's EOI asks for four years of EBITDA and the percentage of revenue from trade, so the form itself forces the entity decision.
+Where the debt sits is settled. Ben ruled on 12 September that there is one entity, The Butterfly Movement Ltd, renamed Goods on Country, so Butterfly borrows. Its FY26 EBITDA is about negative $42,854 against roughly $168,000 in the trading entity that will not be applying, which makes the four-year history the weak part of the case and the call with Joel and Tanya the strong part. Equity has no home here at all, because a company limited by guarantee has no shares.
 
 ## If the gap stays
 

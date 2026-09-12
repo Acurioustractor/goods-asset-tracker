@@ -13,7 +13,7 @@ sources: [deliverables/qbe-stage2/real-forms-review-2026-09-12.md, deliverables/
 |---|---|---|---|---|
 | 1 | The accountant's letter | Unassigned | The QBE submission itself | The $300,000 QBE ask |
 | 2 | Butterfly's constitution | Eloise | QBE Q12 and Q22, Tim Fairfax 4.1, the 50% Indigenous business threshold, IBA eligibility | Two funders and one class of First Nations finance |
-| 3 | Which entity holds the trade revenue | Ben, Nic, Joel Bird | The SEFA Backing the Bold EOI | A loan of $50,000 to $200,000, and the only non-philanthropic line in the stack |
+| 3 | ~~Which entity holds the trade revenue~~ RULED 12 Sep: one entity, Butterfly, renamed Goods on Country. Now: the call with Joel and Tanya | Ben, Nic, Joel Bird | The SEFA Backing the Bold EOI | A loan of $50,000 to $200,000, and the only non-philanthropic line in the stack |
 | 4 | The site for the second Commonwealth $150,000 | Ben | Q14 and Q15 disclosure, and the gap | $147,950 |
 | 5 | Defy quotes QU0494 and QU0495 | Ben or Nic | The second press against bought panels | $22,500, in no ask |
 | 6 | Q19's six documents | Nic, with Eloise and the board | Q19 | Delivery readiness in the QBE form |
@@ -43,13 +43,15 @@ Four things wait on that file:
 
 The handoff calls it the highest-value unread document in the organisation. That is the right description. One file, two funders, and a finance pathway.
 
-## 3. Which entity holds the trade revenue
+## 3. Which entity holds the trade revenue: ruled, 12 September
 
-Ben, Nic and Joel Bird at SEFA hold this between them, and the SEFA EOI is what forces it.
+Ben ruled it. There is one entity. The Butterfly Movement Ltd holds the grants, the trade, the wages and the resources, and its name changes to Goods on Country.
 
-The Backing the Bold EOI takes under fifteen minutes and asks two things that decide the application: EBITDA for FY26, FY25, FY24 and FY23, and the percentage of revenue that comes from trade. Butterfly's FY26 EBITDA is about negative $42,854. The trading entity's is roughly $168,000 before founder wages, and all of its revenue is trade. Butterfly was a dormant shell across FY23 to FY25, so the history sits in the other entity.
+The Backing the Bold EOI takes under fifteen minutes and asks two things: EBITDA for FY26, FY25, FY24 and FY23, and the percentage of revenue that comes from trade. Answered as Butterfly, that is an FY26 EBITDA of about negative $42,854, almost no trade revenue, and a dormant shell across FY23 to FY25. The trading entity would have shown roughly $168,000 before founder wages with all of its revenue from trade, and Ben ruled knowing that.
 
-Sent as Butterfly, a loan looks unfundable. Sent as the trading entity, it looks fundable and raises the question of which entity repays. Joel Bird flagged exactly this on 21 August and offered a call with Tanya from the investment team. That call belongs before the EOI goes.
+So the lending case is weaker as one entity, and the call carries this application. Joel Bird flagged exactly this on 21 August and offered a call with Tanya from the investment team. That call belongs before the EOI goes, and it is now the blocker in place of the entity question.
+
+What the ruling moves onto the list instead: whether trading sits inside the charitable purposes and what routing every bed invoice through a DGR does to the endorsement, which is MinterEllison's; the ACNC and ASIC name change with the board resolution behind it, which can travel with the constitutional amendment blocker above; and documenting the transfer of trade from the sole trader, which is a related-party transaction.
 
 Why this one outranks its size: Jay's steer for QBE 2026 is that corporate philanthropy should unlock debt or equity, and the $600,000 asked is 100% philanthropy. The EOI is drafted and unsent, the Queensland stream is open with rolling acceptance, and sending it does more for the QBE application than any wording change anywhere.
 

@@ -372,7 +372,9 @@ export const QBE_ASK = {
 } as const;
 
 // ---------------------------------------------------------------------------
-// The entity route (form Q1, Q2, Q3, Q8), subject to Jay on 3 Sep
+// The entity route (form Q1, Q2, Q3, Q8).
+// Ben, 12 September 2026: one entity. Butterfly holds the grants, the trade, the wages and the
+// resources, and its name changes to Goods on Country. There is no fallback applicant any more.
 
 export const ENTITY_ROUTE = {
   recommended: {
@@ -385,10 +387,8 @@ export const ENTITY_ROUTE = {
     ],
     diagram: 'Three boxes and two arrows: sole trader to A Curious Tractor to Butterfly, with the transfer dated.',
   },
-  fallback: {
-    applicant: 'A Curious Tractor Pty Ltd',
-    why: 'If Jay says the cohort entrant must apply. The grant lands in the company and the external commitments land in the charity, so Q2 and Q8 rest on the inter-entity agreement, which is unsigned. Needs MinterEllison and a signature before 13 Nov. Weaker, and said so.',
-  },
+  fallbackRetired:
+    'Ben, 12 September 2026: there is no fallback applicant. A Curious Tractor Pty Ltd as applicant is retired, and the trade moves into Butterfly instead of sitting beside it. What the ruling opens instead: whether trading sits inside the charitable purposes and what it does to the DGR endorsement, which is MinterEllison\'s; the ACNC and ASIC name change and the board resolution behind it; and documenting the transfer from the sole trader as a related-party transaction.',
   tradingFacts:
     'Beds are sold at $750 to buyers; ALIVE paid for 100 up front; Centrecorp has a 130-bed quote open; a repayable equipment raise follows the measured run.',
 } as const;

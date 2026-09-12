@@ -24,7 +24,7 @@ specific question.
 - [[investors/sefa]]: Backing the Bold, a loan of $50,000 to $200,000, drafted and unsent, and the only line in the raise that is not philanthropy.
 - [[program/key-dates]]: one calendar for the four applications and the two things falling due underneath them, every row with an owner.
 - [[capital/the-blockers]]: the ten documents and decisions standing between here and four submitted applications, each with the owner the record gives it.
-- [[governance/the-entity-question]]: what ruling AA settled, and the half still open about which entity holds the trade revenue.
+- [[governance/the-entity-question]]: ruled 12 September, one entity, Butterfly renamed Goods on Country, and what the ruling opens in its place
 - [[capital/what-may-be-claimed]]: the claim ceiling for every funder surface, each rule with the ruling that made it and one example of it being broken.
 - [[capital/what-we-no-longer-say]]: the retirement register. Every figure and phrase we have stopped using, where it still appears, what replaced it and which ruling did it.
 
@@ -90,7 +90,7 @@ Per-investor profiles + CASE alignment tool recreated in markdown.
 
 ### [[governance/README|governance/]]
 Board, risk, legal structure, policies, compliance, data sovereignty.
-- [[governance/the-entity-question]]: what ruling AA settled and which entity holds the trade revenue, which SEFA's EOI forces
+- [[governance/the-entity-question]]: ruled 12 September, one entity, Butterfly renamed Goods on Country, and the legal work it opens
 - [[governance/board-structure]]: advisory group, founder-led gap, next governance needs
 - [[governance/risk-register]]: working risk picture, including environmental and key-person risks
 - [[governance/legal-structure]]: ACT Pty Ltd current state; Goods structure still under review

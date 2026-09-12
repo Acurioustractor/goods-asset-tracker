@@ -176,11 +176,12 @@ describe('the QBE ask', () => {
 });
 
 describe('the entity route', () => {
-  it('recommends the charity and names the fallback as weaker', () => {
+  it('names the charity and carries no fallback applicant', () => {
     expect(ENTITY_ROUTE.recommended.applicant).toContain('Butterfly');
     expect(ENTITY_ROUTE.recommended.abn).toBe('22 155 132 684');
-    expect(ENTITY_ROUTE.fallback.why).toMatch(/unsigned/);
-    expect(ENTITY_ROUTE.fallback.why).toMatch(/Weaker/);
+    expect('fallback' in ENTITY_ROUTE).toBe(false);
+    expect(ENTITY_ROUTE.fallbackRetired).toMatch(/no fallback applicant/);
+    expect(ENTITY_ROUTE.fallbackRetired).toMatch(/12 September 2026/);
   });
 
   it('asks Jay the entity question first', () => {
