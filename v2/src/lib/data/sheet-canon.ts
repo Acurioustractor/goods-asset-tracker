@@ -27,7 +27,7 @@ import {
   BEDS_UNFUNDED, BEDS_UNFUNDED_AUD, SECOND_PRESS_AUD,
 } from './the-year-and-the-raise';
 import {
-  BREAK_EVEN_BEDS, WITTA_BEDS_A_YEAR, PLANT_FIRST_YEAR_BEDS, PLANT_MATURE_BEDS,
+  BREAK_EVEN_BEDS, BREAK_EVEN_BEDS_GOODS_FREIGHT, WITTA_BEDS_A_YEAR, PLANT_FIRST_YEAR_BEDS, PLANT_MATURE_BEDS,
   FACILITATION_PER_COMMUNITY_AUD,
 } from './three-year-plan';
 import {
@@ -38,8 +38,8 @@ import {
 } from './production-scenarios';
 import { BATCH_COST_STATUS, BOUGHT_LEG_PANEL_YIELD } from './production-route';
 import { PANEL_ALL_IN_AUD } from './defy-supply';
-import { GAP_AUD, bedSurplusAud } from './capital-stack-flex';
-import { BEDS_PAID_FOR, PAID_NET_AUD } from './demand-and-buyers';
+import { GAP_AUD, OPERATING_SHORTFALL_AUD, bedSurplusAud } from './capital-stack-flex';
+import { BEDS_PAID_FOR, PAID_NET_AUD, PAID_INCL_GST_AUD } from './demand-and-buyers';
 
 export interface CanonCell {
   /** Stable key. The workbook references this, so it must never be renamed casually. */
@@ -95,11 +95,13 @@ export const CANON: readonly CanonCell[] = [
   { key: 'year.facilitation', label: 'Facilitation, all four', value: FACILITATION_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
   { key: 'year.running', label: 'Running the organisation', value: RUNNING_AUD, unit: 'AUD', from: 'Ben provision 9 Sep' },
   { key: 'year.breakEvenBeds', label: 'Beds a year that carry the organisation', value: BREAK_EVEN_BEDS, unit: 'beds', from: 'three-year-plan' },
+  { key: 'year.breakEvenBeds.goodsFreight', label: 'Beds a year that carry it when Goods pays freight', value: BREAK_EVEN_BEDS_GOODS_FREIGHT, unit: 'beds', from: 'three-year-plan', drift: 'The workbook and a Control Room widget both read 796' },
   { key: 'year.needs', label: 'The year needs', value: NEED_BUYER_FREIGHT_AUD, unit: 'AUD', from: 'the-year-and-the-raise', drift: 'No tab carries this figure' },
   { key: 'year.needsGoodsFreight', label: 'The year needs, Goods pays freight', value: NEED_GOODS_FREIGHT_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
   { key: 'year.asked', label: 'Asked across five lines', value: ASKED_AUD, unit: 'AUD', from: 'the-year-and-the-raise', drift: 'Money tab December receipts read $700,000 including a Sefa line that is ours' },
   { key: 'year.secured', label: 'Secured', value: SECURED_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
   { key: 'year.gap', label: 'Still to find', value: GAP_AUD, unit: 'AUD', from: 'capital-stack-flex' },
+  { key: 'year.operatingShort', label: 'Operating line, short', value: OPERATING_SHORTFALL_AUD, unit: 'AUD', from: 'capital-stack-flex' },
   { key: 'year.bedSurplus', label: 'Bed money over the making line', value: bedSurplusAud(), unit: 'AUD', from: 'capital-stack-flex' },
   { key: 'year.bedsUnfunded', label: 'Beds unfunded', value: BEDS_UNFUNDED, unit: 'beds', from: 'the-year-and-the-raise' },
   { key: 'year.bedsUnfundedAud', label: 'Beds unfunded, at the price', value: BEDS_UNFUNDED_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
@@ -112,6 +114,7 @@ export const CANON: readonly CanonCell[] = [
   // Trade
   { key: 'trade.bedsPaid', label: 'Beds bought and paid for', value: BEDS_PAID_FOR, unit: 'beds', from: 'demand-and-buyers' },
   { key: 'trade.paidNet', label: 'Paid, net', value: PAID_NET_AUD, unit: 'AUD', from: 'demand-and-buyers' },
+  { key: 'trade.paidInclGst', label: 'Paid, including GST', value: PAID_INCL_GST_AUD, unit: 'AUD', from: 'demand-and-buyers' },
 ];
 
 export const RUNNING_BREAKDOWN = RUNNING_LINES;

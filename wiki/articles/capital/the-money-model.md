@@ -1,7 +1,7 @@
 ---
 reviewed: 2026-09-12
 ruling: Ben, 12 Sep 2026, the flat-pack route, which leaves the making allowance and the contribution provisional; with the 11 Sep correction that separated bed money from operating money
-canon: [bed.price, bed.make, bed.contribution, bed.contribution.goodsFreight, bed.freight, bed.costStatus, year.beds, year.running, year.breakEvenBeds, year.needs, year.needsGoodsFreight, year.asked, year.secured, year.gap, year.bedsUnfunded, year.bedsUnfundedAud, year.facilitationEach, plant.count, plant.allowance, plant.secondPress]
+canon: [bed.price, bed.make, bed.contribution, bed.contribution.goodsFreight, bed.freight, bed.costStatus, year.beds, year.running, year.breakEvenBeds, year.needs, year.needsGoodsFreight, year.asked, year.secured, year.gap, year.bedsUnfunded, year.bedsUnfundedAud, year.facilitationEach, plant.count, plant.allowance, plant.secondPress, year.breakEvenBeds.goodsFreight]
 sources: [v2/src/lib/data/the-year-and-the-raise.ts, v2/src/lib/data/three-year-plan.ts, v2/src/lib/data/production-route.ts, v2/src/lib/data/capital-stack-flex.ts, v2/src/lib/data/demand-and-buyers.ts, v2/src/lib/data/defy-supply.ts, v2/src/lib/data/sheet-canon.ts, deliverables/qbe-stage2/sheet-realignment-2026-09-11.md]
 ---
 
@@ -107,7 +107,7 @@ provisional 628 is what the grant covers.
 panel yield is counted, so break-even is provisional too, and any sentence printing 628 says so.
 
 Freight moves it as well. At the provisional $324 contribution the same running cost needs a
-provisional 918 paid beds a year. The workbook figure of 796 is wrong and should not be reused.
+provisional 919 paid beds a year. The workbook figure of 796 is wrong and should not be reused.
 
 ## The lines behave differently, which is why they are never pooled
 
@@ -134,7 +134,7 @@ no ask, and it decides whether the 400 beds land in June or August.
 Three answers close most of this. Nic counts leg kits per purchased panel from the INV-2021 cutting
 evidence, which converts the making allowance into a cost. Ben names the site for the second
 Commonwealth $150,000, which is worth $147,950 depending on whether it lands on a QBE site. A
-ruling on who carries freight from year two chooses between a provisional 628 and a provisional 918.
+ruling on who carries freight from year two chooses between a provisional 628 and a provisional 919.
 
 Related: [[capital/what-may-be-claimed]] · [[trade/what-has-been-bought]] · [[capital/the-blockers]] ·
 [[capital/what-we-no-longer-say]] · [[capital/cost-register]] · [[investors/tim-fairfax]]

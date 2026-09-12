@@ -1,7 +1,7 @@
 ---
 reviewed: 2026-09-12
 ruling: Ruling AA (Ben 5 Sep 2026) the charity is the applicant and the home and the directors are the directors; read in the primary repo's DECISIONS.md because this worktree's copy does not carry it
-canon: [trade.bedsPaid, trade.paidNet, year.asked, bed.contribution, plant.secondPress]
+canon: [trade.bedsPaid, trade.paidNet, year.asked, bed.contribution, plant.secondPress, trade.paidInclGst]
 sources: [v2/src/lib/data/canon.ts:246-272, v2/src/lib/data/raise-stack.ts:376-405, v2/src/lib/data/ownership-problem.ts:115-128, v2/src/lib/data/ask-surface.ts:192-201, v2/src/lib/data/demand-and-buyers.ts:56-193, DECISIONS.md:604-640, deliverables/qbe-stage2/real-forms-review-2026-09-12.md:60-90, deliverables/qbe-stage2/qbe-answers-2026-09-10.md:440-495, deliverables/finance/goods-financial-plan/WORKED-OUT-2026-09-09.md:70-95, notion:3d8ebcf981cf8147aef9c629e6107483]
 ---
 

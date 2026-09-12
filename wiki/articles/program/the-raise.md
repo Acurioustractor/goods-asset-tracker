@@ -1,7 +1,7 @@
 ---
 reviewed: 2026-09-12
 ruling: Ben, 12 Sep 2026, the flat-pack route. With the 11 Sep correction that stopped bed money and operating money being counted as two separate piles.
-canon: [year.needs, year.asked, year.secured, year.gap, year.beds, year.running, year.facilitation, year.bedSurplus, year.bedsUnfunded, year.bedsUnfundedAud, year.breakEvenBeds, plant.count, plant.allowance, plant.secondPress, bed.price, bed.freight, bed.contribution, trade.bedsPaid, trade.paidNet]
+canon: [year.needs, year.asked, year.secured, year.gap, year.beds, year.running, year.facilitation, year.bedSurplus, year.bedsUnfunded, year.bedsUnfundedAud, year.breakEvenBeds, plant.count, plant.allowance, plant.secondPress, bed.price, bed.freight, bed.contribution, trade.bedsPaid, trade.paidNet, year.operatingShort, trade.paidInclGst]
 sources: [v2/src/lib/data/the-year-and-the-raise.ts, v2/src/lib/data/capital-stack-flex.ts, v2/src/lib/data/asset-canonical.ts, v2/src/lib/data/three-year-plan.ts, v2/src/lib/data/demand-and-buyers.ts, v2/src/lib/data/production-route.ts, v2/src/lib/data/sheet-canon.ts, deliverables/qbe-stage2/real-forms-review-2026-09-12.md, deliverables/qbe-stage2/backwards-pass-2026-09-11.md, thoughts/shared/handoffs/goods-model-voice-and-tells/current.md, Notion 3d8ebcf981cf8128bd9aee918f49733f]
 ---
 

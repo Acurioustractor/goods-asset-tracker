@@ -1,7 +1,7 @@
 ---
 reviewed: 2026-09-12
 ruling: Ben, 12 September 2026, the flat-pack route. Witta presses tab sheets, legs are bought, kits go out flat-packed and factory capacity ends at dispatch.
-canon: [trade.bedsPaid, trade.paidNet, bed.price, bed.freight]
+canon: [trade.bedsPaid, trade.paidNet, bed.price, bed.freight, trade.paidInclGst]
 sources: [v2/src/app/contact/page.tsx, v2/src/app/api/contact/route.ts, v2/src/lib/contact-delivery/index.ts, v2/src/lib/ghl/smart-lists.ts, v2/src/lib/ghl/index.ts, v2/src/app/api/checkout/route.ts, v2/src/app/api/webhooks/stripe/route.ts, v2/src/app/admin/orders/page.tsx, v2/src/app/admin/quotes/page.tsx, v2/src/lib/data/demand-and-buyers.ts]
 ---
 

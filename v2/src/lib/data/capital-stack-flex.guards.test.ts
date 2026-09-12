@@ -7,6 +7,7 @@ import {
   IF_THE_GAP_STAYS,
   LADDER,
   NEEDS,
+  OPERATING_SHORTFALL_AUD,
   PLANT_MONEY_IS_DIFFERENT,
   SECURED_AUD,
   SOURCES,
@@ -25,6 +26,15 @@ import { NEED_BUYER_FREIGHT_AUD, ASKED_AUD as YEAR_ASKED } from './the-year-and-
 const SRC = readFileSync(join(__dirname, 'capital-stack-flex.ts'), 'utf8');
 
 describe('it ties to the year module', () => {
+
+  it('the gap is the operating shortfall less the bed surplus, derived and not typed', () => {
+    // Both halves used to be literals inside one sentence, so nothing tested either, and the wiki
+    // had to cite the module by hand. The sentence now prints what the module computes.
+    expect(OPERATING_SHORTFALL_AUD - bedSurplusAud()).toBe(GAP_AUD);
+    expect(SURPLUS_EXPLAINS_THE_GAP).toContain(OPERATING_SHORTFALL_AUD.toLocaleString('en-AU'));
+    expect(SURPLUS_EXPLAINS_THE_GAP).toContain(GAP_AUD.toLocaleString('en-AU'));
+    expect(SURPLUS_EXPLAINS_THE_GAP).toContain(bedSurplusAud().toLocaleString('en-AU'));
+  });
   it('the year costs the same $747,950 in both', () => {
     expect(YEAR_COST_AUD).toBe(NEED_BUYER_FREIGHT_AUD);
     expect(YEAR_COST_AUD).toBe(747_950);

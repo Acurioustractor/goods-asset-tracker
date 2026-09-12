@@ -1,7 +1,7 @@
 ---
 reviewed: 2026-09-12
 ruling: Ben, 2 August 2026, the Centrecorp line name is held steady on purpose (ruling on INV-0291 and QU-0014)
-canon: [trade.bedsPaid, trade.paidNet, bed.price]
+canon: [trade.bedsPaid, trade.paidNet, bed.price, trade.paidInclGst]
 sources: [v2/src/lib/data/demand-and-buyers.ts:83-204, v2/src/lib/data/demand-and-buyers.ts:211-220, v2/src/lib/data/demand-and-buyers.ts:377-467, v2/src/lib/data/who-has-asked.ts:101-141, v2/src/lib/data/operating-systems.ts:149-157]
 ---
 

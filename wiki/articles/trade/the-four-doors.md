@@ -1,7 +1,7 @@
 ---
 reviewed: 2026-09-12
 ruling: Ben, 11 September 2026, present acts on a ladder and never state a demand total
-canon: [trade.bedsPaid, trade.paidNet]
+canon: [trade.bedsPaid, trade.paidNet, trade.paidInclGst]
 sources: [v2/src/lib/data/demand-and-buyers.ts:95-204, v2/src/lib/data/who-has-asked.ts:28-32, v2/src/lib/data/who-has-asked.ts:48-79, v2/src/lib/data/who-has-asked.ts:101-202, v2/src/lib/data/who-has-asked.ts:220-240]
 ---
 

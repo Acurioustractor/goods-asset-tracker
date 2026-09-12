@@ -3,6 +3,9 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import {
   BREAK_EVEN_BEDS,
+  BREAK_EVEN_BEDS_GOODS_FREIGHT,
+  BREAK_EVEN_NOTE,
+  CONTRIBUTION_GOODS_FREIGHT_AUD,
   FACILITATION_IS_COST_NEUTRAL,
   CLAIM_CEILING,
   CONTRIBUTION_AUD,
@@ -67,6 +70,26 @@ describe('the arithmetic of each year', () => {
     expect(tradeIncomeAud(y)).toBe(189_600);
     expect(shortfallAud(y)).toBe(107_950);
     expect(afterGrantAud(y)).toBe(-7_950);
+  });
+
+  it('break-even when Goods carries freight covers the running cost, and one bed fewer does not', () => {
+    // It was a literal 918 inside the note and nowhere else, so nothing caught that 918 beds leave
+    // the organisation $118 short. Derived now, and asserted from both sides.
+    expect(BREAK_EVEN_BEDS_GOODS_FREIGHT * CONTRIBUTION_GOODS_FREIGHT_AUD).toBeGreaterThanOrEqual(
+      RUNNING_YEAR_ONE_AUD,
+    );
+    expect((BREAK_EVEN_BEDS_GOODS_FREIGHT - 1) * CONTRIBUTION_GOODS_FREIGHT_AUD).toBeLessThan(
+      RUNNING_YEAR_ONE_AUD,
+    );
+    expect(BREAK_EVEN_BEDS_GOODS_FREIGHT).toBeGreaterThan(BREAK_EVEN_BEDS);
+  });
+
+  it('the break-even note prints the two figures it derives, and never a retired one', () => {
+    expect(BREAK_EVEN_NOTE).toContain(String(BREAK_EVEN_BEDS));
+    expect(BREAK_EVEN_NOTE).toContain(String(BREAK_EVEN_BEDS_GOODS_FREIGHT));
+    // 796 is the workbook's figure and 918 is the rounding that was typed here. Neither returns.
+    expect(BREAK_EVEN_NOTE).not.toContain('796');
+    expect(BREAK_EVEN_NOTE).not.toContain('918');
   });
 
   it('year two carries itself before the grant is counted', () => {

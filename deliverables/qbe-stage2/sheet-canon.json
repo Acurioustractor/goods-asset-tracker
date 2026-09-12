@@ -237,6 +237,14 @@
       "from": "three-year-plan"
     },
     {
+      "key": "year.breakEvenBeds.goodsFreight",
+      "label": "Beds a year that carry it when Goods pays freight",
+      "value": 919,
+      "unit": "beds",
+      "from": "three-year-plan",
+      "drift": "The workbook and a Control Room widget both read 796"
+    },
+    {
       "key": "year.needs",
       "label": "The year needs",
       "value": 747950,
@@ -270,6 +278,13 @@
       "key": "year.gap",
       "label": "Still to find",
       "value": 147950,
+      "unit": "AUD",
+      "from": "capital-stack-flex"
+    },
+    {
+      "key": "year.operatingShort",
+      "label": "Operating line, short",
+      "value": 197550,
       "unit": "AUD",
       "from": "capital-stack-flex"
     },
@@ -328,6 +343,13 @@
       "key": "trade.paidNet",
       "label": "Paid, net",
       "value": 247770,
+      "unit": "AUD",
+      "from": "demand-and-buyers"
+    },
+    {
+      "key": "trade.paidInclGst",
+      "label": "Paid, including GST",
+      "value": 273966,
       "unit": "AUD",
       "from": "demand-and-buyers"
     }

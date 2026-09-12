@@ -1,7 +1,7 @@
 ---
 reviewed: 2026-09-12
 ruling: Ben, 11 Sep 2026, a stack that scales up and down by who is missing
-canon: [year.needs, year.needsGoodsFreight, year.asked, year.secured, year.gap, year.running, year.beds, year.pools, year.poolSize, year.facilitation, year.facilitationEach, year.bedSurplus, year.bedsUnfunded, year.bedsUnfundedAud, year.breakEvenBeds, bed.price, bed.make, bed.contribution, bed.contribution.goodsFreight, bed.freight, bed.pressedKg, plant.count, plant.allowance, plant.firstYearBeds, plant.matureBeds, plant.modulesLow, plant.modulesHigh, plant.secondPress, trade.bedsPaid, trade.paidNet]
+canon: [year.needs, year.needsGoodsFreight, year.asked, year.secured, year.gap, year.running, year.beds, year.pools, year.poolSize, year.facilitation, year.facilitationEach, year.bedSurplus, year.bedsUnfunded, year.bedsUnfundedAud, year.breakEvenBeds, bed.price, bed.make, bed.contribution, bed.contribution.goodsFreight, bed.freight, bed.pressedKg, plant.count, plant.allowance, plant.firstYearBeds, plant.matureBeds, plant.modulesLow, plant.modulesHigh, plant.secondPress, trade.bedsPaid, trade.paidNet, year.operatingShort, trade.paidInclGst]
 sources: [v2/src/lib/data/capital-stack-flex.ts, v2/src/lib/data/capital-stack-flex.guards.test.ts, v2/src/lib/data/the-year-and-the-raise.ts, v2/src/lib/data/sheet-canon.ts, deliverables/qbe-stage2/backwards-pass-2026-09-11.md, deliverables/qbe-stage2/real-forms-review-2026-09-12.md]
 supersedes: [program/stage-2-funding]
 ---

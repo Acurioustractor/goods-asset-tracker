@@ -14,6 +14,9 @@
  *   2. If a new funder appears with $X, what can they buy that nobody else is buying.
  */
 
+// the-year-and-the-raise imports nothing, so there is no cycle here.
+import { BED_PRICE_AUD, BED_MAKE_AUD } from './the-year-and-the-raise';
+
 export const READ_AT = '2026-09-11';
 
 // ---------------------------------------------------------------------------
@@ -215,8 +218,18 @@ export function bedSurplusAud(without: readonly string[] = []): number {
   return Math.max(0, coveredFor('beds', without) - need);
 }
 
+/**
+ * What the operating line is short.
+ *
+ * It was a literal inside the sentence below and nowhere else, so nothing tested it and the wiki
+ * had to cite the module by hand. Derived here and given a canon key, because it is half of the
+ * only explanation of the gap that reads from the other end.
+ */
+export const OPERATING_SHORTFALL_AUD =
+  NEEDS.find((n) => n.job === 'operating')!.amountAud - coveredFor('operating');
+
 export const SURPLUS_EXPLAINS_THE_GAP =
-  'Beds are bought at $750 and cost $276 to make, so $160,000 of bed money over-covers the $110,400 making line by $49,600. The operating line is short $197,550. The difference between those two is the $147,950 gap, and it is the same arithmetic seen from the other end.';
+  `Beds are bought at $${BED_PRICE_AUD} and cost $${BED_MAKE_AUD} to make, so $160,000 of bed money over-covers the $110,400 making line by $${bedSurplusAud().toLocaleString('en-AU')}. The operating line is short $${OPERATING_SHORTFALL_AUD.toLocaleString('en-AU')}. The difference between those two is the $${GAP_AUD.toLocaleString('en-AU')} gap, and it is the same arithmetic seen from the other end.`;
 
 export const PLANT_MONEY_IS_DIFFERENT =
   'A plant costs $150,000 and a plant grant brings $150,000, so plant money never leaves a hole and never fills one. Adding a plant adds a cost and a source in the same breath. The gap only moves when new plant money lands on a plant somebody else was already funding.';

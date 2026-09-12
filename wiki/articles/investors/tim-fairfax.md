@@ -1,7 +1,7 @@
 ---
 reviewed: 2026-09-12
 ruling: Ben, 11 Sep 2026, that Tim Fairfax sits on the operating line alone; with Ben, 12 Sep 2026, the flat-pack route, which leaves the making allowance and the contribution provisional
-canon: [year.running, bed.contribution, bed.contribution.goodsFreight, year.breakEvenBeds, year.beds, line.wittaPerYear, plant.firstYearBeds, plant.matureBeds, year.needs, year.asked, year.secured, year.gap]
+canon: [year.running, bed.contribution, bed.contribution.goodsFreight, year.breakEvenBeds, year.beds, line.wittaPerYear, plant.firstYearBeds, plant.matureBeds, year.needs, year.asked, year.secured, year.gap, year.breakEvenBeds.goodsFreight]
 sources: [Notion 3d8ebcf981cf81c9ada9c61eabed022a, BMD - application forms /Application_Form_-_FY27_-_Resilience__Multi-Year_General_Operating_Support-Application.pdf, v2/src/lib/data/three-year-plan.ts:22-177, v2/src/lib/data/the-year-and-the-raise.ts:119-161, v2/src/lib/data/capital-stack-flex.ts:107-115, v2/src/lib/data/production-route.ts:1-31, wiki/articles/governance/policies-register.md, deliverables/qbe-stage2/real-forms-review-2026-09-12.md]
 supersedes: []
 ---
@@ -187,7 +187,7 @@ assumptions is worth less than one that names them.
    are added, or grows.
 2. Whether founder pay moves off $151,200 once trade carries the organisation.
 3. Who carries freight from year two. With Goods carrying it the contribution drops to a provisional
-   $324 and break-even moves from 628 beds to 918.
+   $324 and break-even moves from a provisional 628 beds to a provisional 919.
 4. Whether year three pays for the handover, which is the only line here that is not an operating
    cost.
 

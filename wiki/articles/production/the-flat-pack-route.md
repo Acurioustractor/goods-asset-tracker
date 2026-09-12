@@ -1,7 +1,7 @@
 ---
 reviewed: 2026-09-12
 ruling: Ben, 12 September 2026, press the tab sheets only, buy the leg sheets, and dispatch flat-packed kits for young people to assemble in community
-canon: [line.pressSheetsPerDay, line.pressedSheetsPerKit, line.assemblyPerDay, bed.pressedKg, bed.costStatus, plastic.kitsPerPanel, plastic.panelEach, plastic.kitPerBed, plastic.breakEvenShred, bed.price, bed.make, bed.contribution, bed.freight, bed.contribution.goodsFreight, year.breakEvenBeds]
+canon: [line.pressSheetsPerDay, line.pressedSheetsPerKit, line.assemblyPerDay, bed.pressedKg, bed.costStatus, plastic.kitsPerPanel, plastic.panelEach, plastic.kitPerBed, plastic.breakEvenShred, bed.price, bed.make, bed.contribution, bed.freight, bed.contribution.goodsFreight, year.breakEvenBeds, year.breakEvenBeds.goodsFreight]
 sources: [v2/src/lib/data/production-route.ts:1-32, v2/src/lib/data/production-scenarios.ts:1-100, v2/src/lib/data/defy-supply.ts:19-98, v2/src/lib/data/three-year-plan.ts:27-48, deliverables/qbe-stage2/codex-flatpack-route-receipt.md]
 ---
 
@@ -49,7 +49,7 @@ Write the word in the sentence that prints the number.
 
 - A bed sells at $750. The legacy allowance puts making at $276 and leaves a provisional $474.
 - Break-even at 628 paid beds a year is that provisional $474 divided into the running cost, so 628 is provisional too (`three-year-plan.ts:31-37`).
-- Freight is $150 on top and every invoice so far has put it on the buyer. If Goods carries it, the contribution is a provisional $324 and break-even moves to 918 beds. The 796 in the workbook is wrong and has no canon key (`three-year-plan.ts:37`).
+- Freight is $150 on top and every invoice so far has put it on the buyer. If Goods carries it, the contribution is a provisional $324 and break-even moves to a provisional 919 beds. The 796 in the workbook is wrong, and 918 was a rounding the other way: 918 beds leave the organisation $118 short. It is now a canon key, `year.breakEvenBeds.goodsFreight` (`three-year-plan.ts`).
 
 The old two-panels-per-bed inference is withdrawn with everything built on it. Panel dimensions establish panel mass and never leg yield (`defy-supply.ts:97-98`). Every figure this ruling retired has a row in [[capital/what-we-no-longer-say]], which is the one place that holds the old number, what replaced it and the ruling that did it.
 

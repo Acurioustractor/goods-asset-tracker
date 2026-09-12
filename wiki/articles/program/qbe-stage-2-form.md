@@ -1,7 +1,7 @@
 ---
 reviewed: 2026-09-12
 ruling: Ruling V, Ben, 1 Aug 2026, the grant is catalytic and discretionary; ruling AA, Ben, 5 Sep 2026, Butterfly is applicant and recipient
-canon: [plant.count, plant.allowance, plant.modulesLow, plant.modulesHigh, plant.firstYearBeds, plant.matureBeds, plant.secondPress, year.needs, year.asked, year.secured, year.gap, year.breakEvenBeds, trade.bedsPaid, trade.paidNet, bed.price, bed.make, bed.contribution, line.pressPerDay, line.bedsPerMonth, line.wittaPerYear]
+canon: [plant.count, plant.allowance, plant.modulesLow, plant.modulesHigh, plant.firstYearBeds, plant.matureBeds, plant.secondPress, year.needs, year.asked, year.secured, year.gap, year.breakEvenBeds, trade.bedsPaid, trade.paidNet, bed.price, bed.make, bed.contribution, line.pressPerDay, line.bedsPerMonth, line.wittaPerYear, trade.paidInclGst]
 sources: [Notion 3c6ebcf981cf809aad0eeafda8e8e9fa (QBE final application, toggle "Original supplied form, reference only"), deliverables/qbe-stage2/real-forms-review-2026-09-12.md, deliverables/qbe-stage2/qbe-answers-2026-09-10.md, deliverables/qbe-stage2/backwards-pass-2026-09-11.md, v2/src/lib/data/loi-pipeline.ts:104-130, v2/src/lib/data/capital-stack-flex.ts:91-176, v2/src/lib/data/the-year-and-the-raise.ts:120-150, v2/src/lib/data/sheet-canon.ts]
 supersedes: [program/stage-2-funding]
 ---

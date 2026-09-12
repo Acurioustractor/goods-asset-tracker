@@ -33,8 +33,22 @@ export const RUNNING_YEAR_ONE_AUD = 297_550;
 /** The number that decides everything. */
 export const BREAK_EVEN_BEDS = Math.ceil(RUNNING_YEAR_ONE_AUD / CONTRIBUTION_AUD);
 
+export const BED_FREIGHT_AUD = 150;
+export const CONTRIBUTION_GOODS_FREIGHT_AUD = CONTRIBUTION_AUD - BED_FREIGHT_AUD;
+
+/**
+ * The same number when Goods carries freight instead of the buyer.
+ *
+ * It was a literal inside the note below and nowhere else, so nothing tested it, and the workbook
+ * and a Control Room widget both drifted to 796 while the module said 918. Derived here and given a
+ * canon key so the two cannot disagree again.
+ */
+export const BREAK_EVEN_BEDS_GOODS_FREIGHT = Math.ceil(
+  RUNNING_YEAR_ONE_AUD / CONTRIBUTION_GOODS_FREIGHT_AUD,
+);
+
 export const BREAK_EVEN_NOTE =
-  'Running the organisation costs $297,550 and a bed hands back $474, so 628 paid beds a year carries it. This assumes the buyer pays freight, which every invoice so far has done. If Goods carries freight the contribution is $324 and the number is 918.';
+  `Running the organisation costs $${RUNNING_YEAR_ONE_AUD.toLocaleString('en-AU')} and a bed hands back $${CONTRIBUTION_AUD}, so ${BREAK_EVEN_BEDS} paid beds a year carries it. This assumes the buyer pays freight, which every invoice so far has done. If Goods carries freight the contribution is $${CONTRIBUTION_GOODS_FREIGHT_AUD} and the number is ${BREAK_EVEN_BEDS_GOODS_FREIGHT}. Both are provisional while the making allowance is, because both derive from it.`;
 
 // ---------------------------------------------------------------------------
 // Capacity, so no target is written that cannot be made

@@ -1,7 +1,7 @@
 ---
 reviewed: 2026-09-12
 ruling: Ruling X (Ben, 28 Aug 2026) on one identity, ruling H and G (Ben, 25 Jul 2026) on revenue, Ben 11 Sep 2026 on demand as acts, Ben 12 Sep 2026 on the provisional route cost
-canon: [trade.bedsPaid, trade.paidNet, bed.price, bed.costStatus, year.breakEvenBeds, year.asked, year.secured]
+canon: [trade.bedsPaid, trade.paidNet, bed.price, bed.costStatus, year.breakEvenBeds, year.asked, year.secured, trade.paidInclGst]
 sources: [v2/src/lib/data/demand-and-buyers.ts, v2/src/lib/data/who-has-asked.ts, v2/src/lib/data/bed-need-and-order.ts, v2/src/lib/data/sizing-from-experience.ts, v2/src/lib/data/claims-ledger.ts, v2/src/lib/data/claims.guards.test.ts, v2/src/lib/data/canon.ts, v2/src/lib/data/content.ts, v2/src/lib/data/production-route.ts, v2/src/lib/data/the-year-and-the-raise.ts, DECISIONS.md, CLAUDE.md]
 ---
 

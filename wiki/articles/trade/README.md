@@ -1,7 +1,7 @@
 ---
 reviewed: 2026-09-12
 ruling: Ben, 11 Sep 2026, present acts on a ladder and never state a demand total; Ben, 2 Aug 2026, the Centrecorp line name is held steady on purpose; Ben, 9 Sep 2026, the money is a price model and never cost-plus
-canon: [trade.bedsPaid, trade.paidNet, bed.price, bed.freight]
+canon: [trade.bedsPaid, trade.paidNet, bed.price, bed.freight, trade.paidInclGst]
 sources: [v2/src/lib/data/demand-and-buyers.ts, v2/src/lib/data/who-has-asked.ts, v2/src/lib/data/bed-need-and-order.ts, v2/src/lib/data/community-economics.ts, v2/src/lib/data/shop.ts, wiki/articles/trade/what-has-been-bought.md, wiki/articles/trade/price-and-freight.md, wiki/articles/trade/facilitation-as-a-line.md, wiki/articles/trade/the-four-doors.md, wiki/articles/trade/the-shop.md, wiki/articles/trade/enquiry-to-delivered-bed.md, wiki/articles/trade/a-community-sells-its-own-beds.md]
 ---
 

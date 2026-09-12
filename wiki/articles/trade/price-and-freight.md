@@ -1,7 +1,7 @@
 ---
 reviewed: 2026-09-12
 ruling: Ben, 9 September 2026, the money is a price model and never cost-plus; Ben, 12 September 2026, the flat-pack route
-canon: [bed.price, bed.make, bed.contribution, bed.contribution.goodsFreight, bed.freight, bed.costStatus, plastic.kitPerBed, year.running, year.breakEvenBeds, year.needs, year.needsGoodsFreight]
+canon: [bed.price, bed.make, bed.contribution, bed.contribution.goodsFreight, bed.freight, bed.costStatus, plastic.kitPerBed, year.running, year.breakEvenBeds, year.needs, year.needsGoodsFreight, year.breakEvenBeds.goodsFreight]
 sources: [v2/src/lib/data/the-year-and-the-raise.ts:25-35, v2/src/lib/data/demand-and-buyers.ts:357-362, v2/src/lib/data/demand-and-buyers.ts:469-557, v2/src/lib/data/production-route.ts:1-24, v2/src/lib/data/defy-supply.ts:19-45, v2/src/lib/data/defy-supply.ts:104-121, v2/src/lib/data/three-year-plan.ts:34]
 ---
 
@@ -77,7 +77,7 @@ The $147.50 on INV-0303 is the one figure a buyer actually paid, and two washing
 
 Under the ruled price model the buyer pays freight at cost on its own line, the contribution stays at a provisional $474 and break-even stays at a provisional 628 beds. The constant never enters that calculation.
 
-Where Goods carries freight instead, the contribution falls to a provisional $324 and break-even is a provisional 918 beds. The 796 printed in the workbook was computed on the factory leg alone and is wrong. Across 400 beds the difference is $60,000: the year needs $747,950 with the buyer paying freight and $807,950 with Goods paying it. That case is a sensitivity and no part of it is the plan. See [[capital/capital-stack]].
+Where Goods carries freight instead, the contribution falls to a provisional $324 and break-even is a provisional 919 beds. The 796 printed in the workbook was computed on the factory leg alone and is wrong. Across 400 beds the difference is $60,000: the year needs $747,950 with the buyer paying freight and $807,950 with Goods paying it. That case is a sensitivity and no part of it is the plan. See [[capital/capital-stack]].
 
 ## What is owed, and who owns it
 
