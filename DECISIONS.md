@@ -19,6 +19,31 @@
 
 ---
 
+## 2026-09-12: the second Commonwealth $150,000 is Alice Springs
+
+Ben ruling. The second $150,000 is all for Alice Springs, in line with the Oonchiumpa support. Both
+Commonwealth tranches land on the same site, so Alice Springs carries $300,000 across two tranches
+and no second plant is built from that money.
+
+Alice Springs is not one of the two sites in the QBE ask, so no QBE activity is funded twice and
+Q14 and Q15 carry no double-funding disclosure. Oonchiumpa's related-party disclosure stands on its
+own footing, because Kristy Bloomfield sits on both boards.
+
+**The gap does not close, and the ruling is made knowing it.** Closing it needed the second
+$150,000 to land on a site QBE is already being asked to fund, which would have freed $150,000 of
+the QBE request to buy beds. On Alice Springs it is additional capacity, so the $147,950 and the
+320 beds stand and have to come from beds sold or from debt. That puts more weight on the SEFA
+call.
+
+Supersedes `THE_OPEN_QUESTION` in `the-year-and-the-raise.ts`, which asked Ben to name the site.
+
+Sweep: `COMMONWEALTH_PLANT_MONEY` and its guards · blocker 4 in `wiki/articles/capital/the-blockers.md`
+· the plant-money paragraph in `wiki/articles/program/the-raise.md` · QBE Q14 and Q15, which now
+say the Commonwealth money is on a third site · the S15 slide's QBE line, which no longer carries a
+site-dependent change.
+
+---
+
 ## 2026-09-12: one entity, renamed Goods on Country
 
 Ben ruling, made when the SEFA Backing the Bold expression of interest forced the entity field.

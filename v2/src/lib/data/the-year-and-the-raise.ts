@@ -183,12 +183,12 @@ export const COMMONWEALTH_PLANT_MONEY: readonly PlantMoney[] = [
     note: 'Approved and ready, through Oonchiumpa against the DEWR offer. Alice Springs is not one of the two sites in the QBE ask, so this builds a third plant and does not overlap the application.',
   },
   {
-    id: 'second-facility',
-    site: 'unnamed',
+    id: 'alice-springs-second-tranche',
+    site: 'Alice Springs',
     amountAud: 150_000,
     stage: 'likely',
     inTheQbeAsk: false,
-    note: 'The same route again, for a Goods facility. Ben judges it highly likely. Which site it lands on is the open question: a third or fourth site leaves QBE untouched, and Palm Island or Maningrida means QBE funds one plant, and the other $150,000 moves to beds.',
+    note: 'Ben, 12 September 2026: the second $150,000 is all for Alice Springs, in line with the Oonchiumpa support. The same route again and the same site, so it builds no new plant and QBE is untouched. Alice Springs therefore carries $300,000 of Commonwealth money across two tranches.',
   },
 ];
 
@@ -200,8 +200,11 @@ export const COMMONWEALTH_LIKELY_AUD = COMMONWEALTH_PLANT_MONEY
   .filter((p) => p.stage === 'likely')
   .reduce((n, p) => n + p.amountAud, 0);
 
-export const THE_OPEN_QUESTION =
-  'If the second $150,000 lands on Palm Island or Maningrida it funds an activity QBE is being asked to fund, and it has to be disclosed at Q14 and Q15 as other funding for the same purpose. If it lands on a third site it is additional capacity and QBE is unaffected. Ben names the site.';
+export const SECOND_TRANCHE_RULING =
+  'Ben, 12 September 2026: the second $150,000 is Alice Springs, in line with the Oonchiumpa support. Alice Springs is not one of the two sites in the QBE ask, so no QBE activity is funded twice and Q14 and Q15 carry no double-funding disclosure. The related-party disclosure for Oonchiumpa stands on its own footing, because Kristy Bloomfield sits on both boards.';
+
+export const THE_GAP_STAYS =
+  'The gap does not close. Closing it needed the second $150,000 to land on a site QBE is already being asked to fund, which would have freed $150,000 of the QBE request to buy beds. On Alice Springs it is additional capacity instead, so the $147,950 and the 320 beds stand and have to come from beds sold or from debt.';
 
 // ---------------------------------------------------------------------------
 // Scenarios. The plant lines are the only place where the ask equals the cost.

@@ -14,7 +14,7 @@ sources: [deliverables/qbe-stage2/real-forms-review-2026-09-12.md, deliverables/
 | 1 | The accountant's letter | Unassigned | The QBE submission itself | The $300,000 QBE ask |
 | 2 | Butterfly's constitution | Eloise | QBE Q12 and Q22, Tim Fairfax 4.1, the 50% Indigenous business threshold, IBA eligibility | Two funders and one class of First Nations finance |
 | 3 | ~~Which entity holds the trade revenue~~ RULED 12 Sep: one entity, Butterfly, renamed Goods on Country. Now: the call with Joel and Tanya | Ben, Nic, Joel Bird | The SEFA Backing the Bold EOI | A loan of $50,000 to $200,000, and the only non-philanthropic line in the stack |
-| 4 | The site for the second Commonwealth $150,000 | Ben | Q14 and Q15 disclosure, and the gap | $147,950 |
+| 4 | ~~The site for the second Commonwealth $150,000~~ RULED 12 Sep: Alice Springs, both tranches. The gap stands at $147,950 | Ben | Q14 and Q15 disclosure, and the gap | $147,950 |
 | 5 | Defy quotes QU0494 and QU0495 | Ben or Nic | The second press against bought panels | $22,500, in no ask |
 | 6 | Q19's six documents | Nic, with Eloise and the board | Q19 | Delivery readiness in the QBE form |
 | 7 | Management cashflow and opening balances | Eloise | Q20, Q21 and Q24 | The applicant's financial answers |
@@ -55,15 +55,13 @@ What the ruling moves onto the list instead: whether trading sits inside the cha
 
 Why this one outranks its size: Jay's steer for QBE 2026 is that corporate philanthropy should unlock debt or equity, and the $600,000 asked is 100% philanthropy. The EOI is drafted and unsent, the Queensland stream is open with rolling acceptance, and sending it does more for the QBE application than any wording change anywhere.
 
-## 4. The site for the second Commonwealth $150,000
+## 4. The site for the second Commonwealth $150,000: ruled, 12 September
 
-Ben holds this, and it is worth $147,950.
+Ben ruled it. The second $150,000 is all for Alice Springs, in line with the Oonchiumpa support. Both Commonwealth tranches land on the same site, so Alice Springs carries $300,000 across two tranches and builds no second plant.
 
-The Alice Springs plant money is approved at $150,000 through Oonchiumpa, on a third site outside the QBE request. Ben judges a second $150,000 highly likely and the site is unnamed.
+Alice Springs is not one of the two sites in the QBE ask, so no QBE activity is funded twice and Q14 and Q15 carry no double-funding disclosure. Oonchiumpa's related-party disclosure stands on its own footing, because Kristy Bloomfield sits on both boards.
 
-A plant costs $150,000 and a plant grant brings $150,000, so plant money never leaves a hole and never fills one. Adding plants moves both sides of the ledger by the same amount. The gap closes in one case only: the second Commonwealth grant lands on a site QBE is already being asked to fund, which frees $150,000 of the QBE request to buy beds. That case is worth the whole $147,950.
-
-It carries a disclosure with it. If the second $150,000 lands on Palm Island or Maningrida it pays for an activity QBE is being asked to fund, and Q14 and Q15 have to carry it as other funding for the same purpose.
+**The gap does not close.** Closing it needed the second $150,000 to land on a site QBE is already being asked to fund, which would have freed $150,000 of the QBE request to buy beds. On Alice Springs it is additional capacity instead, so the $147,950 and the 320 beds stand and have to come from beds sold or from debt. That puts more weight on the SEFA call.
 
 ## 5. Defy quotes QU0494 and QU0495, unopened
 

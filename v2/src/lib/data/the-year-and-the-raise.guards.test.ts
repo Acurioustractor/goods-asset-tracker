@@ -38,7 +38,9 @@ import {
   RUNNING_AUD,
   RUNNING_LINES,
   SCENARIOS,
+  SECOND_TRANCHE_RULING,
   SECURED_AUD,
+  THE_GAP_STAYS,
   THE_LEVER,
   WHERE_THE_GAP_LIVES,
   gapAud,
@@ -189,10 +191,17 @@ describe('the Commonwealth plant money', () => {
     expect(COMMONWEALTH_PLANT_MONEY.every((p) => p.inTheQbeAsk === false)).toBe(true);
   });
 
-  it('the likely line does not name a site, because Ben has not named one', () => {
-    const second = COMMONWEALTH_PLANT_MONEY.find((p) => p.id === 'second-facility')!;
-    expect(second.site).toBe('unnamed');
+  it('the second tranche is Alice Springs, so no site is left unnamed', () => {
+    const second = COMMONWEALTH_PLANT_MONEY.find((p) => p.id === 'alice-springs-second-tranche')!;
+    expect(second.site).toBe('Alice Springs');
     expect(second.stage).toBe('likely');
+    expect(COMMONWEALTH_PLANT_MONEY.every((p) => p.site === 'Alice Springs')).toBe(true);
+  });
+
+  it('every Commonwealth dollar sits outside the two QBE sites, so the gap stands', () => {
+    expect(SECOND_TRANCHE_RULING).toMatch(/no double-funding disclosure/);
+    expect(THE_GAP_STAYS).toMatch(/does not close/);
+    expect(BEDS_TO_FIND).toBe(320);
   });
 });
 

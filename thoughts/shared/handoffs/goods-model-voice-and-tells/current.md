@@ -27,7 +27,7 @@ carry the word provisional until Nic confirms the bought leg panel yield.
 Goods on Country (Ben, 12 Sep). Four still decide it: send the SEFA reply and take the call, because
 Jay wants debt in the stack · the accountant's letter has no owner · the constitution blocks two
 funders and the name change needs the same board resolution · name the site for the second
-Commonwealth $150,000, which is worth $147,950.
+Commonwealth $150,000, which is ruled: Alice Springs, so the gap stands.
 
 ---
 
@@ -387,7 +387,7 @@ Production purchases and labour still need reconciliation into cash. Opening bal
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-12T16:45:00+10:00
+**Updated:** 2026-09-12T17:10:00+10:00
 **Goal:** The QBE Stage 2 application goes in by Friday 25 September at noon carrying one model that
 holds together, and the wiki is the durable reference behind it. Done when every question is
 answered or assigned to a named person, every funder-facing figure traces to a guarded module, and
@@ -400,9 +400,9 @@ nothing ships with a writing tell.
 prose and HTML need the other two)
 
 ### Now
-[->] Ben names the site for the second Commonwealth $150,000. It is worth $147,950 and nothing else
-in the raise moves it. Palm Island or Maningrida frees $150,000 of the QBE ask to buy beds and
-forces a Q14 and Q15 disclosure. A third site leaves the gap where it is. His alone.
+[->] The Sefa reply, which Ben sends and Claude never does. Drafted in the 12 September afternoon
+conversation, to go on the "Goods/Sefa" thread to joel.bird@sefa.com.au with tanya.wong@sefa.com.au
+copied. It carries more weight now that the site ruling has left the $147,950 gap standing.
 
 ### This Session (12 September, afternoon)
 - [x] **THREE PAGE RULINGS MADE AND SWEPT.** The stated bed gap is 320, because an unsent ask covers
@@ -450,9 +450,7 @@ forces a Q14 and Q15 disclosure. A third site leaves the gap where it is. His al
       Database `0eac4e79-dd38-452e-94d0-d25944c17b85`.
 
 ### Next
-- [ ] **Ben names the site for the second Commonwealth $150,000.** Worth $147,950. Then it goes
-      through the raise modules, Q14, Q15 and the S15 slide, which all move together.
-- [ ] **Send the Sefa reply.** Drafted in the 12 September afternoon conversation, not in Gmail.
+- [ ] **Send the Sefa reply.** Now the first thing. Drafted in the 12 September afternoon conversation, not in Gmail.
       Reply on the "Goods/Sefa" thread to joel.bird@sefa.com.au, cc tanya.wong@sefa.com.au. Joel had
       limited email access until Monday 14 September. His 25 August offer was a call with Tanya plus
       whatever financial documents we want read; it was never taken up. Ben sends it, never Claude.
@@ -472,6 +470,10 @@ forces a Q14 and Q15 disclosure. A third site leaves the gap where it is. His al
 - [ ] The 13 pre-rule-12 wiki articles awaiting review. `check-wiki-canon.mjs --strict` fails on them.
 
 ### Decisions
+- **The second Commonwealth $150,000 is Alice Springs (Ben, 12 Sep):** both tranches land on the
+  same site, in line with the Oonchiumpa support, so Alice Springs carries $300,000 and no second
+  plant comes from it. QBE is untouched and Q14 and Q15 carry no double-funding disclosure. **The
+  $147,950 gap therefore stands** and has to come from beds sold or from debt.
 - **One entity (Ben, 12 Sep):** Butterfly holds grants, trade, wages and resources and is renamed
   Goods on Country. Ruled knowing it weakens the Sefa case, because the form is then answered as a
   charity with an FY26 EBITDA of about minus $42,854 and a dormant shell behind it. The call with
@@ -501,6 +503,9 @@ forces a Q14 and Q15 disclosure. A third site leaves the gap where it is. His al
 - UNCONFIRMED: Tim Fairfax's decision date. Three versions on the record.
 - UNCONFIRMED: whether 450 kg of shred a week still describes the burn on the tab-only route. Nic
   measured it on 28 August while the press was making legs too.
+- UNCONFIRMED: what the second Alice Springs tranche buys. A plant costs $150,000 and Alice Springs
+  now carries $300,000 across two tranches, so either the build is bigger than one plant allowance
+  or part of it is operating. Nobody has written down which.
 - UNCONFIRMED: the ramp that had the 400 landing in June was drawn against the retired route and
   the 87-part constraint. Both are gone and no new landing date has been derived.
 - OPEN, deliberately unchanged: the buy door still points at A Curious Tractor. The one-entity
