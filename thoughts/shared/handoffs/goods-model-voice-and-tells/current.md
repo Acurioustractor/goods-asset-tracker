@@ -8,7 +8,7 @@ status: handoff
 ## ▶ START HERE
 
 **Worktree `/Users/benknight/Code/goods-finance-wt`, branch `feat/ai-tells-gate-and-goods-model`,
-pushed to `b297b48`, clean, no PR.** Read the Ledger below first: it is current as at 14:30 on
+pushed to `3b3095b`, clean, no PR.** Read the Ledger below first: it is current as at 14:30 on
 12 September and everything under it is older.
 
 Notion front door: **🛏️ Goods on Country, the raise, start here**, `3d8ebcf981cf8128bd9aee918f49733f`.
@@ -23,9 +23,11 @@ tab sheets and buys legs, kits ship flat and young people assemble them in commu
 doubled and **the cost of a bed became provisional**, so $276, $474 and break-even at 628 must all
 carry the word provisional until Nic confirms the bought leg panel yield.
 
-**QBE closes Friday 25 September at noon.** The five that still decide it: send the SEFA EOI because
+**QBE closes Friday 25 September at noon.** The entity one is ruled: one entity, Butterfly, renamed
+Goods on Country (Ben, 12 Sep). Four still decide it: send the SEFA reply and take the call, because
 Jay wants debt in the stack · the accountant's letter has no owner · the constitution blocks two
-funders · which entity holds the trade revenue · name the site for the second Commonwealth $150,000.
+funders and the name change needs the same board resolution · name the site for the second
+Commonwealth $150,000, which is worth $147,950.
 
 ---
 
@@ -385,21 +387,41 @@ Production purchases and labour still need reconciliation into cash. Opening bal
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-12T14:30:00+10:00
+**Updated:** 2026-09-12T16:45:00+10:00
 **Goal:** The QBE Stage 2 application goes in by Friday 25 September at noon carrying one model that
 holds together, and the wiki is the durable reference behind it. Done when every question is
 answered or assigned to a named person, every funder-facing figure traces to a guarded module, and
 nothing ships with a writing tell.
 **Branch:** feat/ai-tells-gate-and-goods-model in worktree `/Users/benknight/Code/goods-finance-wt`.
-**PUSHED to b297b48. Zero unpushed. No PR open.**
+**PUSHED to 3b3095b. Zero unpushed. No PR open. 1052 tests, 61 files.**
 **Test:** `cd v2 && ./node_modules/.bin/vitest run && ./node_modules/.bin/tsc --noEmit -p tsconfig.json`
 **Before publishing:** `node tools/check-ai-tells.mjs <file>` · `node tools/check-wiki-canon.mjs` ·
 `node tools/check-module-prose.mjs <file.ts>` (the tells checker blanks script blocks, so module
 prose and HTML need the other two)
 
 ### Now
-[->] Ben's three page-assertion rulings, then the deck master on Notion. The Control Room calculator
-defaults to Snow off, so it computes 320 still to find while the static page says 187 six times.
+[->] Ben names the site for the second Commonwealth $150,000. It is worth $147,950 and nothing else
+in the raise moves it. Palm Island or Maningrida frees $150,000 of the QBE ask to buy beds and
+forces a Q14 and Q15 disclosure. A third site leaves the gap where it is. His alone.
+
+### This Session (12 September, afternoon)
+- [x] **THREE PAGE RULINGS MADE AND SWEPT.** The stated bed gap is 320, because an unsent ask covers
+      no beds, and the Control Room calculator keeps Snow off. No Snow percentage is printable in
+      either scope, so the dollars print with their scope named. The 87 is 87 sets of legs already
+      cut, a saving against the first purchase order, and no longer a beds-ready figure.
+      `BEDS_TO_FIND` in `the-year-and-the-raise.ts`, two new canon keys, six new guards.
+- [x] **THE ENTITY QUESTION IS ANSWERED.** Ben, 12 Sep: one entity. The Butterfly Movement Ltd holds
+      the grants, the trade, the wages and the resources, and its name changes to Goods on Country.
+      Swept through nine wiki articles and three modules. The raise stack has no fallback applicant.
+      Equity now has no home at all, because a company limited by guarantee has no shares.
+- [x] Four deck slides rewritten and inserted at the top of the deck master
+      `3d1ebcf981cf817598d8f15ee4f89c32`, newest first: S17, S12B, S15, S16. Nothing built in
+      Pencil. Tells gate clean on all four.
+- [x] Two commits pushed for the rulings (`cb1f83a`, `1e7e156`) and two for the entity
+      (`9f80c55`, `3b3095b`).
+- [x] Sefa reply drafted as text in the conversation only. Ben's standing rule from today: never
+      send emails, and do not create Gmail drafts. Reading Gmail is fine. Saved to memory as
+      `feedback-never-send-emails`.
 
 ### This Session (12 September 2026)
 - [x] **THE ROUTE RULING IS BEN'S AND IS NOW IN CODE.** Press tab sheets at Witta, buy leg sheets,
@@ -428,11 +450,19 @@ defaults to Snow off, so it computes 320 still to find while the static page say
       Database `0eac4e79-dd38-452e-94d0-d25944c17b85`.
 
 ### Next
-- [ ] Ben's three page rulings: the Control Room calculator default (Snow on or off), whether the
-      sole-trader-scoped 37.9% Snow share may be printed, whether the 87 beds-ready figure survives.
-- [ ] The deck master on Notion `3d1ebcf981cf817598d8f15ee4f89c32`: ALIVE at $75,000, Tim Fairfax
-      counted twice on S15 and S16, the 778 on S12B, retired production rates. Deck copy is Ben's,
-      one slide at a time.
+- [ ] **Ben names the site for the second Commonwealth $150,000.** Worth $147,950. Then it goes
+      through the raise modules, Q14, Q15 and the S15 slide, which all move together.
+- [ ] **Send the Sefa reply.** Drafted in the 12 September afternoon conversation, not in Gmail.
+      Reply on the "Goods/Sefa" thread to joel.bird@sefa.com.au, cc tanya.wong@sefa.com.au. Joel had
+      limited email access until Monday 14 September. His 25 August offer was a call with Tanya plus
+      whatever financial documents we want read; it was never taken up. Ben sends it, never Claude.
+- [ ] **The accountant's letter still has no owner.** It is the recorded QBE submission blocker.
+- [ ] **The constitution.** Eloise, unlocated. Blocks QBE Q12 and Q22 and TFFF 4.1, and the ACNC and
+      ASIC name change needs the same board resolution, so both travel together.
+- [ ] The deck master: S13, S14, S18 and S19 have not been read against the flat-pack route or the
+      entity ruling. S15, S16, S17 and S12B are done. One slide at a time, Ben's call.
+- [ ] Whether trading sits inside Butterfly's charitable purposes and what routing every bed invoice
+      through a DGR does to the endorsement. MinterEllison's, and due diligence asks it first.
 - [ ] Republish the artifacts once Ben approves: Control Room `b45c45a0`, plates `69266095`,
       how-a-bed `90e5a525`. All edited locally, none republished.
 - [ ] The terms page at /terms: seller of record and the retired "Goods." layer. Ruling K,
@@ -442,6 +472,17 @@ defaults to Snow off, so it computes 320 still to find while the static page say
 - [ ] The 13 pre-rule-12 wiki articles awaiting review. `check-wiki-canon.mjs --strict` fails on them.
 
 ### Decisions
+- **One entity (Ben, 12 Sep):** Butterfly holds grants, trade, wages and resources and is renamed
+  Goods on Country. Ruled knowing it weakens the Sefa case, because the form is then answered as a
+  charity with an FY26 EBITDA of about minus $42,854 and a dormant shell behind it. The call with
+  Joel and Tanya carries that application; the form text will not.
+- **An unsent ask covers no beds (Ben, 12 Sep):** the stated gap is 320 and 187 is the position
+  after Snow lands.
+- **No Snow percentage prints in either scope (Ben, 12 Sep):** 57% divides a two-entity numerator by
+  a one-entity base, and 37.9% understates concentration, which is the worse error in a risk
+  disclosure. Connecting the A Curious Tractor ledger is the one action that lifts it.
+- **The 87 is inventory, not readiness (Ben, 12 Sep):** the flat-pack route buys legs, which retires
+  the constraint that produced it. No replacement ceiling until the leg panel yield is confirmed.
 - The flat-pack route (Ben, 12 Sep): the factory's job ends at dispatch and assembly becomes a
   community programme, so there is no factory assembly ceiling and the router is the second
   constraint.
@@ -460,6 +501,11 @@ defaults to Snow off, so it computes 320 still to find while the static page say
 - UNCONFIRMED: Tim Fairfax's decision date. Three versions on the record.
 - UNCONFIRMED: whether 450 kg of shred a week still describes the burn on the tab-only route. Nic
   measured it on 28 August while the press was making legs too.
+- UNCONFIRMED: the ramp that had the 400 landing in June was drawn against the retired route and
+  the 87-part constraint. Both are gone and no new landing date has been derived.
+- OPEN, deliberately unchanged: the buy door still points at A Curious Tractor. The one-entity
+  ruling would move it, but the shop's seller of record is ruling K and sits with MinterEllison. The
+  reason is written into `audience.guards.test.ts` so nobody flips it quietly.
 - UNKNOWN and load-bearing: how many leg sets come off one bought 800 x 1200 panel. It sets the make
   cost, the contribution, break-even and the panel-versus-press decision. Nic owns it.
 
