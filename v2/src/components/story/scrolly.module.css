@@ -1,0 +1,80 @@
+.scrolly {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  column-gap: 3rem;
+  align-items: start;
+}
+
+.graphic {
+  position: sticky;
+  /* Below the site header and the chapter bar. */
+  top: 7.5rem;
+  height: calc(100vh - 10rem);
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+}
+
+.graphicInner {
+  width: 100%;
+  height: 100%;
+}
+
+.fit {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.step {
+  min-height: 62vh;
+  display: flex;
+  align-items: center;
+  opacity: 0.32;
+  transition: opacity 320ms ease;
+}
+
+.step[data-active='true'] {
+  opacity: 1;
+}
+
+.step:first-child {
+  min-height: 48vh;
+}
+
+.step:last-child {
+  min-height: 70vh;
+}
+
+.stepBody {
+  max-width: 34rem;
+}
+
+@media (max-width: 900px) {
+  .scrolly {
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: 0;
+  }
+  .graphic {
+    top: 6.75rem;
+    height: 44vh;
+    min-height: 280px;
+    z-index: 1;
+    background: var(--goods-cream, #fbf8f1);
+  }
+  .step {
+    min-height: 52vh;
+  }
+  .step:first-child {
+    min-height: 32vh;
+  }
+}

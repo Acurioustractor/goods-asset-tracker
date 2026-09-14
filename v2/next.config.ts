@@ -102,8 +102,8 @@ const nextConfig: NextConfig = {
       { source: '/mission', destination: '/story', permanent: false },
 
       // #183 — one deck. /pitch/road is the front door; /pitch/deck rendered the same 16 slides
-      // from the same module, and /pitch was only ever the index that /pitch/road now is.
-      { source: '/pitch', destination: '/pitch/road', permanent: false },
+      // from the same module. Since 14 September /pitch is a page again: the one scrolling
+      // pitch, so the redirect is gone.
       { source: '/pitch/deck', destination: '/pitch/road', permanent: false },
       { source: '/pitch/control-room', destination: '/pitch/road', permanent: false },
       { source: '/deck', destination: '/pitch/road', permanent: false },

@@ -76,15 +76,14 @@ export function CommunityMap({
       attributionControl: true,
     }).setView([-21.5, 138.5], 5);
 
-    // Soft cream base. CartoDB Positron no-labels gives a near-white
-    // map with whispery road lines and no place names, so our own
-    // serif community labels carry the geography without competing.
+    // Soft grey base with no place names, so our own serif community labels
+    // carry the geography without competing. Esri's light grey canvas serves
+    // without a key; CartoDB Positron (used until 14 September 2026) now
+    // returns "API KEY REQUIRED" watermark tiles.
     L.tileLayer(
-      'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',
+      'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',
       {
-        attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
-        subdomains: 'abcd',
+        attribution: 'Tiles &copy; <a href="https://www.esri.com/">Esri</a>',
         maxZoom: 12,
       },
     ).addTo(map);
