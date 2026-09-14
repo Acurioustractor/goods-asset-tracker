@@ -354,7 +354,7 @@ function screenDeck(): string {
         <td>${esc(s.say)}${s.note ? `<br><span class="small">${esc(s.note)}</span>` : ''}${s.voices ? `<br><span class="small">Voices: ${esc(s.voices)}</span>` : ''}</td>
         <td class="small">${esc(s.visual)}</td>
         <td class="small">${ch ? `${ch.number} · ${esc(ch.label)}` : ''}</td>
-        <td class="small"><a href="http://localhost:3007/pitch${esc(s.home)}">${esc(s.home)}</a></td>
+        <td class="small"><a href="http://localhost:3007/pitch/qbe${esc(s.home)}">${esc(s.home)}</a></td>
         <td class="small">${qs.join(', ')}</td>
       </tr>`;
     }).join('')}
