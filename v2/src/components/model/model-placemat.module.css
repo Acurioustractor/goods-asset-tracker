@@ -1,0 +1,384 @@
+/* The model placemat. Colours from design/brand/tokens.css; fonts from the
+   root layout (Playfair Display as --font-display, Inter as --font-inter).
+   Fills carry the hierarchy: one dark centre, filled loop cards, outlined
+   satellites and panels, one band. No eyebrows, no icons. */
+
+/* The tokens travel with every surface the drawing appears on: the sheet, the loop on its own, a panel on its own. */
+.sheet,
+.loopStandalone,
+.panel {
+  --paper: #fbf8f1;
+  --card: #fffdf9;
+  --grid: #e6dfd1;
+  --muted: #f1ece4;
+  --sand: #e8dcc8;
+  --ink: #2b2a26;
+  --sub: #5d574c;
+  --terracotta: #c45c3e;
+  --clay: #a8643f;
+  --sage: #8b9d77;
+  --green: #5e7a4c;
+  --tint-sage: #e1e6d6;
+  --tint-money: #d3dcc6;
+  --tint-terracotta: #f1dccb;
+  --tint-sand: #f3ebdd;
+  --display: var(--font-display), 'Playfair Display', Georgia, serif;
+  --sans: var(--font-inter), Inter, system-ui, sans-serif;
+}
+
+.sheet {
+  position: relative;
+  box-sizing: border-box;
+  width: 1588px;
+  height: 1123px;
+  padding: 40px 48px 34px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  display: grid;
+  grid-template-rows: auto auto 1fr auto auto;
+  row-gap: 16px;
+  overflow: hidden;
+}
+
+.sheet *,
+.sheet *::before,
+.sheet *::after {
+  box-sizing: border-box;
+}
+
+.sheet h1,
+.sheet h2,
+.sheet h3,
+.sheet p {
+  margin: 0;
+}
+
+/* Head */
+.head {
+  text-align: center;
+}
+.title {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 58px;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.subtitle {
+  margin-top: 10px;
+  font-size: 21px;
+  line-height: 1.3;
+  color: var(--sub);
+}
+
+/* Raise band */
+.raise {
+  justify-self: center;
+  width: 1010px;
+  border: 2px solid var(--ink);
+  border-radius: 22px;
+  background: var(--card);
+  padding: 12px 20px 16px;
+  display: grid;
+  row-gap: 10px;
+}
+.raiseHeading {
+  text-align: center;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.2;
+}
+.raiseNote {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--sub);
+  margin-left: 10px;
+}
+.raisePills {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  column-gap: 14px;
+}
+.pill {
+  border-radius: 14px;
+  padding: 12px 18px;
+  display: grid;
+  row-gap: 3px;
+}
+.pillQbe {
+  background: var(--tint-sage);
+}
+.pillOther {
+  background: var(--tint-sand);
+}
+.pill h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.15;
+}
+.pill p {
+  font-size: 14.5px;
+  line-height: 1.3;
+  color: var(--sub);
+}
+.plus {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 1;
+  color: var(--ink);
+}
+
+/* Body: panels, loop, panels */
+.body {
+  display: grid;
+  grid-template-columns: 236px 1fr 236px;
+  column-gap: 26px;
+  min-height: 0;
+}
+.panels {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  row-gap: 26px;
+  align-content: center;
+}
+.panel {
+  background: var(--card);
+  border: 1.5px solid var(--grid);
+  border-radius: 18px;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+.panelPhoto {
+  position: relative;
+  min-height: 150px;
+  background: var(--sand);
+}
+.panelText {
+  padding: 12px 16px 14px;
+}
+.panel h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 1.15;
+}
+.panel p {
+  margin-top: 4px;
+  font-size: 14.5px;
+  line-height: 1.3;
+  color: var(--sub);
+}
+
+/* The loop */
+.loop {
+  position: relative;
+  display: grid;
+  grid-template-columns: 250px 1fr 250px;
+  grid-template-rows: auto 1fr 1fr auto;
+  column-gap: 36px;
+  row-gap: 34px;
+  min-height: 0;
+}
+.loopStandalone {
+  width: 940px;
+  height: 640px;
+}
+.arrows {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.flow {
+  transition: opacity 420ms ease 120ms;
+}
+.flow[data-active='false'] {
+  opacity: 0;
+  transition-delay: 0ms;
+}
+.card,
+.centre {
+  transition: opacity 420ms ease, box-shadow 320ms ease, transform 420ms ease;
+}
+.card[data-active='false'] {
+  opacity: 0.14;
+}
+.centre[data-active='false'] {
+  opacity: 0.14;
+}
+.card[data-focus='true'] {
+  box-shadow: 0 0 0 4px var(--paper), 0 0 0 7px var(--terracotta);
+}
+.card {
+  position: relative;
+  border-radius: 18px;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  align-self: center;
+  min-height: 92px;
+}
+.card h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+.card p {
+  font-size: 14.5px;
+  line-height: 1.3;
+  color: var(--sub);
+}
+.making {
+  background: var(--tint-sage);
+}
+.community {
+  background: var(--tint-terracotta);
+}
+.money {
+  background: var(--tint-money);
+}
+.buyer {
+  background: var(--card);
+  border: 1.5px solid var(--grid);
+}
+.proposed {
+  background: var(--tint-sand);
+  border: 2px dashed var(--clay);
+}
+.support {
+  background: transparent;
+  border: 1.5px dotted var(--sub);
+  min-height: 0;
+  padding: 10px 14px;
+}
+.support h3 {
+  font-size: 17px;
+}
+.support p {
+  font-size: 13.5px;
+}
+
+.harvest {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: stretch;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 16px 10px 12px;
+}
+.harvestDrawing {
+  width: 150px;
+  flex: 0 0 150px;
+  height: auto;
+  display: block;
+}
+.harvestText {
+  display: grid;
+  row-gap: 3px;
+}
+.next {
+  grid-column: 1;
+  grid-row: 1;
+}
+.orgs {
+  grid-column: 3;
+  grid-row: 1;
+}
+.act {
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: start;
+  width: 150px;
+}
+.buyers {
+  grid-column: 3;
+  grid-row: 2;
+}
+.facility {
+  grid-column: 1;
+  grid-row: 3;
+}
+.moneyCard {
+  grid-column: 3;
+  grid-row: 3;
+}
+.decide {
+  grid-column: 2;
+  grid-row: 4;
+  justify-self: center;
+  width: 380px;
+}
+.centre {
+  grid-column: 2;
+  grid-row: 2 / 4;
+  place-self: center;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: var(--green);
+  color: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 27px;
+  line-height: 1.12;
+}
+
+/* Arrow labels */
+.label {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 14px;
+  paint-order: stroke;
+  stroke: var(--paper);
+  stroke-width: 7px;
+  stroke-linejoin: round;
+}
+
+/* Support band and footer */
+.band {
+  background: var(--muted);
+  border-radius: 16px;
+  padding: 14px 24px;
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+}
+.bandTitle {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 19px;
+  white-space: nowrap;
+}
+.bandItems {
+  font-size: 15.5px;
+  color: var(--sub);
+}
+.bandItems span + span::before {
+  content: '·';
+  margin: 0 10px;
+  color: var(--clay);
+}
+.footer {
+  font-size: 12px;
+  color: var(--sub);
+}
