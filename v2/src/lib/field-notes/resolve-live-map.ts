@@ -73,6 +73,11 @@ function mergeLocations(counts: Map<string, number>): CommunityLocation[] {
   });
 }
 
+/** Every community location with its live register count merged in. Static list if the register is unreachable. */
+export async function liveCommunityLocations(): Promise<CommunityLocation[]> {
+  return mergeLocations(await fetchCounts());
+}
+
 export async function resolveLiveMapCounts(
   story: TripStory,
 ): Promise<TripStory> {
