@@ -177,7 +177,8 @@ export function panelOrderCostAud(beds: number, kitsPerPanel: number | null = BO
   const sheets = sheetsFor(beds, kitsPerPanel);
   return sheets === null ? null : sheets * SHEET_ALL_IN_AUD;
 }
-export const SECOND_PRESS_AUD = 22_500;
+/** Ben, 15 September 2026: no second press. */
+export const SECOND_PRESS_STATUS = 'Ruled out by Ben on 15 September 2026; see YIELD_IMPROVEMENTS in the-year-and-the-raise';
 export const PANEL_PREMIUM_PER_BED_AUD = null;
 export const PRESS_PAYBACK_BEDS = null;
 export const THE_TRADE =

@@ -41,6 +41,9 @@
  * read it as evidence a Weave Bed was ever produced at scale.
  */
 
+import { BED_FREIGHT_AUD } from './the-year-and-the-raise';
+import { BREAK_EVEN_BEDS } from './three-year-plan';
+
 export type TradeGrade = 'verified' | 'workpaper' | 'unverified';
 
 /** Every amount in this module is Australian dollars. */
@@ -138,7 +141,7 @@ export const PAID_TRADE: readonly PaidInvoice[] = [
     totalPaidInclGstAud: 5_434,
     productAsInvoiced: 'Goods Basket Bed v2.1',
     grade: 'verified',
-    note: 'This invoice is the clearest reason freight is now its own line, charged at cost to whoever buys the bed.',
+    note: 'This invoice is the clearest reason freight is now priced at $100 a bed inside the $750 instead of being quoted and then waived.',
   },
   {
     invoiceNumber: 'INV-0291',
@@ -493,18 +496,19 @@ export const CENTRECORP_LINE =
  *                        those 13 beds alone. If it did, that run cost $178.63 a bed to move.
  *
  * WHAT THIS SETTLES. The two figures were never in conflict, and calling them one was my error.
- * The live sheet's Open Item 9 reads "$100 factory and $50 community, as entered on the input
- * page", which sums to $150. A leg was being compared against a total. $150 is the all-up number,
- * it is what both sources say, and it is within $2.50 of what a real 40-bed run was charged.
+ * The live sheet's Open Item 9 read "$100 factory and $50 community, as entered on the input
+ * page", which sums to $150, and that is within $2.50 of what a real 40-bed run was charged.
+ * On 15 September 2026 Ben ruled freight at $100 a bed all up, absorbed by the organisation out
+ * of its share of the $750. The constant below imports that ruling; the evidence above stays as
+ * evidence.
  *
  * WHAT IT DOES NOT SETTLE. Freight per bed falls with volume: $147.50 across 40 beds against
  * $246.15 quoted across 13, to the same place. A single constant misstates both ends, and one
  * destination is not a national rate.
  *
- * WHERE IT ACTUALLY BITES. Under the ruled price model the buyer pays freight at cost as its own
- * line, so the printed break-even is 628 beds and this constant never enters it. Where Goods
- * carries freight the right figure is 918, because 796 was computed on the factory leg alone. That
- * case is a sensitivity and not the plan.
+ * WHERE IT ACTUALLY BITES. The $100 comes out of the contribution before it reaches the
+ * organisation, so the printed break-even in three-year-plan includes this constant. A buyer
+ * paying freight on its own line, as INV-0303 did, is history and not the plan.
  *
  * STILL OWED. Open Item 9 in the live sheet wants delivery-route quotes and a named payer, and it
  * wants freight recovery shown once alongside freight cost. Nic and Ben own it.
@@ -550,18 +554,8 @@ export const FREIGHT_EVIDENCE: readonly FreightPoint[] = [
   },
 ];
 
-/** The figure to use where one number is needed. */
-export const FREIGHT_PER_BED_AUD = 150;
-
-/** The factory leg. It is half of the pair, never an alternative to the total. */
-export const FREIGHT_FACTORY_LEG_AUD = 100;
-
-/** The community leg. */
-export const FREIGHT_COMMUNITY_LEG_AUD = 50;
+/** The figure to use where one number is needed. Ben, 15 September 2026: $100 a bed, all up. */
+export const FREIGHT_PER_BED_AUD = BED_FREIGHT_AUD;
 
 export const FREIGHT_RULING =
-  'Freight is a route and a volume before it is a rate. The all-up figure is $150 a bed, being $100 ' +
-  'for the factory leg and $50 for the community leg, and both sources already agree on it. It is ' +
-  'within $2.50 of what a real 40-bed run to Maningrida was charged. Under the price model the buyer ' +
-  'pays freight at cost on its own line, so break-even stays at 628 beds. Where Goods carries ' +
-  'freight the figure is 918, because 796 used the factory leg alone.';
+  `Freight is a route and a volume before it is a rate. Ben ruled the all-up figure at $${BED_FREIGHT_AUD} a bed on 15 September 2026, and ruled the same day that the organisation absorbs it out of its share of the $750: a buyer's invoice carries no freight line and no funder is asked for one. The $150 that the sheet and the 40-bed Maningrida run pointed to is the evidence above, and it stays there as evidence. With freight and facilitation inside the bed, break-even is ${BREAK_EVEN_BEDS} beds.`;

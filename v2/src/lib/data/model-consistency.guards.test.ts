@@ -31,14 +31,21 @@ describe('the bed', () => {
     }
   });
 
-  it('costs $276 to make, and the contribution follows from it', () => {
+  it('the make cost is derived once and the contribution follows from it', () => {
     expect(year.BED_MAKE_AUD).toBe(three.BED_MAKE_AUD);
-    expect(three.CONTRIBUTION_AUD).toBe(year.CONTRIBUTION_BUYER_FREIGHT_AUD);
-    expect(three.CONTRIBUTION_AUD).toBe(three.BED_PRICE_AUD - three.BED_MAKE_AUD);
+    expect(three.CONTRIBUTION_AUD).toBe(year.CONTRIBUTION_AUD);
+    expect(three.CONTRIBUTION_AUD).toBeCloseTo(
+      three.BED_PRICE_AUD - three.BED_MAKE_AUD - three.BED_FREIGHT_AUD - three.FACILITATION_PER_BED_AUD, 6,
+    );
+    expect(year.FACILITATION_PER_BED_AUD).toBe(100);
+    expect(year.KITS_A_DAY).toBe(scen.PRESS_BEDS_A_DAY);
+    expect(year.BED_MAKE_STATUS).toContain('provisional');
   });
 
-  it('make plus freight is the canon landed cost', () => {
-    expect(year.BED_MAKE_AUD + year.BED_FREIGHT_AUD).toBe(Number(canonValue('marginal-factory')));
+  it('freight is the one $100 everywhere, and the canon landed cost is the legacy 426 until re-graded', () => {
+    expect(year.BED_FREIGHT_AUD).toBe(three.BED_FREIGHT_AUD);
+    expect(year.BED_FREIGHT_AUD).toBe(100);
+    expect(Number(canonValue('marginal-factory'))).toBe(426);
   });
 
   it('takes 15 kg through the tab press wherever that is stated', () => {
@@ -74,9 +81,11 @@ describe('the plastic', () => {
     expect(scen.FINISHED_KIT_PER_BED_AUD).toBe(defy.FINISHED_KIT_PER_BED_AUD);
   });
 
-  it('the second press costs the same in all three modules that price it', () => {
-    expect(scen.SECOND_PRESS_AUD).toBe(defy.SECOND_PRESS_AUD);
-    expect(scen.SECOND_PRESS_AUD).toBe(year.SECOND_PRESS_AUD);
+  it('no module prices a second press, Ben 15 September', () => {
+    for (const mod of [scen, defy, year]) {
+      for (const k of Object.keys(mod)) expect(k).not.toMatch(/SECOND_PRESS_AUD|SECOND_PRESS_NOTE/);
+    }
+    expect(year.YIELD_IMPROVEMENTS.length).toBeGreaterThan(0);
   });
 });
 
@@ -102,8 +111,18 @@ describe('the year', () => {
 
   it('break-even follows from the running cost and the contribution, never asserted', () => {
     expect(three.BREAK_EVEN_BEDS).toBe(
-      Math.ceil(year.RUNNING_AUD / year.CONTRIBUTION_BUYER_FREIGHT_AUD),
+      Math.ceil(year.RUNNING_AUD / year.CONTRIBUTION_AUD),
     );
+  });
+
+  it('the year needs freight on every bed, once, and no data module exports a buyer-freight or Goods-freight name', () => {
+    expect(year.NEED_AUD).toBeCloseTo(
+      year.PLANTS_AUD + year.BEDS_AT_COST_AUD + year.FACILITATION_AUD + year.FREIGHT_ON_THE_YEAR_AUD + year.RUNNING_AUD, 6,
+    );
+    for (const f of readdirSync(__dirname).filter((n) => n.endsWith('.ts') && !n.includes('.test.'))) {
+      const src = readFileSync(join(__dirname, f), 'utf8');
+      expect(src, f).not.toMatch(/export (?:const|function|let) \w*(?:BUYER_FREIGHT|GOODS_FREIGHT)/);
+    }
   });
 
   it('the ALIVE order is the same 100 in both modules that carry it', () => {

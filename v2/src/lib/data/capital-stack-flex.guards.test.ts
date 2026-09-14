@@ -21,7 +21,11 @@ import {
   bedSurplusAud,
   SURPLUS_EXPLAINS_THE_GAP,
 } from './capital-stack-flex';
-import { NEED_BUYER_FREIGHT_AUD, ASKED_AUD as YEAR_ASKED } from './the-year-and-the-raise';
+import {
+  NEED_AUD, ASKED_AUD as YEAR_ASKED, RUNNING_AUD, BEDS_AT_COST_AUD, BEDS_TO_FIND,
+  CONTRIBUTION_AUD, ORGANISATION_NEED_AUD, FACILITATION_AUD, FREIGHT_ON_THE_YEAR_AUD,
+} from './the-year-and-the-raise';
+import { BREAK_EVEN_BEDS } from './three-year-plan';
 
 const SRC = readFileSync(join(__dirname, 'capital-stack-flex.ts'), 'utf8');
 
@@ -30,21 +34,29 @@ describe('it ties to the year module', () => {
   it('the gap is the operating shortfall less the bed surplus, derived and not typed', () => {
     // Both halves used to be literals inside one sentence, so nothing tested either, and the wiki
     // had to cite the module by hand. The sentence now prints what the module computes.
-    expect(OPERATING_SHORTFALL_AUD - bedSurplusAud()).toBe(GAP_AUD);
-    expect(SURPLUS_EXPLAINS_THE_GAP).toContain(OPERATING_SHORTFALL_AUD.toLocaleString('en-AU'));
-    expect(SURPLUS_EXPLAINS_THE_GAP).toContain(GAP_AUD.toLocaleString('en-AU'));
-    expect(SURPLUS_EXPLAINS_THE_GAP).toContain(bedSurplusAud().toLocaleString('en-AU'));
+    expect(OPERATING_SHORTFALL_AUD - bedSurplusAud()).toBeCloseTo(GAP_AUD, 6);
+    const r = (n: number) => Math.round(n).toLocaleString('en-AU');
+    expect(SURPLUS_EXPLAINS_THE_GAP).toContain(r(OPERATING_SHORTFALL_AUD));
+    expect(SURPLUS_EXPLAINS_THE_GAP).toContain(r(GAP_AUD));
+    expect(SURPLUS_EXPLAINS_THE_GAP).toContain(r(bedSurplusAud()));
   });
-  it('the year costs the same $747,950 in both', () => {
-    expect(YEAR_COST_AUD).toBe(NEED_BUYER_FREIGHT_AUD);
-    expect(YEAR_COST_AUD).toBe(747_950);
+  it('the year costs the same in both, derived from the same lines', () => {
+    expect(YEAR_COST_AUD).toBeCloseTo(NEED_AUD, 6);
+    expect(NEEDS).toHaveLength(3);
+    expect(NEEDS.find((n) => n.job === 'operating')!.amountAud).toBe(ORGANISATION_NEED_AUD);
+    expect(ORGANISATION_NEED_AUD).toBe(RUNNING_AUD + FACILITATION_AUD + FREIGHT_ON_THE_YEAR_AUD);
+    expect(NEEDS.find((n) => n.job === 'operating')!.covers).toEqual(['operating', 'facilitation']);
+    expect(NEEDS.find((n) => n.job === 'beds')!.amountAud).toBeCloseTo(BEDS_AT_COST_AUD, 6);
+    expect(SRC).not.toContain('297_550');
+    expect(SRC).not.toContain('110_400');
+    expect(SRC).not.toContain('22_500');
   });
 
   it('the same $600,000 is asked, and nothing is secured', () => {
     expect(ASKED_AUD).toBe(YEAR_ASKED);
     expect(ASKED_AUD).toBe(600_000);
     expect(SECURED_AUD).toBe(0);
-    expect(GAP_AUD).toBe(147_950);
+    expect(GAP_AUD).toBeCloseTo(NEED_AUD - 600_000, 6);
   });
 
   it('government plant money and the loan are outside the raise, on purpose', () => {
@@ -54,9 +66,10 @@ describe('it ties to the year module', () => {
 });
 
 describe('every dollar has a job', () => {
-  it('the four needs cover every source job', () => {
-    const jobs = new Set(NEEDS.map((n) => n.job));
+  it('the three needs cover every source job, facilitation landing on the organisation', () => {
+    const jobs = new Set(NEEDS.flatMap((n) => n.covers));
     for (const s of SOURCES) expect(jobs.has(s.job), s.id).toBe(true);
+    for (const n of NEEDS) expect(n.covers).toContain(n.job);
   });
 
   it('no funder appears twice with the same job', () => {
@@ -92,11 +105,11 @@ describe('what breaks if one drops', () => {
     expect(coveredFor('plant', ['qbe'])).toBe(0);
   });
 
-  it('not sending Snow leaves 187 beds short at the published price', () => {
+  it('not sending Snow leaves the bed line short at the making cost', () => {
     const s = shortfalls(['snow']).find((x) => x.job === 'beds')!;
     expect(coveredFor('beds')).toBe(160_000);
     expect(coveredFor('beds', ['snow'])).toBe(60_000);
-    expect(s.short).toBe(50_400);
+    expect(s.short).toBeCloseTo(BEDS_AT_COST_AUD - 60_000, 6);
   });
 
   it('as things stand only the operating line is short', () => {
@@ -106,19 +119,22 @@ describe('what breaks if one drops', () => {
 
   it('the operating shortfall less the bed surplus is exactly the gap', () => {
     const operatingShort = shortfalls().find((s) => s.job === 'operating')!.short;
-    expect(operatingShort).toBe(197_550);
-    expect(bedSurplusAud()).toBe(49_600);
-    expect(operatingShort - bedSurplusAud()).toBe(GAP_AUD);
+    expect(coveredFor('operating')).toBe(140_000);
+    expect(operatingShort).toBe(ORGANISATION_NEED_AUD - 140_000);
+    expect(bedSurplusAud()).toBeCloseTo(160_000 - BEDS_AT_COST_AUD, 6);
+    expect(operatingShort - bedSurplusAud()).toBeCloseTo(GAP_AUD, 6);
   });
 
-  it('the surplus is the $474 carrying the organisation, and it is stated', () => {
-    expect(SURPLUS_EXPLAINS_THE_GAP).toContain('$49,600');
-    expect(SURPLUS_EXPLAINS_THE_GAP).toContain('$147,950');
+  it('the surplus is the contribution carrying the organisation, and it is stated', () => {
+    expect(SURPLUS_EXPLAINS_THE_GAP).toContain(`$${Math.round(bedSurplusAud()).toLocaleString('en-AU')}`);
+    expect(SURPLUS_EXPLAINS_THE_GAP).toContain(`$${Math.round(GAP_AUD).toLocaleString('en-AU')}`);
+    expect(SURPLUS_EXPLAINS_THE_GAP).not.toContain('147,950');
+    expect(SURPLUS_EXPLAINS_THE_GAP).not.toContain('110,400');
   });
 
   it('without Snow the bed line stops over-covering and starts short', () => {
     expect(bedSurplusAud(['snow'])).toBe(0);
-    expect(shortfalls(['snow']).find((s) => s.job === 'beds')!.short).toBe(50_400);
+    expect(shortfalls(['snow']).find((s) => s.job === 'beds')!.short).toBeCloseTo(BEDS_AT_COST_AUD - 60_000, 6);
   });
 });
 
@@ -138,7 +154,8 @@ describe('the ladder', () => {
 
   it('picks the largest rung an amount can afford', () => {
     expect(whatBuys(1_000).aud).toBe(750);
-    expect(whatBuys(25_000).aud).toBe(22_500);
+    expect(whatBuys(25_000).aud).toBe(10_000);
+    expect(LADDER.some((r) => /second press/i.test(r.buys))).toBe(false);
     expect(whatBuys(160_000).aud).toBe(150_000);
     expect(whatBuys(500).aud).toBe(750);
   });
@@ -159,13 +176,17 @@ describe('honesty', () => {
     const sefa = SOURCES.find((s) => s.id === 'sefa')!;
     expect(sefa.instrument).toBe('loan');
     expect(sefa.amountAud).toBe(0);
-    expect(WHY_A_LOAN_IS_NOT_A_GRANT).toContain('101 paid beds');
+    expect(WHY_A_LOAN_IS_NOT_A_GRANT).toContain(`${Math.ceil(200_000 / CONTRIBUTION_AUD)} paid beds`);
+    expect(WHY_A_LOAN_IS_NOT_A_GRANT).not.toContain('101 paid beds');
     expect(WHY_A_LOAN_IS_NOT_A_GRANT).toContain('which entity');
   });
 
-  it('names four places the rest could come from, trade first', () => {
+  it('names four places the rest could come from, trade first, with derived figures', () => {
     expect(IF_THE_GAP_STAYS).toHaveLength(4);
-    expect(IF_THE_GAP_STAYS[0]).toContain('628');
+    expect(IF_THE_GAP_STAYS[0]).toContain(`${BREAK_EVEN_BEDS} paid beds`);
+    expect(IF_THE_GAP_STAYS[0]).not.toContain('628');
+    expect(IF_THE_GAP_STAYS[1]).not.toMatch(/second press/i);
+    expect(IF_THE_GAP_STAYS[3]).toContain(`${BEDS_TO_FIND} beds`);
   });
 
   it('no em dashes', () => {

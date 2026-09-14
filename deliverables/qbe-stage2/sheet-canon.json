@@ -11,31 +11,56 @@
     },
     {
       "key": "bed.make",
-      "label": "Legacy making allowance; current route needs costing",
-      "value": 276,
+      "label": "Making cost, derived from components at six kits a day; provisional",
+      "value": 262.4066666666667,
       "unit": "AUD",
-      "from": "the-year-and-the-raise"
+      "from": "the-year-and-the-raise, Ben 15 Sep"
+    },
+    {
+      "key": "bed.makeStatus",
+      "label": "Status of the making cost",
+      "value": "provisional: bought leg panels and tab pressing need costing (Nic, panel yield)",
+      "unit": "status",
+      "from": "the-year-and-the-raise, Ben 15 Sep",
+      "drift": "Not in the Canon tab yet"
+    },
+    {
+      "key": "bed.kitsPerDay",
+      "label": "Kits a day the making cost divides labour by",
+      "value": 6,
+      "unit": "beds",
+      "from": "the-year-and-the-raise, Ben 15 Sep",
+      "drift": "Not in the Canon tab yet"
+    },
+    {
+      "key": "bed.labour",
+      "label": "Factory labour a bed, $400 a day over the kits a day",
+      "value": 66.66666666666667,
+      "unit": "AUD",
+      "from": "the-year-and-the-raise, Ben 15 Sep",
+      "drift": "Not in the Canon tab yet"
     },
     {
       "key": "bed.freight",
-      "label": "Freight a bed, all up",
-      "value": 150,
+      "label": "Freight a bed, all up, absorbed by the organisation",
+      "value": 100,
       "unit": "AUD",
-      "from": "demand-and-buyers FREIGHT_RULING"
+      "from": "the-year-and-the-raise, Ben 15 Sep"
+    },
+    {
+      "key": "bed.facilitationPerBed",
+      "label": "Facilitation a bed, absorbed by the organisation",
+      "value": 100,
+      "unit": "AUD",
+      "from": "the-year-and-the-raise, Ben 15 Sep",
+      "drift": "Not in the Canon tab yet"
     },
     {
       "key": "bed.contribution",
-      "label": "Provisional contribution, legacy making allowance",
-      "value": 474,
+      "label": "Provisional contribution after making, freight and facilitation",
+      "value": 287.5933333333333,
       "unit": "AUD",
-      "from": "the-year-and-the-raise"
-    },
-    {
-      "key": "bed.contribution.goodsFreight",
-      "label": "Provisional contribution with Goods freight",
-      "value": 324,
-      "unit": "AUD",
-      "from": "the-year-and-the-raise"
+      "from": "the-year-and-the-raise, Ben 15 Sep"
     },
     {
       "key": "bed.pressedKg",
@@ -178,11 +203,20 @@
       "from": "three-year-plan"
     },
     {
-      "key": "plant.secondPress",
-      "label": "A second press",
-      "value": 22500,
+      "key": "plant.yieldImprovements",
+      "label": "Yield improvements listed, none quoted yet",
+      "value": 6,
+      "unit": "count",
+      "from": "the-year-and-the-raise, Ben 15 Sep",
+      "drift": "Not in the Canon tab yet; replaces the second press cell"
+    },
+    {
+      "key": "plant.yieldImprovementsQuoted",
+      "label": "Yield improvements, quoted items only",
+      "value": 0,
       "unit": "AUD",
-      "from": "defy-supply"
+      "from": "the-year-and-the-raise, Ben 15 Sep",
+      "drift": "Not in the Canon tab yet; replaces the second press cell"
     },
     {
       "key": "year.beds",
@@ -222,38 +256,55 @@
     {
       "key": "year.running",
       "label": "Running the organisation",
-      "value": 297550,
+      "value": 251224,
       "unit": "AUD",
-      "from": "Ben provision 9 Sep"
+      "from": "Ben provision 9 Sep, cut 15 Sep"
+    },
+    {
+      "key": "year.freight",
+      "label": "Freight on the year, absorbed by the organisation",
+      "value": 40000,
+      "unit": "AUD",
+      "from": "the-year-and-the-raise, Ben 15 Sep",
+      "drift": "Not in the Canon tab yet"
     },
     {
       "key": "year.breakEvenBeds",
       "label": "Beds a year that carry the organisation",
-      "value": 628,
+      "value": 874,
       "unit": "beds",
       "from": "three-year-plan"
     },
     {
-      "key": "year.breakEvenBeds.goodsFreight",
-      "label": "Beds a year that carry it when Goods pays freight",
-      "value": 919,
-      "unit": "beds",
-      "from": "three-year-plan",
-      "drift": "Not in the Canon tab yet; the workbook has no break-even-with-freight cell"
-    },
-    {
       "key": "year.needs",
       "label": "The year needs",
-      "value": 747950,
+      "value": 736186.6666666667,
       "unit": "AUD",
       "from": "the-year-and-the-raise"
     },
     {
-      "key": "year.needsGoodsFreight",
-      "label": "The year needs, Goods pays freight",
-      "value": 807950,
+      "key": "year.organisationNeed",
+      "label": "The organisation pays: running, facilitation and freight",
+      "value": 331224,
       "unit": "AUD",
-      "from": "the-year-and-the-raise"
+      "from": "the-year-and-the-raise, Ben 15 Sep",
+      "drift": "Not in the Canon tab yet"
+    },
+    {
+      "key": "year.organisationFromBeds",
+      "label": "What 400 beds hand the organisation",
+      "value": 115037.33333333333,
+      "unit": "AUD",
+      "from": "the-year-and-the-raise, Ben 15 Sep",
+      "drift": "Not in the Canon tab yet"
+    },
+    {
+      "key": "year.organisationShort",
+      "label": "Running cost less what 400 beds hand back",
+      "value": 136186.6666666667,
+      "unit": "AUD",
+      "from": "the-year-and-the-raise, Ben 15 Sep",
+      "drift": "Not in the Canon tab yet"
     },
     {
       "key": "year.asked",
@@ -272,14 +323,14 @@
     {
       "key": "year.gap",
       "label": "Still to find",
-      "value": 147950,
+      "value": 136186.66666666674,
       "unit": "AUD",
       "from": "capital-stack-flex"
     },
     {
       "key": "year.operatingShort",
       "label": "Operating line, short",
-      "value": 197550,
+      "value": 191224,
       "unit": "AUD",
       "from": "capital-stack-flex",
       "drift": "Not in the Canon tab yet"
@@ -287,7 +338,7 @@
     {
       "key": "year.bedSurplus",
       "label": "Bed money over the making line",
-      "value": 49600,
+      "value": 55037.33333333333,
       "unit": "AUD",
       "from": "capital-stack-flex"
     },
@@ -369,7 +420,7 @@
     {
       "line": "Founders",
       "amountAud": 151200,
-      "what": "Two founders beyond the days they spend on production."
+      "what": "Two founders beyond the days they spend on production. Whether this includes superannuation is unconfirmed."
     },
     {
       "line": "Getting to communities",
@@ -378,8 +429,8 @@
     },
     {
       "line": "Accounting and advice",
-      "amountAud": 50000,
-      "what": "Bookkeeping, the FY26 repair, the entity work and the audit-readiness the funders are asking for."
+      "amountAud": 3674,
+      "what": "What Butterfly actually paid for its FY26 accountancy and audit, from the JAQ Minns FY26 statements."
     },
     {
       "line": "Witta rent",
@@ -389,7 +440,7 @@
     {
       "line": "Marketing",
       "amountAud": 10000,
-      "what": "The site, the deck, the print."
+      "what": "The site, the deck, the print. Confirmed by Ben on 15 September 2026."
     },
     {
       "line": "Maintenance",

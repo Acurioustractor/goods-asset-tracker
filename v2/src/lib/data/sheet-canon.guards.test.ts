@@ -37,7 +37,19 @@ describe('the canon list', () => {
       'line.runDaysPerMonth', 'line.bedsPerMonth', 'line.wittaPerYear',
       'plant.allowance', 'year.running', 'year.breakEvenBeds', 'year.needs',
       'year.asked', 'year.gap', 'plastic.panelPerBed', 'trade.bedsPaid',
+      'bed.freight', 'bed.makeStatus', 'plant.yieldImprovements',
     ]) expect(keys.has(k), k).toBe(true);
+  });
+
+  it('the second press cell is gone and the 15 September rulings are in', () => {
+    const cell = (k: string) => CANON.find((c) => c.key === k)!;
+    expect(CANON.some((c) => c.key === 'plant.secondPress')).toBe(false);
+    expect(SRC).not.toContain('SECOND_PRESS');
+    expect(cell('bed.freight').value).toBe(100);
+    expect(cell('year.running').value).toBe(251_224);
+    expect(String(cell('bed.makeStatus').value)).toContain('provisional');
+    expect(cell('plant.yieldImprovements').value).toBe(6);
+    expect(cell('plant.yieldImprovementsQuoted').value).toBe(0);
   });
 
   it('the running breakdown still sums to the running figure', () => {

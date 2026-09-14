@@ -14,10 +14,15 @@
  *   2. If a new funder appears with $X, what can they buy that nobody else is buying.
  */
 
-// the-year-and-the-raise imports nothing, so there is no cycle here.
-import { BED_PRICE_AUD, BED_MAKE_AUD } from './the-year-and-the-raise';
+import {
+  BED_PRICE_AUD, BED_MAKE_AUD, BED_FREIGHT_AUD, FACILITATION_PER_BED_AUD, BEDS_AT_COST_AUD,
+  BEDS_YEAR_ONE, BEDS_TO_FIND, CONTRIBUTION_AUD, ORGANISATION_NEED_AUD,
+} from './the-year-and-the-raise';
+import { BREAK_EVEN_BEDS, PLANT_MATURE_BEDS } from './three-year-plan';
 
-export const READ_AT = '2026-09-11';
+export const READ_AT = '2026-09-15';
+
+const aud = (n: number) => Math.round(n).toLocaleString('en-AU');
 
 // ---------------------------------------------------------------------------
 // What the year costs
@@ -27,6 +32,8 @@ export type Job = 'plant' | 'beds' | 'facilitation' | 'operating';
 
 export interface Need {
   readonly job: Job;
+  /** The source jobs that land on this line. Facilitation lands on the organisation. */
+  readonly covers: readonly Job[];
   readonly what: string;
   readonly amountAud: number;
   /** The smallest thing a funder can buy on this line, and what it costs. */
@@ -35,9 +42,15 @@ export interface Need {
   readonly ifUnfunded: string;
 }
 
+/**
+ * Three jobs, not four. Ben, 15 September 2026: the organisation absorbs freight and facilitation
+ * at $100 a bed each out of its share of the $750, so both sit on the organisation line and a
+ * funder is never asked for a freight line. A facilitation ask still counts toward that line.
+ */
 export const NEEDS: readonly Need[] = [
   {
     job: 'plant',
+    covers: ['plant'],
     what: 'Two community plants',
     amountAud: 300_000,
     unit: 'one plant',
@@ -47,30 +60,23 @@ export const NEEDS: readonly Need[] = [
   },
   {
     job: 'beds',
-    what: 'Making 400 beds of first stock',
-    amountAud: 110_400,
+    covers: ['beds'],
+    what: `Making ${BEDS_YEAR_ONE} beds of first stock`,
+    amountAud: BEDS_AT_COST_AUD,
     unit: 'one bed',
-    unitAud: 750,
+    unitAud: BED_PRICE_AUD,
     ifUnfunded:
-      'Community enterprises have nothing to sell. Each bed is bought at the published $750, of which $276 makes it and $474 carries the organisation.',
-  },
-  {
-    job: 'facilitation',
-    what: 'Facilitation in four communities',
-    amountAud: 40_000,
-    unit: 'one community',
-    unitAud: 10_000,
-    ifUnfunded:
-      'Beds arrive without the trips, build days, training and delivery around them. $50,000 has already been billed and paid at this rate, so it is a proven number.',
+      `Community enterprises have nothing to sell. Each bed is bought at the published $${BED_PRICE_AUD}, of which $${aud(BED_MAKE_AUD)} makes it, $${BED_FREIGHT_AUD} moves it, $${aud(FACILITATION_PER_BED_AUD)} pays the facilitation around it and $${aud(CONTRIBUTION_AUD)} carries the organisation.`,
   },
   {
     job: 'operating',
-    what: 'Running the organisation',
-    amountAud: 297_550,
+    covers: ['operating', 'facilitation'],
+    what: 'The organisation: running it, and the freight and facilitation it absorbs',
+    amountAud: ORGANISATION_NEED_AUD,
     unit: 'a month of the organisation',
-    unitAud: 24_796,
+    unitAud: Math.round(ORGANISATION_NEED_AUD / 12),
     ifUnfunded:
-      'Carried by trade. 628 paid beds a year covers it entirely, and the year plans 400, so the shortfall is the distance between those two numbers.',
+      `Carried by trade. ${BREAK_EVEN_BEDS} paid beds a year covers the running cost entirely, and the year plans ${BEDS_YEAR_ONE}, so the shortfall is the distance between those two numbers. Freight and facilitation come out of the bed before it reaches the organisation.`,
   },
 ];
 
@@ -186,8 +192,10 @@ export const GAP_AUD = YEAR_COST_AUD - ASKED_AUD;
 // What breaks if one drops
 // ---------------------------------------------------------------------------
 
+/** What is asked against a need line. A source job that lands on the line counts for it. */
 export function coveredFor(job: Job, without: readonly string[] = []): number {
-  return SOURCES.filter((s) => s.inTheRaise && s.job === job && !without.includes(s.id))
+  const covers = NEEDS.find((n) => n.job === job)?.covers ?? [job];
+  return SOURCES.filter((s) => s.inTheRaise && covers.includes(s.job) && !without.includes(s.id))
     .reduce((n, s) => n + s.amountAud, 0);
 }
 
@@ -209,9 +217,9 @@ export function shortfalls(without: readonly string[] = []) {
 }
 
 /**
- * Bed money is asked at the $750 sale price and the bed cost line is the $276 of making, so the
- * beds line is deliberately over-covered and the surplus is what carries the organisation. This is
- * the $474 doing its job, and it is the relationship the first version of the year model lost.
+ * Bed money is asked at the sale price and the bed cost line is the making cost, so the beds line
+ * is deliberately over-covered and the surplus is what carries the organisation. This is the
+ * contribution doing its job, and it is the relationship the first version of the year model lost.
  */
 export function bedSurplusAud(without: readonly string[] = []): number {
   const need = NEEDS.find((n) => n.job === 'beds')!.amountAud;
@@ -219,7 +227,8 @@ export function bedSurplusAud(without: readonly string[] = []): number {
 }
 
 /**
- * What the operating line is short.
+ * What the organisation line is short: running, freight and facilitation less the operating and
+ * facilitation asks.
  *
  * It was a literal inside the sentence below and nowhere else, so nothing tested it and the wiki
  * had to cite the module by hand. Derived here and given a canon key, because it is half of the
@@ -229,7 +238,7 @@ export const OPERATING_SHORTFALL_AUD =
   NEEDS.find((n) => n.job === 'operating')!.amountAud - coveredFor('operating');
 
 export const SURPLUS_EXPLAINS_THE_GAP =
-  `Beds are bought at $${BED_PRICE_AUD} and cost $${BED_MAKE_AUD} to make, so $160,000 of bed money over-covers the $110,400 making line by $${bedSurplusAud().toLocaleString('en-AU')}. The operating line is short $${OPERATING_SHORTFALL_AUD.toLocaleString('en-AU')}. The difference between those two is the $${GAP_AUD.toLocaleString('en-AU')} gap, and it is the same arithmetic seen from the other end.`;
+  `Beds are bought at $${BED_PRICE_AUD} and cost $${aud(BED_MAKE_AUD)} to make, so $${aud(coveredFor('beds'))} of bed money over-covers the $${aud(BEDS_AT_COST_AUD)} making line by $${aud(bedSurplusAud())}. The organisation line, running plus the freight and facilitation it absorbs, is short $${aud(OPERATING_SHORTFALL_AUD)}. The difference between those two is the $${aud(GAP_AUD)} gap, and it is the same arithmetic seen from the other end.`;
 
 export const PLANT_MONEY_IS_DIFFERENT =
   'A plant costs $150,000 and a plant grant brings $150,000, so plant money never leaves a hole and never fills one. Adding a plant adds a cost and a source in the same breath. The gap only moves when new plant money lands on a plant somebody else was already funding.';
@@ -245,10 +254,9 @@ export interface Rung {
 }
 
 export const LADDER: readonly Rung[] = [
-  { aud: 750, buys: 'One bed', andThen: 'One household off the floor, and $474 toward the organisation that makes the next one.' },
+  { aud: BED_PRICE_AUD, buys: 'One bed', andThen: `One household off the floor, freight and facilitation paid, and $${aud(CONTRIBUTION_AUD)} toward the organisation that makes the next one.` },
   { aud: 7_500, buys: 'Ten beds', andThen: 'Twenty hours of paid making, and 200 kg of plastic kept out of landfill.' },
   { aud: 10_000, buys: 'Facilitation in one community', andThen: 'The trips, the build days, the training and the delivery. Already proven at this rate on a paid invoice.' },
-  { aud: 22_500, buys: 'The second press', andThen: 'Forty more kits a month, from 96 to 136. Assembly is no longer the ceiling because it happens in community, so the router becomes the constraint at 8.56 kits a day.' },
   { aud: 75_000, buys: 'A hundred beds, one community pool', andThen: 'A community enterprise with stock to sell and $75,000 of local capital when it does.' },
   { aud: 150_000, buys: 'One community plant', andThen: '200 beds in its first year, reaching 720 on the same press, and a local crew that owns the making.' },
   { aud: 300_000, buys: 'Two plants', andThen: 'What QBE is being asked for, and the year in which two communities start making beds themselves.' },
@@ -267,11 +275,18 @@ export const THE_SCALE =
 // ---------------------------------------------------------------------------
 
 export const IF_THE_GAP_STAYS: readonly string[] = [
-  'Trade. 628 paid beds a year covers the organisation with no grant at all, and the year plans 400. The distance between those numbers is the operating shortfall.',
-  'SEFA Backing the Bold. $50,000 to $200,000 of debt, which suits the second press and working capital because both have a repayment source in the $474 a bed. Blocked on the entity question Joel Bird raised on 21 August.',
+  `Trade. ${BREAK_EVEN_BEDS} paid beds a year covers the organisation with no grant at all, and the year plans ${BEDS_YEAR_ONE}. The distance between those numbers is the operating shortfall.`,
+  `SEFA Backing the Bold. $50,000 to $200,000 of debt, which suits yield improvements and working capital because both have a repayment source in the $${aud(CONTRIBUTION_AUD)} a bed. Blocked on the entity question Joel Bird raised on 21 August.`,
   'Dusseldorp Forum at $50,000 and Minderoo at $100,000, both figures we wrote. Neither funder has named one.',
-  'Selling more beds. The gap is 187 beds at the published price, and four organisations have already bought 320.',
+  `Selling more beds. The gap is ${BEDS_TO_FIND} beds at the published price, and four organisations have already bought 320.`,
 ];
 
+/** SEFA Backing the Bold lends $50,000 to $200,000. Joel Bird, 21 August 2026. Rate and term are not set. */
+export const SEFA_LOAN_MIN_AUD = 50_000;
+export const SEFA_LOAN_MAX_AUD = 200_000;
+export const SEFA_LOAN_TERMS_STATUS = 'not set';
+
+export const BEDS_TO_REPAY_200K = Math.ceil(SEFA_LOAN_MAX_AUD / CONTRIBUTION_AUD);
+
 export const WHY_A_LOAN_IS_NOT_A_GRANT =
-  'Debt has a repayment test that a grant does not. Joel Bird put it plainly: the question is whether the capital drives enough growth to repay it. At $474 a bed, 101 paid beds a year services $200,000, which is inside one plant\'s output. What is not settled is which entity the revenue flows through, and that decides where the debt can sit.';
+  `Debt has a repayment test that a grant does not. Joel Bird put it plainly: the question is whether the capital drives enough growth to repay it. At $${aud(CONTRIBUTION_AUD)} a bed, ${BEDS_TO_REPAY_200K} paid beds repay $200,000, which is inside one mature plant's ${PLANT_MATURE_BEDS} beds a year. What is not settled is which entity the revenue flows through, and that decides where the debt can sit.`;

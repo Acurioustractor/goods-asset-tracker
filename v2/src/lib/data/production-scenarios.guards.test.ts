@@ -46,7 +46,8 @@ describe('the current dispatch route', () => {
     expect(knownSpendOverRun(S('A'), 400)).toBeNull();
     expect(knownSpendOverRun(S('C'), 400)).toBeNull();
     expect(boughtPlasticAMonthAud(S('B'))).toBeNull();
-    expect(capitalAud(S('C'))).toBe(22500);
+    expect(capitalAud(S('C'))).toBeNull();
+    expect(capitalAud(S('A'))).toBe(0);
     expect(knownSpendOverRun(S('E'), 400)).toBeCloseTo(400 * 344.05);
   });
   it('the superseded press-versus-leg-panel break-even stays withdrawn', () => {

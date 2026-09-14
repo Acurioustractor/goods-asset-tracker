@@ -8,31 +8,62 @@
  *
  * Sources
  *  - Running cost lines: Ben's trimmed provision, 9 September 2026
- *    (deliverables/finance/goods-financial-plan/WORKED-OUT-2026-09-09.md).
- *  - Bed price and make cost: canon `stretch-price` 750, `marginal-factory` 426 = 276 + 150
- *    freight (deliverables/finance/goods-financial-plan/README.md, alignment with Matt Allen).
- *  - Freight $150 all up, $100 factory leg plus $50 community leg, see demand-and-buyers.ts FREIGHT_RULING.
+ *    (deliverables/finance/goods-financial-plan/WORKED-OUT-2026-09-09.md), cut on 15 September 2026:
+ *    marketing confirmed at $10,000, accounting and advice set to Butterfly's actual FY26 accountancy
+ *    plus audit (JAQ Minns FY26 statements, $2,200 + $1,474).
+ *  - Bed price: canon `stretch-price` 750. Make cost: derived below from its components, six kits a
+ *    day (Ben, 15 September 2026), provisional until Nic confirms the bought leg-panel yield.
+ *  - Freight $100 a bed, all up (Ben, 15 September 2026). The organisation absorbs it out of its
+ *    share of the $750, as it absorbs facilitation at $100 a bed. Ben, 15 September 2026, as a
+ *    director: $750 is the only bed price. No buyer pays freight and no funder is asked for it.
  *  - Plant allowance $150,000 against modules priced $95,767 to $142,467.
  *  - Commonwealth plant money: Ben, 11 September 2026, stated as a director.
  */
 
-export const READ_AT = '2026-09-11';
+import { PRESS_SHEETS_A_DAY, PRESSED_SHEETS_PER_KIT } from './production-route';
+
+export const READ_AT = '2026-09-15';
 
 // ---------------------------------------------------------------------------
 // Unit economics
 // ---------------------------------------------------------------------------
 
 export const BED_PRICE_AUD = 750;
-export const BED_MAKE_AUD = 276;
-export const BED_FREIGHT_AUD = 150;
 
-/** What a bed contributes to the organisation when the buyer pays freight. */
-export const CONTRIBUTION_BUYER_FREIGHT_AUD = BED_PRICE_AUD - BED_MAKE_AUD;
-/** What a bed contributes when Goods carries freight. */
-export const CONTRIBUTION_GOODS_FREIGHT_AUD = BED_PRICE_AUD - BED_MAKE_AUD - BED_FREIGHT_AUD;
+/** Kits a day. Ben, 15 September 2026: six, the tab press rate, one sheet a kit. */
+export const KITS_A_DAY = PRESS_SHEETS_A_DAY / PRESSED_SHEETS_PER_KIT;
+export const FACTORY_LABOUR_A_DAY_AUD = 400;
 
-export const FREIGHT_IS_THE_SWING =
-  'Freight is the only line that moves the answer by a plant. Every invoice so far has put freight on the buyer. If Goods carries it on 400 beds that is $60,000, and the contribution a bed makes drops from $474 to $324.';
+/** Legacy 20 kg at $2.75, provisional until the bought leg-panel yield is known. */
+export const PLASTIC_AUD = 55;
+export const POLES_AUD = 27;
+export const CANVAS_AUD = 93.5;
+export const HARDWARE_AUD = 5.24;
+export const POWER_AUD = 15;
+export const LABOUR_AUD = FACTORY_LABOUR_A_DAY_AUD / KITS_A_DAY;
+
+/** Ben, 15 September 2026: the sum of the components above. */
+export const BED_MAKE_AUD = PLASTIC_AUD + POLES_AUD + CANVAS_AUD + HARDWARE_AUD + POWER_AUD + LABOUR_AUD;
+export const BED_MAKE_STATUS =
+  'provisional: bought leg panels and tab pressing need costing (Nic, panel yield)';
+
+/** Ben, 15 September 2026: $100 a bed all up, absorbed by the organisation out of its share. */
+export const BED_FREIGHT_AUD = 100;
+
+export const BEDS_YEAR_ONE = 400;
+export const FACILITATION_COMMUNITIES = 4;
+export const FACILITATION_AUD = 40_000;
+
+/** Facilitation a bed: $40,000 over 400 beds, absorbed by the organisation. Ben, 15 September 2026. */
+export const FACILITATION_PER_BED_AUD = FACILITATION_AUD / BEDS_YEAR_ONE;
+
+/** What reaches the organisation from a $750 bed after making, freight and facilitation. Ben, 15 September 2026. */
+export const CONTRIBUTION_AUD = BED_PRICE_AUD - BED_MAKE_AUD - BED_FREIGHT_AUD - FACILITATION_PER_BED_AUD;
+
+const aud = (n: number) => Math.round(n).toLocaleString('en-AU');
+
+export const FREIGHT_RULE =
+  `A bed is $${BED_PRICE_AUD} and nothing is added to it: the organisation absorbs freight at $${BED_FREIGHT_AUD} a bed and facilitation at $${aud(FACILITATION_PER_BED_AUD)} a bed out of its share, so $${aud(CONTRIBUTION_AUD)} of each bed reaches it. Ben, 15 September 2026.`;
 
 // ---------------------------------------------------------------------------
 // What the year does
@@ -43,30 +74,33 @@ export const PLANT_ALLOWANCE_AUD = 150_000;
 export const PLANT_MODULES_LOW_AUD = 95_767;
 export const PLANT_MODULES_HIGH_AUD = 142_467;
 
-export const BEDS_YEAR_ONE = 400;
-export const FACILITATION_COMMUNITIES = 4;
-export const FACILITATION_AUD = 40_000;
-
 export interface RunningLine {
   readonly line: string;
   readonly amountAud: number;
   readonly what: string;
 }
 
-/** Running the organisation before a single bed is made. Ben's trimmed provision, 9 Sep 2026. */
+/** Whether the founders line includes superannuation has not been confirmed. */
+export const FOUNDERS_SUPER_STATUS = 'unconfirmed';
+
+/** Butterfly's FY26 accountancy plus audit, JAQ Minns FY26 statements: $2,200 + $1,474. */
+export const ACCOUNTANCY_FY26_AUD = 2_200;
+export const AUDIT_FY26_AUD = 1_474;
+
+/** Running the organisation before a single bed is made. Ben's provision of 9 Sep 2026, cut 15 Sep 2026. */
 export const RUNNING_LINES: readonly RunningLine[] = [
-  { line: 'Founders', amountAud: 151_200, what: 'Two founders beyond the days they spend on production.' },
+  { line: 'Founders', amountAud: 151_200, what: 'Two founders beyond the days they spend on production. Whether this includes superannuation is unconfirmed.' },
   { line: 'Getting to communities', amountAud: 51_000, what: 'Travel to eleven communities. Being on country costs what a call does not.' },
-  { line: 'Accounting and advice', amountAud: 50_000, what: 'Bookkeeping, the FY26 repair, the entity work and the audit-readiness the funders are asking for.' },
+  { line: 'Accounting and advice', amountAud: ACCOUNTANCY_FY26_AUD + AUDIT_FY26_AUD, what: 'What Butterfly actually paid for its FY26 accountancy and audit, from the JAQ Minns FY26 statements.' },
   { line: 'Witta rent', amountAud: 27_000, what: 'The Harvest shed, where the press and the router live.' },
-  { line: 'Marketing', amountAud: 10_000, what: 'The site, the deck, the print.' },
+  { line: 'Marketing', amountAud: 10_000, what: 'The site, the deck, the print. Confirmed by Ben on 15 September 2026.' },
   { line: 'Maintenance', amountAud: 8_350, what: 'Press, router and shredder upkeep.' },
 ];
 
 export const RUNNING_AUD = RUNNING_LINES.reduce((n, l) => n + l.amountAud, 0);
 
 // ---------------------------------------------------------------------------
-// Two ledgers. They differ only in who pays freight.
+// One ledger. Freight and facilitation sit inside the bed.
 // ---------------------------------------------------------------------------
 
 export const PLANTS_AUD = PLANTS_IN_THE_ASK * PLANT_ALLOWANCE_AUD;
@@ -81,21 +115,37 @@ export const FREIGHT_ON_THE_YEAR_AUD = BEDS_YEAR_ONE * BED_FREIGHT_AUD;
 export const GROSS_AS_PUBLISHED_AUD =
   PLANTS_AUD + BEDS_AT_PRICE_AUD + FACILITATION_AUD + RUNNING_AUD;
 
-/** The overlap: what the 400 beds hand back to the organisation. */
-export const BED_CONTRIBUTION_BUYER_FREIGHT_AUD = BEDS_YEAR_ONE * CONTRIBUTION_BUYER_FREIGHT_AUD;
-export const BED_CONTRIBUTION_GOODS_FREIGHT_AUD = BEDS_YEAR_ONE * CONTRIBUTION_GOODS_FREIGHT_AUD;
+/** Cash the year actually needs: plants, beds at cost, facilitation, freight and running. */
+export const NEED_AUD =
+  PLANTS_AUD + BEDS_AT_COST_AUD + FACILITATION_AUD + FREIGHT_ON_THE_YEAR_AUD + RUNNING_AUD;
 
-/** Cash the year actually needs, buyer pays freight. */
-export const NEED_BUYER_FREIGHT_AUD =
-  PLANTS_AUD + BEDS_AT_COST_AUD + FACILITATION_AUD + RUNNING_AUD;
-
-/** Cash the year actually needs, Goods carries freight. */
-export const NEED_GOODS_FREIGHT_AUD = NEED_BUYER_FREIGHT_AUD + FREIGHT_ON_THE_YEAR_AUD;
-
-export const DOUBLE_COUNT_AUD = GROSS_AS_PUBLISHED_AUD - NEED_BUYER_FREIGHT_AUD;
+/**
+ * The overlap between the published gross and the need. It is what 400 beds hand back once
+ * their making and their freight are paid: the facilitation is a cost in both figures, so it
+ * is not part of the overlap.
+ */
+export const DOUBLE_COUNT_AUD = GROSS_AS_PUBLISHED_AUD - NEED_AUD;
 
 export const WHAT_WENT_WRONG =
-  'The $937,550 published on 11 September added 400 beds at the $750 sale price to the full $297,550 running cost. A bed sold at $750 pays its own $276 of making and hands $474 to the organisation, so the running cost was charged twice. The overlap is $189,600 and the corrected figure is $747,950 with the buyer paying freight.';
+  `The $937,550 published on 11 September added 400 beds at the $750 sale price to the full running cost of that day. A bed sold at $${BED_PRICE_AUD} pays its own $${aud(BED_MAKE_AUD)} of making, its $${BED_FREIGHT_AUD} of freight and its $${aud(FACILITATION_PER_BED_AUD)} of facilitation, and hands $${aud(CONTRIBUTION_AUD)} to the organisation, so the running cost was charged twice. On today's lines the overlap is $${aud(DOUBLE_COUNT_AUD)} and the corrected figure is $${aud(NEED_AUD)}.`;
+
+// ---------------------------------------------------------------------------
+// The organisation's side of the year
+// ---------------------------------------------------------------------------
+
+/** What the organisation pays beyond plants and making: running, facilitation and freight. */
+export const ORGANISATION_NEED_AUD = RUNNING_AUD + FACILITATION_AUD + FREIGHT_ON_THE_YEAR_AUD;
+
+/** What reaches the organisation from the 400 beds after making, freight and facilitation. */
+export const ORGANISATION_FROM_BEDS_AUD = BEDS_YEAR_ONE * CONTRIBUTION_AUD;
+
+/**
+ * What the organisation is short after the 400 beds. Measured against the running cost alone,
+ * because freight and facilitation are already taken out of the contribution: subtracting the
+ * contribution from ORGANISATION_NEED_AUD would charge both of them twice. The guard test shows
+ * the same figure from the other side, the organisation's need less the beds' gross share.
+ */
+export const ORGANISATION_SHORT_AUD = RUNNING_AUD - ORGANISATION_FROM_BEDS_AUD;
 
 // ---------------------------------------------------------------------------
 // The raise
@@ -203,9 +253,6 @@ export const COMMONWEALTH_LIKELY_AUD = COMMONWEALTH_PLANT_MONEY
 export const SECOND_TRANCHE_RULING =
   'Ben, 12 September 2026: the second $150,000 is Alice Springs, in line with the Oonchiumpa support. Alice Springs is not one of the two sites in the QBE ask, so no QBE activity is funded twice and Q14 and Q15 carry no double-funding disclosure. The related-party disclosure for Oonchiumpa stands on its own footing, because Kristy Bloomfield sits on both boards.';
 
-export const THE_GAP_STAYS =
-  'The gap does not close. Closing it needed the second $150,000 to land on a site QBE is already being asked to fund, which would have freed $150,000 of the QBE request to buy beds. On Alice Springs it is additional capacity instead, so the $147,950 and the 320 beds stand and have to come from beds sold or from debt.';
-
 // ---------------------------------------------------------------------------
 // Scenarios. The plant lines are the only place where the ask equals the cost.
 // ---------------------------------------------------------------------------
@@ -220,7 +267,7 @@ export interface Scenario {
 }
 
 function needForPlants(plants: number): number {
-  return plants * PLANT_ALLOWANCE_AUD + BEDS_AT_COST_AUD + FACILITATION_AUD + RUNNING_AUD;
+  return plants * PLANT_ALLOWANCE_AUD + BEDS_AT_COST_AUD + FACILITATION_AUD + FREIGHT_ON_THE_YEAR_AUD + RUNNING_AUD;
 }
 
 export const SCENARIOS: readonly Scenario[] = [
@@ -293,6 +340,9 @@ export const BEDS_FUNDED = Math.floor(
 export const BEDS_UNFUNDED = BEDS_YEAR_ONE - BEDS_FUNDED;
 export const BEDS_UNFUNDED_AUD = BEDS_UNFUNDED * BED_PRICE_AUD;
 
+export const THE_GAP_STAYS =
+  `The gap does not close. Closing it needed the second $150,000 to land on a site QBE is already being asked to fund, which would have freed $150,000 of the QBE request to buy beds. On Alice Springs it is additional capacity instead, so the $${aud(NEED_AUD - ASKED_AUD)} and the ${BEDS_TO_FIND} beds stand and have to come from beds sold or from debt.`;
+
 export const BED_GAP_RULE =
   'Ben, 12 September 2026: the stated bed gap is 320 and the Snow line is off by default, because the ask has not been sent. 133 beds is what sending it would cover, and 187 is the position after it lands. A default that switches an unsent ask on prints a funded position that does not exist.';
 
@@ -304,8 +354,75 @@ export const WHERE_THE_GAP_LIVES =
   'The gap is not in the plants. Plant money arrives in $150,000 pieces that match the $150,000 cost, so a plant either happens or it does not and it never leaves a hole. The gap is 320 beds of first stock and a year of running the organisation, and those are the two hardest things to raise against because one looks like working capital and the other looks like overhead.';
 
 export const THE_LEVER =
-  'Every dollar of bed money does two jobs: it pays the $276 of making and hands $474 to the organisation. So the 320 beds still to find carry $240,000 of stock and $151,680 of the running cost with them. Funding beds is the cheapest way to fund the organisation, and it is the only ask that a funder can see a product at the end of.';
+  `Every dollar of bed money does two jobs: it pays the $${aud(BED_MAKE_AUD)} of making, the freight and the facilitation, and hands $${aud(CONTRIBUTION_AUD)} to the organisation. So the ${BEDS_TO_FIND} beds still to find carry $${aud(BEDS_TO_FIND_AUD)} of stock and $${aud(BEDS_TO_FIND * CONTRIBUTION_AUD)} of the running cost with them. Funding beds is the cheapest way to fund the organisation, and it is the only ask that a funder can see a product at the end of.`;
 
-export const SECOND_PRESS_AUD = 22_500;
-export const SECOND_PRESS_NOTE =
-  'The second press is in no ask. About $22,500, unpriced until Monday, and it decides whether the 400 beds land in June or August.';
+// ---------------------------------------------------------------------------
+// Yield improvements. Ben, 15 September 2026: no second press.
+// ---------------------------------------------------------------------------
+
+export interface YieldImprovement {
+  readonly id: string;
+  readonly item: string;
+  readonly whatItDoes: string;
+  readonly amountAud: number | null;
+  readonly status: 'needs-quote' | 'quoted';
+  readonly owner: 'Nic';
+}
+
+export const YIELD_IMPROVEMENTS: readonly YieldImprovement[] = [
+  {
+    id: 'second-press-die',
+    item: 'A second press die',
+    whatItDoes: 'Two tab sheets press per cycle on the press already in the shed.',
+    amountAud: null,
+    status: 'needs-quote',
+    owner: 'Nic',
+  },
+  {
+    id: 'cnc-tooling-and-jig',
+    item: 'CNC tooling and a cutting jig for bought leg panels',
+    whatItDoes: 'More leg sets cut from each bought panel, and faster.',
+    amountAud: null,
+    status: 'needs-quote',
+    owner: 'Nic',
+  },
+  {
+    id: 'shred-handling',
+    item: 'Shred handling: a bulka bag lifter and bins',
+    whatItDoes: 'Moves shred from bag to press without hand-shovelling or spillage.',
+    amountAud: null,
+    status: 'needs-quote',
+    owner: 'Nic',
+  },
+  {
+    id: 'dust-and-fume-extraction',
+    item: 'Dust and fume extraction',
+    whatItDoes: 'Keeps the router and press running through a full day safely.',
+    amountAud: null,
+    status: 'needs-quote',
+    owner: 'Nic',
+  },
+  {
+    id: 'cold-press-canvas',
+    item: 'A cold press for canvas sleeves',
+    whatItDoes: 'Takes sleeve making off the bench and shortens the canvas step.',
+    amountAud: null,
+    status: 'needs-quote',
+    owner: 'Nic',
+  },
+  {
+    id: 'genset-or-power',
+    item: 'Genset or power upgrade',
+    whatItDoes: 'Lets the press and the router run at the same time.',
+    amountAud: null,
+    status: 'needs-quote',
+    owner: 'Nic',
+  },
+];
+
+/** Quoted items only. An unquoted item never enters a total. */
+export const YIELD_IMPROVEMENTS_TOTAL_AUD = YIELD_IMPROVEMENTS
+  .filter((y) => y.status === 'quoted' && y.amountAud !== null)
+  .reduce((n, y) => n + (y.amountAud ?? 0), 0);
+
+export const YIELD_IMPROVEMENTS_QUOTED = YIELD_IMPROVEMENTS.filter((y) => y.status === 'quoted').length;

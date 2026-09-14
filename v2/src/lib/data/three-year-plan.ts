@@ -6,49 +6,44 @@
  * This is the three-year shape: what it costs to be Goods on Country, what trade carries, and
  * how a grant that steps down as trade steps up looks on paper.
  *
- * The spine is one arithmetic fact already locked: running the organisation costs $297,550 and
- * a bed hands back $474, so 628 paid beds a year carries the whole thing. Year one plans 400.
- * The three years are the distance between those two numbers.
+ * The spine is one arithmetic fact already locked: running the organisation costs what the year
+ * module says it costs, and a bed hands back its contribution, so the break-even below is the
+ * number of paid beds a year that carries the whole thing. Year one plans 400. The three years are
+ * the distance between those two numbers.
  *
  * What is locked and what is a target
- *  - Running cost, bed price, make cost and contribution are canon and guarded elsewhere.
+ *  - Running cost, bed price, make cost and contribution are imported from the-year-and-the-raise
+ *    and never retyped here.
  *  - Capacity is the 80% availability ruling: current facility 1,152 kits a year, with bought legs and community assembly.
  *  - BED VOLUMES ARE TARGETS, NEVER FORECASTS. They are capacity-checked and nothing more.
  *    Every one carries `basis` saying which.
  */
 
 import { factoryKitsAMonth } from './production-route';
+import {
+  BED_PRICE_AUD, BED_MAKE_AUD, BED_FREIGHT_AUD, BED_MAKE_STATUS,
+  FACILITATION_PER_BED_AUD, CONTRIBUTION_AUD, RUNNING_AUD,
+} from './the-year-and-the-raise';
 
-export const READ_AT = '2026-09-12';
+export { BED_PRICE_AUD, BED_MAKE_AUD, BED_FREIGHT_AUD, FACILITATION_PER_BED_AUD, CONTRIBUTION_AUD };
+
+export const READ_AT = '2026-09-15';
 
 export const WHY_THIS_EXISTS =
   'Tim Fairfax invited a three-year application on 31 August 2026 and named the resilience of organisations as the reason. Every model in the repo runs one year, so there was nothing to answer it with.';
 
-export const BED_PRICE_AUD = 750;
-export const BED_MAKE_AUD = 276;
-export const CONTRIBUTION_AUD = BED_PRICE_AUD - BED_MAKE_AUD;
-
-export const RUNNING_YEAR_ONE_AUD = 297_550;
-
-/** The number that decides everything. */
-export const BREAK_EVEN_BEDS = Math.ceil(RUNNING_YEAR_ONE_AUD / CONTRIBUTION_AUD);
-
-export const BED_FREIGHT_AUD = 150;
-export const CONTRIBUTION_GOODS_FREIGHT_AUD = CONTRIBUTION_AUD - BED_FREIGHT_AUD;
+export const RUNNING_YEAR_ONE_AUD = RUNNING_AUD;
 
 /**
- * The same number when Goods carries freight instead of the buyer.
- *
- * It was a literal inside the note below and nowhere else, so nothing tested it, and the workbook
- * and a Control Room widget both drifted to 796 while the module said 918. Derived here and given a
- * canon key so the two cannot disagree again.
+ * The number that decides everything. The contribution already has freight and facilitation
+ * taken out of it (Ben, 15 September 2026), so there is one break-even and not two.
  */
-export const BREAK_EVEN_BEDS_GOODS_FREIGHT = Math.ceil(
-  RUNNING_YEAR_ONE_AUD / CONTRIBUTION_GOODS_FREIGHT_AUD,
-);
+export const BREAK_EVEN_BEDS = Math.ceil(RUNNING_YEAR_ONE_AUD / CONTRIBUTION_AUD);
+
+const aud = (n: number) => Math.round(n).toLocaleString('en-AU');
 
 export const BREAK_EVEN_NOTE =
-  `Running the organisation costs $${RUNNING_YEAR_ONE_AUD.toLocaleString('en-AU')} and a bed hands back $${CONTRIBUTION_AUD}, so ${BREAK_EVEN_BEDS} paid beds a year carries it. This assumes the buyer pays freight, which every invoice so far has done. If Goods carries freight the contribution is $${CONTRIBUTION_GOODS_FREIGHT_AUD} and the number is ${BREAK_EVEN_BEDS_GOODS_FREIGHT}. Both are provisional while the making allowance is, because both derive from it.`;
+  `Running the organisation costs $${aud(RUNNING_YEAR_ONE_AUD)} and a bed hands back $${aud(CONTRIBUTION_AUD)} once its making, its $${BED_FREIGHT_AUD} of freight and its $${aud(FACILITATION_PER_BED_AUD)} of facilitation are paid, so ${BREAK_EVEN_BEDS} paid beds a year carries it. The figure is provisional while the making cost is, because it derives from it: ${BED_MAKE_STATUS}.`;
 
 // ---------------------------------------------------------------------------
 // Capacity, so no target is written that cannot be made
@@ -85,22 +80,28 @@ export interface PlanYear {
 
 export const FACILITATION_PER_COMMUNITY_AUD = 10_000;
 
+const YEAR_ONE_BEDS = 400;
+const YEAR_THREE_BEDS = 900;
+const GRANT_A_YEAR_AUD = 100_000;
+const YEAR_ONE_SHORT_AUD = RUNNING_AUD - YEAR_ONE_BEDS * CONTRIBUTION_AUD;
+const YEAR_THREE_OVER_AUD = YEAR_THREE_BEDS * CONTRIBUTION_AUD - RUNNING_AUD;
+
 export const YEARS: readonly PlanYear[] = [
   {
     id: 'fy27',
     label: 'Year one, to June 2027',
     story:
-      'The plants are built and commissioned and Witta makes the first stock. Trade covers two thirds of the organisation and a grant covers the rest.',
+      `The plants are built and commissioned and Witta makes the first stock. Trade covers about ${Math.round((YEAR_ONE_BEDS * CONTRIBUTION_AUD / RUNNING_AUD) * 100)}% of the organisation and a grant covers the rest.`,
     plants: 0,
     capacityBeds: WITTA_BEDS_A_YEAR,
-    bedsSold: 400,
+    bedsSold: YEAR_ONE_BEDS,
     bedsBasis: 'target',
     facilitationCommunities: 4,
-    runningAud: 297_550,
+    runningAud: RUNNING_AUD,
     runningBasis: 'locked',
-    grantSoughtAud: 100_000,
+    grantSoughtAud: GRANT_A_YEAR_AUD,
     grantNote:
-      'The gap between what 400 beds contribute and what the year costs is $107,950. Year one of the Tim Fairfax grant is $100,000 and closes almost all of it.',
+      `The gap between what ${YEAR_ONE_BEDS} beds contribute and what the year costs is $${aud(YEAR_ONE_SHORT_AUD)}. Year one of the Tim Fairfax grant is $${aud(GRANT_A_YEAR_AUD)} and ${YEAR_ONE_SHORT_AUD > GRANT_A_YEAR_AUD ? 'closes most of it' : 'covers it'}.`,
   },
   {
     id: 'fy28',
@@ -109,14 +110,14 @@ export const YEARS: readonly PlanYear[] = [
       'Two community plants are running and Witta presses parts for them. The organisation reaches the number that carries it, and the grant stops being the thing that keeps the lights on.',
     plants: 2,
     capacityBeds: WITTA_BEDS_A_YEAR + 2 * PLANT_FIRST_YEAR_BEDS,
-    bedsSold: 628,
+    bedsSold: BREAK_EVEN_BEDS,
     bedsBasis: 'target',
     facilitationCommunities: 4,
-    runningAud: 297_550,
+    runningAud: RUNNING_AUD,
     runningBasis: 'assumption',
-    grantSoughtAud: 100_000,
+    grantSoughtAud: GRANT_A_YEAR_AUD,
     grantNote:
-      'At 628 beds trade covers the organisation exactly. Year two of the grant becomes the reserve that lets a bad quarter happen without a redundancy, which is what resilience means on a cashflow.',
+      `At ${BREAK_EVEN_BEDS} beds trade covers the organisation. Year two of the grant becomes the reserve that lets a bad quarter happen without a redundancy, which is what resilience means on a cashflow.`,
   },
   {
     id: 'fy29',
@@ -125,14 +126,14 @@ export const YEARS: readonly PlanYear[] = [
       'The plants move toward community hands. Goods earns more than it costs to run, and the grant turns to paying for the handover.',
     plants: 3,
     capacityBeds: WITTA_BEDS_A_YEAR + 2 * PLANT_MATURE_BEDS + PLANT_FIRST_YEAR_BEDS,
-    bedsSold: 900,
+    bedsSold: YEAR_THREE_BEDS,
     bedsBasis: 'target',
     facilitationCommunities: 6,
-    runningAud: 297_550,
+    runningAud: RUNNING_AUD,
     runningBasis: 'assumption',
-    grantSoughtAud: 100_000,
+    grantSoughtAud: GRANT_A_YEAR_AUD,
     grantNote:
-      'Trade covers the organisation with $128,050 over. Year three of the grant funds the handover: the legal work, the training and the asset transfer that turn a plant Goods owns into a plant a community owns.',
+      `Trade covers the organisation with $${aud(YEAR_THREE_OVER_AUD)} over. Year three of the grant funds the handover: the legal work, the training and the asset transfer that turn a plant Goods owns into a plant a community owns.`,
   },
 ];
 
@@ -145,13 +146,14 @@ export function facilitationAud(y: PlanYear): number {
 }
 
 /**
- * Facilitation is billed and spent at about the same rate, so it is carried as cost neutral and
- * kept out of this line. $50,000 has already been billed and paid across four communities at
- * $10,000 each; the same $10,000 pays for the trip, the days and the delivery. Counting it as
- * income here without its cost would be the same mistake that produced the $937,550.
+ * Facilitation is inside the bed. Ben, 15 September 2026: the organisation absorbs it at $100 a
+ * bed out of its share of the $750, so the contribution above already has it taken out and no
+ * income line carries it. $50,000 has already been billed and paid across four communities at
+ * $10,000 each, which is the same $40,000 on 400 beds. Counting it as income here without its
+ * cost would be the same mistake that produced the $937,550.
  */
 export const FACILITATION_IS_COST_NEUTRAL =
-  'Facilitation is billed at $10,000 a community and costs about the same to deliver, so it neither funds the organisation nor drains it. It sits beside this ledger instead of inside it.';
+  `Facilitation is $${aud(FACILITATION_PER_BED_AUD)} a bed, taken out of the contribution before it reaches the organisation, and it costs about the same to deliver as the $10,000 a community already billed. It neither funds the organisation nor drains it, so no line here carries it.`;
 
 export function tradeIncomeAud(y: PlanYear): number {
   return contributionAud(y);
@@ -178,12 +180,12 @@ export const TRADE_SHARE = YEARS.map((y) => ({
 // ---------------------------------------------------------------------------
 
 export const CLAIM_CEILING =
-  'The $276 making cost and its contribution remain provisional for the corrected bought-leg route. Bed volumes are targets that fit inside modelled capacity. They are not forecasts and no buyer has ordered year two or year three. The running cost is Ben\'s provision for year one and is held flat across three years, which is an assumption nobody has ruled on: it holds founders, travel, accounting, rent, marketing and maintenance at today\'s level while the work grows.';
+  `The $${aud(BED_MAKE_AUD)} making cost and its contribution remain provisional for the corrected bought-leg route. Bed volumes are targets that fit inside modelled capacity. They are not forecasts and no buyer has ordered year two or year three. The running cost is Ben's provision for year one and is held flat across three years, which is an assumption nobody has ruled on: it holds founders, travel, accounting, rent, marketing and maintenance at today's level while the work grows.`;
 
 export const WHAT_NEEDS_A_RULING: readonly string[] = [
-  'Does the running cost stay at $297,550 for three years while two plants and six communities are added, or does it grow.',
-  'Does founder pay move off $151,200 once trade carries the organisation.',
-  'Who carries freight from year two, because it moves break-even from 628 beds to 918.',
+  `Does the running cost stay at $${aud(RUNNING_AUD)} for three years while two plants and six communities are added, or does it grow.`,
+  'Does founder pay move off $151,200 once trade carries the organisation, and does that figure include superannuation.',
+  `Whether facilitation stays at $${aud(FACILITATION_PER_BED_AUD)} a bed past year one, because at 900 beds across six communities the per-bed figure and the $10,000 a community figure part company.`,
   'Whether year three of the grant pays for the handover, which is the only line here that is not an operating cost.',
 ];
 

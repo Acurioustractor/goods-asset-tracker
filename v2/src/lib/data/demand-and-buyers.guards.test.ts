@@ -30,11 +30,11 @@ import {
   UTOPIA_REGISTER_UNITS,
   FREIGHT_EVIDENCE,
   FREIGHT_PER_BED_AUD,
-  FREIGHT_FACTORY_LEG_AUD,
-  FREIGHT_COMMUNITY_LEG_AUD,
   FREIGHT_RULING,
 } from './demand-and-buyers';
 import { BED_PRICE_AUD } from './bed-ratio';
+import { BED_FREIGHT_AUD } from './the-year-and-the-raise';
+import { BREAK_EVEN_BEDS } from './three-year-plan';
 
 const SRC = readFileSync(join(__dirname, 'demand-and-buyers.ts'), 'utf8');
 
@@ -291,11 +291,10 @@ describe('freight is evidenced, and its limits are stated', () => {
     }
   });
 
-  it('is two legs that sum to the all-up figure, never two rival numbers', () => {
-    expect(FREIGHT_FACTORY_LEG_AUD + FREIGHT_COMMUNITY_LEG_AUD).toBe(FREIGHT_PER_BED_AUD);
-    expect(FREIGHT_PER_BED_AUD).toBe(150);
-    const charged = FREIGHT_EVIDENCE[0];
-    expect(Math.abs(charged.perBedAud - FREIGHT_PER_BED_AUD)).toBeLessThan(3);
+  it('is the one ruled figure, imported and never retyped', () => {
+    expect(FREIGHT_PER_BED_AUD).toBe(BED_FREIGHT_AUD);
+    expect(FREIGHT_PER_BED_AUD).toBe(100);
+    expect(SRC).not.toMatch(/FREIGHT_PER_BED_AUD = \d/);
     expect(SRC).toMatch(/never were in conflict|were never in conflict/);
   });
 
@@ -312,11 +311,12 @@ describe('freight is evidenced, and its limits are stated', () => {
     expect(bill.caveat).toMatch(/upper bound/);
   });
 
-  it('says freight does not enter the printed break-even under the price model', () => {
-    expect(FREIGHT_RULING).toMatch(/628/);
-    expect(FREIGHT_RULING).toMatch(/918/);
-    expect(FREIGHT_RULING).toMatch(/buyer pays freight at cost/);
-    expect(SRC).toMatch(/sensitivity and not the plan/);
+  it('says the organisation absorbs freight and the break-even carries it', () => {
+    expect(FREIGHT_RULING).toContain(`${BREAK_EVEN_BEDS} beds`);
+    expect(FREIGHT_RULING).not.toMatch(/628|918|919/);
+    expect(FREIGHT_RULING).toMatch(/organisation absorbs it/);
+    expect(FREIGHT_RULING).not.toMatch(/buyer pays freight|Goods carries freight|charged on top/);
+    expect(SRC).toMatch(/history and not the plan/);
   });
 
   it('is consistent with the freight actually charged on the paid invoices', () => {

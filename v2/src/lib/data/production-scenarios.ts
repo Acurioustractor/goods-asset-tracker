@@ -25,7 +25,8 @@ export const BED_PRICE_AUD = 750;
 export const PANEL_PLASTIC_PER_BED_AUD: number | null = null;
 /** Supplier finished leg kit only; excludes factory tab production and other bed parts. */
 export const FINISHED_KIT_PER_BED_AUD = 344.05;
-export const SECOND_PRESS_AUD = 22_500;
+/** Ben, 15 September 2026: no second press. Two-press scenarios carry no priced capital. */
+export const SECOND_PRESS_STATUS = 'Ruled out by Ben on 15 September 2026; see YIELD_IMPROVEMENTS in the-year-and-the-raise';
 export const BULKA_BAG_KG = 1_000;
 
 export type DefyChoice = 'panels' | 'kits';
@@ -73,7 +74,8 @@ export function boughtPlasticAMonthAud(s: Scenario): number | null {
   const unit = boughtPlasticPerBedAud(s);
   return unit === null ? null : bedsAMonth(s) * unit;
 }
-export function capitalAud(s: Scenario): number { return s.witta === 'two-presses' ? SECOND_PRESS_AUD : 0; }
+/** Null for a two-press scenario: the press is ruled out and carries no price. */
+export function capitalAud(s: Scenario): number | null { return s.witta === 'two-presses' ? null : 0; }
 export const FIRST_STOCK_BEDS = 400;
 export const ALIVE_BEDS = 100;
 export function monthsFor(s: Scenario, beds: number): number { return beds / bedsAMonth(s); }
@@ -83,7 +85,8 @@ export function bagsOverRun(s: Scenario, beds: number): number { return shredKgO
 /** Bought legs plus capital only. Null preserves the missing panel-to-kit yield. */
 export function knownSpendOverRun(s: Scenario, beds: number): number | null {
   const unit = boughtPlasticPerBedAud(s);
-  return unit === null ? null : beds * unit + capitalAud(s);
+  const capital = capitalAud(s);
+  return unit === null || capital === null ? null : beds * unit + capital;
 }
 /** The retired calculation compared purchased legs with tab pressing as substitutes. */
 export function breakEvenShredPriceKg(_beds: number): null { return null; }

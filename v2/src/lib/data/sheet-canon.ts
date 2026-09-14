@@ -24,16 +24,17 @@
  */
 
 import {
-  BED_PRICE_AUD, BED_MAKE_AUD, BED_FREIGHT_AUD,
-  CONTRIBUTION_BUYER_FREIGHT_AUD, CONTRIBUTION_GOODS_FREIGHT_AUD,
+  BED_PRICE_AUD, BED_MAKE_AUD, BED_FREIGHT_AUD, FACILITATION_PER_BED_AUD, CONTRIBUTION_AUD,
   RUNNING_AUD, RUNNING_LINES, PLANTS_IN_THE_ASK, PLANT_ALLOWANCE_AUD,
   PLANT_MODULES_LOW_AUD, PLANT_MODULES_HIGH_AUD, BEDS_YEAR_ONE,
-  FACILITATION_COMMUNITIES, FACILITATION_AUD,
-  NEED_BUYER_FREIGHT_AUD, NEED_GOODS_FREIGHT_AUD, ASKED_AUD, SECURED_AUD,
-  BEDS_UNFUNDED, BEDS_UNFUNDED_AUD, BEDS_TO_FIND, BEDS_TO_FIND_AUD, SECOND_PRESS_AUD,
+  FACILITATION_COMMUNITIES, FACILITATION_AUD, FREIGHT_ON_THE_YEAR_AUD,
+  NEED_AUD, ORGANISATION_NEED_AUD, ORGANISATION_FROM_BEDS_AUD, ORGANISATION_SHORT_AUD,
+  ASKED_AUD, SECURED_AUD,
+  BEDS_UNFUNDED, BEDS_UNFUNDED_AUD, BEDS_TO_FIND, BEDS_TO_FIND_AUD,
+  BED_MAKE_STATUS, KITS_A_DAY, LABOUR_AUD, YIELD_IMPROVEMENTS, YIELD_IMPROVEMENTS_TOTAL_AUD,
 } from './the-year-and-the-raise';
 import {
-  BREAK_EVEN_BEDS, BREAK_EVEN_BEDS_GOODS_FREIGHT, WITTA_BEDS_A_YEAR, PLANT_FIRST_YEAR_BEDS, PLANT_MATURE_BEDS,
+  BREAK_EVEN_BEDS, WITTA_BEDS_A_YEAR, PLANT_FIRST_YEAR_BEDS, PLANT_MATURE_BEDS,
   FACILITATION_PER_COMMUNITY_AUD,
 } from './three-year-plan';
 import {
@@ -61,10 +62,13 @@ export interface CanonCell {
 export const CANON: readonly CanonCell[] = [
   // The bed
   { key: 'bed.price', label: 'Bed price', value: BED_PRICE_AUD, unit: 'AUD', from: 'canon stretch-price' },
-  { key: 'bed.make', label: 'Legacy making allowance; current route needs costing', value: BED_MAKE_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
-  { key: 'bed.freight', label: 'Freight a bed, all up', value: BED_FREIGHT_AUD, unit: 'AUD', from: 'demand-and-buyers FREIGHT_RULING' },
-  { key: 'bed.contribution', label: 'Provisional contribution, legacy making allowance', value: CONTRIBUTION_BUYER_FREIGHT_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
-  { key: 'bed.contribution.goodsFreight', label: 'Provisional contribution with Goods freight', value: CONTRIBUTION_GOODS_FREIGHT_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
+  { key: 'bed.make', label: 'Making cost, derived from components at six kits a day; provisional', value: BED_MAKE_AUD, unit: 'AUD', from: 'the-year-and-the-raise, Ben 15 Sep' },
+  { key: 'bed.makeStatus', label: 'Status of the making cost', value: BED_MAKE_STATUS, unit: 'status', from: 'the-year-and-the-raise, Ben 15 Sep', drift: 'Not in the Canon tab yet' },
+  { key: 'bed.kitsPerDay', label: 'Kits a day the making cost divides labour by', value: KITS_A_DAY, unit: 'beds', from: 'the-year-and-the-raise, Ben 15 Sep', drift: 'Not in the Canon tab yet' },
+  { key: 'bed.labour', label: 'Factory labour a bed, $400 a day over the kits a day', value: LABOUR_AUD, unit: 'AUD', from: 'the-year-and-the-raise, Ben 15 Sep', drift: 'Not in the Canon tab yet' },
+  { key: 'bed.freight', label: 'Freight a bed, all up, absorbed by the organisation', value: BED_FREIGHT_AUD, unit: 'AUD', from: 'the-year-and-the-raise, Ben 15 Sep' },
+  { key: 'bed.facilitationPerBed', label: 'Facilitation a bed, absorbed by the organisation', value: FACILITATION_PER_BED_AUD, unit: 'AUD', from: 'the-year-and-the-raise, Ben 15 Sep', drift: 'Not in the Canon tab yet' },
+  { key: 'bed.contribution', label: 'Provisional contribution after making, freight and facilitation', value: CONTRIBUTION_AUD, unit: 'AUD', from: 'the-year-and-the-raise, Ben 15 Sep' },
   { key: 'bed.pressedKg', label: 'Gross tab shred per dispatched kit', value: PRESSED_KG_PER_BED, unit: 'kg', from: 'production-scenarios' },
 
   // The line
@@ -91,7 +95,8 @@ export const CANON: readonly CanonCell[] = [
   { key: 'plant.modulesHigh', label: 'Plant modules, high', value: PLANT_MODULES_HIGH_AUD, unit: 'AUD', from: 'Matt Allen modules' },
   { key: 'plant.firstYearBeds', label: 'A plant, beds in year one', value: PLANT_FIRST_YEAR_BEDS, unit: 'beds', from: 'three-year-plan' },
   { key: 'plant.matureBeds', label: 'A plant, beds at maturity', value: PLANT_MATURE_BEDS, unit: 'beds', from: 'three-year-plan' },
-  { key: 'plant.secondPress', label: 'A second press', value: SECOND_PRESS_AUD, unit: 'AUD', from: 'defy-supply' },
+  { key: 'plant.yieldImprovements', label: 'Yield improvements listed, none quoted yet', value: YIELD_IMPROVEMENTS.length, unit: 'count', from: 'the-year-and-the-raise, Ben 15 Sep', drift: 'Not in the Canon tab yet; replaces the second press cell' },
+  { key: 'plant.yieldImprovementsQuoted', label: 'Yield improvements, quoted items only', value: YIELD_IMPROVEMENTS_TOTAL_AUD, unit: 'AUD', from: 'the-year-and-the-raise, Ben 15 Sep', drift: 'Not in the Canon tab yet; replaces the second press cell' },
 
   // The year
   { key: 'year.beds', label: 'Beds of first stock', value: BEDS_YEAR_ONE, unit: 'beds', from: 'the-year-and-the-raise' },
@@ -99,11 +104,13 @@ export const CANON: readonly CanonCell[] = [
   { key: 'year.poolSize', label: 'Beds in a pool', value: BEDS_YEAR_ONE / FACILITATION_COMMUNITIES, unit: 'beds', from: 'derived' },
   { key: 'year.facilitationEach', label: 'Facilitation a community', value: FACILITATION_PER_COMMUNITY_AUD, unit: 'AUD', from: 'three-year-plan' },
   { key: 'year.facilitation', label: 'Facilitation, all four', value: FACILITATION_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
-  { key: 'year.running', label: 'Running the organisation', value: RUNNING_AUD, unit: 'AUD', from: 'Ben provision 9 Sep' },
+  { key: 'year.running', label: 'Running the organisation', value: RUNNING_AUD, unit: 'AUD', from: 'Ben provision 9 Sep, cut 15 Sep' },
+  { key: 'year.freight', label: 'Freight on the year, absorbed by the organisation', value: FREIGHT_ON_THE_YEAR_AUD, unit: 'AUD', from: 'the-year-and-the-raise, Ben 15 Sep', drift: 'Not in the Canon tab yet' },
   { key: 'year.breakEvenBeds', label: 'Beds a year that carry the organisation', value: BREAK_EVEN_BEDS, unit: 'beds', from: 'three-year-plan' },
-  { key: 'year.breakEvenBeds.goodsFreight', label: 'Beds a year that carry it when Goods pays freight', value: BREAK_EVEN_BEDS_GOODS_FREIGHT, unit: 'beds', from: 'three-year-plan', drift: 'Not in the Canon tab yet; the workbook has no break-even-with-freight cell' },
-  { key: 'year.needs', label: 'The year needs', value: NEED_BUYER_FREIGHT_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
-  { key: 'year.needsGoodsFreight', label: 'The year needs, Goods pays freight', value: NEED_GOODS_FREIGHT_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
+  { key: 'year.needs', label: 'The year needs', value: NEED_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
+  { key: 'year.organisationNeed', label: 'The organisation pays: running, facilitation and freight', value: ORGANISATION_NEED_AUD, unit: 'AUD', from: 'the-year-and-the-raise, Ben 15 Sep', drift: 'Not in the Canon tab yet' },
+  { key: 'year.organisationFromBeds', label: 'What 400 beds hand the organisation', value: ORGANISATION_FROM_BEDS_AUD, unit: 'AUD', from: 'the-year-and-the-raise, Ben 15 Sep', drift: 'Not in the Canon tab yet' },
+  { key: 'year.organisationShort', label: 'Running cost less what 400 beds hand back', value: ORGANISATION_SHORT_AUD, unit: 'AUD', from: 'the-year-and-the-raise, Ben 15 Sep', drift: 'Not in the Canon tab yet' },
   { key: 'year.asked', label: 'Asked across five lines', value: ASKED_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
   { key: 'year.secured', label: 'Secured', value: SECURED_AUD, unit: 'AUD', from: 'the-year-and-the-raise' },
   { key: 'year.gap', label: 'Still to find', value: GAP_AUD, unit: 'AUD', from: 'capital-stack-flex' },

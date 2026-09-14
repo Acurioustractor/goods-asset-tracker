@@ -10,8 +10,12 @@
  * Every kept line carries the surface it belongs on, so it gets used once.
  */
 
+import { ASKED_AUD, NEED_AUD } from './the-year-and-the-raise';
+
 export const READ_AT = '2026-09-11';
 export const SOURCE = 'Voice session on the QBE pitch, transcript pasted by Ben 11 September 2026.';
+
+const aud = (n: number) => Math.round(n).toLocaleString('en-AU');
 
 export type Surface = 'thesis' | 'deck' | 'form' | 'diagram' | 'internal';
 export type Verdict = 'keep' | 'sharpen' | 'retire';
@@ -113,7 +117,7 @@ export const LINES: readonly Line[] = [
     verdict: 'retire',
     surface: 'form',
     use: null,
-    why: 'The ask is $600,000 across five lines and the year needs $747,950. A $500,000 floor understates by up to $148,000 and would be read as the number we need.',
+    why: `The ask is $${aud(ASKED_AUD)} across five lines and the year needs $${aud(NEED_AUD)}. A $500,000 floor understates by up to $${aud(NEED_AUD - 500_000)} and would be read as the number we need.`,
   },
   {
     said: 'four small scorecards: employment, enterprise, recycling, health. Simple dials',

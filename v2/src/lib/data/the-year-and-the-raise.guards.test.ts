@@ -14,22 +14,34 @@ import {
   BEDS_UNFUNDED,
   BEDS_UNFUNDED_AUD,
   BEDS_YEAR_ONE,
-  BED_CONTRIBUTION_BUYER_FREIGHT_AUD,
-  BED_CONTRIBUTION_GOODS_FREIGHT_AUD,
   BED_FREIGHT_AUD,
   BED_MAKE_AUD,
+  BED_MAKE_STATUS,
   BED_PRICE_AUD,
+  CANVAS_AUD,
+  FOUNDERS_SUPER_STATUS,
+  HARDWARE_AUD,
+  KITS_A_DAY,
+  LABOUR_AUD,
+  PLASTIC_AUD,
+  POLES_AUD,
+  POWER_AUD,
+  YIELD_IMPROVEMENTS,
+  YIELD_IMPROVEMENTS_TOTAL_AUD,
   COMMONWEALTH_APPROVED_AUD,
   COMMONWEALTH_LIKELY_AUD,
   COMMONWEALTH_PLANT_MONEY,
-  CONTRIBUTION_BUYER_FREIGHT_AUD,
-  CONTRIBUTION_GOODS_FREIGHT_AUD,
+  CONTRIBUTION_AUD,
+  FACILITATION_PER_BED_AUD,
+  FREIGHT_RULE,
   DOUBLE_COUNT_AUD,
   FACILITATION_AUD,
   FREIGHT_ON_THE_YEAR_AUD,
   GROSS_AS_PUBLISHED_AUD,
-  NEED_BUYER_FREIGHT_AUD,
-  NEED_GOODS_FREIGHT_AUD,
+  NEED_AUD,
+  ORGANISATION_NEED_AUD,
+  ORGANISATION_FROM_BEDS_AUD,
+  ORGANISATION_SHORT_AUD,
   OPERATING_ASKED_AUD,
   PLANTS_AUD,
   PLANTS_IN_THE_ASK,
@@ -45,6 +57,7 @@ import {
   WHERE_THE_GAP_LIVES,
   gapAud,
 } from './the-year-and-the-raise';
+import * as year from './the-year-and-the-raise';
 
 const SRC = readFileSync(join(__dirname, 'the-year-and-the-raise.ts'), 'utf8');
 
@@ -53,20 +66,72 @@ describe('unit economics', () => {
     expect(BED_PRICE_AUD).toBe(750);
   });
 
-  it('make plus freight is the $426 landed cost the workbook and canon agree on', () => {
-    expect(BED_MAKE_AUD + BED_FREIGHT_AUD).toBe(426);
+  it('six kits a day, and labour is $400 a day over them', () => {
+    expect(KITS_A_DAY).toBe(6);
+    expect(LABOUR_AUD).toBeCloseTo(400 / 6, 6);
   });
 
-  it('contribution is the price less what it costs, both ways round', () => {
-    expect(CONTRIBUTION_BUYER_FREIGHT_AUD).toBe(474);
-    expect(CONTRIBUTION_GOODS_FREIGHT_AUD).toBe(324);
-    expect(CONTRIBUTION_BUYER_FREIGHT_AUD - CONTRIBUTION_GOODS_FREIGHT_AUD).toBe(BED_FREIGHT_AUD);
+  it('the make cost is the sum of its components, never retyped', () => {
+    expect(BED_MAKE_AUD).toBeCloseTo(
+      PLASTIC_AUD + POLES_AUD + CANVAS_AUD + HARDWARE_AUD + POWER_AUD + LABOUR_AUD,
+      6,
+    );
+    expect(PLASTIC_AUD).toBe(55);
+    expect(POLES_AUD).toBe(27);
+    expect(CANVAS_AUD).toBe(93.5);
+    expect(HARDWARE_AUD).toBe(5.24);
+    expect(POWER_AUD).toBe(15);
+    expect(BED_MAKE_AUD).toBeCloseTo(262.41, 2);
+    expect(SRC).not.toMatch(/BED_MAKE_AUD = \d/);
+  });
+
+  it('the make cost is labelled provisional', () => {
+    expect(BED_MAKE_STATUS).toContain('provisional');
+    expect(BED_MAKE_STATUS).toContain('Nic');
+  });
+
+  it('freight is $100 a bed all up, Ben 15 September', () => {
+    expect(BED_FREIGHT_AUD).toBe(100);
+  });
+
+  it('facilitation is $100 a bed, $40,000 over 400 beds', () => {
+    expect(FACILITATION_PER_BED_AUD).toBe(100);
+    expect(FACILITATION_PER_BED_AUD).toBe(FACILITATION_AUD / BEDS_YEAR_ONE);
+  });
+
+  it('the contribution is the price less making, freight and facilitation, and there is one of it', () => {
+    expect(CONTRIBUTION_AUD).toBeCloseTo(750 - BED_MAKE_AUD - 100 - 100, 6);
+    expect(CONTRIBUTION_AUD).toBeCloseTo(BED_PRICE_AUD - BED_MAKE_AUD - BED_FREIGHT_AUD - FACILITATION_PER_BED_AUD, 6);
+    expect(CONTRIBUTION_AUD).toBeCloseTo(287.59, 2);
+    expect(SRC).toContain('Ben, 15 September 2026');
+  });
+
+  it('the freight rule prints the derived figures and puts freight on the organisation', () => {
+    expect(FREIGHT_RULE).toContain('$100 a bed');
+    expect(FREIGHT_RULE).toContain(`$${Math.round(CONTRIBUTION_AUD).toLocaleString('en-AU')}`);
+    expect(FREIGHT_RULE).toMatch(/organisation absorbs/);
+    expect(SRC).not.toMatch(/buyer pays freight at cost|charged on top/);
   });
 });
 
 describe('running the organisation', () => {
-  it('the six lines sum to $297,550', () => {
-    expect(RUNNING_AUD).toBe(297_550);
+  it('the six lines sum to $251,224', () => {
+    expect(RUNNING_AUD).toBe(251_224);
+    expect(RUNNING_LINES).toHaveLength(6);
+  });
+
+  it('marketing is $10,000 and accounting is the FY26 actual of $3,674', () => {
+    expect(RUNNING_LINES.find((l) => l.line === 'Marketing')!.amountAud).toBe(10_000);
+    expect(RUNNING_LINES.find((l) => l.line === 'Accounting and advice')!.amountAud).toBe(3_674);
+    expect(RUNNING_LINES.find((l) => l.line === 'Founders')!.amountAud).toBe(151_200);
+    expect(RUNNING_LINES.find((l) => l.line === 'Getting to communities')!.amountAud).toBe(51_000);
+    expect(RUNNING_LINES.find((l) => l.line === 'Witta rent')!.amountAud).toBe(27_000);
+    expect(RUNNING_LINES.find((l) => l.line === 'Maintenance')!.amountAud).toBe(8_350);
+  });
+
+  it('whether founders includes superannuation is unconfirmed, and says so', () => {
+    expect(FOUNDERS_SUPER_STATUS).toBe('unconfirmed');
+    expect(RUNNING_LINES.find((l) => l.line === 'Founders')!.what).toMatch(/superannuation/);
   });
 
   it('every line says what it buys', () => {
@@ -83,36 +148,57 @@ describe('running the organisation', () => {
 });
 
 describe('the double count', () => {
-  it('reproduces the published $937,550 exactly', () => {
-    expect(GROSS_AS_PUBLISHED_AUD).toBe(937_550);
+  it('the gross is the sum that was published, on whatever the running cost is today', () => {
+    expect(GROSS_AS_PUBLISHED_AUD).toBeCloseTo(PLANTS_AUD + BEDS_AT_PRICE_AUD + FACILITATION_AUD + RUNNING_AUD, 6);
   });
 
-  it('the overlap is the contribution the 400 beds make', () => {
-    expect(DOUBLE_COUNT_AUD).toBe(BED_CONTRIBUTION_BUYER_FREIGHT_AUD);
-    expect(DOUBLE_COUNT_AUD).toBe(189_600);
+  it('the overlap is what 400 beds hand back once making and freight are paid', () => {
+    // Facilitation is a cost in both the gross and the need, so it is not in the overlap.
+    expect(DOUBLE_COUNT_AUD).toBeCloseTo(BEDS_YEAR_ONE * (CONTRIBUTION_AUD + FACILITATION_PER_BED_AUD), 6);
+    expect(DOUBLE_COUNT_AUD).toBeCloseTo(BEDS_YEAR_ONE * (BED_PRICE_AUD - BED_MAKE_AUD - BED_FREIGHT_AUD), 6);
   });
 
-  it('the corrected need is $747,950 with the buyer paying freight', () => {
-    expect(NEED_BUYER_FREIGHT_AUD).toBe(747_950);
-    expect(GROSS_AS_PUBLISHED_AUD - DOUBLE_COUNT_AUD).toBe(NEED_BUYER_FREIGHT_AUD);
+  it('the corrected need is the gross less the overlap', () => {
+    expect(GROSS_AS_PUBLISHED_AUD - DOUBLE_COUNT_AUD).toBeCloseTo(NEED_AUD, 6);
   });
 
-  it('freight moves the need by exactly $60,000 and by nothing else', () => {
-    expect(FREIGHT_ON_THE_YEAR_AUD).toBe(60_000);
-    expect(NEED_GOODS_FREIGHT_AUD - NEED_BUYER_FREIGHT_AUD).toBe(FREIGHT_ON_THE_YEAR_AUD);
-    expect(NEED_GOODS_FREIGHT_AUD).toBe(807_950);
-  });
-
-  it('the two ways of reaching the goods-carries-freight figure agree', () => {
-    expect(GROSS_AS_PUBLISHED_AUD - BED_CONTRIBUTION_GOODS_FREIGHT_AUD).toBe(NEED_GOODS_FREIGHT_AUD);
+  it('freight on the year is in the need, once, at $100 a bed', () => {
+    expect(FREIGHT_ON_THE_YEAR_AUD).toBe(BEDS_YEAR_ONE * BED_FREIGHT_AUD);
+    expect(FREIGHT_ON_THE_YEAR_AUD).toBe(40_000);
+    expect(NEED_AUD - (PLANTS_AUD + BEDS_AT_COST_AUD + FACILITATION_AUD + RUNNING_AUD)).toBeCloseTo(FREIGHT_ON_THE_YEAR_AUD, 6);
   });
 
   it('the components add up', () => {
-    expect(PLANTS_AUD + BEDS_AT_COST_AUD + FACILITATION_AUD + RUNNING_AUD).toBe(NEED_BUYER_FREIGHT_AUD);
+    expect(PLANTS_AUD + BEDS_AT_COST_AUD + FACILITATION_AUD + FREIGHT_ON_THE_YEAR_AUD + RUNNING_AUD).toBeCloseTo(NEED_AUD, 6);
+    expect(NEED_AUD).toBeCloseTo(736_186.67, 1);
     expect(PLANTS_AUD).toBe(300_000);
     expect(BEDS_AT_PRICE_AUD).toBe(300_000);
-    expect(BEDS_AT_COST_AUD).toBe(110_400);
+    expect(BEDS_AT_COST_AUD).toBeCloseTo(BEDS_YEAR_ONE * BED_MAKE_AUD, 6);
     expect(FACILITATION_AUD).toBe(40_000);
+  });
+
+  it('the organisation side: need, what the beds hand it, and the short, without counting freight twice', () => {
+    expect(ORGANISATION_NEED_AUD).toBe(RUNNING_AUD + FACILITATION_AUD + FREIGHT_ON_THE_YEAR_AUD);
+    expect(ORGANISATION_NEED_AUD).toBe(331_224);
+    expect(ORGANISATION_FROM_BEDS_AUD).toBeCloseTo(BEDS_YEAR_ONE * CONTRIBUTION_AUD, 6);
+    expect(ORGANISATION_SHORT_AUD).toBeCloseTo(RUNNING_AUD - ORGANISATION_FROM_BEDS_AUD, 6);
+    // The same figure from the other side: the organisation's need less the beds' gross share.
+    expect(ORGANISATION_SHORT_AUD).toBeCloseTo(
+      ORGANISATION_NEED_AUD - BEDS_YEAR_ONE * (BED_PRICE_AUD - BED_MAKE_AUD), 6,
+    );
+    expect(ORGANISATION_SHORT_AUD).toBeGreaterThan(0);
+  });
+
+  it('the prose prints the derived figures, never the retired ones', () => {
+    expect(year.WHAT_WENT_WRONG).toContain(Math.round(NEED_AUD).toLocaleString('en-AU'));
+    expect(year.WHAT_WENT_WRONG).toContain(Math.round(CONTRIBUTION_AUD).toLocaleString('en-AU'));
+    expect(year.WHAT_WENT_WRONG).not.toContain('747,950');
+    expect(year.WHAT_WENT_WRONG).not.toContain('297,550');
+    expect(year.WHAT_WENT_WRONG).not.toContain('736,187 with');
+  });
+
+  it('no export carries a buyer-freight or Goods-freight name, because there is one case now', () => {
+    for (const k of Object.keys(year)) expect(k).not.toMatch(/BUYER_FREIGHT|GOODS_FREIGHT|IS_THE_SWING/);
   });
 
   it('says in words what went wrong, so nobody re-derives the old figure', () => {
@@ -176,8 +262,37 @@ describe('where the gap lives', () => {
 
   it('the gap as it stands is the need less what has been asked', () => {
     const asAsked = SCENARIOS.find((s) => s.id === 'as-asked')!;
-    expect(asAsked.needAud).toBe(747_950);
-    expect(gapAud(asAsked)).toBe(147_950);
+    expect(asAsked.needAud).toBeCloseTo(NEED_AUD, 6);
+    expect(gapAud(asAsked)).toBeCloseTo(NEED_AUD - ASKED_AUD, 6);
+    expect(THE_GAP_STAYS).toContain(Math.round(gapAud(asAsked)).toLocaleString('en-AU'));
+    expect(THE_GAP_STAYS).not.toContain('147,950');
+  });
+});
+
+describe('yield improvements, in place of a second press', () => {
+  it('no export named SECOND_PRESS exists', () => {
+    for (const k of Object.keys(year)) expect(k).not.toMatch(/SECOND_PRESS/);
+    expect(SRC).not.toContain('22_500');
+  });
+
+  it('every entry has an owner, an id, an item and a job', () => {
+    expect(YIELD_IMPROVEMENTS.length).toBeGreaterThanOrEqual(6);
+    for (const y of YIELD_IMPROVEMENTS) {
+      expect(y.owner).toBe('Nic');
+      expect(y.id.length).toBeGreaterThan(3);
+      expect(y.item.length).toBeGreaterThan(5);
+      expect(y.whatItDoes.length).toBeGreaterThan(15);
+      expect(['needs-quote', 'quoted']).toContain(y.status);
+      if (y.status === 'needs-quote') expect(y.amountAud).toBeNull();
+      else expect(typeof y.amountAud).toBe('number');
+    }
+    expect(new Set(YIELD_IMPROVEMENTS.map((y) => y.id)).size).toBe(YIELD_IMPROVEMENTS.length);
+  });
+
+  it('unquoted entries never enter the total', () => {
+    const quoted = YIELD_IMPROVEMENTS.filter((y) => y.status === 'quoted');
+    expect(YIELD_IMPROVEMENTS_TOTAL_AUD).toBe(quoted.reduce((n, y) => n + (y.amountAud ?? 0), 0));
+    expect(YIELD_IMPROVEMENTS_TOTAL_AUD).toBe(0);
   });
 });
 
@@ -210,13 +325,13 @@ describe('scenarios', () => {
     const asAsked = SCENARIOS.find((s) => s.id === 'as-asked')!;
     const alice = SCENARIOS.find((s) => s.id === 'alice-in')!;
     const both = SCENARIOS.find((s) => s.id === 'both-commonwealth')!;
-    expect(gapAud(alice)).toBe(gapAud(asAsked));
-    expect(gapAud(both)).toBe(gapAud(asAsked));
+    expect(gapAud(alice)).toBeCloseTo(gapAud(asAsked), 6);
+    expect(gapAud(both)).toBeCloseTo(gapAud(asAsked), 6);
   });
 
   it('the only scenario that closes the gap is the one that frees QBE money', () => {
     const swap = SCENARIOS.find((s) => s.id === 'second-replaces-qbe')!;
-    expect(gapAud(swap)).toBe(-2_050);
+    expect(gapAud(swap)).toBeCloseTo(NEED_AUD + PLANT_ALLOWANCE_AUD - ASKED_AUD - 300_000, 6);
     const closers = SCENARIOS.filter((s) => gapAud(s) <= 0);
     expect(closers).toHaveLength(1);
     expect(closers[0].id).toBe('second-replaces-qbe');
@@ -224,7 +339,7 @@ describe('scenarios', () => {
 
   it('every scenario prices its plants at the allowance', () => {
     for (const s of SCENARIOS) {
-      expect(s.needAud).toBe(s.plants * PLANT_ALLOWANCE_AUD + 110_400 + 40_000 + 297_550);
+      expect(s.needAud).toBeCloseTo(s.plants * PLANT_ALLOWANCE_AUD + BEDS_AT_COST_AUD + FACILITATION_AUD + FREIGHT_ON_THE_YEAR_AUD + RUNNING_AUD, 6);
     }
   });
 
