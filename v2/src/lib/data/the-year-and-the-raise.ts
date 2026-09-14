@@ -267,7 +267,7 @@ export const COMMONWEALTH_PLANT_MONEY: readonly PlantMoney[] = [
     amountAud: 150_000,
     stage: 'no-invitation',
     inTheQbeAsk: false,
-    note: 'NIAA Local Investments Funding, up to $150,000 an activity, invitation only. Alex Cadden told Tanya and Kristy on 7 August 2026 he would explore a plastics plant proposal. That is an open door, not an invitation, and nothing has been applied for.',
+    note: 'NIAA Local Investments Funding, up to $150,000 an activity, invitation only. Alex Cadden told Tanya and Kristy on 7 August 2026 he would explore a plastics plant proposal. That is an open door, not an invitation, and nothing has been applied for. Ben, 15 September 2026: Goods and Oonchiumpa work on this one together once the DEWR agreement is executed.',
   },
 ];
 
@@ -275,10 +275,14 @@ export const COMMONWEALTH_PLANT_MONEY: readonly PlantMoney[] = [
 export const COMMONWEALTH_APPROVED_AUD = 0;
 export const COMMONWEALTH_LIKELY_AUD = 0;
 
-/** What Oonchiumpa might pay Goods to build its plant, if the REAL agreement is executed. Unverified. */
+/**
+ * Ben, 15 September 2026, as a director: Oonchiumpa will pay Goods $150,000 out of the DEWR grant
+ * for the development of the Alice Springs facility, and Goods and Oonchiumpa then work on the
+ * NIAA grant together. It arrives once the DEWR grant agreement is executed, which it is not yet.
+ */
 export const OONCHIUMPA_BUILD_AUD = PLANT_ALLOWANCE_AUD;
 export const OONCHIUMPA_BUILD_STATUS =
-  'unverified: Q8 states Oonchiumpa expects to pay about $150,000 to build the Alice Springs plant; no agreement with DEWR or with Goods is executed';
+  'stated by Ben as a director on 15 September 2026: Oonchiumpa pays Goods $150,000 from the DEWR grant to develop the Alice Springs facility, payable once the DEWR grant agreement is executed';
 
 export const REAL_RULING =
   'The REAL Innovation Fund is one offer of $1,695,000 to Oonchiumpa over four years, agreement not executed, no cash received. It is not $150,000, not approved to the applicant, and there is no second tranche. Alice Springs is not one of the two QBE sites, so no QBE activity is funded twice and Q14 and Q15 carry no double-funding disclosure. The related-party disclosure stands on its own footing, because Kristy Bloomfield sits on both boards and A Curious Tractor is the consortium member.';

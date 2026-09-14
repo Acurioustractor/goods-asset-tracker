@@ -359,7 +359,8 @@ describe('scenarios', () => {
     const asAsked = SCENARIOS.find((s) => s.id === 'as-asked')!;
     const alice = SCENARIOS.find((s) => s.id === 'alice-in')!;
     expect(gapAud(alice)).toBeCloseTo(gapAud(asAsked), 6);
-    expect(alice.what).toMatch(/unverified/);
+    expect(alice.what).toMatch(/stated by Ben as a director/);
+    expect(alice.what).toMatch(/executed/);
   });
 
   it('no scenario closes the gap, because no Commonwealth dollar lands on a QBE site', () => {
