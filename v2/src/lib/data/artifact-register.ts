@@ -47,7 +47,7 @@ export const REGISTER: readonly RegisteredSurface[] = [
   { title: 'QBE Raise Review', kind: 'artifact', date: '2026-09-10', url: 'https://claude.ai/code/artifact/c3a9260a-c99f-4f63-b6b4-80e7fd8b4ab1', job: 'A dated readiness audit.', verdict: 'retired', note: 'Every number in it is superseded.' },
   // Other projects, listed so nothing is lost
   { title: 'Who Can Open What · What To Do Next · How a Reading Leaves', kind: 'artifact', date: '2026-09-12 to 13', job: 'Empathy Ledger platform work: access, the day’s commits, the consent chain.', verdict: 'other project', note: 'Not the raise. Not re-read for this master beyond their titles and What To Do Next.' },
-  { title: 'ACT Growth Rings · ACT Money Paths · ACT Residencies · ACT Funder Radar', kind: 'artifact', date: '2026-08 to 09', job: 'A Curious Tractor ecosystem pages.', verdict: 'other project' },
+  { title: 'ACT Growth Rings · ACT Money Paths · ACT Residencies · ACT Funder Radar', kind: 'artifact', date: '2026-08 to 09', job: 'A Curious Tractor growth, money, residency and funder-radar pages.', verdict: 'other project' },
   { title: 'Caring Card Studio · Caring Campaign Run · Caring Campaign Alignment · Caring Wall', kind: 'artifact', date: '2026-09', job: 'The caring campaign.', verdict: 'other project' },
   { title: 'JusticeHub, CivicGraph, MeLinks, Atnarpa, The Milk Run and the rest of the fifty', kind: 'artifact', date: '2026-08 to 09', job: 'Other ventures and one-off reviews.', verdict: 'other project' },
 ];
