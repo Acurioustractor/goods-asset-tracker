@@ -1436,6 +1436,14 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     verdict: 'keep',
   },
   {
+    route: '/pitch/qbe',
+    audience: 'funder',
+    access: 'gated',
+    leadsWithNow: null,
+    whyUnread: 'gated behind the shared investor-cockpit password',
+    verdict: 'keep',
+  },
+  {
     route: '/pitch/story',
     audience: 'funder',
     access: 'open',
