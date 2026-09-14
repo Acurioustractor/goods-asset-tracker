@@ -17,6 +17,10 @@ import {
   WHAT_NEEDS_A_RULING,
   WITTA_BEDS_A_YEAR,
   YEARS,
+  TFFF_BEDS_A_YEAR,
+  TFFF_HANDS_BACK_AUD,
+  TFFF_RULING,
+  THE_ARGUMENT,
   afterGrantAud,
   contributionAud,
   facilitationAud,
@@ -135,6 +139,15 @@ describe('the ask', () => {
     const notes = YEARS.map((y) => y.grantNote);
     expect(new Set(notes).size).toBe(3);
     for (const n of notes) expect(n.length).toBeGreaterThan(80);
+  });
+
+  it('each payment buys 133 beds and the notes say so, Ben 15 September', () => {
+    expect(TFFF_BEDS_A_YEAR).toBe(133);
+    expect(TFFF_HANDS_BACK_AUD).toBeCloseTo(133 * CONTRIBUTION_AUD, 6);
+    for (const y of YEARS) expect(y.grantNote).toMatch(/133 (beds|of those)/);
+    expect(TFFF_RULING).toContain('$99,750');
+    expect(THE_ARGUMENT).toContain('133 beds');
+    expect(THE_ARGUMENT).toMatch(/Nothing is asked for the running cost/);
   });
 
   it('facilitation is priced at the rate already proven on an invoice', () => {

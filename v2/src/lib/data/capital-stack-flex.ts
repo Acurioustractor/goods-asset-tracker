@@ -4,10 +4,11 @@
  * Ben, 11 September 2026: build a model that scales up and down depending on who else we need and
  * which funds are missing.
  *
- * Four applications are in flight and they are not interchangeable. QBE buys plants. Tim Fairfax
- * buys the organisation. Brian M. Davis buys beds and facilitation. SEFA lends, which is a
- * different instrument with a repayment test attached. Treating them as one pool is what produced
- * the double count corrected earlier today, so this module keeps the job on every dollar.
+ * The applications in flight are not interchangeable. QBE buys plants. Every other grant buys beds,
+ * 133 at $750 (Ben, 15 September 2026): Tim Fairfax, Brian M. Davis and Snow. Nobody is asked for
+ * the running cost; the contribution inside each bed carries it. SEFA lends, which is a different
+ * instrument with a repayment test attached. Treating them as one pool is what produced the double
+ * count corrected on 11 September, so this module keeps the job on every dollar.
  *
  * Two things it is built to answer quickly:
  *   1. If a funder says no, what exactly stops.
@@ -16,7 +17,8 @@
 
 import {
   BED_PRICE_AUD, BED_MAKE_AUD, BED_FREIGHT_AUD, FACILITATION_PER_BED_AUD, BEDS_AT_COST_AUD,
-  BEDS_YEAR_ONE, BEDS_TO_FIND, CONTRIBUTION_AUD, ORGANISATION_NEED_AUD,
+  BEDS_YEAR_ONE, BEDS_TO_FIND, CONTRIBUTION_AUD, ORGANISATION_NEED_AUD, GRANT_LOT_AUD, BEDS_A_GRANT,
+  OONCHIUMPA_BUILD_STATUS,
 } from './the-year-and-the-raise';
 import { BREAK_EVEN_BEDS, PLANT_MATURE_BEDS } from './three-year-plan';
 
@@ -45,7 +47,8 @@ export interface Need {
 /**
  * Three jobs, not four. Ben, 15 September 2026: the organisation absorbs freight and facilitation
  * at $100 a bed each out of its share of the $750, so both sit on the organisation line and a
- * funder is never asked for a freight line. A facilitation ask still counts toward that line.
+ * funder is never asked for a freight or facilitation line. Nobody is asked for the organisation
+ * line at all; it is carried by the contribution inside every bed that is bought.
  */
 export const NEEDS: readonly Need[] = [
   {
@@ -87,7 +90,7 @@ export const YEAR_COST_AUD = NEEDS.reduce((n, x) => n + x.amountAud, 0);
 // ---------------------------------------------------------------------------
 
 export type Instrument = 'grant' | 'loan' | 'government';
-export type Stage = 'approved' | 'likely' | 'invited' | 'applying' | 'not-sent' | 'no-ask-yet';
+export type Stage = 'approved' | 'offered' | 'likely' | 'invited' | 'applying' | 'not-sent' | 'no-ask-yet';
 
 export interface Source {
   readonly id: string;
@@ -116,31 +119,21 @@ export const SOURCES: readonly Source[] = [
     id: 'tfff',
     funder: 'Tim Fairfax Family Foundation',
     amountAud: 100_000,
-    job: 'operating',
-    instrument: 'grant',
-    stage: 'invited',
-    inTheRaise: true,
-    note: 'Year one of $300,000 over three years. Katie Norman names the resilience of organisations, so it sits here alone. SmartyGrants closes 9 October.',
-  },
-  {
-    id: 'bmd-beds',
-    funder: 'Brian M. Davis Charitable Foundation',
-    amountAud: 60_000,
     job: 'beds',
     instrument: 'grant',
     stage: 'invited',
     inTheRaise: true,
-    note: '80 beds at the published price. Due 25 September, board 19 November.',
+    note: `Year one of $300,000 over three years. Ben, 15 September 2026: it buys ${BEDS_A_GRANT} beds at $${BED_PRICE_AUD}. Katie Norman's form is General Operating Support, so the answer says what the beds hand the organisation. SmartyGrants closes 9 October.`,
   },
   {
-    id: 'bmd-facilitation',
+    id: 'bmd-beds',
     funder: 'Brian M. Davis Charitable Foundation',
-    amountAud: 40_000,
-    job: 'facilitation',
+    amountAud: GRANT_LOT_AUD,
+    job: 'beds',
     instrument: 'grant',
     stage: 'invited',
     inTheRaise: true,
-    note: 'The other half of the same $100,000 invitation.',
+    note: `${BEDS_A_GRANT} beds at the published price, facilitation inside, one budget line. Due 25 September, board 19 November.`,
   },
   {
     id: 'snow',
@@ -153,24 +146,14 @@ export const SOURCES: readonly Source[] = [
     note: '133 beds. One page would send it and it has not been written until today.',
   },
   {
-    id: 'alice',
-    funder: 'Commonwealth, through Oonchiumpa',
-    amountAud: 150_000,
+    id: 'real',
+    funder: 'DEWR REAL Innovation Fund, to Oonchiumpa',
+    amountAud: 1_695_000,
     job: 'plant',
     instrument: 'government',
-    stage: 'approved',
+    stage: 'offered',
     inTheRaise: false,
-    note: 'Approved and ready for the Alice Springs facility. A third site, outside the QBE request.',
-  },
-  {
-    id: 'second-commonwealth',
-    funder: 'Commonwealth, second facility',
-    amountAud: 150_000,
-    job: 'plant',
-    instrument: 'government',
-    stage: 'likely',
-    inTheRaise: false,
-    note: 'Ben judges it highly likely. The site is unnamed, and naming it is the single most valuable answer available.',
+    note: `Oonchiumpa's offer, four years, agreement not executed, no cash. A Curious Tractor is the consortium member. Never counted; disclosed. ${OONCHIUMPA_BUILD_STATUS}.`,
   },
   {
     id: 'sefa',
@@ -255,9 +238,9 @@ export interface Rung {
 
 export const LADDER: readonly Rung[] = [
   { aud: BED_PRICE_AUD, buys: 'One bed', andThen: `One household off the floor, freight and facilitation paid, and $${aud(CONTRIBUTION_AUD)} toward the organisation that makes the next one.` },
-  { aud: 7_500, buys: 'Ten beds', andThen: 'Twenty hours of paid making, and 200 kg of plastic kept out of landfill.' },
-  { aud: 10_000, buys: 'Facilitation in one community', andThen: 'The trips, the build days, the training and the delivery. Already proven at this rate on a paid invoice.' },
+  { aud: 7_500, buys: 'Ten beds', andThen: 'Twenty hours of paid making, and 200 kg of plastic kept out of landfill. Facilitation and freight are inside the price.' },
   { aud: 75_000, buys: 'A hundred beds, one community pool', andThen: 'A community enterprise with stock to sell and $75,000 of local capital when it does.' },
+  { aud: GRANT_LOT_AUD, buys: `${BEDS_A_GRANT} beds, the standard grant lot`, andThen: `What every grant funder except QBE is asked for. Ben, 15 September 2026. Hands the organisation $${aud(BEDS_A_GRANT * CONTRIBUTION_AUD)} once the beds are made and moved.` },
   { aud: 150_000, buys: 'One community plant', andThen: '200 beds in its first year, reaching 720 on the same press, and a local crew that owns the making.' },
   { aud: 300_000, buys: 'Two plants', andThen: 'What QBE is being asked for, and the year in which two communities start making beds themselves.' },
 ];

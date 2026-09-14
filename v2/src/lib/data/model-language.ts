@@ -117,7 +117,7 @@ export const LINES: readonly Line[] = [
     verdict: 'retire',
     surface: 'form',
     use: null,
-    why: `The ask is $${aud(ASKED_AUD)} across five lines and the year needs $${aud(NEED_AUD)}. A $500,000 floor understates by up to $${aud(NEED_AUD - 500_000)} and would be read as the number we need.`,
+    why: `The ask is $${aud(ASKED_AUD)} across four lines and the year needs $${aud(NEED_AUD)}. A $500,000 floor understates by up to $${aud(NEED_AUD - 500_000)} and would be read as the number we need.`,
   },
   {
     said: 'four small scorecards: employment, enterprise, recycling, health. Simple dials',

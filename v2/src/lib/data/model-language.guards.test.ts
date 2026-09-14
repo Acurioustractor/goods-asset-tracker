@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { NEED_AUD } from './the-year-and-the-raise';
+import { ASKED_AUD, NEED_AUD } from './the-year-and-the-raise';
 import {
   KEPT,
   LINES,
@@ -57,7 +57,7 @@ describe('the retirements are the ones that matter', () => {
 
   it('the understated raise is retired with the real figures', () => {
     const r = RETIRED.find((l) => l.said.includes('500 and 600,000'))!;
-    expect(r.why).toContain('$600,000');
+    expect(r.why).toContain(`$${Math.round(ASKED_AUD).toLocaleString('en-AU')}`);
     expect(r.why).toContain(`$${Math.round(NEED_AUD).toLocaleString('en-AU')}`);
     expect(r.why).not.toContain('$747,950');
   });

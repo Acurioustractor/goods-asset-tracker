@@ -22,7 +22,7 @@
 import { factoryKitsAMonth } from './production-route';
 import {
   BED_PRICE_AUD, BED_MAKE_AUD, BED_FREIGHT_AUD, BED_MAKE_STATUS,
-  FACILITATION_PER_BED_AUD, CONTRIBUTION_AUD, RUNNING_AUD,
+  FACILITATION_PER_BED_AUD, CONTRIBUTION_AUD, RUNNING_AUD, BEDS_A_GRANT, GRANT_LOT_AUD,
 } from './the-year-and-the-raise';
 
 export { BED_PRICE_AUD, BED_MAKE_AUD, BED_FREIGHT_AUD, FACILITATION_PER_BED_AUD, CONTRIBUTION_AUD };
@@ -31,6 +31,16 @@ export const READ_AT = '2026-09-15';
 
 export const WHY_THIS_EXISTS =
   'Tim Fairfax invited a three-year application on 31 August 2026 and named the resilience of organisations as the reason. Every model in the repo runs one year, so there was nothing to answer it with.';
+
+/**
+ * Ben, 15 September 2026: each Tim Fairfax payment buys 133 beds at $750. The form is General
+ * Operating Support, and what it operates is the contribution those beds hand the organisation.
+ */
+export const TFFF_BEDS_A_YEAR = BEDS_A_GRANT;
+export const TFFF_BEDS_AUD = GRANT_LOT_AUD;
+export const TFFF_HANDS_BACK_AUD = TFFF_BEDS_A_YEAR * CONTRIBUTION_AUD;
+export const TFFF_RULING =
+  `Ben, 15 September 2026: each $100,000 payment buys ${TFFF_BEDS_A_YEAR} beds at $${BED_PRICE_AUD}, which is $${(TFFF_BEDS_AUD).toLocaleString('en-AU')}. The beds are community trading stock, and $${Math.round(TFFF_HANDS_BACK_AUD).toLocaleString('en-AU')} of the payment reaches the organisation as the contribution inside them. The form asks for general operating support; that is what the contribution is.`;
 
 export const RUNNING_YEAR_ONE_AUD = RUNNING_AUD;
 
@@ -101,7 +111,7 @@ export const YEARS: readonly PlanYear[] = [
     runningBasis: 'locked',
     grantSoughtAud: GRANT_A_YEAR_AUD,
     grantNote:
-      `The gap between what ${YEAR_ONE_BEDS} beds contribute and what the year costs is $${aud(YEAR_ONE_SHORT_AUD)}. Year one of the Tim Fairfax grant is $${aud(GRANT_A_YEAR_AUD)} and ${YEAR_ONE_SHORT_AUD > GRANT_A_YEAR_AUD ? 'closes most of it' : 'covers it'}.`,
+      `The gap between what ${YEAR_ONE_BEDS} beds contribute and what the year costs is $${aud(YEAR_ONE_SHORT_AUD)}. Year one of the Tim Fairfax grant is $${aud(GRANT_A_YEAR_AUD)} and buys ${TFFF_BEDS_A_YEAR} of those ${YEAR_ONE_BEDS} beds as first stock; $${aud(TFFF_HANDS_BACK_AUD)} of it reaches the organisation as the contribution inside them.`,
   },
   {
     id: 'fy28',
@@ -117,7 +127,7 @@ export const YEARS: readonly PlanYear[] = [
     runningBasis: 'assumption',
     grantSoughtAud: GRANT_A_YEAR_AUD,
     grantNote:
-      `At ${BREAK_EVEN_BEDS} beds trade covers the organisation. Year two of the grant becomes the reserve that lets a bad quarter happen without a redundancy, which is what resilience means on a cashflow.`,
+      `At ${BREAK_EVEN_BEDS} beds trade covers the organisation. Year two of the grant buys another ${TFFF_BEDS_A_YEAR} beds of stock for the two new plants' communities, and the contribution inside them is the reserve that lets a bad quarter happen without a redundancy, which is what resilience means on a cashflow.`,
   },
   {
     id: 'fy29',
@@ -133,7 +143,7 @@ export const YEARS: readonly PlanYear[] = [
     runningBasis: 'assumption',
     grantSoughtAud: GRANT_A_YEAR_AUD,
     grantNote:
-      `Trade covers the organisation with $${aud(YEAR_THREE_OVER_AUD)} over. Year three of the grant funds the handover: the legal work, the training and the asset transfer that turn a plant Goods owns into a plant a community owns.`,
+      `Trade covers the organisation with $${aud(YEAR_THREE_OVER_AUD)} over. Year three of the grant buys ${TFFF_BEDS_A_YEAR} beds of first stock for the communities taking the plants over, so the handover starts with something to sell.`,
   },
 ];
 
@@ -190,4 +200,4 @@ export const WHAT_NEEDS_A_RULING: readonly string[] = [
 ];
 
 export const THE_ARGUMENT =
-  'A three-year grant that shrinks as a share of the budget is the resilience Katie Norman named. In year one it is a third of what the organisation costs. In year two it is a reserve. In year three it pays for giving the plants away. The same $100,000 does a different job each year because trade has grown underneath it.';
+  `A three-year grant that buys ${TFFF_BEDS_A_YEAR} beds a year is the resilience Katie Norman named, because the same beds do a different job each year as trade grows underneath them. In year one they are first stock and their contribution is a third of what the organisation costs. In year two they are the reserve. In year three they are the stock a community starts with when it takes the plant. Nothing is asked for the running cost itself.`;

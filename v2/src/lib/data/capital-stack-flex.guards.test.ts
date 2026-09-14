@@ -54,14 +54,16 @@ describe('it ties to the year module', () => {
 
   it('the same $600,000 is asked, and nothing is secured', () => {
     expect(ASKED_AUD).toBe(YEAR_ASKED);
-    expect(ASKED_AUD).toBe(600_000);
+    expect(ASKED_AUD).toBe(599_750);
     expect(SECURED_AUD).toBe(0);
-    expect(GAP_AUD).toBeCloseTo(NEED_AUD - 600_000, 6);
+    expect(GAP_AUD).toBeCloseTo(NEED_AUD - 599_750, 6);
   });
 
   it('government plant money and the loan are outside the raise, on purpose', () => {
     const out = SOURCES.filter((s) => !s.inTheRaise).map((s) => s.id).sort();
-    expect(out).toEqual(['alice', 'second-commonwealth', 'sefa']);
+    expect(out).toEqual(['real', 'sefa']);
+    expect(SOURCES.find((s) => s.id === 'real')!.stage).toBe('offered');
+    expect(SOURCES.find((s) => s.id === 'real')!.amountAud).toBe(1_695_000);
   });
 });
 
@@ -77,17 +79,19 @@ describe('every dollar has a job', () => {
     expect(new Set(keys).size).toBe(keys.length);
   });
 
-  it('Brian M. Davis splits deliberately and sums to the invitation', () => {
+  it('Brian M. Davis is one line of 133 beds, facilitation inside', () => {
     const bmd = SOURCES.filter((s) => s.funder.startsWith('Brian M. Davis'));
-    expect(bmd).toHaveLength(2);
-    expect(bmd.reduce((n, s) => n + s.amountAud, 0)).toBe(100_000);
-    expect(new Set(bmd.map((s) => s.job)).size).toBe(2);
+    expect(bmd).toHaveLength(1);
+    expect(bmd[0].amountAud).toBe(99_750);
+    expect(bmd[0].job).toBe('beds');
+    expect(SOURCES.filter((s) => s.job === 'facilitation')).toHaveLength(0);
   });
 
-  it('Tim Fairfax is operating only, which is where the double count was', () => {
+  it('Tim Fairfax buys beds, counted once, and nobody is asked for operating', () => {
     const tf = SOURCES.filter((s) => s.funder.startsWith('Tim Fairfax'));
     expect(tf).toHaveLength(1);
-    expect(tf[0].job).toBe('operating');
+    expect(tf[0].job).toBe('beds');
+    expect(coveredFor('operating')).toBe(0);
   });
 
   it('every need says what stops if it is unfunded', () => {
@@ -105,11 +109,11 @@ describe('what breaks if one drops', () => {
     expect(coveredFor('plant', ['qbe'])).toBe(0);
   });
 
-  it('not sending Snow leaves the bed line short at the making cost', () => {
+  it('not sending Snow leaves the bed line still over-covered, by less', () => {
     const s = shortfalls(['snow']).find((x) => x.job === 'beds')!;
-    expect(coveredFor('beds')).toBe(160_000);
-    expect(coveredFor('beds', ['snow'])).toBe(60_000);
-    expect(s.short).toBeCloseTo(BEDS_AT_COST_AUD - 60_000, 6);
+    expect(coveredFor('beds')).toBe(299_750);
+    expect(coveredFor('beds', ['snow'])).toBe(199_750);
+    expect(s.short).toBe(0);
   });
 
   it('as things stand only the operating line is short', () => {
@@ -119,9 +123,9 @@ describe('what breaks if one drops', () => {
 
   it('the operating shortfall less the bed surplus is exactly the gap', () => {
     const operatingShort = shortfalls().find((s) => s.job === 'operating')!.short;
-    expect(coveredFor('operating')).toBe(140_000);
-    expect(operatingShort).toBe(ORGANISATION_NEED_AUD - 140_000);
-    expect(bedSurplusAud()).toBeCloseTo(160_000 - BEDS_AT_COST_AUD, 6);
+    expect(coveredFor('operating')).toBe(0);
+    expect(operatingShort).toBe(ORGANISATION_NEED_AUD);
+    expect(bedSurplusAud()).toBeCloseTo(299_750 - BEDS_AT_COST_AUD, 6);
     expect(operatingShort - bedSurplusAud()).toBeCloseTo(GAP_AUD, 6);
   });
 
@@ -132,9 +136,9 @@ describe('what breaks if one drops', () => {
     expect(SURPLUS_EXPLAINS_THE_GAP).not.toContain('110,400');
   });
 
-  it('without Snow the bed line stops over-covering and starts short', () => {
-    expect(bedSurplusAud(['snow'])).toBe(0);
-    expect(shortfalls(['snow']).find((s) => s.job === 'beds')!.short).toBeCloseTo(BEDS_AT_COST_AUD - 60_000, 6);
+  it('without Snow the bed surplus shrinks by exactly the Snow ask', () => {
+    expect(bedSurplusAud() - bedSurplusAud(['snow'])).toBeCloseTo(100_000, 6);
+    expect(gapWithout(['snow']) - GAP_AUD).toBeCloseTo(100_000, 6);
   });
 });
 
@@ -154,7 +158,9 @@ describe('the ladder', () => {
 
   it('picks the largest rung an amount can afford', () => {
     expect(whatBuys(1_000).aud).toBe(750);
-    expect(whatBuys(25_000).aud).toBe(10_000);
+    expect(whatBuys(25_000).aud).toBe(7_500);
+    expect(LADDER.some((r) => /facilitation in one community/i.test(r.buys))).toBe(false);
+    expect(whatBuys(100_000).aud).toBe(99_750);
     expect(LADDER.some((r) => /second press/i.test(r.buys))).toBe(false);
     expect(whatBuys(160_000).aud).toBe(150_000);
     expect(whatBuys(500).aud).toBe(750);

@@ -140,12 +140,12 @@ describe('key cells equal the module constants', () => {
     expect(rowsOf('One bed').some((x) => x.cells[0]?.kind === 'text' && /Goods carries freight/.test(x.cells[0].value))).toBe(false);
   });
 
-  it('The year: three jobs, need, asked, secured, gap, beds to find, beds unfunded, five funder lines plus Dusseldorp and SEFA', () => {
+  it('The year: three jobs, need, asked, secured, gap, beds to find, beds unfunded, four funder lines plus Dusseldorp and SEFA', () => {
     expect(value('The year', 'The year needs', 1)).toBe(NEED_AUD);
     expect(value('The year', 'The year needs', 2)).toBe(ASKED_AUD);
     const org = rowByLabel(wb, 'The year', 'Organisation: running it, and the freight and facilitation it absorbs');
     expect((org.cells[1] as FormulaCell).value).toBe(ORGANISATION_NEED_AUD);
-    expect((org.cells[2] as FormulaCell).value).toBe(140_000);
+    expect((org.cells[2] as NumberCell).value).toBe(0);
     expect(rowsOf('The year').some((x) => x.cells[0]?.kind === 'text' && x.cells[0].value.startsWith('Facilitation in'))).toBe(false);
     expect(value('The year', 'The organisation pays', 1)).toBe(ORGANISATION_NEED_AUD);
     expect(value('The year', `What ${BEDS_YEAR_ONE} beds hand it`, 1)).toBe(ORGANISATION_FROM_BEDS_AUD);

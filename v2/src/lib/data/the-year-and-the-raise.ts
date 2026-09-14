@@ -17,7 +17,8 @@
  *    share of the $750, as it absorbs facilitation at $100 a bed. Ben, 15 September 2026, as a
  *    director: $750 is the only bed price. No buyer pays freight and no funder is asked for it.
  *  - Plant allowance $150,000 against modules priced $95,767 to $142,467.
- *  - Commonwealth plant money: Ben, 11 September 2026, stated as a director.
+ *  - Commonwealth money: the DEWR outcome letter of 12 August 2026, read 15 September 2026.
+ *  - Every grant except QBE buys 133 beds: Ben, 15 September 2026, as a director.
  */
 
 import { PRESS_SHEETS_A_DAY, PRESSED_SHEETS_PER_KIT } from './production-route';
@@ -153,10 +154,24 @@ export const ORGANISATION_SHORT_AUD = RUNNING_AUD - ORGANISATION_FROM_BEDS_AUD;
 
 export type AskStage =
   | 'approved' // the money is decided and available
+  | 'offered' // a written offer to a partner entity, agreement not executed
   | 'likely' // Ben's judgement as a director, no letter yet
   | 'invited' // a written invitation to apply for a named amount
   | 'applying' // a form is open and being filled
-  | 'not-sent'; // our number, nothing with the funder yet
+  | 'not-sent' // our number, nothing with the funder yet
+  | 'no-invitation'; // an invitation-only door that has not issued one
+
+/**
+ * Ben, 15 September 2026, as a director: every grant funder except QBE buys beds, at $750 and in
+ * lots of 133. No funder is asked for the running cost. The organisation is carried by the
+ * contribution each bed hands back, and by trade beyond the 400. Facilitation and freight sit
+ * inside the bed, so no ask carries either as a line.
+ */
+export const BEDS_A_GRANT = 133;
+export const GRANT_LOT_AUD = BEDS_A_GRANT * BED_PRICE_AUD;
+
+export const EVERY_GRANT_BUYS_BEDS =
+  `Ben, 15 September 2026: QBE buys two facilities. Every other grant funder buys beds, ${BEDS_A_GRANT} at $${BED_PRICE_AUD}, which is $${aud(GRANT_LOT_AUD)}. Nobody is asked for the running cost; the $${aud(CONTRIBUTION_AUD)} each bed hands back is what carries the organisation.`;
 
 export interface Ask {
   readonly funder: string;
@@ -177,46 +192,58 @@ export const ASKS: readonly Ask[] = [
   {
     funder: 'Tim Fairfax Family Foundation',
     amountAud: 100_000,
-    job: 'operating',
-    stage: 'invited',
-    source: 'Katie Norman, 31 August 2026: a three-year grant of $300,000 in three equal payments, naming the resilience of organisations. Year one is $100,000 and it belongs on the operating line alone.',
-  },
-  {
-    funder: 'Brian M. Davis Charitable Foundation',
-    amountAud: 60_000,
     job: 'beds',
     stage: 'invited',
-    source: 'Miranda Campbell, 1 September 2026: up to $100,000 for twelve months. 80 beds at $750.',
+    source: `Katie Norman, 31 August 2026: a three-year grant of $300,000 in three equal payments under General Operating Support. Ben, 15 September 2026: year one buys ${BEDS_A_GRANT} beds at $${BED_PRICE_AUD}; the organisation's share is the contribution those beds hand back. The form's operating framing is a flag, not a job.`,
   },
   {
     funder: 'Brian M. Davis Charitable Foundation',
-    amountAud: 40_000,
-    job: 'facilitation',
+    amountAud: GRANT_LOT_AUD,
+    job: 'beds',
     stage: 'invited',
-    source: 'The other half of the same invitation. Facilitation in four communities.',
+    source: `Miranda Campbell, 1 September 2026: up to $100,000 for twelve months. Ben, 15 September 2026: ${BEDS_A_GRANT} beds at $${BED_PRICE_AUD}, facilitation inside, one budget line. The old 80 beds plus $40,000 facilitation split is withdrawn.`,
   },
   {
     funder: 'Snow Foundation',
     amountAud: 100_000,
     job: 'beds',
     stage: 'not-sent',
-    source: 'Ben wrote $100,000 on 10 September and ruled it counts as beds. The ask has not been sent.',
+    source: 'Ben wrote $100,000 on 10 September and ruled it counts as beds, 133 at $750. The ask has not been sent.',
   },
 ];
 
+/**
+ * SEDI is not in the raise. Both streams buy capability services (finance, legal, impact
+ * measurement, advice) and exclude plant, inventory and beds, so it cannot be a bed line for any
+ * applicant. The First Nations stream fits Oonchiumpa in its own right; the general stream needs
+ * $50,000 of trading revenue on the applicant entity, which sits in the sole-trader ledger today.
+ */
+export const SEDI_RULE =
+  'SEDI buys capability services, never beds, so it is outside the bed stack. Oonchiumpa can apply to the First Nations stream for its own capability; the general stream waits until the trade sits in the applicant entity.';
+
 export const ASKED_AUD = ASKS.reduce((n, a) => n + a.amountAud, 0);
 export const SECURED_AUD = 0;
+
+/** No ask carries the running cost. Ben, 15 September 2026. */
+export const OPERATING_RULE =
+  'No funder is asked for the running cost. Every grant except QBE buys beds; the organisation lives on what each bed hands back and on trade beyond the year-one 400.';
 
 export const SECURED_CEILING =
   'Nothing in the raise is secured. Every line is an invitation, an application or a conversation. An invitation is not an award.';
 
 // ---------------------------------------------------------------------------
-// The Commonwealth plant money, stated by Ben on 11 September 2026
+// The Commonwealth money, read from the documents on 15 September 2026
 // ---------------------------------------------------------------------------
 
+/**
+ * Corrected 15 September 2026 from the DEWR outcome letter (12 August 2026, Melanie Croke) and
+ * the Stage Two application. The "$150,000 approved, a second $150,000 likely" of 11 and 12
+ * September fused two different Commonwealth things and is withdrawn.
+ */
 export interface PlantMoney {
   readonly id: string;
   readonly site: string;
+  readonly recipient: string;
   readonly amountAud: number;
   readonly stage: AskStage;
   readonly inTheQbeAsk: boolean;
@@ -225,33 +252,36 @@ export interface PlantMoney {
 
 export const COMMONWEALTH_PLANT_MONEY: readonly PlantMoney[] = [
   {
-    id: 'alice-springs',
+    id: 'real-innovation-fund',
     site: 'Alice Springs',
-    amountAud: 150_000,
-    stage: 'approved',
+    recipient: 'Oonchiumpa Consultancy & Services Pty Ltd',
+    amountAud: 1_695_000,
+    stage: 'offered',
     inTheQbeAsk: false,
-    note: 'Approved and ready, through Oonchiumpa against the DEWR offer. Alice Springs is not one of the two sites in the QBE ask, so this builds a third plant and does not overlap the application.',
+    note: 'DEWR REAL Innovation Fund offer of $1,695,000 excluding GST to Oonchiumpa, $423,750 in each of four years to 30 June 2030, letter dated 12 August 2026. The letter says it does not constitute a grant agreement; none is executed and no cash has been received. A Curious Tractor is the named consortium member. It is Oonchiumpa\'s money, not the applicant\'s, and it is disclosed at Q1, Q2, Q8 and Q14, never counted.',
   },
   {
-    id: 'alice-springs-second-tranche',
+    id: 'niaa-local-investments',
     site: 'Alice Springs',
+    recipient: 'Oonchiumpa Consultancy & Services Pty Ltd',
     amountAud: 150_000,
-    stage: 'likely',
+    stage: 'no-invitation',
     inTheQbeAsk: false,
-    note: 'Ben, 12 September 2026: the second $150,000 is all for Alice Springs, in line with the Oonchiumpa support. The same route again and the same site, so it builds no new plant and QBE is untouched. Alice Springs therefore carries $300,000 of Commonwealth money across two tranches.',
+    note: 'NIAA Local Investments Funding, up to $150,000 an activity, invitation only. Alex Cadden told Tanya and Kristy on 7 August 2026 he would explore a plastics plant proposal. That is an open door, not an invitation, and nothing has been applied for.',
   },
 ];
 
-export const COMMONWEALTH_APPROVED_AUD = COMMONWEALTH_PLANT_MONEY
-  .filter((p) => p.stage === 'approved')
-  .reduce((n, p) => n + p.amountAud, 0);
+/** Nothing Commonwealth is approved to the applicant, and nothing is counted. */
+export const COMMONWEALTH_APPROVED_AUD = 0;
+export const COMMONWEALTH_LIKELY_AUD = 0;
 
-export const COMMONWEALTH_LIKELY_AUD = COMMONWEALTH_PLANT_MONEY
-  .filter((p) => p.stage === 'likely')
-  .reduce((n, p) => n + p.amountAud, 0);
+/** What Oonchiumpa might pay Goods to build its plant, if the REAL agreement is executed. Unverified. */
+export const OONCHIUMPA_BUILD_AUD = PLANT_ALLOWANCE_AUD;
+export const OONCHIUMPA_BUILD_STATUS =
+  'unverified: Q8 states Oonchiumpa expects to pay about $150,000 to build the Alice Springs plant; no agreement with DEWR or with Goods is executed';
 
-export const SECOND_TRANCHE_RULING =
-  'Ben, 12 September 2026: the second $150,000 is Alice Springs, in line with the Oonchiumpa support. Alice Springs is not one of the two sites in the QBE ask, so no QBE activity is funded twice and Q14 and Q15 carry no double-funding disclosure. The related-party disclosure for Oonchiumpa stands on its own footing, because Kristy Bloomfield sits on both boards.';
+export const REAL_RULING =
+  'The REAL Innovation Fund is one offer of $1,695,000 to Oonchiumpa over four years, agreement not executed, no cash received. It is not $150,000, not approved to the applicant, and there is no second tranche. Alice Springs is not one of the two QBE sites, so no QBE activity is funded twice and Q14 and Q15 carry no double-funding disclosure. The related-party disclosure stands on its own footing, because Kristy Bloomfield sits on both boards and A Curious Tractor is the consortium member.';
 
 // ---------------------------------------------------------------------------
 // Scenarios. The plant lines are the only place where the ask equals the cost.
@@ -277,31 +307,15 @@ export const SCENARIOS: readonly Scenario[] = [
     plants: 2,
     needAud: needForPlants(2),
     fundedAud: ASKED_AUD,
-    what: 'Two plants from QBE, 213 of the 400 beds covered, one year of operating from Tim Fairfax. Everything is an ask and nothing is secured.',
+    what: 'Two plants from QBE and every other grant buying beds. Nothing is asked for the running cost. Everything is an ask and nothing is secured.',
   },
   {
     id: 'alice-in',
-    name: 'Alice Springs counted in',
+    name: 'Oonchiumpa commissions its Alice Springs plant',
     plants: 3,
     needAud: needForPlants(3),
-    fundedAud: ASKED_AUD + COMMONWEALTH_APPROVED_AUD,
-    what: 'The approved $150,000 builds a third plant. Both sides move by the same $150,000, so the gap does not change and the year gains a plant.',
-  },
-  {
-    id: 'both-commonwealth',
-    name: 'Alice Springs, and the second facility lands',
-    plants: 4,
-    needAud: needForPlants(4),
-    fundedAud: ASKED_AUD + COMMONWEALTH_APPROVED_AUD + COMMONWEALTH_LIKELY_AUD,
-    what: 'Four plants instead of two, and the gap still does not move. Plant money is the one line where the grant and the cost are the same number.',
-  },
-  {
-    id: 'second-replaces-qbe',
-    name: 'The second facility takes a QBE site',
-    plants: 3,
-    needAud: needForPlants(3),
-    fundedAud: ASKED_AUD + COMMONWEALTH_APPROVED_AUD + COMMONWEALTH_LIKELY_AUD,
-    what: 'Alice Springs plus the two in the ask, one of them paid by the Commonwealth. QBE has to be told, and $150,000 of the QBE ask moves from plants to beds. This is the only scenario that closes the gap, because it puts new money against a cost that was already funded.',
+    fundedAud: ASKED_AUD + OONCHIUMPA_BUILD_AUD,
+    what: `If the REAL agreement is executed and Oonchiumpa pays Goods to build its plant, both sides move by the same $${aud(OONCHIUMPA_BUILD_AUD)}, so the gap does not change and the year gains a plant. ${OONCHIUMPA_BUILD_STATUS}.`,
   },
 ];
 
@@ -333,25 +347,30 @@ export const BEDS_IN_UNSENT_ASKS = Math.floor(
     .reduce((n, a) => n + a.amountAud, 0) / BED_PRICE_AUD,
 );
 
-/** Every bed ask counted, sent or not. This is the 187, and it is the switched-on case. */
-export const BEDS_FUNDED = Math.floor(
+/** Every bed ask counted, sent or not, capped at the year's 400. The raw count can exceed it. */
+export const BEDS_ASKED_FOR = Math.floor(
   ASKS.filter((a) => a.job === 'beds').reduce((n, a) => n + a.amountAud, 0) / BED_PRICE_AUD,
 );
+export const BEDS_FUNDED = Math.min(BEDS_YEAR_ONE, BEDS_ASKED_FOR);
 export const BEDS_UNFUNDED = BEDS_YEAR_ONE - BEDS_FUNDED;
 export const BEDS_UNFUNDED_AUD = BEDS_UNFUNDED * BED_PRICE_AUD;
 
+/** Beds asked for beyond the 400, once every bed ask is counted. Ben decides whether the year grows. */
+export const BEDS_OVER_THE_YEAR = Math.max(0, BEDS_ASKED_FOR - BEDS_YEAR_ONE);
+
 export const THE_GAP_STAYS =
-  `The gap does not close. Closing it needed the second $150,000 to land on a site QBE is already being asked to fund, which would have freed $150,000 of the QBE request to buy beds. On Alice Springs it is additional capacity instead, so the $${aud(NEED_AUD - ASKED_AUD)} and the ${BEDS_TO_FIND} beds stand and have to come from beds sold or from debt.`;
+  `The gap does not close on plant money. The Commonwealth offer is Oonchiumpa's, for Alice Springs, and Alice Springs is not a QBE site, so nothing frees a dollar of the QBE request for beds. Against the asks that have been sent, the $${aud(NEED_AUD - ASKED_AUD)} and the ${BEDS_TO_FIND} beds stand and have to come from beds sold, from the unsent asks, or from debt.`;
 
 export const BED_GAP_RULE =
-  'Ben, 12 September 2026: the stated bed gap is 320 and the Snow line is off by default, because the ask has not been sent. 133 beds is what sending it would cover, and 187 is the position after it lands. A default that switches an unsent ask on prints a funded position that does not exist.';
+  `Ben, 12 September 2026: an unsent ask covers no bed, so the stated gap counts sent asks only. Today that is ${BEDS_TO_FIND} beds. The unsent asks would cover ${BEDS_IN_UNSENT_ASKS} more. A default that switches an unsent ask on prints a funded position that does not exist.`;
 
+/** Nothing is asked against operating. Ben, 15 September 2026. */
 export const OPERATING_ASKED_AUD = ASKS
   .filter((a) => a.job === 'operating')
   .reduce((n, a) => n + a.amountAud, 0);
 
 export const WHERE_THE_GAP_LIVES =
-  'The gap is not in the plants. Plant money arrives in $150,000 pieces that match the $150,000 cost, so a plant either happens or it does not and it never leaves a hole. The gap is 320 beds of first stock and a year of running the organisation, and those are the two hardest things to raise against because one looks like working capital and the other looks like overhead.';
+  `The gap is not in the plants. Plant money arrives in $150,000 pieces that match the $150,000 cost, so a plant either happens or it does not and it never leaves a hole. The gap is ${BEDS_TO_FIND} beds of first stock and the running cost that no funder is asked for, and those are the two hardest things to raise against because one looks like working capital and the other looks like overhead.`;
 
 export const THE_LEVER =
   `Every dollar of bed money does two jobs: it pays the $${aud(BED_MAKE_AUD)} of making, the freight and the facilitation, and hands $${aud(CONTRIBUTION_AUD)} to the organisation. So the ${BEDS_TO_FIND} beds still to find carry $${aud(BEDS_TO_FIND_AUD)} of stock and $${aud(BEDS_TO_FIND * CONTRIBUTION_AUD)} of the running cost with them. Funding beds is the cheapest way to fund the organisation, and it is the only ask that a funder can see a product at the end of.`;

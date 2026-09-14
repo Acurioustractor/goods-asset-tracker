@@ -50,7 +50,13 @@ import {
   RUNNING_AUD,
   RUNNING_LINES,
   SCENARIOS,
-  SECOND_TRANCHE_RULING,
+  REAL_RULING,
+  BEDS_A_GRANT,
+  GRANT_LOT_AUD,
+  BEDS_ASKED_FOR,
+  BEDS_OVER_THE_YEAR,
+  EVERY_GRANT_BUYS_BEDS,
+  OPERATING_RULE,
   SECURED_AUD,
   THE_GAP_STAYS,
   THE_LEVER,
@@ -208,9 +214,19 @@ describe('the double count', () => {
 });
 
 describe('the raise', () => {
-  it('the five asks total $600,000', () => {
-    expect(ASKED_AUD).toBe(600_000);
-    expect(ASKS).toHaveLength(5);
+  it('the four asks total $599,750: QBE plus three lots of 133 beds', () => {
+    expect(ASKED_AUD).toBe(300_000 + 100_000 + GRANT_LOT_AUD + 100_000);
+    expect(ASKED_AUD).toBe(599_750);
+    expect(ASKS).toHaveLength(4);
+  });
+
+  it('every grant except QBE buys beds, 133 at $750, Ben 15 September', () => {
+    expect(BEDS_A_GRANT).toBe(133);
+    expect(GRANT_LOT_AUD).toBe(99_750);
+    for (const a of ASKS.filter((x) => !x.funder.startsWith('QBE'))) expect(a.job).toBe('beds');
+    expect(ASKS.filter((a) => a.job === 'facilitation')).toHaveLength(0);
+    expect(EVERY_GRANT_BUYS_BEDS).toContain('133');
+    expect(OPERATING_RULE).toMatch(/No funder is asked for the running cost/);
   });
 
   it('nothing is secured', () => {
@@ -218,11 +234,18 @@ describe('the raise', () => {
     expect(ASKS.every((a) => a.stage !== 'approved')).toBe(true);
   });
 
-  it('Tim Fairfax is counted once, and against operating', () => {
+  it('Tim Fairfax is counted once, against beds, and nothing is asked against operating', () => {
     const tf = ASKS.filter((a) => a.funder.startsWith('Tim Fairfax'));
     expect(tf).toHaveLength(1);
-    expect(tf[0].job).toBe('operating');
-    expect(OPERATING_ASKED_AUD).toBe(100_000);
+    expect(tf[0].job).toBe('beds');
+    expect(OPERATING_ASKED_AUD).toBe(0);
+  });
+
+  it('Brian M. Davis is one line of 133 beds, the 80 plus $40,000 split withdrawn', () => {
+    const bmd = ASKS.filter((a) => a.funder.startsWith('Brian'));
+    expect(bmd).toHaveLength(1);
+    expect(bmd[0].amountAud).toBe(GRANT_LOT_AUD);
+    expect(bmd[0].job).toBe('beds');
   });
 
   it('no funder appears twice for the same job', () => {
@@ -236,28 +259,31 @@ describe('the raise', () => {
 });
 
 describe('where the gap lives', () => {
-  it('213 of the 400 beds are covered and 187 are not', () => {
-    expect(BEDS_FUNDED).toBe(213);
-    expect(BEDS_UNFUNDED).toBe(187);
+  it('399 of the 400 beds are covered once every bed ask is counted', () => {
+    expect(BEDS_ASKED_FOR).toBe(399);
+    expect(BEDS_FUNDED).toBe(399);
+    expect(BEDS_UNFUNDED).toBe(1);
+    expect(BEDS_OVER_THE_YEAR).toBe(0);
     expect(BEDS_FUNDED + BEDS_UNFUNDED).toBe(BEDS_YEAR_ONE);
-    expect(BEDS_UNFUNDED_AUD).toBe(140_250);
+    expect(BEDS_UNFUNDED_AUD).toBe(750);
   });
 
-  it('an unsent ask covers no beds, so the stated gap is 320', () => {
-    expect(BEDS_COVERED_BY_SENT_ASKS).toBe(80);
-    expect(BEDS_TO_FIND).toBe(320);
-    expect(BEDS_TO_FIND_AUD).toBe(240_000);
+  it('an unsent ask covers no beds, so the stated gap is 134', () => {
+    expect(BEDS_COVERED_BY_SENT_ASKS).toBe(266);
+    expect(BEDS_TO_FIND).toBe(134);
+    expect(BEDS_TO_FIND_AUD).toBe(100_500);
   });
 
-  it('the unsent Snow ask is what takes 320 to 187', () => {
+  it('the unsent Snow ask is what takes 134 to 1', () => {
     expect(BEDS_IN_UNSENT_ASKS).toBe(133);
     expect(BEDS_TO_FIND - BEDS_IN_UNSENT_ASKS).toBe(BEDS_UNFUNDED);
   });
 
-  it('the prose states the gap as 320 and never as 187', () => {
-    expect(WHERE_THE_GAP_LIVES).toContain('320 beds');
-    expect(WHERE_THE_GAP_LIVES).not.toContain('187');
-    expect(THE_LEVER).not.toContain('187');
+  it('the prose states the gap as sent asks only, derived', () => {
+    expect(WHERE_THE_GAP_LIVES).toContain(`${BEDS_TO_FIND} beds`);
+    expect(WHERE_THE_GAP_LIVES).not.toContain('320 beds');
+    expect(THE_LEVER).toContain(`${BEDS_TO_FIND} beds`);
+    expect(year.BED_GAP_RULE).toContain(`${BEDS_TO_FIND} beds`);
   });
 
   it('the gap as it stands is the need less what has been asked', () => {
@@ -296,27 +322,35 @@ describe('yield improvements, in place of a second press', () => {
   });
 });
 
-describe('the Commonwealth plant money', () => {
-  it('one line is approved and one is Ben judging it likely', () => {
-    expect(COMMONWEALTH_APPROVED_AUD).toBe(150_000);
-    expect(COMMONWEALTH_LIKELY_AUD).toBe(150_000);
-  });
-
-  it('neither line is inside the QBE ask, which is what keeps the application honest', () => {
+describe('the Commonwealth money, read from the documents on 15 September', () => {
+  it('nothing is approved to the applicant and nothing is counted', () => {
+    expect(COMMONWEALTH_APPROVED_AUD).toBe(0);
+    expect(COMMONWEALTH_LIKELY_AUD).toBe(0);
+    expect(COMMONWEALTH_PLANT_MONEY.every((p) => p.stage !== 'approved' && p.stage !== 'likely')).toBe(true);
     expect(COMMONWEALTH_PLANT_MONEY.every((p) => p.inTheQbeAsk === false)).toBe(true);
   });
 
-  it('the second tranche is Alice Springs, so no site is left unnamed', () => {
-    const second = COMMONWEALTH_PLANT_MONEY.find((p) => p.id === 'alice-springs-second-tranche')!;
-    expect(second.site).toBe('Alice Springs');
-    expect(second.stage).toBe('likely');
-    expect(COMMONWEALTH_PLANT_MONEY.every((p) => p.site === 'Alice Springs')).toBe(true);
+  it('REAL is one offer of $1,695,000 to Oonchiumpa, agreement not executed', () => {
+    const real = COMMONWEALTH_PLANT_MONEY.find((p) => p.id === 'real-innovation-fund')!;
+    expect(real.amountAud).toBe(1_695_000);
+    expect(real.stage).toBe('offered');
+    expect(real.recipient).toMatch(/Oonchiumpa/);
+    expect(real.note).toMatch(/not|no cash/);
+    expect(COMMONWEALTH_PLANT_MONEY.find((p) => p.id === 'alice-springs-second-tranche')).toBeUndefined();
+    expect(SRC).not.toMatch(/second \$150,000 is/);
+  });
+
+  it('NIAA is a door with no invitation', () => {
+    const niaa = COMMONWEALTH_PLANT_MONEY.find((p) => p.id === 'niaa-local-investments')!;
+    expect(niaa.stage).toBe('no-invitation');
+    expect(niaa.amountAud).toBe(150_000);
   });
 
   it('every Commonwealth dollar sits outside the two QBE sites, so the gap stands', () => {
-    expect(SECOND_TRANCHE_RULING).toMatch(/no double-funding disclosure/);
+    expect(REAL_RULING).toMatch(/no double-funding disclosure/);
+    expect(REAL_RULING).toMatch(/not executed/);
     expect(THE_GAP_STAYS).toMatch(/does not close/);
-    expect(BEDS_TO_FIND).toBe(320);
+    expect(BEDS_TO_FIND).toBe(134);
   });
 });
 
@@ -324,17 +358,13 @@ describe('scenarios', () => {
   it('a plant costs what a plant grant brings, so adding plants never moves the gap', () => {
     const asAsked = SCENARIOS.find((s) => s.id === 'as-asked')!;
     const alice = SCENARIOS.find((s) => s.id === 'alice-in')!;
-    const both = SCENARIOS.find((s) => s.id === 'both-commonwealth')!;
     expect(gapAud(alice)).toBeCloseTo(gapAud(asAsked), 6);
-    expect(gapAud(both)).toBeCloseTo(gapAud(asAsked), 6);
+    expect(alice.what).toMatch(/unverified/);
   });
 
-  it('the only scenario that closes the gap is the one that frees QBE money', () => {
-    const swap = SCENARIOS.find((s) => s.id === 'second-replaces-qbe')!;
-    expect(gapAud(swap)).toBeCloseTo(NEED_AUD + PLANT_ALLOWANCE_AUD - ASKED_AUD - 300_000, 6);
-    const closers = SCENARIOS.filter((s) => gapAud(s) <= 0);
-    expect(closers).toHaveLength(1);
-    expect(closers[0].id).toBe('second-replaces-qbe');
+  it('no scenario closes the gap, because no Commonwealth dollar lands on a QBE site', () => {
+    expect(SCENARIOS).toHaveLength(2);
+    for (const s of SCENARIOS) expect(gapAud(s)).toBeGreaterThan(0);
   });
 
   it('every scenario prices its plants at the allowance', () => {

@@ -309,7 +309,7 @@
     {
       "key": "year.asked",
       "label": "Asked across five lines",
-      "value": 600000,
+      "value": 599750,
       "unit": "AUD",
       "from": "the-year-and-the-raise"
     },
@@ -323,14 +323,14 @@
     {
       "key": "year.gap",
       "label": "Still to find",
-      "value": 136186.66666666674,
+      "value": 136436.66666666674,
       "unit": "AUD",
       "from": "capital-stack-flex"
     },
     {
       "key": "year.operatingShort",
       "label": "Operating line, short",
-      "value": 191224,
+      "value": 331224,
       "unit": "AUD",
       "from": "capital-stack-flex",
       "drift": "Not in the Canon tab yet"
@@ -338,28 +338,28 @@
     {
       "key": "year.bedSurplus",
       "label": "Bed money over the making line",
-      "value": 55037.33333333333,
+      "value": 194787.3333333333,
       "unit": "AUD",
       "from": "capital-stack-flex"
     },
     {
       "key": "year.bedsUnfunded",
       "label": "Beds unfunded",
-      "value": 187,
+      "value": 1,
       "unit": "beds",
       "from": "the-year-and-the-raise"
     },
     {
       "key": "year.bedsUnfundedAud",
       "label": "Beds unfunded, at the price",
-      "value": 140250,
+      "value": 750,
       "unit": "AUD",
       "from": "the-year-and-the-raise"
     },
     {
       "key": "year.bedsToFind",
       "label": "Beds still to find",
-      "value": 320,
+      "value": 134,
       "unit": "beds",
       "from": "the-year-and-the-raise",
       "drift": "Not in the Canon tab yet"
@@ -367,7 +367,7 @@
     {
       "key": "year.bedsToFindAud",
       "label": "Beds still to find, at the price",
-      "value": 240000,
+      "value": 100500,
       "unit": "AUD",
       "from": "the-year-and-the-raise",
       "drift": "Not in the Canon tab yet"

@@ -407,8 +407,8 @@ export function buildWorkbook(): Workbook {
   ];
   const jobs: { label: string; needKey: string; needFormula: string; jobs: readonly string[]; fundedBy: string }[] = [
     { label: 'Facilities: two community plants', needKey: 'the-year-and-the-raise:PLANTS_AUD', needFormula: I('plant.total'), jobs: ['plant'], fundedBy: 'QBE Foundation, Stage 2.' },
-    { label: `Beds: making ${BEDS_YEAR_ONE} of first stock`, needKey: 'the-year-and-the-raise:BEDS_AT_COST_AUD', needFormula: `${I('year.beds')}*${I('bed.make')}`, jobs: ['beds'], fundedBy: 'Brian M. Davis (invited), Snow (not sent). Bed money is asked at the price, so this line over-covers the making cost and the surplus carries the organisation.' },
-    { label: 'Organisation: running it, and the freight and facilitation it absorbs', needKey: 'the-year-and-the-raise:ORGANISATION_NEED_AUD', needFormula: I('org.need'), jobs: ['operating', 'facilitation'], fundedBy: `Tim Fairfax (invited, year one of three) and the facilitation half of the Brian M. Davis invitation. The rest is carried by ${BEDS_YEAR_ONE} beds at the contribution.` },
+    { label: `Beds: making ${BEDS_YEAR_ONE} of first stock`, needKey: 'the-year-and-the-raise:BEDS_AT_COST_AUD', needFormula: `${I('year.beds')}*${I('bed.make')}`, jobs: ['beds'], fundedBy: 'Tim Fairfax (invited, year one of three), Brian M. Davis (invited), Snow (not sent), each 133 beds at $750. Bed money is asked at the price, so this line over-covers the making cost and the surplus carries the organisation.' },
+    { label: 'Organisation: running it, and the freight and facilitation it absorbs', needKey: 'the-year-and-the-raise:ORGANISATION_NEED_AUD', needFormula: I('org.need'), jobs: ['operating', 'facilitation'], fundedBy: `Nobody is asked for this line (Ben, 15 September 2026). It is carried by ${BEDS_YEAR_ONE} beds at the contribution, and by trade beyond them.` },
   ];
   const registerStart = year.next + jobs.length + 1 + 1 + 2;
   const regRefs = (pred: (l: RegLine) => boolean) => register.map((l, i) => ({ l, i })).filter(({ l }) => pred(l)).map(({ i }) => `${REG_AMOUNT_COL}${registerStart + i}`);
@@ -423,8 +423,8 @@ export function buildWorkbook(): Workbook {
     const refs = regRefs((l) => inAsk(l) && j.jobs.includes(l.job));
     year.add('formula', text(j.label),
       formula(j.needFormula, need, [j.needKey]),
-      formula(`SUM(${refs.join(',')})`, asked, sumKeys(items)),
-      formula(`MAX(0,B${r}-C${r})`, Math.max(0, need - asked), [j.needKey, ...sumKeys(items)]),
+      refs.length ? formula(`SUM(${refs.join(',')})`, asked, sumKeys(items)) : num('calendar:ZERO'),
+      formula(`MAX(0,B${r}-C${r})`, Math.max(0, need - asked), refs.length ? [j.needKey, ...sumKeys(items)] : [j.needKey, 'calendar:ZERO']),
       null, null, text(j.fundedBy));
     jobRows.push(r);
   }
@@ -451,7 +451,7 @@ export function buildWorkbook(): Workbook {
   const askedRow = year.add('total', text('Asked'),
     formula(`SUM(${askedRefs.join(',')})`, ASKED_AUD, ['the-year-and-the-raise:ASKED_AUD']),
     formula(`SUM(${askedSentRefs.join(',')})`, ASKED_AUD - ASKS.filter((a) => a.stage === 'not-sent').reduce((n, a) => n + a.amountAud, 0), sumKeys(ASKS.map((a, i) => ({ a, i })).filter(({ a }) => a.stage !== 'not-sent'))),
-    null, null, null, text('Five lines, all grants. Dusseldorp and SEFA are outside the ask.'));
+    null, null, null, text('Four lines, all grants. Dusseldorp and SEFA are outside the ask.'));
   year.add('input', text('Secured'), num('the-year-and-the-raise:SECURED_AUD'), num('the-year-and-the-raise:SECURED_AUD'), null, null, null, text('Nothing is secured. An invitation is not an award.'));
   year.add('total', text('Gap to the year'),
     formula(`B${needTotalRow}-B${askedRow}`, GAP_AUD, ['capital-stack-flex:GAP_AUD']),
@@ -478,7 +478,7 @@ export function buildWorkbook(): Workbook {
   year.add('header', text('Line'), text('Amount'), text(''), text(''), text(''), text(''), text('Notes'));
   year.add('formula', text('The organisation pays'), formula(I('org.need'), ORGANISATION_NEED_AUD, ['the-year-and-the-raise:ORGANISATION_NEED_AUD']), null, null, null, null, text('Running, plus the freight and facilitation it absorbs at $100 a bed each.'));
   year.add('formula', text(`What ${BEDS_YEAR_ONE} beds hand it`), formula(I('org.fromBeds'), ORGANISATION_FROM_BEDS_AUD, ['the-year-and-the-raise:ORGANISATION_FROM_BEDS_AUD']), null, null, null, null, text('Beds at the contribution, after making, freight and facilitation.'));
-  year.add('total', text('Running cost less what the beds hand back'), formula(I('org.short'), ORGANISATION_SHORT_AUD, ['the-year-and-the-raise:ORGANISATION_SHORT_AUD']), null, null, null, null, text('Against running alone, because the contribution already carries the freight and facilitation. Tim Fairfax year one goes against this.'));
+  year.add('total', text('Running cost less what the beds hand back'), formula(I('org.short'), ORGANISATION_SHORT_AUD, ['the-year-and-the-raise:ORGANISATION_SHORT_AUD']), null, null, null, null, text('Against running alone, because the contribution already carries the freight and facilitation. No grant goes against this line; it is the running short that trade or debt has to cover.'));
 
   // ---- Monthly cash FY27 --------------------------------------------------
   const cash = new SheetBuilder('Monthly cash FY27', [40, ...Array<number>(12).fill(12), 14, 56]);
@@ -512,19 +512,17 @@ export function buildWorkbook(): Workbook {
   const qbeIdx = ASKS.findIndex((a) => a.funder.startsWith('QBE'));
   const tfffIdx = ASKS.findIndex((a) => a.funder.startsWith('Tim Fairfax'));
   const bmdBedsIdx = ASKS.findIndex((a) => a.funder.startsWith('Brian') && a.job === 'beds');
-  const bmdFacIdx = ASKS.findIndex((a) => a.funder.startsWith('Brian') && a.job === 'facilitation');
   const rQbe = monthly('input', 'Grants for facilities (QBE)', atMonth(SCENARIO_MONTH, askKey(qbeIdx)), ASKS[qbeIdx].amountAud, [askKey(qbeIdx)], 'Scenario month only. No receipt date exists. Applying; closes 25 September.');
-  const rBeds = monthly('input', 'Grants for beds (Brian M. Davis)', atMonth(SCENARIO_MONTH, askKey(bmdBedsIdx)), ASKS[bmdBedsIdx].amountAud, [askKey(bmdBedsIdx)], 'Scenario month only. No receipt date exists. Invited; board 19 November.');
-  const rBedsFac = monthly('input', 'Grants for facilitation (Brian M. Davis)', atMonth(SCENARIO_MONTH, askKey(bmdFacIdx)), ASKS[bmdFacIdx].amountAud, [askKey(bmdFacIdx)], 'Scenario month only. No receipt date exists. The other half of the same invitation.');
+  const rBeds = monthly('input', 'Grants for beds (Brian M. Davis, 133 beds)', atMonth(SCENARIO_MONTH, askKey(bmdBedsIdx)), ASKS[bmdBedsIdx].amountAud, [askKey(bmdBedsIdx)], 'Scenario month only. No receipt date exists. Invited; board 19 November. One line, facilitation inside the bed.');
   const rSnow = monthly('input', 'Grants for beds (Snow, Dusseldorp)', () => zero(), 0, ['calendar:ZERO'], 'Untimed and zero. Neither ask has been sent, so no month is honest.');
-  const rOps = monthly('input', 'Grants for operations (Tim Fairfax, year one)', atMonth(SCENARIO_MONTH, askKey(tfffIdx)), ASKS[tfffIdx].amountAud, [askKey(tfffIdx)], 'Scenario month only. No receipt date exists. Invited; SmartyGrants closes 9 October, board late November.');
+  const rOps = monthly('input', 'Grants for beds (Tim Fairfax, year one, 133 beds)', atMonth(SCENARIO_MONTH, askKey(tfffIdx)), ASKS[tfffIdx].amountAud, [askKey(tfffIdx)], 'Scenario month only. No receipt date exists. Invited; SmartyGrants closes 9 October, board late November. Ben, 15 September 2026: buys beds, not the running cost.');
   const rLoan = monthly('input', 'Loan drawn (SEFA)', () => zero(), 0, ['calendar:ZERO'], 'Zero until applied for. Up to the Inputs loan cap; no rate or term is set.');
   const rSales = monthly('input', 'Bed sales to buyers', (m) => {
     const paid = paidInMonth(m);
     if (paid.length === 0) return zero();
     return formula(`SUM(${paid.map((i) => I(`sale.${i.invoiceNumber}`)).join(',')})`, paid.reduce((n, i) => n + i.bedLineNetAud, 0), paid.map((i) => invoiceKey(i.invoiceNumber)));
   }, PAID_IN_FY27_BED_LINE_AUD, ['demand-and-buyers:PAID_TRADE[fullyPaidOn in FY27].bedLineNetAud'], `Only orders with a dated payment inside FY27: ${PAID_IN_FY27.map((i) => `${i.invoiceNumber} ${i.buyer}, ${i.beds} beds, paid ${i.fullyPaidOn}`).join('; ') || 'none'}. Bed line net of GST; facilitation billed on the same invoice is cost neutral and left out. No other buyer has a dated order.`);
-  const receiptRows = [rQbe, rBeds, rBedsFac, rSnow, rOps, rLoan, rSales];
+  const receiptRows = [rQbe, rBeds, rSnow, rOps, rLoan, rSales];
   const rReceipts = monthly('total', 'Total receipts', (m) => formula(`SUM(${C(m)}${rQbe}:${C(m)}${rSales})`, receiptRows.reduce((n, r) => n + ((cash.rows[r - 1].cells[1 + m] as NumberCell).value), 0), ['the-year-and-the-raise:ASKED_AUD']), ASKED_AUD - ASKS.filter((a) => a.stage === 'not-sent').reduce((n, a) => n + a.amountAud, 0) + PAID_IN_FY27_BED_LINE_AUD, ['the-year-and-the-raise:ASKED_AUD', 'demand-and-buyers:PAID_TRADE[fullyPaidOn in FY27].bedLineNetAud'], 'Sent asks plus dated bed sales.');
 
   cash.add('section', text('Payments'));
