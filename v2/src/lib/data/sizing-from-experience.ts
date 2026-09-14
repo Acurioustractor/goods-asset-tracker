@@ -22,12 +22,10 @@
  *   Palm Island     2,097 people   131 beds   one bed per 16.0 people
  *   Tennant Creek   2,549 people   160 beds   one bed per 15.9 people
  *
- * Neither of them stopped there. Palm Island has asked for 40 more and Tennant Creek for 23, so
- * one per 16 is where we got to with the money available, not where the community stopped wanting.
- *
- * Add what each has asked for next and the three town-sized communities land between one bed per
- * 12 and one per 21, a spread of 1.7. That is a planning range, and it is the tightest honest
- * relationship between population and beds that this record supports.
+ * One per 16 is where we got to with the money available; nobody has told us it is where the
+ * community stopped wanting. Across the three town-sized communities, delivered beds land between
+ * one bed per 16 and one per 43. That is the planning range this record supports. The asks that
+ * once narrowed it were withdrawn by Ben on 15 September 2026 as unfounded, and askedNext is zero.
  *
  * Utopia is held out. At one bed per three people it is four times denser than anywhere else,
  * because it is a dispersed homelands population and because we went deep
@@ -37,7 +35,7 @@
  * WHAT THIS IS NOT
  * ---------------------------------------------------------------------------
  * This records what communities took when beds were on offer, bounded by what we could afford
- * to make, so it measures our funding as much as their need. Every one of them has since asked for more, so the
+ * to make, so it measures our funding as much as their need. Nobody has said they have enough, so the
  * range is a floor and not a ceiling. Say that whenever the number is used.
  */
 
@@ -58,7 +56,7 @@ export interface Comparator {
   readonly people: number;
   /** Beds recorded as deployed, from the asset register. */
   readonly delivered: number;
-  /** Beds that community has since asked for, on the record. */
+  /** Zero everywhere since 15 September 2026: the recorded asks were withdrawn as unfounded. */
   readonly askedNext: number;
   readonly shape: Shape;
   readonly note: string;
@@ -69,31 +67,31 @@ export const COMPARATORS: readonly Comparator[] = [
     place: 'Palm Island',
     people: 2_097,
     delivered: 131,
-    askedNext: 40,
+    askedNext: 0,
     shape: 'town',
-    note: 'All Basket Beds. Three organisations have since asked for a plant, and a further 40 beds sit on the record with no rule behind them.',
+    note: 'All Basket Beds. Three organisations have since asked for a plant.',
   },
   {
     place: 'Tennant Creek',
     people: 2_549,
     delivered: 160,
-    askedNext: 23,
+    askedNext: 0,
     shape: 'town',
-    note: 'The longest relationship we have. Dianne Stokes offered to self-fund 20 more and Norman Frank asked for 3 in maroon.',
+    note: 'The longest relationship we have. Dianne Stokes named the Pakkimjalki Kari washing machines here.',
   },
   {
     place: 'Maningrida',
     people: 2_518,
     delivered: 58,
-    askedNext: 65,
+    askedNext: 0,
     shape: 'town',
-    note: 'The least far along of the three, and the only one where two separate organisations have paid us. Delivered plus asked is still under what the other two have already taken.',
+    note: 'The least far along of the three, and the only one where two separate organisations have paid us.',
   },
   {
     place: 'Utopia',
     people: 444,
     delivered: 147,
-    askedNext: 150,
+    askedNext: 0,
     shape: 'homelands',
     note: 'Dispersed homelands, and the place we have gone deepest. Four times denser than any town, so it sizes nothing but itself.',
   },
@@ -116,7 +114,7 @@ export const WORKED_THROUGH_RATE_HIGH = 16.0;
 export const THE_COINCIDENCE =
   'Palm Island reached one bed per 16.0 people and Tennant Creek one per 15.9, with no coordination between them and different products. That is the closest thing to a repeatable number this record holds.';
 
-/** Delivered plus asked, across the three towns. The planning range. */
+/** Delivered beds across the three towns. The planning range. Asks are zero since 15 September 2026. */
 export const PLANNING_LOW = Math.min(...TOWNS.map(peoplePerBedWithAsk));
 export const PLANNING_HIGH = Math.max(...TOWNS.map(peoplePerBedWithAsk));
 
@@ -146,7 +144,7 @@ export function sizeTown(people: number): Sizing {
     low: Math.round(people / PLANNING_HIGH),
     workedThrough: Math.round(people / WORKED_THROUGH_RATE_HIGH),
     basis:
-      'From what Palm Island, Tennant Creek and Maningrida have taken and asked for next, against Census population. It is a floor: all three have asked for more.',
+      'From what Palm Island, Tennant Creek and Maningrida have taken, against Census population. It is a floor, bounded by what we could afford to make.',
   };
 }
 
@@ -154,12 +152,12 @@ export const NOBODY_HAS_SAID_ENOUGH =
   'Beds have gone to eleven communities. Not one has come back and told us they have enough. That is the plainest thing we can say about need and it needs no model behind it.';
 
 export const THE_CEILING =
-  'This records what communities took when beds were on offer, bounded by what we could afford to make. It measures our funding as much as their need, it is a floor because all three have asked for more, and one community doing a proper household count would replace it.';
+  'This records what communities took when beds were on offer, bounded by what we could afford to make. It measures our funding as much as their need, it is a floor because nobody has said they have enough, and one community doing a proper household count would replace it.';
 
 export const HOW_TO_SAY_IT: readonly string[] = [
-  'Lead with the two that agree. Palm Island and Tennant Creek independently reached about one bed per 16 people, and both have asked for more since.',
-  'Give a range. One bed per 12 to one per 21 people, from three communities.',
-  'Say what bounded it. Every number here is limited by what we could afford to make, so it describes our funding as much as their need.',
+  'Lead with the two that agree. Palm Island and Tennant Creek independently reached about one bed per 16 people.',
+  'Give a range. One bed per 16 to one per 43 people, from three communities, and say it is bounded by our funding.',
+  'Say what bounded it. Every number here is limited by what we could afford to make, so it describes our funding as much as their need. No ask figure is printed; the ones once held were withdrawn on 15 September 2026.',
   'Hold homelands separate. Utopia sits at one bed per three people and sizes nothing but itself.',
   'Close with the count. Eleven communities have beds and none has said it has enough, and one household count would turn all of this into a measurement.',
 ];

@@ -15,6 +15,7 @@ import {
   WHAT_WOULD_CHANGE_IT,
   WHEN_A_FUNDER_ASKS,
   WHY_NOT_A_NUMBER,
+  ASKS_WITHDRAWN,
   onRung,
   rungRank,
 } from './who-has-asked';
@@ -53,10 +54,11 @@ describe('the ladder is made of acts', () => {
     expect(rungRank('money-named')).toBeLessThan(rungRank('organisation-asked'));
   });
 
-  it('the weakest rung holds the largest figure, which is the point of ordering by act', () => {
+  it('only the paid rung holds records since 15 September 2026', () => {
+    for (const a of ASKS) expect(a.rung).toBe('paid');
     const biggest = [...ASKS].sort((a, b) => b.beds - a.beds)[0];
-    expect(biggest.rung).toBe('raised');
-    expect(biggest.beds).toBe(500);
+    expect(biggest.who).toBe('Centrecorp Foundation');
+    expect(ASKS_WITHDRAWN).toContain('withdrawn');
   });
 });
 
@@ -99,23 +101,19 @@ describe('the record', () => {
     }
   });
 
-  it('two figures have no recorded scope, and both are flagged rather than tidied', () => {
-    expect(ASKS_WITH_NO_SCOPE).toHaveLength(2);
-    expect(ASKS_WITH_NO_SCOPE.map((a) => a.place).sort()).toEqual([
-      'Groote Archipelago',
-      'Palm Island',
-    ]);
+  it('no record lacks a scope, because every unscoped ask was withdrawn', () => {
+    expect(ASKS_WITH_NO_SCOPE).toHaveLength(0);
   });
 
-  it('Maningrida appears twice as a buyer and once as an asker', () => {
+  it('Maningrida appears twice as a buyer and never as an asker', () => {
     const man = ASKS.filter((a) => a.place.startsWith('Maningrida'));
     expect(man.filter((a) => a.rung === 'paid')).toHaveLength(2);
-    expect(man.filter((a) => a.rung === 'organisation-asked')).toHaveLength(1);
+    expect(man.filter((a) => a.rung !== 'paid')).toHaveLength(0);
   });
 
-  it('six organisations have asked without paying, across seven places', () => {
-    expect(ORGANISATIONS_THAT_HAVE_ASKED).toBe(6);
-    expect(PLACES_THAT_HAVE_ASKED).toBeGreaterThanOrEqual(6);
+  it('no organisation is counted as having asked without paying', () => {
+    expect(ORGANISATIONS_THAT_HAVE_ASKED).toBe(0);
+    expect(PLACES_THAT_HAVE_ASKED).toBe(4);
   });
 });
 
@@ -126,7 +124,7 @@ describe('how to say it', () => {
   });
 
   it('names the organisation over the number', () => {
-    expect(HOW_TO_TALK.some((r) => r.includes('Name the organisation and let the number follow'))).toBe(true);
+    expect(HOW_TO_TALK.some((r) => r.includes('Name the organisation and let the act follow'))).toBe(true);
   });
 
   it('the funder answer leads with money and ends with what we cannot give them', () => {

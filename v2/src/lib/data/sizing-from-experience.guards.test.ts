@@ -55,16 +55,15 @@ describe('the observation', () => {
     expect(WORKED_THROUGH_RATE_LOW).toBeLessThan(WORKED_THROUGH_RATE_HIGH);
   });
 
-  it('the planning range is one per 12 to one per 21, a spread under two', () => {
-    expect(PLANNING_LOW).toBeCloseTo(12.3, 1);
-    expect(PLANNING_HIGH).toBeCloseTo(20.5, 1);
-    expect(PLANNING_HIGH / PLANNING_LOW).toBeLessThan(2);
+  it('the planning range is one per 16 to one per 43, delivered beds only', () => {
+    expect(PLANNING_LOW).toBeCloseTo(15.9, 1);
+    expect(PLANNING_HIGH).toBeCloseTo(43.4, 1);
+    expect(PLANNING_HIGH / PLANNING_LOW).toBeLessThan(3);
   });
 
-  it('it is much tighter than the recorded asks alone, which span 43', () => {
-    const raw = COMPARATORS.map((c) => c.people / c.askedNext);
-    expect(Math.max(...raw) / Math.min(...raw)).toBeGreaterThan(10);
-    expect(PLANNING_HIGH / PLANNING_LOW).toBeLessThan(2);
+  it('no ask figure survives: askedNext is zero everywhere since 15 September 2026', () => {
+    for (const c of COMPARATORS) expect(c.askedNext).toBe(0);
+    expect(SRC).toContain('withdrawn');
   });
 
   it('Utopia is held out and is four times denser than any town', () => {
@@ -74,19 +73,18 @@ describe('the observation', () => {
     for (const t of TOWNS) expect(peoplePerBedDelivered(t)).toBeGreaterThan(u * 4);
   });
 
-  it('every town has asked for more, so the range is a floor', () => {
-    for (const c of COMPARATORS) expect(c.askedNext).toBeGreaterThan(0);
+  it('with asks withdrawn, the with-ask rate equals the delivered rate', () => {
     for (const c of COMPARATORS) {
-      expect(peoplePerBedWithAsk(c)).toBeLessThan(peoplePerBedDelivered(c));
+      expect(peoplePerBedWithAsk(c)).toBeCloseTo(peoplePerBedDelivered(c), 6);
     }
   });
 });
 
 describe('using it', () => {
-  it('sizes a 2,000-person town at roughly 100 to 160 beds', () => {
+  it('sizes a 2,000-person town at roughly 46 to 126 beds, delivered rates only', () => {
     const s = sizeTown(2_000);
-    expect(s.low).toBe(98);
-    expect(s.high).toBe(163);
+    expect(s.low).toBe(46);
+    expect(s.high).toBe(126);
     expect(s.workedThrough).toBe(125);
     expect(s.low).toBeLessThan(s.workedThrough);
     expect(s.workedThrough).toBeLessThan(s.high);

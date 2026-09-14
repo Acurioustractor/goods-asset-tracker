@@ -7,6 +7,7 @@ import {
   denominatorFor,
   needsARule,
   settingSize,
+  DENOMINATORS_WITHDRAWN,
   type Denominator,
 } from './place-denominator';
 import { COMMUNITY_NEED } from './community-need';
@@ -77,7 +78,7 @@ describe('the four measures sit beside each other', () => {
     const s = settingSize('tennant-creek', null);
     expect(s.peopleApprox).toBe(2549);
     expect(s.dwellingsNeedingBedrooms).toBe(90);
-    expect(s.askedBeds).toBe(20);
+    expect(s.askedBeds).toBeNull();
     expect(s.deliveredBeds).toBeNull();
   });
 
@@ -86,7 +87,7 @@ describe('the four measures sit beside each other', () => {
     expect(s.askedBeds).toBeNull();
     const d = denominatorFor('utopia');
     expect(d?.kind).toBe('unset');
-    expect(d?.kind === 'unset' && d.unattributedFigure).toBe(150);
+    expect(d?.kind === 'unset' && d.unattributedFigure).toBeUndefined();
   });
 
   it('returns nulls rather than zeros for a place with no ABS row', () => {
@@ -109,28 +110,32 @@ describe('the only total is what communities actually asked for', () => {
       (a, d) => a + (d.kind === 'unset' ? (d.unattributedFigure ?? 0) : 0),
       0,
     );
-    expect(unattributed).toBeGreaterThan(0);
-    expect(askedTotal().beds).toBeLessThan(unattributed);
+    expect(unattributed).toBe(0);
+    expect(askedTotal().beds).toBe(0);
   });
 
-  it('as at 10 September 2026, one place has a rule and the number is 20', () => {
-    // This will change, and it should change by someone bringing back a name, not by an edit here.
-    expect(askedTotal()).toEqual({ beds: 20, places: 1 });
+  it('as at 15 September 2026, no place has a rule and the total is zero', () => {
+    // This changes only when a local person brings back a count, never by an edit here.
+    expect(askedTotal()).toEqual({ beds: 0, places: 0 });
+    expect(DENOMINATORS_WITHDRAWN).toContain('withdrawn');
   });
 });
 
 describe('the work list is the conversations still to have', () => {
-  it('lists every place carrying a figure nobody owns', () => {
-    const list = needsARule().map((d) => d.communityId).sort();
-    expect(list).toEqual(['groote-archipelago', 'maningrida', 'palm-island', 'utopia']);
+  it('carries no figure nobody owns, because they were withdrawn', () => {
+    expect(needsARule()).toHaveLength(0);
   });
 
-  it('keeps Groote out of any total and says why', () => {
-    const groote = PLACE_DENOMINATORS.find(
-      (d): d is Extract<Denominator, { kind: 'unset' }> =>
-        d.communityId === 'groote-archipelago' && d.kind === 'unset',
-    );
-    expect(groote?.reason).toMatch(/enquiry/i);
-    expect(groote?.unattributedFigure).toBe(500);
+  it('every row says the figure was withdrawn and what replaces it', () => {
+    for (const d of PLACE_DENOMINATORS) {
+      expect(d.kind).toBe('unset');
+      if (d.kind === 'unset') {
+        expect(d.reason).toMatch(/withdrawn/);
+        expect(d.reason).toMatch(/local person counts/);
+        expect(d.unattributedFigure).toBeUndefined();
+      }
+    }
+    const groote = PLACE_DENOMINATORS.find((d) => d.communityId === 'groote-archipelago') as Extract<Denominator, { kind: 'unset' }>;
+    expect(groote.unattributedFigure).toBeUndefined();
   });
 });

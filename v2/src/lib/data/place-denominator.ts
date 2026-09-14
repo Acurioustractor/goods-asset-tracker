@@ -87,47 +87,38 @@ export type Denominator = DenominatorSet | DenominatorUnset;
  * Recorded denominators. A row moves from unset to set when somebody brings back a rule and a
  * name, never when a number alone turns up.
  *
- * As at 10 September 2026 exactly one row is SET. That is the finding, not a gap in this file.
+ * As at 15 September 2026 no row is SET: Ben withdrew every recorded figure as unfounded.
  */
 export const PLACE_DENOMINATORS: readonly Denominator[] = [
   {
-    kind: 'set',
+    kind: 'unset',
     communityId: 'tennant-creek',
-    beds: 20,
-    rule: 'Dianne Stokes offered to self-fund twenty beds.',
-    setBy: 'Dianne Stokes, Elder, Tennant Creek',
-    source: 'Community demand record, cited on the 9 September raise review',
+    reason: 'The twenty beds once recorded here were withdrawn by Ben on 15 September 2026 as unfounded. No figure is held until a local person counts.',
   },
   {
     kind: 'unset',
     communityId: 'utopia',
-    reason:
-      'The demand record carries 150 and the rule "beds for every child", which is a real rule. ' +
-      'Nobody is recorded as having said it, so the attribution is missing rather than the rule. ' +
-      'One conversation closes this.',
-    unattributedFigure: 150,
+    reason: 'The 150 once recorded here was withdrawn by Ben on 15 September 2026 as unfounded. No figure is held until a local person counts.',
   },
   {
     kind: 'unset',
     communityId: 'maningrida',
-    reason: 'A figure of 65 sits in the demand record with no rule and no person recorded.',
-    unattributedFigure: 65,
+    reason: 'The 65 once recorded here was withdrawn by Ben on 15 September 2026 as unfounded. No figure is held until a local person counts.',
   },
   {
     kind: 'unset',
     communityId: 'palm-island',
-    reason: 'A figure of 40 sits in the demand record with no rule and no person recorded.',
-    unattributedFigure: 40,
+    reason: 'The 40 once recorded here was withdrawn by Ben on 15 September 2026 as unfounded. No figure is held until a local person counts.',
   },
   {
     kind: 'unset',
     communityId: 'groote-archipelago',
-    reason:
-      'A figure of 500 came through the WHSAC procurement pathway and is an enquiry rather than a ' +
-      'community-set number. It is larger than a year of production and belongs in no total.',
-    unattributedFigure: 500,
+    reason: 'The 500 once recorded here was withdrawn by Ben on 15 September 2026 as unfounded. No figure is held until a local person counts.',
   },
 ];
+
+export const DENOMINATORS_WITHDRAWN =
+  'Ben, 15 September 2026: every recorded bed figure was withdrawn as unfounded. No row is SET and no row carries an unattributed figure. The next SET row comes from a household count done by a paid local person.';
 
 export function denominatorFor(communityId: string): Denominator | undefined {
   return PLACE_DENOMINATORS.find((d) => d.communityId === communityId);

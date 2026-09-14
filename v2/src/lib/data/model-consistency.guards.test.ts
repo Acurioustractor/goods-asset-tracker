@@ -154,23 +154,11 @@ describe('the communities', () => {
     }
   });
 
-  it("the sizing module's asked-next is the sum of that place's unpaid asks", () => {
-    for (const c of sizing.COMPARATORS) {
-      const sum = asked.ASKS.filter(
-        (a) => a.rung !== 'paid' && (a.place === c.place || a.place.startsWith(c.place)),
-      ).reduce((n, a) => n + a.beds, 0);
-      expect(sum, c.place).toBe(c.askedNext);
-    }
-  });
-
-  it('the need module holds one figure a place, so Tennant Creek is short by Norman Frank', () => {
-    const tcNeed = needOrder.FIGURES.find((f) => f.communityId === 'tennant-creek')!;
-    const tcSize = sizing.COMPARATORS.find((c) => c.place === 'Tennant Creek')!;
-    expect(tcNeed.beds).toBe(20);
-    expect(tcSize.askedNext).toBe(23);
-    expect(tcSize.askedNext - tcNeed.beds).toBe(3);
-    const norman = asked.ASKS.find((a) => a.who === 'Norman Frank')!;
-    expect(norman.beds).toBe(3);
+  it('no module holds an ask figure since 15 September 2026', () => {
+    for (const c of sizing.COMPARATORS) expect(c.askedNext, c.place).toBe(0);
+    expect(asked.ASKS.filter((a) => a.rung !== 'paid')).toHaveLength(0);
+    expect(needOrder.FIGURES).toHaveLength(0);
+    expect(asked.ASKS_WITHDRAWN).toContain('withdrawn');
   });
 
   it('every other place agrees between the two modules', () => {

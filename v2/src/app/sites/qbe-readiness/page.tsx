@@ -306,7 +306,7 @@ const ROWS: Row[] = [
     from: '6',
     to: '8',
     priority: false,
-    line: 'Demand is proven (an Elder self-funding 20 beds, 107 beds via Centrecorp). The ask is the first signed dollar.',
+    line: 'Four organisations have paid for 320 beds. The ask is the first signed dollar.',
   },
   {
     number: 11,

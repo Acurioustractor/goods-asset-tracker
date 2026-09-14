@@ -157,8 +157,8 @@ export const aboriginalTrusts: OutreachTarget[] = [
   {
     id: 'groote-trust', name: 'Groote Eylandt Aboriginal Trust', category: 'aboriginal_trust', status: 'prospect', priority: 'critical',
     states: ['NT'], amountSignal: 'High annual giving', instrument: 'grant',
-    nextAction: 'Use Groote demand signal (500 mattresses + 300 washers) for place-based production ask.',
-    grantRelevance: 'Direct community trust. Largest single demand signal in pipeline.',
+    nextAction: 'Place-based production ask once a local count exists. The 500-mattress figure was withdrawn on 15 September 2026.',
+    grantRelevance: 'Direct community trust.',
   },
   {
     id: 'central-aus-trust', name: 'Central Australian Aboriginal Charitable Trust', category: 'aboriginal_trust', status: 'prospect', priority: 'high',
@@ -273,9 +273,9 @@ export const procurementBuyers: OutreachTarget[] = [
   {
     id: 'whsac-groote', name: 'WHSAC (Groote Archipelago)', category: 'procurement_buyer', status: 'prospect', priority: 'critical',
     states: ['NT'], contactName: 'Simone Grimmond',
-    amountSignal: '500 mattresses + 300 washing machines (~$1.7M)',
-    nextAction: 'Combine with Groote Eylandt Aboriginal Trust for place-based production ask.',
-    grantRelevance: 'Flagship demand signal. Every grant should mention this.',
+    amountSignal: 'No figure. The 500 beds and 300 washers once recorded here were withdrawn on 15 September 2026.',
+    nextAction: 'Combine with Groote Eylandt Aboriginal Trust for a place-based production ask once a local count exists.',
+    grantRelevance: 'A procurement conversation, not a demand signal.',
   },
   {
     id: 'outback-stores', name: 'Outback Stores Pty Ltd', category: 'procurement_buyer', status: 'prospect', priority: 'high',

@@ -45,11 +45,9 @@ describe('the sequence is a judgement, walked in a fixed order', () => {
     expect(r.nextThing?.kind).toBe('a conversation');
   });
 
-  it('moves to the plastic once a bed number is set', () => {
-    // Tennant Creek is the only place with a rule and a name behind its number.
+  it('no place has a set bed number since the 15 September withdrawal, so the denominator comes first everywhere', () => {
     const r = placeRead('tennant-creek');
-    expect(r.nextThing?.axis).toBe('feedstock');
-    expect(r.nextThing?.kind).toBe('a measurement');
+    expect(r.nextThing?.axis).toBe('denominator');
   });
 
   it('treats the setting as context and never as a gate', () => {

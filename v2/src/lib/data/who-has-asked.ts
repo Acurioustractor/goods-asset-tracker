@@ -19,17 +19,20 @@
  * degrade when a funder pushes on them, and they are the only part of our demand record that is
  * evidence, where everything else is impression.
  *
- * The bed numbers stay, attached to the act that produced them, and are never totalled across
- * acts. A total across rungs is the 778, and the 778 is not a quantity of anything.
+ * Bed numbers below the paid rung are never printed: the ones once held here were withdrawn by Ben
+ * on 15 September 2026 as unfounded. A total across rungs was the 778, which is not a quantity of anything.
  */
 
 export const READ_AT = '2026-09-11';
 
 export const THE_POSITION =
-  'We do not have a demand measure and we do not claim one. Four organisations have paid us for 320 beds. Five communities have asked for more, and we can name who asked in every case. The bed numbers attached to those asks are impressions of populations nobody has counted, and we print them as impressions.';
+  'We do not have a demand measure and we do not claim one. Four organisations have paid us for 320 beds, and that paid trade is the only demand record we hold. Every other bed figure anyone has given us was an impression of a population nobody has counted, and on 15 September 2026 Ben withdrew them all.';
+
+export const ASKS_WITHDRAWN =
+  'Ben, 15 September 2026: the recorded bed-demand figures (Utopia 150, Maningrida 65, Palm Island 40, Tennant Creek 20 and 3, Groote 500) were withdrawn as unfounded. None is printed anywhere. The paid trade is the only demand record we hold.';
 
 export const WHY_NOT_A_NUMBER =
-  'A demand total would have to add a figure scoped to one Elder\'s wallet to a figure scoped to the children of an outstation to a figure nobody wrote a scope for at all. Adding them produces 778, which is not a quantity of anything and cannot be defended by anybody who is asked a second question about it.';
+  'A demand total would have to add figures scoped to different populations that nobody counted. The 778 that once sat on the record was such a sum; it is not a quantity of anything and it was never totalled on purpose. The figures under it were withdrawn on 15 September 2026.';
 
 // ---------------------------------------------------------------------------
 // The ladder. Each rung is an act, and each act has a test anyone can apply.
@@ -139,66 +142,6 @@ export const ASKS: readonly Ask[] = [
     act: 'Settled INV-0283. The second Maningrida organisation to buy from us.',
     when: '2025-11',
   },
-  {
-    who: 'Dianne Stokes',
-    capacity: 'Warumungu Elder',
-    place: 'Tennant Creek',
-    rung: 'money-named',
-    beds: 20,
-    scope: 'What she offered to fund herself.',
-    act: 'Offered to self-fund twenty beds. She also named the Pakkimjalki Kari washing machines in Warumungu, so this is a long relationship.',
-    when: '2026-09',
-  },
-  {
-    who: 'Utopia Homelands',
-    capacity: 'Homelands organisation',
-    place: 'Utopia',
-    rung: 'organisation-asked',
-    beds: 150,
-    scope: 'Children across the homelands. The child population has never been stated.',
-    act: 'Asked, with a rule: beds for every child. Nobody is recorded as having said it.',
-    when: '2026',
-  },
-  {
-    who: 'Homeland Schools Co.',
-    capacity: 'Schools operator',
-    place: 'Maningrida homelands',
-    rung: 'organisation-asked',
-    beds: 65,
-    scope: 'Children in the homelands, which are outstations and a fraction of the Maningrida area.',
-    act: 'Asked in a meeting, with a rule: beds for kids in the homelands. The same organisation has since paid for forty.',
-    when: '2026',
-  },
-  {
-    who: 'Palm Island Community Company',
-    capacity: 'Community-controlled service company',
-    place: 'Palm Island',
-    rung: 'organisation-asked',
-    beds: 40,
-    scope: null,
-    act: 'A figure arrived in a partner update. No rule, no scope and no name behind it.',
-    when: '2026',
-  },
-  {
-    who: 'Norman Frank',
-    capacity: 'Community member',
-    place: 'Tennant Creek',
-    rung: 'person-asked',
-    beds: 3,
-    scope: 'Three beds for himself.',
-    act: 'Asked for three beds in the maroon colourway.',
-    when: '2026',
-  },
-  {
-    who: 'Simone Grimmond, WHSAC',
-    capacity: 'Procurement pathway',
-    place: 'Groote Archipelago',
-    rung: 'raised',
-    beds: 500,
-    scope: null,
-    act: 'Came up in one meeting, alongside 300 washing machines. Logged as exploring. Nothing quoted, no order discussed.',
-    when: '2026',
-  },
 ];
 
 export function onRung(r: Rung): readonly Ask[] {
@@ -209,6 +152,7 @@ export function onRung(r: Rung): readonly Ask[] {
 export const BEDS_PAID_FOR = onRung('paid').reduce((n, a) => n + a.beds, 0);
 export const PAID_ORGANISATIONS = new Set(onRung('paid').map((a) => a.who)).size;
 
+/** Zero since 15 September 2026. The asks were withdrawn; only the paid rung holds records. */
 export const ORGANISATIONS_THAT_HAVE_ASKED = new Set(
   ASKS.filter((a) => a.rung !== 'paid').map((a) => a.who),
 ).size;
@@ -226,15 +170,15 @@ export const NO_TOTAL_ACROSS_RUNGS =
 
 export const HOW_TO_TALK: readonly string[] = [
   'Lead with what was paid. Four organisations, 320 beds, $273,966 settled. It is the only rung nobody can push back on, and it proves the price at the same time.',
-  'Name the organisation and let the number follow it. "Palm Island Community Company asked" is evidence. "Palm Island needs 40 beds" is an impression wearing a number.',
+  'Name the organisation and let the act follow it. A settled invoice is evidence. A bed count somebody once mentioned is an impression wearing a number, and we no longer print one.',
   'When a number is used, it stays attached to the act that produced it and to what it covers. A figure with no scope is printed with its scope missing.',
   'Never state a demand total. If asked for one, say we do not have a demand measure, say why, and offer the household count instead.',
-  'Two organisations in Maningrida have bought from us and one of them asked for more. Repeat buyers in one place say more about demand than any count.',
-  'The largest number on the record came up once in a meeting and is the weakest thing we hold. Print its status beside it or leave it out.',
+  'Two organisations in Maningrida have bought from us. Repeat buyers in one place say more about demand than any count.',
+  'If somebody offers a bed number from a meeting, write down who said it and what it covers, and do not print it until a local person has counted.',
 ];
 
 export const WHEN_A_FUNDER_ASKS =
-  'A funder asking about demand is asking whether anyone will take these beds. The answer is that four organisations have already paid for 320, including a research centre that paid for a hundred up front before one was made, and a schools operator in Maningrida that bought the first full run off our own press. Five more communities have asked and we can name who asked in each. What we cannot give them is a number for how many beds Australia needs, and we say so.';
+  'A funder asking about demand is asking whether anyone will take these beds. The answer is that four organisations have already paid for 320, including a research centre that paid for a hundred up front before one was made, and a schools operator in Maningrida that bought the first full run off our own press. What we cannot give them is a number for how many beds Australia needs, and we say so.';
 
 export const WHAT_WOULD_CHANGE_IT =
   'One community counting properly. Four questions per household, done by a local person who is paid for it: how many sleep here, how many have a bed, how many are on the floor, who would use a new bed first. Until then every need figure we hold is an impression, including the good ones.';

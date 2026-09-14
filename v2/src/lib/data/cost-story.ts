@@ -326,9 +326,9 @@ export const COST_CHAPTERS: CostChapter[] = [
       },
       {
         label: 'Demand on the table',
-        value: '1,000+ beds + 300 washers',
+        value: 'no demand number',
         solidity: 'target',
-        means: 'Centrecorp ~237, NPY 200–350, WHSAC/Groote ~500 beds + 300 washers (~$1.7M), Homeland Schools 65, PICC 141.',
+        means: 'Withdrawn by Ben on 15 September 2026: the recorded bed-demand figures were unfounded. Four organisations have paid for 320 beds; that is the only demand record held.',
         watchOut: 'Conversations and LOIs, not signed orders — say so. LOIs due 31 Aug for Stage 2.',
         source: 'Capital Pipeline Master DB',
       },

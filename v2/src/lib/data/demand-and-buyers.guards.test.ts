@@ -16,6 +16,7 @@ import {
   PRICE_LADDER,
   RECORDED_DEMAND,
   RECORDED_DEMAND_BEDS,
+  DEMAND_WITHDRAWN,
   TRADE_CLAIM_CEILING,
   WRITTEN_OFF_NET_AUD,
   ABSORBED_NOT_BILLED_AUD,
@@ -148,50 +149,25 @@ describe('what a buyer still owes is on the same page as what they paid', () => 
   });
 });
 
-describe('recorded demand is held apart from trade, and graded honestly', () => {
-  it('sums to what the records hold, and excludes the 107 already paid so nothing is counted twice', () => {
-    // This used to assert 778, which pinned a retired total into the guard suite: the ruling of
-    // 11 September is that the records are scoped to different populations and must never be summed
-    // and stated. The sum is still checked for internal consistency, never against a fixed figure.
-    expect(RECORDED_DEMAND_BEDS).toBe(RECORDED_DEMAND.reduce((n, d) => n + d.beds, 0));
-    expect(RECORDED_DEMAND.some((d) => d.beds === 107)).toBe(false);
+describe('recorded demand was withdrawn on 15 September 2026', () => {
+  it('holds no records and says why', () => {
+    expect(RECORDED_DEMAND).toHaveLength(0);
+    expect(RECORDED_DEMAND_BEDS).toBe(0);
+    expect(DEMAND_WITH_MONEY_NAMED).toHaveLength(0);
+    expect(OWNED_DEMAND_BEDS).toBe(0);
+    expect(CONVERSATION_BEDS).toBe(0);
+    expect(needsSecondSource()).toHaveLength(0);
+    expect(DEMAND_WITHDRAWN).toContain('withdrawn');
+    expect(DEMAND_WITHDRAWN).toContain('15 September 2026');
   });
 
-  it('never states the total in any prose this module exports', () => {
-    const total = String(RECORDED_DEMAND_BEDS);
+  it('never prints the withdrawn figures in prose', () => {
     const prose = readFileSync(join(process.cwd(), 'src/lib/data/demand-and-buyers.ts'), 'utf8')
       .split('\n')
-      .filter((l) => /'|`/.test(l))
+      .filter((l) => /'|`/.test(l) && !/withdrawn|WITHDRAWN/.test(l))
       .join('\n');
-    expect(prose.includes(`${total} more`)).toBe(false);
-    expect(prose.includes(`${total} beds are`)).toBe(false);
-  });
-
-  it('has exactly one record with a person and a way of paying', () => {
-    expect(DEMAND_WITH_MONEY_NAMED).toHaveLength(1);
-    expect(DEMAND_WITH_MONEY_NAMED[0].askedBy).toBe('Dianne Stokes');
-    expect(OWNED_DEMAND_BEDS).toBe(20);
-    expect(CONVERSATION_BEDS).toBe(RECORDED_DEMAND_BEDS - OWNED_DEMAND_BEDS);
-  });
-
-  it('grades everything else unverified and says why', () => {
-    for (const d of needsSecondSource()) expect(d.note && d.note.length > 40).toBe(true);
-    expect(needsSecondSource()).toHaveLength(RECORDED_DEMAND.length - 1);
-  });
-
-  it('carries the Groote status, because 500 beds is most of the total', () => {
-    const g = RECORDED_DEMAND[0];
-    expect(g.place).toBe('Groote Archipelago');
-    expect(g.beds).toBe(500);
-    expect(g.note).toMatch(/exploring/);
-    expect(g.beds / RECORDED_DEMAND_BEDS).toBeGreaterThan(0.6);
-  });
-
-  it('says who asked and what rule they gave, for every record', () => {
-    for (const d of RECORDED_DEMAND) {
-      expect(d.askedBy.length).toBeGreaterThan(3);
-      expect(d.rule.length).toBeGreaterThan(4);
-      expect(d.heardVia.length).toBeGreaterThan(4);
+    for (const bad of ['500 beds', '150 beds', '65 beds', 'self-fund', 'beds for every child']) {
+      expect(prose.includes(bad), bad).toBe(false);
     }
   });
 });

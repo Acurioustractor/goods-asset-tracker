@@ -69,7 +69,7 @@ export const QUESTIONS: Record<Question, { ask: string; answeredBy: string; used
 };
 
 export const NEVER_ADD_THEM =
-  'A need figure and an order figure are different objects and must never be summed into one demand total. The 778 beds on the record today is such a sum, and it is the number that has to be split.';
+  'A need figure and an order figure are different objects and must never be summed into one demand total. The 778 beds that once sat on the record was such a sum; the figures under it were withdrawn on 15 September 2026.';
 
 // ---------------------------------------------------------------------------
 // The record as it stands, with each figure classified
@@ -104,60 +104,16 @@ export function isComparable(f: PlaceFigure): boolean {
   return f.scope !== 'not-stated' && f.rule !== null && f.setBy !== null;
 }
 
-export const FIGURES: readonly PlaceFigure[] = [
-  {
-    communityId: 'utopia',
-    name: 'Utopia',
-    peopleApprox: 444,
-    occupiedDwellings: 82,
-    needOneOrMoreBedrooms: 34,
-    beds: 150,
-    answers: 'need',
-    scope: 'a-part-of-it',
-    scopeNote: 'Children across the Utopia homelands. Close to the ABS area but not the same as it, and the child population has never been stated.',
-    rule: 'Beds for every child.',
-    setBy: null,
-  },
-  {
-    communityId: 'maningrida',
-    name: 'Maningrida',
-    peopleApprox: 2_518,
-    occupiedDwellings: 394,
-    needOneOrMoreBedrooms: 237,
-    beds: 65,
-    answers: 'need',
-    scope: 'a-part-of-it',
-    scopeNote: 'Children in the Maningrida homelands, which are outstations and a small fraction of the 2,518 people the ABS counts in the Maningrida area. This is why dividing 65 by 2,518 is meaningless.',
-    rule: 'Beds for kids in the Maningrida homelands.',
-    setBy: null,
-  },
-  {
-    communityId: 'palm-island',
-    name: 'Palm Island',
-    peopleApprox: 2_097,
-    occupiedDwellings: 491,
-    needOneOrMoreBedrooms: 134,
-    beds: 40,
-    answers: 'order',
-    scope: 'not-stated',
-    scopeNote: 'A figure from a partner update. Nobody recorded who it covers, what rule produced it or who said it.',
-    rule: null,
-    setBy: null,
-  },
-  {
-    communityId: 'tennant-creek',
-    name: 'Tennant Creek',
-    peopleApprox: 2_549,
-    occupiedDwellings: 864,
-    needOneOrMoreBedrooms: 90,
-    beds: 20,
-    answers: 'order',
-    scope: 'one-household',
-    scopeNote: 'What one Elder offered to self-fund. It covers her own reach and was never a statement about Tennant Creek.',
-    rule: 'Dianne Stokes offered to self-fund twenty beds.',
-    setBy: 'Dianne Stokes, Elder, Tennant Creek',
-  },
-];
+/**
+ * WITHDRAWN. Ben, 15 September 2026: the four recorded figures (Utopia 150, Maningrida 65, Palm
+ * Island 40, Tennant Creek 20) were made up and are withdrawn. The list is empty on purpose. The
+ * classification above stays so that the next real figure, from a local count, is recorded with all
+ * three fields.
+ */
+export const FIGURES: readonly PlaceFigure[] = [];
+
+export const FIGURES_WITHDRAWN =
+  'Ben, 15 September 2026: the recorded bed-demand figures (Utopia 150, Maningrida 65, Palm Island 40, Tennant Creek 20 and 3, Groote 500) were withdrawn as unfounded. None is printed anywhere. The paid trade is the only demand record we hold.';
 
 export function peoplePerBed(f: PlaceFigure): number {
   return f.peopleApprox / f.beds;
@@ -175,7 +131,7 @@ export const COMPARABLE = FIGURES.filter(isComparable);
 export const SCOPE_NOT_STATED = FIGURES.filter((f) => f.scope === 'not-stated');
 
 function spread(xs: number[]): number {
-  return Math.max(...xs) / Math.min(...xs);
+  return xs.length ? Math.max(...xs) / Math.min(...xs) : 0;
 }
 
 /**
@@ -189,7 +145,7 @@ export const NO_RATE_EXISTS =
   'There is no beds-per-person rate to recover, and the near miss is instructive. Divided by dwellings needing an extra bedroom, three of the four figures land between 0.22 and 0.30 and look like a rate. They are not. Maningrida\'s 65 is about the homelands and is being divided by the whole 2,518-person ABS area, so it lands low for a reason that has nothing to do with demand. Fixing the denominator is not possible, because nobody recorded what the numerator covered.';
 
 export const THE_FINDING =
-  'Of four recorded figures, one states its scope well enough to compare, one is scoped to a part of a community nobody has measured, one is scoped to a part that is much smaller than the area it is filed under, and one states no scope at all. Only Tennant Creek carries a question, a scope and an owner together, and it is twenty beds offered by one person.';
+  'The four figures once recorded here failed every test in this module: none stated its scope well enough to compare, and on 15 September 2026 Ben withdrew them as unfounded. No community has been counted. The record is empty until one is.';
 
 export const THE_RATE_IS_NOT_A_FORMULA =
   'Nothing in this module may be used to generate a bed number for a community we have not spoken to. That is the move place-denominator.ts exists to prevent, and the apparent 0.26 rate is exactly the kind of thing that would be used to do it.';
@@ -240,14 +196,14 @@ export const COUNT_IS_THE_MISSING_PIECE =
 
 export const RULES: readonly string[] = [
   'Every recorded figure carries three fields: which question it answers, which population it covers, and who set it. Two out of three is not a demand record.',
-  'Need and order are never summed. The 778 on the record today is such a sum.',
+  'Need and order are never summed. The 778 that once sat on the record was such a sum.',
   'A figure is compared to another figure only when both state their scope. Today none of them can be.',
   'Siting stays on readiness: beds already there, the organisation has asked, somebody local wants to run it, people there have cleared quotes. Demand size sites nothing.',
-  'An order figure needs a rule and a name before it enters a funding application. Four of the five figures on record still have neither.',
+  'An order figure needs a rule and a name before it enters a funding application. None on record today has either, because the record is empty.',
   'A need figure that nobody counted is an impression, and it is written as one.',
 ];
 
 export const HOW_MANY_RULES = RULES.length;
 
 export const WHAT_TO_DO_NEXT =
-  'Two things, and neither is a spreadsheet. Ask Utopia and Maningrida who set their figure and how many children it covers, which turns two impressions into two scoped numbers. Then run the household count on Palm Island, where there are already 131 beds, seven cleared voices and three organisations that have asked, and where the recorded 40 has no rule, no scope and no name behind it.';
+  'One thing, and it is not a spreadsheet. Run the household count on Palm Island, where there are already 131 beds, seven cleared voices and three organisations that have asked for a facility. A local person, paid, four questions a house. That count is the first demand figure Goods will ever print.';

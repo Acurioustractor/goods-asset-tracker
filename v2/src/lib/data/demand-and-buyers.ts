@@ -255,68 +255,15 @@ export const DEMAND_CLAIM_CEILING =
  *
  * Ordered largest first, which is also weakest first.
  */
-export const RECORDED_DEMAND: readonly DemandRecord[] = [
-  {
-    place: 'Groote Archipelago',
-    beds: 500,
-    askedBy: 'Simone Grimmond, WHSAC',
-    rule: 'None stated. The same conversation named 300 washing machines alongside the beds.',
-    heardVia: 'Meeting',
-    moneyNamed: false,
-    grade: 'unverified',
-    note: 'Logged as exploring, not requested, and it is 64% of all recorded demand on its own. Nothing has been quoted and no order has been discussed. It carries the whole number up and should never be shown without its status.',
-  },
-  {
-    place: 'Utopia',
-    beds: 150,
-    askedBy: 'Utopia Homelands',
-    rule: 'Beds for every child.',
-    heardVia: 'Compendium',
-    moneyNamed: false,
-    grade: 'unverified',
-    note: 'A real rule set by the community and the clearest denominator anyone has given us. No person is attached to the record and no funder has been named against it. Utopia is also the one place with a paid delivery behind it, 167 beds across two Centrecorp invoices.',
-  },
-  {
-    place: 'Maningrida',
-    beds: 65,
-    askedBy: 'Homeland Schools Co.',
-    rule: 'Beds for kids in the Maningrida homelands.',
-    heardVia: 'Meeting',
-    moneyNamed: false,
-    grade: 'unverified',
-    note: 'The only demand record whose counterparty has already paid Goods for beds, 40 of them at list price on INV-0303. That is a payment history, not a commitment to buy again.',
-  },
-  {
-    place: 'Palm Island',
-    beds: 40,
-    askedBy: 'Palm Island Community Company',
-    rule: 'None stated.',
-    heardVia: 'Partner update',
-    moneyNamed: false,
-    grade: 'unverified',
-    note: 'Palm Island is one of the two working choices for a QBE plant, so this record will be read as demand for that plant. It is a figure from a partner update and nothing more.',
-  },
-  {
-    place: 'Tennant Creek',
-    beds: 20,
-    askedBy: 'Dianne Stokes',
-    rule: 'Offered to self-fund the twenty.',
-    heardVia: 'Community voice',
-    moneyNamed: true,
-    grade: 'verified',
-    note: 'The only record on this list with a person and a way of paying. Dianne Stokes named the Pakkimjalki Kari washing machines in Warumungu, so this is a long relationship rather than a first conversation. No invoice has been raised and no date has been set.',
-  },
-  {
-    place: 'Tennant Creek',
-    beds: 3,
-    askedBy: 'Norman Frank',
-    rule: 'Three beds, in the maroon colourway.',
-    heardVia: 'Community voice',
-    moneyNamed: false,
-    grade: 'unverified',
-    note: 'The smallest record and the most specific. A named person who has chosen a colour is further along than five hundred beds with no status.',
-  },
-];
+/**
+ * WITHDRAWN. Ben, 15 September 2026: the recorded bed-demand figures were made up and are withdrawn
+ * from every surface, copy and code. The list is empty on purpose and stays empty until a community
+ * has counted, household by household. The `community_demand` table is no longer read.
+ */
+export const RECORDED_DEMAND: readonly DemandRecord[] = [];
+
+export const DEMAND_WITHDRAWN =
+  'Ben, 15 September 2026: the recorded bed-demand figures (Utopia 150, Maningrida 65, Palm Island 40, Tennant Creek 20 and 3, Groote 500) were withdrawn as unfounded. None is printed anywhere. The paid trade is the only demand record we hold.';
 
 /** Beds invoiced and paid for, across the four buyers. */
 export const BEDS_PAID_FOR = PAID_TRADE.reduce((n, i) => n + i.beds, 0);
@@ -379,8 +326,7 @@ export const TRADE_SOURCE = XERO;
 
 /** Where the demand record can be checked. */
 export const DEMAND_SOURCE =
-  'Table `community_demand`, Goods v2 Supabase project cwsyhpiuepvdjtxaozwf. Read 11 September 2026. ' +
-  'Seven rows, of which one is the allocated and paid Centrecorp order and is excluded here.';
+  'None. The `community_demand` table (Goods v2 Supabase project cwsyhpiuepvdjtxaozwf) was read on 11 September 2026 and its figures were withdrawn by Ben on 15 September 2026 as unfounded. No demand record is held.';
 
 /** Records still needing a second source before they may be printed without their status. */
 export function needsSecondSource(): readonly DemandRecord[] {
