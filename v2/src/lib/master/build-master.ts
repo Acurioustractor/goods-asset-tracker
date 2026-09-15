@@ -452,8 +452,9 @@ function screenNumbers(): string {
       <h2>The raise</h2>
       <table class="kv">
         <tr><td>QBE</td><td class="n">${aud(RAISE.qbeAud)} · ${esc(RAISE.qbeFor)}</td></tr>
-        <tr><td>Other philanthropy</td><td class="n">${audRange(RAISE.otherLowAud, RAISE.otherHighAud)} · ${esc(RAISE.otherFor)}</td></tr>
-        <tr><td>Total</td><td class="n">${audRange(RAISE.totalLowAud, RAISE.totalHighAud)}</td></tr>
+        <tr><td>Beds</td><td class="n">${aud(RAISE.bedsShownAud)} · ${esc(RAISE.bedsFor)}</td></tr>
+        <tr><td>SEFA loan</td><td class="n">${aud(RAISE.loanAud)} · ${esc(RAISE.loanFor)}</td></tr>
+        <tr><td>Asked</td><td class="n">${aud(RAISE.totalShownAud)}</td></tr>
         <tr><td>Signed</td><td class="n">${aud(RAISE.signedAud)}</td></tr>
         <tr><td>First stock</td><td class="n">${RAISE.bedsYearOne} beds, ${RAISE.bedsEach} to each of ${RAISE.communityOrganisations} community organisations</td></tr>
       </table>
@@ -463,11 +464,12 @@ function screenNumbers(): string {
       <table class="kv">
         <tr><td>Sells for</td><td class="n">${aud(BED.priceAud)}</td></tr>
         <tr><td>Costs to make</td><td class="n">${aud(BED.makeAud)}${BED.makeIsProvisional ? ' provisional' : ''}</td></tr>
-        <tr><td>Stays with the community organisation</td><td class="n">${aud(BED.staysAud)}, freight paid by the buyer</td></tr>
-        <tr><td>Freight, shown beside the bed</td><td class="n">${aud(BED.freightAud)}</td></tr>
+        <tr><td>Freight, absorbed by Goods</td><td class="n">${aud(BED.freightAud)}</td></tr>
+        <tr><td>Facilitation, absorbed by Goods</td><td class="n">${aud(BED.facilitationAud)}</td></tr>
+        <tr><td>Reaches the organisation</td><td class="n">${aud(BED.contributionAud)}</td></tr>
         <tr><td>Paid making inside the make cost</td><td class="n">$80, about two hours, modelled</td></tr>
       </table>
-      <p class="small">A price model, never cost-plus. The make cost is provisional on the flat-pack route until the bought leg-panel yield is confirmed. Never print a gap that includes running costs, and never divide the organisation by beds alone. ${esc(FACILITATION_RULING)} What that does to the ${aud(BED.staysAud)} on a first-stock bed is for the finance model to recompute.</p>
+      <p class="small">A price model, never cost-plus. The make cost is provisional on the flat-pack route until the bought leg-panel yield is confirmed. Never print a gap that includes running costs, and never divide the organisation by beds alone. ${esc(FACILITATION_RULING)} When a community organisation sells a bed, the customer pays it directly and the money stays there.</p>
     </div>
   </div>
   <div class="grid g2">

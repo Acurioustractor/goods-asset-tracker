@@ -94,7 +94,7 @@ describe('the words on the page', () => {
   });
   it('keep the request at two facilities and a planning allowance, not a quote', () => {
     expect(REQUEST.headline).toContain('two proposed production facilities');
-    expect(REQUEST.note).toMatch(/planning allowance, not a quote/);
+    expect(REQUEST.note).toMatch(/planning allowance and no site has been quoted/);
   });
   it('keep buyer receipts with the community organisation and never with Goods', () => {
     const receipts = MONEY_LANES.find((l) => l.id === 'receipts');
@@ -121,7 +121,8 @@ describe('the questions', () => {
     }
   });
   it('never carry the retired model or a name the public page may not print', () => {
-    const retired = /witta|thousand beds|1,000 beds|five communities|pool of 200|200 beds per|\$750,000|on quote|nine years|co-design/i;
+    // $750,000 left this list on 15 September 2026: with the loan inside the ask it is the ruled total again.
+    const retired = /witta|thousand beds|1,000 beds|five communities|pool of 200|200 beds per|on quote|nine years|co-design/i;
     const names = /Tim Fairfax|Snow Foundation|Minderoo|Dusseldorp|Brian M\. Davis|SEFA|White Box|Katie Norman|Jay Boolkin/i;
     for (const q of QUESTIONS) {
       expect(`${q.question} ${q.answer}`, q.id).not.toMatch(retired);
