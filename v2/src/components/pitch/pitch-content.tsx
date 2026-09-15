@@ -1,6 +1,3 @@
-import { existsSync } from 'node:fs';
-import { readFile } from 'node:fs/promises';
-import path from 'node:path';
 import Image from 'next/image';
 import Link from 'next/link';
 import { unstable_rethrow } from 'next/navigation';
@@ -34,6 +31,8 @@ import { MAKE_STEPS, PROBLEM_FIGURES, STORY_UPDATED, chapter } from '@/lib/data/
 import { getStoryteller } from '@/lib/data/storyteller-registry';
 import { renderPlacematSvg, type PanelId } from '@/lib/model/placemat-svg';
 import { liveCommunityLocations } from '@/lib/field-notes/resolve-live-map';
+import { AUSTRALIA_OUTLINE } from '@/lib/data/australia-outline';
+import { HARVEST_CONTAINER_DRAWING } from '@/lib/model/harvest-container-drawing';
 import { GatesTimeline } from '@/components/pitch/gates-timeline';
 import { ModelLoopBuild } from '@/components/pitch/model-loop-build';
 import { MoneyLanesView } from '@/components/pitch/money-lanes-view';
@@ -206,24 +205,6 @@ function voiceFor(name: string) {
   return quote ? { person, quote } : null;
 }
 
-async function australiaOutline(): Promise<string> {
-  try {
-    const svg = await readFile(path.join(process.cwd(), 'public', 'images', 'maps', 'australia-outline.svg'), 'utf8');
-    return svg.match(/<g[^>]*>([\s\S]*)<\/g>/)?.[1] ?? svg.match(/<path[^>]*\/>/)?.[0] ?? '';
-  } catch {
-    return '';
-  }
-}
-
-async function containerDrawing(): Promise<string | undefined> {
-  try {
-    const svg = await readFile(path.join(process.cwd(), 'public', 'images', 'model', 'harvest-container.svg'), 'utf8');
-    return svg.match(/<svg[^>]*>([\s\S]*)<\/svg>/)?.[1];
-  } catch {
-    return undefined;
-  }
-}
-
 
 /** Two photographs, the floor and the bed. Used where the pitch first says beds get people off the floor, and again before the close. */
 function OffTheFloor() {
@@ -265,11 +246,13 @@ export async function PitchContent({ variant }: { variant: PitchVariant }) {
   const hero = canonVideo('video-hero');
   const facilityWalk = DESCRIPT_VIDEOS.find((v) => v.viewId === 'j6PXvhBP62i' && v.cleared) ?? DESCRIPT_VIDEOS.find((v) => v.viewId === 'haRZJbfJadJ' && v.cleared);
   const timelapse = DESCRIPT_VIDEOS.find((v) => v.viewId === 'Xtrc5ZYsym6' && v.cleared);
-  const [locations, drawing, outline, utopiaRun] = await Promise.all([liveCommunityLocations(), containerDrawing(), australiaOutline(), utopiaChapter()]);
-  // Ben's Ninga Mia drone shot, converted for the web into public/video/kalgoorlie/. Until the
-  // file is there the chapter falls back to the photograph.
-  const droneFile = path.join(process.cwd(), 'public', 'video', 'kalgoorlie', 'ninga-mia-drone.mp4');
-  const droneFilm = existsSync(droneFile) ? { src: '/video/kalgoorlie/ninga-mia-drone.mp4', poster: '/video/kalgoorlie/ninga-mia-drone-poster.jpg' } : null;
+  // Assets under public/ are served, never read from disk here: next.config.ts keeps public/ out of the
+  // server bundle, so a read that works locally finds nothing on Vercel. The outline and the drawing are
+  // code modules; the drone cut is committed at public/video/kalgoorlie/ (pitch-assets.guards.test.ts).
+  const [locations, utopiaRun] = await Promise.all([liveCommunityLocations(), utopiaChapter()]);
+  const drawing = HARVEST_CONTAINER_DRAWING;
+  const outline = AUSTRALIA_OUTLINE;
+  const droneFilm = { src: '/video/kalgoorlie/ninga-mia-drone.mp4', poster: '/video/kalgoorlie/ninga-mia-drone-poster.jpg' };
 
   const photoHrefs = Object.fromEntries(PANELS.map((p) => [p.id, p.photo.src])) as Partial<Record<PanelId, string>>;
   const placematSvg = renderPlacematSvg({ inlineDrawing: drawing, photoHrefs, logoHrefs: { goods: LOGOS.goods.src, qbe: LOGOS.qbe.src }, standalone: false });
@@ -993,6 +976,18 @@ export async function PitchContent({ variant }: { variant: PitchVariant }) {
         </dl>
         <p className="mt-14 text-sm text-[#5d574c]">Words {STORY_UPDATED}. Figures from the register and canon. The drawings on this page are the deck&apos;s drawings, rendered from the same files.</p>
       </Section>
+
+      {/* The last thing on the page: a way to reach the team. */}
+      <section aria-label="Contact Goods on Country" className="bg-goods-ink px-6 py-14 text-goods-cream md:px-10 md:py-16 lg:px-14">
+        <div className="mx-auto flex max-w-6xl flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-terracotta-light">Goods on Country</p>
+            <p className="mt-2 font-display text-3xl font-semibold leading-tight md:text-4xl">Talk to the team.</p>
+            <p className="mt-2 max-w-xl text-goods-cream/80">A question about the model, beds for your organisation, or backing the work. The message comes straight to us.</p>
+          </div>
+          <ContactGoodsButton variant="solid" label="Send a message" subject="Partnership Inquiry" />
+        </div>
+      </section>
     </main>
   );
 }
