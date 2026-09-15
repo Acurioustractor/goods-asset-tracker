@@ -174,9 +174,9 @@ export interface EntityDoor {
   what: string;
 }
 // One entity (ruling X, Ben 28 August 2026): the products, IP, contracts, making and capital sit
-// with Goods on Country, a registered business name of The Butterfly Movement Ltd. Ben, 16 September
+// with Goods on Country Ltd, formerly The Butterfly Movement Ltd. Ben, 16 September
 // 2026: orders can still be invoiced by A Curious Tractor Pty Ltd for now, so the order door names it.
-const GOC = `${ORGANISATION.legalName}, trading as ${ORGANISATION.tradingName}`;
+const GOC = ORGANISATION.legalName;
 export const ENTITY_DOORS: EntityDoor[] = [
   {
     verb: 'Donate',

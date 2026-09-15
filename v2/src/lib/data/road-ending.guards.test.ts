@@ -349,7 +349,7 @@ describe('road-ending: the letter is the ask', () => {
 
   it('gifts never fund the company and orders never count as match', () => {
     const give = DOORS.find((d) => d.verb === 'Give')!;
-    expect(give.entity).toContain('Butterfly');
+    expect(give.entity).toContain('Goods on Country Ltd');
     expect(give.does).toContain('never buys a share');
     const order = DOORS.find((d) => d.verb === 'Buy beds')!;
     expect(order.match).toContain('Outside the QBE match');
