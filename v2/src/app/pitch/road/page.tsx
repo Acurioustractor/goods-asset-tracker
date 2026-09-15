@@ -791,7 +791,7 @@ export default function RoadPitchPage() {
             ))}
           </div>
           <p className="mt-7 max-w-5xl text-lg leading-8 text-goods-sub">
-            {MONEY_NEVER.title}. {MONEY_NEVER.line} Nothing is signed yet.
+            No money goes back to Goods on Country. {MONEY_NEVER.line} Nothing is signed yet.
           </p>
         </div>
       </section>

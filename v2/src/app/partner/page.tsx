@@ -4,8 +4,7 @@ import Link from 'next/link';
 import { PartnershipForm } from '@/components/partnership-form';
 import { WasherInterestForm } from '@/components/washer-interest-form';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
-import { MONEY_LANES, MONEY_NEVER } from '@/lib/data/money-lanes';
-import { BED, RAISE, dollars } from '@/lib/data/model-placemat';
+import { BED, dollars } from '@/lib/data/model-placemat';
 import { ORGANISATION } from '@/lib/data/organisation';
 import { BUYERS, CLOSE } from '@/lib/data/pitch-chapters';
 import { PAID_BEDS, QUESTIONS } from '@/lib/data/story-questions';
@@ -13,15 +12,14 @@ import { PAID_BEDS, QUESTIONS } from '@/lib/data/story-questions';
 /**
  * Back the work: the public page for funders, givers and lenders. Rebuilt 16 September 2026 (Ben:
  * "go") because the old page still said A Curious Tractor sells the beds as "Goods." and asked for
- * $300,000 a year. Every figure now comes from the raise (model-placemat.ts RAISE and BED) and the
- * money lanes (money-lanes.ts), the same sources as /pitch; the entity and giving lines come from
- * organisation.ts; the answers come from story-questions.ts. Funders who have not signed are not
- * named here, the same rule as the /pitch overview door.
+ * $300,000 a year. Ben, 16 September 2026: the raise itself (the three money lanes) is a specific
+ * process and lives on /pitch, so this page stays general: ways to back the work, who you are dealing
+ * with (organisation.ts), backers and the answers (story-questions.ts).
  */
 
 export const metadata: Metadata = {
   title: 'Back the work',
-  description: `Help buy the first ${RAISE.bedsYearOne} beds for community organisations, build two community production facilities, and carry the first year. ${dollars(RAISE.totalShownAud)} asked, nothing signed.`,
+  description: 'Grants, gifts, loans and orders that put beds in community hands and bring the making closer to community.',
   alternates: { canonical: 'https://www.goodsoncountry.com/partner' },
   openGraph: {
     title: 'Back the work · Goods on Country',
@@ -36,9 +34,6 @@ const ALLOWED_TYPES = ['capital-interest', 'sponsor', 'washer-interest', 'licens
 const GUTTER = 'px-6 md:px-10 lg:px-14';
 const BUTTON = 'inline-flex min-h-12 items-center rounded-full px-7 text-base font-semibold transition-colors';
 
-// The overview door never names a funder who has not signed (pitch-content.tsx blanks `named`).
-const LANES = MONEY_LANES.map((lane) => ({ ...lane, kicker: lane.id === 'beds' ? 'Philanthropy' : lane.source.kicker }));
-
 const WAYS = [
   {
     title: 'A grant',
@@ -50,7 +45,7 @@ const WAYS = [
   },
   {
     title: 'A loan',
-    line: `${RAISE.loanFor.split(',')[0]}, repaid from the beds ${ORGANISATION.tradingName} sells. Never from a community organisation’s sales.`,
+    line: `Repaid from the beds ${ORGANISATION.tradingName} sells, on terms agreed with you. Never from a community organisation's sales.`,
   },
   {
     title: 'An order',
@@ -79,10 +74,6 @@ const ANSWERS = [
   {
     q: 'Can I make a tax-deductible gift?',
     a: `${ORGANISATION.charityLine} ${ORGANISATION.giving}`,
-  },
-  {
-    q: 'What is the ask?',
-    a: `${dollars(RAISE.totalShownAud)}: ${dollars(RAISE.bedsShownAud)} of beds from philanthropy, ${RAISE.bedsEach} for each of ${RAISE.communityOrganisations} community organisations; ${dollars(RAISE.qbeAud)} from QBE for two community production facilities; and a ${dollars(RAISE.loanAud)} loan for the first-year running cost. Nothing is signed.`,
   },
   ...(['money-back', 'why-not-give', 'what-goods-keeps'] as const)
     .map(question)
@@ -122,7 +113,7 @@ export default async function PartnerPage({ searchParams }: { searchParams: Prom
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-terracotta">Back the work</p>
             <h1 className="mt-4 font-display text-5xl font-semibold leading-[1.02] tracking-[-0.01em] text-balance md:text-6xl">{CLOSE.invitation}</h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-[#4a4741] md:text-xl">
-              We are asking for {dollars(RAISE.totalShownAud)}, in three parts: beds for community organisations, two community production facilities, and the first year of running Goods on Country. Nothing is signed yet.
+              Grants buy beds for community organisations and help build community production facilities. Gifts and loans carry the work in between. The pitch sets out the current raise, and what is signed.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#start" className={`${BUTTON} bg-goods-terracotta text-white hover:bg-[#a94f35]`}>Start a conversation</a>
@@ -141,8 +132,8 @@ export default async function PartnerPage({ searchParams }: { searchParams: Prom
           {[
             { v: CANONICAL_ASSETS.bedsDeployed.toLocaleString(), l: `beds delivered to ${CANONICAL_ASSETS.communitiesServed} communities` },
             { v: String(PAID_BEDS), l: 'beds bought and paid for by four organisations' },
-            { v: dollars(RAISE.totalShownAud), l: 'asked, across three parts' },
-            { v: dollars(RAISE.signedAud), l: 'signed today' },
+            { v: String(CANONICAL_ASSETS.washersInCommunity), l: 'washing machines in community' },
+            { v: `${CANONICAL_ASSETS.plasticKg.toLocaleString()}kg`, l: 'plastic diverted' },
           ].map((s) => (
             <div key={s.l}>
               <dt className="sr-only">{s.l}</dt>
@@ -151,36 +142,6 @@ export default async function PartnerPage({ searchParams }: { searchParams: Prom
             </div>
           ))}
         </dl>
-      </section>
-
-      {/* Where the money goes */}
-      <section id="the-money" className={`scroll-mt-20 bg-goods-ink ${GUTTER} py-16 text-goods-cream md:py-24`}>
-        <div className="mx-auto max-w-6xl">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-terracotta-light">Where the money goes</p>
-          <h2 className="mt-3 max-w-3xl font-display text-4xl font-semibold leading-tight text-balance md:text-5xl">Three parts, and each one ends up somewhere you can see.</h2>
-          <ol className="mt-10 grid gap-5 md:grid-cols-3">
-            {LANES.map((lane) => (
-              <li key={lane.id} className="flex flex-col rounded-[22px] border border-white/15 bg-white/[0.04] p-6 md:p-7">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-terracotta-light">{lane.kicker}</p>
-                <p className="mt-2 font-display text-5xl font-semibold">{dollars(lane.source.amount)}</p>
-                <div className="mt-6 border-t border-white/15 pt-4">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-cream/55">{lane.buys.kicker}</p>
-                  <p className="mt-1 font-display text-xl font-semibold">{lane.buys.title}</p>
-                  <p className="mt-1 text-[15px] leading-relaxed text-goods-cream/75">{lane.buys.line}</p>
-                </div>
-                <div className="mt-5 border-t border-white/15 pt-4">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-cream/55">{lane.endsUp.kicker}</p>
-                  <p className="mt-1 font-display text-xl font-semibold">{lane.endsUp.title}</p>
-                  <p className="mt-1 text-[15px] leading-relaxed text-goods-cream/75">{lane.endsUp.line}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-          <p className="mt-8 max-w-3xl text-lg leading-relaxed text-goods-cream/85">
-            <span className="font-semibold text-goods-cream">{MONEY_NEVER.title}.</span> {MONEY_NEVER.line}
-          </p>
-          <Link href="/pitch" className={`${BUTTON} mt-8 bg-goods-cream text-goods-ink hover:bg-white`}>See the whole model</Link>
-        </div>
       </section>
 
       {/* Ways to back it */}
