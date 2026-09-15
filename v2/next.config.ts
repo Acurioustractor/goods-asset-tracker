@@ -24,6 +24,9 @@ const nextConfig: NextConfig = {
     '/*': ['public/**/*'],
   },
   images: {
+    // Dev only: skip sharp so a media-heavy page (the pitch has ~60 pictures) does not queue
+    // behind one optimiser thread. Production still optimises every image.
+    unoptimized: process.env.NODE_ENV === 'development',
     // Next 16 enforces a fixed quality allowlist; default is just [75].
     // The field-notes before-after split uses quality:90 for sharper
     // landscape framing — keep both available.
@@ -33,6 +36,12 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'cdn.prod.website-files.com',
         pathname: '/**',
+      },
+      {
+        // A Curious Tractor's photo bucket (Gold.Phone, JusticeHub project images).
+        protocol: 'https',
+        hostname: 'tednluwflfhxyucgwigh.supabase.co',
+        pathname: '/storage/v1/object/public/**',
       },
       {
         protocol: 'https',

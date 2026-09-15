@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import { PitchContent } from '@/components/pitch/pitch-content';
 
+// Rendered on each request: the Utopia chapter reads Empathy Ledger live (no-store), like /field-notes.
+export const dynamic = 'force-dynamic';
+
 /**
  * THE PITCH, overview door. Same story and the same model as /pitch/qbe, without the QBE
  * request or the per-funder raise breakdown. For anyone this pitch is shown to who isn't

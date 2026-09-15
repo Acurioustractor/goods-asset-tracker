@@ -362,7 +362,7 @@ export const deckSlides: DeckSlide[] = [
     photo: '/images/process/heat-press-full.jpg',
     photoAlt: 'The heat press, the one move at the heart of the making',
     place: 'The farm, and Maningrida, Arnhem Land NT',
-    voiceNames: ['Shayne Bloomfield', 'Fred Campbell'],
+    voiceNames: ['Tehmineh Mason'],
     chips: [
       { label: 'Delivered · the run', value: '40 Stretch Beds' },
       { label: 'Verified · the supply', value: `${supplyValue('nt-plastics-recycled')} of plastic recycled in the NT in a year; one bed's legs take about 20kg` },

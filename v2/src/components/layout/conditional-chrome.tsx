@@ -43,8 +43,13 @@ const IMPACT_BANNER_HIDDEN_PREFIXES = [
   '/bed',
 ];
 
+// Exact routes only. The two pitch doors carry their own chapter menu (Ben, 15 Sep 2026); other
+// /pitch/* pages keep the site chrome.
+const STANDALONE_EXACT_PATHS = ['/pitch', '/pitch/qbe'];
+
 function isStandalone(pathname: string | null) {
   if (!pathname) return false;
+  if (STANDALONE_EXACT_PATHS.includes(pathname)) return true;
   if (STANDALONE_PATH_PREFIXES.some((p) => pathname === p || pathname.startsWith(`${p}/`))) return true;
   return STANDALONE_PATH_PATTERNS.some((re) => re.test(pathname));
 }

@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import { PitchContent } from '@/components/pitch/pitch-content';
 
+// Rendered on each request: the Utopia chapter reads Empathy Ledger live (no-store), like /field-notes.
+export const dynamic = 'force-dynamic';
+
 /**
  * THE PITCH, for QBE. Gated in src/proxy.ts (shared investor-cockpit password). Full version:
  * the QBE request, the raise broken out by funder, and every real unit's price. See

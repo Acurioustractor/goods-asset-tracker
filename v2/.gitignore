@@ -48,3 +48,7 @@ public/video/*.mov
 
 # wiki sync: committed tracked copy (Vercel root is v2/, can't see sibling wiki/).
 # Kept in sync with wiki/articles/ by `npm run wiki:sync` (runs automatically on prebuild).
+
+# drone masters dropped in for cutting; only the small loops ship
+public/video/**/DJI_*.MP4
+public/video/**/DJI_*.mp4

@@ -84,10 +84,11 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
     turns: '3, 5 → scale',
     quotes: [
       {
-        text: 'It means something that really makes me happy. Every time I go away, it\'s like it\'s calling me. Come back home.',
+        // Ben, 15 Sep 2026: print only the first sentence; the rest of the transcript stays in the note.
+        text: 'It means something that really makes me happy.',
         context: 'On Pakkimjalki Kari, the washing machine she named',
         status: 'primary',
-        note: 'Strongest product quote in the corpus.',
+        note: 'Strongest product quote in the corpus. Full transcript: "It means something that really makes me happy. Every time I go away, it\'s like it\'s calling me. Come back home."',
       },
       {
         text: 'I\'m a traditional owner and where I live is in the boundary of my totem. I\'ve been here almost 24 years without shelter. The only thing I had was my car.',
