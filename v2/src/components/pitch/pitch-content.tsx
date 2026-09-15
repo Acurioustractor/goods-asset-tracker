@@ -12,6 +12,8 @@ import { StickyFilm } from '@/components/pitch/sticky-film';
 import { TenYearSlider } from '@/components/pitch/ten-year-slider';
 import { VideoModal } from '@/components/pitch/video-modal';
 import { Voice, leadVoice } from '@/components/pitch/voice';
+import { MadeWithCommunity } from '@/components/pitch/made-with-community';
+import { CONTRIBUTIONS_CONFIRMED, CONTRIBUTION_COLOUR, STAGES as COMMUNITY_STAGES, communityVoices, measuresForVisual } from '@/lib/data/community-contributions';
 import { ProductVideo } from '@/components/shop/product-video';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import { canonVideo } from '@/lib/data/canon-videos';
@@ -976,6 +978,12 @@ export async function PitchContent({ variant }: { variant: PitchVariant }) {
         </dl>
         <p className="mt-14 text-sm text-[#5d574c]">Words {STORY_UPDATED}. Figures from the register and canon. The drawings on this page are the deck&apos;s drawings, rendered from the same files.</p>
       </Section>
+
+      {/* The surprise at the very bottom, outside the chapter rail. Draft until
+          CONTRIBUTIONS_CONFIRMED: never rendered in a production build. */}
+      {(CONTRIBUTIONS_CONFIRMED || process.env.NODE_ENV !== 'production') && (
+        <MadeWithCommunity voices={communityVoices()} stages={COMMUNITY_STAGES} measures={measuresForVisual()} colours={CONTRIBUTION_COLOUR} draft={!CONTRIBUTIONS_CONFIRMED} />
+      )}
 
       {/* The last thing on the page: a way to reach the team. */}
       <section aria-label="Contact Goods on Country" className="bg-goods-ink px-6 py-14 text-goods-cream md:px-10 md:py-16 lg:px-14">
