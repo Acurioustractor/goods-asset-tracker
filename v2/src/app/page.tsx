@@ -5,6 +5,7 @@ import { ContactGoodsButton } from '@/components/contact/contact-goods-button';
 import { brand } from '@/lib/data/content';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import { BUYERS } from '@/lib/data/pitch-chapters';
+import { CASE_STUDIES } from '@/lib/data/case-studies';
 import { PLASTIC_KG_PER_BED, STRETCH_BED } from '@/lib/data/products';
 import { tripStories } from '@/lib/data/trip-stories';
 import { videoUrl } from '@/lib/data/media';
@@ -102,6 +103,8 @@ export default async function HomePage() {
     mobile: videoUrl('hero-mobile.mp4'),
     poster: '/video/hero-poster.jpg',
   });
+
+  const maningrida = CASE_STUDIES.find((c) => c.slug === 'maningrida');
 
   const published = tripStories.filter((s) => s.published);
   const latest = published[published.length - 1];
@@ -278,7 +281,29 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 6. One voice. */}
+      {/* 6. Maningrida: the drone rises off forty beds in a circle at Gamardi. The loop is cut from the
+          case-study film (canon slot video-maningrida-case-study, 3:38 to 3:41), slowed to half speed
+          and played forward then back, so it never jumps. */}
+      {maningrida && (
+        <section className="relative isolate flex min-h-[85svh] items-end overflow-hidden bg-goods-ink">
+          <video className="absolute inset-0 -z-10 hidden h-full w-full object-cover md:block" src="/video/maningrida/gamardi-drone.mp4" poster="/video/maningrida/gamardi-drone-poster.jpg" autoPlay muted loop playsInline aria-hidden="true" />
+          <video className="absolute inset-0 -z-10 h-full w-full object-cover md:hidden" src="/video/maningrida/gamardi-drone-mobile.mp4" poster="/video/maningrida/gamardi-drone-poster.jpg" autoPlay muted loop playsInline aria-hidden="true" />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/85 via-black/40 to-black/5" />
+          <div className={`w-full ${GUTTER} pb-14 pt-40 md:pb-20`}>
+            <div className="mx-auto max-w-6xl">
+              <Kicker dark>Case study · Gamardi, {maningrida.country}</Kicker>
+              <h2 className="mt-4 max-w-3xl font-display text-4xl font-semibold leading-[1.05] text-white text-balance md:text-6xl">{maningrida.title}.</h2>
+              <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/85">{maningrida.standfirst}</p>
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <Link href={`/case-studies/${maningrida.slug}`} className={`${BUTTON} bg-goods-cream text-goods-ink hover:bg-white`}>See the case study</Link>
+                <span className="text-sm text-white/70">With {maningrida.partner.name}</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 7. One voice. */}
       <section className={`${GUTTER} py-16 md:py-24`}>
         <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
           <div className="grid grid-cols-5 gap-3">
@@ -318,7 +343,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 7. The latest field note. */}
+      {/* 8. The latest field note. */}
       {latest && (
         <section className={`border-t ${RULE} bg-[#FDF8F3] ${GUTTER} py-16 md:py-24`}>
           <div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-2 lg:gap-16">
@@ -335,14 +360,13 @@ export default async function HomePage() {
               <p className={`mt-4 text-[16px] leading-relaxed ${BODY}`}>{latest.summary}</p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link href={`/field-notes/${latest.slug}`} className={`${BUTTON} bg-goods-ink text-goods-cream hover:bg-goods-terracotta`}>Read the story</Link>
-                <Link href="/field-notes" className={`${BUTTON} border border-goods-ink/25 hover:border-goods-ink`}>All field notes</Link>
               </div>
             </div>
           </div>
         </section>
       )}
 
-      {/* 8. Back to the doors. */}
+      {/* 9. Back to the doors. */}
       <section className={`bg-goods-ink ${GUTTER} py-16 text-goods-cream md:py-24`}>
         <div className="mx-auto max-w-6xl">
           <h2 className="max-w-3xl font-display text-4xl font-semibold leading-tight text-balance md:text-5xl">Beds for your community, or your organisation.</h2>
