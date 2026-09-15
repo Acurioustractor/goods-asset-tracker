@@ -95,6 +95,17 @@ export default function WhoWeArePage() {
               </li>
             ))}
           </ul>
+          <div className="mt-10 grid gap-6 rounded-[24px] border border-dashed border-goods-terracotta/60 bg-white p-7 md:grid-cols-[0.8fr_1.2fr] md:p-9">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-terracotta">Who the charity answers to</p>
+              <p className="mt-3 font-display text-3xl font-semibold leading-tight">{ORGANISATION.membership.title}.</p>
+            </div>
+            <div className="space-y-3 text-[16px] leading-relaxed text-[#4a4741]">
+              <p>{ORGANISATION.membership.line}</p>
+              <p>{ORGANISATION.membership.why}</p>
+              <p className="font-semibold text-goods-ink">{ORGANISATION.membership.state}</p>
+            </div>
+          </div>
         </div>
       </section>
 

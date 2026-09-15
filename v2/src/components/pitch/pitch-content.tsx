@@ -524,6 +524,7 @@ export async function PitchContent({ variant }: { variant: PitchVariant }) {
           </ul>
         </div>
         <p className="mt-10 max-w-3xl text-lg leading-relaxed text-[#4a4741]">{GOVERNANCE.communities}</p>
+        <p className="mt-4 max-w-3xl text-lg leading-relaxed text-[#4a4741]">{GOVERNANCE.members}</p>
       </Section>
 
       {/* S06 · The road here */}

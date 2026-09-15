@@ -6,6 +6,7 @@
  * Deck copy: deliverables/deck-master (Notion 3d1ebcf981cf817598d8f15ee4f89c32), 15 Sep 14:50.
  */
 
+import { ORGANISATION } from './organisation';
 import { CANONICAL_ASSETS } from './asset-canonical';
 import { BED, RAISE, aud, dollars } from './model-placemat';
 import { PLASTIC_KG_PER_BED } from './products';
@@ -242,6 +243,7 @@ export const GOVERNANCE = {
     { name: 'Benjamin Knight', role: 'Co-founder, story and technology', line: 'Evidence, storytelling, systems and partnerships.' },
   ],
   communities: 'Community organisations lead their enterprises and decide how to use their sales income. Goods is developing shared support in production, buying, design, training, finance and communications.',
+  members: `${ORGANISATION.membership.line} ${ORGANISATION.membership.why} ${ORGANISATION.membership.state}`,
 } as const;
 
 /** S12. Who buys from a community organisation. */
@@ -301,6 +303,7 @@ export function everyChapterString(): string[] {
   for (const p of ORIGIN.projects) out.push(p.title, p.tagline, p.description, p.gives);
   for (const l of ORIGIN.loop) out.push(l.title, l.line);
   for (const s of GOVERNANCE.staff) out.push(s.role, s.line);
+  out.push(GOVERNANCE.members);
   for (const r of BUYERS.rows) out.push(r.line);
   out.push(REQUEST_DETAIL.headline, REQUEST_DETAIL.status, REQUEST_DETAIL.scope, REQUEST_DETAIL.explainer, REQUEST_DETAIL.buys.line, REQUEST_DETAIL.notBuys.line, REQUEST_DETAIL.where.line, REQUEST_DETAIL.footer);
   return out;

@@ -60,6 +60,10 @@ const ANSWERS = [
     a: 'Your organisation holds its beds, its sales money and its decisions. Goods on Country holds the design and the making today. Moving the making into community is a pathway, and a production facility is the step after beds when a community asks.',
   },
   {
+    q: 'Would our organisation have a say in Goods on Country?',
+    a: `${ORGANISATION.membership.line} ${ORGANISATION.membership.why} ${ORGANISATION.membership.state}`,
+  },
+  {
     q: 'Is the money there now?',
     a: `We are raising it for the first ${RAISE.bedsYearOne} beds, ${RAISE.bedsEach} for each of ${RAISE.communityOrganisations} community organisations. Nothing is signed yet, so tell us early.`,
   },

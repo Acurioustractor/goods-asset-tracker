@@ -5,26 +5,6 @@
   "defaultModel": "whole-model",
   "models": [
     {
-      "id": "structure-and-funding-flow",
-      "name": "Structure and funding flow, QBE Q3",
-      "version": "1.0",
-      "status": "review",
-      "approval": null,
-      "use": "One A4 page for QBE Stage 2 Q3: the applicant in the centre, its related entities inside a dashed line, funders above, Oonchiumpa and the REAL offer to the right, community organisations and customers below. Money lines in sage, goods in terracotta, dashed means not yet.",
-      "file": "v2/structure-and-funding-flow.svg",
-      "png": "v2/structure-and-funding-flow.png",
-      "pdf": "deliverables/qbe-stage2/Goods-structure-and-funding-flow.pdf",
-      "sha256": "5fb253732815b5bd506f948dfd615dd9c765d44fe264397d599caac20f410f71",
-      "sourceDate": "2026-09-15",
-      "renderedAt": "2026-09-15",
-      "source": "v2/src/lib/data/structure-diagram.ts",
-      "renderer": "v2/src/lib/model/structure-svg.ts",
-      "sheet": {
-        "w": 1123,
-        "h": 794
-      }
-    },
-    {
       "id": "money-flows",
       "name": "Money flows, deck S15",
       "version": "1.0",
@@ -58,6 +38,26 @@
       "renderedAt": "2026-09-15",
       "source": "v2/src/lib/data/model-placemat.ts",
       "renderer": "v2/src/lib/model/placemat-svg.ts"
+    },
+    {
+      "id": "structure-and-funding-flow",
+      "name": "Structure and funding flow, QBE Q3",
+      "version": "1.0",
+      "status": "review",
+      "approval": null,
+      "use": "One A4 page for QBE Stage 2 Q3: the applicant in the centre, its related entities inside a dashed line, funders above, Oonchiumpa and the REAL offer to the right, community organisations and customers below. Money lines in sage, goods in terracotta, dashed means not yet.",
+      "file": "v2/structure-and-funding-flow.svg",
+      "png": "v2/structure-and-funding-flow.png",
+      "pdf": "deliverables/qbe-stage2/Goods-structure-and-funding-flow.pdf",
+      "sha256": "e167806e46ddebfb482f58d667ed3d85876660ffdc1bd526e1a391f12dae02b5",
+      "sourceDate": "2026-09-15",
+      "renderedAt": "2026-09-15",
+      "source": "v2/src/lib/data/structure-diagram.ts",
+      "renderer": "v2/src/lib/model/structure-svg.ts",
+      "sheet": {
+        "w": 1123,
+        "h": 794
+      }
     }
   ]
 }

@@ -29,5 +29,18 @@ export const ORGANISATION = {
   seller: 'Orders are invoiced by A Curious Tractor Pty Ltd for now.',
   partners: 'Community partners are independent organisations with their own boards. They decide how beds are used, who is paid and what is made next.',
   giving: 'Talk to us before you give and we will confirm how your gift is receipted.',
+  /**
+   * Ben, 16 September 2026: a working idea. The community organisations that take Goods beds or run
+   * a production facility become members of the charity. Nothing has changed in the constitution or
+   * the register of members, so every surface writes it as proposed (organisation.guards.test.ts).
+   */
+  membership: {
+    status: 'proposed',
+    title: 'Members of the charity, proposed',
+    line: 'We are working on making the community organisations that take Goods beds or run a production facility members of Goods on Country, the charity.',
+    why: "Members vote at the charity's general meetings, so the organisations holding the beds and running the facilities would have a say in how Goods on Country is run.",
+    state: 'It is a working idea, being worked through with the board. Nothing has changed yet.',
+    short: 'Proposed: members of the charity.',
+  },
   email: 'hi@act.place',
 } as const;

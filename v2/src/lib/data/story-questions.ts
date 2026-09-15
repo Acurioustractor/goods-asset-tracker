@@ -10,6 +10,7 @@
  * is named, and buyers are named by type.
  */
 
+import { ORGANISATION } from './organisation';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import { BED, RAISE, aud, audRange } from '@/lib/data/model-placemat';
 import type { ChapterId } from '@/lib/data/story-spine';
@@ -119,7 +120,7 @@ export const QUESTIONS: readonly StoryQuestion[] = [
   {
     id: 'who-owns-making',
     question: 'Who ends up owning the making?',
-    answer: 'Ownership is a pathway, and we say so on every page. Goods on Country holds the products, the IP, the contracts and the equipment today, under an Indigenous-led board. Each community organisation holds its beds, its sales money and its decisions. Six months into a site we ask four questions: who holds the keys, who runs the payroll, who invoices the buyer, and whether the community decides what gets made and who works on it. Partial counts as no. Until the answers are yes, we do not claim ownership has moved.',
+    answer: `Ownership is a pathway, and we say so on every page. Goods on Country holds the products, the IP, the contracts and the equipment today, under an Indigenous-led board. Each community organisation holds its beds, its sales money and its decisions. Six months into a site we ask four questions: who holds the keys, who runs the payroll, who invoices the buyer, and whether the community decides what gets made and who works on it. Partial counts as no. Until the answers are yes, we do not claim ownership has moved. ${ORGANISATION.membership.line} ${ORGANISATION.membership.state}`,
     status: 'answered',
     askedBy: 'Investors and our advisory committee',
     asked: '2026-07-26',

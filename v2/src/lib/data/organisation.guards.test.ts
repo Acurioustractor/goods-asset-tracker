@@ -25,6 +25,15 @@ describe('who Goods on Country is', () => {
   it('prints the same board line as the pitch', () => {
     expect(ORGANISATION.boardLine).toBe(GOVERNANCE.line);
   });
+  it('writes community membership of the charity as proposed until the constitution says otherwise', () => {
+    const m = ORGANISATION.membership;
+    expect(m.status).toBe('proposed');
+    for (const s of [m.title, m.line, m.why, m.state, m.short]) {
+      expect(s, s).not.toMatch(/\b(are|became|have become|is now a) members?\b/i);
+    }
+    expect(`${m.title} ${m.line} ${m.short}`).toMatch(/proposed|working on/i);
+    expect(GOVERNANCE.members).toContain(m.line);
+  });
   it('carries no em dashes', () => {
     expect(JSON.stringify(ORGANISATION)).not.toContain('—');
   });
