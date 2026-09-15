@@ -15,6 +15,8 @@ import { ProductionFacilityExperience } from './production-facility-experience';
 import { MykelStoryMedia } from './mykel-story-media';
 import { getStoryOverrides } from '@/lib/field-notes/overrides';
 import { ASK_HEADLINE } from '@/lib/data/ask-surface';
+import { MONEY_LANES, MONEY_NEVER } from '@/lib/data/money-lanes';
+import { BED, RAISE, dollars } from '@/lib/data/model-placemat';
 import { STAGE_RULE } from '@/lib/data/pathway-stages';
 import { NORTH_STAR } from '@/lib/data/content';
 import {
@@ -742,11 +744,11 @@ export default function RoadPitchPage() {
           </p>
           <dl className="mt-8 grid gap-px border border-white/20 bg-white/20 sm:grid-cols-2 lg:grid-cols-5">
             {[
-              { v: '$750', l: 'A bed sells for', chip: 'verified' },
-              { v: '~$685', l: 'Costs to make + truck today', chip: 'verified' },
-              { v: '~$426', l: 'Pressing our own legs', chip: 'modelled' },
-              { v: '$300K', l: 'Annual funding Goods needs', chip: 'target' },
-              { v: '$0', l: 'Signed today', chip: 'verified' },
+              { v: dollars(BED.priceAud), l: 'A bed sells for', chip: 'verified' },
+              { v: dollars(BED.makeAud), l: 'To make a bed', chip: 'provisional' },
+              { v: dollars(BED.contributionAud), l: 'Carries Goods on Country, per bed it sells', chip: 'modelled' },
+              { v: dollars(RAISE.totalShownAud), l: 'Asked, in three parts', chip: 'target' },
+              { v: dollars(RAISE.signedAud), l: 'Signed today', chip: 'verified' },
             ].map((cell) => (
               <div key={cell.l} className="bg-goods-ink p-6 lg:p-8">
                 <dd className={`goods-pitch-display text-5xl lg:text-6xl ${cell.v === '$0' ? 'text-goods-terracotta-light' : ''}`}>
@@ -762,40 +764,24 @@ export default function RoadPitchPage() {
         </div>
       </section>
 
-      {/* The facility, simply (Ben, 2026-08-06): the plain-English overview of what the
-          production facility costs to stand up and run, and the three ways in. Ranges match
-          ask-surface/road-ending; the per-site annual figure is deliberately NOT printed here
-          because it is an open decision (GOC-site-cost-decision.md). */}
+      {/* What the funding pays for: the three money lanes of /pitch (money-lanes.ts), rebuilt
+          16 September 2026 so this page and /pitch print the same raise. */}
       <section id="the-facility" data-pitch-panel="the-facility" className="border-b border-goods-sand bg-goods-cream-muted px-6 py-14 md:px-10 lg:min-h-[80svh] lg:px-14 lg:py-20">
         <div className="mx-auto flex h-full max-w-[1600px] flex-col justify-center">
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-goods-terracotta">
             What the funding pays for
           </p>
           <h2 className="goods-pitch-display mt-4 max-w-4xl text-4xl leading-[1.02] md:text-5xl">
-            $300,000 a year keeps Goods making beds, working with communities and growing. Capital
-            for community production facilities is raised separately.
+            {dollars(RAISE.totalShownAud)} in three parts: beds for community organisations, two community
+            production facilities, and the first year of running Goods on Country.
           </h2>
           <div className="mt-10 grid gap-px border border-goods-sand bg-goods-sand md:grid-cols-3">
-            {[
-              {
-                step: '01 · A community production facility',
-                amount: 'Up to $222K',
-                chip: 'capital per full facility',
-                line: 'A full production facility can be built for up to $222,000. A community can also start with a smaller set of modules, depending on what it wants to make, what it wants to own and what infrastructure it already has.',
-              },
-              {
-                step: '02 · Keep making beds now',
-                amount: '$100K a year',
-                chip: 'production funding',
-                line: 'Continue making beds at the Goods on Country facility in Queensland so Goods can keep filling community orders while on-Country production facilities are developed.',
-              },
-              {
-                step: '03 · Keep Goods working with communities',
-                amount: '$200K a year',
-                chip: 'organisation funding',
-                line: 'Keep visiting communities, developing products, building relationships and supporting community-led enterprises to grow and take on production.',
-              },
-            ].map((cell) => (
+            {MONEY_LANES.map((lane, i) => ({
+              step: `0${i + 1} · ${lane.buys.title}`,
+              amount: dollars(lane.source.amount),
+              chip: lane.id === 'beds' ? 'philanthropy' : lane.source.kicker.toLowerCase(),
+              line: `${lane.buys.line} ${lane.endsUp.title}: ${lane.endsUp.line}`,
+            })).map((cell) => (
               <div key={cell.step} className="bg-goods-cream p-6 lg:p-8">
                 <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-goods-terracotta">{cell.step}</p>
                 <p className="goods-pitch-display mt-3 text-4xl">{cell.amount}</p>
@@ -805,8 +791,7 @@ export default function RoadPitchPage() {
             ))}
           </div>
           <p className="mt-7 max-w-5xl text-lg leading-8 text-goods-sub">
-            Raising $300,000 a year lets Goods keep operating, innovating and growing while we
-            raise capital in different ways for the on-Country facilities each community chooses.
+            {MONEY_NEVER.title}. {MONEY_NEVER.line} Nothing is signed yet.
           </p>
         </div>
       </section>

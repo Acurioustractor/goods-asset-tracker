@@ -127,9 +127,9 @@ export const PAYMENT_DOORS: Record<PaymentDoorId, PaymentDoor> = {
   buy: {
     id: 'buy',
     label: 'Buy beds or production services',
-    receivingEntity: 'The current legal seller named on the Goods. quote or invoice',
+    receivingEntity: 'The Butterfly Movement Ltd, trading as Goods on Country',
     use: 'Product and production-service revenue.',
-    note: 'Goods currently sells through the existing sole-trader structure while trading moves into A Curious Tractor Pty Ltd. Never imply that migration is complete.',
+    note: 'One entity (ruling X, 28 August 2026): sales run through Goods on Country. Check the quote, invoice or checkout names Goods on Country and its ABN before sending it.',
   },
   give: {
     id: 'give',
@@ -141,8 +141,8 @@ export const PAYMENT_DOORS: Record<PaymentDoorId, PaymentDoor> = {
   lend: {
     id: 'lend',
     label: 'Lend or provide recoverable capital',
-    receivingEntity: 'A Curious Tractor Pty Ltd',
-    use: 'Working capital or repayable production finance.',
+    receivingEntity: 'The Butterfly Movement Ltd, trading as Goods on Country',
+    use: 'The first-year running cost, repaid from the beds Goods on Country sells.',
     note: 'The instrument must state terms, repayment source and borrower.',
   },
   'community-facility': {

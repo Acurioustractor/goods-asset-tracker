@@ -361,7 +361,7 @@ export const DOORS: Door[] = [
     verb: 'Lend',
     entity: PAYMENT_DOORS.lend.receivingEntity,
     does:
-      'Buys the press, the shredder and the machine that cuts the legs, and covers the gap between building beds and getting paid for them. They are the same machines a community can take one at a time.',
+      'Carries the first year of running Goods on Country while the first beds reach community organisations and sell. It is paid back from the beds Goods on Country sells, never from a community organisation\'s sales.',
     returns:
       'Your money back, out of bed sales, on terms agreed with you: the rate, the term and when repayment starts. Nobody has agreed those terms yet, and we will not promise a return until the repayment plan is clear.',
     match: 'Counts toward the QBE match. It is the form QBE would rather see.',
@@ -380,7 +380,7 @@ export const DOORS: Door[] = [
  *  the page says which entity signs is an open question rather than implying the
  *  migration is finished. */
 export const DOORS_NOTE =
-  'Goods sells through a sole trader today and is moving into A Curious Tractor Pty Ltd. Which name signs your paperwork is one of the things a first call sorts out.';
+  'Gifts, loans and orders all go to Goods on Country, a registered business name of The Butterfly Movement Ltd (ABN 22 155 132 684).';
 
 export const ASK_INTRO = {
   headline: 'What we need from you fits on one page.',

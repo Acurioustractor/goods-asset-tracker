@@ -125,7 +125,7 @@ export function SiteFooter() {
               />
             </Link>
             <p className="mt-4 text-sm text-muted-foreground">
-              Community-designed health hardware. Assembled on Country. Made by community, made for community.
+              Stretch Beds and washing machines for remote homes, made with community.
             </p>
             {/* Social Links */}
             <div className="mt-4 flex gap-4">

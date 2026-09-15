@@ -29,9 +29,9 @@
  * ---------------------------------------------------------------------------
  * DOORS
  * ---------------------------------------------------------------------------
- * Three doors, three different legal entities, and they are NOT interchangeable: donations to the
- * DGR charity, orders and repayable finance to the trading company. Equity is not sold and gifts
- * never fund the company. The doors themselves are defined once in `ask-surface.ts` as
+ * Three doors, one entity (ruling X, 28 August 2026): gifts, orders and loans all go to Goods on
+ * Country, a registered business name of The Butterfly Movement Ltd. Equity is not sold; the
+ * company is limited by guarantee and has no shares. The doors themselves are defined once in `ask-surface.ts` as
  * `ENTITY_DOORS` and imported here, so an audience can point at a door but can never restate what
  * a door is.
  *

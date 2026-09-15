@@ -13,6 +13,8 @@
  */
 import type { Solidity } from './cost-story';
 import { NORTH_STAR } from './content';
+import { RAISE, dollars } from './model-placemat';
+import { ORGANISATION } from './organisation';
 
 // ---------------------------------------------------------------------------
 // Band 1: the one ratio (Who Gives A Crap pattern: one number + a label)
@@ -94,8 +96,9 @@ export const ASK_BLOCKS: AskBlock[] = [
  * "funds itself", which rests on Goods' own economics rather than on QBE.
  */
 export const ASK_HEADLINE = {
-  line: 'We are raising $300,000 a year to keep Goods making beds, working with communities and supporting community-led enterprises. Capital for on-Country production facilities is raised separately: up to $222,000 for a full facility, with smaller modular options shaped around what each community needs. Earlier signed commitments make the QBE application stronger. $0 is signed today.',
-  ifMore: 'More signed paper raises the most a grant could cover. How much they give is still theirs to decide. Past our own ceiling of about $550,000 the extra is better spent buying beds.',
+  // Rebuilt 16 September 2026 from RAISE (model-placemat.ts), the same figures as /pitch and /partner.
+  line: `We are asking for ${dollars(RAISE.totalShownAud)}: ${dollars(RAISE.bedsShownAud)} of beds from philanthropy, ${RAISE.bedsEach} for each of ${RAISE.communityOrganisations} community organisations to sell or give out; ${dollars(RAISE.qbeAud)} from QBE for two community production facilities, ${dollars(RAISE.qbeAud / RAISE.facilities)} each; and a ${dollars(RAISE.loanAud)} loan for the first-year running cost, repaid from beds sold. Earlier signed commitments make the QBE application stronger. ${dollars(RAISE.signedAud)} is signed today.`,
+  ifMore: 'More signed paper raises the most a grant could cover. How much they give is still theirs to decide. Extra money beyond the ask is best spent buying beds for more community organisations.',
   ifShort: 'A smaller raise still funds the measured run, and a smaller grant is what fits a smaller stack. Every signed dollar is one a grant can sit on.',
 };
 
@@ -170,34 +173,37 @@ export interface EntityDoor {
   entity: string;
   what: string;
 }
+// One entity (ruling X, Ben 28 August 2026): the products, IP, contracts, making, sales and capital
+// sit with Goods on Country, a registered business name of The Butterfly Movement Ltd. A Curious
+// Tractor does the R&D and takes no money through these doors.
+const GOC = `${ORGANISATION.legalName}, trading as ${ORGANISATION.tradingName}`;
 export const ENTITY_DOORS: EntityDoor[] = [
   {
     verb: 'Donate',
-    entity: 'The Butterfly Movement Ltd (DGR)',
+    entity: `${GOC} (DGR)`,
     // RULING J 2026-07-25, from the public register: DGR endorsed since 17 Jan 2012 and ACNC
-    // registered since 3 Dec 2012. It was never "interim" or pending FY2026-27. The open
-    // question is the receipting mechanics and whose name goes on the receipt.
-    what: 'Tax-deductible gifts. Butterfly has been DGR-endorsed since January 2012, so the open question is receipting mechanics, not status. Gifts fund the block and community work: never company equity.',
+    // registered since 3 Dec 2012. It was never "interim" or pending FY2026-27.
+    what: `Tax-deductible gifts. ${ORGANISATION.charityLine} ${ORGANISATION.giving}`,
   },
   {
     verb: 'Buy / Order',
-    entity: 'A Curious Tractor Pty Ltd, selling as Goods.',
+    entity: GOC,
     what: 'Bed and washing-machine orders at list price. Revenue, not philanthropy. $750 a bed.',
   },
   {
     verb: 'Invest (repayable)',
-    entity: 'A Curious Tractor Pty Ltd, selling as Goods.',
-    what: 'Repayable finance sits in the trading company. Australian law puts it here: equity and loans go to the Pty Ltd, deductible gifts go to the DGR.',
+    entity: GOC,
+    what: `Loans, repaid from the beds ${ORGANISATION.tradingName} sells and never from a community organisation’s sales. ${ORGANISATION.legalName} is a company limited by guarantee, so there are no shares to buy.`,
   },
 ];
 export const ENTITY_NOTES = [
-  'How the charity and the company relate is being formalised in an inter-entity agreement: documentation aligned, completion in progress (July 2026). Once signed it is shown to funders so no one has to take it on faith. (The documented anti-social-washing pattern.)',
+  `One entity: ${ORGANISATION.identityLine} The products, IP, contracts, making, sales and capital sit there (ruling X, 28 August 2026). A Curious Tractor does the R&D.`,
   // RULING J 2026-07-25: the 51% work was sequenced behind the charity landing "~end July" by
   // ASSUMPTION, and that assumption cost ~7 weeks and the 1 July Supply Nation threshold. The
   // AGM is 14 Sep; 51% never depended on it. And the distinction that must never blur:
   // Aboriginal directors on the CHARITY is not 51% First Nations ownership of the entity that
   // SELLS, which is what Supply Nation, IPP, IBA and FAC all test.
-  'Ownership is a pathway: the 51% First Nations ownership decision gates IBA/FAC capital and is DECOUPLED from the charity AGM (14 Sep). Aboriginal directors on the charity is not 51% ownership of the selling entity. Stated as a pathway, never claimed complete.',
+  'Ownership is a pathway: the 51% First Nations ownership decision gates IBA/FAC capital and is DECOUPLED from the charity AGM. Aboriginal directors on the charity is not 51% ownership of the selling entity. Stated as a pathway, never claimed complete.',
 ];
 
 // ---------------------------------------------------------------------------

@@ -3,12 +3,15 @@
  * Update these in one place. Every funder page picks up the change.
  */
 
+import { RAISE, dollars } from './model-placemat';
+import { MONEY_LANES } from './money-lanes';
+import { BUYERS } from './pitch-chapters';
 import { CANONICAL_ASSETS } from './asset-canonical';
 
 export const TRACTION_STATS = [
   { label: 'Beds delivered', value: String(CANONICAL_ASSETS.bedsDeployed), sub: `Across ${CANONICAL_ASSETS.communitiesServed} communities` },
   { label: 'Communities reached', value: String(CANONICAL_ASSETS.communitiesServed), sub: 'Across Australia' },
-  { label: 'Current operating ask', value: '$300K/year', sub: 'Keeps Goods making beds and working with communities' },
+  { label: 'The ask', value: dollars(RAISE.totalShownAud), sub: `Beds, two facilities and the first year. ${dollars(RAISE.signedAud)} signed.` },
 ];
 
 export interface ProductCard {
@@ -49,30 +52,31 @@ export const PRODUCT_CARDS: ProductCard[] = [
 // Kept for back-compat with anything still importing PRODUCT_BLURB
 export const PRODUCT_BLURB = PRODUCT_CARDS.map((c) => c.body);
 
-export const BUYER_PIPELINE = [
-  { buyer: 'Centrecorp', volume: '107 beds (repeat)', value: '$80,250', status: 'Repeat buyer confirmed ($123K paid); next order in discussion' },
-  { buyer: 'Miwatj Health', volume: '8-clinic fleet', value: 'TBD', status: 'EOI being requested' },
-  { buyer: "NPY Women's Council", volume: '200 to 350 beds', value: '$150K to $262K', status: 'LOI being requested' },
-  { buyer: 'WHSAC / Groote Eylandt', volume: '500 Stretch Beds, 300 washers', value: '$1.5M+', status: 'Procurement pathway open' },
-  { buyer: 'Homeland Schools', volume: 'Locked', value: '$34,086', status: 'Approved. Delivery scheduled' },
-];
-
-export const CAPITAL_STACK = [
-  { layer: 'Catalytic blended', source: 'Minderoo (this ask)', amount: '$1.5M', status: 'In conversation', highlight: true },
-  { layer: 'Subordinated debt', source: 'SEFA working capital (BOLD agreement)', amount: '$300K', status: 'In outreach' },
-  { layer: 'Match grant', source: 'QBE Foundation Stage 2', amount: 'Up to $400K', status: 'Conditional on matched raise' },
-  { layer: 'To be raised', source: 'Additional philanthropic and community partners', amount: '$1M', status: 'Pipeline' },
-  { layer: 'Guarantee', source: 'Snow Foundation letter of support', amount: '·', status: 'In conversation' },
-];
-
 /**
- * The blended raise headline target. Single source for the "~$3M (target)"
- * figure that funder pages already state in prose, so the dashboard does not
- * re-key it. The match cap lives in loi-pipeline.ts (`MATCH_TARGET.cap`).
+ * Who has bought, from the paid trade only (pitch-chapters.ts BUYERS). Ben, 15 September 2026: the
+ * "who has asked" figures were withdrawn and are never printed, and Centrecorp's beds are delivered,
+ * so no row here is demand.
  */
+export const BUYER_PIPELINE = BUYERS.rows.map((row) => ({
+  buyer: row.buyer,
+  volume: `${row.beds} beds`,
+  value: 'Paid',
+  status: row.line,
+}));
+
+/** The raise as three lanes (money-lanes.ts), the same figures as /pitch and /partner. */
+export const CAPITAL_STACK = MONEY_LANES.map((lane) => ({
+  layer: lane.id === 'beds' ? 'Philanthropy' : lane.source.kicker,
+  source: `${lane.source.named}: ${lane.buys.title.toLowerCase()}`,
+  amount: `$${lane.source.amount / 1000}K`,
+  status: 'Asked, not signed',
+  highlight: false,
+}));
+
+/** The raise headline, from RAISE. Replaces the retired "~$3M" blended target. */
 export const RAISE_TARGET = {
-  label: '~$3M',
-  note: 'blended capital raise (target)',
+  label: `$${RAISE.totalShownAud / 1000}K`,
+  note: `asked across three parts, ${dollars(RAISE.signedAud)} signed`,
 };
 
 export const QBE_PROGRAM = {
