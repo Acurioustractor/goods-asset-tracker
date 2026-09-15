@@ -693,9 +693,9 @@ export async function PitchContent({ variant }: { variant: PitchVariant }) {
 
       {/* S09 · One facility, four clear steps */}
       <Section id="facility" number={9} title="Plastic becomes useful parts here.">
-        <p className="mt-6 max-w-3xl text-lg leading-relaxed text-[#4a4741] md:text-xl">Waste plastic becomes a durable bed through one compact, teachable production line. Goods on Country production facility at The Harvest. Walk the line.</p>
+        <p className="mt-6 max-w-3xl text-lg leading-relaxed text-[#4a4741] md:text-xl">Waste plastic becomes a durable bed through one compact, teachable production line. The Goods on Country facility in Queensland. Walk the line.</p>
         <div className="mt-10">
-          <BedExplorer src="/images/process/factory-panorama.jpg" alt="The Goods on Country production facility at The Harvest: four containers, doors open, shredder, CNC router, heat press and store" parts={FACILITY_PARTS} caption="One line in four containers. Press a station." />
+          <BedExplorer src="/images/process/factory-panorama.jpg" alt="The Goods on Country facility in Queensland: four containers, doors open, shredder, CNC router, heat press and store" parts={FACILITY_PARTS} caption="One line in four containers. Press a station." />
         </div>
         <ol className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {MAKE_STEPS.map((step, i) => (

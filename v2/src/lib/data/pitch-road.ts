@@ -47,7 +47,7 @@ export const ROAD_OVERRIDES: Readonly<Record<string, RoadOverride>> = {
       { src: '/images/community/maningrida/unrolling-canvas-with-elder.jpg', alt: 'Unrolling canvas with an Elder, Maningrida' },
       { src: '/images/community/maningrida/men-over-finished-bed.jpg', alt: 'Men over a finished Stretch Bed, Gamardi' },
       { src: '/images/community/maningrida/whole-run-at-sunset.jpg', alt: 'The whole Maningrida run at sunset' },
-      { src: '/images/process/heat-press-full.jpg', alt: 'The heat press at The Harvest Plant, where the parts were pressed' },
+      { src: '/images/process/heat-press-full.jpg', alt: 'The heat press at the Goods on Country facility in Queensland, where the parts were pressed' },
     ],
   },
   'stop-7-oonchiumpa': {

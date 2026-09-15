@@ -3,7 +3,7 @@
  *
  * Both Defy invoices below were read from the PDFs on 14 September 2026 and Nic wrote "all paid"
  * on the thread on 13 and 14 September. They close the press-against-panels decision on the
- * flat-pack route: leg panels are bought from Defy, tab sheets are pressed at The Harvest Plant.
+ * flat-pack route: leg panels are bought from Defy, tab sheets are pressed at the Goods on Country facility in Queensland.
  * The quotes QU0494 and QU0495 of 28 August (105 sheets and 8 bulka bags, options to the end of
  * the year) are superseded by these two paid invoices. Both are invoiced to A Curious Tractor,
  * which is where supply purchases still run pending the transfer into the charity.

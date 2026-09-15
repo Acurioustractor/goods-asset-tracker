@@ -251,7 +251,7 @@ export const PANELS: Panel[] = [
     photo: {
       src: '/images/brand/goods-20kg-plastic-one-bed.jpg',
       alt: 'The recycled plastic that goes into one Stretch Bed, beside the bed',
-      place: 'The Harvest Plant',
+      place: 'Queensland facility',
       starred: 21,
       placematPick: false,
     },

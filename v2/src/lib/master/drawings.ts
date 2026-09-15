@@ -1,6 +1,6 @@
 /**
  * One drawing carried over from The Model artifact (051b93d2, 12 September 2026), with one word
- * changed: Witta is The Harvest on every surface. It relies on the CSS variables the master
+ * changed: Witta is the Goods on Country facility in Queensland on every surface. It relies on the CSS variables the master
  * defines (--goods, --community, --gold, --bad, --surface-2, --rail, --ink, --ink-2, --ink-3,
  * --display). Its figures are the 11 September money, which the master labels legacy pending the
  * flat-pack route costing. The capital drawing was dropped on 14 September: it drew facilitation
@@ -30,7 +30,7 @@ export const TWO_LOOPS_SVG = `<svg viewBox="0 0 1000 470" role="img" aria-label=
     <text x="252" y="95" text-anchor="middle" font-weight="700">Catalytic capital</text>
     <text x="252" y="111" text-anchor="middle" font-size="11" fill="var(--ink-2)">QBE, Tim Fairfax, Brian M. Davis, Snow</text>
     <rect x="300" y="192" width="176" height="46" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
-    <text x="388" y="220" text-anchor="middle" font-weight="700">Made at The Harvest</text>
+    <text x="388" y="220" text-anchor="middle" font-weight="700">Made in Queensland</text>
     <rect x="140" y="382" width="224" height="48" rx="4" fill="var(--surface-2)" stroke="var(--rail)"/>
     <text x="252" y="402" text-anchor="middle" font-weight="700">Goods paid $750 a bed</text>
     <text x="252" y="419" text-anchor="middle" font-size="11" fill="var(--ink-2)">$276 makes it &middot; $474 carries the business &middot; both provisional</text>

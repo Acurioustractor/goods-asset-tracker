@@ -1455,7 +1455,7 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     leadsWithNow: {
       heading: 'Useful goods start community enterprise.',
       eyebrow: 'The pitch',
-      body: 'The Harvest Plant makes the first stock. Community organisations trade it. Buyers pay the community organisation. The money stays local. The community decides what comes next.',
+      body: 'The Goods on Country facility in Queensland makes the first stock. Community organisations trade it. Buyers pay the community organisation. The money stays local. The community decides what comes next.',
     },
     verdict: 'keep',
   },

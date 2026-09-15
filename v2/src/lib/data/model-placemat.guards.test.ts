@@ -1,7 +1,7 @@
 /**
  * Guards for the model placemat. The sheet is a funder surface, so the rules
  * that bind every Goods surface are tested here rather than remembered:
- * The Harvest Plant, never Witta; buyers by type, never by organisation;
+ * the Goods on Country facility in Queensland, never Witta; buyers by type, never by organisation;
  * money never returns to Goods; households are not a station; no health
  * outcome; no em dashes; every photograph from the starred set.
  */
@@ -129,7 +129,7 @@ describe('nothing on the sheet overlaps', () => {
       if (!card) continue;
       expect(rectInside(t.rect, card.rect), `"${t.label}" leaves its card ${t.owner}`).toBe(true);
       const photo = photos.find((p) => p.owner === t.owner);
-      if (photo && !t.label?.match(/^(Maningrida|The Harvest Plant|Empathy Ledger)$/)) {
+      if (photo && !t.label?.match(/^(Maningrida|Queensland facility|Empathy Ledger)$/)) {
         expect(rectsIntersect(t.rect, photo.rect), `"${t.label}" sits on the photograph in ${t.owner}`).toBe(false);
       }
     }
@@ -158,7 +158,7 @@ describe('nothing on the sheet overlaps', () => {
 });
 
 describe('the words', () => {
-  it('never say Witta: the maker is The Harvest Plant', () => {
+  it('never say Witta: the maker is the Goods on Country facility in Queensland', () => {
     for (const s of strings) expect(s).not.toMatch(/witta/i);
     expect(STATIONS.harvest.title).toBe('Goods on Country facility');
   });
@@ -229,7 +229,7 @@ describe('the stations and lines', () => {
       expect(['future', 'support']).toContain(f.kind);
     }
   });
-  it('carry one drawing only, the kit container on The Harvest', () => {
+  it('carry one drawing only, the kit container at the Queensland facility', () => {
     const drawn = Object.values(STATIONS).filter((s) => s.drawing);
     expect(drawn.map((s) => s.id)).toEqual(['harvest']);
     expect(STATIONS.harvest.drawing?.src).toBe('/images/model/harvest-container.svg');

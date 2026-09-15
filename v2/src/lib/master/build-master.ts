@@ -157,12 +157,12 @@ export function answerFor(key: string, text: string): string | null {
 }
 
 /**
- * The answers file still says Witta in five places. The maker is The Harvest Plant on every
+ * The answers file still says Witta in five places. The maker is the Goods on Country facility in Queensland on every
  * surface (ruling, 13 September), so the master reads it that way and says so. The sweep of the
  * source file itself is on the work list.
  */
 export function harvestNaming(text: string): string {
-  return text.replace(/\bour Witta facility\b/g, 'our facility at The Harvest Plant').replace(/\bat Witta\b/g, 'at The Harvest Plant').replace(/\bWitta\b/g, 'The Harvest Plant');
+  return text.replace(/\bour Witta facility\b/g, 'the Goods on Country facility in Queensland').replace(/\bat Witta\b/g, 'at the Goods on Country facility in Queensland').replace(/\bWitta\b/g, 'the Goods on Country facility in Queensland');
 }
 
 function readSource(name: string): string {
@@ -214,7 +214,7 @@ function screenStart(): string {
       <table class="kv">
         <tr><td>Beds deployed</td><td class="n">${n(CANONICAL_ASSETS.bedsDeployed)} across ${CANONICAL_ASSETS.communitiesServed} communities</td></tr>
         <tr><td>Beds bought and paid for</td><td class="n">${n(PAID_BEDS)} by four organisations, ${aud(PAID_TRADE_AUD)}</td></tr>
-        <tr><td>Made end to end at our own facility</td><td class="n">40, pressed at The Harvest and assembled at Gamardi</td></tr>
+        <tr><td>Made end to end at our own facility</td><td class="n">40, pressed at the Goods on Country facility in Queensland and assembled at Gamardi</td></tr>
         <tr><td>Washing machines in community</td><td class="n">${CANONICAL_ASSETS.washersInCommunity}</td></tr>
         <tr><td>Community enterprises trading</td><td class="n"><strong>0.</strong> That is what this year changes</td></tr>
         <tr><td>Signed</td><td class="n"><strong>${aud(RAISE.signedAud)}</strong></td></tr>
@@ -334,7 +334,7 @@ function screenModel(png: string | null): string {
       <li>A demand total. Demand is presented as acts: paid, money named, an organisation asked, a person asked, raised in a meeting.</li>
       <li>A health outcome. Scabies and rheumatic heart disease are the reason, never a claimed result.</li>
       <li>Community receipts flowing back to Goods, or matching, doubling or guaranteeing language about any grant.</li>
-      <li>Witta. The maker is The Harvest Plant.</li>
+      <li>The maker is the Goods on Country facility in Queensland.</li>
     </ul>
   </div>`;
 }
@@ -375,7 +375,7 @@ function screenQbe(answers: string, drafts: string): string {
     <div class="card"><h2>Key dates</h2><table class="kv">${QBE_KEY_DATES.map((d) => `<tr><td>${esc(d.when)}</td><td>${esc(d.what)}</td></tr>`).join('')}</table></div>
     <div class="card"><h2>What is left, in order</h2><ol class="plain small">${FORM_WORK_LEFT.map((w) => `<li><strong>${esc(w.what)}</strong> · ${esc(w.who)} · unblocks ${esc(w.unblocks)}</li>`).join('')}</ol></div>
   </div>
-  <p class="small">Written answers are the file deliverables/master/sources/qbe-answers-2026-09-10.md, revised 12 September, rendered as written, with one substitution: where that file says Witta this page says The Harvest Plant, per the 13 September ruling. The groups that had no text on 13 September carry drafts from qbe-answers-drafts-2026-09-14.md, marked as drafts. Working notes for Ben and Nic are not on this page.</p>
+  <p class="small">Written answers are the file deliverables/master/sources/qbe-answers-2026-09-10.md, revised 12 September, rendered as written, with one substitution: where that file says Witta this page says the Goods on Country facility in Queensland, per the 16 September ruling. The groups that had no text on 13 September carry drafts from qbe-answers-drafts-2026-09-14.md, marked as drafts. Working notes for Ben and Nic are not on this page.</p>
   <div class="idx">${FORM_GROUPS.map((g) => `<a href="#q-${g.id}"><span class="q">${g.id}</span> ${esc(g.asks)} ${chip(STATE_CLASS[g.state], FORM_STATE_LABEL[g.state])}</a>`).join('')}</div>
   ${FORM_GROUPS.map((g) => {
     const raw = g.answerKey ? answerFor(g.answerKey, answers) : null;
@@ -485,7 +485,7 @@ function screenNumbers(): string {
       </table>
     </div>
     <div class="card">
-      <h2>The line at The Harvest, flat-pack route</h2>
+      <h2>The line at the Queensland facility, flat-pack route</h2>
       <table class="kv">
         <tr><td>Kits a day</td><td class="n">6, tab-press-limited, modelled</td></tr>
         <tr><td>Kits a month</td><td class="n">96 on sixteen run days, modelled</td></tr>
