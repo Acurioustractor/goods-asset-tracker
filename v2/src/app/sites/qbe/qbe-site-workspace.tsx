@@ -219,7 +219,7 @@ const useOfFunds = [
 ];
 
 const routeLinks = [
-  { label: 'Cost story', href: '/cost-story', icon: LineChart },
+  { label: 'Cost story', href: '/pitch/road', icon: LineChart },
   { label: 'Investor evidence hub', href: '/investors?skin=investment', icon: LockKeyhole },
   { label: 'Pitch page', href: '/pitch', icon: FileText },
   { label: 'Pitch document', href: '/pitch/document', icon: ClipboardList },
@@ -368,7 +368,7 @@ const siteArchitecture = [
   },
   {
     area: 'Evidence base',
-    href: '/cost-story',
+    href: '/pitch/road',
     status: 'Live evidence',
     icon: LineChart,
     purpose: 'The numbers behind the story: pricing, cost-down logic, claim labels and the source trail investors can test.',
@@ -1379,7 +1379,7 @@ export function QbeSiteWorkspace() {
               </Link>
             </Button>
             <Button asChild variant="outline" className="border-white/20 bg-transparent text-white hover:bg-white/10 hover:text-white">
-              <Link href="/cost-story">
+              <Link href="/pitch/road">
                 <ArrowRight className="h-4 w-4" />
                 Cost story
               </Link>

@@ -50,6 +50,8 @@ const ALLOWED_APP_PREFIXES = [
   'onepagers/stretch-bed', // the printed product sheet: the one $750 price a buyer acts on
   'pathways/', // consent-shaped per-community numbers; its own rules live in that module
   'field-notes/', // trip stories quote real invoices with consent-cleared context
+  'beds', // the buying page: the $750 price a buyer acts on, from canon
+  'facilities', // the community facility page: the planning allowance per facility, from pitch-chapters.ts
 ];
 
 // Component files allowed to carry dollars (rendered only by allowed pages, or commerce).

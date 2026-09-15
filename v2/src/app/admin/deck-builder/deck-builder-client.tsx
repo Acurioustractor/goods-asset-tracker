@@ -1031,7 +1031,7 @@ export function DeckClient() {
       <div className="border-b border-border bg-foreground text-background">
         <div className="container mx-auto px-4 py-8">
           <Link
-            href="/pitch/deck"
+            href="/pitch/road"
             className="mb-4 inline-flex items-center gap-2 text-sm text-background/70 transition-colors hover:text-background"
           >
             <ArrowLeft className="h-4 w-4" />

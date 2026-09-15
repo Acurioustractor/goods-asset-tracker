@@ -36,8 +36,8 @@ export const brand = {
   // Hero content for different contexts
   hero: {
     home: {
-      headline: 'The Stretch Bed',
-      subheadline: 'Recycled plastic, galvanised steel, heavy-duty canvas. 26kg, flat-packs, no tools. Every bed supports remote First Nations communities across Australia.',
+      headline: 'Good beds for remote homes, made with community.',
+      subheadline: 'The Stretch Bed is recycled plastic, galvanised steel and canvas, and goes together in five minutes with no tools.',
     },
     shop: {
       headline: 'Shop the Collection',

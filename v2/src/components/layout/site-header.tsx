@@ -18,8 +18,9 @@ import { CartButton } from '@/components/cart';
 type NavItem = { name: string; href: string; subtitle?: string };
 
 const navigation: NavItem[] = [
-  { name: 'The Stretch Bed', href: '/shop/stretch-bed-single' },
-  { name: 'How it’s made', href: '/process' },
+  { name: 'The Stretch Bed', href: '/beds' },
+  { name: 'Facilities', href: '/facilities' },
+  { name: 'Who we are', href: '/who-we-are' },
   { name: 'Our story', href: '/story' },
   { name: 'Back the work', href: '/partner' },
   { name: 'Contact', href: '/contact' },
@@ -28,7 +29,7 @@ const navigation: NavItem[] = [
 /** The same four audience doors the homepage closes on (home.ts HOME_DOORS order).
     Colours via the canonical CSS vars; ink text on the light tones for contrast. */
 const menuDoors = [
-  { name: 'Buy a bed', href: '/shop/stretch-bed-single', color: 'var(--goods-terracotta)', text: '#FFFFFF' },
+  { name: 'Buy a bed', href: '/beds', color: 'var(--goods-terracotta)', text: '#FFFFFF' },
   { name: 'Sponsor a bed', href: '/sponsor', color: 'var(--goods-gold)', text: 'var(--goods-ink)' },
   { name: 'Back the work', href: '/partner', color: 'var(--goods-teal)', text: '#FFFFFF' },
 ];
@@ -89,7 +90,7 @@ export function SiteHeader() {
         {/* Desktop CTAs & cart */}
         <div className="hidden lg:flex lg:items-center lg:gap-3">
           <Button size="sm" className="bg-goods-terracotta text-white hover:bg-goods-terracotta/90" asChild>
-            <Link href="/shop/stretch-bed-single">Buy a bed</Link>
+            <Link href="/beds">Buy a bed</Link>
           </Button>
           <CartButton />
         </div>

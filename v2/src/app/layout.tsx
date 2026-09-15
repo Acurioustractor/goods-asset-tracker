@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     template: '%s · Goods on Country',
   },
   description:
-    'Beds, washing machines, and a manufacturing model that stays with the communities it serves. Made by community. Made for community.',
+    'Stretch Beds and washing machines for remote homes, made with community. Buy beds, bring the making to your community, or back the work.',
   keywords: [
     'Stretch Bed',
     'First Nations',

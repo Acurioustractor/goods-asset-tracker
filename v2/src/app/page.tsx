@@ -1,11 +1,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Hero, ImpactStats } from '@/components/marketing';
+import { ORGANISATION } from '@/lib/data/organisation';
+import { Hero } from '@/components/marketing';
 import { AssemblySequence } from '@/components/pitch/assembly-sequence';
 import { CyclingImage } from '@/components/pitch/cycling-image';
 import { MediaSlot } from '@/components/ui/media-slot';
 import { Button } from '@/components/ui/button';
+import { ContactGoodsButton } from '@/components/contact/contact-goods-button';
 import { brand } from '@/lib/data/content';
+import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
+import { BUYERS } from '@/lib/data/pitch-chapters';
 import { PLASTIC_KG_PER_BED, STRETCH_BED } from '@/lib/data/products';
 import { videoUrl } from '@/lib/data/media';
 import { canonVideoSrc } from '@/lib/data/canon-videos';
@@ -27,6 +31,37 @@ const HOME_FOLDERS: SwapFolder[] = [
   { label: 'May 2026 trip', emoji: '📅', tags: ['trip:may-2026'] },
 ];
 
+/** The three ways in. Every visitor should find theirs before they scroll. */
+const DOORS = [
+  {
+    href: '/beds',
+    kicker: 'For homes and organisations',
+    title: 'Buy beds',
+    line: 'One bed online, or a quote and invoice for your organisation.',
+    photo: { src: '/images/product/stretch-bed-hero.jpg', alt: 'A Stretch Bed on Country in golden light' },
+  },
+  {
+    href: '/facilities',
+    kicker: 'For communities',
+    title: 'Make beds in your community',
+    line: 'What a local production facility takes, and what it brings.',
+    photo: { src: '/images/community/maningrida/gamardi-build-day-wide.jpg', alt: 'Build day at Gamardi in the Maningrida homelands' },
+  },
+  {
+    href: '/partner',
+    kicker: 'For funders and supporters',
+    title: 'Back the work',
+    line: 'Grants, gifts and loans, and what each one pays for.',
+    photo: { src: '/images/community/maningrida/kids-carrying-orange-bed.jpg', alt: 'Two young people carrying an orange Stretch Bed at Gamardi' },
+  },
+] as const;
+
+const PROOF = [
+  { value: CANONICAL_ASSETS.bedsDeployed.toLocaleString(), label: 'beds delivered' },
+  { value: String(CANONICAL_ASSETS.communitiesServed), label: 'communities' },
+  { value: `${CANONICAL_ASSETS.plasticKg.toLocaleString()}kg`, label: 'plastic diverted' },
+];
+
 export default async function HomePage() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -39,8 +74,8 @@ export default async function HomePage() {
     <>
       <Hero
         title={brand.hero.home.headline}
-        subtitle={brand.hero.home.subheadline}
-        primaryCta={{ text: 'Shop the Stretch Bed', href: '/shop/stretch-bed-single' }}
+        subtitle={`${brand.hero.home.subheadline} ${CANONICAL_ASSETS.bedsDeployed} beds are in ${CANONICAL_ASSETS.communitiesServed} communities, and the making is moving closer to the people who use them.`}
+        primaryCta={{ text: 'Buy beds', href: '/beds' }}
         secondaryCta={{ text: 'Back the work', href: '/partner' }}
         videoSrc={canonVideoSrc('video-hero', {
           desktop: videoUrl('hero-desktop.mp4'),
@@ -51,6 +86,62 @@ export default async function HomePage() {
         imageAlt="A young man lying full-length on a Stretch Bed on country: recycled plastic legs, galvanised steel poles, heavy-duty canvas"
       />
 
+      {/* Three ways in, and who you are dealing with, before anything else. */}
+      <section id="ways-in" aria-label="Ways in" className="relative z-10 bg-goods-cream px-4 pb-10 pt-5 md:pb-14 md:pt-0">
+        <div className="container mx-auto">
+          <ul className="grid gap-3 md:-mt-10 md:grid-cols-3 md:gap-5">
+            {DOORS.map((door) => (
+              <li key={door.href}>
+                <Link
+                  href={door.href}
+                  className="group grid h-full grid-cols-[96px_1fr] overflow-hidden rounded-[20px] border border-[#e6dfd1] bg-white shadow-[0_10px_30px_-18px_rgba(40,30,20,0.35)] transition-colors hover:border-goods-terracotta md:grid-cols-1"
+                >
+                  <div className="relative min-h-[112px] md:aspect-[16/9] md:min-h-0">
+                    <Image src={door.photo.src} alt={door.photo.alt} fill sizes="(min-width: 768px) 33vw, 96px" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+                  </div>
+                  <div className="flex flex-col justify-center p-4 md:p-6">
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-goods-terracotta md:text-[11px]">{door.kicker}</span>
+                    <span className="mt-1 font-display text-xl font-semibold leading-tight text-goods-ink md:mt-2 md:text-2xl">
+                      {door.title} <span aria-hidden="true" className="inline-block transition-transform group-hover:translate-x-1">→</span>
+                    </span>
+                    <span className="mt-1 text-sm leading-snug text-[#4a4741] md:mt-2 md:text-[15px] md:leading-relaxed">{door.line}</span>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 text-sm text-[#5d574c]">
+            {ORGANISATION.boardLine} {ORGANISATION.identityLine}{' '}
+            <Link href="/who-we-are" className="underline underline-offset-2 hover:text-goods-terracotta">Who we are</Link>
+          </p>
+        </div>
+      </section>
+
+      {/* What has happened so far: the trade, and who paid. */}
+      <section aria-label="So far" className="border-y border-[#e6dfd1] bg-white px-4 py-12 md:py-16">
+        <div className="container mx-auto grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-goods-terracotta">So far</p>
+            <h2 className="mt-3 font-display text-3xl font-semibold leading-tight text-goods-ink md:text-4xl">{BUYERS.headline}</h2>
+            <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#4a4741]">
+              Bought by {BUYERS.rows.slice(0, -1).map((r) => r.buyer).join('; ')}; and {BUYERS.rows[BUYERS.rows.length - 1].buyer}.
+            </p>
+            <Link href="/beds#order" className="mt-5 inline-block text-[15px] font-semibold text-goods-terracotta underline underline-offset-4 hover:text-goods-ink">
+              Order for your organisation →
+            </Link>
+          </div>
+          <dl className="grid grid-cols-3 gap-4 border-t border-[#e6dfd1] pt-8 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
+            {PROOF.map((p) => (
+              <div key={p.label}>
+                <dt className="sr-only">{p.label}</dt>
+                <dd className="font-display text-3xl font-semibold text-goods-ink md:text-5xl">{p.value}</dd>
+                <dd className="mt-1 text-xs leading-snug text-[#5d574c] md:text-sm">{p.label}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
       <section className="bg-background py-16 md:py-20">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-5xl">
@@ -59,11 +150,15 @@ export default async function HomePage() {
               className="mb-4 text-3xl font-light leading-snug text-foreground md:text-4xl"
               style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}
             >
-              Three materials. No tools. Five minutes.
+              Recycled plastic legs, steel poles, and a canvas that holds it all together.
             </h2>
-            <p className="mb-12 max-w-2xl text-lg text-muted-foreground">
-              {STRETCH_BED.specs.weight}, supports {STRETCH_BED.specs.loadCapacity}, designed to last {STRETCH_BED.specs.designLifespan}. Each bed diverts {PLASTIC_KG_PER_BED}kg of plastic from landfill.
+            <p className="mb-8 max-w-2xl text-lg text-muted-foreground">
+              {STRETCH_BED.specs.weight}, holds {STRETCH_BED.specs.loadCapacity}, and flat-packs for freight. Each bed keeps {PLASTIC_KG_PER_BED}kg of plastic out of landfill.
             </p>
+            <div className="mb-12 flex flex-col gap-3 sm:flex-row">
+              <Button size="lg" asChild><Link href="/beds">Buy beds</Link></Button>
+              <Button size="lg" variant="outline" asChild><Link href="/shop/stretch-bed-single">See the bed up close</Link></Button>
+            </div>
 
             <div className="grid items-start gap-12 lg:grid-cols-2">
               <div className="grid grid-cols-2 gap-4">
@@ -73,32 +168,32 @@ export default async function HomePage() {
                     fallback: '/images/pitch/bed-frame-legs.jpg',
                     alt: 'Recycled HDPE plastic legs, pressed from community waste',
                     label: 'Recycled plastic legs',
-                    title: 'Recycled Plastic Frame',
-                    body: `HDPE legs from community plastic. ${PLASTIC_KG_PER_BED}kg diverted per bed.`,
+                    title: 'Recycled plastic legs',
+                    body: `Pressed from community plastic. ${PLASTIC_KG_PER_BED}kg a bed.`,
                   },
                   {
                     key: 'materials.1',
                     fallback: '/images/pitch/bed-poles.jpg',
                     alt: `Galvanised steel pole, ${POLE_OD} OD`,
                     label: 'Steel pole',
-                    title: 'Galvanised Steel Poles',
-                    body: `Two ${POLE_OD} poles thread through canvas sleeves.`,
+                    title: 'Galvanised steel poles',
+                    body: `Two ${POLE_OD} poles thread through the canvas sleeves.`,
                   },
                   {
                     key: 'materials.2',
                     fallback: '/images/pitch/bed-canvas.jpg',
-                    alt: 'Heavy-duty Australian canvas with Goods. branding',
+                    alt: 'Heavy-duty canvas',
                     label: 'Canvas',
-                    title: 'Heavy-Duty Canvas',
-                    body: 'Washable, repairable, built for remote conditions.',
+                    title: 'Heavy-duty canvas',
+                    body: 'Washable and repairable, made for remote conditions.',
                   },
                   {
                     key: 'materials.3',
                     fallback: '/images/media-pack/nic-with-elder-on-verandah.jpg',
-                    alt: 'Nic sitting on a Stretch Bed with an elder on a verandah, ongoing support and connection',
-                    label: 'Support system',
-                    title: 'Support System',
-                    body: 'Every bed tracked. Ask questions, stay connected, get support.',
+                    alt: 'Nic sitting on a Stretch Bed with an elder on a verandah',
+                    label: 'After it arrives',
+                    title: 'After it arrives',
+                    body: 'Every bed is on our public register, and we answer when something needs fixing.',
                   },
                 ].map((card) => {
                   const src = ov(card.key, card.fallback);
@@ -153,7 +248,6 @@ export default async function HomePage() {
             <div className="absolute inset-0 bg-gradient-to-b from-foreground/30 via-foreground/40 to-foreground/70" />
             <div className="relative container mx-auto px-4 py-24 md:py-32">
               <div className="mx-auto max-w-3xl text-center text-background">
-                <p className="mb-4 text-xs uppercase tracking-[0.25em] text-background/70">Toward manufacturing on Country</p>
                 <h2 className="text-3xl font-light leading-tight md:text-5xl" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>
                   Beds assembled by the people who&rsquo;ll sleep on them.
                 </h2>
@@ -179,31 +273,31 @@ export default async function HomePage() {
       <section className="bg-foreground py-16 text-background md:py-20">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-5xl">
-            <p className="mb-4 text-sm uppercase tracking-widest text-background/40">Toward On-Country Manufacturing</p>
+            <p className="mb-4 text-sm uppercase tracking-widest text-background/40">Making in community</p>
             <h2 className="mb-4 text-3xl font-light leading-snug md:text-4xl" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>
               From rubbish to bed
             </h2>
             <p className="mb-12 max-w-2xl text-background/60">
-              A containerised production plant that turns community plastic waste into bed components. Local people do the making.
+              A production plant in a shipping container turns community plastic into bed legs. Local people do the making.
             </p>
 
             <div className="mb-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              <ProcessCard number="1" title="Collect" body="Local people gather plastic waste from around community. Sorted by colour, cleaned, ready for shredding.">
+              <ProcessCard number="1" title="Collect" body="Plastic is gathered from around community, sorted by colour and cleaned for the shredder.">
                 <MediaSlot src="/images/process/color-samples.jpg" alt="Sorted recycled plastic from community waste" label="Collect" aspect="4/3" />
               </ProcessCard>
-              <ProcessCard number="2" title="Shred" body="Plastic goes into the shredder: a containerised unit that stays on site between production runs.">
+              <ProcessCard number="2" title="Shred" body="The shredder lives in the container and stays on site between production runs.">
                 <MediaSlot src="/images/process/container-factory.jpg" alt="Plastic shredder inside containerised production plant" label="Shred" aspect="4/3" />
               </ProcessCard>
-              <ProcessCard number="3" title="Press" body="Shredded plastic is heated and pressed into durable sheets. Each colour is unique, made from whatever plastic the community collected.">
+              <ProcessCard number="3" title="Press" body="Shredded plastic is heated and pressed into sheets. The colour comes from whatever plastic the community collected.">
                 <CyclingImage images={[
                   { src: '/images/process/hydraulic-press.jpg', alt: 'Hydraulic press compressing recycled plastic into sheets' },
                   { src: '/images/process/pressed-sheets.jpg', alt: 'Stack of pressed recycled plastic legs in multiple colours' },
                 ]} aspect="4/3" />
               </ProcessCard>
-              <ProcessCard number="4" title="Cut" body="A CNC router cuts bed leg components from the pressed sheets. Precise, repeatable, minimal waste.">
+              <ProcessCard number="4" title="Cut" body="A CNC router cuts the bed legs from the pressed sheets with very little waste.">
                 <MediaSlot src="/images/process/cnc-cutter.jpg" alt="CNC router cutting bed leg components from pressed plastic sheet" label="Cut" aspect="4/3" />
               </ProcessCard>
-              <ProcessCard number="5" title="Assemble" body="Thread a pole through each canvas sleeve and the X-leg holes, then tension. Done in under 5 minutes, no tools.">
+              <ProcessCard number="5" title="Assemble" body="Thread a pole through each canvas sleeve and the X-leg holes, then tension. About five minutes, no tools.">
                 <CyclingImage images={[
                   { src: '/images/pitch/bed-seq-1-leg-pole.jpg', alt: 'First pole threads through canvas sleeve' },
                   { src: '/images/pitch/bed-seq-2-legs-pole.jpg', alt: 'Second pole through the other side' },
@@ -211,10 +305,15 @@ export default async function HomePage() {
                   { src: '/images/pitch/bed-assembled.jpg', alt: 'Assembled Stretch Bed' },
                 ]} aspect="4/3" />
               </ProcessCard>
-            </div>
-
-            <div className="text-center">
-              <p className="text-sm text-background/40">~30 beds per week &middot; {PLASTIC_KG_PER_BED}kg plastic diverted per bed</p>
+              <Link
+                href="/facilities"
+                className="group flex flex-col justify-end rounded-xl border border-background/20 bg-goods-terracotta/90 p-6 transition-colors hover:bg-goods-terracotta"
+              >
+                <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-background/70">For communities</span>
+                <span className="mt-2 font-display text-2xl font-semibold leading-tight text-background">
+                  How a facility comes to your community <span aria-hidden="true" className="inline-block transition-transform group-hover:translate-x-1">→</span>
+                </span>
+              </Link>
             </div>
           </div>
         </div>
@@ -233,11 +332,8 @@ export default async function HomePage() {
               <h2 className="mb-5 text-3xl font-light leading-snug text-foreground md:text-4xl" style={{ fontFamily: 'var(--font-display, Georgia, serif)' }}>
                 Learning alongside the Bloomfield family
               </h2>
-              <p className="mb-4 text-lg leading-relaxed text-muted-foreground">
-                Oonchiumpa Consultancy is a 100% Aboriginal-owned business in Alice Springs. Over time, Elders, young people and the Goods team have worked together on Stretch Bed prototypes—pulling them apart, testing what works and making changes along the way.
-              </p>
               <p className="mb-7 text-lg leading-relaxed text-muted-foreground">
-                This work is creating room to explore what local making could look like in Alice Springs: young people building beds, practical skills growing over time, and decisions remaining with the people closest to the work.
+                Oonchiumpa Consultancy is a 100% Aboriginal-owned business in Alice Springs. Elders, young people and the Goods team have pulled Stretch Bed prototypes apart and changed them together, and Oonchiumpa held the build for Centrecorp&rsquo;s beds for the Utopia homelands.
               </p>
               <blockquote className="mb-7 border-l-4 pl-5 text-lg italic leading-relaxed text-foreground/85" style={{ borderColor: 'var(--color-accent, #8B9D77)', fontFamily: 'Georgia, serif' }}>
                 “We want to create a safe space for our young people. There’s a lack of housing, which leads to a lack of sleep, which leads to low school attendance.”
@@ -280,19 +376,19 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <ImpactStats />
       <FieldNotesTile />
 
-      <section className="bg-accent py-16 md:py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-accent-foreground md:text-4xl">{brand.oneLiner}</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-accent-foreground/80">
-            Community-designed. Assembled on Country. Built to last more than ten years in remote Australia.
+      <section className="bg-goods-ink px-4 py-16 text-background md:py-20">
+        <div className="container mx-auto max-w-3xl text-center">
+          <h2 className="font-display text-3xl font-semibold leading-tight md:text-4xl">Beds for your community, or your organisation.</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-background/75">
+            {BUYERS.who.split('.')[0]} have bought them. Tell us where the beds are going and we will quote the freight.
           </p>
-          <div className="mt-8 flex justify-center">
-            <Button size="lg" className="bg-background text-foreground hover:bg-background/90" asChild>
-              <Link href="/shop/stretch-bed-single">Shop the Stretch Bed</Link>
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Button size="lg" className="min-h-12 rounded-full bg-background px-8 text-foreground hover:bg-background/90" asChild>
+              <Link href="/beds">Buy beds</Link>
             </Button>
+            <ContactGoodsButton label="Talk to us" variant="solid" subject="Bulk Order Inquiry" className="min-h-12 px-8 text-base" />
           </div>
         </div>
       </section>

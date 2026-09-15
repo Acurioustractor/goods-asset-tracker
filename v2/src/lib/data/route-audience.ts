@@ -2000,6 +2000,39 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     verdict: 'keep',
   },
   {
+    route: '/beds',
+    audience: 'buyer',
+    access: 'open',
+    leadsWithNow: {
+      heading: 'Beds off the floor, built to last.',
+      body: 'Buy one online, or order for your organisation: a quote for beds and freight, an invoice, and delivery planned with you.',
+    },
+    verdict: 'keep',
+    job: 'The buying page: households online, organisations by quote and invoice, with who has bought and who you are buying from.',
+  },
+  {
+    route: '/facilities',
+    audience: 'community',
+    access: 'open',
+    leadsWithNow: {
+      heading: 'Make the beds in your community.',
+      body: 'A production line that fits in shipping containers, and how it comes to a community that asks for one.',
+    },
+    verdict: 'keep',
+    job: 'For a community deciding whether to make beds locally: the line, what it brings, the gates, the planning allowance, and a way to ask.',
+  },
+  {
+    route: '/who-we-are',
+    audience: 'supporter',
+    access: 'open',
+    leadsWithNow: {
+      heading: 'Goods on Country is a DGR1 charity led by 100% Indigenous Directors.',
+      body: 'The entity and its ABN, the board, the team, community partners, and where every public number comes from.',
+    },
+    verdict: 'keep',
+    job: 'The legitimacy page anyone can check before buying, giving or partnering.',
+  },
+  {
     route: '/support',
     audience: 'supporter',
     access: 'open',
