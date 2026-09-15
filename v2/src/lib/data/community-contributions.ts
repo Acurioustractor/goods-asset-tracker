@@ -14,8 +14,9 @@
 // Voices come only from storyteller-registry.ts at tier 'external', with their
 // approved or primary quote, verbatim. Portraits only where the registry holds one.
 
-import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
+// Imported, not read from disk: a runtime file read works locally and finds nothing
+// on Vercel, where the server bundle does not carry v2/data (see pitch-content.tsx).
+import contributions from '../../../data/community-contributions.json';
 import { CASE_STUDIES } from '@/lib/data/case-studies';
 import type { CommunityLocation } from '@/lib/data/content';
 import { PATHWAY_ASKS } from '@/lib/data/road-ending';
@@ -31,10 +32,8 @@ export interface ContributionsFile {
   people: Record<string, PersonSetting>;
 }
 
-const FILE = join(process.cwd(), 'data', 'community-contributions.json');
-
 export function readContributions(): ContributionsFile {
-  return JSON.parse(readFileSync(FILE, 'utf8')) as ContributionsFile;
+  return contributions as ContributionsFile;
 }
 
 export function contributionsConfirmed(): boolean {
