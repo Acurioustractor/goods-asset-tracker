@@ -1,0 +1,25 @@
+{
+  "confirmed": true,
+  "confirmedBy": "Ben Knight",
+  "confirmedAt": "2026-09-16",
+  "updatedAt": "2026-09-16",
+  "people": {
+    "Karen Liddle": {
+      "place": "Alice Springs"
+    },
+    "Kristy Bloomfield": {
+      "place": "Alice Springs"
+    },
+    "Katrina Bloomfield": {
+      "place": "Alice Springs",
+      "photoFocus": "50% 25%"
+    },
+    "Shayne Bloomfield": {
+      "place": "Alice Springs",
+      "photoFocus": "47% 22%"
+    },
+    "Tanya Turner": {
+      "place": "Alice Springs"
+    }
+  }
+}
