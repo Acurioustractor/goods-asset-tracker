@@ -34,7 +34,7 @@ const { PAID_BEDS } = await import('../src/lib/data/story-questions.ts');
 const { PLASTIC_KG_PER_BED } = await import('../src/lib/data/products.ts');
 const { FACILITY_MODULES, MODULES_LOW_AUD, MODULES_HIGH_AUD, FACILITY_ALLOWANCE_AUD, FACILITY_OUTPUT, MONTH_SIX_QUESTIONS } = await import('../src/lib/data/facility-modules.ts');
 const { PAID_INVOICES, PAID_INVOICE_BEDS, PAID_INVOICE_NET_AUD, PAID_INVOICE_INCL_GST_AUD } = await import('../src/lib/data/paid-trade.ts');
-const { GRANTS_RECEIVED, GRANT_BASIS_LABEL } = await import('../src/lib/data/grants-received.ts');
+const { GRANTS_RECEIVED, GRANTS_RECEIVED_TOTAL_AUD, GRANTS_RECEIVED_AS_AT, GRANT_BASIS_LABEL } = await import('../src/lib/data/grants-received.ts');
 const { RUNNING_COST_AUD, BREAK_EVEN_BEDS, FACILITY_CAPACITY_BEDS, PLAN_BEDS } = await import('../src/lib/data/the-year.ts');
 const { renderPlacematSvg } = await import('../src/lib/model/placemat-svg.ts');
 const { renderMoneyFlowSvg } = await import('../src/lib/model/money-flow-svg.ts');
@@ -176,9 +176,9 @@ ${rows.map((r) => `<tr><td>${esc(r.unique_id)}${qty(r) > 1 ? ` (×${qty(r)})` : 
 const cleared = STORYTELLER_REGISTRY.filter((s) => s.tier === 'external').sort((a, b) => a.community.localeCompare(b.community) || a.name.localeCompare(b.name));
 const usable = (s) => s.quotes.filter((q) => q.status === 'primary' || q.status === 'approved').length;
 await emit('02-consented-story-registry', page({
-  id: '02', kicker: 'Consented story registry', title: `${cleared.length} people cleared to be quoted`,
+  id: '02', kicker: 'Consented story registry', title: `${cleared.length} voices cleared to be quoted`,
   body: `
-<p class="lead">The record that governs what Goods on Country may print. A person appears here only when they have agreed to be quoted on the open web and in funder material. Every quote in our applications comes from it, word for word.</p>
+<p class="lead">The record that governs what Goods on Country may print. A person appears here only when they have agreed to be quoted on the open web and in funder material. Every quote in our applications comes from it, word for word. ${cleared.length} voices hold ${cleared.reduce((n, s) => n + usable(s), 0)} approved quotes between them. Carmelita and Colette share one card.</p>
 <table><tr><th>Name</th><th>Role</th><th>Community</th><th class="n">Approved quotes</th></tr>
 ${cleared.map((s) => `<tr><td>${esc(s.name)}</td><td>${esc(s.role)}</td><td>${esc(s.community)}</td><td class="n">${usable(s)}</td></tr>`).join('')}
 </table>
@@ -332,11 +332,12 @@ ${PAID_INVOICES.map((i) => `<tr><td>${esc(i.invoiceNumber)}</td><td>${esc(i.prod
 await emit('08-grants-received', page({
   id: '08', kicker: 'Grants received', title: 'Who has funded the work',
   body: `
-<p class="lead">Grants received for the Goods work, line by line. Each line says how it is known. The two bases are kept apart, so no single total is printed.</p>
-<table><tr><th>Funder</th><th>When</th><th class="n">Amount</th><th>How it is known</th></tr>
-${GRANTS_RECEIVED.map((g) => `<tr><td>${esc(g.funder)}</td><td>${esc(g.when)}</td><td class="n">${money(g.amountAud)}</td><td>${esc(GRANT_BASIS_LABEL[g.basis])}</td></tr>`).join('')}
+<p class="lead">${money(GRANTS_RECEIVED_TOTAL_AUD)} in grants received for the Goods work, line by line, each checked against the books on ${GRANTS_RECEIVED_AS_AT}.</p>
+<table><tr><th>Funder</th><th>When</th><th class="n">Amount</th><th>Where it is recorded</th></tr>
+${GRANTS_RECEIVED.map((g) => `<tr><td>${esc(g.funder)}</td><td>${esc(g.when)}</td><td class="n">${money(g.amountAud)}</td><td>${esc(GRANT_BASIS_LABEL[g.basis])}: ${esc(g.source)}</td></tr>`).join('')}
+<tr><th>Total</th><th></th><th class="n">${money(GRANTS_RECEIVED_TOTAL_AUD)}</th><th></th></tr>
 </table>
-<p class="small">Bed sales are trade, not grants, and sit in attachment 07. The Centrecorp Foundation bought beds and is listed there as a buyer.</p>`,
+<p class="small">Before the charity took the work on, Goods traded through Nicholas Marchesi's sole-trader Xero file, so six of the seven grants are recorded there; the QBE Stage 1 grant is in the charity's own accounts. FRRR and the Vincent Fairfax Family Foundation made one joint grant, listed once. The Funding Network line is the cash banked. Bed sales are trade, not grants, and sit in attachment 07; the Centrecorp Foundation bought beds and is listed there as a buyer.</p>`,
 }));
 
 // ---------------------------------------------------------------------------------------------

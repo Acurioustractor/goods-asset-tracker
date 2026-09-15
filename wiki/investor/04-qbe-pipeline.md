@@ -29,7 +29,7 @@
 | First signed match-eligible commitment | OPEN: $0 signed. Warmest: SEFA ($300K repayable proposed), Snow R4/R5 ($100K), Centrecorp ($75K grant side, separate from the bed order) |
 | Entity wording + legal structure | IN PROGRESS, and RESEQUENCED 2026-07-25. Butterfly AGM is **14 Sep 2026** (TABOO board minutes 20 Jul), not end July; two Aboriginal directors are already appointed and registered, so the transition is executing rather than blocking. The 51% question is therefore **decoupled** from the AGM and starts now (DECISIONS.md ruling J). Entity mismatch in the signed agreement (ACN vs Nic's sole-trader ABN) still NOT raised with SIH; ruling L sends it in the first half of August. |
 | Cost model v1 usable | Submitted to Matt; measured $685 marginal / modelled $426 in-house; 50-bed run not started |
-| Impact method + cleared stories | IN PROGRESS: 34 cleared voices (canon `cleared-voices`, auto-checked), claims-status labels live |
+| Impact method + cleared stories | IN PROGRESS: 37 cleared voices (canon `cleared-voices`, auto-checked), claims-status labels live |
 
 Contract flags still open before signing anything further: cl 7.3 (SIH owns cost-model IP,
 confirm our licence) and cl 5.3 (3-year, 45-day co-invest right on future raises).

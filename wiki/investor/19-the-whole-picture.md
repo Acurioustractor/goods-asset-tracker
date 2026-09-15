@@ -38,7 +38,7 @@ We keep being filed under "furniture". The bed is a door into every system that 
 
 **Education.** Homeland School Company registered a school, and adequate sleep was named a barrier to attendance. Forty beds and two washers went in (INV-0303). Beds as school infrastructure: nobody else in the country is saying that with invoices.
 
-**Story and consent.** Empathy Ledger is how the voices travel with their consent attached: Dianne, Mykel, Alfred, Linda, Margaret, forty-plus tellers, thirty-four cleared for external use. The deck's voice slides pull only from there. The ledger is why our storytelling can be trusted at diligence depth.
+**Story and consent.** Empathy Ledger is how the voices travel with their consent attached: Dianne, Mykel, Alfred, Linda, Margaret, forty-plus tellers, thirty-seven cleared for external use. The deck's voice slides pull only from there. The ledger is why our storytelling can be trusted at diligence depth.
 
 The strategic sentence: **one product, four systems, one pathway out.** Funders who cannot fund furniture can fund justice, health, education or self-determination, and they are all buying the same bed.
 
