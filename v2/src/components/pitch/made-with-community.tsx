@@ -7,7 +7,7 @@
 // their photo is framed live in data/community-contributions.json. Data and consent rules:
 // lib/data/community-contributions.ts.
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { project } from '@/components/pitch/static-map';
 import type { ListeningPlace, ListeningVoice } from '@/lib/data/community-contributions';
 
@@ -21,6 +21,14 @@ export function MadeWithCommunity({ outline, places: initialPlaces, voices, draf
   const [selected, setSelected] = useState<string | null>(null);
   const [person, setPerson] = useState<ListeningVoice | null>(null);
   const [seen, setSeen] = useState(false);
+  const panelRef = useRef<HTMLElement>(null);
+  const personRef = useRef<HTMLDivElement>(null);
+  // Below lg the panel sits under the map and list, so a tap would change content
+  // off screen. Bring the panel, then the person's words, into view.
+  const stacked = () => typeof window !== 'undefined' && window.innerWidth < 1024;
+  const reduce = () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  useEffect(() => { if (selected && stacked()) panelRef.current?.scrollIntoView({ behavior: reduce() ? 'auto' : 'smooth', block: 'start' }); }, [selected]);
+  useEffect(() => { if (person && stacked()) personRef.current?.scrollIntoView({ behavior: reduce() ? 'auto' : 'smooth', block: 'center' }); }, [person]);
 
   const byName = useMemo(() => new Map(voices.map((v) => [v.name, v])), [voices]);
   const places = useMemo(() => initialPlaces
@@ -85,15 +93,16 @@ export function MadeWithCommunity({ outline, places: initialPlaces, voices, draf
               <g style={{ opacity: seen ? 1 : 0, transition: 'opacity 1.2s 1.5s' }}>
                 <circle cx={SEAT.x} cy={SEAT.y} r={14} fill="none" stroke="#C45C3E" strokeWidth={1.6} strokeDasharray="3 4"
                   style={{ transformBox: 'fill-box', transformOrigin: 'center', animation: 'mwc-breathe 2.6s ease-in-out infinite' }} className="motion-reduce:!animate-none" />
-                <text x={SEAT.x} y={SEAT.y + 30} textAnchor="middle" fontFamily="'Playfair Display', Georgia, serif" fontStyle="italic" fontSize={12} fill="#C45C3E">the next</text>
-                <text x={SEAT.x} y={SEAT.y + 45} textAnchor="middle" fontFamily="'Playfair Display', Georgia, serif" fontStyle="italic" fontSize={12} fill="#C45C3E">community to ask</text>
+                <text className="max-md:hidden" x={SEAT.x} y={SEAT.y + 30} textAnchor="middle" fontFamily="'Playfair Display', Georgia, serif" fontStyle="italic" fontSize={12} fill="#C45C3E">the next</text>
+                <text className="max-md:hidden" x={SEAT.x} y={SEAT.y + 45} textAnchor="middle" fontFamily="'Playfair Display', Georgia, serif" fontStyle="italic" fontSize={12} fill="#C45C3E">community to ask</text>
               </g>
             </svg>
             <style>{`@keyframes mwc-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}`}</style>
+            <p className="mt-3 flex items-center gap-2 font-display text-base italic text-goods-terracotta md:hidden"><span aria-hidden="true" className="inline-block h-5 w-5 rounded-full border-2 border-dashed border-goods-terracotta motion-safe:animate-pulse" />The dashed circle: the next community to ask</p>
             <figcaption className="mt-2 text-xs text-[#5d574c]">Each dot is a place where people spoke, growing with the number heard. Tap one, or choose from the list.</figcaption>
           </figure>
 
-          <aside className="rounded-[22px] border border-[#e6dfd1] bg-white p-6">
+          <aside ref={panelRef} className="scroll-mt-24 rounded-[22px] border border-[#e6dfd1] bg-white p-6">
             {!place ? (
               <div>
                 <p className="font-display text-2xl">Tap a place</p>
@@ -132,7 +141,7 @@ export function MadeWithCommunity({ outline, places: initialPlaces, voices, draf
                     );
                   })}
                 </div>
-                {person && <PersonPanel v={person} />}
+                {person && <div ref={personRef}><PersonPanel v={person} /></div>}
               </div>
             )}
           </aside>
