@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { FACILITY_ALLOWANCE_AUD, FACILITY_MODULES, MODULES_HIGH_AUD, MODULES_LOW_AUD } from './facility-modules';
 import { PAID_INVOICES, PAID_INVOICE_BEDS, PAID_INVOICE_INCL_GST_AUD, PAID_INVOICE_NET_AUD } from './paid-trade';
-import { GRANTS_RECEIVED } from './grants-received';
+import { GRANTS_RECEIVED, GRANTS_RECEIVED_TOTAL_AUD } from './grants-received';
 import { BREAK_EVEN_BEDS, FACILITY_CAPACITY_BEDS, PLAN_BEDS, RUNNING_COST_AUD } from './the-year';
 import { PAID_AUD, PAID_BEDS } from './story-questions';
 import { BUYERS } from './pitch-chapters';
@@ -34,9 +34,18 @@ describe('paid trade', () => {
 });
 
 describe('grants received', () => {
-  it('names a basis for every line and prints no single total', () => {
-    for (const g of GRANTS_RECEIVED) expect(['xero', 'row']).toContain(g.basis);
+  it('ties every line to the books and holds the reconciled total', () => {
+    for (const g of GRANTS_RECEIVED) {
+      expect(['xero', 'charity-fy26']).toContain(g.basis);
+      expect(g.source.length).toBeGreaterThan(0);
+    }
     expect(GRANTS_RECEIVED.find((g) => g.funder === 'Snow Foundation')?.amountAud).toBe(493_130);
+    expect(GRANTS_RECEIVED.find((g) => g.funder === 'The Funding Network')?.amountAud).toBe(144_558);
+    expect(GRANTS_RECEIVED_TOTAL_AUD).toBe(772_788);
+  });
+  it('never lists FRRR apart from the joint Backing the Future grant', () => {
+    expect(GRANTS_RECEIVED.filter((g) => /FRRR/.test(g.funder))).toHaveLength(1);
+    expect(GRANTS_RECEIVED.filter((g) => /Vincent Fairfax/.test(g.funder))).toHaveLength(1);
   });
 });
 
