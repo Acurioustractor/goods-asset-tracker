@@ -1546,7 +1546,7 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     // community/org asking "how would this work for us" and a funder asking "did this happen".
     // Counts derive from the register; quotes from cleared registry tiers; no dollar figures.
     leadsWithNow: {
-      heading: 'Forty beds, pressed at the farm, assembled in community',
+      heading: 'Forty beds, pressed at the Goods on Country facility in Queensland, assembled in community',
       eyebrow: 'Case study',
       body: 'A community-controlled organisation asked for beds and washing machines for homeland families.',
     },
@@ -2009,6 +2009,17 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     },
     verdict: 'keep',
     job: 'The buying page: households online, organisations by quote and invoice, with who has bought and who you are buying from.',
+  },
+  {
+    route: '/sell-beds',
+    audience: 'community',
+    access: 'open',
+    leadsWithNow: {
+      heading: '100 beds for your community to sell.',
+      body: 'Philanthropy pays for the stock; the community organisation sells or gives out the beds under its own rules and keeps the whole price.',
+    },
+    verdict: 'keep',
+    job: 'For a community organisation that wants beds as stock: how it works, what Goods on Country brings, straight answers, where it is up to, and a way to say you are interested.',
   },
   {
     route: '/facilities',

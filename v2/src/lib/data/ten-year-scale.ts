@@ -75,7 +75,7 @@ export const ASSUMPTIONS = {
     value: 1152,
     unit: 'beds a year the main facility can make',
     basis: 'modelled',
-    source: 'three-year-plan.ts WITTA_BEDS_A_YEAR = 1,152 (six kits a day, sixteen run days a month).',
+    source: 'three-year-plan.ts: the Queensland facility makes 1,152 beds a year (six kits a day, sixteen run days a month).',
   },
   hoursPerBed: {
     key: 'hoursPerBed',

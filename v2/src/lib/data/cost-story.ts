@@ -54,7 +54,7 @@ export interface CostChapter {
 export const COST_STORY_SPINE = [
   'A bed sells for $750. Made the current way (legs bought as a finished kit), the next bed costs about $685 and only ~$65 stays with Goods.',
   'The one hard fact under the whole model: we pay 8.6× the raw-material cost to buy legs finished. The plastic itself is $40–55.',
-  'Press the legs ourselves and the next bed costs about $426 — ~$324 stays. Five times more than today. The Maningrida Stretch run (40 beds, INV-0303) was pressed at our own facility at the farm — the capability is proven. What we have not yet done is press at production rate with measured per-bed costs. That honesty is the pitch, not a weakness.',
+  'Press the legs ourselves and the next bed costs about $426 — ~$324 stays. Five times more than today. The Maningrida Stretch run (40 beds, INV-0303) was pressed at the Goods on Country facility in Queensland — the capability is proven. What we have not yet done is press at production rate with measured per-bed costs. That honesty is the pitch, not a weakness.',
   'Running the business costs about $109.5K a year before any bed is made. At $324/bed that is ~338 beds a year to break even; at $65/bed it is ~1,679 — which is exactly why we in-source.',
   'The equipment costs $112–222K gross. $110,046 is already invested and sits beside that figure as evidence of skin in the game, never netted off it. We do not spend it until ~300+ beds/yr are committed.',
   'Plastic is a paid input today (~$55/bed), not free. Free community feedstock is the end state of the ladder, not the current state.',
@@ -154,13 +154,13 @@ export const COST_CHAPTERS: CostChapter[] = [
   {
     slug: 'making-ourselves',
     title: 'Making it ourselves',
-    lede: 'The capability is proven — the Maningrida run was pressed at our own facility at the farm. What is not yet proven is the cost at production rate. The measured run is what converts it.',
+    lede: 'The capability is proven — the Maningrida run was pressed at the Goods on Country facility in Queensland. What is not yet proven is the cost at production rate. The measured run is what converts it.',
     facts: [
       {
         label: 'Beds pressed at our own facility',
         value: '40 (the Maningrida Stretch run, INV-0303)',
         solidity: 'verified',
-        means: 'The Maningrida beds were pressed at our production facility at the farm and assembled in community. In-house pressing is a demonstrated capability, not a hypothesis.',
+        means: 'The Maningrida beds were pressed at the Goods on Country facility in Queensland and assembled in community. In-house pressing is a demonstrated capability, not a hypothesis.',
         watchOut: 'What we have NOT yet done: pressed at production rate with measured per-bed costs — that is what the $426 figure still models, and what the measured run proves. Say this before anyone else does.',
         source: 'Ben ruling 2026-07-21; invoice INV-0303: 40 Stretch Beds, Xero-verified 2026-07-13 (register total 58 = 40 Stretch + 18 Basket; Basket has no pressed legs). Supersedes the "0 pressed" Area 11 note.',
       },
@@ -249,7 +249,7 @@ export const COST_CHAPTERS: CostChapter[] = [
         label: 'Already invested in the facility',
         value: '$110,046',
         solidity: 'workpaper',
-        means: 'Actual spend standing up the farm production facility, mostly bought second hand. About $43,700 of it is evidenced at bill level in the connected Xero; the balance is plant we own whose paperwork is still catching up, chiefly the shredder ($19,800, running, invoice not yet located) and a recently bought larger CNC. A filing job, not a fiction.',
+        means: 'Actual spend standing up the Goods on Country facility in Queensland, mostly bought second hand. About $43,700 of it is evidenced at bill level in the connected Xero; the balance is plant we own whose paperwork is still catching up, chiefly the shredder ($19,800, running, invoice not yet located) and a recently bought larger CNC. A filing job, not a fiction.',
         watchOut: 'Present this BESIDE the gross ask as evidence of skin in the game, never subtracted from it. Not “verified”: only the $43,700 is bill-evidenced. The ~$75K in the minimal-viable-facility note is a bill-level subtotal, not a competing total.',
         source: 'Ben ruling 2026-07-25 (Matt model input 2); Xero bill-level pull 2026-07-22',
       },

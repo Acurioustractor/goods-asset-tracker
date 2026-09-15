@@ -66,9 +66,10 @@ const footerLinks = {
   product: [
     { name: 'Buy beds', href: '/beds' },
     { name: 'The Stretch Bed', href: '/shop/stretch-bed-single' },
+    { name: 'Sell beds in your community', href: '/sell-beds' },
     { name: 'Community facilities', href: '/facilities' },
     { name: 'How It\'s Made', href: '/process' },
-    { name: 'Washing Machines', href: '/shop/washing-machine' },
+    { name: 'Washing machines', href: '/shop/washing-machine' },
   ],
   about: [
     { name: 'Who we are', href: '/who-we-are' },
@@ -124,7 +125,7 @@ export function SiteFooter() {
               />
             </Link>
             <p className="mt-4 text-sm text-muted-foreground">
-              Community-designed health hardware. Assembled on Country. Made by community, made for community.
+              Stretch Beds and washing machines for remote homes, made with community.
             </p>
             {/* Social Links */}
             <div className="mt-4 flex gap-4">

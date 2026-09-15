@@ -346,7 +346,7 @@ export const QBE_ASK = {
   recommended: tier(
     250_000,
     150_000,
-    'One community pool (200 beds) and the proof block: the first fifty beds pressed at the farm at production rate, timed and costed with receipts; the rules agreements the pools run on; product traceability and the accounting repair that gives Goods on Country a gross margin on paper.',
+    'One community pool (200 beds) and the proof block: the first fifty beds pressed at the Goods on Country facility in Queensland at production rate, timed and costed with receipts; the rules agreements the pools run on; product traceability and the accounting repair that gives Goods on Country a gross margin on paper.',
   ),
   /** The ceiling, never the plan (ruling V): two pools and the proofs. */
   full: tier(

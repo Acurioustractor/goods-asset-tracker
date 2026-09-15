@@ -93,7 +93,7 @@ export const ROAD_STOPS: RoadStop[] = [
   },
   {
     id: 'maningrida',
-    place: 'Maningrida and the farm',
+    place: 'Maningrida and the Queensland facility',
     voice: 'Fred Campbell',
     taught: 'Economics land here',
     what: 'Forty beds pressed and assembled end to end. The capability is proven. What it costs per bed at a sustained rate is not yet measured.',

@@ -69,7 +69,7 @@ export const DEFAULTS: Inputs = CostModelDefaults;
 // The capital ask is quoted GROSS ($112,000-$222,000, rough and variable, plausibly reaching
 // ~$200,000) with ALREADY_INVESTED presented BESIDE it as evidence of skin in the game — never
 // subtracted from it. Netting invites "so is it yours or not?", which is the wrong question to
-// invite while the farm plant handover is in progress and the ownership pathway IS the pitch.
+// invite while the Queensland plant handover is in progress and the ownership pathway IS the pitch.
 // Two numbers, never one net number. Do not reintroduce a net export.
 export const VOLUME_GATE = 300; // capex only sensible above ~300/yr committed
 export const CONTAINERISE_FREIGHT_DELTA = 70; // -$70/bed long-haul if containerised (ship plant once, not N beds)

@@ -31,7 +31,7 @@ export function EnquiryForm({
   sentLine,
   dark = false,
 }: {
-  kind: 'beds' | 'facilities';
+  kind: 'beds' | 'facilities' | 'sell-beds';
   subject: 'Bulk Order Inquiry' | 'Partnership Inquiry';
   fields: readonly EnquiryField[];
   submitLabel: string;
@@ -54,7 +54,7 @@ export function EnquiryForm({
     const lines = fields
       .filter((f) => !['name', 'email', 'phone', 'organisation', 'message'].includes(f.name) && value(f.name))
       .map((f) => `${f.label}: ${value(f.name)}`);
-    const message = [`Sent from ${window.location.pathname} (${kind === 'beds' ? 'organisation bed order' : 'facility enquiry'})`, '', ...lines, ...(value('message') ? ['', value('message')] : [])].join('\n');
+    const message = [`Sent from ${window.location.pathname} (${{ beds: 'organisation bed order', facilities: 'facility enquiry', 'sell-beds': 'community stock enquiry' }[kind]})`, '', ...lines, ...(value('message') ? ['', value('message')] : [])].join('\n');
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',

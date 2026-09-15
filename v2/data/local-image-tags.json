@@ -1,3 +1,49 @@
 {
-  "/images/community/tennant-creek.jpg": ["community:tennant-creek"]
+  "/images/community/tennant-creek.jpg": [
+    "community:tennant-creek"
+  ],
+  "/images/community/palm-island/two-men-thumbs-up.jpg": [
+    "product:basket-bed",
+    "community:palm-island"
+  ],
+  "/images/community/palm-island/woman-boy-new-bed.jpg": [
+    "product:basket-bed",
+    "community:palm-island"
+  ],
+  "/images/community/palm-island/woman-new-bed-home.jpg": [
+    "product:basket-bed",
+    "community:palm-island"
+  ],
+  "/images/community/palm-island/family-dogs-new-bed.jpg": [
+    "product:basket-bed",
+    "community:palm-island"
+  ],
+  "/images/community/palm-island/crate-build-lawn.jpg": [
+    "product:basket-bed",
+    "community:palm-island"
+  ],
+  "/images/community/palm-island/crate-build-shed.jpg": [
+    "product:basket-bed",
+    "community:palm-island"
+  ],
+  "/images/community/palm-island/delivery-porch-314.jpg": [
+    "product:basket-bed",
+    "community:palm-island"
+  ],
+  "/images/community/palm-island/kids-new-mattress.jpg": [
+    "product:basket-bed",
+    "community:palm-island"
+  ],
+  "/images/community/palm-island/kids-unroll-topper.jpg": [
+    "product:basket-bed",
+    "community:palm-island"
+  ],
+  "/images/community/palm-island/naidoc-nan-kids-bed.jpg": [
+    "product:basket-bed",
+    "community:palm-island"
+  ],
+  "/images/community/palm-island/topper-spread-shed.jpg": [
+    "product:basket-bed",
+    "community:palm-island"
+  ]
 }

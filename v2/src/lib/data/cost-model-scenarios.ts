@@ -154,7 +154,7 @@ const _counterfactual = scenarios.counterfactual;
 export const CAPITAL_GROSS_LOW = _capex.total_low; // 112,000
 export const CAPITAL_GROSS_HIGH = _capex.total_high; // 222,000
 /**
- * Sunk spend on the farm production facility. $110,046 is ACTUAL (Ben ruling 2026-07-25,
+ * Sunk spend on the Queensland production facility. $110,046 is ACTUAL (Ben ruling 2026-07-25,
  * Matt model input 2), and it is the figure to quote. Evidence grade is `workpaper`, not
  * `verified`: ~$43,700 is evidenced at bill and bank-line level in the connected sole-trader
  * Xero, and the balance is plant we own whose paperwork is still catching up — the shredder

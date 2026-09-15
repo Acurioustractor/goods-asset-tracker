@@ -51,6 +51,7 @@ const ALLOWED_APP_PREFIXES = [
   'pathways/', // consent-shaped per-community numbers; its own rules live in that module
   'field-notes/', // trip stories quote real invoices with consent-cleared context
   'beds', // the buying page: the $750 price a buyer acts on, from canon
+  'sell-beds', // community stock: the $750 an organisation keeps per bed sold, from canon
   'facilities', // the community facility page: the planning allowance per facility, from pitch-chapters.ts
 ];
 

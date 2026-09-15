@@ -96,6 +96,19 @@ export const WASHING_MACHINE = {
   specs: {
     baseUnit: 'Commercial-grade Speed Queen',
   },
+  /** Ben, 16 September 2026: show how ordering one works. No price is printed; it is quoted per community. */
+  orderLine: 'Made to order for communities and organisations. Health services have already bought and reordered them.',
+  ordering: [
+    { title: 'Tell us where it is going', line: 'The community, the building it goes in, the power and water, and who will look after it.' },
+    { title: 'We quote it', line: 'The machine and the freight to your community, in one quote.' },
+    { title: 'We build it and send it', line: 'A commercial-grade Speed Queen base in recycled-plastic housing, with one-button operation.' },
+    { title: 'We stay on the repairs', line: 'When something breaks, tell us and we work out the repair with you. The parts are standard, so it can be fixed.' },
+  ],
+  /** Ben, 16 September 2026: a new, cheaper version for community is being worked on. No price or date is promised. */
+  nextVersion: {
+    title: 'A cheaper version for community',
+    line: 'We are working on a new, cheaper Pakkimjalki Kari so more community organisations can put one in. Register interest and we will tell you when it is ready to test.',
+  },
 } as const;
 
 export const BASKET_BED = {

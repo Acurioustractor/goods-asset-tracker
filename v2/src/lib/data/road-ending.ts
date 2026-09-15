@@ -312,7 +312,7 @@ export const PATHWAY_ASKS: PathwayAsk[] = [
 /** Where the first site goes is not ours alone to settle, and four named
  *  communities are reading. State the process, never the outcome. */
 export const FIRST_SITE_RULE =
-  'Where the first facility goes will be decided with communities. Goods will keep producing beds at the farm and The Harvest while each community chooses what it wants to build and own.';
+  'Where the first facility goes will be decided with communities. Goods will keep producing beds at the Goods on Country facility in Queensland while each community chooses what it wants to build and own.';
 
 // ---------------------------------------------------------------------------
 // Section 4: the letter.
@@ -361,7 +361,7 @@ export const DOORS: Door[] = [
     verb: 'Lend',
     entity: PAYMENT_DOORS.lend.receivingEntity,
     does:
-      'Buys the press, the shredder and the machine that cuts the legs, and covers the gap between building beds and getting paid for them. They are the same machines a community can take one at a time.',
+      'Carries the first year of running Goods on Country while the first beds reach community organisations and sell. It is paid back from the beds Goods on Country sells, never from a community organisation\'s sales.',
     returns:
       'Your money back, out of bed sales, on terms agreed with you: the rate, the term and when repayment starts. Nobody has agreed those terms yet, and we will not promise a return until the repayment plan is clear.',
     match: 'Counts toward the QBE match. It is the form QBE would rather see.',
@@ -380,7 +380,7 @@ export const DOORS: Door[] = [
  *  the page says which entity signs is an open question rather than implying the
  *  migration is finished. */
 export const DOORS_NOTE =
-  'Goods sells through a sole trader today and is moving into A Curious Tractor Pty Ltd. Which name signs your paperwork is one of the things a first call sorts out.';
+  'Gifts and loans go to Goods on Country, a registered business name of The Butterfly Movement Ltd (ABN 22 155 132 684). Orders are invoiced by A Curious Tractor Pty Ltd for now.';
 
 export const ASK_INTRO = {
   headline: 'What we need from you fits on one page.',
@@ -552,4 +552,4 @@ export const SITE_OPERATING = {
  *  workbook shape... Reassembling these into modules is an ALLOCATION of an
  *  evidenced total, not new evidence. No figure here is a quote." */
 export const CHAIN_HONESTY =
-  'These are our own numbers for our own gear at the farm, mostly bought second hand; splitting one total into five steps is arithmetic on what we already had, not new evidence. Nothing here is a quote for a site in a community, and no community has been quoted from it.';
+  'These are our own numbers for our own gear at the Queensland facility, mostly bought second hand; splitting one total into five steps is arithmetic on what we already had, not new evidence. Nothing here is a quote for a site in a community, and no community has been quoted from it.';

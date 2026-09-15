@@ -14,6 +14,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import { ASK_HEADLINE } from '@/lib/data/ask-surface';
+import { MONEY_LANES } from '@/lib/data/money-lanes';
+import { BED, RAISE, dollars } from '@/lib/data/model-placemat';
 import { DOORS } from '@/lib/data/road-ending';
 import { NORTH_STAR } from '@/lib/data/content';
 
@@ -24,18 +26,20 @@ export const metadata: Metadata = {
 };
 
 const FIVE_NUMBERS = [
-  { v: '$750', l: 'A bed sells for', chip: 'verified' },
-  { v: '~$685', l: 'To make + truck today', chip: 'verified' },
-  { v: '~$426', l: 'Pressing our own legs', chip: 'modelled' },
-  { v: '$300K', l: 'Annual funding Goods needs', chip: 'target' },
-  { v: '$0', l: 'Signed today', chip: 'verified' },
+  { v: dollars(BED.priceAud), l: 'A bed sells for', chip: 'verified' },
+  { v: dollars(BED.makeAud), l: 'To make a bed', chip: 'provisional' },
+  { v: dollars(BED.contributionAud), l: 'Carries Goods on Country, per bed it sells', chip: 'modelled' },
+  { v: dollars(RAISE.totalShownAud), l: 'Asked, in three parts', chip: 'target' },
+  { v: dollars(RAISE.signedAud), l: 'Signed today', chip: 'verified' },
 ];
 
-const FACILITY = [
-  { step: 'Community facility', amount: 'Up to $222K', chip: 'capital per full facility', line: 'A complete production facility, or a smaller set of modules shaped around what a community needs and already has.' },
-  { step: 'Keep making beds', amount: '$100K a year', chip: 'production funding', line: 'Continue production at the farm and The Harvest while on-Country facilities are developed.' },
-  { step: 'Keep Goods working', amount: '$200K a year', chip: 'organisation funding', line: 'Visit communities, develop products and support community-led enterprises to grow and take on production.' },
-];
+// The three money lanes of /pitch (money-lanes.ts), so the page a funder prints matches the pitch.
+const FACILITY = MONEY_LANES.map((lane) => ({
+  step: lane.buys.title,
+  amount: dollars(lane.source.amount),
+  chip: lane.id === 'beds' ? 'philanthropy' : lane.source.kicker.toLowerCase(),
+  line: `${lane.buys.line} ${lane.endsUp.line}`,
+}));
 
 export default function OnePagerPage() {
   return (

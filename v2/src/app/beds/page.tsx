@@ -5,6 +5,7 @@ import { EnquiryForm } from '@/components/contact/enquiry-form';
 import { canonValue } from '@/lib/data/canon';
 import { ORGANISATION } from '@/lib/data/organisation';
 import { BUYERS } from '@/lib/data/pitch-chapters';
+import { BUYER_LOGOS } from '@/lib/data/buyer-logos';
 import { PLASTIC_KG_PER_BED, STRETCH_BED } from '@/lib/data/products';
 import { SHOP_ANSWERS } from '@/lib/data/shop';
 import { PAID_BEDS } from '@/lib/data/story-questions';
@@ -53,7 +54,7 @@ const ORDER_FIELDS = [
 ] as const;
 
 const PROOF = [
-  { src: '/images/community/palm-island/woman-boy-new-bed.jpg', alt: 'A woman and a boy on a new Stretch Bed, Palm Island' },
+  { src: '/images/product/stretch-bed-community.jpg', alt: 'An Elder standing beside an assembled Stretch Bed on red dirt' },
   { src: '/images/community/maningrida/men-over-finished-bed.jpg', alt: 'Men standing over a finished Stretch Bed, Maningrida' },
   { src: '/images/stories/utopia/09-offground.jpg', alt: 'A Stretch Bed in use, up off the ground, Utopia Homelands' },
 ] as const;
@@ -88,7 +89,7 @@ export default function BedsPage() {
                 <Image src="/images/pitch/bed-assembled.jpg" alt="A Stretch Bed assembled" fill sizes="(min-width: 1024px) 20vw, 40vw" className="object-cover" />
               </div>
               <div className="relative overflow-hidden rounded-[22px] bg-goods-sand">
-                <Image src="/images/community/palm-island/two-men-thumbs-up.jpg" alt="Two men giving a thumbs up beside new beds, Palm Island" fill sizes="(min-width: 1024px) 20vw, 40vw" className="object-cover" />
+                <Image src="/images/community/alice-springs/stretch-bed-kids-pile.jpg" alt="Young people with a Stretch Bed in Alice Springs" fill sizes="(min-width: 1024px) 20vw, 40vw" className="object-cover" />
               </div>
             </div>
           </div>
@@ -180,7 +181,10 @@ export default function BedsPage() {
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-start">
           <div>
             <h2 className="font-display text-4xl font-semibold leading-tight md:text-5xl">Who has bought.</h2>
-            <p className="mt-4 text-lg leading-relaxed text-[#4a4741]">{BUYERS.who}</p>
+            <p className="mt-4 text-lg leading-relaxed text-[#4a4741]">{BUYERS.who.split('.')[0]}.</p>
+            <p className="mt-3 text-[15px] leading-relaxed text-[#5d574c]">
+              A community organisation that wants beds to sell? <Link href="/sell-beds" className="font-semibold text-goods-ink underline underline-offset-2">100 beds for your community to sell</Link>.
+            </p>
             <div className="mt-8 grid grid-cols-3 gap-3">
               {PROOF.map((p) => (
                 <div key={p.src} className="relative aspect-[3/4] overflow-hidden rounded-[18px] bg-goods-sand">
@@ -191,10 +195,15 @@ export default function BedsPage() {
           </div>
           <ul className="divide-y divide-[#e6dfd1] rounded-[24px] border border-[#e6dfd1] bg-white px-6">
             {BUYERS.rows.map((r) => (
-              <li key={r.buyer} className="grid grid-cols-[1fr_auto] gap-4 py-5">
+              <li key={r.buyer} className="grid grid-cols-[3.5rem_1fr_auto] items-center gap-4 py-5">
+                <div className="flex h-12 items-center justify-center">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  {BUYER_LOGOS[r.buyer] && <img src={BUYER_LOGOS[r.buyer].src} alt={`${r.buyer} logo`} width={BUYER_LOGOS[r.buyer].width} height={BUYER_LOGOS[r.buyer].height} className="max-h-full w-auto max-w-full object-contain" />}
+                </div>
                 <div>
                   <p className="font-display text-xl font-semibold leading-tight">{r.buyer}</p>
                   <p className="mt-1 text-sm leading-snug text-[#5d574c]">{r.line}</p>
+                  {r.washers > 0 && <p className="mt-1 text-sm font-semibold text-goods-ink">And {r.washers} washing machines</p>}
                 </div>
                 <p className="font-display text-3xl font-semibold tabular-nums">{r.beds}</p>
               </li>
@@ -245,7 +254,7 @@ export default function BedsPage() {
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-terracotta">Who you are buying from</p>
             <p className="mt-3 font-display text-3xl font-semibold leading-tight">{ORGANISATION.boardLine}</p>
             <p className="mt-4 text-[16px] leading-relaxed text-[#4a4741]">
-              {ORGANISATION.identityLine} ABN {ORGANISATION.abn}. {ORGANISATION.charityLine}
+              {ORGANISATION.identityLine} ABN {ORGANISATION.abn}. {ORGANISATION.charityLine} {ORGANISATION.seller}
             </p>
             <Link href="/who-we-are" className="mt-6 inline-flex min-h-11 items-center rounded-full border border-goods-ink/25 px-5 text-sm font-semibold transition-colors hover:border-goods-ink">
               Meet the board and the team

@@ -6,7 +6,7 @@ import { track } from '@vercel/analytics';
 // organisations, or any other personal information reaches Web Analytics.
 export function trackContactEvent(
   event: 'contact_form_viewed' | 'contact_form_submitted' | 'contact_form_failed',
-  surface: 'contact' | 'partnership' | 'washer_interest' | 'press' | 'pitch' | 'beds' | 'facilities',
+  surface: 'contact' | 'partnership' | 'washer_interest' | 'press' | 'pitch' | 'beds' | 'facilities' | 'sell-beds',
   inquiryType?: string,
 ) {
   track(event, { surface, ...(inquiryType ? { inquiry_type: inquiryType } : {}) });
