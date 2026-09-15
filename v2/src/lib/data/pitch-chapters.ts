@@ -245,14 +245,15 @@ export const GOVERNANCE = {
 } as const;
 
 /** S12. Who buys from a community organisation. */
+/** Washing machines per buyer are from the paid invoices (demand-and-buyers.ts, finance branch): INV-0303 carries Homeland School Company's two; the other three buyers' invoices carry none. */
 export const BUYERS = {
   headline: `${PAID_BEDS} beds and 11 washing machines, bought and paid for.`,
   who: 'Health services, schools, housing programs, research programs and families. The organisation holds the stock, invoices the customer and keeps the whole $750.',
   rows: [
-    { buyer: 'Centrecorp Foundation', beds: 167, line: 'Two orders for the Utopia homelands. Oonchiumpa held the build. 147 are in households and 20 are made and waiting.' },
-    { buyer: 'ALIVE National Centre', beds: 100, line: 'Paid in full before one bed was made, for Gathering the Parts.' },
-    { buyer: 'Homeland School Company, Maningrida', beds: 40, line: 'The first full run off our own press, assembled at Gamardi.' },
-    { buyer: "Mala'la Health Service, Maningrida", beds: 13, line: 'Bought the year before, so two organisations in one place hold Goods stock.' },
+    { buyer: 'Centrecorp Foundation', beds: 167, washers: 0, line: 'Two orders for the Utopia homelands. Oonchiumpa held the build. 147 are in households and 20 are made and waiting.' },
+    { buyer: 'ALIVE National Centre', beds: 100, washers: 0, line: 'Paid in full before one bed was made, for Gathering the Parts.' },
+    { buyer: 'Homeland School Company, Maningrida', beds: 40, washers: 2, line: 'The first full run off our own press, assembled at Gamardi.' },
+    { buyer: "Mala'la Health Service, Maningrida", beds: 13, washers: 0, line: 'Bought the year before, so two organisations in one place hold Goods stock.' },
   ],
   brings: 'Goods on Country brings the customer connections, the contracts and the freight.',
 } as const;

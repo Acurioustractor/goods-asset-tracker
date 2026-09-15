@@ -203,6 +203,7 @@ export default function BedsPage() {
                 <div>
                   <p className="font-display text-xl font-semibold leading-tight">{r.buyer}</p>
                   <p className="mt-1 text-sm leading-snug text-[#5d574c]">{r.line}</p>
+                  {r.washers > 0 && <p className="mt-1 text-sm font-semibold text-goods-ink">And {r.washers} washing machines</p>}
                 </div>
                 <p className="font-display text-3xl font-semibold tabular-nums">{r.beds}</p>
               </li>

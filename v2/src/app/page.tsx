@@ -202,7 +202,7 @@ export default async function HomePage() {
                     {logo && <img src={logo.src} alt={`${r.buyer} logo`} width={logo.width} height={logo.height} className="max-h-full w-auto max-w-[85%] object-contain" />}
                   </div>
                   <p className="mt-3 text-sm font-semibold leading-snug">{r.buyer}</p>
-                  <p className="text-xs text-[#5d574c]">{r.beds} beds</p>
+                  <p className="text-xs text-[#5d574c]">{r.beds} beds{r.washers ? ` and ${r.washers} washing machines` : ''}</p>
                 </li>
               );
             })}
