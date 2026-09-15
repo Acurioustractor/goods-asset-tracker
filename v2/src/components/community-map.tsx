@@ -88,6 +88,17 @@ export function CommunityMap({
       },
     ).addTo(map);
 
+    // The map often mounts while its column is still settling (fonts, grids, sticky rails), so
+    // Leaflet sizes its tile grid to the wrong box and leaves grey squares. Re-measure whenever
+    // the container changes, and once more shortly after mount.
+    const ro = new ResizeObserver(() => map.invalidateSize({ animate: false }));
+    ro.observe(mapRef.current);
+    const settle = window.setTimeout(() => map.invalidateSize({ animate: false }), 400);
+    map.once('remove', () => {
+      ro.disconnect();
+      window.clearTimeout(settle);
+    });
+
     // Heatpost marker: a glowing dot with a soft radial halo. Size scales
     // with bed count but the whole footprint stays small so it reads as
     // "presence on Country", not "infrastructure pin".
@@ -338,8 +349,17 @@ export function CommunityMap({
           background: rgba(252, 247, 240, 0.98);
           box-shadow: none;
         }
+        /* Tiles are 256px images laid edge to edge; on scaled displays the browser leaves
+           hairline gaps between them that read as a grid over the map. A half pixel of
+           overlap and a transparent outline close the seams. */
+        .leaflet-container .leaflet-tile-container img.leaflet-tile {
+          width: 256.5px !important;
+          height: 256.5px !important;
+          outline: 1px solid transparent;
+        }
         .leaflet-container {
-          background: oklch(0.97 0.01 80);
+          /* The ocean grey of the Esri canvas tiles, so any hairline between tiles vanishes. */
+          background: rgb(208, 207, 212);
           font-family: Georgia, serif;
         }
         .leaflet-control-zoom a {

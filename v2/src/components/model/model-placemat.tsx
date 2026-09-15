@@ -8,7 +8,7 @@
 
 import Image from 'next/image';
 import { useLayoutEffect, useRef, useState } from 'react';
-import { PANELS, RAISE, SHEET, SHEET_H, SHEET_W, aud, audRange } from '@/lib/data/model-placemat';
+import { PANELS, RAISE, SHEET, SHEET_H, SHEET_W, dollars } from '@/lib/data/model-placemat';
 import { ModelLoop } from './model-loop';
 import styles from './model-placemat.module.css';
 
@@ -24,19 +24,26 @@ export function ModelPlacemat() {
       <section className={styles.raise} aria-label="The raise">
         <h2 className={styles.raiseHeading}>
           {SHEET.raiseHeading}
-          <span className={styles.raiseNote}>· {SHEET.raiseNote}</span>
+          {SHEET.raiseNote ? <span className={styles.raiseNote}>· {SHEET.raiseNote}</span> : null}
         </h2>
         <div className={styles.raisePills}>
           <div className={`${styles.pill} ${styles.pillQbe}`}>
-            <h3>QBE {aud(RAISE.qbeAud)}</h3>
+            <h3>QBE {dollars(RAISE.qbeAud)}</h3>
             <p>{RAISE.qbeFor}</p>
           </div>
           <div className={styles.plus} aria-hidden="true">
             +
           </div>
           <div className={`${styles.pill} ${styles.pillOther}`}>
-            <h3>Other philanthropy {audRange(RAISE.otherLowAud, RAISE.otherHighAud)}</h3>
-            <p>{RAISE.otherFor}</p>
+            <h3>Beds {dollars(RAISE.bedsShownAud)}</h3>
+            <p>{RAISE.bedsFor}</p>
+          </div>
+          <div className={styles.plus} aria-hidden="true">
+            +
+          </div>
+          <div className={`${styles.pill} ${styles.pillQbe}`}>
+            <h3>Loan {dollars(RAISE.loanAud)}</h3>
+            <p>{RAISE.loanFor}</p>
           </div>
         </div>
       </section>
@@ -66,7 +73,7 @@ export function ModelPlacemat() {
         </span>
       </section>
 
-      <p className={styles.footer}>{SHEET.footer}</p>
+      {SHEET.footer ? <p className={styles.footer}>{SHEET.footer}</p> : null}
     </div>
   );
 }

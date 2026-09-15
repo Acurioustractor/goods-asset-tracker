@@ -40,7 +40,7 @@ function Hotspots({ parts, fullScreen = false }: { parts: BedPart[]; fullScreen?
   ));
 }
 
-export function BedExplorer({ src, alt, parts, caption }: { src: string; alt: string; parts: BedPart[]; caption?: string }) {
+export function BedExplorer({ src, alt, parts, caption, dark = false }: { src: string; alt: string; parts: BedPart[]; caption?: string; dark?: boolean }) {
   const [open, setOpen] = useState(false);
   const [scale, setScale] = useState(1);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -113,8 +113,28 @@ export function BedExplorer({ src, alt, parts, caption }: { src: string; alt: st
           </span>
         </button>
         <Hotspots parts={parts} />
+        {/* Phones: numbered marks on the photograph; the parts open in the list below. */}
+        {parts.map((part, i) => (
+          <span key={part.name} aria-hidden="true" className={`pointer-events-none absolute z-10 flex h-7 w-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/80 bg-goods-terracotta text-xs font-bold text-white shadow-lg md:hidden ${part.position}`}>
+            {i + 1}
+          </span>
+        ))}
         {caption && <p className="pointer-events-none absolute bottom-5 right-5 hidden rounded-full bg-black/45 px-4 py-2 text-xs text-white/85 backdrop-blur md:block">{caption}</p>}
       </div>
+      <ol className={`mt-4 space-y-2 md:hidden ${dark ? 'text-goods-cream' : 'text-goods-ink'}`}>
+        {parts.map((part, i) => (
+          <li key={part.name}>
+            <details className={`group rounded-2xl border px-4 py-3 ${dark ? 'border-goods-cream/20 bg-goods-cream/5' : 'border-[#e6dfd1] bg-[#fffdf9]'}`}>
+              <summary className="flex min-h-9 cursor-pointer list-none items-center gap-3 font-display text-lg font-semibold [&::-webkit-details-marker]:hidden">
+                <span className="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-goods-terracotta font-sans text-xs font-bold text-white">{i + 1}</span>
+                {part.name}
+                <span className="ml-auto text-2xl font-normal leading-none transition-transform duration-300 group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p className={`mt-2 pl-10 text-[15px] leading-relaxed ${dark ? 'text-goods-cream/80' : 'text-[#4a4741]'}`}>{part.detail}</p>
+            </details>
+          </li>
+        ))}
+      </ol>
 
       {open && (
         <div
@@ -140,7 +160,7 @@ export function BedExplorer({ src, alt, parts, caption }: { src: string; alt: st
             <span className="px-2 text-xs tabular-nums text-white/70">{Math.round(scale * 100)}%</span>
             <button type="button" onClick={close} className="rounded-full p-3 hover:bg-white/10" aria-label="Close full-screen image"><X className="h-5 w-5" /></button>
           </div>
-          <p className="pointer-events-none absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full bg-black/60 px-4 py-2 text-xs text-white/70 backdrop-blur">Pinch to zoom · two-finger scroll or drag to move · double-click to reset</p>
+          <p className="pointer-events-none absolute bottom-5 left-1/2 w-max max-w-[90vw] -translate-x-1/2 rounded-full bg-black/60 px-4 py-2 text-center text-xs text-white/70 backdrop-blur"><span className="md:hidden">Drag to move · use + and − to zoom</span><span className="hidden md:inline">Two-finger scroll or drag to move · double-click to zoom or reset</span></p>
         </div>
       )}
     </>

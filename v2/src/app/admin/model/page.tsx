@@ -1,5 +1,5 @@
-import { ModelPlacematFrame } from '@/components/model/model-placemat';
-import { PLACEMAT_READ_AT, RAISE, aud, audRange } from '@/lib/data/model-placemat';
+import { PlacematSvgFrame } from '@/components/model/placemat-svg';
+import { PLACEMAT_READ_AT, RAISE, dollars } from '@/lib/data/model-placemat';
 
 export const metadata = {
   title: 'The model placemat | Goods admin',
@@ -7,10 +7,12 @@ export const metadata = {
 };
 
 /**
- * The model placemat: one sheet, A3 landscape, composed in code. Words and
- * figures come from src/lib/data/model-placemat.ts; change them there. The
- * sheet scales to the window; at a window wider than about 1900px it renders
- * 1:1, which is the size the PNG export is taken at.
+ * The model placemat: one sheet, A3 landscape, drawn as one SVG from
+ * src/lib/model/placemat-svg.ts on a 12 by 13 grid. Words and figures come from
+ * src/lib/data/model-placemat.ts; change them there and the sheet redraws, the
+ * arrows follow the boxes and the labels find a clear spot. The photographs sit
+ * inside the panels. `node --import ./scripts/lib/register-ts.mjs
+ * scripts/render-placemat.mjs` writes the same sheet to the diagram catalog.
  */
 export default function ModelPlacematPage() {
   return (
@@ -18,15 +20,11 @@ export default function ModelPlacematPage() {
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h1 className="font-display text-2xl font-semibold">The model placemat</h1>
         <p className="text-sm text-muted-foreground">
-          Proposed model, read {PLACEMAT_READ_AT}. QBE {aud(RAISE.qbeAud)} plus other philanthropy{' '}
-          {audRange(RAISE.otherLowAud, RAISE.otherHighAud)}. Nothing signed.
+          Proposed model, read {PLACEMAT_READ_AT}. Asked {dollars(RAISE.totalShownAud)}: QBE {dollars(RAISE.qbeAud)} for two facilities plus{' '}
+          {dollars(RAISE.bedsShownAud)} of beds, three grants of 133 at $750, plus a {dollars(RAISE.loanAud)} SEFA loan. Nothing signed.
         </p>
       </div>
-      <ModelPlacematFrame />
-      <p className="text-xs text-muted-foreground">
-        Words and figures live in <code>src/lib/data/model-placemat.ts</code>. Photographs are the Media Room starred set.
-        The only drawing is the kit container cut from the accepted plant workflow.
-      </p>
+      <PlacematSvgFrame />
     </div>
   );
 }

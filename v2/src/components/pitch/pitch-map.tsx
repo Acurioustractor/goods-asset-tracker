@@ -6,7 +6,6 @@
  */
 
 import dynamic from 'next/dynamic';
-import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import type { CommunityLocation } from '@/lib/data/content';
 
@@ -54,9 +53,6 @@ export function PitchMap({ locations }: { locations: CommunityLocation[] }) {
               <button type="button" onClick={() => setSelectedId(null)} className="min-h-11 rounded-full border border-goods-ink/30 px-4 text-sm font-semibold hover:border-goods-terracotta hover:text-goods-terracotta">
                 All places
               </button>
-              <Link href={`/communities/${selected.id}`} className="inline-flex min-h-11 items-center rounded-full bg-goods-ink px-4 text-sm font-semibold text-goods-cream">
-                The place page
-              </Link>
             </div>
           </div>
         )}

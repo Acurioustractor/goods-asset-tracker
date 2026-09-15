@@ -49,7 +49,8 @@ export const CHAPTERS: readonly StoryChapter[] = [
     label: 'The crux',
     title: 'Useful goods start community enterprise.',
     lines: [
-      'The Harvest Plant makes the first stock. Community organisations trade it. Buyers pay the community organisation. The money stays local. The community decides what comes next.',
+      'Community sleeping on durable, fit-for-purpose beds, building the products, and earning inside community-run enterprises.',
+      'The Harvest Plant makes the first stock. Community organisations trade it. Customers pay the community organisation. The money stays local. The community decides what comes next.',
     ],
     slides: ['S01'],
     status: 'settled',
@@ -152,7 +153,7 @@ export const CHAPTERS: readonly StoryChapter[] = [
     id: 'evidence',
     number: 8,
     label: 'What we will measure',
-    title: 'What we will measure, not what we assume.',
+    title: 'What we will measure.',
     lines: ['Track enterprise, paid work, recycling, and health and daily life.', 'Agree, cost, confirm, establish, test, review and decide.'],
     slides: ['S14', 'S17'],
     status: 'settled',
@@ -326,7 +327,7 @@ export const MODEL_STEPS: readonly ModelStep[] = [
   {
     id: 'raise',
     title: 'The raise pays for the start.',
-    line: `QBE ${aud(RAISE.qbeAud)} for the two facilities. Other philanthropy ${aud(RAISE.otherLowAud)} to ${aud(RAISE.otherHighAud)} for the first ${RAISE.bedsYearOne} beds, and every bed comes with facilitation and support for the workshopping in community. ${aud(RAISE.totalLowAud)} to ${aud(RAISE.totalHighAud)} in total. Nothing is signed yet.`,
+    line: `QBE ${aud(RAISE.qbeAud)} for the two facilities. ${aud(RAISE.bedsShownAud)} for the first ${RAISE.bedsYearOne} beds, from three grants each buying 133 beds at $750 with the work around them and the freight inside the price. A loan of ${aud(RAISE.loanAud)} for the first-year running cost, repaid from the beds Goods on Country sells. ${aud(RAISE.totalShownAud)} asked in total. Nothing is signed yet.`,
     reveal: [],
     focus: [],
   },
@@ -359,7 +360,7 @@ export const MONEY_LANES = [
 
 export const REQUEST = {
   headline: `${aud(RAISE.qbeAud)} for two proposed production facilities.`,
-  note: `${aud(RAISE.qbeAud / RAISE.facilities)} per site is a planning allowance, not a quote. Sites, costs and agreements remain to settle. First stock and its facilitation are funded together, as one line.`,
+  note: `${aud(RAISE.qbeAud / RAISE.facilities)} per site is a planning allowance and no site has been quoted. Sites, costs and agreements remain to settle. First stock and its facilitation are funded together, as one line.`,
 } as const;
 
 // ---------------------------------------------------------------------------

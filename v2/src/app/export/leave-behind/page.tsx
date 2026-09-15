@@ -326,8 +326,8 @@ export default function LeaveBehindPage() {
           </div>
 
           <p style={{ fontSize: 12, color: C.soft, lineHeight: 1.42 }}>
-            Every bed carries a QR digital twin: GPS, recipient, delivery date. Standing behind these figures are{' '}
-            <b>200 to 350 bed requests we have not filled.</b> These are interest and requests, never signed agreements.
+            Every bed carries a QR digital twin: GPS, recipient, delivery date. We do not hold a demand number and we do not claim one;{' '}
+            <b>four organisations have paid for 320 beds</b>, and nobody has counted who sleeps without a bed in any community.
           </p>
 
           {/* ---- the hinge ---- */}

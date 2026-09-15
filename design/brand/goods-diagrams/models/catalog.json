@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "library": "Goods on Country model diagrams",
+  "sourceDate": "2026-09-14",
+  "defaultModel": "whole-model",
+  "models": [
+    {
+      "id": "structure-and-funding-flow",
+      "name": "Structure and funding flow, QBE Q3",
+      "version": "1.0",
+      "status": "review",
+      "approval": null,
+      "use": "One A4 page for QBE Stage 2 Q3: the applicant in the centre, its related entities inside a dashed line, funders above, Oonchiumpa and the REAL offer to the right, community organisations and customers below. Money lines in sage, goods in terracotta, dashed means not yet.",
+      "file": "v2/structure-and-funding-flow.svg",
+      "png": "v2/structure-and-funding-flow.png",
+      "pdf": "deliverables/qbe-stage2/Goods-structure-and-funding-flow.pdf",
+      "sha256": "5fb253732815b5bd506f948dfd615dd9c765d44fe264397d599caac20f410f71",
+      "sourceDate": "2026-09-15",
+      "renderedAt": "2026-09-15",
+      "source": "v2/src/lib/data/structure-diagram.ts",
+      "renderer": "v2/src/lib/model/structure-svg.ts",
+      "sheet": {
+        "w": 1123,
+        "h": 794
+      }
+    },
+    {
+      "id": "money-flows",
+      "name": "Money flows, deck S15",
+      "version": "1.0",
+      "status": "review",
+      "approval": null,
+      "use": "Slide S15 body, 1920 by 700: funders and lender on the left, Goods on Country in the centre, community organisations and customers on the right, the two community facilities below. Money in green, beds in terracotta, dashed means not yet signed.",
+      "file": "v2/money-flows.svg",
+      "png": "v2/money-flows.png",
+      "pdf": "deliverables/qbe-stage2/Goods-money-flows.pdf",
+      "sha256": "7b37b633ce1c05446173e8bc022ae6c7dfe0c97d133001fd2e3b33f63c6b16d9",
+      "sourceDate": "2026-09-15",
+      "renderedAt": "2026-09-15",
+      "source": "v2/src/lib/data/money-flow.ts",
+      "renderer": "v2/src/lib/model/money-flow-svg.ts",
+      "sheet": {
+        "w": 1920,
+        "h": 700
+      }
+    },
+    {
+      "id": "whole-model",
+      "name": "The whole Goods model",
+      "version": "2.0",
+      "status": "review",
+      "approval": null,
+      "use": "The placemat as one SVG from src/lib/model/placemat-svg.ts: the raise, the eight stations on a 12 by 13 grid, computed arrows and labels, the four photograph panels, the support band. Photographs and the drawing are embedded.",
+      "file": "v2/whole-model.svg",
+      "png": "v2/whole-model.png",
+      "sha256": "ae60947a7ce24ffec975bce4be8152d6f570ad547abf45fb3fc1ef913e85a9d5",
+      "sourceDate": "2026-09-14",
+      "renderedAt": "2026-09-15",
+      "source": "v2/src/lib/data/model-placemat.ts",
+      "renderer": "v2/src/lib/model/placemat-svg.ts"
+    }
+  ]
+}

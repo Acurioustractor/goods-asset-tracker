@@ -3,15 +3,17 @@
  * between them and the four side panels. One source for the QBE placemat at
  * /admin/model and, later, deck slides 13 to 19 cut from the same views.
  *
- * Words: Ben's eight lines of 14 September 2026
- * (thoughts/shared/handoffs/goods-visual-model/current.md), awaiting his markup.
- * Figures: the raise as ruled in VISUAL-DECISION-RECORD-2026-09-14 item 6. The
- * same figures live in the-year-and-the-raise.ts on the finance branch
- * (feat/ai-tells-gate-and-goods-model), which is not on main yet; when it
- * lands, the guards test should pin RAISE to that module. Nothing is signed.
+ * Words: Ben's eight lines of 14 September 2026, re-cut on 15 September 2026 to
+ * the customer voice: customers are people, businesses and service providers,
+ * and they pay the community organisation directly.
+ * Figures: Ben's 15 September rulings. Every grant except QBE buys 133 beds at
+ * $750; a $150,000 SEFA loan inside the ask carries the first-year running
+ * cost (evening ruling). The same figures live in
+ * the-year-and-the-raise.ts on the finance branch; when it lands, pin RAISE and
+ * BED to that module. Nothing is signed.
  *
  * Rules enforced by model-placemat.guards.test.ts: The Harvest Plant, never
- * Witta; buyers by type, never by organisation; money never returns to Goods;
+ * Witta; customers by type, never by organisation; money never returns to Goods;
  * households are not a station; no health outcome; no em dashes; the only
  * drawing on the sheet is the kit container cut from the accepted plant
  * workflow; every photograph is from the Media Room starred set.
@@ -28,11 +30,20 @@ export const SHEET_H = 1123;
 export const RAISE = {
   qbeAud: 300_000,
   qbeFor: 'Two community production facilities',
-  otherLowAud: 200_000,
-  otherHighAud: 300_000,
-  otherFor: 'The first 400 beds. Every bed comes with facilitation and support for the workshopping in community.',
-  totalLowAud: 500_000,
-  totalHighAud: 600_000,
+  /** Three grants, each 133 beds at $750: Tim Fairfax year one, Brian M. Davis, Snow. Ben, 15 September 2026. */
+  bedsAud: 299_750,
+  bedsFor: 'Paid by philanthropy. 400 beds, 100 to each of four community organisations, theirs to sell or give out.',
+  /** SEFA's loan for the first-year running cost, inside the ask. Ben, 15 September 2026 (evening ruling). */
+  loanAud: 150_000,
+  loanFor: 'First-year running cost, repaid from beds sold.',
+  totalAud: 749_750,
+  /**
+   * What the placemat prints. Ben, 15 September 2026: round the sheet to $300,000 of beds. The
+   * applications keep the exact figures ($99,750 a grant, $749,750 in all); the sheet rounds by
+   * $250 and the guard below holds it to that.
+   */
+  bedsShownAud: 300_000,
+  totalShownAud: 750_000,
   signedAud: 0,
   facilities: 2,
   bedsYearOne: 400,
@@ -41,22 +52,28 @@ export const RAISE = {
 } as const;
 
 /**
- * One bed, the price model (Ben, 9 September 2026: a price model, never cost-plus). The make cost
- * is PROVISIONAL on the flat-pack route until the bought leg-panel yield is confirmed. Freight is
- * shown beside the bed and left out of the make cost. Same figures as the-year-and-the-raise.ts
- * on the finance branch; pin them there when it lands.
+ * One bed, the price model (Ben, 9 September 2026: a price model, never cost-plus; 15 September:
+ * $750 is the only price and nothing is added to it). The make cost is PROVISIONAL until the
+ * bought leg-panel yield is confirmed. Goods absorbs freight and facilitation out of its share.
+ * Same figures as the-year-and-the-raise.ts on the finance branch; pin them there when it lands.
  */
 export const BED = {
   priceAud: 750,
-  makeAud: 276,
+  makeAud: 262,
   makeIsProvisional: true,
-  freightAud: 150,
-  /** What stays with the community organisation on a bed sold at list, freight paid by the buyer. */
-  staysAud: 750 - 276,
+  freightAud: 100,
+  facilitationAud: 100,
+  /** What reaches Goods on Country from a $750 bed after making, freight and facilitation. */
+  contributionAud: 750 - 262 - 100 - 100,
 } as const;
 
 export function aud(n: number): string {
   return `A$${n.toLocaleString('en-AU')}`;
+}
+
+/** The placemat prints plain dollars: `$599,750`. Ben, 15 September 2026: no A on the dollars. */
+export function dollars(n: number): string {
+  return `$${n.toLocaleString('en-AU')}`;
 }
 
 export function audRange(low: number, high: number): string {
@@ -97,6 +114,8 @@ export interface Flow {
   labelDx?: number;
   labelDy?: number;
   labelAnchor?: 'start' | 'middle' | 'end';
+  /** Wrap the label to this many px. A label wider than the gap it sits in wraps to two lines. */
+  labelWidth?: number;
 }
 
 export interface Panel {
@@ -114,23 +133,32 @@ export interface Panel {
   };
 }
 
+/** The two marks in the footer. URLs for the page; the download and the render script embed them. */
+export const LOGOS = {
+  goods: { src: '/brand/goods/logos/svg/goods-on-country-grounded-mono-ink.svg', alt: 'Goods on Country', w: 741, h: 350 },
+  qbe: { src: '/images/partners/qbe-light-bg.svg', alt: 'QBE', w: 330, h: 91 },
+} as const;
+
 export const SHEET = {
-  title: 'How the trade works',
-  subtitle: 'Beds start it. The money stays in community. The community decides what comes next.',
-  raiseHeading: `Proposed total raise ${audRange(RAISE.totalLowAud, RAISE.totalHighAud)}`,
-  raiseNote: 'nothing signed yet',
-  centre: 'Community-owned trade',
+  title: 'The Goods on Country model.',
+  subtitle: 'Community sleeping on durable, fit-for-purpose beds, building the products, and earning inside community-run enterprises.',
+  raiseHeading: `Asked ${dollars(RAISE.totalShownAud)}`,
+  /** Ben, 15 September 2026: no note beside the heading and no footer line on the sheet. */
+  raiseNote: '',
+  centre: 'Made and sold in community',
   support: {
-    title: 'Shared support around the trade',
-    items: ['buyer connections', 'contracts', 'logistics', 'training', 'product development'],
+    title: 'Support inside the price of a bed',
+    items: ['customer connections', 'contracts', 'logistics', 'training', 'product development'],
   },
-  footer: 'Goods on Country · proposed model, nothing signed · figures from canon.ts and DECISIONS.md AC and AD · dashed means not yet, and the community decides',
+  /** Ben, 15 September 2026: the QBE program name sits at the bottom, beside the two logos. */
+  footer: 'QBE Catalysing Impact',
 } as const;
 
 export const STATIONS: Record<StationId, Station> = {
   harvest: {
     id: 'harvest',
-    title: 'The Harvest Plant',
+    // Ben, 15 Sep: no place named for the main facility; others are added as they come.
+    title: 'Goods on Country facility',
     line: 'makes the first 400 beds.',
     family: 'making',
     state: 'now',
@@ -145,15 +173,15 @@ export const STATIONS: Record<StationId, Station> = {
   },
   buyers: {
     id: 'buyers',
-    title: 'The buyers',
-    line: 'Health services, schools, housing providers. The places that buy beds for people.',
+    title: 'The customers',
+    line: 'People, businesses and service providers: health services, schools, housing providers, families.',
     family: 'buyer',
     state: 'now',
   },
   money: {
     id: 'money',
     title: 'The money stays in community.',
-    line: 'The buyer pays the community organisation.',
+    line: 'Customers pay the community organisation directly.',
     family: 'money',
     state: 'now',
   },
@@ -166,8 +194,10 @@ export const STATIONS: Record<StationId, Station> = {
   },
   facility: {
     id: 'facility',
-    title: 'A production facility comes to them.',
-    line: 'Where a community is ready. Palm Island and Maningrida first.',
+    title: 'Two community production facilities.',
+    // The two QBE sites are Palm Island and Maningrida (Q6 and Q7 of the application). Ben has not
+    // confirmed either community's agreement, so the sheet names no place until he does.
+    line: 'QBE\'s $300,000 builds the first two, $150,000 each, where a community is ready and asks.',
     family: 'proposed',
     state: 'proposed',
   },
@@ -188,13 +218,16 @@ export const STATIONS: Record<StationId, Station> = {
 };
 
 export const FLOWS: Flow[] = [
-  { from: 'harvest', to: 'orgs', kind: 'goods', label: '400 beds, 100 each', fromSide: 'right', toSide: 'left', labelDy: -66 },
-  { from: 'orgs', to: 'buyers', kind: 'goods', label: 'beds sold', fromSide: 'bottom', toSide: 'top', fromAt: 0.22, toAt: 0.22, labelDx: -12, labelAnchor: 'end' },
-  { from: 'buyers', to: 'money', kind: 'money', label: 'payment', fromSide: 'bottom', toSide: 'top', fromAt: 0.78, toAt: 0.78, labelDx: 12, labelAnchor: 'start' },
-  { from: 'money', to: 'decide', kind: 'money', label: 'after costs', fromSide: 'bottom', toSide: 'right', fromAt: 0.35, bend: 70, labelAt: 0.5, labelDx: 16, labelDy: 10, labelAnchor: 'start' },
-  { from: 'decide', to: 'facility', kind: 'future', label: 'if the community chooses', fromSide: 'left', toSide: 'bottom', toAt: 0.6, bend: 70, labelAt: 0.5, labelDx: -16, labelDy: 10, labelAnchor: 'end' },
-  { from: 'facility', to: 'next', kind: 'future', label: 'then', fromSide: 'top', toSide: 'bottom', fromAt: 0.8, toAt: 0.8, labelDx: 12, labelAnchor: 'start' },
-  { from: 'act', to: 'next', kind: 'support', label: 'R&D', fromSide: 'top', toSide: 'bottom', fromAt: 0.5, toAt: 0.3, labelDx: 10, labelAnchor: 'start' },
+  // Labels find their own clear spot (placemat-svg.ts placeLabel). labelWidth wraps a label that is
+  // wider than the gap it sits in; labelAt moves it along the curve. No pixel nudges live here.
+  { from: 'harvest', to: 'orgs', kind: 'goods', label: '400 beds, 100 each', fromSide: 'right', toSide: 'left', labelWidth: 70 },
+  { from: 'orgs', to: 'buyers', kind: 'goods', label: 'beds sold', fromSide: 'bottom', toSide: 'top', fromAt: 0.25, toAt: 0.25 },
+  { from: 'buyers', to: 'money', kind: 'money', label: 'payment', fromSide: 'bottom', toSide: 'top', fromAt: 0.75, toAt: 0.75 },
+  { from: 'money', to: 'decide', kind: 'money', label: 'after costs', fromSide: 'bottom', toSide: 'right', fromAt: 0.35, bend: 70, labelAt: 0.55 },
+  { from: 'decide', to: 'facility', kind: 'future', label: 'if the community chooses', fromSide: 'left', toSide: 'bottom', toAt: 0.6, bend: 70, labelAt: 0.45, labelWidth: 110 },
+  { from: 'facility', to: 'buyers', kind: 'future', label: 'beds made locally, same customers', fromSide: 'right', toSide: 'left', fromAt: 0.5, toAt: 0.8, bend: 80, labelAt: 0.84, labelDy: -14, labelWidth: 110 },
+  { from: 'facility', to: 'next', kind: 'future', label: 'then', fromSide: 'top', toSide: 'bottom', fromAt: 0.8, toAt: 0.8 },
+  { from: 'act', to: 'next', kind: 'support', label: 'R&D', fromSide: 'top', toSide: 'bottom', fromAt: 0.5, toAt: 0.3 },
 ];
 
 export const PANELS: Panel[] = [
@@ -203,9 +236,10 @@ export const PANELS: Panel[] = [
     title: 'Employment',
     line: 'Paid local work, at the plant and in community.',
     photo: {
-      src: '/images/community/unplaced/rec-assembly-05-pole-sleeve.jpg',
-      alt: 'Threading a pole through the canvas sleeve of a Stretch Bed, Maningrida',
-      place: 'Maningrida',
+      // Ben, 15 Sep: a production facility picture on the Employment panel.
+      src: '/images/build/build-041.jpg',
+      alt: 'Katrina Bloomfield and the Oonchiumpa crew fitting Stretch Bed legs, Mparntwe',
+      place: 'Mparntwe',
       starred: 42,
       placematPick: true,
     },
@@ -225,7 +259,7 @@ export const PANELS: Panel[] = [
   {
     id: 'enterprise',
     title: 'Enterprise',
-    line: 'Sales, repeat buyers, money kept in community.',
+    line: 'Sales, repeat customers, money kept in community.',
     photo: {
       src: '/images/community/maningrida/men-over-finished-bed.jpg',
       alt: 'Men standing over a finished Stretch Bed, Maningrida',
@@ -260,10 +294,11 @@ export function everyPrintedString(): string[] {
     ...SHEET.support.items,
     SHEET.footer,
     RAISE.qbeFor,
-    RAISE.otherFor,
+    RAISE.bedsFor,
   ];
   for (const s of Object.values(STATIONS)) out.push(s.title, s.line);
+  // Empty strings are lines Ben removed; nothing prints for them.
   for (const f of FLOWS) out.push(f.label);
   for (const p of PANELS) out.push(p.title, p.line, p.photo.alt);
-  return out;
+  return out.filter((x) => x.length > 0);
 }

@@ -32,6 +32,10 @@ interface Props {
   story: TripStoryData;
   /** internal = admin/preview: show consent-pending voices. Public hides them. */
   internal?: boolean;
+  /** The pitch page borrows a run of blocks and prints no field-note footer. */
+  footer?: boolean;
+  /** Several borrowed runs on one page print the stylesheet once. */
+  css?: boolean;
 }
 
 /**
@@ -191,7 +195,7 @@ function Bg({ media }: { media: MediaRef }) {
   );
 }
 
-export function TripStory({ story, internal = false }: Props) {
+export function TripStory({ story, internal = false, footer = true, css = true }: Props) {
   useEffect(() => {
     const els = document.querySelectorAll('.ts-reveal');
     const io = new IntersectionObserver(
@@ -220,7 +224,7 @@ export function TripStory({ story, internal = false }: Props) {
 
   return (
     <div className="ts-root">
-      <style>{CSS}</style>
+      {css && <style>{CSS}</style>}
       {!story.published && (
         <div className="ts-banner">Internal preview · consent pending · not for publishing</div>
       )}
@@ -229,7 +233,7 @@ export function TripStory({ story, internal = false }: Props) {
         <BlockView key={i} block={block} blockIndex={i} internal={internal} currentSlug={story.slug} />
       ))}
 
-      <footer className="ts-footer">
+      {footer && <footer className="ts-footer">
         {story.published ? (
           <p>
             <strong>Goods on Country.</strong> {story.dateline}. Photos and voices are from the trip.
@@ -243,7 +247,7 @@ export function TripStory({ story, internal = false }: Props) {
             verified against products.ts and the March 2026 compendium.
           </p>
         )}
-      </footer>
+      </footer>}
     </div>
   );
 }

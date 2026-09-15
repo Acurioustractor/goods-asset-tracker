@@ -62,6 +62,7 @@ const ALLOWED_COMPONENT_PREFIXES = [
   'washer-interest-form.tsx',
   'money-pointer.tsx',
   'strategy/', // internal working surface; formats ledger cents, not investor prose
+  'pitch/money-lanes-view.tsx', // chapter 15 of /pitch and /pitch/qbe, the funder money surface; figures come from money-lanes.ts
 ];
 
 const MONEY = /\$\s?\d/;

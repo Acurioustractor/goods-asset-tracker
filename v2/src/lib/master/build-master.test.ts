@@ -45,7 +45,8 @@ describe('the funding lines and the register', () => {
       expect(`${f.buys} ${f.state} ${f.condition ?? ''}`).not.toMatch(/witta/i);
     }
     const jobs = FUNDING_LINES.map((f) => f.buys.toLowerCase());
-    expect(jobs.filter((j) => j.includes('organisation: operating')).length).toBe(1);
+    expect(jobs.filter((j) => j.includes('organisation: operating')).length).toBe(0);
+    expect(jobs.filter((j) => j.includes('133 beds')).length).toBeGreaterThanOrEqual(3);
   });
   it('give every surface a verdict and every living one a job', () => {
     for (const r of REGISTER) {

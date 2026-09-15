@@ -290,3 +290,7 @@ tools/.gsheet-targets.json
 .claude/skills/*
 !.claude/skills/act-brand-alignment/
 !.claude/skills/_archive/
+
+# Model renders from v2/scripts/render-*.mjs: regenerate, do not commit (whole-model.svg embeds every photograph).
+design/brand/goods-diagrams/models/v2/*.png
+design/brand/goods-diagrams/models/v2/*.svg

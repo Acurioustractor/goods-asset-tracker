@@ -70,6 +70,7 @@ const footerLinks = {
   about: [
     { name: 'Our Story', href: '/story' },
     { name: 'The Road to Ownership', href: '/pitch/road' },
+    { name: 'The pitch', href: '/pitch' },
     { name: 'Impact', href: '/story#impact' },
     { name: 'Centrecorp Partnership', href: '/partners/centrecorp' },
     { name: 'Gallery', href: '/gallery' },
