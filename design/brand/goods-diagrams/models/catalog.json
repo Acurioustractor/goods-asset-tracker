@@ -49,7 +49,7 @@
       "file": "v2/structure-and-funding-flow.svg",
       "png": "v2/structure-and-funding-flow.png",
       "pdf": "deliverables/qbe-stage2/Goods-structure-and-funding-flow.pdf",
-      "sha256": "e167806e46ddebfb482f58d667ed3d85876660ffdc1bd526e1a391f12dae02b5",
+      "sha256": "b2609af1260f227b5dca4d77506f7f2f15c92fb4532ab5c5f021f593747b7d5c",
       "sourceDate": "2026-09-15",
       "renderedAt": "2026-09-15",
       "source": "v2/src/lib/data/structure-diagram.ts",

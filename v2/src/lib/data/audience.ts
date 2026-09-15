@@ -29,9 +29,9 @@
  * ---------------------------------------------------------------------------
  * DOORS
  * ---------------------------------------------------------------------------
- * Three doors. Gifts and loans go to Goods on Country, a registered business name of The Butterfly
- * Movement Ltd (ruling X, 28 August 2026); orders can still be invoiced by A Curious Tractor Pty Ltd
- * for now (Ben, 16 September 2026). Equity is not sold; Butterfly is limited by guarantee. The doors themselves are defined once in `ask-surface.ts` as
+ * Three doors. Gifts and loans go to Goods on Country Ltd, formerly The Butterfly Movement Ltd
+ * (ruling X, 28 August 2026); orders can still be invoiced by A Curious Tractor Pty Ltd
+ * for now (Ben, 16 September 2026). Equity is not sold; the company is limited by guarantee. The doors themselves are defined once in `ask-surface.ts` as
  * `ENTITY_DOORS` and imported here, so an audience can point at a door but can never restate what
  * a door is.
  *

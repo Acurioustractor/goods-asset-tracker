@@ -74,8 +74,8 @@ describe('the renderer', () => {
 });
 
 describe('the master', () => {
-  it('reads Witta as The Harvest Plant', () => {
-    expect(harvestNaming('pressed at Witta and our Witta facility, Witta.')).toBe('pressed at The Harvest Plant and our facility at The Harvest Plant, The Harvest Plant.');
+  it('reads Witta as the Goods on Country facility in Queensland', () => {
+    expect(harvestNaming('pressed at Witta and our Witta facility, Witta.')).toBe('pressed at the Goods on Country facility in Queensland and the Goods on Country facility in Queensland, the Goods on Country facility in Queensland.');
   });
   it('builds every written answer into the page, and the answers never say Witta', () => {
     const html = buildMaster();

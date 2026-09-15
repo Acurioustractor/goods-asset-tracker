@@ -37,7 +37,7 @@ const BUTTON = 'inline-flex min-h-12 items-center rounded-full px-7 text-base fo
 const WAYS = [
   {
     title: 'A grant',
-    line: `Buy beds for community organisations at ${dollars(BED.priceAud)} a bed, or fund a community production facility. Grants are made to ${ORGANISATION.legalName}, trading as ${ORGANISATION.tradingName}.`,
+    line: `Buy beds for community organisations at ${dollars(BED.priceAud)} a bed, or fund a community production facility. Grants are made to ${ORGANISATION.legalName}.`,
   },
   {
     title: 'A gift',

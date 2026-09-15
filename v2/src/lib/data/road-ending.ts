@@ -354,7 +354,7 @@ export const DOORS: Door[] = [
     // receipt is still open, and a wrong deductibility claim is an ATO problem rather than a
     // copy problem. Say the open part in words a person would use.
     returns:
-      'No money comes back. Butterfly has been endorsed to receive tax deductible gifts since January 2012. We are still working out how the receipt actually gets issued, so ask us where that is up to before you write the amount.',
+      'No money comes back. Goods on Country Ltd, formerly The Butterfly Movement Ltd, has been endorsed to receive tax deductible gifts since January 2012. We are still working out how the receipt actually gets issued, so ask us where that is up to before you write the amount.',
     match: 'Counts toward the QBE match.',
   },
   {
@@ -380,7 +380,7 @@ export const DOORS: Door[] = [
  *  the page says which entity signs is an open question rather than implying the
  *  migration is finished. */
 export const DOORS_NOTE =
-  'Gifts and loans go to Goods on Country, a registered business name of The Butterfly Movement Ltd (ABN 22 155 132 684). Orders are invoiced by A Curious Tractor Pty Ltd for now.';
+  'Gifts and loans go to Goods on Country Ltd, formerly The Butterfly Movement Ltd (ABN 22 155 132 684). Orders are invoiced by A Curious Tractor Pty Ltd for now.';
 
 export const ASK_INTRO = {
   headline: 'What we need from you fits on one page.',

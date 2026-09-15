@@ -65,7 +65,7 @@ export const QUESTIONS: readonly StoryQuestion[] = [
   {
     id: 'what-money-buys',
     question: 'What does the money actually buy?',
-    answer: `Three things, kept apart. A loan of ${aud(RAISE.loanAud)} carries the first-year running cost and is repaid from the beds Goods on Country sells. QBE’s ${aud(RAISE.qbeAud)} buys two community production facilities, ${aud(RAISE.qbeAud / RAISE.facilities)} each as a planning allowance; no site has been quoted. The other ${aud(RAISE.bedsShownAud)} buys the first ${RAISE.bedsYearOne} beds at The Harvest Plant, ${RAISE.bedsEach} for each of ${RAISE.communityOrganisations} community organisations: three grants, each 133 beds at $750. The work around every bed and the freight sit inside the price of a bed. The beds are the community organisations’ to sell.`,
+    answer: `Three things, kept apart. A loan of ${aud(RAISE.loanAud)} carries the first-year running cost and is repaid from the beds Goods on Country sells. QBE’s ${aud(RAISE.qbeAud)} buys two community production facilities, ${aud(RAISE.qbeAud / RAISE.facilities)} each as a planning allowance; no site has been quoted. The other ${aud(RAISE.bedsShownAud)} buys the first ${RAISE.bedsYearOne} beds made at the Goods on Country facility in Queensland, ${RAISE.bedsEach} for each of ${RAISE.communityOrganisations} community organisations: three grants, each 133 beds at $750. The work around every bed and the freight sit inside the price of a bed. The beds are the community organisations’ to sell.`,
     status: 'answered',
     askedBy: 'Everyone, in one form or another',
     asked: '2026-09-03',
@@ -98,7 +98,7 @@ export const QUESTIONS: readonly StoryQuestion[] = [
   {
     id: 'cost-to-make',
     question: 'What does it cost to make a bed?',
-    answer: `About ${aud(BED.makeAud)} on the flat-pack route: tab sheets pressed at The Harvest Plant, leg panels bought in, kits dispatched flat and assembled in community. A bed sells for ${aud(BED.priceAud)} and nothing is added to it: Goods on Country absorbs ${aud(BED.freightAud)} of freight and ${aud(BED.facilitationAud)} of facilitation out of its share, and ${aud(BED.contributionAud)} reaches the organisation. When a community organisation sells a bed, the customer pays it directly and the money stays there. The ${aud(BED.makeAud)} is provisional until the bought leg-panel yield is confirmed, and nobody has made fifty in a row at working pace and kept the receipts. That is the measured run.`,
+    answer: `About ${aud(BED.makeAud)} on the flat-pack route: tab sheets pressed at the Goods on Country facility in Queensland, leg panels bought in, kits dispatched flat and assembled in community. A bed sells for ${aud(BED.priceAud)} and nothing is added to it: Goods on Country absorbs ${aud(BED.freightAud)} of freight and ${aud(BED.facilitationAud)} of facilitation out of its share, and ${aud(BED.contributionAud)} reaches the organisation. When a community organisation sells a bed, the customer pays it directly and the money stays there. The ${aud(BED.makeAud)} is provisional until the bought leg-panel yield is confirmed, and nobody has made fifty in a row at working pace and kept the receipts. That is the measured run.`,
     status: 'partly',
     askedBy: 'Lenders, and every investor conversation since July',
     asked: '2026-07-25',
@@ -153,7 +153,7 @@ export const QUESTIONS: readonly StoryQuestion[] = [
   {
     id: 'where-money-lands',
     question: 'Which organisation does the money go to?',
-    answer: 'The Butterfly Movement Ltd, the registered charity behind the work since 2012, with deductible gift status. It trades as Goods on Country and is taking that as its name. Everything sits there: the products, the IP, the contracts, the making, the sales, the money and the evidence. Community partners are independent organisations with their own boards, never part of the charity, and buyer receipts stay with them.',
+    answer: 'Goods on Country Ltd, formerly The Butterfly Movement Ltd, the registered charity behind the work since 2012, with deductible gift status. Everything sits there: the products, the IP, the contracts, the making, the sales, the money and the evidence. Community partners are independent organisations with their own boards, never part of the charity, and buyer receipts stay with them.',
     status: 'answered',
     askedBy: 'Every funder',
     asked: '2026-09-02',
@@ -164,7 +164,7 @@ export const QUESTIONS: readonly StoryQuestion[] = [
   {
     id: 'which-entity',
     question: 'Which entity applies to QBE and receives the grant?',
-    answer: 'The Butterfly Movement Ltd, trading as Goods on Country, applies and receives. Ruled 5 September. A Curious Tractor, the company the first beds were made through, is disclosed as a related entity; it does the research and development.',
+    answer: 'Goods on Country Ltd, formerly The Butterfly Movement Ltd, applies and receives. Ruled 5 September. A Curious Tractor, the company the first beds were made through, is disclosed as a related entity; it does the research and development.',
     status: 'answered',
     askedBy: 'The program team, form Q1, Q2 and Q8',
     asked: '2026-09-02',
@@ -175,7 +175,7 @@ export const QUESTIONS: readonly StoryQuestion[] = [
   {
     id: 'how-fast',
     question: `How fast can ${RAISE.bedsYearOne} beds move?`,
-    answer: 'As fast as each community organisation agrees its rules. The Harvest Plant makes the first 400 on the flat-pack route, tab sheets pressed at the plant, legs bought in, kits dispatched flat and assembled in community, which is how the forty Maningrida beds were made. We would not move a bed before the rules are agreed.',
+    answer: 'As fast as each community organisation agrees its rules. The Goods on Country facility in Queensland makes the first 400 on the flat-pack route, tab sheets pressed at the plant, legs bought in, kits dispatched flat and assembled in community, which is how the forty Maningrida beds were made. We would not move a bed before the rules are agreed.',
     status: 'answered',
     askedBy: 'The program team, form Q19',
     asked: '2026-09-03',
@@ -241,7 +241,7 @@ export const QUESTIONS: readonly StoryQuestion[] = [
   {
     id: 'money-back',
     question: 'Does any of the money come back to the funder?',
-    answer: 'No. The funder acts once, and after that the money goes round inside the community. Nobody is buying shares: The Butterfly Movement Ltd is a company limited by guarantee and has none. If a facility is ever financed with a loan, it is repaid from what Goods on Country is paid for making, never out of a community organisation’s sales money.',
+    answer: 'No. The funder acts once, and after that the money goes round inside the community. Nobody is buying shares: Goods on Country Ltd is a company limited by guarantee and has none. If a facility is ever financed with a loan, it is repaid from what Goods on Country is paid for making, never out of a community organisation’s sales money.',
     status: 'answered',
     askedBy: 'Foundation program leads',
     asked: '2026-09-02',
@@ -296,7 +296,7 @@ export const QUESTIONS: readonly StoryQuestion[] = [
   {
     id: 'track-record',
     question: 'What have you actually delivered?',
-    answer: `${CANONICAL_ASSETS.bedsDeployed} beds across ${CANONICAL_ASSETS.communitiesServed} communities in two years, and ${CANONICAL_ASSETS.washersInCommunity} washing machines in community. Forty beds pressed at The Harvest Plant and assembled at Gamardi by young people with Homeland School Company. Two days of building with Oonchiumpa in Mparntwe. Four buyers who have paid for ${PAID_BEDS} beds on invoice. Every bed is a row in our live register.`,
+    answer: `${CANONICAL_ASSETS.bedsDeployed} beds across ${CANONICAL_ASSETS.communitiesServed} communities in two years, and ${CANONICAL_ASSETS.washersInCommunity} washing machines in community. Forty beds pressed at the Goods on Country facility in Queensland and assembled at Gamardi by young people with Homeland School Company. Two days of building with Oonchiumpa in Mparntwe. Four buyers who have paid for ${PAID_BEDS} beds on invoice. Every bed is a row in our live register.`,
     status: 'answered',
     askedBy: 'The program team, form Q10',
     asked: '2026-09-03',

@@ -50,7 +50,7 @@ export const CHAPTERS: readonly StoryChapter[] = [
     title: 'Useful goods start community enterprise.',
     lines: [
       'Community sleeping on durable, fit-for-purpose beds, building the products, and earning inside community-run enterprises.',
-      'The Harvest Plant makes the first stock. Community organisations trade it. Customers pay the community organisation. The money stays local. The community decides what comes next.',
+      'The Goods on Country facility in Queensland makes the first stock. Community organisations trade it. Customers pay the community organisation. The money stays local. The community decides what comes next.',
     ],
     slides: ['S01'],
     status: 'settled',
@@ -103,7 +103,7 @@ export const CHAPTERS: readonly StoryChapter[] = [
     label: 'The road',
     title: 'Each place changed the product and the way the work is done.',
     lines: [
-      'The work has travelled across Country, while production currently sits at The Harvest Plant.',
+      'The work has travelled across Country, while production currently sits at the Goods on Country facility in Queensland.',
       'Flat-packed parts can travel and become useful beds through local hands.',
       'A purchase moved through local hands, reached homes and created the next conversation.',
     ],
@@ -121,8 +121,8 @@ export const CHAPTERS: readonly StoryChapter[] = [
     status: 'settled',
     photo: {
       src: '/images/process/factory-panorama.jpg',
-      alt: 'The Goods on Country production facility at The Harvest Plant',
-      place: 'The Harvest Plant',
+      alt: 'The Goods on Country production facility in Queensland',
+      place: 'Goods on Country facility, Queensland',
       source: 'starred',
       starred: 61,
     },
@@ -343,10 +343,10 @@ export interface MakeStep {
 }
 
 export const MAKE_STEPS: readonly MakeStep[] = [
-  { id: 'shred', title: 'Sort and shred', photo: { src: '/images/process/shredder-granulator.jpg', alt: 'The shredder and granulator', place: 'The Harvest Plant', source: 'live' } },
-  { id: 'press', title: 'Heat, press and cool', photo: { src: '/images/process/heat-press-full.jpg', alt: 'The heat press', place: 'The Harvest Plant', source: 'live' } },
-  { id: 'cut', title: 'CNC cut and finish', photo: { src: '/images/process/cnc-cutting-closeup.jpg', alt: 'The CNC router cutting an X-leg from a pressed sheet', place: 'The Harvest Plant', source: 'live' } },
-  { id: 'assemble', title: 'Assemble, test and pack', photo: { src: '/images/pitch/bed-assembled.jpg', alt: 'A Stretch Bed assembled', place: 'The Harvest Plant', source: 'starred', starred: 53 } },
+  { id: 'shred', title: 'Sort and shred', photo: { src: '/images/process/shredder-granulator.jpg', alt: 'The shredder and granulator', place: 'Goods on Country facility, Queensland', source: 'live' } },
+  { id: 'press', title: 'Heat, press and cool', photo: { src: '/images/process/heat-press-full.jpg', alt: 'The heat press', place: 'Goods on Country facility, Queensland', source: 'live' } },
+  { id: 'cut', title: 'CNC cut and finish', photo: { src: '/images/process/cnc-cutting-closeup.jpg', alt: 'The CNC router cutting an X-leg from a pressed sheet', place: 'Goods on Country facility, Queensland', source: 'live' } },
+  { id: 'assemble', title: 'Assemble, test and pack', photo: { src: '/images/pitch/bed-assembled.jpg', alt: 'A Stretch Bed assembled', place: 'Goods on Country facility, Queensland', source: 'starred', starred: 53 } },
 ];
 
 // ---------------------------------------------------------------------------

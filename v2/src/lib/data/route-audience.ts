@@ -1455,7 +1455,7 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     leadsWithNow: {
       heading: 'Useful goods start community enterprise.',
       eyebrow: 'The pitch',
-      body: 'The Harvest Plant makes the first stock. Community organisations trade it. Buyers pay the community organisation. The money stays local. The community decides what comes next.',
+      body: 'The Goods on Country facility in Queensland makes the first stock. Community organisations trade it. Buyers pay the community organisation. The money stays local. The community decides what comes next.',
     },
     verdict: 'keep',
   },
@@ -2058,7 +2058,7 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     leadsWithNow: {
       heading: 'Terms',
       eyebrow: 'Goods on Country',
-      body: 'Goods. is a social enterprise operated by A Curious Tractor Pty Ltd, which is the seller of record for anything you buy here. Goods on Country is a registered business name of The Butterfly Movement Ltd, the ACNC-registered charity that carries eligible giving. They are different legal entities. When this page says “we” or “us” it means us. When it says “you” it means you, the visitor or customer.',
+      body: 'Goods. is a social enterprise operated by A Curious Tractor Pty Ltd, which is the seller of record for anything you buy here. Goods on Country Ltd, formerly The Butterfly Movement Ltd, is the ACNC-registered charity that carries eligible giving. They are different legal entities. When this page says “we” or “us” it means us. When it says “you” it means you, the visitor or customer.',
     },
     verdict: 'plumbing',
     why: 'legal boilerplate',

@@ -43,15 +43,15 @@ export interface Link {
 }
 
 export const APPLICANT = {
-  name: 'The Butterfly Movement Ltd',
-  tradingAs: 'trading as Goods on Country',
+  name: 'Goods on Country Ltd',
+  tradingAs: 'formerly The Butterfly Movement Ltd',
   abn: '22 155 132 684',
   acn: '155 132 684',
 } as const;
 
 export const SHEET = {
   title: 'Goods on Country: who applies, who owns what, how money moves',
-  subtitle: 'The Butterfly Movement Ltd, trading as Goods on Country, applies and receives. Every related entity is shown.',
+  subtitle: 'Goods on Country Ltd, formerly The Butterfly Movement Ltd, applies and receives. Every related entity is shown.',
   boundary: 'The applicant and its related entities, as disclosed at Q1, Q2 and Q8',
   footer: 'QBE Foundation Catalysing Impact Stage 2, Q3. Outside the dashed line: independent organisations with their own boards. Checked against the ASIC and ACNC extracts before attachment.',
 } as const;
