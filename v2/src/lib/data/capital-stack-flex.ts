@@ -18,7 +18,7 @@
 import {
   BED_PRICE_AUD, BED_MAKE_AUD, BED_FREIGHT_AUD, FACILITATION_PER_BED_AUD, BEDS_AT_COST_AUD,
   BEDS_YEAR_ONE, BEDS_TO_FIND, CONTRIBUTION_AUD, ORGANISATION_NEED_AUD, GRANT_LOT_AUD, BEDS_A_GRANT,
-  OONCHIUMPA_BUILD_STATUS,
+  OONCHIUMPA_BUILD_STATUS, LOAN_ASK_AUD,
 } from './the-year-and-the-raise';
 import { BREAK_EVEN_BEDS, PLANT_MATURE_BEDS } from './three-year-plan';
 
@@ -158,18 +158,22 @@ export const SOURCES: readonly Source[] = [
   {
     id: 'sefa',
     funder: 'SEFA, Backing the Bold',
-    amountAud: 0,
-    job: 'beds',
+    amountAud: LOAN_ASK_AUD,
+    job: 'operating',
     instrument: 'loan',
-    stage: 'no-ask-yet',
-    inTheRaise: false,
-    note: '$50,000 to $200,000 of debt for impact-led organisations with traction, Queensland focused. Joel Bird, 21 August. Debt needs a repayment source and an entity, and both are open.',
+    stage: 'not-sent',
+    inTheRaise: true,
+    note: 'Ben, 15 September 2026: a $150,000 loan inside the ask carries the first-year running gap, repaid from the $288 each bed hands back. This is the capital QBE\'s philanthropy unlocks. EOI drafted; Joel Bird reviews the financials before it goes.',
   },
 ];
 
 export const ASKED_AUD = SOURCES.filter((s) => s.inTheRaise).reduce((n, s) => n + s.amountAud, 0);
+export const GRANTS_ASKED_AUD = SOURCES.filter((s) => s.inTheRaise && s.instrument === 'grant').reduce((n, s) => n + s.amountAud, 0);
 export const SECURED_AUD = 0;
+/** Positive means short. With the loan inside the ask it is negative: the year closes with a margin. */
 export const GAP_AUD = YEAR_COST_AUD - ASKED_AUD;
+/** The gap the grants alone leave, which is what the loan carries. */
+export const GAP_BEFORE_LOAN_AUD = YEAR_COST_AUD - GRANTS_ASKED_AUD;
 
 // ---------------------------------------------------------------------------
 // What breaks if one drops
@@ -259,9 +263,9 @@ export const THE_SCALE =
 
 export const IF_THE_GAP_STAYS: readonly string[] = [
   `Trade. ${BREAK_EVEN_BEDS} paid beds a year covers the organisation with no grant at all, and the year plans ${BEDS_YEAR_ONE}. The distance between those numbers is the operating shortfall.`,
-  `SEFA Backing the Bold. $50,000 to $200,000 of debt, which suits yield improvements and working capital because both have a repayment source in the $${aud(CONTRIBUTION_AUD)} a bed. Blocked on the entity question Joel Bird raised on 21 August.`,
-  'Dusseldorp Forum at $50,000 and Minderoo at $100,000, both figures we wrote. Neither funder has named one.',
-  `Selling more beds. The gap is ${BEDS_TO_FIND} beds at the published price, and four organisations have already bought 320.`,
+  `The SEFA loan inside the ask. $${aud(LOAN_ASK_AUD)} carries the first-year running gap of $${aud(GAP_BEFORE_LOAN_AUD)}, and every bed sold repays it at $${aud(CONTRIBUTION_AUD)} a bed. Joel Bird reviews the financials before the EOI goes.`,
+  'Dusseldorp Forum at $50,000, Mazda at $49,500 and the BHP small grant at $10,000, each a further bed lot outside the year until sent.',
+  `Selling more beds. ${BEDS_TO_FIND} beds are still to find at the published price, and four organisations have already bought 320.`,
 ];
 
 /** SEFA Backing the Bold lends $50,000 to $200,000. Joel Bird, 21 August 2026. Rate and term are not set. */
@@ -270,6 +274,10 @@ export const SEFA_LOAN_MAX_AUD = 200_000;
 export const SEFA_LOAN_TERMS_STATUS = 'not set';
 
 export const BEDS_TO_REPAY_200K = Math.ceil(SEFA_LOAN_MAX_AUD / CONTRIBUTION_AUD);
+/** The loan inside the ask: what repays it, and what a year of servicing costs at the modelled terms ($47,523 a year per $200,000). */
+export const BEDS_TO_REPAY_LOAN = Math.ceil(LOAN_ASK_AUD / CONTRIBUTION_AUD);
+export const LOAN_SERVICE_A_YEAR_AUD = Math.round(47_523 * LOAN_ASK_AUD / 200_000);
+export const BEDS_TO_SERVICE_LOAN = Math.ceil(LOAN_SERVICE_A_YEAR_AUD / CONTRIBUTION_AUD);
 
 export const WHY_A_LOAN_IS_NOT_A_GRANT =
-  `Debt has a repayment test that a grant does not. Joel Bird put it plainly: the question is whether the capital drives enough growth to repay it. At $${aud(CONTRIBUTION_AUD)} a bed, ${BEDS_TO_REPAY_200K} paid beds repay $200,000, which is inside one mature plant's ${PLANT_MATURE_BEDS} beds a year. What is not settled is which entity the revenue flows through, and that decides where the debt can sit.`;
+  `Debt has a repayment test that a grant does not. Joel Bird put it plainly: the question is whether the capital drives enough growth to repay it. At $${aud(CONTRIBUTION_AUD)} a bed, ${BEDS_TO_REPAY_LOAN} paid beds repay the $${aud(LOAN_ASK_AUD)} inside the ask and ${BEDS_TO_SERVICE_LOAN} a year service it, inside one mature plant's ${PLANT_MATURE_BEDS} beds a year. The borrower is the charity, trading as Goods on Country, with the trade moving into it.`;

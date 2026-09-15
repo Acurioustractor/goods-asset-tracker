@@ -4,6 +4,8 @@ import { join } from 'node:path';
 import {
   ASKED_AUD,
   GAP_AUD,
+  GAP_BEFORE_LOAN_AUD,
+  GRANTS_ASKED_AUD,
   IF_THE_GAP_STAYS,
   LADDER,
   NEEDS,
@@ -54,14 +56,18 @@ describe('it ties to the year module', () => {
 
   it('the same $600,000 is asked, and nothing is secured', () => {
     expect(ASKED_AUD).toBe(YEAR_ASKED);
-    expect(ASKED_AUD).toBe(599_750);
+    expect(ASKED_AUD).toBe(749_750);
+    expect(GRANTS_ASKED_AUD).toBe(599_750);
     expect(SECURED_AUD).toBe(0);
-    expect(GAP_AUD).toBeCloseTo(NEED_AUD - 599_750, 6);
+    expect(GAP_AUD).toBeCloseTo(NEED_AUD - 749_750, 6);
+    expect(GAP_AUD).toBeLessThan(0);
+    expect(GAP_BEFORE_LOAN_AUD).toBeCloseTo(NEED_AUD - 599_750, 6);
   });
 
   it('government plant money and the loan are outside the raise, on purpose', () => {
     const out = SOURCES.filter((s) => !s.inTheRaise).map((s) => s.id).sort();
-    expect(out).toEqual(['real', 'sefa']);
+    expect(out).toEqual(['real']);
+    expect(SOURCES.find((s) => s.id === 'sefa')!.inTheRaise).toBe(true);
     expect(SOURCES.find((s) => s.id === 'real')!.stage).toBe('offered');
     expect(SOURCES.find((s) => s.id === 'real')!.amountAud).toBe(1_695_000);
   });
@@ -87,11 +93,11 @@ describe('every dollar has a job', () => {
     expect(SOURCES.filter((s) => s.job === 'facilitation')).toHaveLength(0);
   });
 
-  it('Tim Fairfax buys beds, counted once, and nobody is asked for operating', () => {
+  it('Tim Fairfax buys beds, counted once, and only the loan sits against operating', () => {
     const tf = SOURCES.filter((s) => s.funder.startsWith('Tim Fairfax'));
     expect(tf).toHaveLength(1);
     expect(tf[0].job).toBe('beds');
-    expect(coveredFor('operating')).toBe(0);
+    expect(coveredFor('operating')).toBe(150_000);
   });
 
   it('every need says what stops if it is unfunded', () => {
@@ -123,8 +129,8 @@ describe('what breaks if one drops', () => {
 
   it('the operating shortfall less the bed surplus is exactly the gap', () => {
     const operatingShort = shortfalls().find((s) => s.job === 'operating')!.short;
-    expect(coveredFor('operating')).toBe(0);
-    expect(operatingShort).toBe(ORGANISATION_NEED_AUD);
+    expect(coveredFor('operating')).toBe(150_000);
+    expect(operatingShort).toBe(ORGANISATION_NEED_AUD - 150_000);
     expect(bedSurplusAud()).toBeCloseTo(299_750 - BEDS_AT_COST_AUD, 6);
     expect(operatingShort - bedSurplusAud()).toBeCloseTo(GAP_AUD, 6);
   });
@@ -181,10 +187,11 @@ describe('honesty', () => {
   it('treats the loan as a different instrument with a test attached', () => {
     const sefa = SOURCES.find((s) => s.id === 'sefa')!;
     expect(sefa.instrument).toBe('loan');
-    expect(sefa.amountAud).toBe(0);
-    expect(WHY_A_LOAN_IS_NOT_A_GRANT).toContain(`${Math.ceil(200_000 / CONTRIBUTION_AUD)} paid beds`);
+    expect(sefa.amountAud).toBe(150_000);
+    expect(sefa.job).toBe('operating');
+    expect(WHY_A_LOAN_IS_NOT_A_GRANT).toContain(`${Math.ceil(150_000 / CONTRIBUTION_AUD)} paid beds`);
     expect(WHY_A_LOAN_IS_NOT_A_GRANT).not.toContain('101 paid beds');
-    expect(WHY_A_LOAN_IS_NOT_A_GRANT).toContain('which entity');
+    expect(WHY_A_LOAN_IS_NOT_A_GRANT).toContain('borrower is the charity');
   });
 
   it('names four places the rest could come from, trade first, with derived figures', () => {

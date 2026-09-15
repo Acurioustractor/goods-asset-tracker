@@ -309,7 +309,7 @@
     {
       "key": "year.asked",
       "label": "Asked across five lines",
-      "value": 599750,
+      "value": 749750,
       "unit": "AUD",
       "from": "the-year-and-the-raise"
     },
@@ -323,14 +323,14 @@
     {
       "key": "year.gap",
       "label": "Still to find",
-      "value": 136436.66666666674,
+      "value": -13563.333333333256,
       "unit": "AUD",
       "from": "capital-stack-flex"
     },
     {
       "key": "year.operatingShort",
       "label": "Operating line, short",
-      "value": 331224,
+      "value": 181224,
       "unit": "AUD",
       "from": "capital-stack-flex",
       "drift": "Not in the Canon tab yet"

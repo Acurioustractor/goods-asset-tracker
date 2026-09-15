@@ -140,12 +140,12 @@ describe('key cells equal the module constants', () => {
     expect(rowsOf('One bed').some((x) => x.cells[0]?.kind === 'text' && /Goods carries freight/.test(x.cells[0].value))).toBe(false);
   });
 
-  it('The year: three jobs, need, asked, secured, gap, beds to find, beds unfunded, four funder lines plus Dusseldorp and SEFA', () => {
+  it('The year: three jobs, need, asked, secured, gap, beds to find, beds unfunded, four grants and the loan plus Dusseldorp', () => {
     expect(value('The year', 'The year needs', 1)).toBe(NEED_AUD);
     expect(value('The year', 'The year needs', 2)).toBe(ASKED_AUD);
     const org = rowByLabel(wb, 'The year', 'Organisation: running it, and the freight and facilitation it absorbs');
     expect((org.cells[1] as FormulaCell).value).toBe(ORGANISATION_NEED_AUD);
-    expect((org.cells[2] as NumberCell).value).toBe(0);
+    expect((org.cells[2] as FormulaCell).value).toBe(150_000);
     expect(rowsOf('The year').some((x) => x.cells[0]?.kind === 'text' && x.cells[0].value.startsWith('Facilitation in'))).toBe(false);
     expect(value('The year', 'The organisation pays', 1)).toBe(ORGANISATION_NEED_AUD);
     expect(value('The year', `What ${BEDS_YEAR_ONE} beds hand it`, 1)).toBe(ORGANISATION_FROM_BEDS_AUD);
@@ -160,13 +160,12 @@ describe('key cells equal the module constants', () => {
     expect(amounts).toEqual([
       ...ASKS.map((a) => [a.funder, a.amountAud]),
       ['Dusseldorp Forum', 50_000],
-      ['SEFA, Backing the Bold, up to', SEFA_LOAN_MAX_AUD],
       ['Secured', SECURED_AUD],
     ]);
     // The no-Snow, no-Dusseldorp column: asked drops by the unsent Snow line, gap rises by it.
-    const snow = ASKS.find((a) => a.stage === 'not-sent')!.amountAud;
-    expect(value('The year', 'Asked', 2)).toBe(ASKED_AUD - snow);
-    expect(value('The year', 'Gap to the year', 2)).toBe(GAP_AUD + snow);
+    const unsent = ASKS.filter((a) => a.stage === 'not-sent').reduce((n, a) => n + a.amountAud, 0);
+    expect(value('The year', 'Asked', 2)).toBe(ASKED_AUD - unsent);
+    expect(value('The year', 'Gap to the year', 2)).toBe(GAP_AUD + unsent);
     expect(value('The year', 'Beds to find (sent asks only)', 2)).toBe(BEDS_TO_FIND);
   });
 
@@ -183,7 +182,7 @@ describe('key cells equal the module constants', () => {
     const receiptsBlock = receiptLabels.slice(receiptLabels.indexOf('Receipts'), receiptLabels.indexOf('Payments'));
     expect(receiptsBlock.some((l) => /freight/i.test(l))).toBe(false);
     expect(value('Monthly cash FY27', 'Grants for beds (Snow, Dusseldorp)', T)).toBe(0);
-    expect(value('Monthly cash FY27', 'Loan drawn (SEFA)', T)).toBe(0);
+    expect(value('Monthly cash FY27', 'Loan drawn (SEFA, inside the ask)', T)).toBe(150_000);
     expect(value('Monthly cash FY27', 'Opening cash', 1)).toBe(EXTERNAL_INPUTS.BUTTERFLY_FY26_CLOSING_CASH_AUD.value);
     // Making runs at capacity from January 2027 (column 8 is Jan: Jul=1 ... Jan=7).
     const make = rowByLabel(wb, 'Monthly cash FY27', `Making beds (${BEDS_YEAR_ONE} at the making cost)`);

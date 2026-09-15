@@ -179,7 +179,12 @@ export interface Ask {
   readonly job: 'plant' | 'beds' | 'facilitation' | 'operating';
   readonly stage: AskStage;
   readonly source: string;
+  /** Grants unless said otherwise. The loan is inside the ask, Ben 15 September 2026. */
+  readonly instrument?: 'grant' | 'loan';
 }
+
+/** Ben, 15 September 2026 (evening): the running gap is carried by a SEFA loan of $150,000, inside the ask. */
+export const LOAN_ASK_AUD = 150_000;
 
 export const ASKS: readonly Ask[] = [
   {
@@ -210,7 +215,18 @@ export const ASKS: readonly Ask[] = [
     stage: 'not-sent',
     source: 'Ben wrote $100,000 on 10 September and ruled it counts as beds, 133 at $750. The ask has not been sent.',
   },
+  {
+    funder: 'SEFA, Backing the Bold',
+    amountAud: LOAN_ASK_AUD,
+    job: 'operating',
+    stage: 'not-sent',
+    instrument: 'loan',
+    source: 'Ben, 15 September 2026: the first-year running gap is carried by a SEFA loan of $150,000, inside the ask, repaid from the $288 each bed hands back. Jay\'s steer for QBE 2026 is philanthropy that unlocks capital, and this is the capital. EOI drafted; Joel Bird reviews the financials before it goes.',
+  },
 ];
+
+export const GRANTS_ASKED_AUD = ASKS.filter((a) => a.instrument !== 'loan').reduce((n, a) => n + a.amountAud, 0);
+export const LOAN_ASKED_AUD = ASKS.filter((a) => a.instrument === 'loan').reduce((n, a) => n + a.amountAud, 0);
 
 /**
  * SEDI is not in the raise. Both streams buy capability services (finance, legal, impact
@@ -224,9 +240,9 @@ export const SEDI_RULE =
 export const ASKED_AUD = ASKS.reduce((n, a) => n + a.amountAud, 0);
 export const SECURED_AUD = 0;
 
-/** No ask carries the running cost. Ben, 15 September 2026. */
+/** No grant carries the running cost; a loan does. Ben, 15 September 2026. */
 export const OPERATING_RULE =
-  'No funder is asked for the running cost. Every grant except QBE buys beds; the organisation lives on what each bed hands back and on trade beyond the year-one 400.';
+  'No grant is asked for the running cost. Every grant except QBE buys beds; the organisation lives on the $288 each bed hands back, and the first-year gap is carried by a SEFA loan of $150,000 inside the ask, repaid from those beds.';
 
 export const SECURED_CEILING =
   'Nothing in the raise is secured. Every line is an invitation, an application or a conversation. An invitation is not an award.';
@@ -363,7 +379,7 @@ export const BEDS_UNFUNDED_AUD = BEDS_UNFUNDED * BED_PRICE_AUD;
 export const BEDS_OVER_THE_YEAR = Math.max(0, BEDS_ASKED_FOR - BEDS_YEAR_ONE);
 
 export const THE_GAP_STAYS =
-  `The gap does not close on plant money. The Commonwealth offer is Oonchiumpa's, for Alice Springs, and Alice Springs is not a QBE site, so nothing frees a dollar of the QBE request for beds. Against the asks that have been sent, the $${aud(NEED_AUD - ASKED_AUD)} and the ${BEDS_TO_FIND} beds stand and have to come from beds sold, from the unsent asks, or from debt.`;
+  `The gap does not close on plant money. The Commonwealth offer is Oonchiumpa's, for Alice Springs, and Alice Springs is not a QBE site, so nothing frees a dollar of the QBE request for beds. The grants leave $${aud(NEED_AUD - GRANTS_ASKED_AUD)} of running cost uncovered; the $${aud(LOAN_ASKED_AUD)} SEFA loan inside the ask carries it and the ${BEDS_TO_FIND} beds still to find stand against the unsent asks.`;
 
 export const BED_GAP_RULE =
   `Ben, 12 September 2026: an unsent ask covers no bed, so the stated gap counts sent asks only. Today that is ${BEDS_TO_FIND} beds. The unsent asks would cover ${BEDS_IN_UNSENT_ASKS} more. A default that switches an unsent ask on prints a funded position that does not exist.`;
@@ -374,7 +390,7 @@ export const OPERATING_ASKED_AUD = ASKS
   .reduce((n, a) => n + a.amountAud, 0);
 
 export const WHERE_THE_GAP_LIVES =
-  `The gap is not in the plants. Plant money arrives in $150,000 pieces that match the $150,000 cost, so a plant either happens or it does not and it never leaves a hole. The gap is ${BEDS_TO_FIND} beds of first stock and the running cost that no funder is asked for, and those are the two hardest things to raise against because one looks like working capital and the other looks like overhead.`;
+  `The gap is not in the plants. Plant money arrives in $150,000 pieces that match the $150,000 cost, so a plant either happens or it does not and it never leaves a hole. The gap is ${BEDS_TO_FIND} beds of first stock and the running cost that no grant is asked for. The running cost is carried by the $${aud(LOAN_ASKED_AUD)} loan inside the ask, and a loan is the right instrument for it because every bed sold repays it.`;
 
 export const THE_LEVER =
   `Every dollar of bed money does two jobs: it pays the $${aud(BED_MAKE_AUD)} of making, the freight and the facilitation, and hands $${aud(CONTRIBUTION_AUD)} to the organisation. So the ${BEDS_TO_FIND} beds still to find carry $${aud(BEDS_TO_FIND_AUD)} of stock and $${aud(BEDS_TO_FIND * CONTRIBUTION_AUD)} of the running cost with them. Funding beds is the cheapest way to fund the organisation, and it is the only ask that a funder can see a product at the end of.`;
