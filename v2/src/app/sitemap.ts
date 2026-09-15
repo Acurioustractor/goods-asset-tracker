@@ -43,6 +43,7 @@ const PRIORITY: Record<string, number> = {
   '/shop': 0.9,
   '/shop/stretch-bed-single': 0.95,
   '/beds': 0.95,
+  '/sell-beds': 0.85,
   '/facilities': 0.8,
   '/who-we-are': 0.8,
   '/story': 0.85,

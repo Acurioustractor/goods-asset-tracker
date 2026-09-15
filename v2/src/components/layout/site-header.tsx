@@ -19,6 +19,7 @@ type NavItem = { name: string; href: string; subtitle?: string };
 
 const navigation: NavItem[] = [
   { name: 'The Stretch Bed', href: '/beds' },
+  { name: 'Sell beds', href: '/sell-beds' },
   { name: 'Facilities', href: '/facilities' },
   { name: 'Who we are', href: '/who-we-are' },
   { name: 'Our story', href: '/story' },

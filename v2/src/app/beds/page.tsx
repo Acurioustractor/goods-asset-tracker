@@ -53,7 +53,7 @@ const ORDER_FIELDS = [
 ] as const;
 
 const PROOF = [
-  { src: '/images/community/palm-island/woman-boy-new-bed.jpg', alt: 'A woman and a boy on a new Stretch Bed, Palm Island' },
+  { src: '/images/product/stretch-bed-community.jpg', alt: 'An Elder standing beside an assembled Stretch Bed on red dirt' },
   { src: '/images/community/maningrida/men-over-finished-bed.jpg', alt: 'Men standing over a finished Stretch Bed, Maningrida' },
   { src: '/images/stories/utopia/09-offground.jpg', alt: 'A Stretch Bed in use, up off the ground, Utopia Homelands' },
 ] as const;
@@ -88,7 +88,7 @@ export default function BedsPage() {
                 <Image src="/images/pitch/bed-assembled.jpg" alt="A Stretch Bed assembled" fill sizes="(min-width: 1024px) 20vw, 40vw" className="object-cover" />
               </div>
               <div className="relative overflow-hidden rounded-[22px] bg-goods-sand">
-                <Image src="/images/community/palm-island/two-men-thumbs-up.jpg" alt="Two men giving a thumbs up beside new beds, Palm Island" fill sizes="(min-width: 1024px) 20vw, 40vw" className="object-cover" />
+                <Image src="/images/community/alice-springs/stretch-bed-kids-pile.jpg" alt="Young people with a Stretch Bed in Alice Springs" fill sizes="(min-width: 1024px) 20vw, 40vw" className="object-cover" />
               </div>
             </div>
           </div>
@@ -180,7 +180,10 @@ export default function BedsPage() {
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-start">
           <div>
             <h2 className="font-display text-4xl font-semibold leading-tight md:text-5xl">Who has bought.</h2>
-            <p className="mt-4 text-lg leading-relaxed text-[#4a4741]">{BUYERS.who}</p>
+            <p className="mt-4 text-lg leading-relaxed text-[#4a4741]">{BUYERS.who.split('.')[0]}.</p>
+            <p className="mt-3 text-[15px] leading-relaxed text-[#5d574c]">
+              A community organisation that wants beds to sell? <Link href="/sell-beds" className="font-semibold text-goods-ink underline underline-offset-2">100 beds for your community to sell</Link>.
+            </p>
             <div className="mt-8 grid grid-cols-3 gap-3">
               {PROOF.map((p) => (
                 <div key={p.src} className="relative aspect-[3/4] overflow-hidden rounded-[18px] bg-goods-sand">
