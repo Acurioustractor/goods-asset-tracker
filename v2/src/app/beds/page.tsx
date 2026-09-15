@@ -5,6 +5,7 @@ import { EnquiryForm } from '@/components/contact/enquiry-form';
 import { canonValue } from '@/lib/data/canon';
 import { ORGANISATION } from '@/lib/data/organisation';
 import { BUYERS } from '@/lib/data/pitch-chapters';
+import { BUYER_LOGOS } from '@/lib/data/buyer-logos';
 import { PLASTIC_KG_PER_BED, STRETCH_BED } from '@/lib/data/products';
 import { SHOP_ANSWERS } from '@/lib/data/shop';
 import { PAID_BEDS } from '@/lib/data/story-questions';
@@ -194,7 +195,11 @@ export default function BedsPage() {
           </div>
           <ul className="divide-y divide-[#e6dfd1] rounded-[24px] border border-[#e6dfd1] bg-white px-6">
             {BUYERS.rows.map((r) => (
-              <li key={r.buyer} className="grid grid-cols-[1fr_auto] gap-4 py-5">
+              <li key={r.buyer} className="grid grid-cols-[3.5rem_1fr_auto] items-center gap-4 py-5">
+                <div className="flex h-12 items-center justify-center">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  {BUYER_LOGOS[r.buyer] && <img src={BUYER_LOGOS[r.buyer].src} alt={`${r.buyer} logo`} width={BUYER_LOGOS[r.buyer].width} height={BUYER_LOGOS[r.buyer].height} className="max-h-full w-auto max-w-full object-contain" />}
+                </div>
                 <div>
                   <p className="font-display text-xl font-semibold leading-tight">{r.buyer}</p>
                   <p className="mt-1 text-sm leading-snug text-[#5d574c]">{r.line}</p>
@@ -248,7 +253,7 @@ export default function BedsPage() {
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-terracotta">Who you are buying from</p>
             <p className="mt-3 font-display text-3xl font-semibold leading-tight">{ORGANISATION.boardLine}</p>
             <p className="mt-4 text-[16px] leading-relaxed text-[#4a4741]">
-              {ORGANISATION.identityLine} ABN {ORGANISATION.abn}. {ORGANISATION.charityLine}
+              {ORGANISATION.identityLine} ABN {ORGANISATION.abn}. {ORGANISATION.charityLine} {ORGANISATION.seller}
             </p>
             <Link href="/who-we-are" className="mt-6 inline-flex min-h-11 items-center rounded-full border border-goods-ink/25 px-5 text-sm font-semibold transition-colors hover:border-goods-ink">
               Meet the board and the team

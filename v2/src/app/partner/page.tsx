@@ -54,7 +54,7 @@ const WAYS = [
   },
   {
     title: 'An order',
-    line: `Buy beds for your own service or community at ${dollars(BED.priceAud)} a bed.`,
+    line: `Buy beds for your own service or community at ${dollars(BED.priceAud)} a bed. ${ORGANISATION.seller}`,
     href: '/beds',
     link: 'Buy beds',
   },
@@ -100,9 +100,9 @@ export default async function PartnerPage({ searchParams }: { searchParams: Prom
         <section className={`${GUTTER} py-16 md:py-24`}>
           <div className="mx-auto mb-12 max-w-3xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-terracotta">Pakkimjalki Kari · Washing machine</p>
-            <h1 className="mt-4 font-display text-5xl font-semibold leading-tight">Register your interest.</h1>
+            <h1 className="mt-4 font-display text-5xl font-semibold leading-tight">Order one, or register for the new version.</h1>
             <p className="mt-5 text-lg leading-relaxed text-[#4a4741]">
-              Pakkimjalki Kari is still a prototype. Tell us a bit about your community and we will come back to you when we have testing results to share, or a machine ready to send.
+              Pakkimjalki Kari is made to order, and a new, cheaper version for community is in the works. Tell us about your community and what you need, and we will talk through ordering one now or let you know when the new version is ready to test.
             </p>
           </div>
           <div className="mx-auto max-w-2xl">
@@ -210,7 +210,7 @@ export default async function PartnerPage({ searchParams }: { searchParams: Prom
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-terracotta">Who you are dealing with</p>
             <h2 className="mt-3 font-display text-4xl font-semibold leading-tight text-balance md:text-5xl">{ORGANISATION.boardLine}</h2>
-            <p className="mt-4 text-lg leading-relaxed text-[#4a4741]">{ORGANISATION.identityLine} The products, the making, the contracts and the sales all sit there.</p>
+            <p className="mt-4 text-lg leading-relaxed text-[#4a4741]">{ORGANISATION.identityLine} {ORGANISATION.holds} {ORGANISATION.seller}</p>
             <Link href="/who-we-are" className={`${BUTTON} mt-6 border border-goods-ink/25 hover:border-goods-ink`}>The board and the team</Link>
           </div>
           <dl className="divide-y divide-[#e6dfd1] rounded-[24px] border border-[#e6dfd1] bg-white px-6">

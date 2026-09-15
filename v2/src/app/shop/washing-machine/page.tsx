@@ -14,14 +14,14 @@ import { BreadcrumbJsonLd } from '@/components/seo';
 export const metadata = {
   title: 'Pakkimjalki Kari: Washing Machine',
   description:
-    'Commercial-grade Speed Queen in recycled plastic housing. Named in Warumungu language by Elder Dianne Stokes. Currently in prototype. Register your interest.',
+    'Commercial-grade Speed Queen in recycled plastic housing. Named in Warumungu language by Elder Dianne Stokes. Made to order, with a cheaper community version in the works.',
   alternates: {
     canonical: 'https://www.goodsoncountry.com/shop/washing-machine',
   },
   openGraph: {
     title: 'Pakkimjalki Kari Washing Machine · Goods on Country',
     description:
-      'Prototype remote-community washing machine using a commercial-grade Speed Queen base and recycled plastic housing.',
+      'A washing machine for remote communities on a commercial-grade Speed Queen base in recycled plastic housing. Made to order.',
     url: 'https://www.goodsoncountry.com/shop/washing-machine',
     images: [
       {
@@ -44,7 +44,7 @@ Consumer-grade machines aren't built for remote conditions: extreme heat, dust, 
 
 Pakkimjalki Kari starts with a Speed Queen commercial washer (the same machines that survive thousands of cycles in laundromats) and adapts it for remote community use. Recycled HDPE plastic housing panels (made from the same material as Stretch Bed legs) protect the machine from dust and the elements.
 
-Elder Dianne Stokes named it "Pakkimjalki Kari" in Warumungu language. This isn't just branding. It reflects community ownership of the design process.`,
+Elder Dianne Stokes named it "Pakkimjalki Kari" in Warumungu language. The name is authorship: the machine carries language from the place where its purpose was understood.`,
   images: [
     { src: media.product.washingMachine, alt: 'Pakkimjalki Kari washing machine with recycled plastic enclosure' },
     { src: media.product.washingMachineName, alt: 'Pakkimjalki Kari: named in Warumungu language by Elder Dianne Stokes' },
@@ -102,8 +102,8 @@ export default function WashingMachinePage() {
 
             {/* Price / Status */}
             <div className="mt-4 flex items-baseline gap-3">
-              <span className="text-lg font-medium text-amber-600">
-                Prototype: Not Yet for Sale
+              <span className="text-lg font-medium text-goods-terracotta">
+                Made to order · a cheaper community version is in the works
               </span>
             </div>
 
@@ -117,9 +117,9 @@ export default function WashingMachinePage() {
             {/* Actions */}
             <div className="space-y-3">
               <Button size="lg" className="w-full" asChild>
-                <Link href="/partner?type=washer-interest">
-                  Register Interest
-                </Link>
+                <a href="#ordering">
+                  How ordering one works
+                </a>
               </Button>
 
               <Button size="lg" variant="outline" className="w-full" asChild>
@@ -140,10 +140,10 @@ export default function WashingMachinePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                   </svg>
                   <div>
-                    <p className="font-medium text-foreground">Health Hardware</p>
+                    <p className="font-medium text-foreground">Health hardware</p>
                     <p className="text-sm text-muted-foreground">
-                      A washing machine isn&apos;t convenience. It&apos;s cardiac prevention.
-                      Clean bedding breaks the scabies cycle that leads to Rheumatic Heart Disease.
+                      A family needs to wash bedding, clothes and towels. Advice about hygiene is hollow
+                      when the machine is broken or four hours away.
                     </p>
                   </div>
                 </div>
@@ -166,7 +166,7 @@ export default function WashingMachinePage() {
               </div>
               <div>
                 <dt className="font-medium text-foreground">Stage</dt>
-                <dd className="text-amber-600 font-medium">Prototype Testing</dd>
+                <dd className="text-goods-terracotta font-medium">Made to order</dd>
               </div>
             </div>
           </div>
@@ -177,6 +177,33 @@ export default function WashingMachinePage() {
           <h2 className="text-2xl font-bold text-foreground mb-4">About Pakkimjalki Kari</h2>
           <div className="prose prose-stone max-w-none">
             <p className="text-muted-foreground whitespace-pre-wrap">{product.description}</p>
+          </div>
+        </section>
+
+        {/* How ordering works, and the cheaper version (Ben, 16 September 2026). Words in products.ts. */}
+        <section id="ordering" className="mt-12 scroll-mt-24 rounded-[22px] border border-[#e6dfd1] bg-[#FDF8F3] p-6 md:p-10">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-terracotta">Ordering</p>
+          <h2 className="mt-3 font-display text-3xl font-semibold leading-tight text-goods-ink md:text-4xl">How ordering one works.</h2>
+          <p className="mt-3 max-w-2xl text-[16px] leading-relaxed text-[#4a4741]">{WASHING_MACHINE.orderLine}</p>
+          <ol className="mt-8 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+            {WASHING_MACHINE.ordering.map((step, i) => (
+              <li key={step.title} className="border-t-2 border-goods-terracotta pt-4">
+                <p className="font-display text-lg font-semibold text-goods-terracotta">0{i + 1}</p>
+                <p className="mt-1 font-display text-xl font-semibold leading-tight text-goods-ink">{step.title}</p>
+                <p className="mt-2 text-[15px] leading-relaxed text-[#4a4741]">{step.line}</p>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-10 grid gap-6 rounded-[18px] bg-goods-ink p-6 text-goods-cream md:grid-cols-[1.4fr_1fr] md:items-center md:p-8">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-terracotta-light">In the works</p>
+              <p className="mt-2 font-display text-2xl font-semibold">{WASHING_MACHINE.nextVersion.title}</p>
+              <p className="mt-2 text-[15px] leading-relaxed text-goods-cream/80">{WASHING_MACHINE.nextVersion.line}</p>
+            </div>
+            <div className="flex flex-wrap gap-3 md:justify-end">
+              <Link href="/partner?type=washer-interest" className="inline-flex min-h-12 items-center rounded-full bg-goods-terracotta px-6 font-semibold text-white transition-colors hover:bg-[#a94f35]">Ask about ordering</Link>
+              <Link href="/partner?type=washer-interest" className="inline-flex min-h-12 items-center rounded-full border border-goods-cream/40 px-6 font-semibold text-goods-cream transition-colors hover:border-goods-cream">Register for the new version</Link>
+            </div>
           </div>
         </section>
 
@@ -272,7 +299,7 @@ export default function WashingMachinePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" variant="secondary" asChild>
-              <Link href="/partner?type=washer-interest">Register Interest</Link>
+              <Link href="/partner?type=washer-interest">Ask about ordering</Link>
             </Button>
             <Button size="lg" variant="outline" className="bg-transparent border-accent-foreground text-accent-foreground hover:bg-accent-foreground/10" asChild>
               <Link href="/contact">Get in Touch</Link>
@@ -386,7 +413,7 @@ export default function WashingMachinePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" style={{ backgroundColor: '#C45C3E' }} asChild>
-              <Link href="/partner?type=washer-interest">Register Interest</Link>
+              <Link href="/partner?type=washer-interest">Ask about ordering</Link>
             </Button>
             <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white/10" asChild>
               <Link href="/wiki/products/washing-machine">Read the Full Wiki Guide</Link>

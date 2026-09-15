@@ -173,9 +173,9 @@ export interface EntityDoor {
   entity: string;
   what: string;
 }
-// One entity (ruling X, Ben 28 August 2026): the products, IP, contracts, making, sales and capital
-// sit with Goods on Country, a registered business name of The Butterfly Movement Ltd. A Curious
-// Tractor does the R&D and takes no money through these doors.
+// One entity (ruling X, Ben 28 August 2026): the products, IP, contracts, making and capital sit
+// with Goods on Country, a registered business name of The Butterfly Movement Ltd. Ben, 16 September
+// 2026: orders can still be invoiced by A Curious Tractor Pty Ltd for now, so the order door names it.
 const GOC = `${ORGANISATION.legalName}, trading as ${ORGANISATION.tradingName}`;
 export const ENTITY_DOORS: EntityDoor[] = [
   {
@@ -187,7 +187,7 @@ export const ENTITY_DOORS: EntityDoor[] = [
   },
   {
     verb: 'Buy / Order',
-    entity: GOC,
+    entity: 'A Curious Tractor Pty Ltd, for now',
     what: 'Bed and washing-machine orders at list price. Revenue, not philanthropy. $750 a bed.',
   },
   {
@@ -197,7 +197,7 @@ export const ENTITY_DOORS: EntityDoor[] = [
   },
 ];
 export const ENTITY_NOTES = [
-  `One entity: ${ORGANISATION.identityLine} The products, IP, contracts, making, sales and capital sit there (ruling X, 28 August 2026). A Curious Tractor does the R&D.`,
+  `One entity: ${ORGANISATION.identityLine} The products, IP, contracts, making and capital sit there (ruling X, 28 August 2026). ${ORGANISATION.seller} A Curious Tractor also does the R&D.`,
   // RULING J 2026-07-25: the 51% work was sequenced behind the charity landing "~end July" by
   // ASSUMPTION, and that assumption cost ~7 weeks and the 1 July Supply Nation threshold. The
   // AGM is 14 Sep; 51% never depended on it. And the distinction that must never blur:

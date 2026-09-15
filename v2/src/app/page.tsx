@@ -6,6 +6,7 @@ import { brand } from '@/lib/data/content';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import { BUYERS } from '@/lib/data/pitch-chapters';
 import { CASE_STUDIES } from '@/lib/data/case-studies';
+import { BUYER_LOGOS } from '@/lib/data/buyer-logos';
 import { PLASTIC_KG_PER_BED, STRETCH_BED } from '@/lib/data/products';
 import { tripStories } from '@/lib/data/trip-stories';
 import { videoUrl } from '@/lib/data/media';
@@ -180,9 +181,6 @@ export default async function HomePage() {
           <div>
             <Kicker>So far</Kicker>
             <h2 className="mt-3 font-display text-4xl font-semibold leading-tight text-balance md:text-5xl">{BUYERS.headline}</h2>
-            <p className={`mt-5 max-w-xl text-[16px] leading-relaxed ${BODY}`}>
-              Bought by {BUYERS.rows.slice(0, -1).map((r) => r.buyer).join('; ')}; and {BUYERS.rows[BUYERS.rows.length - 1].buyer}.
-            </p>
             <Link href="/beds#order" className={`${BUTTON} mt-6 border border-goods-ink/25 hover:border-goods-ink`}>Order for your organisation</Link>
           </div>
           <dl className="grid grid-cols-3 gap-4">
@@ -194,6 +192,21 @@ export default async function HomePage() {
               </div>
             ))}
           </dl>
+          <ul aria-label="Bought by" className="grid grid-cols-2 gap-3 md:grid-cols-4 lg:col-span-2">
+            {BUYERS.rows.map((r) => {
+              const logo = BUYER_LOGOS[r.buyer];
+              return (
+                <li key={r.buyer} className="flex flex-col rounded-[18px] border border-[#e6dfd1] bg-white p-4 md:p-5">
+                  <div className="flex h-16 items-center justify-center md:h-20">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    {logo && <img src={logo.src} alt={`${r.buyer} logo`} width={logo.width} height={logo.height} className="max-h-full w-auto max-w-[85%] object-contain" />}
+                  </div>
+                  <p className="mt-3 text-sm font-semibold leading-snug">{r.buyer}</p>
+                  <p className="text-xs text-[#5d574c]">{r.beds} beds</p>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </section>
 

@@ -24,7 +24,9 @@ export const ORGANISATION = {
   /** Ben, 15 September 2026: this line is right; never flag it. Held equal to GOVERNANCE.line by the guards. */
   boardLine: 'Goods on Country is a DGR1 charity led by 100% Indigenous Directors.',
   boardNote: 'The board carries responsibility for purpose, assets and organisational decisions. The board handover is in progress and no chair has been appointed.',
-  holds: 'The products, the designs, the contracts, the making, the sales and the evidence all sit with Goods on Country.',
+  holds: 'The products, the designs, the contracts, the making and the evidence sit with Goods on Country.',
+  /** Ben, 16 September 2026: sales can still go through A Curious Tractor Pty Ltd for now. /terms names it as the seller of record. */
+  seller: 'Orders are invoiced by A Curious Tractor Pty Ltd for now.',
   partners: 'Community partners are independent organisations with their own boards. They decide how beds are used, who is paid and what is made next.',
   giving: 'Talk to us before you give and we will confirm how your gift is receipted.',
   email: 'hi@act.place',

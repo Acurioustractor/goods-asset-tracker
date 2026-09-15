@@ -250,7 +250,7 @@ export const BUYERS = {
   who: 'Health services, schools, housing programs, research programs and families. The organisation holds the stock, invoices the customer and keeps the whole $750.',
   rows: [
     { buyer: 'Centrecorp Foundation', beds: 167, line: 'Two orders for the Utopia homelands. Oonchiumpa held the build. 147 are in households and 20 are made and waiting.' },
-    { buyer: 'ALIVE National Centre, University of Melbourne', beds: 100, line: 'Paid in full before one bed was made, for Gathering the Parts.' },
+    { buyer: 'ALIVE National Centre', beds: 100, line: 'Paid in full before one bed was made, for Gathering the Parts.' },
     { buyer: 'Homeland School Company, Maningrida', beds: 40, line: 'The first full run off our own press, assembled at Gamardi.' },
     { buyer: "Mala'la Health Service, Maningrida", beds: 13, line: 'Bought the year before, so two organisations in one place hold Goods stock.' },
   ],

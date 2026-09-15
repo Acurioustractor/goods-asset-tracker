@@ -380,7 +380,7 @@ export const DOORS: Door[] = [
  *  the page says which entity signs is an open question rather than implying the
  *  migration is finished. */
 export const DOORS_NOTE =
-  'Gifts, loans and orders all go to Goods on Country, a registered business name of The Butterfly Movement Ltd (ABN 22 155 132 684).';
+  'Gifts and loans go to Goods on Country, a registered business name of The Butterfly Movement Ltd (ABN 22 155 132 684). Orders are invoiced by A Curious Tractor Pty Ltd for now.';
 
 export const ASK_INTRO = {
   headline: 'What we need from you fits on one page.',

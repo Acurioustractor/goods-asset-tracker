@@ -127,9 +127,9 @@ export const PAYMENT_DOORS: Record<PaymentDoorId, PaymentDoor> = {
   buy: {
     id: 'buy',
     label: 'Buy beds or production services',
-    receivingEntity: 'The Butterfly Movement Ltd, trading as Goods on Country',
+    receivingEntity: 'A Curious Tractor Pty Ltd, for now',
     use: 'Product and production-service revenue.',
-    note: 'One entity (ruling X, 28 August 2026): sales run through Goods on Country. Check the quote, invoice or checkout names Goods on Country and its ABN before sending it.',
+    note: 'Ben, 16 September 2026: sales can still go through A Curious Tractor Pty Ltd for now, and /terms names it as the seller of record.',
   },
   give: {
     id: 'give',

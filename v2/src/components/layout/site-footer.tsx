@@ -69,7 +69,7 @@ const footerLinks = {
     { name: 'Sell beds in your community', href: '/sell-beds' },
     { name: 'Community facilities', href: '/facilities' },
     { name: 'How It\'s Made', href: '/process' },
-    { name: 'Washing Machines', href: '/shop/washing-machine' },
+    { name: 'Washing machines', href: '/shop/washing-machine' },
   ],
   about: [
     { name: 'Who we are', href: '/who-we-are' },

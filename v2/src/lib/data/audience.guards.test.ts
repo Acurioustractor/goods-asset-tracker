@@ -149,11 +149,12 @@ describe('doors', () => {
     }
   });
 
-  it('sends gifts, orders and loans to Goods on Country, one entity (ruling X, 28 August 2026)', () => {
-    for (const door of ['donate', 'buy', 'invest'] as const) {
+  it('sends gifts and loans to Goods on Country, and orders to A Curious Tractor for now (Ben, 16 September 2026)', () => {
+    for (const door of ['donate', 'invest'] as const) {
       expect(entityDoor(door).entity).toMatch(/butterfly movement.*goods on country/i);
-      expect(entityDoor(door).entity).not.toMatch(/curious tractor/i);
     }
+    expect(entityDoor('buy').entity).toMatch(/curious tractor/i);
+    expect(entityDoor('donate').entity).not.toMatch(/curious tractor/i);
   });
 
   it('gives the internal and partner audiences no money door', () => {
