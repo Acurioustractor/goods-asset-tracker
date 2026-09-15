@@ -1,0 +1,2 @@
+# The PDFs, CSVs and README are the attachments; the HTML is rebuilt by v2/scripts/build-attachments.mjs.
+*.html
