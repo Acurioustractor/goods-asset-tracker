@@ -8,6 +8,8 @@
  * every entity named at Q1 is on it.
  */
 
+import { ORGANISATION } from './organisation';
+
 export const STRUCTURE_READ_AT = '2026-09-15';
 
 /** A4 landscape at 96 px per inch. */
@@ -116,7 +118,7 @@ export const ENTITIES: Record<EntityId, Entity> = {
   orgs: {
     id: 'orgs',
     title: 'Community organisations',
-    lines: ['Independent, with their own boards. Hold the bed stock, sell it or give it out, and decide who gets a bed. Keep every dollar of a sale.'],
+    lines: ['Independent, with their own boards. Hold the bed stock, sell it or give it out, keep every dollar of a sale.', ORGANISATION.membership.short],
     style: 'outside',
   },
   customers: {

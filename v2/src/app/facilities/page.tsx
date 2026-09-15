@@ -109,6 +109,9 @@ export default function FacilitiesPage() {
           <p className="mt-8 max-w-3xl text-lg leading-relaxed text-[#4a4741]">
             <span className="font-semibold text-goods-ink">{STATIONS.decide.title}</span> {STATIONS.decide.line}
           </p>
+          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-[#4a4741]">
+            <span className="font-semibold text-goods-ink">{ORGANISATION.membership.title}.</span> {ORGANISATION.membership.line} {ORGANISATION.membership.state}
+          </p>
         </div>
       </section>
 
