@@ -1,0 +1,24 @@
+{
+  "confirmed": false,
+  "confirmedBy": null,
+  "confirmedAt": null,
+  "updatedAt": "2026-09-16",
+  "people": {
+    "Karen Liddle": {
+      "place": "Alice Springs"
+    },
+    "Kristy Bloomfield": {
+      "place": "Alice Springs"
+    },
+    "Katrina Bloomfield": {
+      "place": "Alice Springs"
+    },
+    "Shayne Bloomfield": {
+      "place": "Alice Springs",
+      "photoFocus": "47% 22%"
+    },
+    "Tanya Turner": {
+      "place": "Alice Springs"
+    }
+  }
+}

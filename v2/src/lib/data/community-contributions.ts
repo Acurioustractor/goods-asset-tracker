@@ -1,108 +1,123 @@
-// Made with community: who asked for Goods, who shaped it, who backed it, who
-// built it, and who leads what comes next. The closing surprise on /pitch.
+// The listening map: the closing surprise on /pitch.
 //
-// WHO DID WHAT IS A CLAIM ABOUT A PERSON. Every row below was drafted on
-// 2026-09-15 from the person's own registry role and notes, then left for Ben to
-// confirm. Until CONTRIBUTIONS_CONFIRMED is true the section renders only in
-// development: a production build shows nothing. That is deliberate. A draft
-// reading of what somebody did must never reach a funder as fact.
+// Places first, people in their own words, and what the community asked for in
+// Goods' own agreed wording (road-ending.ts PATHWAY_ASKS, and the Maningrida case
+// study). It deliberately assigns NO roles: an earlier draft labelled people
+// "asked", "backed", "built", which read as though they worked for Goods. Nothing
+// here says what a person did for anyone. It says where they are and what they said.
+//
+// Two things about a person are set by hand in v2/data/community-contributions.json:
+// which place they are shown under, and how their photo is framed or whether it is
+// shown. Any change there is a change about a person: set `confirmed` back to false
+// in the same commit. Until it is true the section renders only in development.
 //
 // Voices come only from storyteller-registry.ts at tier 'external', with their
-// approved or primary quote, verbatim. Portraits only where the registry holds
-// one. Nobody not on the cleared list can appear, and a young person with no
-// words of their own is never given a quote.
+// approved or primary quote, verbatim. Portraits only where the registry holds one.
 
-import { MEASURES } from '@/lib/data/pitch-chapters';
-import { STORYTELLER_REGISTRY, type StorytellerRecord } from '@/lib/data/storyteller-registry';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { CASE_STUDIES } from '@/lib/data/case-studies';
+import type { CommunityLocation } from '@/lib/data/content';
+import { PATHWAY_ASKS } from '@/lib/data/road-ending';
+import { STORYTELLER_REGISTRY, getStoryteller, type StorytellerRecord } from '@/lib/data/storyteller-registry';
 
-/** Flip only after Ben has read every row below and said they are right. */
-export const CONTRIBUTIONS_CONFIRMED = false;
+/** photoFocus is a CSS object-position, for a portrait with more than one person in it. */
+export interface PersonSetting { place?: string; showPhoto?: boolean; photoFocus?: string }
+export interface ContributionsFile {
+  confirmed: boolean;
+  confirmedBy: string | null;
+  confirmedAt: string | null;
+  updatedAt: string;
+  people: Record<string, PersonSetting>;
+}
 
-export type Stage = 'yarn' | 'shape' | 'resource' | 'deliver' | 'transfer' | 'grow';
-export type Contribution = 'asked' | 'designed' | 'backed' | 'built' | 'used' | 'leading';
+const FILE = join(process.cwd(), 'data', 'community-contributions.json');
 
-export const STAGES: readonly { id: Stage; label: string; line: string }[] = [
-  { id: 'yarn', label: 'Yarn', line: 'Community names the need' },
-  { id: 'shape', label: 'Shape', line: 'Community holds the design' },
-  { id: 'resource', label: 'Resource', line: 'Relationships and support' },
-  { id: 'deliver', label: 'Deliver', line: 'Built, delivered, used' },
-  { id: 'transfer', label: 'Transfer', line: 'Hands change' },
-  { id: 'grow', label: 'Grow', line: 'Where it goes next' },
-];
+export function readContributions(): ContributionsFile {
+  return JSON.parse(readFileSync(FILE, 'utf8')) as ContributionsFile;
+}
 
-export const CONTRIBUTION_COLOUR: Record<Contribution, string> = {
-  asked: '#b5553a', designed: '#8a5a1f', backed: '#5f7a5a', built: '#2f6e7a', used: '#7a7363', leading: '#6b3a8b',
-};
+export function contributionsConfirmed(): boolean {
+  return readContributions().confirmed === true;
+}
 
-interface Row { stage: Stage; did: Contribution; basis: string }
+/** One place name per registry community string, matching the live map's names. */
+export function placeOf(community: string): string | null {
+  const c = community.toLowerCase();
+  const known: [RegExp, string][] = [
+    [/utopia|arlparra|urapuntja/, 'Utopia Homelands'], [/tennant/, 'Tennant Creek'], [/palm/, 'Palm Island'],
+    [/maningrida|gamardi/, 'Maningrida'], [/kalgoorlie/, 'Kalgoorlie'], [/alice/, 'Alice Springs'],
+    [/mount isa/, 'Mount Isa'], [/darwin/, 'Darwin'], [/katherine/, 'Katherine'], [/kununurra/, 'Kununurra'],
+  ];
+  return known.find(([re]) => re.test(c))?.[1] ?? null;
+}
 
-/** Draft 2026-09-15. `basis` is the registry fact the reading rests on. Anyone not listed is read as "used". */
-export const CONTRIBUTIONS: Record<string, Row> = {
-  'Norman Frank': { stage: 'yarn', did: 'asked', basis: 'Called requesting 3 beds in maroon after his daughter tried one' },
-  'Tehmineh Mason': { stage: 'yarn', did: 'asked', basis: 'Homeland School Company reached out: beds for young people, a washer in the school' },
-  'Dianne Stokes': { stage: 'shape', did: 'designed', basis: 'Designed and named both products; came back asking for 20' },
-  'Kristy Bloomfield': { stage: 'resource', did: 'backed', basis: 'Oonchiumpa co-founder, Traditional Owner' },
-  'Karen Liddle': { stage: 'resource', did: 'backed', basis: 'Oonchiumpa co-founder' },
-  'Tanya Turner': { stage: 'resource', did: 'backed', basis: 'Oonchiumpa Consultancy leadership' },
-  'Katrina Bloomfield': { stage: 'resource', did: 'backed', basis: 'Oonchiumpa family' },
-  'Shayne Bloomfield': { stage: 'resource', did: 'backed', basis: 'Oonchiumpa family; firsthand Maningrida delivery account' },
-  'Fred Campbell': { stage: 'resource', did: 'backed', basis: 'Youth Case Worker, Oonchiumpa' },
-  'Dr Boe Remenyi': { stage: 'resource', did: 'backed', basis: 'Paediatric Cardiologist' },
-  'Cliff Plummer': { stage: 'resource', did: 'backed', basis: 'Health Practitioner' },
-  'Wayne Glenn': { stage: 'resource', did: 'backed', basis: 'Practitioner, Red Dust' },
-  Chloe: { stage: 'resource', did: 'backed', basis: 'Support Worker, Kalgoorlie' },
-  'Tracy McCartney': { stage: 'resource', did: 'backed', basis: 'Support Worker, Kalgoorlie' },
-  Gary: { stage: 'resource', did: 'backed', basis: "Men's group leader" },
-  'Eric Pascoe': { stage: 'deliver', did: 'built', basis: 'Learned the build at Maningrida with the young people' },
-  Mykel: { stage: 'deliver', did: 'built', basis: 'Young maker' },
-  Xavier: { stage: 'deliver', did: 'built', basis: 'Young maker' },
-  'Jahvan Oui': { stage: 'transfer', did: 'leading', basis: 'Future manufacturing lead, Palm Island; wants to run his own factory' },
-};
-
-/** Which of the pitch's own measures a person's cleared words speak to. A reading of the words, shown as such. */
-const MEASURE_CUES: Record<string, RegExp> = {
-  health: /\b(bed|beds|sleep\w*|comfort\w*|comfy|mattress|floor|ground|blanket|wash\w*)\b/i,
-  work: /\b(make|making|made|build\w*|built|work\w*|job|skills?|pack)\b/i,
-  recycling: /\b(plastic|recycl\w*|shred\w*|waste)\b/i,
-  enterprise: /\b(decid\w*|own\w*|control|business|factory|sell\w*)\b/i,
-};
-
-export interface CommunityVoice {
+export interface ListeningVoice {
   name: string;
   role: string;
   community: string;
-  stage: Stage;
-  did: Contribution;
-  basis: string;
+  place: string | null;
   portrait: string | null;
+  photoFocus: string | null;
   quote: { text: string; context: string } | null;
-  measures: string[];
   young: boolean;
+  placeMoved: boolean;
+  photoHidden: boolean;
 }
 
-function toVoice(r: StorytellerRecord): CommunityVoice {
+export interface ListeningPlace {
+  id: string;
+  name: string;
+  lat: number;
+  lng: number;
+  beds: number;
+  voices: string[];
+  country: string | null;
+  asked: { field: string; size: string; body: string; standing: string; whoseCall: string; source: string } | null;
+}
+
+function toVoice(r: StorytellerRecord, settings: Record<string, PersonSetting>): ListeningVoice {
   const quotes = r.quotes.filter((q) => q.status === 'primary' || q.status === 'approved');
   const quote = quotes.find((q) => q.status === 'primary') ?? quotes[0] ?? null;
-  const row = CONTRIBUTIONS[r.name] ?? { stage: 'deliver' as const, did: 'used' as const, basis: 'Received or used the goods; tells us what works' };
-  const words = quotes.map((q) => q.text).join(' ');
-  const young = /young|youth/i.test(r.role) || /young person/i.test(r.notes ?? '');
+  const s = settings[r.name] ?? {};
   return {
     name: r.name,
     role: r.role,
     community: r.community,
-    ...row,
-    portrait: r.portrait,
-    // A young person narrated by someone else is never given words of their own.
+    place: s.place ?? placeOf(r.community),
+    portrait: s.showPhoto === false ? null : r.portrait,
+    photoFocus: s.photoFocus ?? null,
+    // A young person whose story is told by someone else is never given words of their own.
     quote: r.narratedBy ? null : quote ? { text: quote.text, context: quote.context } : null,
-    measures: MEASURES.filter((m) => MEASURE_CUES[m.id]?.test(words)).map((m) => m.id),
-    young,
+    young: /young|youth/i.test(r.role) || /young person/i.test(r.notes ?? ''),
+    placeMoved: Boolean(s.place),
+    photoHidden: s.showPhoto === false,
   };
 }
 
-export function communityVoices(): CommunityVoice[] {
-  return STORYTELLER_REGISTRY.filter((r) => r.tier === 'external').map(toVoice);
+export function listeningVoices(): ListeningVoice[] {
+  const { people } = readContributions();
+  return STORYTELLER_REGISTRY.filter((r) => r.tier === 'external').map((r) => toVoice(r, people));
 }
 
-export function measuresForVisual() {
-  return MEASURES.map((m) => ({ id: m.id, area: m.area, title: m.title }));
+/** What the community asked for, in Goods' own agreed words. Alice Springs is where Oonchiumpa is. */
+function askedFor(place: string): ListeningPlace['asked'] {
+  const ask = PATHWAY_ASKS.find((a) => a.place === place || (a.id === 'oonchiumpa' && place === 'Alice Springs'));
+  if (ask) return { field: ask.field, size: ask.size, body: ask.body, standing: ask.whatWeCanSay, whoseCall: ask.whoseCall, source: 'road-ending.ts PATHWAY_ASKS' };
+  const study = CASE_STUDIES.find((c) => c.place === place);
+  // The partner is named only where the case study has cleared the name for a public page.
+  if (study) return { field: 'Asked for', size: study.title, body: study.standfirst, standing: study.momentum[0] ?? study.steps[study.steps.length - 1]?.body ?? '', whoseCall: study.partner.nameCleared ? study.partner.name : study.partner.role, source: 'case-studies.ts' };
+  return null;
+}
+
+/** Places with voices or a recorded ask. Projected onto the map in the client, where the map's projection lives. */
+export function listeningPlaces(locations: CommunityLocation[], voices: ListeningVoice[]): ListeningPlace[] {
+  return locations
+    .map((l) => ({
+      id: l.id, name: l.name, lat: l.lat, lng: l.lng, beds: l.bedsDelivered,
+      voices: voices.filter((v) => v.place === l.name).map((v) => v.name),
+      country: PATHWAY_ASKS.find((a) => a.place === l.name || (a.id === 'oonchiumpa' && l.name === 'Alice Springs'))?.country ?? CASE_STUDIES.find((c) => c.place === l.name)?.country ?? null,
+      asked: askedFor(l.name),
+    }))
+    .filter((p) => p.voices.length > 0 || p.asked);
 }

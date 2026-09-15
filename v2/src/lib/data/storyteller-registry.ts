@@ -215,7 +215,7 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         status: 'approved',
       },
     ],
-    portrait: null,
+    portrait: '/images/people/margaret-lloyd.jpg', // Their Empathy Ledger public avatar, served through its consent gate, added 2026-09-16
     notes: 'THE Utopia Margaret (Ben confirmed 2026-07-20). EL transcript 0ecb0185; homeland transcribed as "Wenitong", verify spelling before external captions. All three quotes cleared by Ben 2026-07-20.',
   },
   {
@@ -711,7 +711,7 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         status: 'approved',
       },
     ],
-    portrait: null,
+    portrait: '/images/people/shayne-bloomfield.jpg', // His Empathy Ledger avatar (public, consent granted). Ben 2026-09-16: use it; he is the man in front in the orange shirt
     notes: 'Voice-only by design: no portrait. Quotes 3-4 cleared by Ben 2026-07-20 from his EL transcript (the firsthand Maningrida delivery account; remaining candidates in wiki/investor/06-full-stories.md §6).',
   },
   {
@@ -1001,7 +1001,7 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         status: 'approved',
       },
     ],
-    portrait: null,
+    portrait: '/images/people/tanya-turner.jpg', // Their Empathy Ledger public avatar, served through its consent gate, added 2026-09-16
     notes: 'All three quotes cleared by Ben 2026-07-20 (Voice Impact Model pass). EL transcript c14ee313; a duplicate filing (Tanya1) exists in EL. Note: the "Judges welcome" transcript filed under Kristy is mostly Tanya speaking.',
   },
 
@@ -1117,7 +1117,7 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         status: 'approved',
       },
     ],
-    portrait: null,
+    portrait: '/images/people/dr-boe-remenyi.jpg', // Their Empathy Ledger public avatar, served through its consent gate, added 2026-09-16
     notes: 'PORTRAIT GAP: cleared and quoted but no image file.',
   },
   {
@@ -1155,7 +1155,7 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         status: 'approved',
       },
     ],
-    portrait: null,
+    portrait: '/images/people/mark.jpg', // Their Empathy Ledger public avatar, served through its consent gate, added 2026-09-16
     notes: 'Storyteller index lists Mark as W-tier, but he is on the external allowlist. Ben to confirm tier; external per the gate until then.',
   },
 
@@ -1432,7 +1432,7 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         note: 'The SRT continues "and Namaleia", which is an unresolved ASR reading of a name or place. Deliberately not reproduced until confirmed.',
       },
     ],
-    portrait: null,
+    portrait: '/images/people/eric-pascoe.jpg', // Their Empathy Ledger public avatar, served through its consent gate, added 2026-09-16
     notes:
       'Cleared by Ben 2026-08-21 (full consent from Homeland School Company). Speaks on camera in the approved Maningrida film (cut 17 Aug 2026), lower-third at 1:36; he is "Speaker 5" in the Descript SRT. EL storyteller 4d0a6939-9264-4cc8-8587-5851817b0f89, org Homeland School Company, consent_given=true. Portrait is a frame from the film held in EL (profile-images/storytellers/eric-pascoe.jpg), not in this repo.',
   },
@@ -1460,7 +1460,7 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         status: 'approved',
       },
     ],
-    portrait: null,
+    portrait: '/images/people/tehmineh-mason.jpg', // Their Empathy Ledger public avatar, served through its consent gate, added 2026-09-16
     notes:
       'Cleared by Ben 2026-08-21 (full consent from Homeland School Company). HSC School Principal; five years living and working in Maningrida with her family. Speaks on camera in the approved Maningrida film, lower-third at 2:16; she is "Speaker 2" in the Descript SRT. NOTE: the closing line was briefly mis-attributed to Eric Pascoe from a Whisper pass before the real SRT arrived; it is hers. EL storyteller 49fb2140-c862-4e45-a5dc-1d8fc828b2e3, consent_given=true. Portrait is a film frame held in EL (profile-images/storytellers/tehmineh-mason.jpg), not in this repo.',
   },
