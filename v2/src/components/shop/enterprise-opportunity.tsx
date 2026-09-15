@@ -85,7 +85,7 @@ export function EnterpriseOpportunity({ data, className }: EnterpriseOpportunity
             </Link>
           </Button>
           <Button asChild variant="outline" size="lg">
-            <Link href="/about#enterprise">
+            <Link href="/facilities">
               Learn More
             </Link>
           </Button>

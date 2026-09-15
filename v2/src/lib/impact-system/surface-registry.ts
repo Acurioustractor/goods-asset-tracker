@@ -50,7 +50,7 @@ export const IMPACT_SURFACES: ImpactSurfaceDefinition[] = [
   },
   {
     id: 'story-road',
-    routeOrArtifact: '/story/road',
+    routeOrArtifact: '/story',
     audience: ['public', 'funder', 'community'],
     purpose: 'Sequential place, voice, figure and evidence-gap narrative.',
     dataSources: ['story-road.ts', 'canonical Goods data', 'approved media'],
@@ -155,7 +155,7 @@ export const IMPACT_SURFACES: ImpactSurfaceDefinition[] = [
   },
   {
     id: 'cost-story',
-    routeOrArtifact: '/cost-story',
+    routeOrArtifact: '/pitch/road',
     audience: ['public', 'funder', 'operations'],
     purpose: 'Current and modelled economics with assumptions and sensitivity.',
     dataSources: ['cost model', 'supplier quotes', 'cost-story.ts'],
