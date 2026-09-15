@@ -104,7 +104,7 @@ const STAGE_MEANING: Record<OwnershipStage, string> = {
   planned:
     'We have been working closely with Oonchiumpa on plans for the first on Country production facility. It will be staffed by 100% Indigenous staff and built to support young people into long-term employment.',
   built:
-    'We have a production facility making beds at Witta Farm, with someone who lives there employed to make the beds. The next stage is an Oonchiumpa staff member doing a ten-week train-the-trainer experience at the farm, in preparation to support the Alice Springs production facility.',
+    'We have a production facility making beds in Queensland, with a local person employed to make the beds. The next stage is an Oonchiumpa staff member doing a ten-week train-the-trainer experience at the facility, in preparation to support the Alice Springs production facility.',
   operating:
     'Running day to day, making beds and parts on Country. Local people on the tools, learning every part of how it works.',
   'community-run':

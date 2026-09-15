@@ -41,7 +41,7 @@ export const NEWS_ISSUES: NewsIssue[] = [
     fromCommunity: [
       {
         title: 'Case study: the Maningrida run',
-        line: 'A community-controlled organisation asked; the parts were pressed at the farm; young people assembled every bed in community. How it worked, step by step, for any community asking "could this work where we are".',
+        line: 'A community-controlled organisation asked; the parts were pressed at the Goods on Country facility in Queensland; young people assembled every bed in community. How it worked, step by step, for any community asking "could this work where we are".',
         href: '/case-studies/maningrida',
         photo: { src: '/images/community/maningrida/whole-run-at-sunset.jpg', alt: 'The Maningrida run at sunset' },
       },

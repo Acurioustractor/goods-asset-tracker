@@ -100,10 +100,10 @@ export const PITCH_PANELS: PitchPanel[] = [
   // data-pitch-panel at all, so it leaked into every pack and stacked under every slide.
   { id: 'bed-in-detail', label: 'The bed, in detail', chapter: 'the-places', packs: ['funder'] },
   { id: 'stop-5-utopia', label: 'Utopia Homelands', chapter: 'the-places', packs: ['funder', 'supporter', 'press'] },
-  { id: 'stop-6-maningrida-and-the-farm', label: 'Maningrida and the farm', chapter: 'the-places', packs: ['funder', 'supporter', 'press'] },
+  { id: 'stop-6-maningrida-and-the-farm', label: 'Maningrida and the Queensland facility', chapter: 'the-places', packs: ['funder', 'supporter', 'press'] },
   { id: 'stop-7-oonchiumpa', label: 'Oonchiumpa', chapter: 'the-places', packs: ['funder', 'supporter', 'press'] },
   // Same repair as bed-in-detail: previously un-id'd, so it rendered in every pack and every slide.
-  { id: 'the-farm', label: 'The farm', chapter: 'the-places', packs: ['funder', 'supporter'] },
+  { id: 'the-farm', label: 'The Queensland facility', chapter: 'the-places', packs: ['funder', 'supporter'] },
 
   { id: 'map', label: 'Communities reached', chapter: 'the-map', packs: ['funder', 'supporter', 'press'] },
 

@@ -305,11 +305,11 @@ export const storyStops: StoryStop[] = [
   {
     id: 'stop-6-maningrida-and-the-farm',
     kind: 'stop',
-    eyebrow: 'Stop 6 · The farm and Maningrida',
+    eyebrow: 'Stop 6 · The Queensland facility and Maningrida',
     headline: 'The first production run',
-    place: 'The farm, and Maningrida homelands, NT · July 2026',
+    place: 'The Goods on Country facility in Queensland, and Maningrida homelands, NT · July 2026',
     chapters: [
-      'The next proof arrived at the farm. Goods had invested in a containerised recycled-plastic production facility: shredding, heating and pressing material into sheets, cutting components, preparing the frame and canvas, assembling, checking and packing the finished bed.',
+      'The next proof arrived at the Goods on Country facility in Queensland. Goods had invested in a containerised recycled-plastic production facility: shredding, heating and pressing material into sheets, cutting components, preparing the frame and canvas, assembling, checking and packing the finished bed.',
       'The facility turned the production story from a diagram into work. The July 2026 Maningrida homelands batch was made there: 40 Stretch Beds, accompanied by two washing machines, delivered with Homeland School Company.',
       'This moment changes the investment case. The next proof is no longer whether Goods can make beds through its own production facility. It has. The next proof is what those 40 beds actually cost to make, and whether the line can repeat the result safely, reliably and at a cost that supports local wages and future transfer.',
       'The current cost model remains a model until the Maningrida run ledger is closed. The materials, labour hours, electricity, yield, rejected components, maintenance, packaging, freight and support cost need to be reconciled against the 40 finished beds. A real production run is proof of capability. A closed run ledger is proof of economics.',
@@ -342,7 +342,7 @@ export const storyStops: StoryStop[] = [
       },
       {
         src: '/images/process/container-factory.jpg',
-        alt: 'The containerised production facility at the farm where the batch was pressed',
+        alt: 'The containerised production facility in Queensland where the batch was pressed',
       },
       {
         src: '/images/process/hydraulic-press.jpg',
@@ -380,7 +380,7 @@ export const storyStops: StoryStop[] = [
           'Confirmed by Ben, 2026-07-25: there is no Maningrida voice yet. This is the one stop on the road carried entirely by our own account of it, and it should say so rather than read as though nobody had anything to say.',
       },
     ],
-    note: 'VOICE: none exists, confirmed by Ben 2026-07-25. The only East Arnhem record in the registry is tier `hold` and must not be reached for. The consent-tier detail is kept HERE and deliberately not in the rendered gap text: gap markers are public, and the internal consent state of a named person is not something to publish. Getting a Maningrida voice is a field job, not a data job. PHOTOS: the 10 Maningrida/Gamardi trip photos, consent obtained and evidenced per Ben\'s 2026-07-21 ruling (CONTEXT.md:77), cleared for external use INCLUDING the children, the Elder and the identifiable faces. They lived only in `design/starred-images/`, which is gitignored (.gitignore:80), which is why they had never reached any public surface. Originals stay at `design/deck-photos/maningrida-trip/`. ONE THING STILL OPEN on that ruling: the consent evidence is not pointed at from the repo, so when Ben names where it lives (registry entry, EL consent record or signed form) the reference belongs on the manifest rows. THE FACTORY PATH IS PROVEN: 40+ beds pressed and assembled in-house at the farm, and this batch was 60. NEVER write "zero beds pressed in-house" on any surface; that claim has regressed twice. The before/after framing is the Notion source\'s own and is the honest version: capability proven, economics not yet measured.',
+    note: 'VOICE: none exists, confirmed by Ben 2026-07-25. The only East Arnhem record in the registry is tier `hold` and must not be reached for. The consent-tier detail is kept HERE and deliberately not in the rendered gap text: gap markers are public, and the internal consent state of a named person is not something to publish. Getting a Maningrida voice is a field job, not a data job. PHOTOS: the 10 Maningrida/Gamardi trip photos, consent obtained and evidenced per Ben\'s 2026-07-21 ruling (CONTEXT.md:77), cleared for external use INCLUDING the children, the Elder and the identifiable faces. They lived only in `design/starred-images/`, which is gitignored (.gitignore:80), which is why they had never reached any public surface. Originals stay at `design/deck-photos/maningrida-trip/`. ONE THING STILL OPEN on that ruling: the consent evidence is not pointed at from the repo, so when Ben names where it lives (registry entry, EL consent record or signed form) the reference belongs on the manifest rows. THE FACTORY PATH IS PROVEN: 40+ beds pressed and assembled in-house at the Queensland facility, and this batch was 60. NEVER write "zero beds pressed in-house" on any surface; that claim has regressed twice. The before/after framing is the Notion source\'s own and is the honest version: capability proven, economics not yet measured.',
   },
 
   // ────────────────────────────────────────────────────────── stop 7

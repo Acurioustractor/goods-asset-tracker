@@ -312,7 +312,7 @@ export const PATHWAY_ASKS: PathwayAsk[] = [
 /** Where the first site goes is not ours alone to settle, and four named
  *  communities are reading. State the process, never the outcome. */
 export const FIRST_SITE_RULE =
-  'Where the first facility goes will be decided with communities. Goods will keep producing beds at the farm and The Harvest while each community chooses what it wants to build and own.';
+  'Where the first facility goes will be decided with communities. Goods will keep producing beds at the Goods on Country facility in Queensland while each community chooses what it wants to build and own.';
 
 // ---------------------------------------------------------------------------
 // Section 4: the letter.
@@ -552,4 +552,4 @@ export const SITE_OPERATING = {
  *  workbook shape... Reassembling these into modules is an ALLOCATION of an
  *  evidenced total, not new evidence. No figure here is a quote." */
 export const CHAIN_HONESTY =
-  'These are our own numbers for our own gear at the farm, mostly bought second hand; splitting one total into five steps is arithmetic on what we already had, not new evidence. Nothing here is a quote for a site in a community, and no community has been quoted from it.';
+  'These are our own numbers for our own gear at the Queensland facility, mostly bought second hand; splitting one total into five steps is arithmetic on what we already had, not new evidence. Nothing here is a quote for a site in a community, and no community has been quoted from it.';

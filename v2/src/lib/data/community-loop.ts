@@ -142,7 +142,7 @@ export const TIMELINE_TARGETS = {
   label: 'target' as Solidity,
   steps: [
     'Raise the pool money between now and the end of 2026.',
-    'Build and deliver the 1,000 beds into five pools. Kits from the current supplier for most; the first fifty pressed at the farm and measured.',
+    'Build and deliver the 1,000 beds into five pools. Kits from the current supplier for most; the first fifty pressed at the Goods on Country facility in Queensland and measured.',
     'Communities sell or allocate their pools in the first quarter of 2027.',
     'Each community decides what its sales money builds: more beds, a module, or a facility.',
   ],

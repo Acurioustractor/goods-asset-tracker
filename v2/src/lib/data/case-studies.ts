@@ -52,7 +52,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     communityId: 'maningrida',
     place: 'Maningrida',
     country: 'Manayingkarírra, Arnhem Land NT',
-    title: 'Forty beds, pressed at the farm, assembled in community',
+    title: 'Forty beds, pressed at the Goods on Country facility in Queensland, assembled in community',
     standfirst:
       'A community-controlled organisation asked for beds and washing machines for homeland families. We pressed and packed the parts at our own facility, sent them north, and young people assembled every bed in community. It is the run that proves the making.',
     hero: {
@@ -74,8 +74,8 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
       {
         title: 'The parts were made, not bought',
-        body: 'At our production facility at the farm we pressed the recycled-plastic stock, routed the X-frame legs and packed complete kits for forty Stretch Beds. Canvases were sewn by a family business in Alice Springs. Shredded HDPE came from Defy Design.',
-        photo: { src: '/images/process/heat-press-full.jpg', alt: 'The heat press at the farm' },
+        body: 'At the Goods on Country facility in Queensland we pressed the recycled-plastic stock, routed the X-frame legs and packed complete kits for forty Stretch Beds. Canvases were sewn by a family business in Alice Springs. Shredded HDPE came from Defy Design.',
+        photo: { src: '/images/process/heat-press-full.jpg', alt: 'The heat press at the Goods on Country facility in Queensland' },
       },
       {
         title: 'Community assembled every bed',

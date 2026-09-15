@@ -281,7 +281,7 @@ export const ANTI_CLAIMS: { statement: string; why: string }[] = [
 
 export const CLAIMS_CHANGELOG: { date: string; note: string }[] = [
   { date: '2026-07-11', note: 'Claims Register published. Consolidated-revenue row LOCKED; the unsigned figure removed from /deck client JS (it had shipped in a risk row).' },
-  { date: '2026-07-18', note: 'Maningrida delivery registered (+40 Stretch, +2 washers per INV-0303, Homeland School Company, farm-made; an interim +60 entry was corrected same day): 536 beds, 173 Stretch, 18 washers, 3,460kg HDPE (Stretch only, 173 x 20kg).' },
+  { date: '2026-07-18', note: 'Maningrida delivery registered (+40 Stretch, +2 washers per INV-0303, Homeland School Company, made at the Queensland facility; an interim +60 entry was corrected same day): 536 beds, 173 Stretch, 18 washers, 3,460kg HDPE (Stretch only, 173 x 20kg).' },
   { date: '2026-07-10', note: 'The investor deck began showing whether each claim was confirmed, estimated, an expression of interest or future work.' },
   { date: '2026-06-17', note: 'Thirty-two voices were cleared for public use.' },
   { date: '2026-06-11', note: 'Washing-machine count curated to 16 in-community (founder-confirmed), superseding the raw register row count.' },

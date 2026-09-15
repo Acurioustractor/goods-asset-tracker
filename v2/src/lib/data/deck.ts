@@ -356,12 +356,12 @@ export const deckSlides: DeckSlide[] = [
   {
     id: 'stop-6-maningrida-and-the-farm',
     kind: 'stop',
-    eyebrow: 'Stop 6 · Maningrida and the farm',
-    headline: 'We pressed, routed and packed the parts at the farm. In Maningrida, young people turned them into forty beds.',
-    body: 'Defy Design supplied the shredded recycled plastic. We pressed, routed and packed the parts at the farm, then sent them to Maningrida. Young people assembled the forty beds with community.',
+    eyebrow: 'Stop 6 · Maningrida and the Queensland facility',
+    headline: 'We pressed, routed and packed the parts at the Goods on Country facility in Queensland. In Maningrida, young people turned them into forty beds.',
+    body: 'Defy Design supplied the shredded recycled plastic. We pressed, routed and packed the parts at the Goods on Country facility in Queensland, then sent them to Maningrida. Young people assembled the forty beds with community.',
     photo: '/images/process/heat-press-full.jpg',
     photoAlt: 'The heat press, the one move at the heart of the making',
-    place: 'The farm, and Maningrida, Arnhem Land NT',
+    place: 'The Goods on Country facility in Queensland, and Maningrida, Arnhem Land NT',
     voiceNames: ['Tehmineh Mason'],
     chips: [
       { label: 'Delivered · the run', value: '40 Stretch Beds' },
@@ -378,8 +378,8 @@ export const deckSlides: DeckSlide[] = [
     ],
     goDeeper: [{ label: 'How it is made', href: '/process' }],
     script:
-      'Defy Design supplied the shredded recycled plastic. At the farm, we pressed the stock, routed the X-frame legs and packed the parts for forty beds. We sent them to Maningrida, where young people assembled the beds with community. The next run needs to measure labour, energy, material yield and time.',
-    note: 'GEOGRAPHY, stated out loud because the stop reads as a lie otherwise: the beds went to MANINGRIDA, they were MADE at the farm, and Fred Campbell\'s own community is ALICE SPRINGS, not Maningrida. INV-0303 remains internal evidence for the forty-bed delivery and must not appear in display copy. There is NO photograph of Maningrida anywhere in v2/public (verified by find, 0 results), so the stop is carried by process photography of the making. Shayne Bloomfield carries the only cleared Maningrida-speaking quotes in the repo (Ben-cleared 2026-07-20). Xavier is ALWAYS narrated by Fred: his registry record stores `quotes: []` and states that no direct quote exists or may be created. NEVER write "zero beds pressed in-house": it is wrong and has regressed twice. marginal-factory carries canon claimLabel "verified" but that is a verified BOM computation, not a measured production cost, so the chip says modelled.',
+      'Defy Design supplied the shredded recycled plastic. At the Goods on Country facility in Queensland, we pressed the stock, routed the X-frame legs and packed the parts for forty beds. We sent them to Maningrida, where young people assembled the beds with community. The next run needs to measure labour, energy, material yield and time.',
+    note: 'GEOGRAPHY, stated out loud because the stop reads as a lie otherwise: the beds went to MANINGRIDA, they were MADE at the Goods on Country facility in Queensland, and Fred Campbell\'s own community is ALICE SPRINGS, not Maningrida. INV-0303 remains internal evidence for the forty-bed delivery and must not appear in display copy. There is NO photograph of Maningrida anywhere in v2/public (verified by find, 0 results), so the stop is carried by process photography of the making. Shayne Bloomfield carries the only cleared Maningrida-speaking quotes in the repo (Ben-cleared 2026-07-20). Xavier is ALWAYS narrated by Fred: his registry record stores `quotes: []` and states that no direct quote exists or may be created. NEVER write "zero beds pressed in-house": it is wrong and has regressed twice. marginal-factory carries canon claimLabel "verified" but that is a verified BOM computation, not a measured production cost, so the chip says modelled.',
   },
 
   // ────────────────────────────────────────────────────────── stop 7

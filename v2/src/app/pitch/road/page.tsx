@@ -373,7 +373,7 @@ export default function RoadPitchPage() {
                     <div className="flex items-center gap-4">
                       <span className="goods-pitch-display text-6xl text-goods-terracotta">{index + 1}</span>
                       <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-goods-terracotta">
-                        Maningrida and the farm
+                        Maningrida and the Queensland facility
                       </p>
                     </div>
                     <h2
@@ -411,7 +411,7 @@ export default function RoadPitchPage() {
                         Press. Route. Pack.
                       </p>
                       <p className="mt-2 text-xs leading-5 text-white/75">
-                        The production facility at the farm
+                        The Goods on Country facility in Queensland
                       </p>
                     </div>
                   </div>
@@ -787,7 +787,7 @@ export default function RoadPitchPage() {
                 step: '02 · Keep making beds now',
                 amount: '$100K a year',
                 chip: 'production funding',
-                line: 'Continue making beds at the farm and The Harvest so Goods can keep filling community orders while on-Country production facilities are developed.',
+                line: 'Continue making beds at the Goods on Country facility in Queensland so Goods can keep filling community orders while on-Country production facilities are developed.',
               },
               {
                 step: '03 · Keep Goods working with communities',

@@ -33,7 +33,7 @@ const FIVE_NUMBERS = [
 
 const FACILITY = [
   { step: 'Community facility', amount: 'Up to $222K', chip: 'capital per full facility', line: 'A complete production facility, or a smaller set of modules shaped around what a community needs and already has.' },
-  { step: 'Keep making beds', amount: '$100K a year', chip: 'production funding', line: 'Continue production at the farm and The Harvest while on-Country facilities are developed.' },
+  { step: 'Keep making beds', amount: '$100K a year', chip: 'production funding', line: 'Continue production at the Goods on Country facility in Queensland while on-Country facilities are developed.' },
   { step: 'Keep Goods working', amount: '$200K a year', chip: 'organisation funding', line: 'Visit communities, develop products and support community-led enterprises to grow and take on production.' },
 ];
 

@@ -272,7 +272,7 @@ export default async function AdminProductionPage() {
       id: 'qu-0380',
       reference: 'QU-0380',
       supplier: 'Defy Manufacturing',
-      description: '1,200kg recycled plastic shred (2 bulka bags) + 20x 1200x1200x19mm Jungle Mix panels + freight (3 pallets to Witta)',
+      description: '1,200kg recycled plastic shred (2 bulka bags) + 20x 1200x1200x19mm Jungle Mix panels + freight (3 pallets to the Queensland facility)',
       amount: 8525,
       bedsEquivalent: 60,
       expires: '2026-04-23',

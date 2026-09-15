@@ -69,7 +69,7 @@ export const COMMUNITY_OS: Record<string, CommunityOsProfile> = {
   maningrida: {
     communityId: 'maningrida',
     facilityInterest: null,
-    facilityNote: 'Jul 2026 beds were made at the farm facility and delivered with Homeland School Company; no community-facility conversation recorded yet.',
+    facilityNote: 'Jul 2026 beds were made at the Goods on Country facility in Queensland and delivered with Homeland School Company; no community-facility conversation recorded yet.',
     people: [
       { name: 'Homeland School Company', role: 'Partner org', procurement: true, note: 'Jul 2026 delivery: 40 beds + 2 washers (INV-0303)' },
       { name: 'BHAC laundromat', role: 'Partner org', note: '4 re-skinned machines (not Goods hardware)' },

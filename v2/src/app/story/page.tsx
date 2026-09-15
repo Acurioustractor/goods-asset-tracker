@@ -36,7 +36,7 @@ import { getStoryteller, type StorytellerRecord } from '@/lib/data/storyteller-r
 export const metadata: Metadata = {
   title: 'The Work That Stays',
   description:
-    'The full Goods on Country history, walked as a road: Kalgoorlie, Tennant Creek, Palm Island, Utopia, the farm and Maningrida, and Alice Springs. The model arrives at the end, because it is what the road produced.',
+    'The full Goods on Country history, walked as a road: Kalgoorlie, Tennant Creek, Palm Island, Utopia, the Queensland facility and Maningrida, and Alice Springs. The model arrives at the end, because it is what the road produced.',
 };
 
 // ─────────────────────────────────────────────────────────── voices

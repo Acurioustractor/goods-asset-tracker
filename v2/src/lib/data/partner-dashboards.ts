@@ -306,7 +306,7 @@ const snow: PartnerDashboard = {
       heading: 'Up next',
       items: [
         { title: 'Community siting decision for the plant', note: 'Tennant Creek or Mparntwe' },
-        { title: 'Katrina: train-the-trainer at Witta', note: 'Skills travel home to run the Alice Springs build' },
+        { title: 'Katrina: train-the-trainer at the Queensland facility', note: 'Skills travel home to run the Alice Springs build' },
         { title: 'QBE Catalysing Impact, Stage 2', note: 'September; could bring matched catalytic capital' },
         { title: 'Investment + loan opportunity with Snow', note: 'Exploring recoverable / impact-investment finance; intro to Bhanvi via Snow' },
       ],

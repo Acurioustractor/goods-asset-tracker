@@ -12,8 +12,8 @@
  * the-year-and-the-raise.ts on the finance branch; when it lands, pin RAISE and
  * BED to that module. Nothing is signed.
  *
- * Rules enforced by model-placemat.guards.test.ts: The Harvest Plant, never
- * Witta; customers by type, never by organisation; money never returns to Goods;
+ * Rules enforced by model-placemat.guards.test.ts: the maker is named, never
+ * placed; customers by type, never by organisation; money never returns to Goods;
  * households are not a station; no health outcome; no em dashes; the only
  * drawing on the sheet is the kit container cut from the accepted plant
  * workflow; every photograph is from the Media Room starred set.

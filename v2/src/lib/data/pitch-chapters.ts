@@ -171,15 +171,15 @@ export const ORIGIN = {
     { title: 'Action', line: 'Build useful things with communities. Prototype carefully and stay accountable.' },
     { title: 'Art', line: 'Translate learning into culture, meaning, and public pressure. Art returns the loop back to listening.' },
   ],
-  headerLoop: { src: '/video/act/harvest-field-notes-dji-0021-hero.mp4', poster: '/video/act/harvest-field-notes-dji-0021-hero.jpg', alt: 'The Harvest at Witta from the air' },
+  headerLoop: { src: '/video/act/harvest-field-notes-dji-0021-hero.mp4', poster: '/video/act/harvest-field-notes-dji-0021-hero.jpg', alt: 'The Harvest from the air' },
   projects: [
     {
       slug: 'the-harvest',
       title: 'The Harvest',
       tagline: 'Where people grow food, share meals, and belong',
       description: 'At The Harvest, neighbours gather to grow food, cook seasonal meals together, and tend therapeutic gardens that hold space for healing. Belonging is built slowly here, through shared work and good conversation.',
-      gives: 'The farm at Witta where the container factory sits. Goods on Country\'s beds are pressed and packed here.',
-      image: { src: '/images/act/harvest-witta-aerial.jpg', alt: 'The Harvest at Witta from the air, sheds and paddocks' },
+      gives: 'Where A Curious Tractor gathers people around food and shared work.',
+      image: { src: '/images/act/harvest-witta-aerial.jpg', alt: 'The Harvest from the air, sheds and paddocks' },
       loop: { src: '/video/act/harvest-field-notes-dji-0021-hero.mp4', poster: '/video/act/harvest-field-notes-dji-0021-hero.jpg' },
       url: 'https://theharvestwitta.com.au',
     },
