@@ -62,7 +62,7 @@ export const ENTITIES: Record<EntityId, Entity> = {
     title: `${APPLICANT.name}, ${APPLICANT.tradingAs}`,
     lines: [
       `ABN ${APPLICANT.abn}. ACN ${APPLICANT.acn}. Registered charity since 2012, deductible gift recipient.`,
-      'Applicant and recipient. Holds the products, the intellectual property, the contracts, the making, the sales and the money.',
+      'Applicant and recipient. Holds the products, the intellectual property, the contracts, the making and the money.',
       'Board at submission: Kristy Bloomfield, Audrey Deemal, Sonia Mascolo.',
       'AGM 12 October 2026 elects Kristy Bloomfield, Audrey Deemal, Jeremy Donovan.',
       'Ben Knight and Nic Marchesi are employees running Goods on Country. Neither is a director.',
@@ -74,7 +74,7 @@ export const ENTITIES: Record<EntityId, Entity> = {
     title: 'A Curious Tractor Pty Ltd',
     lines: [
       'Owned by Ben Knight and Nicholas Marchesi. Made the first beds. Catalysing Impact cohort member since March 2026.',
-      'Research and development. Consortium member on Oonchiumpa’s REAL offer.',
+      'Research and development. Invoices bed orders for now. Consortium member on Oonchiumpa’s REAL offer.',
     ],
     style: 'related',
   },
