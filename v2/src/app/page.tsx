@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { ORGANISATION } from '@/lib/data/organisation';
 import { Hero, ImpactStats } from '@/components/marketing';
 import { AssemblySequence } from '@/components/pitch/assembly-sequence';
 import { CyclingImage } from '@/components/pitch/cycling-image';
@@ -40,7 +41,7 @@ export default async function HomePage() {
       <Hero
         title={brand.hero.home.headline}
         subtitle={brand.hero.home.subheadline}
-        primaryCta={{ text: 'Shop the Stretch Bed', href: '/shop/stretch-bed-single' }}
+        primaryCta={{ text: 'Buy beds', href: '/beds' }}
         secondaryCta={{ text: 'Back the work', href: '/partner' }}
         videoSrc={canonVideoSrc('video-hero', {
           desktop: videoUrl('hero-desktop.mp4'),
@@ -50,6 +51,31 @@ export default async function HomePage() {
         imageSrc="/images/media-pack/lying-on-stretch-bed.jpg"
         imageAlt="A young man lying full-length on a Stretch Bed on country: recycled plastic legs, galvanised steel poles, heavy-duty canvas"
       />
+
+      {/* Three ways in, and who you are dealing with, before anything else. */}
+      <section aria-label="Ways in" className="border-b border-[#e6dfd1] bg-goods-cream px-4 py-10 md:py-14">
+        <div className="container mx-auto">
+          <ul className="grid gap-4 md:grid-cols-3">
+            {[
+              { href: '/beds', kicker: 'For homes and organisations', title: 'Buy beds', line: 'One online, or a quote for your organisation.' },
+              { href: '/facilities', kicker: 'For communities', title: 'Make beds in your community', line: 'How a production facility comes to a community that asks.' },
+              { href: '/partner', kicker: 'For funders and supporters', title: 'Back the work', line: 'Grants, gifts and loans, and what each one pays for.' },
+            ].map((door) => (
+              <li key={door.href}>
+                <Link href={door.href} className="group flex h-full flex-col rounded-[22px] border border-[#e6dfd1] bg-white p-6 transition-colors hover:border-goods-terracotta">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-goods-terracotta">{door.kicker}</span>
+                  <span className="mt-2 font-display text-2xl font-semibold text-goods-ink">{door.title} <span aria-hidden="true" className="inline-block transition-transform group-hover:translate-x-1">→</span></span>
+                  <span className="mt-2 text-[15px] leading-relaxed text-[#4a4741]">{door.line}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 text-sm text-[#5d574c]">
+            {ORGANISATION.boardLine} {ORGANISATION.identityLine}{' '}
+            <Link href="/who-we-are" className="underline underline-offset-2 hover:text-goods-terracotta">Who we are</Link>
+          </p>
+        </div>
+      </section>
 
       <section className="bg-background py-16 md:py-20">
         <div className="container mx-auto px-4">
@@ -234,7 +260,7 @@ export default async function HomePage() {
                 Learning alongside the Bloomfield family
               </h2>
               <p className="mb-4 text-lg leading-relaxed text-muted-foreground">
-                Oonchiumpa Consultancy is a 100% Aboriginal-owned business in Alice Springs. Over time, Elders, young people and the Goods team have worked together on Stretch Bed prototypes—pulling them apart, testing what works and making changes along the way.
+                Oonchiumpa Consultancy is a 100% Aboriginal-owned business in Alice Springs. Over time, Elders, young people and the Goods team have worked together on Stretch Bed prototypes: pulling them apart, testing what works and making changes along the way.
               </p>
               <p className="mb-7 text-lg leading-relaxed text-muted-foreground">
                 This work is creating room to explore what local making could look like in Alice Springs: young people building beds, practical skills growing over time, and decisions remaining with the people closest to the work.

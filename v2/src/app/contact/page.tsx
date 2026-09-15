@@ -402,7 +402,7 @@ export default function ContactPage() {
                 },
                 {
                   q: 'Are donations tax-deductible?',
-                  a: 'Goods on Country is a social enterprise. Please contact us about tax deductibility options for your situation.',
+                  a: 'Goods on Country is a registered business name of The Butterfly Movement Ltd, a registered charity endorsed as a deductible gift recipient. Talk to us before you give and we will confirm how your gift is receipted.',
                 },
               ].map((faq, i) => (
                 <Card key={i} className="border-0 shadow-sm" style={{ backgroundColor: '#FDF8F3' }}>

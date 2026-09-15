@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { ORGANISATION } from '@/lib/data/organisation';
 import { usePathname } from 'next/navigation';
 import { FeedbackWidget } from '@/components/feedback/feedback-widget';
 import { NewsletterForm } from '@/components/layout/newsletter-form';
@@ -63,11 +64,14 @@ const communityPartners = [
 
 const footerLinks = {
   product: [
+    { name: 'Buy beds', href: '/beds' },
     { name: 'The Stretch Bed', href: '/shop/stretch-bed-single' },
+    { name: 'Community facilities', href: '/facilities' },
     { name: 'How It\'s Made', href: '/process' },
     { name: 'Washing Machines', href: '/shop/washing-machine' },
   ],
   about: [
+    { name: 'Who we are', href: '/who-we-are' },
     { name: 'Our Story', href: '/story' },
     { name: 'The Road to Ownership', href: '/pitch/road' },
     { name: 'The pitch', href: '/pitch' },
@@ -198,14 +202,14 @@ export function SiteFooter() {
 
         <div className="mt-8 rounded-xl border border-border bg-background p-5">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-            DGR pathway
+            Who we are
           </p>
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-            DGR-deductible giving is available only through The Butterfly Movement Ltd, an
-            ACNC-registered charity and Item 1 DGR. The Goods on Country giving pathway through
-            Butterfly is being formalised for FY2026-27. Confirm current routing with us before
-            structuring a tax-deductible gift. Goods on Country and A Curious Tractor Pty Ltd are
-            not themselves DGR-endorsed.
+            {ORGANISATION.identityLine} ABN {ORGANISATION.abn}. {ORGANISATION.charityLine} {ORGANISATION.giving}{' '}
+            <Link href="/who-we-are" className="underline underline-offset-2 hover:text-primary">
+              The board and the team
+            </Link>
+            .
           </p>
         </div>
 

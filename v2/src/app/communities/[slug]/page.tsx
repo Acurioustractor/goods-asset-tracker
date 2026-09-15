@@ -280,7 +280,7 @@ export default async function CommunityPage({ params }: PageProps) {
       {media.videos.length > 0 && (
         <section id="film" className="mb-10">
           <h2 className="mb-4 text-sm font-medium uppercase tracking-wider text-stone-500">
-            {media.videos[0].title}
+            {/^\d{6,}|[_]|\.(mp4|mov)$/i.test(media.videos[0].title) ? `Film from ${community.name}` : media.videos[0].title}
           </h2>
           <video
             controls
