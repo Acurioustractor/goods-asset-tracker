@@ -613,8 +613,8 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         status: 'approved',
       },
     ],
-    portrait: null,
-    notes: 'Voice-only by design: no portrait.',
+    portrait: '/images/people/katrina-bloomfield.jpg', // Her Empathy Ledger portrait. Ben 2026-09-16: Katrina has agreed to it being public; recorded on her EL photo tag, syndication still excluded
+    notes: 'Portrait public from 2026-09-16: Ben confirmed Katrina agreed (recorded on her EL photo tag). Was voice-only until then.',
   },
   {
     slug: 'kristy-bloomfield',
@@ -712,7 +712,7 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
       },
     ],
     portrait: '/images/people/shayne-bloomfield.jpg', // His Empathy Ledger avatar (public, consent granted). Ben 2026-09-16: use it; he is the man in front in the orange shirt
-    notes: 'Voice-only by design: no portrait. Quotes 3-4 cleared by Ben 2026-07-20 from his EL transcript (the firsthand Maningrida delivery account; remaining candidates in wiki/investor/06-full-stories.md §6).',
+    notes: 'Portrait used from 2026-09-16 (Ben: use his EL avatar; he is the man in front). Was voice-only until then. Quotes 3-4 cleared by Ben 2026-07-20 from his EL transcript (the firsthand Maningrida delivery account; remaining candidates in wiki/investor/06-full-stories.md §6).',
   },
   {
     slug: 'dorrie-jones',
