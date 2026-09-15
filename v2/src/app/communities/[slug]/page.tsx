@@ -2,8 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
-import { existsSync } from 'node:fs';
-import { join } from 'node:path';
+import { PEOPLE_PORTRAIT_FILES } from '@/lib/data/people-portraits';
 import { communityLocations, communityPartnerships } from '@/lib/data/content';
 import { tripStories } from '@/lib/data/trip-stories';
 import { CASE_STUDIES } from '@/lib/data/case-studies';
@@ -134,7 +133,7 @@ function localPortrait(name: string): string | null {
   const slug = slugify(name);
   for (const ext of ['jpg', 'png', 'jpeg', 'webp']) {
     const rel = `/images/people/${slug}.${ext}`;
-    if (existsSync(join(process.cwd(), 'public', rel))) return rel;
+    if (PEOPLE_PORTRAIT_FILES.includes(rel.slice('/images/people/'.length))) return rel;
   }
   return null;
 }

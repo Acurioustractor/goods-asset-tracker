@@ -112,7 +112,6 @@ export function PitchMenu({ chapters, title, extra }: { chapters: readonly MenuC
       `}</style>
 
       <div className="fixed right-4 top-4 z-[70] flex items-center gap-2 lg:right-6 lg:top-6">
-      {extra}
       <button
         ref={buttonRef}
         type="button"
@@ -148,10 +147,13 @@ export function PitchMenu({ chapters, title, extra }: { chapters: readonly MenuC
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-terracotta-light">Goods on Country</p>
               <p className="mt-0.5 font-display text-xl font-semibold md:text-2xl">{title}</p>
             </div>
-            <button ref={closeRef} type="button" onClick={close} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/20 px-4 text-sm font-semibold hover:border-white/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-goods-terracotta">
-              <X className="h-4 w-4" aria-hidden="true" />
-              Close
-            </button>
+            <div className="flex items-center gap-2">
+              {extra}
+              <button ref={closeRef} type="button" onClick={close} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/20 px-4 text-sm font-semibold hover:border-white/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-goods-terracotta">
+                <X className="h-4 w-4" aria-hidden="true" />
+                Close
+              </button>
+            </div>
           </div>
 
           <nav aria-label="Chapters" className="min-h-0 flex-1 overflow-y-auto px-3 pb-8 md:px-8 lg:px-10">

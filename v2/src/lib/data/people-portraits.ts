@@ -1,0 +1,38 @@
+/**
+ * Portraits that ship in public/images/people/, as a list the server can read on Vercel (it cannot read
+ * public/ from disk there). pitch-assets.guards.test.ts fails if this list and the folder drift apart.
+ */
+export const PEOPLE_PORTRAIT_FILES: readonly string[] = [
+  "alfred-johnson.jpg",
+  "annie-morrison.jpg",
+  "audrey-deemal-official.jpg",
+  "ben-knight.jpg",
+  "boe-remenyi.jpg",
+  "brian-russell.jpg",
+  "carmelita-colette.jpg",
+  "chloe.jpg",
+  "cliff-plummer.jpg",
+  "daniel-patrick-noble.jpg",
+  "dianne-stokes.jpg",
+  "fred-campbell.png",
+  "gary.jpg",
+  "gloria-turner.jpg",
+  "heather-mundo.jpg",
+  "ivy.jpg",
+  "jahvan-oui.jpg",
+  "jason.jpg",
+  "jeremy-donovan-official.jpg",
+  "jimmy-frank.jpg",
+  "karen-liddle.jpg",
+  "kristy-bloomfield.jpg",
+  "linda-turner.jpg",
+  "melissa-jackson.jpg",
+  "mykel.jpg",
+  "nic-and-ben-warumungu.jpg",
+  "norman-frank.jpg",
+  "patricia-frank.jpg",
+  "risilda-hogan.jpg",
+  "tracy-mccartney.jpg",
+  "wayne-glenn.jpg",
+  "xavier-stretch-bed-alice-springs.jpg"
+];
