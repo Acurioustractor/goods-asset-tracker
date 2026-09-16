@@ -4,6 +4,7 @@
 // be committed to git from local before they ship).
 
 import { NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/auth/admin';
 import { setStoryOverride } from '@/lib/field-notes/overrides';
 import { revalidatePath } from 'next/cache';
 
@@ -28,6 +29,9 @@ interface Body {
 }
 
 export async function POST(req: Request) {
+  const guard = await requireAdmin();
+  if (guard) return guard;
+
   let body: Body;
   try {
     body = (await req.json()) as Body;

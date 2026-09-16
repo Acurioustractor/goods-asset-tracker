@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/auth/admin';
 import { createServiceClient } from '@/lib/supabase/server';
 
 export const dynamic = 'force-dynamic';
@@ -22,6 +23,9 @@ export async function POST(
   req: NextRequest,
   { params }: { params: Promise<{ batch: string }> }
 ) {
+  const guard = await requireAdmin();
+  if (guard) return guard;
+
   const { batch } = await params;
   if (!batch || !/^[A-Za-z0-9_-]{1,32}$/.test(batch)) {
     return NextResponse.json({ error: 'invalid batch' }, { status: 400 });

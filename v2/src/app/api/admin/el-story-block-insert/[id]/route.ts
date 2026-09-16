@@ -11,6 +11,7 @@
 // reflects the new state.
 
 import { NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/auth/admin';
 import { blocksToHtml } from '@/lib/stories/blocks-to-html';
 import type { TripBlock } from '@/lib/data/trip-stories';
 
@@ -82,6 +83,9 @@ export async function POST(
   req: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
+  const guard = await requireAdmin();
+  if (guard) return guard;
+
   const { id } = await params;
   if (!EL_URL || !EL_KEY) {
     return NextResponse.json({ error: 'EL env vars missing' }, { status: 500 });

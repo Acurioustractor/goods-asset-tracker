@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/auth/admin';
 import { createClient } from '@/lib/supabase/server';
 
 export async function POST(request: NextRequest) {
+  const guard = await requireAdmin();
+  if (guard) return guard;
+
   const supabase = await createClient();
 
   // Verify user is authenticated

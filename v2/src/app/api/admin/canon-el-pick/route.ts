@@ -4,6 +4,7 @@
 // from local before they ship).
 
 import { NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/auth/admin';
 import { addCanonElPick, removeCanonElPick, type CanonElPick } from '@/lib/data/canon-el-picks';
 import { revalidatePath } from 'next/cache';
 
@@ -17,6 +18,9 @@ interface Body {
 }
 
 export async function POST(req: Request) {
+  const guard = await requireAdmin();
+  if (guard) return guard;
+
   let body: Body;
   try {
     body = (await req.json()) as Body;

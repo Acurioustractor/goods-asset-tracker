@@ -6,6 +6,7 @@
 // only; commit the new file + canon edit from local to ship to prod.
 
 import { NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/auth/admin';
 import { revalidatePath } from 'next/cache';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -49,6 +50,9 @@ interface RawCanon {
 }
 
 export async function POST(req: Request) {
+  const guard = await requireAdmin();
+  if (guard) return guard;
+
   let form: FormData;
   try {
     form = await req.formData();

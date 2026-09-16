@@ -7,6 +7,7 @@
 // pattern (gated by the admin middleware, not in-route).
 
 import { NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/auth/admin';
 
 export const runtime = 'nodejs';
 
@@ -19,6 +20,9 @@ const SB_KEY = process.env.EMPATHY_LEDGER_SUPABASE_KEY || '';
 const ALLOW = [/^https:\/\/www\.empathyledger\.com\//, /^https:\/\/[a-z0-9-]+\.supabase\.co\//];
 
 export async function GET(req: Request) {
+  const guard = await requireAdmin();
+  if (guard) return guard;
+
   const url = new URL(req.url).searchParams.get('url');
   if (!url || !ALLOW.some((re) => re.test(url))) {
     return NextResponse.json({ error: 'url required, EL host only' }, { status: 400 });

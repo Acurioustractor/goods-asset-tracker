@@ -6,6 +6,7 @@
 // [[el-two-video-tables]] for the trap.
 
 import { NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/auth/admin';
 import { existsSync, readdirSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { getLocalImageTags } from '@/lib/data/local-image-tags';
@@ -184,6 +185,9 @@ function localWebsiteMedia(kind: string, queryTags: string[] = []): PickerItem[]
 }
 
 export async function GET(req: Request) {
+  const guard = await requireAdmin();
+  if (guard) return guard;
+
   const url = new URL(req.url);
   const tags = url.searchParams.getAll('tag');
   const kind = url.searchParams.get('kind') || 'any';

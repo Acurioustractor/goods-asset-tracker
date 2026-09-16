@@ -5,6 +5,7 @@
  * Matches existing contacts by name (since we don't have emails from LinkedIn).
  */
 import { NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/auth/admin';
 
 const GHL_API_KEY = process.env.GHL_API_KEY || '';
 const GHL_LOCATION_ID = process.env.GHL_LOCATION_ID || '';
@@ -154,6 +155,9 @@ async function searchContactByName(name: string) {
 }
 
 export async function POST() {
+  const guard = await requireAdmin();
+  if (guard) return guard;
+
   if (!GHL_API_KEY || !GHL_LOCATION_ID) {
     return NextResponse.json({ error: 'GHL not configured' }, { status: 500 });
   }
@@ -233,6 +237,9 @@ export async function POST() {
 
 // GET to preview what will be imported
 export async function GET() {
+  const guard = await requireAdmin();
+  if (guard) return guard;
+
   const byTier = {
     hot: LINKEDIN_COMMENTERS.filter(c => c.tier === 'hot'),
     strategic: LINKEDIN_COMMENTERS.filter(c => c.tier === 'strategic'),

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/auth/admin';
 import { createServiceClient } from '@/lib/supabase/server';
 
 export const dynamic = 'force-dynamic';
@@ -31,6 +32,9 @@ export async function PATCH(
   req: NextRequest,
   { params }: { params: Promise<{ unique_id: string }> }
 ) {
+  const guard = await requireAdmin();
+  if (guard) return guard;
+
   const { unique_id } = await params;
 
   if (!unique_id || !/^[A-Za-z0-9_-]{1,64}$/.test(unique_id)) {

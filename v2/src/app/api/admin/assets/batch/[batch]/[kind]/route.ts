@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/auth/admin';
 import { promises as fs } from 'fs';
 import path from 'path';
 
@@ -15,6 +16,9 @@ export async function GET(
   _req: NextRequest,
   { params }: { params: Promise<{ batch: string; kind: string }> }
 ) {
+  const guard = await requireAdmin();
+  if (guard) return guard;
+
   const { batch, kind } = await params;
 
   if (!/^[A-Za-z0-9]{1,16}$/.test(batch)) {
