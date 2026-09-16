@@ -242,7 +242,12 @@ const snow: PartnerDashboard = {
     },
     moments: [
       { date: '2023', title: 'Snow backs Goods before the proof is in the houses', detail: 'Anchor support when this was still a bold idea. Founder wages, early R&D, and the first prototypes.', image: { src: '/images/media-pack/goods-early-2023-community.jpg', alt: 'Early community visit, 2023, sleeping conditions in remote community before the bed' } },
-      { date: 'Jul 2025', title: 'Sally and Georgina on Country at Tennant Creek', detail: 'Sally Grimsley-Ballard and Georgina Byron AM with community Elders in Tennant Creek, July 2025.', image: { src: '/images/media-pack/sally-georgina-tennant-creek-jul-2025.jpg', alt: 'Sally and Georgina with community Elders in Tennant Creek, July 2025' } },
+      // Name order corrected 2026-09-16, confirmed by Ben from a face crop: Georgina wears
+      // the Wilya Janta shirt (left), Sally the Deadly Heart Trek shirt (right). The caption
+      // read the other way round on the one page Snow themselves look at. The FILE is still
+      // named sally-georgina-*; renaming it would break the content_items row that carries
+      // its consent tier, so the name stays and the caption is the source of truth.
+      { date: 'Jul 2025', title: 'Georgina and Sally on Country at Tennant Creek', detail: 'Georgina Byron AM and Sally Grimsley-Ballard with community Elders in Tennant Creek, July 2025.', image: { src: '/images/media-pack/sally-georgina-tennant-creek-jul-2025.jpg', alt: 'Georgina Byron AM and Sally Grimsley-Ballard with community Elders in Tennant Creek, July 2025' } },
       { date: 'Aug 2025', title: 'Beds alongside the Deadly Heart Trek, Katherine', detail: 'Deliveries ran beside the Trek\'s heart-screening visit, 8 August 2025.', image: { src: '/images/media-pack/deadly-heart-trek-aug-2025.jpg', alt: 'Deadly Heart Trek team group photo, August 2025' } },
       { date: 'May 2026', title: 'Goods displayed at Canberra Airport', detail: 'A Stretch Bed and "Good. Design." installation at Canberra Airport, raising awareness of RHD and the health-hardware link.', image: { src: '/images/media-pack/canberra-airport-display-may-2025.jpg', alt: 'Goods "Good. Design." display at Canberra Airport, May 2026' } },
       { date: 'Jan 2026', title: 'First washing machine given to Dianne Stokes', detail: 'In Tennant Creek. She named it Pakkimjalki Kari in Warumungu.', image: { src: '/images/product/washing-machine-name.jpg', alt: 'Pakkimjalki Kari name plate at sunset, Tennant Creek' } },
