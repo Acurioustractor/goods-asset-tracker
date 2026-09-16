@@ -102,10 +102,15 @@ export function SnowArc() {
         <Beat n="02" when="2024" title="A program">
           <p>
             A place in AMP&rsquo;s Tomorrow Makers Spark, and Snow invoices arriving through the years the bed went from
-            its first version to its fourth. Ten invoices in all, the most recent in May 2026.
+            its first version to its fourth, and the washing machine went from an idea to a machine with a name.
           </p>
         </Beat>
       ),
+      image: {
+        src: '/images/media-pack/speed-queen-controls.jpg',
+        alt: 'Hands on the controls of the washing machine during its design',
+        place: 'Designing the machine, with the Elders who would use it.',
+      },
     },
     {
       id: 'snow-on-country',
@@ -180,9 +185,27 @@ export function SnowArc() {
         : {}),
     },
     {
+      id: 'snow-trek',
+      body: (
+        <Beat n="05" when="August 2025" title="Alongside the doctors">
+          <p>
+            Goods travelled with the Deadly Heart Trek, the Snow-supported screening run across remote
+            Northern Territory communities. While the doctors screened for rheumatic heart disease, beds
+            went into houses in the same towns. A washable bed sits at the prevention end of that chain,
+            a long way upstream of a cardiologist.
+          </p>
+        </Beat>
+      ),
+      image: {
+        src: '/images/media-pack/deadly-heart-trek-aug-2025.jpg',
+        alt: 'The Deadly Heart Trek team together on the road, August 2025',
+        place: 'The Deadly Heart Trek, August 2025.',
+      },
+    },
+    {
       id: 'snow-factory',
       body: (
-        <Beat n="05" when="September 2025" title="A factory">
+        <Beat n="06" when="September 2025" title="A factory">
           <p>
             A room at The Funding Network&rsquo;s Healthy People Healthy Planet event paid for the
             on-Country production plant. The money came from the people in that room on one night,
@@ -199,10 +222,11 @@ export function SnowArc() {
     {
       id: 'snow-project',
       body: (
-        <Beat n="06" when="2025" title="A project">
+        <Beat n="07" when="2025 to 2026" title="Out in public">
           <p>
-            Beds and washing machines in houses at Tennant Creek, Palm Island, Maningrida and Utopia. Vincent Fairfax
-            with FRRR funded the Palm Island youth pilot and acquitted it in March 2026.
+            Snow put the bed on the stage at Parliament House beside NACCHO and the Rheumatic Heart Disease
+            Alliance, and again in the middle of Canberra Airport for Reconciliation Week, where travellers
+            stopped and read why a washable bed has anything to do with a heart.
           </p>
         </Beat>
       ),
@@ -215,7 +239,7 @@ export function SnowArc() {
     {
       id: 'snow-charity',
       body: (
-        <Beat n="07" when="2026" title="A 100% Indigenous not-for-profit">
+        <Beat n="08" when="2026" title="A 100% Indigenous not-for-profit">
           <p>
             The products, the making and the sales moved into the charity under an Indigenous board. A Curious Tractor
             keeps the research and development.
