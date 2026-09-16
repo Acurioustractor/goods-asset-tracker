@@ -33,6 +33,10 @@ function registryQuote(slug: string, tier: VoiceTier, contains: string) {
   return quote ? { person, quote } : null;
 }
 
+const Mark = ({ src, alt }: { src: string; alt: string }) => (
+  <Image src={src} alt={alt} width={600} height={300} className="mb-5 h-7 w-auto opacity-90" />
+);
+
 const Beat = ({ n, when, title, children }: { n: string; when: string; title: string; children: React.ReactNode }) => (
   <>
     <p className="font-display text-sm text-goods-terracotta-light">
@@ -67,6 +71,9 @@ export function SnowArc() {
   // stands beside Norman on the Wilya Janta moment, which keeps the section from growing
   // another screen.
   const jimmy = registryQuote('jimmy-frank', 'external', 'easier for our people to live in their homes');
+  // Jahvan Oui is what the Backing the Future youth grant produced. A different quote from the
+  // one on road stop 4, so the two surfaces do not print the same sentence twice.
+  const jahvan = registryQuote('jahvan-oui', 'external', 'listening to our stories');
   const patriciaName = getStorytellerBySlug('patricia-frank')?.name ?? '';
   const annieName = getStorytellerBySlug('annie-morrison')?.name ?? '';
 
@@ -99,12 +106,15 @@ export function SnowArc() {
     {
       id: 'snow-program',
       body: (
-        <Beat n="02" when="2024" title="A program">
+        <>
+          <Mark src="/images/partners/amp-foundation.svg" alt="AMP Foundation" />
+          <Beat n="02" when="2024" title="A program">
           <p>
             A place in AMP&rsquo;s Tomorrow Makers Spark, and Snow invoices arriving through the years the bed went from
             its first version to its fourth, and the washing machine went from an idea to a machine with a name.
           </p>
-        </Beat>
+          </Beat>
+        </>
       ),
       image: {
         src: '/images/media-pack/speed-queen-controls.jpg',
@@ -160,6 +170,16 @@ export function SnowArc() {
             including a solar-powered house drawn by the people who will live in it. The same funder,
             the same place, a different part of the same problem.
           </p>
+          <p className="mt-4">
+            <a
+              href="https://wilyajanta.org/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[15px] underline decoration-goods-terracotta underline-offset-4 hover:text-goods-terracotta-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-goods-cream"
+            >
+              wilyajanta.org
+            </a>
+          </p>
           {jimmy && (
             <figure className="m-0 mt-6 border-l-2 border-goods-terracotta pl-5">
               <blockquote className="text-[17px] leading-relaxed text-goods-cream/90">
@@ -183,6 +203,11 @@ export function SnowArc() {
             },
           }
         : {}),
+      image: {
+        src: '/images/community/tennant-creek/waterhole-group.jpg',
+        alt: 'Snow Foundation staff standing with Warumungu Elders on rock beside a waterhole at Tennant Creek',
+        place: 'At the waterhole, Tennant Creek.',
+      },
     },
     {
       id: 'snow-trek',
@@ -205,13 +230,16 @@ export function SnowArc() {
     {
       id: 'snow-factory',
       body: (
-        <Beat n="06" when="September 2025" title="A factory">
+        <>
+          <Mark src="/images/partners/tfn.svg" alt="The Funding Network" />
+          <Beat n="06" when="September 2025" title="A factory">
           <p>
             A room at The Funding Network&rsquo;s Healthy People Healthy Planet event paid for the
             on-Country production plant. The money came from the people in that room on one night,
             with Bupa matching what they gave, which is why it arrived in two payments.
           </p>
-        </Beat>
+          </Beat>
+        </>
       ),
       image: {
         src: '/images/process/factory-panorama.jpg',
@@ -220,9 +248,36 @@ export function SnowArc() {
       },
     },
     {
+      id: 'snow-palm-island',
+      body: (
+        <>
+          <Mark src="/images/partners/frrr.png" alt="FRRR" />
+          <Beat n="07" when="2025 to 2026" title="Palm Island">
+            <p>
+              FRRR and the Vincent Fairfax Family Foundation funded the Palm Island pilot through Backing
+              the Future, their youth program: 25 beds, three community sessions, thirty young people, and
+              Jahvan and Ebony hosted at the Sydney factory to learn the production side. Acquitted in March
+              2026, the only grant here that is finished, reported and closed.
+            </p>
+          </Beat>
+        </>
+      ),
+      ...(jahvan
+        ? {
+            voice: {
+              portrait: jahvan.person.portrait ?? undefined,
+              name: jahvan.person.name,
+              role: jahvan.person.role,
+              community: jahvan.person.community,
+              quote: jahvan.quote.text,
+            },
+          }
+        : {}),
+    },
+    {
       id: 'snow-project',
       body: (
-        <Beat n="07" when="2025 to 2026" title="Out in public">
+        <Beat n="08" when="2025 to 2026" title="Out in public">
           <p>
             Snow put the bed on the stage at Parliament House beside NACCHO and the Rheumatic Heart Disease
             Alliance, and again in the middle of Canberra Airport for Reconciliation Week, where travellers
@@ -239,7 +294,7 @@ export function SnowArc() {
     {
       id: 'snow-charity',
       body: (
-        <Beat n="08" when="2026" title="A 100% Indigenous not-for-profit">
+        <Beat n="09" when="2026" title="A 100% Indigenous not-for-profit">
           <p>
             The products, the making and the sales moved into the charity under an Indigenous board. A Curious Tractor
             keeps the research and development.
@@ -276,6 +331,11 @@ export function SnowArc() {
       : []),
     {
       id: 'snow-ways',
+      image: {
+        src: '/images/community/tennant-creek/wilya-janta-golden-hour.jpg',
+        alt: `Sally Grimsley-Ballard and ${georginaName} of the Snow Foundation with Nic Marchesi, in Wilya Janta shirts at Tennant Creek`,
+        place: `Sally Grimsley-Ballard, ${georginaName} and Nic Marchesi. Tennant Creek, last light.`,
+      },
       body: (
         <>
           {founder && (
