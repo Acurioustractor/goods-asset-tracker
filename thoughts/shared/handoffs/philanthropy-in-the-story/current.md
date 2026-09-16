@@ -9,13 +9,13 @@ status: shipped
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-16T14:10:00+10:00
+**Updated:** 2026-09-16T14:45:00+10:00
 **Goal:** Put the funders who backed Goods from the start into the story on /pitch, and fix what was broken underneath. DONE: PR #271 merged, live on goodsoncountry.com.
 **Branch:** main (a169ec8). Worktree removed, branch deleted.
 **Test:** `cd v2 && npx vitest run && npm run check:drift:ci && npm run check:storytellers`
 
 ### Now
-[->] Nothing in flight. Next session picks from Next.
+[->] Closed out. **Zero open PRs.** Next stream is `snow-foundation-ongoing/current.md`.
 
 ### This Session
 - [x] Found the hole: /pitch had 114 Oonchiumpa, 37 QBE, 34 Centrecorp (a BUYER), **0 Snow**, who paid 64% of all philanthropy
@@ -31,9 +31,10 @@ status: shipped
 - [x] Palm Island washers 4 → 5: GB0-138 reinstated (Ben's ruling); canon 22 → 23
 - [x] cleared-voices canon **37 → 38** with Aunty Vicki Wade
 - [x] PR #271 merged, verified live, 8 stale branches deleted, worktree removed
+- [x] **PR #235 landed too.** /sponsor server-renders: page.tsx stops being `'use client'`, form and newsletter move to client islands. Rebased 4 commits onto today's main, CI green, Ben looked, merged (main 2c19991), verified live. It touches NOTHING the harmful #216 did: no footer, no /contact, no dead links. #216 was already closed 15 Sep
+- [x] `.wt/goods-brand` worktree removed and its branch deleted. **Zero open PRs**
 
 ### Next
-- [ ] **PR #235** (`fix/sponsor-server-render`) open 13 days, mergeable UNKNOWN. Its own description says PR #216 should be CLOSED
 - [ ] **FRRR Community Led Climate Solutions** — awarded ~16 Jul 2026, Ben says PAID, in NONE of these books. Need the AMOUNT and the RECEIVING ENTITY. Recorded in `GRANTS_AWARDED_OUTSIDE_THESE_BOOKS`; emptying that array is the signal it is resolved
 - [ ] **The six quotes in the FRRR acquittal** (`~/Downloads/Backing the Future acquittal report - Updated Sep-25.docx`). Two attributed to unnamed "young participants" exist NOWHERE in the consent record; four attributed to Ivy, Alfred, Jason and Jahvan in wording their records do not carry. Sent to FRRR 22 Mar, passed to VFFF 30 Mar. **Ben has not ruled on this**
 - [ ] `feat/ai-tells-gate-and-goods-model` — the AI-tells gate Ben mandated on 10 Sep is STILL not on main
