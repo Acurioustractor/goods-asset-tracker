@@ -15,11 +15,19 @@ status: active
 **Test:** `cd v2 && npx vitest run && npm run check:drift:ci && npm run build`
 
 ### Now
-[->] **Write the letter. Both blocking rulings are in (Ben, 16 Sep).**
-- **The ask is $99,750, 133 beds at $750, as a grant, now.** Recoverable capital is named as the next chapter, not folded into this ask. Code and the partner dashboard now match.
-- **The figure is footnoted, not restated.** $493,130 stands as what Snow has given; $457,929.79 is carried wherever a Goods-only number matters. Nothing on the live site moves and no funder gets reordered.
+[->] **BUILT AND RUNNING: the Snow partnership report. `http://localhost:3013/partners/snow/story`, password `snow2026`.** Eight chapters in the shape of /pitch. Gated in `proxy.ts` in the same commit that created the route. Ben has not seen it yet.
 
-**The clock: an in-principle letter is wanted by about 21 September; QBE submits on the 25th.** Snow route the decision through their advisory committee.
+Chapters: the health chain first (Sally's own instruction), the arc from idea to charity over the Tingkkarli drone, every engagement since Aug 2024 filterable by kind, what the money turned into ending on zero community-owned sites, the three Indigenous directors, Snow's published priorities with our evidence against each including the weak ones, what is not finished, then $99,750.
+
+Both blocking rulings are in (Ben, 16 Sep): **$99,750 for 133 beds as a grant now**, recoverable capital named as the next chapter; **the figure is footnoted, not restated**.
+
+**Clock: an in-principle letter is wanted by about 21 September; QBE submits the 25th.** Snow route the decision through their advisory committee.
+
+**Also inherited today** (the other session stood down, Ben moved it here): the Notion side, the Snow ask letter on row `3daebcf981cf8034b1cbe5f4f72f6906` (red HOLD awaiting the INV-0166 numbers), the Artefact Register and the front door. Their three commits sit unpushed on `fix/q3-structure-diagram-and-attachment-readme` in `../goods-public-wt`.
+
+**Consent alarm: CLOSED.** `npm run check:quotes-verbatim` in empathy-ledger-v2 run live today: **0 public quotes non-verbatim**, control passed. The "135 publicly displayed" figure that was circulating is the script's own docstring from a 10 September measurement, since remediated. 189 approved-but-not-verbatim remain, none public. Three misattributions, all named, none of them Goods community storytellers (Sarah Mayers once, Ben twice). The `public_display_consented` half was never a Goods issue: `cleared-voices.ts` says in its header that EL exposes no per-storyteller consent flag to the syndication client, which is why the name allowlist is the gate.
+
+**One gate still worth hardening:** `isClearedForExternal` checks the speaker's name and never the words, so `/community`, `/gallery` and `/communities/[slug]` would render altered EL text under a cleared person's name. Nothing bad is coming through it today. Not changed, because closing it could blank live sections.
 
 ### The ask conflict: mostly resolved, and not by a ruling
 Three answers were live. Two were stale rather than contested.
