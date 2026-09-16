@@ -24,6 +24,8 @@ export interface Org {
   sources: string[];
   govtContractValueAud: number;
   govtContractCount: number;
+  /** True when the only source is the shared graph, which is proximity-matched. */
+  proximityOnly?: boolean;
 }
 
 const KIND_LABEL: Record<string, string> = {
@@ -150,6 +152,15 @@ export function OrgList({ orgs }: { orgs: Org[] }) {
                   {o.known && (
                     <span className="ml-2 rounded-full px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide" style={{ backgroundColor: '#E6EDDD', color: '#4F6138' }}>
                       we know them
+                    </span>
+                  )}
+                  {o.proximityOnly && (
+                    <span
+                      className="ml-2 rounded-full px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide"
+                      style={{ backgroundColor: '#F5EBD8', color: '#8A6A2F' }}
+                      title="Only source is the shared graph, which matches organisations to communities on postcode. Check before acting."
+                    >
+                      proximity only
                     </span>
                   )}
                 </p>

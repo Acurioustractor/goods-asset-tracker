@@ -12,7 +12,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 97390597,
-      "govtContractCount": 37
+      "govtContractCount": 37,
+      "proximityOnly": false
     },
     {
       "name": "InterSystems Australia Pty Ltd",
@@ -25,7 +26,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 76360001,
-      "govtContractCount": 2
+      "govtContractCount": 2,
+      "proximityOnly": false
     },
     {
       "name": "DT Hobbs Pty Ltd",
@@ -38,7 +40,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 70008897,
-      "govtContractCount": 9
+      "govtContractCount": 9,
+      "proximityOnly": false
     },
     {
       "name": "C & R Constructions Pty Ltd",
@@ -51,7 +54,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 62662164,
-      "govtContractCount": 14
+      "govtContractCount": 14,
+      "proximityOnly": false
     },
     {
       "name": "Bukmak Constructions Pty Ltd as Trustee for Bukmak Constructions Trust",
@@ -64,7 +68,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 51527332,
-      "govtContractCount": 1
+      "govtContractCount": 1,
+      "proximityOnly": false
     },
     {
       "name": "Quality Plumbing & Building Contractors Pty Ltd",
@@ -77,7 +82,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 49831724,
-      "govtContractCount": 10
+      "govtContractCount": 10,
+      "proximityOnly": false
     },
     {
       "name": "Craven Diesel Services Pty Ltd",
@@ -90,7 +96,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 45885552,
-      "govtContractCount": 5
+      "govtContractCount": 5,
+      "proximityOnly": false
     },
     {
       "name": "Binjari Community Aboriginal Corporation",
@@ -104,7 +111,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 42974610,
-      "govtContractCount": 19
+      "govtContractCount": 19,
+      "proximityOnly": false
     },
     {
       "name": "WTD Constructions Pty Ltd",
@@ -117,7 +125,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 41073673,
-      "govtContractCount": 23
+      "govtContractCount": 23,
+      "proximityOnly": false
     },
     {
       "name": "Precision Group (NT) Pty Ltd as The Trustee for C Kantros Family Trust",
@@ -130,7 +139,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 40212694,
-      "govtContractCount": 2
+      "govtContractCount": 2,
+      "proximityOnly": false
     },
     {
       "name": "Sterling NT Pty Ltd",
@@ -143,7 +153,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 39882392,
-      "govtContractCount": 29
+      "govtContractCount": 29,
+      "proximityOnly": false
     },
     {
       "name": "Masterpath Pty Ltd",
@@ -156,7 +167,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 37382021,
-      "govtContractCount": 11
+      "govtContractCount": 11,
+      "proximityOnly": false
     },
     {
       "name": "Asbuild (NT) Pty Ltd",
@@ -169,7 +181,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 35905859,
-      "govtContractCount": 12
+      "govtContractCount": 12,
+      "proximityOnly": false
     },
     {
       "name": "Paradise Landscaping (NT) Pty Ltd",
@@ -182,7 +195,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 29392656,
-      "govtContractCount": 8
+      "govtContractCount": 8,
+      "proximityOnly": false
     },
     {
       "name": "LA Build Pty Ltd",
@@ -195,7 +209,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 29182488,
-      "govtContractCount": 6
+      "govtContractCount": 6,
+      "proximityOnly": false
     },
     {
       "name": "Blueprint (NT) Pty Ltd",
@@ -208,7 +223,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 25524240,
-      "govtContractCount": 3
+      "govtContractCount": 3,
+      "proximityOnly": false
     },
     {
       "name": "Pedersen NT Pty Ltd",
@@ -221,7 +237,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 24151381,
-      "govtContractCount": 12
+      "govtContractCount": 12,
+      "proximityOnly": false
     },
     {
       "name": "Shawnco Pty Ltd",
@@ -234,7 +251,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 23734058,
-      "govtContractCount": 7
+      "govtContractCount": 7,
+      "proximityOnly": false
     },
     {
       "name": "Woodhill & Sons Pty Ltd",
@@ -247,7 +265,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 23138418,
-      "govtContractCount": 7
+      "govtContractCount": 7,
+      "proximityOnly": false
     },
     {
       "name": "B & K Investments (NT) Pty Limited",
@@ -260,7 +279,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 22898431,
-      "govtContractCount": 5
+      "govtContractCount": 5,
+      "proximityOnly": false
     },
     {
       "name": "Murray River North Pty Ltd",
@@ -273,7 +293,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 22162080,
-      "govtContractCount": 10
+      "govtContractCount": 10,
+      "proximityOnly": false
     },
     {
       "name": "A1 Plant and Civil Pty Limited",
@@ -286,7 +307,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 21551346,
-      "govtContractCount": 2
+      "govtContractCount": 2,
+      "proximityOnly": false
     },
     {
       "name": "Scott Hammet Building and Carpentry Pty Ltd",
@@ -299,7 +321,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 21051209,
-      "govtContractCount": 14
+      "govtContractCount": 14,
+      "proximityOnly": false
     },
     {
       "name": "Central Land Council",
@@ -313,7 +336,8 @@
         "shared-graph"
       ],
       "govtContractValueAud": 20837626,
-      "govtContractCount": 44
+      "govtContractCount": 44,
+      "proximityOnly": false
     },
     {
       "name": "Colemans Contracting & Earthmoving Pty Ltd",
@@ -326,7 +350,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 20466710,
-      "govtContractCount": 2
+      "govtContractCount": 2,
+      "proximityOnly": false
     },
     {
       "name": "Olympus Australia Pty Ltd",
@@ -339,7 +364,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 20379161,
-      "govtContractCount": 2
+      "govtContractCount": 2,
+      "proximityOnly": false
     },
     {
       "name": "M and C Fior Constructions Pty Ltd",
@@ -352,7 +378,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 20198509,
-      "govtContractCount": 7
+      "govtContractCount": 7,
+      "proximityOnly": false
     },
     {
       "name": "Phillips Earthmoving Contractors Pty Ltd",
@@ -365,7 +392,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 20159963,
-      "govtContractCount": 6
+      "govtContractCount": 6,
+      "proximityOnly": false
     },
     {
       "name": "Hakiba Pty Ltd",
@@ -378,7 +406,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 18762657,
-      "govtContractCount": 4
+      "govtContractCount": 4,
+      "proximityOnly": false
     },
     {
       "name": "Ri-con Contractors Pty Ltd",
@@ -391,7 +420,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 17688004,
-      "govtContractCount": 9
+      "govtContractCount": 9,
+      "proximityOnly": false
     },
     {
       "name": "Northern Transportables Pty Ltd",
@@ -404,7 +434,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 17411706,
-      "govtContractCount": 5
+      "govtContractCount": 5,
+      "proximityOnly": false
     },
     {
       "name": "Power Projects (NT) Pty Ltd",
@@ -417,7 +448,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 17354678,
-      "govtContractCount": 10
+      "govtContractCount": 10,
+      "proximityOnly": false
     },
     {
       "name": "Downer Edi Works Pty Ltd",
@@ -430,7 +462,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 16777115,
-      "govtContractCount": 5
+      "govtContractCount": 5,
+      "proximityOnly": false
     },
     {
       "name": "Rusca Developments Pty Ltd",
@@ -443,7 +476,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 16574328,
-      "govtContractCount": 5
+      "govtContractCount": 5,
+      "proximityOnly": false
     },
     {
       "name": "Hitachi  Data Systems Australia Pty Ltd",
@@ -456,7 +490,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 16300000,
-      "govtContractCount": 1
+      "govtContractCount": 1,
+      "proximityOnly": false
     },
     {
       "name": "KG Kimlin Pty Ltd",
@@ -469,7 +504,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 16256834,
-      "govtContractCount": 4
+      "govtContractCount": 4,
+      "proximityOnly": false
     },
     {
       "name": "Parkmore Investments Pty Limited",
@@ -482,7 +518,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 16246862,
-      "govtContractCount": 6
+      "govtContractCount": 6,
+      "proximityOnly": false
     },
     {
       "name": "AUS Projects NT (Pty Ltd)",
@@ -495,7 +532,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 16240812,
-      "govtContractCount": 9
+      "govtContractCount": 9,
+      "proximityOnly": false
     },
     {
       "name": "NJ Homes (NT) Pty Ltd",
@@ -508,20 +546,23 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 15941317,
-      "govtContractCount": 6
+      "govtContractCount": 6,
+      "proximityOnly": false
     },
     {
-      "name": "The Arnhem Land Progress Aboriginal Corporation",
+      "name": "The Arnhem Land Progress Aboriginal Corporation (ALPA)",
       "kind": "store",
       "state": "NT",
-      "place": "",
+      "place": "27 remote locations",
       "known": false,
-      "note": "Community controlled, with $15,507,257 of federal contracts across 36 awards.",
+      "note": "The largest Aboriginal corporation in Australia. Runs stores, does furniture-making, owns Bukmak Constructions, 1,200+ employees.",
       "sources": [
+        "research",
         "shared-graph"
       ],
       "govtContractValueAud": 15507257,
-      "govtContractCount": 36
+      "govtContractCount": 36,
+      "proximityOnly": false
     },
     {
       "name": "Bawinanga Aboriginal Corporation",
@@ -535,7 +576,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 15102929,
-      "govtContractCount": 8
+      "govtContractCount": 8,
+      "proximityOnly": false
     },
     {
       "name": "Far Northern Contractors Pty Ltd",
@@ -548,7 +590,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 15052110,
-      "govtContractCount": 9
+      "govtContractCount": 9,
+      "proximityOnly": false
     },
     {
       "name": "MacDonnell Regional Council",
@@ -562,20 +605,23 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 14928037,
-      "govtContractCount": 6
+      "govtContractCount": 6,
+      "proximityOnly": false
     },
     {
-      "name": "Thamarrurr Development Corporation Limited",
-      "kind": "builder",
+      "name": "Thamarrurr Development Corporation",
+      "kind": "community_org",
       "state": "NT",
-      "place": "Darwin",
-      "known": false,
+      "place": "Wadeye",
+      "known": true,
       "note": "Won 5 NT housing or maintenance contracts worth $14,826,096. Flagged a Territory Enterprise on the public record.",
       "sources": [
+        "research",
         "nt-workbook"
       ],
       "govtContractValueAud": 14826096,
-      "govtContractCount": 5
+      "govtContractCount": 5,
+      "proximityOnly": false
     },
     {
       "name": "Ingkerreke Commercial Pty Ltd as Trustee for the Ingkerreke Operational Trust",
@@ -588,7 +634,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 14740081,
-      "govtContractCount": 11
+      "govtContractCount": 11,
+      "proximityOnly": false
     },
     {
       "name": "F & J BItumen Services Pty Ltd",
@@ -601,20 +648,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 14560343,
-      "govtContractCount": 1
-    },
-    {
-      "name": "Precision Group Pty Ltd as trustee for the C Kantros Family Trust",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Greater Darwin Region",
-      "known": false,
-      "note": "Won 1 NT housing or maintenance contracts worth $14,493,781. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 14493781,
-      "govtContractCount": 1
+      "govtContractCount": 1,
+      "proximityOnly": false
     },
     {
       "name": "Auskron Pty Ltd",
@@ -627,20 +662,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 14357749,
-      "govtContractCount": 4
-    },
-    {
-      "name": "Craven Diesel Services",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Katherine Region",
-      "known": false,
-      "note": "Won 3 NT housing or maintenance contracts worth $14,241,265. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 14241265,
-      "govtContractCount": 3
+      "govtContractCount": 4,
+      "proximityOnly": false
     },
     {
       "name": "West Arnhem Regional Council",
@@ -653,7 +676,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 14169050,
-      "govtContractCount": 5
+      "govtContractCount": 5,
+      "proximityOnly": false
     },
     {
       "name": "Ribshire Pty Ltd",
@@ -666,7 +690,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 14051742,
-      "govtContractCount": 9
+      "govtContractCount": 9,
+      "proximityOnly": false
     },
     {
       "name": "S&R Building & Construction Pty Ltd",
@@ -679,7 +704,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 13874271,
-      "govtContractCount": 11
+      "govtContractCount": 11,
+      "proximityOnly": false
     },
     {
       "name": "Cairns Industries Pty Ltd",
@@ -692,7 +718,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 13832152,
-      "govtContractCount": 12
+      "govtContractCount": 12,
+      "proximityOnly": false
     },
     {
       "name": "Quality Plumbing and Building Contractors Pty Ltd",
@@ -705,7 +732,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 13775867,
-      "govtContractCount": 5
+      "govtContractCount": 5,
+      "proximityOnly": false
     },
     {
       "name": "Remote Build (NT) Pty Ltd",
@@ -718,7 +746,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 13694880,
-      "govtContractCount": 3
+      "govtContractCount": 3,
+      "proximityOnly": false
     },
     {
       "name": "GT Builders Pty Ltd",
@@ -731,7 +760,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 13093069,
-      "govtContractCount": 9
+      "govtContractCount": 9,
+      "proximityOnly": false
     },
     {
       "name": "MG Electrical Services Pty Ltd",
@@ -744,7 +774,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 12850000,
-      "govtContractCount": 3
+      "govtContractCount": 3,
+      "proximityOnly": false
     },
     {
       "name": "Deltareef Pty Ltd",
@@ -757,7 +788,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 12651050,
-      "govtContractCount": 5
+      "govtContractCount": 5,
+      "proximityOnly": false
     },
     {
       "name": "Top End Resources Pty Ltd",
@@ -770,7 +802,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 12624141,
-      "govtContractCount": 7
+      "govtContractCount": 7,
+      "proximityOnly": false
     },
     {
       "name": "GEBIE Civil and Construction Pty Ltd",
@@ -783,7 +816,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 12529169,
-      "govtContractCount": 11
+      "govtContractCount": 11,
+      "proximityOnly": false
     },
     {
       "name": "Probuild (NT) Pty Ltd",
@@ -796,7 +830,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 12250110,
-      "govtContractCount": 6
+      "govtContractCount": 6,
+      "proximityOnly": false
     },
     {
       "name": "United Air Conditioning and Mechanical Services Pty Ltd",
@@ -809,7 +844,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 12214178,
-      "govtContractCount": 4
+      "govtContractCount": 4,
+      "proximityOnly": false
     },
     {
       "name": "Scott Hammet Building & Carpentry Pty Ltd",
@@ -822,7 +858,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 12034225,
-      "govtContractCount": 6
+      "govtContractCount": 6,
+      "proximityOnly": false
     },
     {
       "name": "NTEX Pty Ltd",
@@ -835,7 +872,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 11998238,
-      "govtContractCount": 1
+      "govtContractCount": 1,
+      "proximityOnly": false
     },
     {
       "name": "Aminjarrinja Enterprises Aboriginal Corporation",
@@ -848,7 +886,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 11914400,
-      "govtContractCount": 11
+      "govtContractCount": 11,
+      "proximityOnly": false
     },
     {
       "name": "LP Airconditioning Pty Ltd",
@@ -861,7 +900,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 11586915,
-      "govtContractCount": 7
+      "govtContractCount": 7,
+      "proximityOnly": false
     },
     {
       "name": "Remote Area Machinery Hire NT Pty Ltd",
@@ -874,7 +914,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 11504400,
-      "govtContractCount": 1
+      "govtContractCount": 1,
+      "proximityOnly": false
     },
     {
       "name": "IBM Australia Limited",
@@ -887,7 +928,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 11438376,
-      "govtContractCount": 2
+      "govtContractCount": 2,
+      "proximityOnly": false
     },
     {
       "name": "REMOTE AREA MACHINERY HIRE",
@@ -900,7 +942,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 11391111,
-      "govtContractCount": 3
+      "govtContractCount": 3,
+      "proximityOnly": false
     },
     {
       "name": "Morningside Electrical Contractors and Consultants Pty Ltd",
@@ -913,7 +956,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 11322102,
-      "govtContractCount": 3
+      "govtContractCount": 3,
+      "proximityOnly": false
     },
     {
       "name": "Nilsen (NT) Pty Ltd",
@@ -926,20 +970,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 11000000,
-      "govtContractCount": 1
-    },
-    {
-      "name": "IBM Australia",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Provision of IBM Hardware and ",
-      "known": false,
-      "note": "Won 1 NT housing or maintenance contracts worth $10,965,772.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 10965772,
-      "govtContractCount": 1
+      "govtContractCount": 1,
+      "proximityOnly": false
     },
     {
       "name": "Honeywell Ltd",
@@ -952,7 +984,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 10799691,
-      "govtContractCount": 6
+      "govtContractCount": 6,
+      "proximityOnly": false
     },
     {
       "name": "DJ Air & Electrical Services Pty Ltd",
@@ -965,7 +998,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 10764536,
-      "govtContractCount": 4
+      "govtContractCount": 4,
+      "proximityOnly": false
     },
     {
       "name": "NT Link Pty Ltd",
@@ -978,7 +1012,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 10564153,
-      "govtContractCount": 4
+      "govtContractCount": 4,
+      "proximityOnly": false
     },
     {
       "name": "Spears Construction (NT) Pty Ltd",
@@ -991,7 +1026,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 10536053,
-      "govtContractCount": 5
+      "govtContractCount": 5,
+      "proximityOnly": false
     },
     {
       "name": "Trustee for AA Essential Services Trust",
@@ -1004,20 +1040,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 10378628,
-      "govtContractCount": 1
-    },
-    {
-      "name": "Thamarrurr Development Corporation Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Big Rivers Region",
-      "known": false,
-      "note": "Won 4 NT housing or maintenance contracts worth $10,141,960. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 10141960,
-      "govtContractCount": 4
+      "govtContractCount": 1,
+      "proximityOnly": false
     },
     {
       "name": "E-P-G Solutions Pty Ltd",
@@ -1030,7 +1054,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 9776250,
-      "govtContractCount": 3
+      "govtContractCount": 3,
+      "proximityOnly": false
     },
     {
       "name": "Zenco Constructions Pty Ltd",
@@ -1043,7 +1068,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 9733213,
-      "govtContractCount": 4
+      "govtContractCount": 4,
+      "proximityOnly": false
     },
     {
       "name": "PTM Group Pty Ltd",
@@ -1056,7 +1082,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 9731643,
-      "govtContractCount": 3
+      "govtContractCount": 3,
+      "proximityOnly": false
     },
     {
       "name": "Sonwane Pty Limited as Trustee for Tangentyere Charitable No. 2",
@@ -1069,7 +1096,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 9664104,
-      "govtContractCount": 3
+      "govtContractCount": 3,
+      "proximityOnly": false
     },
     {
       "name": "Scope Building NT Pty Ltd",
@@ -1082,7 +1110,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 9644568,
-      "govtContractCount": 9
+      "govtContractCount": 9,
+      "proximityOnly": false
     },
     {
       "name": "Bathurst Island Housing Association Incorporated",
@@ -1095,7 +1124,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 9618139,
-      "govtContractCount": 4
+      "govtContractCount": 4,
+      "proximityOnly": false
     },
     {
       "name": "Emperor Refrigeration Pty Ltd",
@@ -1108,7 +1138,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 9445209,
-      "govtContractCount": 4
+      "govtContractCount": 4,
+      "proximityOnly": false
     },
     {
       "name": "Harvey Developments (NT) Pty Ltd",
@@ -1121,7 +1152,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 9316612,
-      "govtContractCount": 9
+      "govtContractCount": 9,
+      "proximityOnly": false
     },
     {
       "name": "Security & Technology Services (NT) Pty Ltd",
@@ -1134,7 +1166,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 9098888,
-      "govtContractCount": 6
+      "govtContractCount": 6,
+      "proximityOnly": false
     },
     {
       "name": "Whatareya Pty Ltd",
@@ -1147,7 +1180,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 8877592,
-      "govtContractCount": 4
+      "govtContractCount": 4,
+      "proximityOnly": false
     },
     {
       "name": "Regional Asset Maintenance Services Pty Ltd",
@@ -1160,7 +1194,22 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 8749024,
-      "govtContractCount": 5
+      "govtContractCount": 5,
+      "proximityOnly": false
+    },
+    {
+      "name": "Power Projects NT (Pty Ltd)",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Big Rivers Region",
+      "known": false,
+      "note": "Won 3 NT housing or maintenance contracts worth $8,555,320.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 8555320,
+      "govtContractCount": 3,
+      "proximityOnly": false
     },
     {
       "name": "DJC Build Pty Ltd",
@@ -1173,7 +1222,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 8378277,
-      "govtContractCount": 4
+      "govtContractCount": 4,
+      "proximityOnly": false
     },
     {
       "name": "Defend Fire Services Pty Ltd",
@@ -1186,7 +1236,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 8099947,
-      "govtContractCount": 8
+      "govtContractCount": 8,
+      "proximityOnly": false
     },
     {
       "name": "Roper Gulf Regional Council",
@@ -1200,7 +1251,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 7883277,
-      "govtContractCount": 6
+      "govtContractCount": 6,
+      "proximityOnly": false
     },
     {
       "name": "Hawkins and Clements Pty Ltd as Trustee for Hawkins and Clements Unit Trust",
@@ -1213,7 +1265,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 7856643,
-      "govtContractCount": 2
+      "govtContractCount": 2,
+      "proximityOnly": false
     },
     {
       "name": "Siemens Healthcare Pty Ltd",
@@ -1226,7 +1279,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 7630640,
-      "govtContractCount": 3
+      "govtContractCount": 3,
+      "proximityOnly": false
     },
     {
       "name": "Scatt's Plumbing Services Pty Ltd",
@@ -1239,7 +1293,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 7547271,
-      "govtContractCount": 6
+      "govtContractCount": 6,
+      "proximityOnly": false
     },
     {
       "name": "Insight Oceania Quantum Healthcare Group Pty Ltd",
@@ -1252,7 +1307,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 7402064,
-      "govtContractCount": 1
+      "govtContractCount": 1,
+      "proximityOnly": false
     },
     {
       "name": "B & K Investments NT Pty Ltd",
@@ -1265,7 +1321,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 7350000,
-      "govtContractCount": 2
+      "govtContractCount": 2,
+      "proximityOnly": false
     },
     {
       "name": "Roper Gulf Shire Council",
@@ -1278,7 +1335,22 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 7326944,
-      "govtContractCount": 3
+      "govtContractCount": 3,
+      "proximityOnly": false
+    },
+    {
+      "name": "Harvey Developments NT Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Barkly Region",
+      "known": false,
+      "note": "Won 7 NT housing or maintenance contracts worth $7,132,417. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 7132417,
+      "govtContractCount": 7,
+      "proximityOnly": false
     },
     {
       "name": "Northern Land Council",
@@ -1292,7 +1364,8 @@
         "shared-graph"
       ],
       "govtContractValueAud": 7077054,
-      "govtContractCount": 50
+      "govtContractCount": 50,
+      "proximityOnly": false
     },
     {
       "name": "Demountable Sales and Hire Pty Ltd",
@@ -1305,7 +1378,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 7066880,
-      "govtContractCount": 1
+      "govtContractCount": 1,
+      "proximityOnly": false
     },
     {
       "name": "GK Painting Contractors Pty Limited",
@@ -1318,7 +1392,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 7020779,
-      "govtContractCount": 4
+      "govtContractCount": 4,
+      "proximityOnly": false
     },
     {
       "name": "Damday Pty Ltd",
@@ -1331,7 +1406,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 7020023,
-      "govtContractCount": 3
+      "govtContractCount": 3,
+      "proximityOnly": false
     },
     {
       "name": "Wilson Security Pty Ltd",
@@ -1344,7 +1420,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 6939737,
-      "govtContractCount": 5
+      "govtContractCount": 5,
+      "proximityOnly": false
     },
     {
       "name": "Veolia Energy Technical Services Pty Ltd",
@@ -1357,7 +1434,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 6926098,
-      "govtContractCount": 4
+      "govtContractCount": 4,
+      "proximityOnly": false
     },
     {
       "name": "Micca Holdings Pty Ltd",
@@ -1370,7 +1448,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 6776250,
-      "govtContractCount": 3
+      "govtContractCount": 3,
+      "proximityOnly": false
     },
     {
       "name": "Suffren Contracting and Plant Hire Pty Ltd",
@@ -1383,7 +1462,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 6750573,
-      "govtContractCount": 2
+      "govtContractCount": 2,
+      "proximityOnly": false
     },
     {
       "name": "Remote Area Machinery NT Hire Pty Ltd",
@@ -1396,7 +1476,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 6741550,
-      "govtContractCount": 1
+      "govtContractCount": 1,
+      "proximityOnly": false
     },
     {
       "name": "Australian Maritime Systems Pty Ltd",
@@ -1409,7 +1490,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 6722759,
-      "govtContractCount": 1
+      "govtContractCount": 1,
+      "proximityOnly": false
     },
     {
       "name": "Bawinanga Aboriginal Corp",
@@ -1422,7 +1504,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 6706098,
-      "govtContractCount": 3
+      "govtContractCount": 3,
+      "proximityOnly": false
     },
     {
       "name": "Atkin Building Co Pty Ltd",
@@ -1435,7 +1518,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 6700115,
-      "govtContractCount": 5
+      "govtContractCount": 5,
+      "proximityOnly": false
     },
     {
       "name": "Ausplumb (NT) Pty Limited",
@@ -1448,7 +1532,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 6624289,
-      "govtContractCount": 2
+      "govtContractCount": 2,
+      "proximityOnly": false
     },
     {
       "name": "Bitumax Pty Limited",
@@ -1461,7 +1546,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 6552618,
-      "govtContractCount": 1
+      "govtContractCount": 1,
+      "proximityOnly": false
     },
     {
       "name": "Ross Engineering Pty Ltd",
@@ -1474,7 +1560,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 6517315,
-      "govtContractCount": 6
+      "govtContractCount": 6,
+      "proximityOnly": false
     },
     {
       "name": "ICRG North Pty Ltd",
@@ -1487,20 +1574,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 6293415,
-      "govtContractCount": 2
-    },
-    {
-      "name": "Downer Edi Works",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Tennant Creek Region",
-      "known": false,
-      "note": "Won 3 NT housing or maintenance contracts worth $6,248,292.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 6248292,
-      "govtContractCount": 3
+      "govtContractCount": 2,
+      "proximityOnly": false
     },
     {
       "name": "Hastings Deering (Aust) Ltd",
@@ -1513,7 +1588,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 6179206,
-      "govtContractCount": 2
+      "govtContractCount": 2,
+      "proximityOnly": false
     },
     {
       "name": "Custom AV Pty Ltd",
@@ -1526,7 +1602,8 @@
         "nt-workbook"
       ],
       "govtContractValueAud": 6178808,
-      "govtContractCount": 7
+      "govtContractCount": 7,
+      "proximityOnly": false
     },
     {
       "name": "Tangentyere Council Aboriginal Corporation",
@@ -1540,12 +1617,13 @@
         "shared-graph"
       ],
       "govtContractValueAud": 3113493,
-      "govtContractCount": 14
+      "govtContractCount": 14,
+      "proximityOnly": false
     },
     {
       "name": "Anindilyakwa Housing Aboriginal Corporation",
       "kind": "housing_provider",
-      "state": "NT",
+      "state": "",
       "place": "",
       "known": false,
       "note": "Community controlled, with $3,095,702 of federal contracts across 2 awards.",
@@ -1553,7 +1631,8 @@
         "shared-graph"
       ],
       "govtContractValueAud": 3095702,
-      "govtContractCount": 2
+      "govtContractCount": 2,
+      "proximityOnly": true
     },
     {
       "name": "Tiwi Land Council",
@@ -1567,12 +1646,13 @@
         "shared-graph"
       ],
       "govtContractValueAud": 3015555,
-      "govtContractCount": 8
+      "govtContractCount": 8,
+      "proximityOnly": false
     },
     {
       "name": "Aboriginal Medical Services Alliance Northern Territory Aboriginal Corporation",
       "kind": "health_service",
-      "state": "NT",
+      "state": "",
       "place": "",
       "known": false,
       "note": "Community controlled, with $2,116,250 of federal contracts across 6 awards.",
@@ -1580,7 +1660,8 @@
         "shared-graph"
       ],
       "govtContractValueAud": 2116250,
-      "govtContractCount": 6
+      "govtContractCount": 6,
+      "proximityOnly": true
     },
     {
       "name": "Central Australian Aboriginal Congress",
@@ -1594,12 +1675,13 @@
         "shared-graph"
       ],
       "govtContractValueAud": 2039174,
-      "govtContractCount": 5
+      "govtContractCount": 5,
+      "proximityOnly": false
     },
     {
       "name": "Laynhapuy Homelands Aboriginal Corporation",
       "kind": "community_org",
-      "state": "NT",
+      "state": "",
       "place": "",
       "known": false,
       "note": "Community controlled, with $1,073,818 of federal contracts across 11 awards.",
@@ -1607,12 +1689,13 @@
         "shared-graph"
       ],
       "govtContractValueAud": 1073818,
-      "govtContractCount": 11
+      "govtContractCount": 11,
+      "proximityOnly": true
     },
     {
       "name": "Peak Hill Local Aboriginal Land Council",
       "kind": "land_council",
-      "state": "NT",
+      "state": "",
       "place": "",
       "known": false,
       "note": "Community controlled, with $464,000 of federal contracts across 10 awards.",
@@ -1620,7 +1703,8 @@
         "shared-graph"
       ],
       "govtContractValueAud": 464000,
-      "govtContractCount": 10
+      "govtContractCount": 10,
+      "proximityOnly": true
     },
     {
       "name": "Anindilyakwa Land Council",
@@ -1634,7 +1718,8 @@
         "shared-graph"
       ],
       "govtContractValueAud": 270005,
-      "govtContractCount": 5
+      "govtContractCount": 5,
+      "proximityOnly": false
     },
     {
       "name": "Katherine West Health Board Aboriginal Corporation",
@@ -1648,12 +1733,13 @@
         "shared-graph"
       ],
       "govtContractValueAud": 168217,
-      "govtContractCount": 1
+      "govtContractCount": 1,
+      "proximityOnly": false
     },
     {
       "name": "Juunjuwarra Aboriginal Corporation",
       "kind": "community_org",
-      "state": "NT",
+      "state": "",
       "place": "",
       "known": false,
       "note": "Community controlled, with $76,131 of federal contracts across 1 awards.",
@@ -1661,12 +1747,13 @@
         "shared-graph"
       ],
       "govtContractValueAud": 76131,
-      "govtContractCount": 1
+      "govtContractCount": 1,
+      "proximityOnly": true
     },
     {
       "name": "Milingimbi and Outstations Progress Resources Aboriginal Corporation",
       "kind": "store",
-      "state": "NT",
+      "state": "",
       "place": "",
       "known": false,
       "note": "Community controlled, with $70,500 of federal contracts across 1 awards.",
@@ -1674,7 +1761,8 @@
         "shared-graph"
       ],
       "govtContractValueAud": 70500,
-      "govtContractCount": 1
+      "govtContractCount": 1,
+      "proximityOnly": true
     },
     {
       "name": "Miwatj Health Aboriginal Corporation",
@@ -1688,7 +1776,8 @@
         "shared-graph"
       ],
       "govtContractValueAud": 48000,
-      "govtContractCount": 1
+      "govtContractCount": 1,
+      "proximityOnly": false
     },
     {
       "name": "Aboriginal Housing Northern Territory",
@@ -1701,7 +1790,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Anyinginyi Health Aboriginal Corporation",
@@ -1714,7 +1804,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Aurukun Shire Council",
@@ -1727,7 +1818,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Birubi Australia Pty Ltd",
@@ -1740,7 +1832,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Bukmak Constructions Pty Ltd",
@@ -1753,7 +1846,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Central Desert Regional Council",
@@ -1766,7 +1860,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Centrecorp Foundation",
@@ -1779,7 +1874,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Cherbourg Aboriginal Shire Council",
@@ -1792,7 +1888,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Danila Dilba Health Service",
@@ -1805,7 +1902,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Doomadgee Aboriginal Shire Council",
@@ -1818,7 +1916,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "East Arnhem Regional Council",
@@ -1831,7 +1930,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Homeland School Company",
@@ -1844,7 +1944,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Julalikari Council Aboriginal Corporation",
@@ -1857,7 +1958,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Kimberley Regional Service Providers",
@@ -1870,7 +1972,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Kowanyama Aboriginal Shire Council",
@@ -1883,7 +1986,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Mala'la Health Service Aboriginal Corporation",
@@ -1896,7 +2000,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Marthakal Homelands and Resource Centre Aboriginal Corporation",
@@ -1909,7 +2014,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Mowanjum Aboriginal Corporation",
@@ -1922,7 +2028,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Ngaanyatjarra Council Aboriginal Corporation",
@@ -1935,7 +2042,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Ngaanyatjarra Services Aboriginal Corporation",
@@ -1948,7 +2056,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Nganampa Health Council",
@@ -1961,7 +2070,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Nirrumbuk Aboriginal Corporation",
@@ -1974,7 +2084,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Oonchiumpa Consultancy and Services",
@@ -1987,7 +2098,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Outback Stores",
@@ -2000,7 +2112,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Palm Island Aboriginal Shire Council",
@@ -2013,7 +2126,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Palm Island Community Company",
@@ -2026,7 +2140,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Pilbara Meta Maya Regional Aboriginal Corporation",
@@ -2039,7 +2154,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "RIDEM Pty Ltd t/a Dexter Barnes Electrical",
@@ -2052,7 +2168,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "SAACCON",
@@ -2065,7 +2182,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Sunrise Health Service Aboriginal Corporation",
@@ -2078,33 +2196,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
-    },
-    {
-      "name": "Thamarrurr Development Corporation",
-      "kind": "community_org",
-      "state": "NT",
-      "place": "Wadeye",
-      "known": true,
-      "note": "Our Wadeye partner.",
-      "sources": [
-        "research"
-      ],
-      "govtContractValueAud": 0,
-      "govtContractCount": 0
-    },
-    {
-      "name": "The Arnhem Land Progress Aboriginal Corporation (ALPA)",
-      "kind": "store",
-      "state": "NT",
-      "place": "27 remote locations",
-      "known": false,
-      "note": "The largest Aboriginal corporation in Australia. Runs stores, does furniture-making, owns Bukmak Constructions, 1,200+ employees.",
-      "sources": [
-        "research"
-      ],
-      "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "The Community Shed",
@@ -2117,7 +2210,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Torres Strait Island Regional Council",
@@ -2130,7 +2224,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Urapuntja Aboriginal Corporation",
@@ -2143,7 +2238,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Wilya Janta",
@@ -2156,7 +2252,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Winnellie Health Service Aboriginal Corporation (WHSAC)",
@@ -2169,7 +2266,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Woorabinda Aboriginal Shire Council",
@@ -2182,7 +2280,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Wunan Foundation",
@@ -2195,7 +2294,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     },
     {
       "name": "Yarrabah Aboriginal Shire Council",
@@ -2208,7 +2308,8 @@
         "research"
       ],
       "govtContractValueAud": 0,
-      "govtContractCount": 0
+      "govtContractCount": 0,
+      "proximityOnly": false
     }
   ],
   "kinds": [

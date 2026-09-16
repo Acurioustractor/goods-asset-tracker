@@ -50,6 +50,12 @@ export default async function OrganisationsPage() {
           in the jurisdiction research.
         </p>
       )}
+      <p className="mt-2 max-w-3xl text-xs leading-relaxed" style={{ color: '#8A6A2F' }}>
+        Rows marked <strong>proximity only</strong> come solely from the shared graph, which matches organisations
+        to communities on postcode with no ABN or name resolution. That table once fanned one remote retail network
+        out to 128 separate &ldquo;buyers&rdquo;, and the pattern that caused it is still in its seeding list. Those
+        rows are real organisations; whether they belong to the community beside them is unchecked.
+      </p>
 
       <div className="mt-7">
         {orgs.length > 0

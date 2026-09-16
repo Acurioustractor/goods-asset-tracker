@@ -113,7 +113,12 @@ def main() -> int:
     orgs = {}
 
     def put(name, kind, state, place, known, note, source, value=0, count=0):
-        key = re.sub(r'[^a-z]', '', name.lower())[:44]
+        # Normalise before keying, and do NOT truncate. Truncating at 44 characters put "The
+        # Arnhem Land Progress Aboriginal Corporation" and the same name with "(ALPA)" appended
+        # into two different buckets, so ALPA appeared twice.
+        key = re.sub(r'\(.*?\)', '', name.lower())
+        key = re.sub(r'\b(pty|ltd|limited|incorporated|inc|the|aboriginal|corporation|council)\b', '', key)
+        key = re.sub(r'[^a-z]', '', key)
         cur = orgs.get(key)
         if cur is None:
             orgs[key] = {'name': name, 'kind': kind, 'state': state, 'place': place,
@@ -183,15 +188,32 @@ def main() -> int:
         for r in seen.values():
             if not (r.get('govt_contract_value') or 0):
                 continue
-            put(r['entity_name'], r.get('buyer_role') or 'community_org', 'NT', '', False,
+            # State is NOT known for these rows and must not be invented. The first version of
+            # this script stamped 'NT' on every one, which put Peak Hill Local Aboriginal Land
+            # Council, in central-west New South Wales, into the Territory.
+            put(r['entity_name'], r.get('buyer_role') or 'community_org', '', '', False,
                 f"Community controlled, with ${r['govt_contract_value']:,.0f} of federal contracts across {r.get('govt_contract_count') or 0} awards.",
                 'shared-graph', round(r['govt_contract_value'] or 0), r.get('govt_contract_count') or 0)
     except Exception as exc:  # noqa: BLE001
         print(f'shared graph skipped: {exc}')
 
+    # Drop organisations outside the four states Goods works in. The shared graph is
+    # proximity-matched, so it surfaced Peak Hill Local Aboriginal Land Council in central-west
+    # NSW as a Goods buyer. It is a real organisation and it is not in our footprint.
+    FOOTPRINT = {'NT', 'QLD', 'WA', 'SA', ''}
+    dropped = [o['name'] for o in orgs.values() if o['state'] not in FOOTPRINT]
+    for name in dropped:
+        for k, v in list(orgs.items()):
+            if v['name'] == name:
+                del orgs[k]
+    if dropped:
+        print(f"dropped {len(dropped)} outside the NT/QLD/WA/SA footprint: {', '.join(dropped[:4])}")
+
     out = {
         'readAt': '2026-09-17',
-        'organisations': sorted(orgs.values(), key=lambda o: (-o['govtContractValueAud'], o['name'])),
+        'organisations': sorted(
+            ({**o, 'proximityOnly': o['sources'] == ['shared-graph']} for o in orgs.values()),
+            key=lambda o: (-o['govtContractValueAud'], o['name'])),
         'kinds': sorted({o['kind'] for o in orgs.values()}),
         'states': sorted({o['state'] for o in orgs.values() if o['state']}),
         'note': 'Nothing here says an organisation buys beds. It says they hold contracts, or serve a community, or we already know them. Whether they buy bedding is the question to ask them.',
