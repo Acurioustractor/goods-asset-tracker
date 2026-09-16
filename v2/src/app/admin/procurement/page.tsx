@@ -2,8 +2,9 @@ import type { Metadata } from 'next';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import {
-  BUYER_CHANNELS, IPP_COMPLIANCE, PROCUREMENT_RULES, PROCUREMENT_STATE, REPEAT_BUYERS,
-  SELLER_PATHWAY,
+  BUYER_CHANNELS, IPP_COMPLIANCE, NT_ABE_PREFERENCE, NT_BENCHMARKS, NT_CONTACTS,
+  NT_DEPARTMENTS, NT_HEALTHY_LIVING, NT_PROGRAM, NT_TIER_NOTE, NT_TIERS, NT_UNSOURCED,
+  PROCUREMENT_RULES, PROCUREMENT_STATE, REPEAT_BUYERS, SELLER_PATHWAY,
 } from '@/lib/data/procurement';
 
 /**
@@ -412,6 +413,123 @@ export default async function ProcurementPage() {
             ))}
           </tbody>
         </table>
+      </section>
+
+      {/* The NT, specifically. */}
+      <section className="mt-10">
+        <h2 className="font-display text-2xl">The Northern Territory, and the door that is actually open</h2>
+
+        <div className="mt-4 rounded-lg border p-5" style={{ borderColor: '#C45C3E' }}>
+          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: '#C45C3E' }}>Correction</p>
+          <p className="mt-2 text-sm leading-relaxed">
+            The buyer on those 261 federal contracts, <strong>{NT_DEPARTMENTS.wasCalled}</strong>, no longer exists.
+            It became <strong>{NT_DEPARTMENTS.nowCalled}</strong> in {NT_DEPARTMENTS.renamed}, and remote housing
+            moved out of it to the <strong>{NT_DEPARTMENTS.housingMovedTo}</strong>.
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{NT_DEPARTMENTS.whoOwnsWhat}</p>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{NT_DEPARTMENTS.ministers}</p>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{NT_DEPARTMENTS.vacancy}</p>
+        </div>
+
+        <div className="mt-4 rounded-lg border-2 p-6" style={{ borderColor: '#4F6138' }}>
+          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: '#4F6138' }}>The most useful fact on this page</p>
+          <h3 className="mt-2 font-display text-xl leading-snug">
+            Since 1 October 2025, an NT buyer can direct-purchase 66 beds from a Territory enterprise with no quote
+            process at all.
+          </h3>
+          <table className="mt-4 w-full text-left text-sm">
+            <thead>
+              <tr className="border-b text-[11px] uppercase tracking-wide text-muted-foreground">
+                <th className="py-2 pr-3 font-semibold">Tier</th>
+                <th className="py-2 pr-3 text-right font-semibold">Up to</th>
+                <th className="py-2 pr-3 text-right font-semibold">Beds at $750</th>
+                <th className="py-2 font-semibold">Process</th>
+              </tr>
+            </thead>
+            <tbody>
+              {NT_TIERS.map((t) => (
+                <tr key={t.tier} className="border-b last:border-0 align-top">
+                  <td className="py-2 pr-3 font-medium">{t.tier}</td>
+                  <td className="py-2 pr-3 text-right tabular-nums">{aud(t.upToAud)}</td>
+                  <td className="py-2 pr-3 text-right font-semibold tabular-nums">{t.beds.toLocaleString('en-AU')}</td>
+                  <td className="py-2 text-muted-foreground">{t.process}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="mt-3 text-xs text-muted-foreground">{NT_TIER_NOTE}</p>
+        </div>
+
+        <div className="mt-4 grid gap-4 md:grid-cols-2">
+          <div className="rounded-lg border p-5">
+            <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: '#4F6138' }}>The set-aside that applies here</p>
+            <p className="mt-2 text-sm text-muted-foreground">Under {NT_ABE_PREFERENCE.program}, procurement is prioritised in this order:</p>
+            <ol className="mt-2 space-y-1.5 text-sm">
+              {NT_ABE_PREFERENCE.order.map((o, i) => (
+                <li key={o} className="flex gap-2">
+                  <span className="shrink-0 font-semibold" style={{ color: '#C45C3E' }}>{i + 1}</span>
+                  <span className={i === 0 ? 'font-semibold' : 'text-muted-foreground'}>{o}</span>
+                </li>
+              ))}
+            </ol>
+            <p className="mt-3 text-sm leading-relaxed">{NT_ABE_PREFERENCE.employment}</p>
+            <p className="mt-2 text-sm leading-relaxed" style={{ color: '#9A4023' }}>{NT_ABE_PREFERENCE.shortfall}</p>
+            <p className="mt-2 text-xs text-muted-foreground">{NT_ABE_PREFERENCE.ownership}</p>
+          </div>
+
+          <div className="rounded-lg border p-5">
+            <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: '#4F6138' }}>Their doctrine names our two products, in order</p>
+            <ol className="mt-3 space-y-2">
+              <li className="flex gap-3"><span className="font-display text-2xl leading-none" style={{ color: '#C45C3E' }}>1</span><span className="font-semibold">{NT_HEALTHY_LIVING.first}</span></li>
+              <li className="flex gap-3"><span className="font-display text-2xl leading-none" style={{ color: '#C45C3E' }}>2</span><span className="font-semibold">{NT_HEALTHY_LIVING.second}</span></li>
+            </ol>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{NT_HEALTHY_LIVING.note}</p>
+            <p className="mt-4 text-sm leading-relaxed"><strong>{NT_PROGRAM.headline}</strong> {NT_PROGRAM.target}</p>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{NT_PROGRAM.progress}</p>
+            <p className="mt-2 text-sm leading-relaxed">{NT_PROGRAM.addressable}</p>
+            <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{NT_PROGRAM.dispute}</p>
+          </div>
+        </div>
+
+        <h3 className="mt-6 text-sm font-semibold">What is already being bought, and by whom</h3>
+        <div className="mt-2 space-y-3">
+          {NT_BENCHMARKS.map((b) => (
+            <div key={b.what} className="rounded-lg border p-5">
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <p className="font-semibold">{b.what}</p>
+                {b.aboriginalOwned !== null && (
+                  <span
+                    className="rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
+                    style={b.aboriginalOwned ? { backgroundColor: '#E6EDDD', color: '#4F6138' } : { backgroundColor: '#EEE9E3', color: '#6A5E54' }}
+                  >
+                    {b.aboriginalOwned ? 'Aboriginal enterprise' : 'not Aboriginal owned'}
+                  </span>
+                )}
+              </div>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{b.detail}</p>
+              <p className="mt-2 text-[11px] text-muted-foreground">{b.source}</p>
+            </div>
+          ))}
+        </div>
+
+        <h3 className="mt-6 text-sm font-semibold">Who to call. Nobody here has been approached.</h3>
+        <div className="mt-2 grid gap-3 sm:grid-cols-2">
+          {NT_CONTACTS.map((c) => (
+            <div key={c.who} className="rounded-lg border p-5">
+              <p className="font-semibold">{c.who}</p>
+              <p className="text-[11px] uppercase tracking-wide text-muted-foreground">{c.role}</p>
+              <p className="mt-2 text-sm font-medium">{c.contact}</p>
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{c.why}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-4 rounded-lg border border-destructive/30 bg-destructive/5 p-5">
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-destructive">A claim we use that could not be sourced</p>
+          <p className="mt-2 text-sm leading-relaxed">&ldquo;{NT_UNSOURCED.claim}&rdquo;</p>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">In {NT_UNSOURCED.where} {NT_UNSOURCED.finding}</p>
+          <p className="mt-2 text-sm font-semibold">{NT_UNSOURCED.action}</p>
+        </div>
       </section>
 
       {/* The pathway. */}
