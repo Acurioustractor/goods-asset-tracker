@@ -12,6 +12,8 @@ import { StickyFilm } from '@/components/pitch/sticky-film';
 import { TenYearSlider } from '@/components/pitch/ten-year-slider';
 import { VideoModal } from '@/components/pitch/video-modal';
 import { Voice, leadVoice } from '@/components/pitch/voice';
+import { FunderMomentBlock } from '@/components/pitch/funder-moment';
+import { funderMomentFor } from '@/lib/data/funder-moments';
 import { MadeWithCommunity } from '@/components/pitch/made-with-community';
 import { contributionsConfirmed, listeningPlaces, listeningVoices } from '@/lib/data/community-contributions';
 import { ProductVideo } from '@/components/shop/product-video';
@@ -533,6 +535,9 @@ export async function PitchContent({ variant }: { variant: PitchVariant }) {
         <ol className="mt-14 space-y-14 md:space-y-20">
           {roadStops.map((stop, i) => {
             const v = leadVoice(stop);
+            // The funder who paid for this stop, rendered inside it. See funder-moments.ts
+            // for why this is not a logo row at the end of the page.
+            const funder = funderMomentFor(stop.id);
             const o = ROAD_OVERRIDES[stop.id] ?? {};
             const photo = o.photo ?? { src: stop.photo, alt: stop.photoAlt };
             const gallery = o.gallery ?? stop.gallery ?? [];
@@ -575,6 +580,7 @@ export async function PitchContent({ variant }: { variant: PitchVariant }) {
                         <Voice person={v.person} quote={v.quote} />
                       </div>
                     )}
+                    {funder && <FunderMomentBlock moment={funder} />}
                   </MobileReadMore>
                 </div>
               </li>

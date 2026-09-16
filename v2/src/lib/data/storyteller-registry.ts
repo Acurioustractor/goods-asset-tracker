@@ -1530,6 +1530,18 @@ export function getStoryteller(name: string | null | undefined): StorytellerReco
   return byName.get(normalise(name));
 }
 
+const bySlug = new Map(STORYTELLER_REGISTRY.map((rec) => [rec.slug, rec]));
+
+/**
+ * Look a record up by its stable slug rather than its display name. Names carry honorifics
+ * and spellings that get edited; slugs do not. Callers that store a reference to a person in
+ * data (rather than reading a name out of a transcript) should use this, so a title change
+ * cannot silently turn a resolved person into `undefined`.
+ */
+export function getStorytellerBySlug(slug: string | null | undefined): StorytellerRecord | undefined {
+  return slug ? bySlug.get(slug) : undefined;
+}
+
 /** Tier check that understands aliases. Unknown names return 'hold' (default-deny). */
 export function getVoiceTier(name: string | null | undefined): VoiceTier {
   return getStoryteller(name)?.tier ?? 'hold';
