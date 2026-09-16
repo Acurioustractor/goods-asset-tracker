@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { honeypotValue } from '@/lib/forms/honeypot';
 
 export function FollowForm() {
   const [name, setName] = useState('');
@@ -32,6 +33,7 @@ export function FollowForm() {
           name: name || undefined,
           tag: 'canberra-airport-2026',
           consent,
+          _companyWebsite: honeypotValue(e),
         }),
       });
       if (!response.ok) throw new Error('Submit failed');
@@ -54,6 +56,8 @@ export function FollowForm() {
 
   return (
     <form onSubmit={submit} className="space-y-3">
+      {/* Honeypot: hidden from people and screen readers, filled by bots. Checked server-side. */}
+      <input name="_companyWebsite" type="text" tabIndex={-1} autoComplete="off" className="sr-only" aria-hidden="true" />
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <input
           type="text"

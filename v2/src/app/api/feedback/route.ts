@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ghl } from '@/lib/ghl';
+import { guardContactSubmission } from '@/lib/contact-delivery/anti-abuse';
 
 interface FeedbackPayload {
+  /** Honeypot. Never rendered to a person. */
+  _companyWebsite?: string;
   page: string;
   message: string;
   email?: string;
@@ -70,6 +73,23 @@ async function sendTelegramNotification(page: string, email: string, message: st
 export async function POST(request: NextRequest) {
   try {
     const body = (await request.json()) as FeedbackPayload;
+
+    // Same abuse guard as /api/contact: honeypot plus a rate limit keyed on an
+    // HMAC of the client address. A honeypot hit is answered like a success so a
+    // bot learns nothing, and nothing is written.
+    const guard = await guardContactSubmission(request, {
+      honeypot: body._companyWebsite,
+      identity: body.email,
+    });
+    if (guard.reason === 'honeypot') {
+      return NextResponse.json({ success: true });
+    }
+    if (!guard.allowed) {
+      return NextResponse.json(
+        { error: 'Too many submissions. Please wait a few minutes and try again.' },
+        { status: 429 },
+      );
+    }
 
     // Validate required fields
     if (!body.message || typeof body.message !== 'string') {

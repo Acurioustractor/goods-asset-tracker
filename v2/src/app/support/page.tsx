@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, Suspense } from 'react';
+import { honeypotValue } from '@/lib/forms/honeypot';
 import { useSearchParams } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -135,6 +136,7 @@ function SupportPageContent() {
           oldItemDisposition: asset ? oldItemDisposition : undefined,
           safetyRisk: asset ? safetyRisk : undefined,
           issueObservedAt: asset && issueObservedAt ? issueObservedAt : undefined,
+          _companyWebsite: honeypotValue(e),
         }),
       });
 
@@ -307,6 +309,8 @@ function SupportPageContent() {
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Honeypot: hidden from people and screen readers, filled by bots. Checked server-side. */}
+                <input name="_companyWebsite" type="text" tabIndex={-1} autoComplete="off" className="sr-only" aria-hidden="true" />
               {/* Name */}
               <div className="space-y-2">
                 <Label htmlFor="name">Your Name (optional)</Label>
