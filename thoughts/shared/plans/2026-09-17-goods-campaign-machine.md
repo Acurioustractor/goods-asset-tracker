@@ -354,21 +354,36 @@ something true to say.
 
 ---
 
-## 7. What I could not settle, and what changes the work
+## 7. Rulings (Ben, 17 September 2026)
 
-- **The 164.** Nine months is a long silence. Re-introduce and offer an exit, or quietly drop the
-  oldest and start from the recent ones? This is a judgement about how it will feel to receive, and
-  it is yours.
-- **Custom object budget.** Two of the sub-account's ten, on a sub-account Harvest, JusticeHub and
-  CONTAINED also draw from. Worth a conversation with them before claiming it.
-- **The two sending systems.** Killing the Resend follow-up cron is the clean answer and it removes
-  a path that can email someone GHL thinks is unsubscribed. Confirm before I touch it.
-- **The pitch CTA.** Right now `/pitch` asks a funder, a buyer and a procurement officer to press the
-  same button. I would give it two: "Order beds" and "Fund a facility". That is a public-surface
-  change, so it waits for you to see it.
-- **`goods_procurement_entities` is still broken as a key** (3,255 of 4,551 links unresolved,
-  Palm Island's 17 buyers are Cooktown orgs). Any place-based campaign inherits that until it is
-  fixed.
+**The 164: hold.** Nothing goes to them until there is something worth sending. The dedicated
+sending domain still gets set up and warmed in the background so it is ready when the first real
+story lands, and door 6 drops down the order.
+
+**GHL owns every send.** The `pipeline-followup` cron is removed, along with the `followupEmail` and
+`staleReEngagementEmail` templates and the `FOLLOWUP_RULES` constants, so the path cannot be quietly
+rebuilt. It was sending automated mail signed "Ben Knight" to contacts whose suppression state
+lives in GHL. The app never sees it.
+
+Two things I described as second senders turned out not to be, and they stay:
+
+- `api/cron/sms-dispatch` already sends through GHL's Conversations API. It is a per-asset check-in
+  off `bed_signals`, which is a class-2 service message about a thing the person holds.
+- `lib/contact-delivery` emails enquiries to `CONTACT_INBOX_EMAIL`, which is our own inbox. It never
+  writes to a contact.
+
+Still open: `api/admin/campaign/send-email` lets an admin type a to/subject/body and send one email
+outside GHL. A human pressing send one at a time is not the automation that was banned, but it does
+bypass GHL suppression. Either it checks GHL first or it goes.
+
+**Three CTAs on /pitch: Order beds, Fund a facility, Bring this to my community.**
+The third one has a hard dependency. Until an inbound from a community raises a task against a
+named human, that button invites people into a room with nobody in it. Repair 1 ships first, and
+the CTA change waits for a preview you have seen.
+
+**Custom objects: claim two, ask first.** Community and Organisation. The note to the other project
+leads is drafted at `thoughts/shared/notes/2026-09-17-custom-objects-request.md`. Nothing is created
+in GHL until they have had a chance to object.
 
 ---
 

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { ghl } from '@/lib/ghl';
 
 export async function GET(request: Request) {
   try {
@@ -90,7 +91,7 @@ export async function POST(request: Request) {
     // Get user profile for sender name
     const { data: profile } = await supabase
       .from('profiles')
-      .select('display_name, phone')
+      .select('display_name, phone, email')
       .eq('id', user.id)
       .single();
 
@@ -112,6 +113,24 @@ export async function POST(request: Request) {
     if (error) {
       console.error('Error creating message:', error);
       return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    // Somebody on the community line just wrote to us. Raise a task against a
+    // named human with a 12-hour clock: a message is a person waiting, so it
+    // gets a tighter clock than a parts request. Nothing is sent back to them
+    // automatically; a person replies in /admin/messages.
+    try {
+      await ghl.raiseCommunityInbound({
+        name: profile?.display_name || undefined,
+        phone: profile?.phone || undefined,
+        email: profile?.email || undefined,
+        kind: 'Portal message',
+        detail: message_text.trim(),
+        assetId: asset_id || undefined,
+        dueInHours: 12,
+      });
+    } catch (notifyError) {
+      console.error('[Messages] Could not raise the inbound task:', notifyError);
     }
 
     return NextResponse.json({ message, success: true });

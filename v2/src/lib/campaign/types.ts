@@ -65,15 +65,10 @@ export const PIPELINE_STAGES: Record<PipelineStage, { label: string; color: stri
   stale:         { label: 'Stale',         color: 'red',     order: 7 },
 };
 
-// Follow-up rules: stage → days before auto-followup
-export const FOLLOWUP_RULES: Partial<Record<PipelineStage, number>> = {
-  contacted: 7,
-  proposal_sent: 14,
-  in_discussion: 14,
-};
-
-export const STALE_THRESHOLD_DAYS = 30;
-export const MAX_AUTO_FOLLOWUPS = 3;
+// The auto-followup rules (FOLLOWUP_RULES, STALE_THRESHOLD_DAYS,
+// MAX_AUTO_FOLLOWUPS) were removed on 17 Sep 2026 with the cron that used them.
+// Ruling (Ben): GHL owns every send. A stage-timed nudge belongs in a GHL
+// workflow, where the contact's suppression and consent state actually lives.
 
 // ── Campaign Lists ──
 
