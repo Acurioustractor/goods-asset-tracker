@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { JURISDICTIONS, MODEL_GAPS, SA_NOTES, WA_BOARD_TEST } from '@/lib/data/procurement-model';
+import { JURISDICTIONS, MODEL_GAPS, QLD_NOTES, SA_NOTES, WA_BOARD_TEST } from '@/lib/data/procurement-model';
 import {
   BUYER_CHANNELS, IPP_COMPLIANCE, NT_ABE_PREFERENCE, NT_BENCHMARKS, NT_CONTACTS,
   NT_DEPARTMENTS, NT_HEALTHY_LIVING, NT_PROGRAM, NT_TIER_NOTE, NT_TIERS, NT_UNSOURCED,
@@ -503,6 +503,16 @@ export default async function ProcurementPage() {
             {WA_BOARD_TEST.unresolved.map((u) => <li key={u}>{u}</li>)}
           </ul>
           <p className="mt-3 text-sm font-semibold">{WA_BOARD_TEST.ask}</p>
+        </div>
+
+        <h3 className="mt-6 text-sm font-semibold">Queensland, which writes the answer into the policy</h3>
+        <div className="mt-2 grid gap-3 sm:grid-cols-2">
+          {QLD_NOTES.map((n) => (
+            <div key={n.title} className="rounded-lg border p-4">
+              <p className="text-sm font-semibold">{n.title}</p>
+              <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{n.detail}</p>
+            </div>
+          ))}
         </div>
 
         <h3 className="mt-6 text-sm font-semibold">South Australia, the parts that do not fit the shape</h3>

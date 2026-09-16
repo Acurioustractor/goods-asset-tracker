@@ -75,15 +75,19 @@ export const JURISDICTIONS: readonly Jurisdiction[] = [
   {
     id: 'qld',
     name: 'Queensland',
-    status: 'pending',
+    status: 'done',
     communities: 9,
-    buyer: null,
-    directPurchase: null,
-    preference: 'Buy Queensland weights local benefit in evaluation and the Queensland Indigenous Procurement Policy targets three per cent of addressable spend. Thresholds not yet verified.',
-    register: null,
-    portal: null,
-    door: null,
-    note: 'SEVEN of our nine Queensland communities are Aboriginal Shire Councils: Aurukun, Cherbourg, Doomadgee, Kowanyama, Woorabinda, Yarrabah, plus Palm Island through PICC and the Torres Strait through TSIRC. They are local governments that are themselves Aboriginal organisations, so they are the buyer and the Aboriginal entity at the same time. That is a different shape from the NT and probably the easiest sale in the country. Not yet researched.',
+    buyer: 'Department of Housing and Public Works owns, builds and maintains social housing in discrete communities. The Queensland term of art is Aboriginal and Torres Strait Islander Local Government Areas, ATSILGAs, and searching for "remote Indigenous housing" misses most of it.',
+    directPurchase: {
+      limitAud: 500_000,
+      beds: beds(500_000),
+      rule: 'Two doors. A STATE agency can directly engage an Aboriginal Shire Council up to $500,000 including GST with no quotes, under the QPP 2026 diverse-supplier limited offer method. And the COUNCIL itself, buying with its own money under the Local Government Regulation, needs no quotes at all below $21,900 ex GST, which is 29 beds, three written quotes to $292,000, and can skip quotes or tenders at ANY value by resolving to adopt a quote or tender consideration plan under section 230.',
+    },
+    preference: 'The Queensland Procurement Policy 2026 defines an Aboriginal and Torres Strait Islander business as including "Queensland Indigenous local councils", and exempts those councils from the directory registration every other Indigenous business must hold. All seven of our councils plus the Torres Strait Island Regional Council are on the named list. A council is therefore the buyer and the Indigenous supplier in one body, and spend with it counts toward the three per cent target.',
+    register: 'Supply Nation, the Queensland Indigenous Business Network\u2019s Indigenous Business Gateway, or ORIC, as determined by the Director-General and changed on 1 July 2026 to address black cladding. Indigenous local councils need none of them. An Indigenous NOT-FOR-PROFIT qualifies on a BOARD test: an incorporated association or public company limited by guarantee that can demonstrate 50 per cent of directors are of Aboriginal or Torres Strait Islander descent.',
+    portal: 'QTenders for the state. Councils largely run their own, through VendorPanel, with approved contractor lists and preferred supplier registers.',
+    door: 'The councils themselves. Torres Strait Island Regional Council applies a Local Benefits Test with a 15 per cent evaluation weighting and says it especially encourages Indigenous and locally based suppliers.',
+    note: 'Structurally the best of the four, and the only one that writes the answer into policy. The easiest sale in the country is a council buying 29 beds with no quote requirement at all, and the largest is a state agency engaging a council for $500,000 with none either.',
   },
   {
     id: 'sa',
@@ -191,7 +195,7 @@ export const COMMUNITY_ROUTES: readonly CommunityRoute[] = [
  */
 export const WA_BOARD_TEST = {
   rule: 'Incorporated Aboriginal organisations must have a board or management committee comprised of at least 50 per cent Aboriginal members, and Aboriginal representation in management and operations.',
-  whyItMatters: 'It is a board test, not an ownership test, and Goods on Country Ltd has 100 per cent Indigenous directors. It is one of the two registers that unlock Rule C4.2, which has no dollar cap.',
+  whyItMatters: 'It is a board test, not an ownership test, and Goods on Country Ltd has 100 per cent Indigenous directors. It is one of the two registers that unlock Rule C4.2, which has no dollar cap. QUEENSLAND SAYS IT MORE PLAINLY STILL: an Indigenous not-for-profit qualifies if it is "an incorporated association or a public company limited by guarantee" that "can demonstrate 50% of the board of directors are of Aboriginal or Torres Strait Islander descent". Goods on Country Ltd is a public company limited by guarantee with 100 per cent Indigenous directors. Two jurisdictions now test the board and not ownership.',
   unresolved: [
     'Whether the management and operations limb is met, given Ben and Nic are the employees.',
     'Whether WA business registration, which the directory requires, is held or obtainable.',
@@ -199,6 +203,30 @@ export const WA_BOARD_TEST = {
   ],
   ask: 'Put it to the Industry Capability Network, who administer the directory.',
 } as const;
+
+/** Queensland specifics, which are the strongest material in the model. */
+export const QLD_NOTES: readonly { title: string; detail: string }[] = [
+  {
+    title: 'The policy names the councils',
+    detail: 'QPP 2026: "Aboriginal and Torres Strait Islander business include: Indigenous-owned businesses, Indigenous not-for-profit organisations, Queensland Indigenous local councils. All, except Queensland Indigenous local councils, must be registered on at least one recognised Indigenous business directory." Aurukun, Cherbourg, Doomadgee, Kowanyama, Palm Island, Torres Strait Island Regional, Woorabinda and Yarrabah are all on the named list.',
+  },
+  {
+    title: 'Twenty-nine beds with no quotes at all',
+    detail: 'Under the Local Government Regulation a council may buy directly below $21,900 excluding GST, with no quote requirement in the Regulation. At $750 that is 29 beds. Thresholds rose on 12 December 2025 and now index each 1 July, so many council websites still print the old numbers.',
+  },
+  {
+    title: 'And no ceiling, by resolution',
+    detail: 'Section 230 lets a council enter a contract of any size with no quotes or tenders if it resolves to prepare a quote or tender consideration plan and adopts one. The plan states objectives, how they are measured, alternatives considered and a risk analysis. There is no dollar limit on the exception. Section 235 also allows a sole-supplier resolution.',
+  },
+  {
+    title: 'Nobody buys beds here either',
+    detail: 'Of 142 rows in the FY2026 departmental disclosure matching bed, bedding, mattress, whitegood, washing machine, laundry, furniture, fridge or appliance, every one was commercial office furniture, garden beds, or laundry works. The same absence as the NT. The state door is a line to create, and the live doors are the councils and the health services.',
+  },
+  {
+    title: 'A council-owned company is a different question',
+    detail: 'Palm Island Community Company is not named in the council limb of the definition. It would have to qualify as an Indigenous-owned business at 50 per cent ownership or an Indigenous not-for-profit at 50 per cent board, AND be on a recognised directory. Unresolved, and it matters because PICC is our Palm Island relationship.',
+  },
+];
 
 /**
  * SA specifics worth carrying, because they do not fit the six-question shape and are the
