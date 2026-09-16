@@ -15,7 +15,11 @@ status: active
 **Test:** `cd v2 && npx vitest run && npm run check:drift:ci && npm run build`
 
 ### Now
-[->] **The clock is the news. Snow's letter is wanted by about 21 September; QBE submits on the 25th.** That came out of the 2:30pm check-in today and it reorders everything below.
+[->] **Write the letter. Both blocking rulings are in (Ben, 16 Sep).**
+- **The ask is $99,750, 133 beds at $750, as a grant, now.** Recoverable capital is named as the next chapter, not folded into this ask. Code and the partner dashboard now match.
+- **The figure is footnoted, not restated.** $493,130 stands as what Snow has given; $457,929.79 is carried wherever a Goods-only number matters. Nothing on the live site moves and no funder gets reordered.
+
+**The clock: an in-principle letter is wanted by about 21 September; QBE submits on the 25th.** Snow route the decision through their advisory committee.
 
 ### The ask conflict: mostly resolved, and not by a ruling
 Three answers were live. Two were stale rather than contested.
@@ -80,18 +84,43 @@ Snow's own published strategy, tested area by area:
 - **Impact investing is real and growing**: $26.2M across 38 investments, 12% of corpus targeting 20%, catalytic at 32% of active commitments, patient loans via First Australians Capital and SEFA. **A $99,750 bed grant asks Snow to do what it already did. A recoverable instrument asks it to do what it says it is growing.** That is the argument for the loan, if Ben wants it
 - **Do not print an RHD strategy period.** The Statement of Intent reads 2024 to 2030; the 2024 annual report says 2024 to 2028 and "five-year". Georgina's own recorded words say "another five". Unresolved
 
+### What the mailbox adds, and it is the best material for the letter
+A full read-only sweep of every Snow thread, ~45 searches, `in:anywhere`. About 64 distinct engagements since March 2024.
+
+**Snow's four standing reservations about Goods, in Sally's words, 23 Jan 2026.** She asked for the risks to be fleshed out, "think about concerns that have been raised to date by us": **waste, demand for the plant, payment first, key learnings**. That is the objection list. A letter that answers those four by name lands better than one that does not know they exist.
+
+**How Snow wants the health case made.** Sally's 20 May 2026 critique of the Canberra landing page is the single most useful paragraph in the corpus: "A cold audience needs that chain explained immediately and plainly, **before the product, before the manufacturing story**." She even wrote the sentence she wanted: "Rheumatic heart disease (RHD) is a preventable condition that damages the heart valves of children and young people. It is almost eradicated everywhere in the world except in remote Aboriginal and Torres Strait Islander communities in Australia." And: "'Made by community. Made for community.' ... **The health stakes need to come first.**" Her suggested call to action: "Join us to help end Rheumatic Heart Disease".
+
+**Georgina's founding words, 2 October 2024**, at the moment of first commitment: "Snow is interested to provide some **initial seed funding** for your entrepreneurial remote mattress project... **Good on you and Ben getting started out in community with little funding, shows conviction and passion!**" That is catalytic capital and backing the founder in her own voice, and it is better than anything we would write. It is not in the registry yet; add it before quoting it anywhere public.
+
+**The loan was never Snow's idea in writing.** No Snow person has put the loan or impact-investment pathway in an email, ever. The three sources are all ours: Nic's Jan 2026 proposal ("Snow Foundation has offered access to social impact loans"), Nic's Feb 2026 note to QBE ("matched and potentially doubled by Snow"), and Ben's Jun 2026 "potential Snow loan system". The dashboard said "Snow has opened a conversation" and has been rewritten. **Do not put that intention in their mouth again.** What IS evidenced: Bhanvi Anand of Snow works on impact investing, named in their June 2026 newsletter on the $4.1M Thrive lending facility.
+
+**Reporting is the soft spot.** No acquittal or formal report was ever emailed to Snow. Goods' own Jan 2026 proposal timeline contains the line "Complete any outstanding reporting from previous Snow Foundation commitment", so it was already outstanding then. The only reporting artefact is Ben's 11 Jun 2026 package of links, which Snow never answered by email. The 31 July 2026 acquittal date is in neither the grant letter's indexed text nor any email.
+
+**The FY26 agreement, probed but not read.** Gmail full-text-indexes PDFs, so string presence is knowable. Present: `2024/OC0014`, `acquittal`, `395,000`, `275,000`, `120,000`, `100,000`, `2027`, `Operational`, `wages`, `washing`. Absent: every reconciled figure, `31 July`, `quarterly`, `12 months`. So the whole relationship is carried under one 2024-vintage grant reference, it does impose an acquittal, it runs into 2027, and it covers wages and washing machines as well as beds. **Which of the four amounts is the grant is unknown. Get the PDFs opened before a figure goes in a letter.**
+
+**Snow's new strategy, Georgina, 26 June 2026.** Pillars stay (Place, Country, Sector, Family); six priority areas: Gender, First Nations, Youth, LGBTIQ+, Community, "all underpinned by **Ecosystem**... backing social change makers, acting as the glue between funders and nonprofits, and **advancing the impact investing market**." 2025: 196 grants, 198 grants to individuals, 38 social impact investments.
+
+**People.** Bhanvi = **Bhanvi Anand**, impact investing (address not recoverable from the mailbox). **Carolyn Ludovici is NOT stale**, still named as Snow staff in June 2026. Also active: **Alex Lagelee Kean** (Impact & Engagement), **Lucy McKee** (Marketing), **Jimyong "Brenton" Um**, **Ashley Machuca**, **Maree Meredith**. Sally's title changed to Head of Partnerships, Our Country.
+
+**Loose end.** Nic asked Snow on 3 Oct 2024 whether to charge GST and was never answered in writing. That is the origin of the inc/ex-GST fork that has run through every figure since.
+
 ### Decisions
 - **Catalytic capital, never a graduation story** (Ben, 16 Sep). Now enforced across every funder surface, not one file
 - **No dollar figures on public funder surfaces** (Ben, 16 Sep). A private letter to Snow is different and CAN carry numbers. Do not carry that ruling across by mistake
 - **NEVER SEND EMAILS** (Ben, 12 Sep). Reading is fine. Drafting is fine. Sending is not
 
 ### Open Questions
-1. **Instrument.** Bed grant at $99,750, the recoverable loan the dashboard invites, or the bed grant now with the loan opened as the next conversation? Everything else is written and waiting on this one
-2. **The $35,200 and the arrival date.** Restate Snow to $457,929.79 Goods-only and move `since` to 2024-10, which reorders the funders on live `/pitch` and unseats "Snow went first"? Or keep the lifetime figure and footnote it? The evidence is settled; what to publish is not
+Both of the blocking ones are answered (see Now). What is left:
+- The FY26 grant letter's headline amount, term and acquittal date. Four amounts sit in the PDF and none of them can be read from here
+- Whether the FY26 Operational acquittal was ever lodged. No evidence either way
+- Whether the 28 Jun Round 4 email to Sally went out
+- The Snow Entrepreneurs outcome (2025/OC0146). No result email either way
+- Snow's RHD strategy period: 2024-2028 or 2024-2030. Do not print one
 
 ### Workflow State
 pattern: sequential
-phase: 2
+phase: 3
 total_phases: 4
 retries: 0
 max_retries: 3
@@ -99,13 +128,13 @@ max_retries: 3
 #### Resolved
 - snow_figure_hold: RESOLVED. INV-0092 is not Goods. Goods-only is $457,929.79 inc-GST, confirmed by two independent sources
 - gst_basis: RESOLVED. $493,129.79 is inc-GST, not ex-GST. The June doc had it backwards
-- ask_conflict: TWO OF THREE were staleness, now fixed in code. The instrument question is real and is Ben's
+- ask_conflict: RESOLVED (Ben, 16 Sep). Bed grant $99,750 now, recoverable capital named as the next chapter. Two of the three answers were staleness, now fixed in code
+- snow_figure_publication: RESOLVED (Ben, 16 Sep). Footnote it; the live pages do not move
+- snow_loan_provenance: RESOLVED. No Snow person has ever put the loan in writing. All three sources were our own words
 
 #### Unknowns
-- next_ask_instrument: UNKNOWN, blocking the letter
-- snow_figure_publication: UNKNOWN, blocking a public correction
-- fy26_agreement_conditions: UNKNOWN, PDFs unreadable from here
-- fy26_acquittal_submitted: UNKNOWN, no record since 23 July
+- fy26_agreement_conditions: UNKNOWN. PDFs indexed by Gmail but not readable from here
+- fy26_acquittal_submitted: UNKNOWN. No acquittal was ever emailed; Goods' own Jan 2026 proposal says reporting was already outstanding then
 
 #### Last Failure
 (none)
