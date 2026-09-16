@@ -674,6 +674,50 @@ async function triggerWorkflow(workflowId: string, contactId: string): Promise<b
 }
 
 /**
+ * Raise a task against a contact, due in `dueInHours`.
+ *
+ * THE COMMUNITY LINE'S ONLY AUTOMATION. `lane:community` contacts are never an
+ * audience and never receive an automated send (ruling R9, enforced by the
+ * strip-guard in ./canonical-tags). But "out of the machine" was never meant to
+ * mean "into silence": a community member who asks for a replacement part is
+ * owed an answer from a person. So the automation points INWARD. Every inbound
+ * from the portal raises one of these against a named human with a clock on it,
+ * and the community is sent nothing.
+ *
+ * `assignedTo` is a GHL user id from GHL_USER_COMMUNITY_OWNER. Unset is fine:
+ * the task still lands in the location's task list, unassigned, which is visible
+ * rather than lost.
+ */
+async function createContactTask(
+  contactId: string,
+  title: string,
+  body: string,
+  dueInHours: number,
+): Promise<boolean> {
+  if (!GHL_ENABLED) {
+    console.log('[GHL] Disabled, would raise task:', title);
+    return true;
+  }
+
+  const dueDate = new Date(Date.now() + dueInHours * 60 * 60 * 1000).toISOString();
+  const assignedTo = process.env.GHL_USER_COMMUNITY_OWNER || undefined;
+
+  try {
+    await ghlRequest(`/contacts/${contactId}/tasks`, 'POST', {
+      title,
+      body,
+      dueDate,
+      completed: false,
+      ...(assignedTo ? { assignedTo } : {}),
+    });
+    return true;
+  } catch (error) {
+    console.error('[GHL] Error raising task:', error);
+    return false;
+  }
+}
+
+/**
  * Add a note to a contact
  */
 async function addContactNote(contactId: string, note: string): Promise<boolean> {
@@ -1465,6 +1509,70 @@ Synced: ${new Date().toLocaleString('en-AU')}
    */
   async addNote(contactId: string, note: string): Promise<boolean> {
     return addContactNote(contactId, note);
+  },
+
+  /**
+   * A community member reached us through the portal. Put a named human on it.
+   *
+   * This is the whole community-side automation, and it sends the community
+   * NOTHING. It finds or creates their contact on the community lane, writes what
+   * they said to the timeline, and raises a task with a clock so the request
+   * cannot sit unseen. Before this existed, POST /api/user/requests wrote a row
+   * to Supabase and told nobody.
+   *
+   * The lane:community tag means the strip-guard drops any comms:* that ever
+   * arrives here, so this path can never enrol anyone into a send.
+   *
+   * Returns false when GHL has no way to identify the person (no phone, no
+   * email). The caller has already stored the row, so a false here costs
+   * visibility, never the request itself.
+   */
+  async raiseCommunityInbound(opts: {
+    name?: string;
+    phone?: string;
+    email?: string;
+    /** Short title, e.g. "Parts request" or "Portal message". */
+    kind: string;
+    /** What they actually said, verbatim where possible. */
+    detail: string;
+    /** The asset it concerns, when there is one. */
+    assetId?: string;
+    /** Hours until the task is due. Default 24. */
+    dueInHours?: number;
+  }): Promise<boolean> {
+    if (!cleanString(opts.phone) && !cleanString(opts.email)) {
+      console.warn('[GHL] Community inbound with no phone or email, cannot raise task');
+      return false;
+    }
+
+    const contact = await createOrUpdateContact({
+      name: opts.name,
+      phone: opts.phone,
+      email: opts.email,
+      tags: opts.assetId ? ['goods-recipient', tagForAsset(opts.assetId)] : ['goods-recipient'],
+      customFields: withGoodsProject(
+        opts.assetId && CUSTOM_FIELDS.assetId ? { [CUSTOM_FIELDS.assetId]: opts.assetId } : {},
+      ),
+      tagSource: 'none',
+      source: 'Community portal',
+    });
+
+    if (!contact.success || !contact.contact?.id) {
+      console.error('[GHL] Could not resolve contact for community inbound');
+      return false;
+    }
+
+    const who = cleanString(opts.name) || cleanString(opts.phone) || cleanString(opts.email);
+    const about = opts.assetId ? ` about ${opts.assetId}` : '';
+
+    await addContactNote(contact.contact.id, `${opts.kind}${about} via the portal:\n\n${opts.detail}`);
+
+    return createContactTask(
+      contact.contact.id,
+      `${opts.kind} from ${who}`,
+      `${opts.detail}\n\nRaised from the community portal${about}. Reply to them directly, in the channel they used.`,
+      opts.dueInHours ?? 24,
+    );
   },
 
   /** Add one or more tags to an existing contact (idempotent in GHL). */

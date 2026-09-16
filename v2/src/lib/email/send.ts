@@ -139,47 +139,10 @@ export async function sendBatchEmail(
 }
 
 // ── Pre-built email templates ──
-
-export function followupEmail(contactName: string, stage: string): SendEmailOptions & { bodyText: string } {
-  const name = contactName || 'there';
-  const body = `Hi ${name},
-
-I wanted to follow up on our conversation about Goods on Country. We're building quality furniture for remote Indigenous communities — beds that last 10+ years, made from recycled plastic, right on country.
-
-${stage === 'proposal_sent' ? `I'd love to hear your thoughts on the proposal. Happy to jump on a quick call to discuss any questions.` : ''}
-${stage === 'in_discussion' ? `Just checking in to see if you had any further questions. We're ready to move forward whenever you are.` : ''}
-${stage === 'contacted' ? `Would be great to chat about how we might work together. What does your schedule look like this week?` : ''}
-
-Warm regards,
-Ben Knight
-Goods on Country`;
-
-  return {
-    to: '', // Caller fills this in
-    subject: `Following up — Goods on Country`,
-    body,
-    bodyText: body,
-  };
-}
-
-export function staleReEngagementEmail(contactName: string): SendEmailOptions & { bodyText: string } {
-  const name = contactName || 'there';
-  const body = `Hi ${name},
-
-It's been a while since we last connected. Goods on Country has been making great progress — we've deployed beds across multiple remote communities and our on-country manufacturing is ramping up.
-
-If the timing is better now, I'd love to reconnect and share what we've been up to.
-
-No pressure at all — just wanted to keep the door open.
-
-Warm regards,
-Ben Knight
-Goods on Country`;
-
-  return {
-    to: '',
-    subject: `Reconnecting — Goods on Country`,
-    body,
-    bodyText: body,
-  };
-}
+//
+// followupEmail() and staleReEngagementEmail() were removed on 17 Sep 2026.
+// They were the body of the pipeline-followup cron, which sent automated mail
+// signed "Ben Knight" to contacts whose consent state lives in GHL, not here.
+// Ruling (Ben, 17 Sep 2026): GHL owns every send. Anything that reaches a
+// contact goes out through GHL, where the suppression list is. This module now
+// only carries transactional mail to our own inbox and admin-triggered sends.
