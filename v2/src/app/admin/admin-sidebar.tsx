@@ -43,86 +43,53 @@ type NavGroup = { group: string; items: NavItem[] };
 // front absorbs it as a tab. Sweep + keep/fold/retire table:
 // wiki/outputs/2026-07-20-admin-see-do-public-sweep.md
 /**
- * THE SIDEBAR SHOWS THE WORK, and the route directory holds everything else.
+ * THE ADMIN IS A LIST OF THINGS YOU CAN DO. Everything else is findable, and nothing else is on
+ * the screen.
  *
- * Ben, 17 September 2026: "we need a full rethink of the sidebar and data, it is a mess and all
- * over the place and confusing me." He was right, and the counting says why.
+ * Ben, 17 September 2026, twice, and the second time was the one that landed:
+ *   "we need a full rethink of the sidebar and data, it is a mess and all over the place"
+ *   "I don't want 74 things. I want a simple and powerful system with a list of important
+ *    actions we can do."
  *
- *   It listed 52 routes. Twenty-three of them are declared `absorbed` in admin-routes.ts, which
- *   means "folded into a hub; still works, linked from that hub's tabs". The sidebar listed them
- *   as though each were its own destination, so Voices hub, Registry, Story atlas, Quotes,
- *   Stories (EL), Storytellers (EL), Community stories and Field notes were eight lines for one
- *   thing. The IA was decided in July. The sidebar never followed it.
+ * The first rewrite regrouped 52 links into 24 and changed nothing that mattered, because a
+ * shorter map of pages is still a map of pages. Nobody opens an admin to visit a page. They open
+ * it to do one of about ten things.
  *
- *   /admin/cost-model appeared twice, as "Money" in Cockpit and "Cost Story" in Funder room.
+ * So the sidebar is ten verbs. Each one goes to the surface that does that job, and the surface
+ * is often a hub with its own tabs, which is where the other sixty routes live.
  *
- *   "Products & Plant" pointed at /admin/products, which next.config.ts redirects to /admin, so
- *   it took you back to the dashboard. Fixed 17 September.
+ * FINDING A SPECIFIC THING IS ⌘K, and it searches the records themselves: every
+ * asset, community, contact, storyteller, and every place the registry knows that has no page
+ * yet. About 850 rows. Looking for GB0-156-40 or Gapuwiyak or Dianne Stokes is one keystroke and
+ * a name, and you never have to know which page lists that kind of thing.
  *
- *   "More (38)" was a junk drawer holding stale redirects, one-off tools and five routes nothing
- *   links to at all.
- *
- * SO THE GROUPS ARE NOUNS NOW. Cockpit, Funder room and Field were metaphors that said nothing about
- * what is behind them. Place, People, Making, Money and Story are the five things Goods has, and
- * every route in the directory belongs to exactly one of them.
- *
- * WHAT IS HIDDEN IS STILL REACHABLE. Every absorbed route is linked from its hub's tabs, and
- * every route without exception is in the directory rendered on /admin and in ⌘K. Nothing was
- * deleted here; the sidebar stopped pretending 52 routes are 52 destinations.
+ * WHAT IS NOT HERE. No route directory link, no More drawer, no second copy of the same URL under
+ * two names. /admin#routes still lists all 74 with their status for the once a month that
+ * question comes up.
  */
 const navigation: NavGroup[] = [
   {
-    group: 'Now',
+    group: 'Do',
     items: [
-      { name: 'Today',             href: '/admin/today',          icon: Sun },
-      { name: 'The Map',           href: '/admin',                icon: MapIcon },
+      { name: 'Run the day',        href: '/admin/today',          icon: Sun },
+      { name: 'Record a bed',       href: '/admin/assets',         icon: ClipboardList },
+      { name: 'Plan a trip',        href: '/admin/bed-preflight',  icon: Truck },
+      { name: 'Find a buyer',       href: '/admin/procurement',    icon: HandCoins },
+      { name: 'Move the raise',     href: '/admin/deals',          icon: KanbanSquare },
+      { name: 'Answer a funder',    href: '/admin/reports',        icon: ReceiptText },
+      { name: 'Clear a voice',      href: '/admin/consent',        icon: ShieldCheck },
+      { name: 'Check the fleet',    href: '/admin/fleet',          icon: Radio },
+      { name: 'Make a bed',         href: '/admin/facility',       icon: Factory },
     ],
   },
   {
-    group: 'Place',
+    group: 'Look at',
     items: [
-      { name: 'Communities',       href: '/admin/communities',    icon: MapPin },
-      { name: 'Pathways',          href: '/admin/pathways',       icon: Route },
-      { name: 'Procurement',       href: '/admin/procurement',    icon: ClipboardList },
-      { name: 'Atlas',             href: '/admin/atlas',          icon: MapIcon },
-    ],
-  },
-  {
-    group: 'People',
-    items: [
-      { name: 'People',            href: '/admin/people',         icon: Users },
-      { name: 'Voices',            href: '/admin/voices',         icon: Quote },
-      { name: 'Voice impact',      href: '/admin/voice-impact',   icon: Quote },
-      { name: 'Consent',           href: '/admin/consent',        icon: ShieldCheck },
-    ],
-  },
-  {
-    group: 'Making',
-    items: [
-      { name: 'Facility',          href: '/admin/facility',       icon: Factory },
-      { name: 'Production',        href: '/admin/production',     icon: Factory },
-      { name: 'Register',          href: '/admin/assets',         icon: ClipboardList },
-      { name: 'Fleet',             href: '/admin/fleet',          icon: Radio },
-      { name: 'Trips',             href: '/admin/bed-preflight',  icon: Truck },
-    ],
-  },
-  {
-    group: 'Money',
-    items: [
-      { name: 'Cost model',        href: '/admin/cost-model',     icon: CircleDollarSign },
-      { name: 'Raise',             href: '/admin/deals',          icon: KanbanSquare },
-      { name: 'Orders',            href: '/admin/orders',         icon: ReceiptText },
-      { name: 'Requests',          href: '/admin/requests',       icon: HandCoins },
-      { name: 'Reports',           href: '/admin/reports',        icon: ReceiptText },
-    ],
-  },
-  {
-    group: 'Story',
-    items: [
-      { name: 'Media room',        href: '/admin/media-library',  icon: ImageIcon },
-      { name: 'Visuals',           href: '/admin/system-visuals', icon: ImageIcon },
-      { name: 'Pitch cockpit',     href: '/admin/pitch-cockpit',  icon: DoorOpen },
-      { name: 'Content library',   href: '/admin/library',        icon: ImageIcon },
+      { name: 'A community',        href: '/admin/communities',    icon: MapPin },
+      { name: 'A person',           href: '/admin/people',         icon: Users },
+      { name: 'The money',          href: '/admin/cost-model',     icon: CircleDollarSign },
+      { name: 'The media',          href: '/admin/media-library',  icon: ImageIcon },
+      { name: 'Everything',         href: '/admin',                icon: MapIcon },
     ],
   },
 ];
@@ -156,26 +123,70 @@ const ALL_ROUTES: NavItem[] = (() => {
   return out;
 })();
 
+/**
+ * ⌘K FINDS THINGS, and routes come second.
+ *
+ * Ben, 17 September 2026: fewer routes, and a concrete way to find something that means
+ * something and is connected to the actual data. Route names were never that. Nobody looks for
+ * "Communities". They look for Tennant Creek, or Dianne Stokes, or GB0-156-40, and searching 74
+ * page titles meant knowing which page listed the thing, going there, and searching again.
+ *
+ * /api/admin/search returns the records themselves, about 850 of them: every asset, community,
+ * contact, storyteller and every place the registry knows that has no page yet. Fetched once on
+ * first open, searched in the browser, so there is no round trip per keystroke.
+ */
+interface Found {
+  key: string;
+  label: string;
+  sub: string;
+  href: string;
+  kind: string;
+}
+
+const KIND_LABEL: Record<string, string> = {
+  community: 'place', storyteller: 'voice', person: 'person',
+  asset: 'asset', place: 'place', route: 'page',
+};
+
 function CommandPalette({ open, onClose }: { open: boolean; onClose: () => void }) {
   const router = useRouter();
   const [query, setQuery] = useState('');
   const [active, setActive] = useState(0);
+  const [records, setRecords] = useState<Found[] | null>(null);
+
+  // One fetch, the first time the palette is opened in a session.
+  useEffect(() => {
+    if (!open || records !== null) return;
+    let cancelled = false;
+    fetch('/api/admin/search')
+      .then((r) => (r.ok ? r.json() : { records: [] }))
+      .then((d: { records: { kind: string; label: string; sub: string; href: string }[] }) => {
+        if (cancelled) return;
+        setRecords(d.records.map((r, i) => ({ ...r, key: `${r.kind}-${r.href}-${i}` })));
+      })
+      .catch(() => { if (!cancelled) setRecords([]); });
+    return () => { cancelled = true; };
+  }, [open, records]);
+
+  const routeRecords: Found[] = useMemo(
+    () => ALL_ROUTES.map((r) => ({ key: `route-${r.href}`, label: r.name, sub: r.href, href: r.href, kind: 'route' })),
+    [],
+  );
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return ALL_ROUTES;
-    // subsequence fuzzy match on the name
-    return ALL_ROUTES.filter((r) => {
-      const name = r.name.toLowerCase();
-      let i = 0;
-      for (const ch of q) {
-        i = name.indexOf(ch, i);
-        if (i === -1) return false;
-        i += 1;
-      }
-      return true;
-    });
-  }, [query]);
+    if (!q) return routeRecords;
+    // Records first, because a page is what you settle for when the thing is not listed.
+    const hay = [...(records ?? []), ...routeRecords];
+    const starts: Found[] = [];
+    const contains: Found[] = [];
+    for (const r of hay) {
+      const label = r.label.toLowerCase();
+      if (label.startsWith(q)) starts.push(r);
+      else if (label.includes(q) || r.sub.toLowerCase().includes(q)) contains.push(r);
+    }
+    return [...starts, ...contains].slice(0, 40);
+  }, [query, records, routeRecords]);
 
   const go = useCallback(
     (href: string) => {
@@ -206,28 +217,32 @@ function CommandPalette({ open, onClose }: { open: boolean; onClose: () => void 
               else if (e.key === 'ArrowUp') { e.preventDefault(); setActive((a) => Math.max(a - 1, 0)); }
               else if (e.key === 'Enter' && results[active]) { e.preventDefault(); go(results[active].href); }
             }}
-            placeholder="Jump anywhere…"
+            placeholder="Find a place, a person, a bed, a page…"
             className="flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
           />
           <kbd className="text-[10px] font-semibold text-muted-foreground">esc</kbd>
         </div>
         <ul className="max-h-80 overflow-y-auto py-1">
           {results.length === 0 && (
-            <li className="px-4 py-3 text-sm text-muted-foreground">No routes match “{query}”.</li>
+            <li className="px-4 py-3 text-sm text-muted-foreground">
+              Nothing matches “{query}”{records === null ? ', and the records are still loading' : ''}.
+            </li>
           )}
           {results.map((r, i) => (
-            <li key={r.href}>
+            <li key={r.key}>
               <button
                 onMouseEnter={() => setActive(i)}
                 onClick={() => go(r.href)}
-                className={`flex w-full items-center gap-3 px-4 py-2 text-sm text-left ${
+                className={`flex w-full items-center gap-3 px-4 py-2 text-left text-sm ${
                   i === active ? 'bg-primary/10 text-primary' : 'text-foreground'
                 }`}
               >
-                <r.icon className="h-4 w-4 shrink-0 opacity-70" />
-                <span className="flex-1">{r.name}</span>
-                <span className="text-[11px] text-muted-foreground">{r.href}</span>
-                {i === active && <CornerDownLeft className="h-3.5 w-3.5 text-muted-foreground" />}
+                <span className="w-12 shrink-0 text-[9px] font-semibold uppercase tracking-wide text-muted-foreground">
+                  {KIND_LABEL[r.kind] ?? r.kind}
+                </span>
+                <span className="min-w-0 flex-1 truncate">{r.label}</span>
+                <span className="max-w-[45%] truncate text-[11px] text-muted-foreground">{r.sub}</span>
+                {i === active && <CornerDownLeft className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />}
               </button>
             </li>
           ))}
@@ -313,18 +328,9 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
             </li>
           ))}
 
-          {/* Everything else. The directory on /admin renders all 85 routes with their status. */}
-          <li>
-            <Link
-              href="/admin#routes"
-              onClick={() => setMobileMenuOpen(false)}
-              className="group flex items-center gap-x-3 rounded-lg px-2.5 py-1.5 text-sm leading-6 font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-            >
-              <MoreHorizontal className="h-4 w-4 shrink-0" aria-hidden="true" />
-              All {ALL_ROUTES.length} routes
-            </Link>
-            <p className="px-2.5 pt-1 text-[10px] leading-snug text-muted-foreground">
-              Everything is in ⌘K. The rest live inside the hub that owns them.
+          <li className="px-2.5 pt-3">
+            <p className="text-[10px] leading-snug text-muted-foreground">
+              Looking for a bed, a place or a person? Press ⌘K. It searches the records themselves.
             </p>
           </li>
 

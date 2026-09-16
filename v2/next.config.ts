@@ -133,6 +133,19 @@ const nextConfig: NextConfig = {
       // #188 — marked retire 2026-07-20 in route-review.ts and never executed: a live admin page
       // reading Supabase products while products.ts is canon.
       { source: '/admin/products', destination: '/admin', permanent: false },
+      // Eleven admin routes that were a whole page file each to do one line of this. Deleted
+      // 2026-09-17 (Ben: fewer routes). Every old URL still lands where it used to.
+      { source: '/admin/photo-review', destination: '/admin/media-library', permanent: false },
+      { source: '/admin/messages', destination: '/admin/reach-out', permanent: false },
+      { source: '/admin/photos-browser', destination: '/admin/media-library', permanent: false },
+      { source: '/admin/brand', destination: '/admin', permanent: false },
+      { source: '/admin/announcements', destination: '/admin/reach-out', permanent: false },
+      { source: '/admin/team', destination: '/admin/people', permanent: false },
+      { source: '/admin/alice-fill', destination: '/admin/assets', permanent: false },
+      { source: '/admin/compassion', destination: '/admin/media-library', permanent: false },
+      { source: '/admin/photo-align', destination: '/admin/media-library', permanent: false },
+      { source: '/admin/photos', destination: '/admin/media-library', permanent: false },
+      { source: '/admin/model/svg', destination: '/admin/model', permanent: false },
 
       // The '/brand' -> '/press#brand-system' redirect was REMOVED 2026-07-25. It predated the
       // dedicated /brand page (src/app/brand/page.tsx, the brand kit and guide downloads) and

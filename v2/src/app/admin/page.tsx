@@ -3,6 +3,8 @@ import { createServiceClient } from '@/lib/supabase/server';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import { canonValue } from '@/lib/data/canon';
 import { NEEDS_BEN } from '@/lib/data/investor-wiki';
+import { FUNDING_LINES } from '@/lib/data/grants';
+import { ageInDays, formatAsAt } from '@/lib/data/as-at';
 import { ADMIN_ROUTE_DIRECTORY, ROUTE_STATUS_LABEL, type RouteStatus } from '@/lib/data/admin-routes';
 import MapCard, { type MapCommunity } from './map-card';
 import { ChevronRight, ArrowRight } from 'lucide-react';
@@ -79,6 +81,8 @@ export default async function MapHome() {
 
   return (
     <div className="max-w-[1600px] mx-auto space-y-4">
+      <WhatIsDue />
+
       {/* Header + canon strip */}
       <header className="flex items-end justify-between gap-6 flex-wrap">
         <div>
@@ -182,6 +186,70 @@ export default async function MapHome() {
 
       <RouteDirectory />
     </div>
+  );
+}
+
+/**
+ * WHAT IS DUE, and what each one is still waiting on.
+ *
+ * Ben, 17 September 2026: "a simple and powerful system with a list of important actions we can
+ * do", then "review the pitch, the QBE raise and recent work to work out what is actually
+ * helpful here."
+ *
+ * What is actually helpful, on 17 September, is that QBE and the Brian M. Davis application both
+ * close on the 25th, which is eight days, and the Tim Fairfax line closes on 9 October. Those
+ * dates and the outstanding items were already in grants.ts, read by nothing on this page. A
+ * navigation list of verbs does not help with a deadline; the deadline does.
+ *
+ * `needs` is the list of things that have to exist before a line can go, written by whoever last
+ * worked it. That IS the list of important actions, and it belongs to this week.
+ *
+ * Lines with no real deadline stay off this strip. `due` holds prose like "Open, rolling" and
+ * "Not ours to submit", so `dueDate` is the sortable field beside it, and it is absent on purpose
+ * for anything that cannot be counted down.
+ */
+function WhatIsDue() {
+  const now = new Date();
+  const live = FUNDING_LINES
+    .filter((l) => l.dueDate && (ageInDays(l.dueDate, now) ?? 0) <= 0)
+    .sort((a, b) => (a.dueDate ?? '').localeCompare(b.dueDate ?? ''));
+
+  if (live.length === 0) return null;
+
+  return (
+    <section className="rounded-2xl border bg-card p-4" style={{ borderColor: 'var(--goods-terracotta)' }}>
+      <div className="flex flex-wrap items-baseline justify-between gap-3">
+        <h2 className="font-display text-lg" style={{ fontFamily: 'Georgia, serif' }}>Due</h2>
+        <p className="text-xs text-muted-foreground">From grants.ts. A line with no real deadline is not here.</p>
+      </div>
+      <ul className="mt-3 grid gap-3 md:grid-cols-3">
+        {live.map((l) => {
+          const days = Math.abs(ageInDays(l.dueDate!, now) ?? 0);
+          return (
+            <li key={l.id} className="rounded-xl bg-muted/50 p-3">
+              <div className="flex items-baseline justify-between gap-2">
+                <span className="font-display text-2xl leading-none" style={{ color: days <= 10 ? 'var(--goods-terracotta)' : undefined }}>
+                  {days} {days === 1 ? 'day' : 'days'}
+                </span>
+                <span className="text-[11px] text-muted-foreground">{formatAsAt(l.dueDate)}</span>
+              </div>
+              <p className="mt-1.5 text-sm font-semibold leading-snug">{l.funder}</p>
+              <p className="text-[11px] text-muted-foreground">{l.amount} · {l.job}</p>
+              {l.needs.length > 0 && (
+                <ul className="mt-2 space-y-1">
+                  {l.needs.slice(0, 4).map((n) => (
+                    <li key={n} className="flex gap-1.5 text-[11px] leading-snug text-muted-foreground">
+                      <span aria-hidden>·</span><span>{n}</span>
+                    </li>
+                  ))}
+                  {l.needs.length > 4 && <li className="text-[11px] text-muted-foreground">+ {l.needs.length - 4} more</li>}
+                </ul>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </section>
   );
 }
 

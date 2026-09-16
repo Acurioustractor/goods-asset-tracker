@@ -73,11 +73,7 @@ export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
       { href: '/admin/site-content', name: 'Site content', status: 'absorbed' },
       { href: '/admin/media-gaps', name: 'Media gaps', status: 'absorbed' },
       { href: '/admin/dashboard-images', name: 'Dashboard images', status: 'active' },
-      { href: '/admin/photo-align', name: 'Photo align', status: 'active', note: 'EL photo alignment' },
       { href: '/admin/library', name: 'Content library', status: 'active' },
-      { href: '/admin/photos', name: 'Photos (legacy)', status: 'stale', note: 'redirects to Media library' },
-      { href: '/admin/photo-review', name: 'Photo review (legacy)', status: 'stale', note: 'redirects' },
-      { href: '/admin/photos-browser', name: 'Photos browser (legacy)', status: 'stale', note: 'redirects' },
     ],
   },
   {
@@ -117,12 +113,6 @@ export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
     group: 'Comms and legacy',
     routes: [
       { href: '/admin/reach-out', name: 'Reach out', status: 'active', note: 'as-needed' },
-      { href: '/admin/messages', name: 'Messages', status: 'stale' },
-      { href: '/admin/announcements', name: 'Announcements', status: 'stale' },
-      { href: '/admin/compassion', name: 'Compassion', status: 'stale' },
-      { href: '/admin/brand', name: 'Brand', status: 'stale' },
-      { href: '/admin/team', name: 'Team', status: 'stale' },
-      { href: '/admin/alice-fill', name: 'Alice fill wizard', status: 'one-off', note: '2026-05-21 trip catch-up' },
       { href: '/admin/route-review', name: 'Route review', status: 'one-off', note: '2026-07 IA review artifact; produced this directory' },
       // Moved off /pitch/* on 2026-08-02 (route sweep, map #177 ticket #183). They were internal
       // working surfaces on a funder-facing path prefix, relying on noindex, which was never a
@@ -144,7 +134,6 @@ export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
       { href: '/admin/model', name: 'Model placemat', status: 'orphan', note: '2026-09-15, built for the pitch' },
       { href: '/admin/model/structure', name: 'Model structure', status: 'orphan', note: '2026-09-15' },
       { href: '/admin/model/ten-years', name: 'Model ten years', status: 'orphan', note: '2026-09-15' },
-      { href: '/admin/model/svg', name: 'Model SVG (legacy)', status: 'stale', note: 'redirects to /admin/model' },
       { href: '/admin/orders/launch-checklist', name: 'Order launch checklist', status: 'absorbed', note: 'reached from Orders' },
       { href: '/admin/field-notes/library', name: 'Field notes library', status: 'absorbed', note: 'reached from Field notes' },
       { href: '/admin/el-stories/new', name: 'New EL story', status: 'absorbed', note: 'create form under EL stories' },
