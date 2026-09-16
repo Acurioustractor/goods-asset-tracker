@@ -25,6 +25,26 @@
       }
     },
     {
+      "id": "structure-and-funding-flow",
+      "name": "Structure and funding flow, QBE Q3",
+      "version": "1.0",
+      "status": "review",
+      "approval": null,
+      "use": "One A4 page for QBE Stage 2 Q3: the applicant in the centre, its related entities inside a dashed line, funders above, Oonchiumpa and the REAL offer to the right, community organisations and customers below. Money lines in sage, goods in terracotta, dashed means not yet.",
+      "file": "v2/structure-and-funding-flow.svg",
+      "png": "v2/structure-and-funding-flow.png",
+      "pdf": "deliverables/qbe-stage2/Goods-structure-and-funding-flow.pdf",
+      "sha256": "7cbde4f560b8b5141ae3d364b6cd567c4fe13ecc4ed991976c34d0a8fd5cb98d",
+      "sourceDate": "2026-09-15",
+      "renderedAt": "2026-09-15",
+      "source": "v2/src/lib/data/structure-diagram.ts",
+      "renderer": "v2/src/lib/model/structure-svg.ts",
+      "sheet": {
+        "w": 1123,
+        "h": 794
+      }
+    },
+    {
       "id": "whole-model",
       "name": "The whole Goods model",
       "version": "2.0",
@@ -35,29 +55,9 @@
       "png": "v2/whole-model.png",
       "sha256": "ae60947a7ce24ffec975bce4be8152d6f570ad547abf45fb3fc1ef913e85a9d5",
       "sourceDate": "2026-09-14",
-      "renderedAt": "2026-09-15",
+      "renderedAt": "2026-09-16",
       "source": "v2/src/lib/data/model-placemat.ts",
       "renderer": "v2/src/lib/model/placemat-svg.ts"
-    },
-    {
-      "id": "structure-and-funding-flow",
-      "name": "Structure and funding flow, QBE Q3",
-      "version": "1.0",
-      "status": "review",
-      "approval": null,
-      "use": "One A4 page for QBE Stage 2 Q3: the applicant in the centre, its related entities inside a dashed line, funders above, Oonchiumpa and the REAL offer to the right, community organisations and customers below. Money lines in sage, goods in terracotta, dashed means not yet.",
-      "file": "v2/structure-and-funding-flow.svg",
-      "png": "v2/structure-and-funding-flow.png",
-      "pdf": "deliverables/qbe-stage2/Goods-structure-and-funding-flow.pdf",
-      "sha256": "b2609af1260f227b5dca4d77506f7f2f15c92fb4532ab5c5f021f593747b7d5c",
-      "sourceDate": "2026-09-15",
-      "renderedAt": "2026-09-15",
-      "source": "v2/src/lib/data/structure-diagram.ts",
-      "renderer": "v2/src/lib/model/structure-svg.ts",
-      "sheet": {
-        "w": 1123,
-        "h": 794
-      }
     }
   ]
 }

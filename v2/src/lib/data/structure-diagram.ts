@@ -81,7 +81,7 @@ export const ENTITIES: Record<EntityId, Entity> = {
   sole: {
     id: 'sole',
     title: 'Nicholas Marchesi, sole trader',
-    lines: ['ABN 21 591 780 066. The ledger part of the Goods trading history sits in.'],
+    lines: ['ABN 21 591 780 066. The earlier Goods trading history sits in this ledger.'],
     style: 'related',
   },
   akt: {
