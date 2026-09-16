@@ -281,6 +281,11 @@ export function SnowArc() {
             },
           }
         : {}),
+      image: {
+        src: '/images/community/palm-island/panel-carry-aug-2025.jpg',
+        alt: 'Community members on Palm Island carrying a pressed recycled-plastic panel marked Goods x Snow Foundation',
+        place: 'Palm Island, 13 August 2025. The panel is pressed recycled plastic, and the mark on it reads Goods x Snow Foundation.',
+      },
     },
     {
       id: 'snow-project',
