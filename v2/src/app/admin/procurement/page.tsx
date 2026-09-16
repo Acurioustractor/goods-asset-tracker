@@ -42,6 +42,21 @@ interface Pull {
   communities: { community: string; contracts: number; valueAud: number; products: string[]; topBuyer: string | null }[];
 }
 
+interface NtPull {
+  readAt: string; source: string;
+  totals: { allContracts: number; housingRelated: number; housingValueAud: number; infraAgencyValueAud: number; territoryEnterpriseContracts: number };
+  contractors: { name: string; known: string | null; contracts: number; valueAud: number; roomToBreathe: number; beddingMentions: number; territoryEnterprise: boolean; topPlaces: string[]; topAgency: string | null; sample: string | null }[];
+  places: { place: string; contracts: number; valueAud: number; topContractor: string }[];
+}
+
+async function readNt(): Promise<NtPull | null> {
+  try {
+    return JSON.parse(await readFile(join(process.cwd(), 'data/nt-housing-contractors.json'), 'utf8')) as NtPull;
+  } catch {
+    return null;
+  }
+}
+
 async function readPull(): Promise<Pull | null> {
   try {
     return JSON.parse(await readFile(join(process.cwd(), 'data/procurement-buyers.json'), 'utf8')) as Pull;
@@ -55,6 +70,9 @@ const OURS = new Set(['Tennant Creek', 'Maningrida', 'Alice Springs', 'Utopia', 
 
 export default async function ProcurementPage() {
   const pull = await readPull();
+  const nt = await readNt();
+  const ntKnown = nt ? nt.contractors.filter((c) => c.known) : [];
+  const ntRtb = nt ? nt.contractors.filter((c) => c.roomToBreathe > 0).sort((a, b) => b.valueAud - a.valueAud).slice(0, 8) : [];
   const dipl = pull ? pull.buyers.filter((b) => b.buyer.startsWith('NT Department of Infrastructure')) : [];
   const diplValue = dipl.reduce((n, b) => n + b.valueAud, 0);
   const diplContracts = dipl.reduce((n, b) => n + b.contracts, 0);
@@ -245,6 +263,73 @@ export default async function ProcurementPage() {
             Contract values are for the whole contract, and most of that is construction or maintenance. The figure
             says where the money and the obligation sit, never what a bed order would be worth.
           </p>
+        </section>
+      )}
+
+      {/* The NT workbook: who is actually building the rooms. */}
+      {nt && (
+        <section className="mt-10">
+          <h2 className="font-display text-2xl">Northern Territory: who is already building the rooms</h2>
+          <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
+            {nt.totals.allContracts.toLocaleString('en-AU')} awarded NT contracts, parsed from a workbook that has
+            been sitting in the grantscope repo since March and was never loaded anywhere.{' '}
+            {nt.totals.housingRelated.toLocaleString('en-AU')} are housing or fit-out related, worth{' '}
+            {audShort(nt.totals.housingValueAud)}, and {nt.totals.territoryEnterpriseContracts.toLocaleString('en-AU')}{' '}
+            of them went to a Territory Enterprise. Read {nt.readAt} by{' '}
+            <code className="rounded bg-muted px-1 py-0.5 text-[11px]">scripts/pull-nt-contracts.py</code>.
+          </p>
+
+          <div className="mt-4 rounded-lg border-2 p-6" style={{ borderColor: '#4F6138' }}>
+            <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: '#4F6138' }}>The finding that changes the customer</p>
+            <h3 className="mt-2 font-display text-xl leading-snug">
+              The head contractors on remote housing are Aboriginal corporations, and we already know six of them.
+            </h3>
+            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+              The program is Room to Breathe, whose stated purpose is reducing overcrowding by adding sleeping
+              space. Bukmak is building 87 dwellings at Galiwin&rsquo;ku. Binjari is working at Bulman, Weemol and
+              Beswick. Bawinanga is at Maningrida. MacDonnell is at Titjikala and Kintore. So the question stops
+              being how to turn a community organisation into a supplier. They are already winning the work, they
+              are already Aboriginal-owned, and they are building the rooms the beds go in.
+            </p>
+          </div>
+
+          <h3 className="mt-6 text-sm font-semibold">Organisations we already have a relationship with</h3>
+          <table className="mt-2 w-full text-left text-sm">
+            <thead>
+              <tr className="border-b text-[11px] uppercase tracking-wide text-muted-foreground">
+                <th className="py-2 pr-3 font-semibold">Organisation</th>
+                <th className="py-2 pr-3 text-right font-semibold">Contracts</th>
+                <th className="py-2 pr-3 text-right font-semibold">Value</th>
+                <th className="py-2 pr-3 text-right font-semibold">Room to Breathe</th>
+                <th className="py-2 font-semibold">Where</th>
+              </tr>
+            </thead>
+            <tbody>
+              {ntKnown.map((c) => (
+                <tr key={c.name} className="border-b last:border-0 align-top">
+                  <td className="py-2 pr-3 font-medium">{c.known}<span className="block text-[11px] font-normal text-muted-foreground">as {c.name}</span></td>
+                  <td className="py-2 pr-3 text-right tabular-nums">{c.contracts}</td>
+                  <td className="py-2 pr-3 text-right tabular-nums">{audShort(c.valueAud)}</td>
+                  <td className="py-2 pr-3 text-right tabular-nums">{c.roomToBreathe || 'none'}</td>
+                  <td className="py-2 text-muted-foreground">{c.topPlaces.join(', ')}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="mt-2 text-xs text-muted-foreground">
+            Bawinanga appears twice because the workbook carries two spellings of its name. Left as found.
+          </p>
+
+          <h3 className="mt-6 text-sm font-semibold">The biggest Room to Breathe contractors</h3>
+          <ul className="mt-2 space-y-1.5 text-sm">
+            {ntRtb.map((c) => (
+              <li key={c.name} className="flex gap-3">
+                <span className="w-24 shrink-0 text-right tabular-nums">{audShort(c.valueAud)}</span>
+                <span className={c.known ? 'font-semibold' : ''}>{c.name}</span>
+                {c.known && <span className="rounded-full px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide" style={{ backgroundColor: '#E6EDDD', color: '#4F6138' }}>we know them</span>}
+              </li>
+            ))}
+          </ul>
         </section>
       )}
 

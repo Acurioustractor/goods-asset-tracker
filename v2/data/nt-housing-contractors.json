@@ -1,0 +1,1420 @@
+{
+  "readAt": "2026-09-16",
+  "source": "NT Government awarded contracts workbook, exported 15 March 2026, held in the grantscope repo and never ingested to any database",
+  "totals": {
+    "allContracts": 26591,
+    "housingRelated": 1593,
+    "housingValueAud": 1721676184,
+    "infraAgencyValueAud": 1656085893,
+    "territoryEnterpriseContracts": 1112
+  },
+  "contractors": [
+    {
+      "name": "DT Hobbs Pty Ltd",
+      "known": null,
+      "contracts": 11,
+      "valueAud": 80141751,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Darwin Region",
+        "Northern Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Darwin Region - Milikapiti - Government Employee Housing Upgrade"
+    },
+    {
+      "name": "Akron Group NT Pty Ltd",
+      "known": null,
+      "contracts": 13,
+      "valueAud": 72243930,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Darwin Region",
+        "Alice Springs Region",
+        "Darwin"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Alice Springs - Provision of Responsive Repairs and Maintenance to Public Housing Assets for a Period of 24 Months"
+    },
+    {
+      "name": "C & R Constructions Pty Ltd",
+      "known": null,
+      "contracts": 18,
+      "valueAud": 66470789,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Darwin Region",
+        "Darwin",
+        "Northern Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Darwin - Millner - NT Archives Building: Office Fitout's and Refurbishment works"
+    },
+    {
+      "name": "Asbuild (NT) Pty Ltd",
+      "known": null,
+      "contracts": 16,
+      "valueAud": 56316621,
+      "roomToBreathe": 1,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Alice Springs Region",
+        "Katherine Region",
+        "Alice Springs"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Alice Springs - Central Business District - Greatorex Building Fit Out"
+    },
+    {
+      "name": "Bukmak Constructions Pty Ltd as Trustee for Bukmak Constructions Trust",
+      "known": null,
+      "contracts": 1,
+      "valueAud": 51527332,
+      "roomToBreathe": 1,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Nhulunbuy"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Nhulunbuy - Galiwin'ku - Construction of a Minimum 87 Assorted Dwellings, Room to Breathe Renovations and Associated Works"
+    },
+    {
+      "name": "WTD Constructions Pty Ltd",
+      "known": null,
+      "contracts": 27,
+      "valueAud": 46702643,
+      "roomToBreathe": 1,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Darwin Region",
+        "East Arnhem Region",
+        "Darwin"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Arafura Region - Panel Contract for the Provision of Trade Qualified Repairs and Maintenance Works in Specific Remote Community Dwellings for a Period"
+    },
+    {
+      "name": "Quality Plumbing & Building Contractors Pty Ltd",
+      "known": null,
+      "contracts": 5,
+      "valueAud": 45295668,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Darwin Region",
+        "Greater Darwin Region",
+        "Darwin"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Greater Darwin Region - Panel Contract for Responsive Repairs and Maintenance and Vacate Works on Public and Social Housing Assets for a Period of 24 "
+    },
+    {
+      "name": "Binjari Community Aboriginal Corporation",
+      "known": null,
+      "contracts": 20,
+      "valueAud": 44857684,
+      "roomToBreathe": 3,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Katherine Region",
+        "Darwin Region",
+        "Katherine"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Katherine Region - Room to Breathe Early Works Package in Bulman and Weemol"
+    },
+    {
+      "name": "LA Build Pty Ltd",
+      "known": null,
+      "contracts": 9,
+      "valueAud": 41027120,
+      "roomToBreathe": 1,
+      "beddingMentions": 1,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Katherine Region",
+        "Alice Springs Region",
+        "Tennant Creek Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Katherine Region - Bulman - Lot 24 - - Demolition of Existing Structures and Construction of a Government Employee Housing (GEH) 2 Bed Duplex"
+    },
+    {
+      "name": "Precision Group (NT) Pty Ltd as The Trustee for C Kantros Family Trust",
+      "known": null,
+      "contracts": 2,
+      "valueAud": 40212694,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Darwin Region"
+      ],
+      "topAgency": "Department of Housing, Local Government and Community Develo",
+      "sample": "Darwin Region - Repairs and Maintenance on Public and Social Housing Assets for a Period of 24 Months"
+    },
+    {
+      "name": "Blueprint (NT) Pty Ltd",
+      "known": null,
+      "contracts": 4,
+      "valueAud": 28880883,
+      "roomToBreathe": 1,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Tennant Creek Region",
+        "Tennant Creek",
+        "Alice Springs Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Tennant Creek Region - Ali Curung, Canteen Creek, Imangara and Wutunugurra (Packages A and B) - Demolition, Construction, Repairs and Maintenance, and"
+    },
+    {
+      "name": "Pedersen NT Pty Ltd",
+      "known": null,
+      "contracts": 15,
+      "valueAud": 28843229,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Alice Springs Region",
+        "Tennant Creek Region",
+        "Southern Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Alice Springs Region - Finke - Construct 4 x 3 Bedroom Arid Zone Dwellings"
+    },
+    {
+      "name": "Murray River North Pty Ltd",
+      "known": null,
+      "contracts": 11,
+      "valueAud": 28541858,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Katherine Region",
+        "Alice Springs Region",
+        "East Arnhem Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Alice Springs Region - Ampilatwatja - Remote Community Housing (RCH) - Construction of 2 x 3 Bedroom Dwellings"
+    },
+    {
+      "name": "Northern Transportables Pty Ltd",
+      "known": null,
+      "contracts": 10,
+      "valueAud": 25153673,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Northern Region",
+        "Southern Region",
+        "East Arnhem Region"
+      ],
+      "topAgency": "Department of Logistics and Infrastructure",
+      "sample": "East Arnhem Region - Laynhapuy and Gumatj Homelands - Cyclone Response - Supply and Install Transportable Homes"
+    },
+    {
+      "name": "Scott Hammet Building and Carpentry Pty Ltd",
+      "known": null,
+      "contracts": 14,
+      "valueAud": 22428484,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Darwin Region",
+        "East Arnhem Region",
+        "Arafura Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Arafura Region - Provision of Housing Maintenance Co-ordination Services in Specified Remote Communities for a Period of 55 Months"
+    },
+    {
+      "name": "GT Builders Pty Ltd",
+      "known": null,
+      "contracts": 12,
+      "valueAud": 21763814,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Katherine Region",
+        "Darwin Region",
+        "Northern Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Katherine Region - Numbulwar (Lot 301) - Government Employee Housing (GEH)- Demolition of 2 Existing Dwellings and Construction of 1 x 2 Bedroom Duple"
+    },
+    {
+      "name": "Probuild (NT) Pty Ltd",
+      "known": null,
+      "contracts": 8,
+      "valueAud": 19577372,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Alice Springs Region",
+        "East Arnhem Region",
+        "Darwin Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Alice Springs Region - Santa Teresa - Demolition of 3 Dwellings and the Construction of 3 x 3 Bedroom Dwellings"
+    },
+    {
+      "name": "M and C Fior Constructions Pty Ltd",
+      "known": null,
+      "contracts": 6,
+      "valueAud": 18310826,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Alice Springs Region",
+        "Alice Springs",
+        "Southern Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Alice Springs Region - Karnte, Larapinta Valley, Little Sisters, Morris Soak and Trucking Yards Town Camps - Demolition and Construction of Housing (4"
+    },
+    {
+      "name": "Ri-con Contractors Pty Ltd",
+      "known": null,
+      "contracts": 9,
+      "valueAud": 17688004,
+      "roomToBreathe": 1,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Katherine Region",
+        "Darwin Region",
+        "Tennant Creek"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Tennant Creek - Tara - Modifications to Houses - Room to Breathe Program"
+    },
+    {
+      "name": "Rusca Developments Pty Ltd",
+      "known": null,
+      "contracts": 5,
+      "valueAud": 16574328,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Darwin Region",
+        "Katherine Region",
+        "All Regions"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Darwin Region - Emu Point (Lot 8) - Homebuild NT - Design and Construct 1 x 2 Bedroom Government Employee Housing (Geh) Demountable"
+    },
+    {
+      "name": "DRG Industries Pty Ltd",
+      "known": null,
+      "contracts": 7,
+      "valueAud": 15857869,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "East Arnhem Region",
+        "Nhulunbuy"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "East Arnhem Region - Elcho Island - Galiwinku (Galiwin'ku) - Construction of Four by Three Bedroom Dwellings"
+    },
+    {
+      "name": "NJ Homes (NT) Pty Ltd",
+      "known": null,
+      "contracts": 5,
+      "valueAud": 15160003,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Katherine Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Katherine Region - Martin Terrace (Lot 2842) Urban Public Housing (UPH) - Construction of 2 x 1 Bedroom and 4 x 2 Bedroom Dwellings (Complex)"
+    },
+    {
+      "name": "Scott Hammet Building & Carpentry Pty Ltd",
+      "known": null,
+      "contracts": 6,
+      "valueAud": 14859838,
+      "roomToBreathe": 0,
+      "beddingMentions": 1,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Darwin Region",
+        "Katherine Region",
+        "Northern Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Katherine Region - Ngukurr (Lots 498 and 499) - Homebuild NT- Design, Documentation and Construction of 2 X 4 Bedroom Dwellings"
+    },
+    {
+      "name": "Precision Group Pty Ltd as trustee for the C Kantros Family Trust",
+      "known": null,
+      "contracts": 1,
+      "valueAud": 14493781,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Greater Darwin Region"
+      ],
+      "topAgency": "Department of Housing and Community Development",
+      "sample": "Greater Darwin Region - Panel Contract for Responsive Repairs and Maintenance and Vacate Works on Public and Social Housing Assets for a Period of 24 "
+    },
+    {
+      "name": "MacDonnell Regional Council",
+      "known": "MacDonnell Regional Council",
+      "contracts": 8,
+      "valueAud": 14383847,
+      "roomToBreathe": 2,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Alice Springs",
+        "Alice Springs Region"
+      ],
+      "topAgency": "Department of Housing",
+      "sample": "Alice Springs Region - Room to Breathe Early Works Package in Titjikala"
+    },
+    {
+      "name": "Remote Build (NT) Pty Ltd",
+      "known": null,
+      "contracts": 3,
+      "valueAud": 14283547,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Barkly Region",
+        "Katherine Region",
+        "Northern Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Barkly Region - Ampilatwatja and Tara - Provision of Construction Works for Northern Territory Government (NTG) Housing Infrastructure"
+    },
+    {
+      "name": "DRG Industries",
+      "known": null,
+      "contracts": 2,
+      "valueAud": 14210000,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "East Arnhem Region",
+        "Nhulunbuy"
+      ],
+      "topAgency": "Department of Infrastructure",
+      "sample": "East Arnhem Region - Galiwinku - Round 1 Construction of 20 x 3 Bedroom Dwellings"
+    },
+    {
+      "name": "NT Link Pty Ltd",
+      "known": null,
+      "contracts": 7,
+      "valueAud": 13903328,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Alice Springs Region",
+        "Katherine Region",
+        "Katherine"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Alice Springs Region - Arlparra - Design, Documentation and Construction of Three Dwellings"
+    },
+    {
+      "name": "Ingkerreke Commercial Pty Ltd as Trustee for the Ingkerreke Operational Trust",
+      "known": null,
+      "contracts": 10,
+      "valueAud": 13863901,
+      "roomToBreathe": 3,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Alice Springs Region",
+        "Barkly Region",
+        "Central Australia Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Barkly Region - Room to Breathe Early Works Package in Ampilatwatja"
+    },
+    {
+      "name": "Quality Plumbing and Building Contractors Pty Ltd",
+      "known": null,
+      "contracts": 5,
+      "valueAud": 13775867,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Alice Springs",
+        "Darwin Region",
+        "Darwin"
+      ],
+      "topAgency": "Department of Housing",
+      "sample": "Alice Springs - Provision of Vacate and Planned Works to Department of Housing Assets for a Period of 24 Months"
+    },
+    {
+      "name": "Norbuilt Pty Ltd",
+      "known": null,
+      "contracts": 1,
+      "valueAud": 13492702,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Katherine Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Katherine Region - Ngukurr - Construction of a New Police Station, Houses and Visiting Officer Quarters"
+    },
+    {
+      "name": "DJC Build Pty Ltd",
+      "known": null,
+      "contracts": 5,
+      "valueAud": 13334154,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Northern Region",
+        "Southern Region",
+        "East Arnhem Region"
+      ],
+      "topAgency": "Department of Logistics and Infrastructure",
+      "sample": "East Arnhem Region - Angurugu Women's Safe House - Refurbish Main Building"
+    },
+    {
+      "name": "PTM Group Pty Ltd",
+      "known": null,
+      "contracts": 4,
+      "valueAud": 13088287,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Southern Region",
+        "All Centres",
+        "Northern Region"
+      ],
+      "topAgency": "Department of Logistics and Infrastructure",
+      "sample": "All Centres - HomeBuild NT - Panel Period Contract for the Design, Documentation, Construction, Storage, Delivery and Installation of Prefabricated Dw"
+    },
+    {
+      "name": "NTEX Pty Ltd",
+      "known": null,
+      "contracts": 2,
+      "valueAud": 13008271,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Darwin"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Darwin - Shiers Street, The Narrows - Demolition of 76 Unit Public Housing Complex"
+    },
+    {
+      "name": "Scope Building NT Pty Ltd",
+      "known": null,
+      "contracts": 11,
+      "valueAud": 12184865,
+      "roomToBreathe": 1,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Alice Springs Region",
+        "Darwin",
+        "Darwin Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Alice Springs Region - Watch House - Alterations to Watch House (4 New Interview Rooms)"
+    },
+    {
+      "name": "Harvey Developments (NT) Pty Ltd",
+      "known": null,
+      "contracts": 10,
+      "valueAud": 12095795,
+      "roomToBreathe": 1,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Alice Springs Region",
+        "Barkly Region",
+        "Tennant Creek"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Barkly Region - Ali Curung - Modifications to Houses - Room to Breathe Program"
+    },
+    {
+      "name": "Thamarrurr Development Corporation Limited",
+      "known": null,
+      "contracts": 3,
+      "valueAud": 11441476,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Darwin Region",
+        "Darwin"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Darwin - Top End Region - Provision of Remote Housing Maintenance Services to Remote Housing in Nama, Wudupuli, Wadeye, Palumpa, and Peppimenarti for "
+    },
+    {
+      "name": "Norbuilt Pty. Ltd.",
+      "known": null,
+      "contracts": 1,
+      "valueAud": 10920638,
+      "roomToBreathe": 0,
+      "beddingMentions": 1,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "East Arnhem Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "East Arnhem Region - Galiwinku - Construction of 1 x 3 Bed Duplex, 3 x 4 Bedroom, 6 x 5 Bedroom and 5 x 6 Bedroom Dwellings"
+    },
+    {
+      "name": "Aminjarrinja Enterprises Aboriginal Corporation",
+      "known": null,
+      "contracts": 8,
+      "valueAud": 10695167,
+      "roomToBreathe": 1,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "East Arnhem Region",
+        "Housing Maintenance Program",
+        "Nhulunbuy"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Housing Maintenance Program - 2017/2018 - Fencing - Supply, Delivery and Installation of Fencing at Angurugu, Milyakburra and Umbakumba"
+    },
+    {
+      "name": "Probuild NT",
+      "known": null,
+      "contracts": 4,
+      "valueAud": 10655323,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Alice Springs Region",
+        "Darwin Region"
+      ],
+      "topAgency": "Department of Infrastructure",
+      "sample": "Alice Springs Region - 1620 Larapinta Drive - Simpson's Gap National Park - Design, Documentation and Construction of 3 Bedroom Dwelling"
+    },
+    {
+      "name": "Spears Construction (NT) Pty Ltd",
+      "known": null,
+      "contracts": 5,
+      "valueAud": 10536053,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Alice Springs Region",
+        "Alice Springs"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Alice Springs - Santa Teresa - Demolition and Construction of 3 x 5 Bedroom Remote Community Housing (RCH) Dwellings on Lots 137(b), 128 & 248"
+    },
+    {
+      "name": "Ngarda Civil & Mining Pty Limited",
+      "known": null,
+      "contracts": 1,
+      "valueAud": 9874241,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": false,
+      "topPlaces": [
+        "East Arnhem"
+      ],
+      "topAgency": "Department of Infrastructure",
+      "sample": "East Arnhem - Galiwinku - Round 2 Construction of 20 x 3 Bedroom Dwellings"
+    },
+    {
+      "name": "Power Projects (NT) Pty Ltd",
+      "known": null,
+      "contracts": 5,
+      "valueAud": 9766936,
+      "roomToBreathe": 1,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Katherine",
+        "Tennant Creek Region"
+      ],
+      "topAgency": "Department of Housing",
+      "sample": "Katherine - Kybrook Farm - Modifications to 13 Dwellings - Room to Breathe Program"
+    },
+    {
+      "name": "Zenco Constructions Pty Ltd",
+      "known": null,
+      "contracts": 4,
+      "valueAud": 9733213,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "East Arnhem Region",
+        "Nhulunbuy"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Nhulunbuy - Provision of Responsive Repairs and Maintenance Works to Department of Housing Assets for a Period of 24 Months"
+    },
+    {
+      "name": "Sonwane Pty Limited as Trustee for Tangentyere Charitable No. 2",
+      "known": "Tangentyere Council",
+      "contracts": 3,
+      "valueAud": 9664104,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Alice Springs"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Alice Springs - Provision of Housing Management Services in Alice Springs Town Camps for a Period of 13 Months"
+    },
+    {
+      "name": "Bathurst Island Housing Association Incorporated",
+      "known": null,
+      "contracts": 4,
+      "valueAud": 9618139,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Darwin Region",
+        "Arafura Region",
+        "Darwin"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Arafura Region - Panel Contract for the Provision of Trade Qualified Repairs and Maintenance Works in Specific Remote Community Dwellings for a Period"
+    },
+    {
+      "name": "The Arnhem Land Progress Aboriginal Corporation",
+      "known": "ALPA",
+      "contracts": 3,
+      "valueAud": 9480426,
+      "roomToBreathe": 1,
+      "beddingMentions": 1,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "East Arnhem Region",
+        "Arnhem Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Arnhem Region - Room to Breathe Early Works Package in Ramingining"
+    },
+    {
+      "name": "Thamarrurr Development Corporation Ltd",
+      "known": null,
+      "contracts": 3,
+      "valueAud": 9108533,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Darwin Region",
+        "Big Rivers Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Big Rivers Region - Provision of Housing Maintenance Co-ordination Services in Specified Remote Communities for a Period of 55 Months"
+    },
+    {
+      "name": "S & R Building & Construction Pty Ltd",
+      "known": null,
+      "contracts": 5,
+      "valueAud": 8708167,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Katherine Region",
+        "Katherine",
+        "Alice Springs Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Katherine - Provision of Vacate and Planned Works to Department of Housing Assets for a Period of 24 Months"
+    },
+    {
+      "name": "Cairns Industries Pty Ltd",
+      "known": null,
+      "contracts": 7,
+      "valueAud": 8314502,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Katherine Region",
+        "Tennant Creek Region",
+        "Borroloola"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Borroloola - Provision of Responsive Repairs and Maintenance Works to Department of Housing Assets for a Period of 24 Months"
+    },
+    {
+      "name": "Hawkins and Clements Pty Ltd as Trustee for Hawkins and Clements Unit Trust",
+      "known": null,
+      "contracts": 2,
+      "valueAud": 7856643,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Northern Region",
+        "Southern Region"
+      ],
+      "topAgency": "Department of Logistics and Infrastructure",
+      "sample": "Northern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months"
+    },
+    {
+      "name": "C and R Constructions Pty Ltd",
+      "known": null,
+      "contracts": 6,
+      "valueAud": 7406280,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Darwin Region",
+        "Darwin"
+      ],
+      "topAgency": "Department of Infrastructure",
+      "sample": "Darwin Region - Central Business District - Jacana House Fit Out"
+    },
+    {
+      "name": "Insight Oceania Quantum Healthcare Group Pty Ltd",
+      "known": null,
+      "contracts": 1,
+      "valueAud": 7402064,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": false,
+      "topPlaces": [
+        "Royal Darwin Hospital"
+      ],
+      "topAgency": "Department of Health",
+      "sample": "Royal Darwin Hospital - Supply Delivery Installation Commissioning and Whole of Life Maintenance of Cyclotron and Radiopharmacy Fit Out"
+    },
+    {
+      "name": "M & C Fior Constructions Pty Ltd",
+      "known": null,
+      "contracts": 6,
+      "valueAud": 7337887,
+      "roomToBreathe": 1,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Alice Springs Region",
+        "Alice Springs",
+        "Southern Region"
+      ],
+      "topAgency": "Department of Infrastructure",
+      "sample": "Alice Springs Region - Supply and Installation of Ceramic Floor Tiling to Territory Housing Assets at Wilora Community"
+    },
+    {
+      "name": "Bukmak Constructions Pty Ltd as The Trustee for Bukmak Constructions Trust",
+      "known": null,
+      "contracts": 4,
+      "valueAud": 7251333,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Nhulunbuy",
+        "East Arnhem Region",
+        "Northern Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Nhulunbuy - East Arnhem Region - Provision of Remote Housing Maintenance Services to Remote Housing in Milingimbi for a Period of 24 Months"
+    },
+    {
+      "name": "Whatareya Pty Ltd",
+      "known": null,
+      "contracts": 3,
+      "valueAud": 7127592,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Alice Springs Region",
+        "Tennant Creek Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Alice Springs Region - Maintenance of Minor Concrete Structures and Roadside Furniture, Including Supply of Airfield Furniture for a Period of 30 Mont"
+    },
+    {
+      "name": "Demountable Sales and Hire Pty Ltd",
+      "known": null,
+      "contracts": 1,
+      "valueAud": 7066880,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "All Regions"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "All Regions - Homebuild NT - Panel Contract for Prefabricated Dwellings for a Period of 12 Months"
+    },
+    {
+      "name": "Wilson Security Pty Ltd",
+      "known": null,
+      "contracts": 5,
+      "valueAud": 6939737,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Darwin",
+        "Health House"
+      ],
+      "topAgency": "Department of Health",
+      "sample": "Health House - Provision of Security Services for a Period of 3 Months"
+    },
+    {
+      "name": "S&R Building & Construction Pty Ltd",
+      "known": null,
+      "contracts": 7,
+      "valueAud": 6852785,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Alice Springs",
+        "Katherine Region",
+        "Alice Springs Region"
+      ],
+      "topAgency": "Department of Infrastructure",
+      "sample": "Alice Springs - Provision of Vacate and Planned Works to Department of Housing Assets for a Period of 24 Months"
+    },
+    {
+      "name": "MPH Carpentry and Construction Pty Ltd",
+      "known": null,
+      "contracts": 11,
+      "valueAud": 6689708,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Alice Springs Region",
+        "Tennant Creek Region"
+      ],
+      "topAgency": "Department of Infrastructure",
+      "sample": "Tennant Creek Region - Ali Curung Government Employee Housing - Refurbishments"
+    },
+    {
+      "name": "Harvey Developments NT Pty Ltd",
+      "known": null,
+      "contracts": 6,
+      "valueAud": 6659941,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Tennant Creek",
+        "Tennant Creek Region",
+        "Alice Springs"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Tennant Creek Region - Repairs and Maintenance of Remote Community Housing and Government Employee Housing Assets for a Period of 24 Months"
+    },
+    {
+      "name": "Far Northern Contractors Pty Ltd",
+      "known": null,
+      "contracts": 5,
+      "valueAud": 6641769,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Barkly Region",
+        "Tennant Creek",
+        "Tennant Creek Region"
+      ],
+      "topAgency": "Department of Housing",
+      "sample": "Barkly Region - Provision of Housing Maintenance Co-ordination Services in Specified Remote Communities for a Period of 55 Months"
+    },
+    {
+      "name": "AUS Projects NT Pty Ltd",
+      "known": null,
+      "contracts": 6,
+      "valueAud": 6391338,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Katherine",
+        "Katherine Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Katherine - Big Rivers Region - Provision of Remote Housing Maintenance Services to Remote Housing in Kybrook Farm for a Period of 21 Months"
+    },
+    {
+      "name": "GK Painting Contractors Pty Limited",
+      "known": null,
+      "contracts": 3,
+      "valueAud": 5871491,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Barkly Region",
+        "Tennant Creek Region",
+        "Tennant Creek"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Barkly Region - Tennant Creek and Elliott - Provision of Vacate and Planned Works to Department of Housing Assets for a Period of 24 Months"
+    },
+    {
+      "name": "Patrick Homes & Construction Pty Ltd",
+      "known": null,
+      "contracts": 6,
+      "valueAud": 5866273,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Alice Springs Region",
+        "Alice Springs"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Alice Springs - Provision of Vacate and Planned Works to Department of Housing Assets for a Period of 24 Months"
+    },
+    {
+      "name": "Northern Building and Property Services Pty Ltd",
+      "known": null,
+      "contracts": 6,
+      "valueAud": 5710250,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Katherine Region",
+        "Katherine Court House",
+        "Southern Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Katherine Region - Provision of Remote Housing Maintenance Services to Remote Housing in Bulman and Weemol for a Period of 15 Months"
+    },
+    {
+      "name": "Ingkerreke Outstations Resource Services",
+      "known": null,
+      "contracts": 4,
+      "valueAud": 5591363,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": false,
+      "topPlaces": [
+        "Darwin Region",
+        "Central Australia Region",
+        "Alice Springs"
+      ],
+      "topAgency": "Department of Housing",
+      "sample": "Central Australia Region - Provision of Housing Maintenance Co-ordination Services in Specified Remote Communities for a Period of 55 Months"
+    },
+    {
+      "name": "Bawinanga Aboriginal Corp",
+      "known": "Bawinanga Aboriginal Corporation",
+      "contracts": 2,
+      "valueAud": 5555844,
+      "roomToBreathe": 1,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Darwin Region",
+        "Arafura Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Darwin Region - Maningrida - Construction of 1 X 3 Bedroom Dwelling on Lot 535 and 1 X 2 Bedroom Duplex on Lot 534 - Government Employee House"
+    },
+    {
+      "name": "Big River Housing Pty Ltd",
+      "known": null,
+      "contracts": 6,
+      "valueAud": 5255441,
+      "roomToBreathe": 1,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Katherine Region",
+        "Darwin Region",
+        "East Arnhem Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Katherine Region - Room to Breathe Early Works Package in Numbulwar"
+    },
+    {
+      "name": "Extreme Auto Installations Pty Ltd",
+      "known": null,
+      "contracts": 4,
+      "valueAud": 5253423,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Darwin",
+        "Alice Springs, Darwin"
+      ],
+      "topAgency": "Northern Territory Police, Fire and Emergency Services",
+      "sample": "Darwin - Provision of Automobile Electrical Services including Radio and Electronic Equipment Fit Out for a Period of 36 Months"
+    },
+    {
+      "name": "Julalikari Council Aboriginal Corporation",
+      "known": "Julalikari Council Aboriginal Corporation",
+      "contracts": 4,
+      "valueAud": 5017817,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Tennant Creek"
+      ],
+      "topAgency": "Department of Housing",
+      "sample": "Tennant Creek - Provision of Property and Tenancy Management of Affordable Housing Dwellings for a Period of 24 Months"
+    },
+    {
+      "name": "Central Desert Regional Council",
+      "known": null,
+      "contracts": 4,
+      "valueAud": 4938162,
+      "roomToBreathe": 2,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Alice Springs Region",
+        "Katherine Region",
+        "Alice Springs"
+      ],
+      "topAgency": "Department of Housing and Community Development",
+      "sample": "Alice Springs Region - Room to Breathe Early Works Package in Engawala"
+    },
+    {
+      "name": "Demed Aboriginal Corporation & Dice (Aust) Pty Ltd",
+      "known": null,
+      "contracts": 1,
+      "valueAud": 4839876,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Darwin Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Darwin Region - Gunbalanya Community - Provision of Construction, Refurbishments and Upgrades to Northern Territory Government (NTG) Housing Infrastru"
+    },
+    {
+      "name": "SHAPE Australia Pty Limited",
+      "known": null,
+      "contracts": 8,
+      "valueAud": 4823010,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Darwin",
+        "Darwin Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Darwin - Level 4 Charles Darwin Centre - Office Fit Out"
+    },
+    {
+      "name": "Rodeghiero Fong & Partners Pty Ltd",
+      "known": null,
+      "contracts": 3,
+      "valueAud": 4730258,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Alice Springs Region",
+        "Tennant Creek Region",
+        "Darwin"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Alice Springs Region - Wilora and Titjikala - Remote Community Housing (RCH) - Design Documentation for 8 Replacement Houses"
+    },
+    {
+      "name": "Tiwi Contractors Pty Ltd",
+      "known": null,
+      "contracts": 3,
+      "valueAud": 4720523,
+      "roomToBreathe": 1,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Darwin Region",
+        "Arafura Region"
+      ],
+      "topAgency": "Department of Infrastructure, Planning and Logistics",
+      "sample": "Arafura Region - Room to Breathe Early Works Package in Milikapiti"
+    },
+    {
+      "name": "Bawinanga Aboriginal Corporation",
+      "known": "Bawinanga Aboriginal Corporation",
+      "contracts": 5,
+      "valueAud": 4704439,
+      "roomToBreathe": 2,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Darwin Region",
+        "Arafura Region"
+      ],
+      "topAgency": "Department of Housing and Community Development",
+      "sample": "Arafura Region - Room to Breathe Early Works Package in Maningrida"
+    },
+    {
+      "name": "MORETTI INVESTMENTS PTY. LTD.",
+      "known": null,
+      "contracts": 1,
+      "valueAud": 4645534,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Alice Springs"
+      ],
+      "topAgency": "Department of Corporate and Information Services",
+      "sample": "Alice Springs - Lease - Renewal - Alice Springs - Mwerre House"
+    },
+    {
+      "name": "Roper Gulf Shire Council",
+      "known": null,
+      "contracts": 1,
+      "valueAud": 4580950,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": false,
+      "topPlaces": [
+        "Big Rivers Region"
+      ],
+      "topAgency": "Department of Housing",
+      "sample": "Big Rivers Region - Provision of Housing Maintenance Co-ordination Services in Specified Remote Communities for a Period of 55 Months"
+    },
+    {
+      "name": "M&J Builders Pty Ltd",
+      "known": null,
+      "contracts": 1,
+      "valueAud": 4500000,
+      "roomToBreathe": 0,
+      "beddingMentions": 0,
+      "territoryEnterprise": true,
+      "topPlaces": [
+        "Southern Region"
+      ],
+      "topAgency": "Department of Logistics and Infrastructure",
+      "sample": "Southern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months"
+    }
+  ],
+  "places": [
+    {
+      "place": "Darwin Region",
+      "contracts": 263,
+      "valueAud": 423205755,
+      "topContractor": "WTD Constructions Pty Ltd"
+    },
+    {
+      "place": "Katherine Region",
+      "contracts": 147,
+      "valueAud": 198514180,
+      "topContractor": "Binjari Community Aboriginal Corporation"
+    },
+    {
+      "place": "Alice Springs Region",
+      "contracts": 163,
+      "valueAud": 190771125,
+      "topContractor": "Pedersen NT Pty Ltd"
+    },
+    {
+      "place": "East Arnhem Region",
+      "contracts": 70,
+      "valueAud": 116014218,
+      "topContractor": "WTD Constructions Pty Ltd"
+    },
+    {
+      "place": "Darwin",
+      "contracts": 360,
+      "valueAud": 113020123,
+      "topContractor": "SD Painters Pty Ltd"
+    },
+    {
+      "place": "Alice Springs",
+      "contracts": 84,
+      "valueAud": 103036914,
+      "topContractor": "MacDonnell Regional Council"
+    },
+    {
+      "place": "Southern Region",
+      "contracts": 26,
+      "valueAud": 80071777,
+      "topContractor": "DJC Build Pty Ltd"
+    },
+    {
+      "place": "Northern Region",
+      "contracts": 31,
+      "valueAud": 80000000,
+      "topContractor": "C & R Constructions Pty Ltd"
+    },
+    {
+      "place": "Nhulunbuy",
+      "contracts": 22,
+      "valueAud": 74248146,
+      "topContractor": "Better Mows and Gardens Pty Ltd"
+    },
+    {
+      "place": "Tennant Creek Region",
+      "contracts": 47,
+      "valueAud": 71350362,
+      "topContractor": "GK Painting Contractors Pty Ltd"
+    },
+    {
+      "place": "Greater Darwin Region",
+      "contracts": 4,
+      "valueAud": 46712660,
+      "topContractor": "System Homes Pty Limited"
+    },
+    {
+      "place": "Katherine",
+      "contracts": 39,
+      "valueAud": 32508019,
+      "topContractor": "AUS Projects NT Pty Ltd"
+    },
+    {
+      "place": "All Regions",
+      "contracts": 8,
+      "valueAud": 28128997,
+      "topContractor": "Nth Degree Engineering Services Pty Ltd"
+    },
+    {
+      "place": "Tennant Creek",
+      "contracts": 26,
+      "valueAud": 26775537,
+      "topContractor": "Julalikari Council Aboriginal Corporation"
+    },
+    {
+      "place": "Arafura Region",
+      "contracts": 22,
+      "valueAud": 24971174,
+      "topContractor": "Bawinanga Aboriginal Corporation"
+    },
+    {
+      "place": "All Centres",
+      "contracts": 75,
+      "valueAud": 18148506,
+      "topContractor": "Ekistica Pty Ltd"
+    },
+    {
+      "place": "Barkly Region",
+      "contracts": 11,
+      "valueAud": 17986822,
+      "topContractor": "Far Northern Contractors Pty Ltd"
+    },
+    {
+      "place": "Big Rivers Region",
+      "contracts": 4,
+      "valueAud": 9999376,
+      "topContractor": "Scott Hammet Building and Carpentry Pty Ltd"
+    },
+    {
+      "place": "East Arnhem",
+      "contracts": 2,
+      "valueAud": 9927980,
+      "topContractor": "Ngarda Civil & Mining Pty Limited"
+    },
+    {
+      "place": "Royal Darwin Hospital",
+      "contracts": 3,
+      "valueAud": 7979878,
+      "topContractor": "Insight Oceania Quantum Healthcare Group Pty Ltd"
+    },
+    {
+      "place": "Central Australia Region",
+      "contracts": 3,
+      "valueAud": 7379135,
+      "topContractor": "Ingkerreke Commercial Pty Ltd as Trustee for the I"
+    },
+    {
+      "place": "Alice Springs, Darwin",
+      "contracts": 4,
+      "valueAud": 3466660,
+      "topContractor": "Extreme Auto Installations Pty Ltd"
+    },
+    {
+      "place": "Darwin, Palmerston and Coolalinga",
+      "contracts": 2,
+      "valueAud": 2452427,
+      "topContractor": "Elders Rural Services Australia Limited"
+    },
+    {
+      "place": "Kalkarindji Community",
+      "contracts": 1,
+      "valueAud": 2254231,
+      "topContractor": "AJL Holdings Pty Ltd"
+    },
+    {
+      "place": "Palmerston",
+      "contracts": 5,
+      "valueAud": 2209877,
+      "topContractor": "Vystan Pty Limited"
+    },
+    {
+      "place": "Housing Maintenance Program",
+      "contracts": 1,
+      "valueAud": 2017949,
+      "topContractor": "Aminjarrinja Enterprises Aboriginal Corporation"
+    },
+    {
+      "place": "Katherine Court House",
+      "contracts": 4,
+      "valueAud": 1784703,
+      "topContractor": "Unknown"
+    },
+    {
+      "place": "Central Region",
+      "contracts": 1,
+      "valueAud": 1716343,
+      "topContractor": "Sonwane Pty Limited as Trustee for Tangentyere Cha"
+    },
+    {
+      "place": "Consultancy",
+      "contracts": 12,
+      "valueAud": 1661602,
+      "topContractor": "Deloitte Touche Tohmatsu"
+    },
+    {
+      "place": "Arnhem Region",
+      "contracts": 3,
+      "valueAud": 1576628,
+      "topContractor": "The Arnhem Land Progress Aboriginal Corporation"
+    }
+  ]
+}
