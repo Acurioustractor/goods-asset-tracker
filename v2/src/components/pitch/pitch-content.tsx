@@ -13,6 +13,7 @@ import { TenYearSlider } from '@/components/pitch/ten-year-slider';
 import { VideoModal } from '@/components/pitch/video-modal';
 import { Voice, leadVoice } from '@/components/pitch/voice';
 import { FunderMomentBlock } from '@/components/pitch/funder-moment';
+import { FundersSoFar } from '@/components/pitch/funders-so-far';
 import { funderMomentFor } from '@/lib/data/funder-moments';
 import { MadeWithCommunity } from '@/components/pitch/made-with-community';
 import { contributionsConfirmed, listeningPlaces, listeningVoices } from '@/lib/data/community-contributions';
@@ -866,6 +867,9 @@ export async function PitchContent({ variant }: { variant: PitchVariant }) {
       <Section id="money" number={15} title="Keep each dollar in its own lane.">
         <p className="mt-6 max-w-3xl text-lg leading-relaxed text-[#4a4741] md:text-xl">Philanthropy buys the first beds. QBE builds the two facilities. A loan carries the first-year running cost and is repaid from the beds Goods sells. Customers pay the community organisation, and that money stays there.</p>
         <MoneyLanesView lanes={isQbe ? MONEY_LANES : MONEY_LANES.map((l) => ({ ...l, source: { ...l.source, named: "" } }))} never={MONEY_NEVER} total={MONEY_TOTAL} split={BED_SPLIT} price={BED.priceAud} ways={BED_WAYS} named={isQbe} />
+        {/* Money RECEIVED, which unlike the lanes above carries no confidentiality
+            problem, so it is named on both doors. See funders-so-far.tsx. */}
+        <FundersSoFar />
       </Section>
 
       {/* S16 · Capital status, QBE door only */}
