@@ -21,6 +21,7 @@ import {
   NEWSLETTER_CONSENT_FIELD_ID,
   LANE_COMMUNITY,
 } from './canonical-tags';
+import { routeForSubject } from './inquiry-routing';
 
 // Configuration from environment
 const GHL_API_KEY = process.env.GHL_API_KEY || '';
@@ -1465,6 +1466,56 @@ Synced: ${new Date().toLocaleString('en-AU')}
    */
   async addNote(contactId: string, note: string): Promise<boolean> {
     return addContactNote(contactId, note);
+  },
+
+  /**
+   * Put a front-door enquiry on the right board as a card.
+   *
+   * Until this existed, every contact-form subject produced a contact and a tag
+   * and stopped there, so tracking an enquiry meant hunting for a tag instead of
+   * looking at a board. See ./inquiry-routing for which door lands where and why,
+   * and for why the ids are hardcoded rather than env-driven.
+   *
+   * Always opens on the FIRST stage of the board, with no monetary value. An
+   * enquiry is the start of a conversation. A human sets the value and moves the
+   * card.
+   *
+   * Never throws. The contact, the note, the inbox email and the Supabase receipt
+   * have all already happened by the time this runs, so a failure here costs a
+   * card, never the enquiry.
+   */
+  async createInquiryOpportunity(opts: {
+    contactId: string;
+    subject: string;
+    /** Org name if we have one, otherwise the person's name. Becomes the card title. */
+    name: string;
+  }): Promise<{ created: boolean; board?: string }> {
+    const route = routeForSubject(opts.subject);
+    if (!route) return { created: false };
+
+    if (!GHL_ENABLED) {
+      console.log(`[GHL] Disabled, would open a card on ${route.boardName}:`, opts.name);
+      return { created: true, board: route.boardName };
+    }
+
+    try {
+      await ghlRequest('/opportunities/', 'POST', {
+        locationId: GHL_LOCATION_ID,
+        pipelineId: route.pipelineId,
+        pipelineStageId: route.stageId,
+        contactId: opts.contactId,
+        name: opts.name,
+        status: 'open',
+      });
+      await addContactNote(
+        opts.contactId,
+        `Opened on ${route.boardName} at ${route.stageName}, from the "${opts.subject}" door on the website.`,
+      );
+      return { created: true, board: route.boardName };
+    } catch (error) {
+      console.error(`[GHL] Could not open a card on ${route.boardName}:`, error);
+      return { created: false };
+    }
   },
 
   /** Add one or more tags to an existing contact (idempotent in GHL). */

@@ -26,28 +26,41 @@ export interface GoodsPipelineMeta {
   id: string;
   name: string;
   role: string;
-  stream: 'commercial' | 'philanthropy' | 'demand';
+  stream: 'commercial' | 'philanthropy' | 'demand' | 'community';
 }
 
-/** The three Goods pipelines the tracker reads live. */
+/**
+ * The Goods pipelines the tracker reads live.
+ *
+ * Names match the live GHL boards as at 17 September 2026. They had drifted:
+ * the boards were renamed to the `GOODS - X` form and this file still carried
+ * the old labels, which matters because the smart-list recipes in ghl/smart-lists
+ * quote these names for a human to paste into the GHL UI.
+ */
 export const GOODS_PIPELINES: GoodsPipelineMeta[] = [
   {
     id: 'UQsrmuqzxMSdCTklxEcG',
-    name: 'Goods — Demand Register',
+    name: 'GOODS - Demand',
     role: 'Unworked demand signals (upstream of the LOI ladder)',
     stream: 'demand',
   },
   {
     id: 'FjMyJM3YzWQFmKqR9fur',
-    name: 'Goods — Buyer Pipeline',
+    name: 'GOODS - Buyers',
     role: 'Commercial bed sales',
     stream: 'commercial',
   },
   {
     id: 'JvBFYpVpyKsw899lkFgj',
-    name: 'Goods Supporter Journey',
-    role: 'All philanthropy — foundations, grants (tagged), major donors, capital (goods-capital tag)',
+    name: 'GOODS - Funding',
+    role: 'All philanthropy: foundations, grants (tagged), major donors, capital (goods-capital tag)',
     stream: 'philanthropy',
+  },
+  {
+    id: '0m9teeEQFiq6I7GB5xiP',
+    name: 'GOODS - Community',
+    role: 'The community decision and delivery pathway, Invitation through to Operating',
+    stream: 'community',
   },
 ];
 

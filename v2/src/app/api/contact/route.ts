@@ -169,6 +169,17 @@ export async function POST(request: NextRequest) {
     if (ghlResult.success && ghlResult.contact?.id) {
       await ghl.addTags(ghlResult.contact.id, ['act-inquiry', 'project-goods']);
 
+      // Put it on a board. Each door lands on its own pipeline at the first
+      // stage (see lib/ghl/inquiry-routing), so an enquiry is a card somebody
+      // can move rather than a tag somebody has to search for. Subjects with no
+      // route (General, Media Pack, LGANT) are a no-op.
+      const opp = await ghl.createInquiryOpportunity({
+        contactId: ghlResult.contact.id,
+        subject,
+        name: body.organisation?.trim() || body.name,
+      });
+      if (opp.created) console.log('[Contact] Opened a card on', opp.board);
+
       // Thread the inquiry into the contact's GHL Conversations inbox as an
       // inbound email, so the team can read + reply in-thread (replies send via
       // the native GHL email channel — no Custom conversation provider needed).
