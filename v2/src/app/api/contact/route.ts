@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ghl } from '@/lib/ghl';
+import { guardContactSubmission } from '@/lib/contact-delivery/anti-abuse';
 import {
   recordContactSubmission,
   sendSubmissionToInbox,
@@ -14,6 +15,8 @@ interface ContactFormData {
   message: string;
   organisation?: string;
   subscribe?: boolean;
+  /** Honeypot. A real person never fills this in; a bot fills every field. */
+  _companyWebsite?: string;
 }
 
 /**
@@ -48,6 +51,23 @@ export async function POST(request: NextRequest) {
   try {
     const body = (await request.json()) as ContactFormData;
 
+    // Abuse guard before anything is written or sent. A honeypot hit is answered
+    // with the same success the sender would have got, so a bot learns nothing
+    // from the response, and nothing is stored.
+    const guard = await guardContactSubmission(request, {
+      honeypot: body._companyWebsite,
+      identity: body.email,
+    });
+    if (guard.reason === 'honeypot') {
+      return NextResponse.json({ success: true, message: 'Your message has been received.' });
+    }
+    if (!guard.allowed) {
+      return NextResponse.json(
+        { error: 'Too many messages. Please wait a few minutes and try again.' },
+        { status: 429 },
+      );
+    }
+
     // Validate required fields
     if (!body.name || !body.email || !body.message) {
       return NextResponse.json(
@@ -76,7 +96,14 @@ export async function POST(request: NextRequest) {
       email: body.email,
       name: body.name,
       subject,
-      payload: body as unknown as Record<string, unknown>,
+      payload: {
+        ...(body as unknown as Record<string, unknown>),
+        // The honeypot value is never kept. The fingerprint is an HMAC of the
+        // client address, never the address itself, and it is what the next
+        // request's rate-limit window counts against.
+        _companyWebsite: undefined,
+        _clientFingerprint: guard.fingerprint,
+      } as Record<string, unknown>,
     };
     submissionId = await recordContactSubmission(submission);
 

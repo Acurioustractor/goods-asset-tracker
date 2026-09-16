@@ -93,6 +93,7 @@ export function ContactGoodsButton({
           organisation: String(data.get('organisation') ?? '') || undefined,
           subject,
           message: `Sent from ${page}\n\n${String(data.get('message') ?? '')}`,
+          _companyWebsite: String(data.get('_companyWebsite') ?? '') || undefined,
         }),
       });
       const json = (await res.json().catch(() => ({}))) as { error?: string };
@@ -170,6 +171,8 @@ export function ContactGoodsButton({
                 </div>
               ) : (
                 <form onSubmit={submit} className="space-y-5">
+                  {/* Honeypot: hidden from people and screen readers, filled by bots. Checked in api/contact. */}
+                  <input name="_companyWebsite" type="text" tabIndex={-1} autoComplete="off" className="sr-only" aria-hidden="true" />
                   <div className="grid gap-5 sm:grid-cols-2">
                     <label className="block">
                       <span className={labelCls}>Name</span>

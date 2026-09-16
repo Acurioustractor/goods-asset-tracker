@@ -20,9 +20,15 @@ export function PressContactForm() {
     const data = {
       name: (form.elements.namedItem('name') as HTMLInputElement).value,
       email: (form.elements.namedItem('email') as HTMLInputElement).value,
-      subject: 'Press Pack Request',
+      // 'Media Pack Request' is the allowlisted subject (api/contact
+      // CONTACT_SUBJECTS). It also routes through createPartnershipContact, which
+      // applies goods-media and so role:media. The old 'Press Pack Request'
+      // string did neither.
+      subject: 'Media Pack Request',
       organisation,
       message: organisation ? `Organisation: ${organisation}\n\n${messageText}` : messageText,
+      _companyWebsite:
+        (form.elements.namedItem('_companyWebsite') as HTMLInputElement | null)?.value || undefined,
     };
 
     try {
@@ -59,6 +65,8 @@ export function PressContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="grid gap-4">
+      {/* Honeypot: hidden from people and screen readers, filled by bots. Checked in api/contact. */}
+      <input name="_companyWebsite" type="text" tabIndex={-1} autoComplete="off" className="sr-only" aria-hidden="true" />
       <div className="grid gap-4 md:grid-cols-2">
         <label className="text-sm">
           <span className="mb-1.5 block font-medium">Your name</span>
