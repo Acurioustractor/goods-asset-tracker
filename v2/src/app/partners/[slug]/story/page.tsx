@@ -7,13 +7,15 @@ import { getStorytellerBySlug } from '@/lib/data/storyteller-registry';
 import { ORGANISATION } from '@/lib/data/organisation';
 import { goodsBoard } from '@/lib/data/goods-board';
 import {
-  ALIGNMENT, BECAUSE_OF, NOT_FINISHED, SNOW_MONEY, TOGETHER,
+  ALIGNMENT, BECAUSE_OF, FILMS, NOT_FINISHED, OONCHIUMPA_NEXT, SNOW_MONEY, TOGETHER, WALLS,
 } from '@/lib/data/snow-partnership';
 import { StickyFilm, type FilmStep } from '@/components/pitch/sticky-film';
 import { ChapterRail } from '@/components/pitch/chapter-rail';
 import { CountUp } from '@/components/pitch/count-up';
 import { TogetherTimeline } from '@/components/partners/together-timeline';
 import { AlignmentTable } from '@/components/partners/alignment-table';
+import { FilmGallery, type GalleryFilm } from '@/components/partners/film-gallery';
+import { PhotoWall } from '@/components/pitch/photo-wall';
 
 /**
  * THE SNOW PARTNERSHIP REPORT. Password gated in proxy.ts alongside the dashboard.
@@ -46,14 +48,17 @@ export const metadata: Metadata = {
 };
 
 const CHAPTERS = [
-  { id: 'ch-stakes', number: '01', label: 'What is at stake' },
+  { id: 'ch-making', number: '01', label: 'What we are doing' },
   { id: 'ch-first', number: '02', label: 'Snow went first' },
-  { id: 'ch-together', number: '03', label: 'What we have done' },
-  { id: 'ch-because', number: '04', label: 'What Goods is now' },
-  { id: 'ch-board', number: '05', label: 'Who holds it' },
-  { id: 'ch-align', number: '06', label: 'Your strategy, our evidence' },
-  { id: 'ch-unfinished', number: '07', label: 'What is not finished' },
-  { id: 'ch-next', number: '08', label: 'What we are asking' },
+  { id: 'ch-alice', number: '03', label: 'Alice Springs' },
+  { id: 'ch-films', number: '04', label: 'In their own words' },
+  { id: 'ch-archive', number: '05', label: 'The archive' },
+  { id: 'ch-together', number: '06', label: 'What we have done' },
+  { id: 'ch-because', number: '07', label: 'What Goods is now' },
+  { id: 'ch-board', number: '08', label: 'Who holds it' },
+  { id: 'ch-align', number: '09', label: 'Your strategy, our evidence' },
+  { id: 'ch-unfinished', number: '10', label: 'What is not finished' },
+  { id: 'ch-next', number: '11', label: 'What we are asking' },
 ] as const;
 
 /** Default-deny, same shape as funder-moments: wrong tier or unapproved renders nothing. */
@@ -118,6 +123,23 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
   const healthyHomes = quote('georgina-byron', 'funder', 'Healthy homes is the start of everything');
   const smallStart = quote('georgina-byron', 'funder', 'you start small and then you realize');
   const vicki = quote('vicki-wade', 'external', 'Community leadership, community ownership');
+  const karen = quote('karen-liddle', 'external', 'start your own business');
+  const mykel = quote('mykel', 'external', 'rocking up every day');
+
+  // Films carry their voice resolved here, so the client component never decides what may
+  // be published. A film whose voice does not clear simply arrives without one.
+  const films: GalleryFilm[] = FILMS.map((f) => {
+    const v = f.voice ? quote(f.voice.slug, 'external', f.voice.contains) : null;
+    return {
+      src: f.src, poster: f.poster, title: f.title, why: f.why, story: f.story, place: f.place,
+      voice: v ? { name: v.person.name, role: v.person.role, text: v.quote.text } : null,
+    };
+  });
+
+  const wallGroups = WALLS.map((w) => ({
+    label: w.label,
+    photos: w.files.map((f) => ({ src: w.dir + f.file, alt: f.alt, caption: f.caption })),
+  }));
   const norman = quote('norman-frank', 'external', "we've got our own ways");
 
   // The arc over the drone: an idea, then a project, then a charity with its own board.
@@ -210,30 +232,37 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </header>
 
       <Chapter
-        id="ch-stakes" number="01" label="What is at stake"
-        title="Rheumatic heart disease, before anything else"
-        lead="Sally told us in May that a cold reader needs the chain explained plainly, before the product and before the manufacturing story. She was right, so it goes here."
+        id="ch-making" number="01" label="What we are doing"
+        title="Beds made on Country, and paid work in the making of them"
+        lead="You know the disease better than we do, so this opens where we can actually tell you something: the plant, the work in it, and who ends up owning it."
       >
-        <div className="rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
-          <p className="font-display text-xl leading-snug sm:text-2xl" style={{ color: CHARCOAL }}>
-            Rheumatic heart disease is a preventable condition that damages the heart valves of children and young
-            people. It is almost eradicated everywhere in the world except in remote Aboriginal and Torres Strait
-            Islander communities in Australia.
-          </p>
-          <ol className="mt-8 grid gap-3 sm:grid-cols-5">
-            {['Sleeping on the floor', 'Scabies', 'Strep A', 'Rheumatic fever', 'Rheumatic heart disease'].map((s, i) => (
-              <li key={s} className="rounded-lg p-4" style={{ backgroundColor: CREAM, borderTop: `3px solid ${i < 2 ? RUST : '#B8AEA4'}` }}>
-                <span className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: '#A99C8F' }}>{String(i + 1).padStart(2, '0')}</span>
-                <p className="mt-1 text-sm font-semibold leading-snug" style={{ color: CHARCOAL }}>{s}</p>
-              </li>
-            ))}
-          </ol>
-          <p className="mt-6 text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-            A bed off the floor and bedding that can be washed act on the first two links, which are the two that a
-            product can reach. That is the whole of our claim, and chapter seven says what we will not add to it.
-          </p>
+        <div className="grid gap-4 sm:grid-cols-3">
+          <div className="rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderTop: `3px solid ${RUST}` }}>
+            <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>Proven</p>
+            <p className="mt-2 font-display text-lg leading-snug" style={{ color: CHARCOAL }}>Forty beds pressed in our own facility</p>
+            <p className="mt-2 text-sm leading-relaxed" style={{ color: `${CHARCOAL}99` }}>
+              The Maningrida run went through our own shredder, heat press and router. Production moving on Country
+              has already happened. Nothing here is a projection.
+            </p>
+          </div>
+          <div className="rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderTop: `3px solid ${SAGE}` }}>
+            <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: SAGE }}>Where the money lands</p>
+            <p className="mt-2 font-display text-lg leading-snug" style={{ color: CHARCOAL }}>Customers pay the community organisation</p>
+            <p className="mt-2 text-sm leading-relaxed" style={{ color: `${CHARCOAL}99` }}>
+              Not us, then them. Them. After costs they decide what happens next: more beds, more paid work, or
+              making something of their own.
+            </p>
+          </div>
+          <div className="rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderTop: '3px solid #B8AEA4' }}>
+            <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: '#6A5E54' }}>Not yet</p>
+            <p className="mt-2 font-display text-lg leading-snug" style={{ color: CHARCOAL }}>Nobody owns a site</p>
+            <p className="mt-2 text-sm leading-relaxed" style={{ color: `${CHARCOAL}99` }}>
+              Zero community-owned production sites. Chapter three is the one that would change that number, and it
+              is waiting on a federal decision.
+            </p>
+          </div>
         </div>
-        {healthyHomes && <Pull v={healthyHomes} />}
+        {mykel && <Pull v={mykel} />}
       </Chapter>
 
       <div id="ch-first" className="scroll-mt-24">
@@ -244,16 +273,16 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
               An idea, a project, and now a charity with its own board
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-relaxed sm:text-lg" style={{ color: `${CHARCOAL}cc` }}>
-              Snow&rsquo;s money was in all three stages. This is Tingkkarli, five kilometres north of Tennant Creek,
-              filmed on the April 2025 trip.
+              Snow&rsquo;s money was in all three stages. This is Gamardi at Maningrida, where forty beds were pressed
+              in our own facility before they were built on Country.
             </p>
           </div>
         </div>
         <StickyFilm
-          src="/video/tennant-creek/tingkkarli-drone.mp4"
-          poster="/video/tennant-creek/tingkkarli-drone-poster.jpg"
-          alt="Tingkkarli, Lake Mary Ann, north of Tennant Creek"
-          credit="Tingkkarli / Lake Mary Ann, Warumungu Country, April 2025"
+          src="/video/maningrida/gamardi-drone.mp4"
+          poster="/video/maningrida/gamardi-drone-poster.jpg"
+          alt="Gamardi, Maningrida, Arnhem Land"
+          credit="Gamardi, Maningrida, Arnhem Land. Forty Stretch Beds for Maningrida were pressed in our own facility."
           steps={steps}
           scrim="heavy"
         />
@@ -289,7 +318,62 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </div>
 
       <Chapter
-        id="ch-together" number="03" label="What we have done"
+        id="ch-alice" number="03" label="Alice Springs"
+        title="Oonchiumpa operate it, employ young people, and keep leading that place"
+        lead="The Indigenous ownership story with a date attached. It is also the thing Snow is being invited into."
+      >
+        <div className="rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>
+            {OONCHIUMPA_NEXT.partner} &middot; {OONCHIUMPA_NEXT.place}
+          </p>
+          <p className="mt-2 font-display text-xl leading-snug sm:text-2xl" style={{ color: CHARCOAL }}>{OONCHIUMPA_NEXT.what}</p>
+          <ol className="mt-6 grid gap-3 sm:grid-cols-4">
+            {OONCHIUMPA_NEXT.steps.map((st, i) => (
+              <li key={st.title} className="rounded-lg p-4" style={{ backgroundColor: CREAM, borderTop: `3px solid ${st.state === 'future' ? '#B8AEA4' : RUST}` }}>
+                <div className="flex items-baseline justify-between gap-2">
+                  <span className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: '#A99C8F' }}>{String(i + 1).padStart(2, '0')}</span>
+                  <span className="rounded-full px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wide" style={{ backgroundColor: st.state === 'future' ? '#EEE9E3' : '#F6E4DE', color: st.state === 'future' ? '#6A5E54' : '#9A4023' }}>
+                    {st.state === 'future' ? 'not yet' : 'proposed'}
+                  </span>
+                </div>
+                <p className="mt-2 text-sm font-semibold leading-snug" style={{ color: CHARCOAL }}>{st.title}</p>
+                <p className="mt-2 text-xs leading-relaxed" style={{ color: `${CHARCOAL}99` }}>{st.detail}</p>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-6 text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>{OONCHIUMPA_NEXT.status}</p>
+          <p className="mt-3 text-sm leading-relaxed" style={{ color: `${CHARCOAL}99` }}>{OONCHIUMPA_NEXT.connection}</p>
+        </div>
+        {karen && <Pull v={karen} />}
+      </Chapter>
+
+      <Chapter
+        id="ch-films" number="04" label="In their own words"
+        title="The films"
+        lead="Five, including one Snow have not been shown. Each plays where it sits, and only one at a time."
+      >
+        <FilmGallery films={films} />
+      </Chapter>
+
+      <div id="ch-archive" className="scroll-mt-24 px-5 py-16 sm:px-8 sm:py-24">
+        <div className="mx-auto max-w-4xl">
+          <p className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: RUST }}>05 &middot; The archive</p>
+          <h2 className="mt-3 font-display text-3xl leading-tight sm:text-4xl" style={{ color: CHARCOAL }}>The photographs</h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed sm:text-lg" style={{ color: `${CHARCOAL}cc` }}>
+            Five sets. The first one is the thinnest, and it is the one about us and you.
+          </p>
+        </div>
+        <div className="mt-8">
+          <PhotoWall
+            groups={wallGroups}
+            title="Two years, in frames"
+            sub="Everything here is already published. Where a set is short, it is short because that is what the archive holds."
+          />
+        </div>
+      </div>
+
+      <Chapter
+        id="ch-together" number="06" label="What we have done"
         title="Two years, and the money is the smallest part of it"
         lead="Trips, rooms, introductions and the times Snow told this story in its own voice. Filter the money out and see what is left."
       >
@@ -298,7 +382,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </Chapter>
 
       <Chapter
-        id="ch-because" number="04" label="What Goods is now"
+        id="ch-because" number="07" label="What Goods is now"
         title="What the money turned into"
         lead="Counts where we have counts, and labels where we do not. The last number on this list is zero, and it is the one we print against ourselves."
       >
@@ -326,7 +410,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </Chapter>
 
       <Chapter
-        id="ch-board" number="05" label="Who holds it"
+        id="ch-board" number="08" label="Who holds it"
         title={ORGANISATION.boardLine}
         lead="Snow said in November 2025 that all future grants would require First Nations leadership, and that every partner would be reviewed. This is our answer, and it was underway before the question."
       >
@@ -352,7 +436,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </Chapter>
 
       <Chapter
-        id="ch-align" number="06" label="Your strategy, our evidence"
+        id="ch-align" number="09" label="Your strategy, our evidence"
         title="Read your own words back, with the gaps marked"
         lead="Six things Snow has published about what it funds, and what Goods can actually put against each one. Two of these are weak and one is a thing we are not asking you to fund."
       >
@@ -360,7 +444,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </Chapter>
 
       <Chapter
-        id="ch-unfinished" number="07" label="What is not finished"
+        id="ch-unfinished" number="10" label="What is not finished"
         title="The parts we would rather you heard from us"
         lead="A funder who asks for evidence-based and culturally safe programs should be told what the evidence does not cover."
       >
@@ -375,7 +459,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </Chapter>
 
       <Chapter
-        id="ch-next" number="08" label="What we are asking"
+        id="ch-next" number="11" label="What we are asking"
         title="133 beds, and a longer conversation"
         lead="The same ask we have put to our other bed funders, so nobody is being asked for something shaped specially for them."
       >

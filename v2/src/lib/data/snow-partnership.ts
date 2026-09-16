@@ -356,6 +356,12 @@ export interface Alignment {
  * own material, and deliberately including the two where the answer is weak. A funder who
  * reads their own strategy back with the gaps marked trusts the parts that are strong.
  */
+/**
+ * Order matters here. Ben, 16 September: lead on employment and Indigenous ownership. So
+ * First Nations leadership sits first because it is both the strongest row and the thing
+ * Snow said in November 2025 would gate all future grants, then the two rows about work and
+ * ownership, then the rest. The environment row stays last and stays honest.
+ */
 export const ALIGNMENT: readonly Alignment[] = [
   {
     id: 'first-nations-leadership',
@@ -365,18 +371,18 @@ export const ALIGNMENT: readonly Alignment[] = [
     strength: 'strong',
   },
   {
+    id: 'employment',
+    snowSays: 'Education and Employment: employment pathways, life skills, scholarships.',
+    snowSource: 'Snow Foundation grant themes',
+    goodsHas: 'Two paid roles today. Cultural consultation is paid at university-equivalent rates. On a community-owned site about $329 of every bed would stay in community. The last figure is modelled. Nothing of it is banked.',
+    strength: 'partial',
+  },
+  {
     id: 'community-ownership',
     snowSays: 'Ensuring community ownership and leadership, principles reflected in our strategy.',
     snowSource: 'Georgina Byron AM, 2024 Year in Review',
     goodsHas: 'The money flow is the answer: customers pay the community organisation directly, and after costs the community decides whether it becomes more beds, paid local work, or making their own. Community ownership of a production site has not happened. Zero sites, printed as zero.',
     strength: 'partial',
-  },
-  {
-    id: 'rhd',
-    snowSays: 'We are dedicated to ending rheumatic heart disease, focusing on community leadership, advocacy, and the broader social determinants for health equity.',
-    snowSource: 'Snow Foundation, 2024 Year in Review',
-    goodsHas: 'Goods is already named in Snow’s own annual report as an RHD partner. We hold the line that the bed addresses the conditions the scabies pathway depends on, and we do not claim a health outcome. Two metrics were deleted from our own impact model when the only honest version of them would have implied a prevented case.',
-    strength: 'strong',
   },
   {
     id: 'capacity',
@@ -386,11 +392,11 @@ export const ALIGNMENT: readonly Alignment[] = [
     strength: 'partial',
   },
   {
-    id: 'employment',
-    snowSays: 'Education and Employment: employment pathways, life skills, scholarships.',
-    snowSource: 'Snow Foundation grant themes',
-    goodsHas: 'Two paid roles today. Cultural consultation is paid at university-equivalent rates. On a community-owned site about $329 of every bed would stay in community. The last figure is modelled. Nothing of it is banked.',
-    strength: 'partial',
+    id: 'rhd',
+    snowSays: 'We are dedicated to ending rheumatic heart disease, focusing on community leadership, advocacy, and the broader social determinants for health equity.',
+    snowSource: 'Snow Foundation, 2024 Year in Review',
+    goodsHas: 'Goods is already named in Snow’s own annual report as an RHD partner. We hold the line that the bed addresses the conditions the scabies pathway depends on, and we do not claim a health outcome. Two metrics were deleted from our own impact model when the only honest version of them would have implied a prevented case.',
+    strength: 'strong',
   },
   {
     id: 'environment',
@@ -428,4 +434,194 @@ export const BED_HERE = {
   priceAud: BED.priceAud,
   makeAud: BED.makeAud,
   contributionAud: BED.contributionAud,
+} as const;
+
+// ---------------------------------------------------------------------------
+// FILMS AND PHOTOGRAPHS
+//
+// Ben, 16 September 2026, on the first cut of this report: the rheumatic heart disease
+// explainer goes. Snow have been at RHD since 2011 and it is their own strategy; explaining
+// it back to them is the wrong move. Sally's "explain the chain plainly" note was written
+// about a cold airport audience, not about the foundation that wrote the strategy.
+//
+// What goes in its place is what we are doing: the making, the work in it, and Indigenous
+// ownership. Those are the things Snow cannot see from a report line.
+
+export interface Film {
+  src: string;
+  poster: string;
+  title: string;
+  /** Why this film is in a report to Snow, in one line. */
+  why: string;
+  /** The story it carries, two or three sentences. */
+  story: string;
+  /** Registry slug plus a fragment, when a person speaks in it. Default-deny, as ever. */
+  voice?: { slug: string; contains: string };
+  place: string;
+}
+
+export const FILMS: readonly Film[] = [
+  {
+    src: '/video/partners/oonchiumpa/karen-liddle-on-beds.mp4',
+    poster: '/video/partners/oonchiumpa/karen-liddle-on-beds-poster.jpg',
+    title: 'Karen Liddle, on starting Oonchiumpa',
+    why: 'The clearest statement of Indigenous enterprise in the whole archive, and it is hers.',
+    story:
+      'Karen co-founded Oonchiumpa, an Aboriginal community-controlled organisation in Alice Springs. She describes starting a business as something you tell the women around you to go and do. Oonchiumpa is now the partner in the Alice Springs facility submission, and Kristy Bloomfield, who directs it, sits on the Goods on Country board.',
+    voice: { slug: 'karen-liddle', contains: 'start your own business' },
+    place: 'Mparntwe / Alice Springs, Arrernte Country',
+  },
+  {
+    src: '/video/partners/oonchiumpa/mykel-building-the-bed.mp4',
+    poster: '/video/partners/oonchiumpa/mykel-building-the-bed-poster.jpg',
+    title: 'Mykel, building the bed',
+    why: 'What a job looks like when it is the first one, said by the person doing it.',
+    story:
+      'Mykel built beds on the Utopia trip. The line that matters for an employment conversation is not a statistic, it is him saying he would come back and do it every day. This is the whole of what paid local work means at the point where it starts.',
+    voice: { slug: 'mykel', contains: 'rocking up every day' },
+    place: 'Utopia Homelands',
+  },
+  {
+    src: '/video/maningrida/gamardi-drone.mp4',
+    poster: '/video/maningrida/gamardi-drone-poster.jpg',
+    title: 'Gamardi, Maningrida',
+    why: 'Where the beds were pressed in our own facility, which is the proof the factory path works.',
+    story:
+      'Forty Stretch Beds for Maningrida were pressed in house, so the claim that production can move is not a projection. Eight washing machines are in community there. Country with nobody in frame, so it carries no consent question of its own.',
+    place: 'Maningrida, Arnhem Land',
+  },
+  {
+    src: '/video/partners/centrecorp/utopia-good-news-full.mp4',
+    poster: '/video/partners/centrecorp/utopia-good-news-full-poster.jpg',
+    title: 'Utopia, the full run',
+    why: 'The delivery at scale, and the one film here Snow have not been shown.',
+    story:
+      'Eighty-seven beds to Utopia Homelands over two days with Oonchiumpa and the Utopia Council, a bed under thirty-six households. Made for the Centrecorp relationship. They buy beds, so this film has never been put in front of Snow.',
+    place: 'Utopia Homelands',
+  },
+  {
+    src: '/video/tennant-creek/tingkkarli-drone.mp4',
+    poster: '/video/tennant-creek/tingkkarli-drone-poster.jpg',
+    title: 'Tingkkarli, Tennant Creek',
+    why: 'The place Georgina and Sally came to, filmed on the trip they were on.',
+    story:
+      'Tingkkarli, or Lake Mary Ann, five kilometres north of Tennant Creek, cut from the April 2025 trip. A publicly promoted recreation lake with nobody in frame.',
+    place: 'Tennant Creek, Warumungu Country',
+  },
+];
+
+export interface WallSet {
+  label: string;
+  note?: string;
+  dir: string;
+  files: readonly { file: string; alt: string; caption?: string }[];
+}
+
+/**
+ * The photographs. Everything here already sits in `v2/public/`, which is a public repo, so
+ * each one has passed the consent gate before it was committed. Nothing is added to this list
+ * that is not already on disk.
+ *
+ * THE THIN SET IS THE SNOW ONE, and the page says so on the set itself. Five frames of Snow
+ * and Goods in the same place is what the archive holds, and padding it with pictures of beds
+ * would hide that.
+ * More were asked for on 16 September.
+ */
+export const WALLS: readonly WallSet[] = [
+  {
+    label: 'Snow and Goods, in the same place',
+    note: 'Five frames. This is the whole of what the archive holds, and it is the thinnest set on the page.',
+    dir: '/images/media-pack/',
+    files: [
+      { file: 'snow-tennant-creek-april-2025.jpg', alt: 'Tennant Creek, April 2025', caption: 'Tennant Creek, April 2025' },
+      { file: 'sally-georgina-tennant-creek-jul-2025.jpg', alt: 'Georgina Byron AM and Sally Grimsley-Ballard with community Elders in Tennant Creek', caption: 'Georgina in the Wilya Janta shirt, Sally in the Deadly Heart Trek shirt, with Elders at Tennant Creek' },
+      { file: 'deadly-heart-trek-aug-2025.jpg', alt: 'Deadly Heart Trek team, August 2025', caption: 'The Deadly Heart Trek, August 2025' },
+      { file: 'parliament-house-event-mar-2025.jpg', alt: 'Parliamentary Friends for Ending Rheumatic Heart Disease, Canberra', caption: 'Parliament House, March 2026, with NACCHO and the RHD Alliance' },
+      { file: 'canberra-airport-display-may-2025.jpg', alt: 'Goods display at Canberra Airport', caption: 'Canberra Airport, May 2026, organised by Sally with Capital Airport Group' },
+    ],
+  },
+  {
+    label: 'Alice Springs, and Oonchiumpa',
+    dir: '/images/community/alice-springs/',
+    files: [
+      { file: 'oonchiumpa-team-red-bed.jpg', alt: 'The Oonchiumpa team with a red Stretch Bed' },
+      { file: 'oonchiumpa-office-joy.jpg', alt: 'In the Oonchiumpa office' },
+      { file: 'stretch-bed-two-generations.jpg', alt: 'Two generations on a Stretch Bed' },
+      { file: 'stretch-bed-kids-pile.jpg', alt: 'Kids piled on a Stretch Bed' },
+      { file: 'frame-build-camp.jpg', alt: 'Building frames at camp' },
+      { file: 'bush-camp-fire.jpg', alt: 'Bush camp' },
+      { file: 'atnarpa-portrait.jpg', alt: 'Atnarpa' },
+    ],
+  },
+  {
+    label: 'The making, and the work in it',
+    note: 'The facility: shred, press, cut, assemble. This is what an employment conversation is actually about.',
+    dir: '/images/process/',
+    files: [
+      { file: 'container-factory.jpg', alt: 'The containerised factory' },
+      { file: 'shredder-granulator.jpg', alt: 'The shredder and granulator' },
+      { file: 'shredded-plastic-tubs.jpg', alt: 'Shredded plastic in tubs' },
+      { file: 'heat-press-full.jpg', alt: 'The heat press' },
+      { file: 'pressed-sheets-stacked.jpg', alt: 'Pressed sheets stacked' },
+      { file: 'cnc-cutting-closeup.jpg', alt: 'The CNC router cutting leg panels' },
+      { file: 'cut-legs-stored.jpg', alt: 'Cut legs stored' },
+      { file: 'parts-rack-sorted.jpg', alt: 'Parts rack, sorted' },
+      { file: 'workstation-container.jpg', alt: 'The workstation container' },
+      { file: 'facility-full-site.jpg', alt: 'The full facility site' },
+      { file: 'joey-portrait.jpg', alt: 'At the facility' },
+      { file: 'offcuts-weighed.jpg', alt: 'Offcuts weighed' },
+    ],
+  },
+  {
+    label: 'Maningrida',
+    note: 'Forty beds pressed in our own facility, then built on Country.',
+    dir: '/images/community/maningrida/',
+    files: [
+      { file: 'gamardi-build-day-wide.jpg', alt: 'Gamardi build day' },
+      { file: 'unrolling-canvas-with-elder.jpg', alt: 'Unrolling canvas with an Elder' },
+      { file: 'tensioning-canvas.jpg', alt: 'Tensioning the canvas' },
+      { file: 'men-over-finished-bed.jpg', alt: 'Over a finished bed' },
+      { file: 'kids-carrying-orange-bed.jpg', alt: 'Kids carrying an orange bed' },
+      { file: 'group-beside-washer.jpg', alt: 'Beside a washing machine' },
+      { file: 'washer-lid-dusk.jpg', alt: 'Washing machine at dusk' },
+      { file: 'whole-run-at-sunset.jpg', alt: 'The whole run at sunset' },
+    ],
+  },
+  {
+    label: 'Palm Island',
+    note: 'The Backing the Future pilot: twenty-five beds, three community sessions, thirty young people on the build.',
+    dir: '/images/community/palm-island/',
+    files: [
+      { file: 'panel-carry-aug-2025.jpg', alt: 'Carrying panels, August 2025' },
+      { file: 'crate-build-shed.jpg', alt: 'Building in the shed' },
+      { file: 'crate-build-lawn.jpg', alt: 'Building on the lawn' },
+      { file: 'two-men-thumbs-up.jpg', alt: 'Thumbs up' },
+      { file: 'naidoc-nan-kids-bed.jpg', alt: 'NAIDOC, with kids and a bed' },
+      { file: 'woman-new-bed-home.jpg', alt: 'A new bed at home' },
+      { file: 'family-dogs-new-bed.jpg', alt: 'Family and dogs on a new bed' },
+      { file: 'kids-unroll-topper.jpg', alt: 'Kids unrolling a topper' },
+    ],
+  },
+];
+
+/**
+ * The Alice Springs opportunity, which is the forward half of the Indigenous ownership story
+ * and the thing Snow is actually being invited into. Oonchiumpa operate it, employ young
+ * people, and keep leading that place. Every claim here is labelled: the submission is real,
+ * the decision is not made, and nothing is owned yet.
+ */
+export const OONCHIUMPA_NEXT = {
+  partner: 'Oonchiumpa Consultancy and Services',
+  place: 'Mparntwe / Alice Springs, Arrernte Country',
+  what: 'A second production facility, operated by Oonchiumpa.',
+  steps: [
+    { title: 'Operate it', detail: 'Oonchiumpa run the facility. Not hosted by them, run by them.', state: 'proposed' as const },
+    { title: 'Employ young people', detail: 'Young people in Alice Springs building beds for money, with training that travels home. Katrina Bloomfield has already done train-the-trainer at the Queensland facility.', state: 'proposed' as const },
+    { title: 'Build the enterprise', detail: 'Customers pay Oonchiumpa directly. After costs they decide what happens next: more beds, more paid work, or making something of their own.', state: 'proposed' as const },
+    { title: 'Own it', detail: 'On the Supply Nation 51% First Nations ownership path. No site has passed this point.', state: 'future' as const },
+  ],
+  status:
+    'Lodged with the federal REAL Innovation Fund, with Lhere Artepe support letters signed. The decision is pending and we will say so until it is not.',
+  connection:
+    'Kristy Bloomfield directs Oonchiumpa and is a director of Goods on Country. Sally met Kristy and Tanya Turner through an introduction we made in Sydney in October 2025.',
 } as const;
