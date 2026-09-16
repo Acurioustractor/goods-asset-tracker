@@ -3,7 +3,7 @@ import { createServiceClient } from '@/lib/supabase/server';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import { canonValue } from '@/lib/data/canon';
 import { NEEDS_BEN } from '@/lib/data/investor-wiki';
-import type { RouteStatus } from '@/lib/data/admin-routes';
+import { ADMIN_ROUTE_DIRECTORY, ROUTE_STATUS_LABEL, type RouteStatus } from '@/lib/data/admin-routes';
 import MapCard, { type MapCommunity } from './map-card';
 import { ChevronRight, ArrowRight } from 'lucide-react';
 
@@ -179,7 +179,55 @@ export default async function MapHome() {
           </div>
         </div>
       </div>
+
+      <RouteDirectory />
     </div>
+  );
+}
+
+/**
+ * Every route, with what it is for.
+ *
+ * The sidebar shows 24 destinations. This is the other 61, and it is where the sidebar's
+ * "All routes" link lands. ROUTE_TONE sat in this file unused, which means the section existed
+ * once and was lost; scripts/check-admin-routes.mjs now fails the build if the directory and the
+ * real routes ever disagree, so it cannot quietly rot again.
+ *
+ * UNREACHABLE is the status worth looking for. It means the route works and nothing links to it.
+ */
+function RouteDirectory() {
+  const orphans = ADMIN_ROUTE_DIRECTORY.flatMap((g) => g.routes).filter((r) => r.status === 'orphan');
+  const total = ADMIN_ROUTE_DIRECTORY.reduce((n, g) => n + g.routes.length, 0);
+
+  return (
+    <section id="routes" className="mt-10 scroll-mt-24 border-t pt-8">
+      <div className="flex flex-wrap items-baseline justify-between gap-3">
+        <h2 className="font-display text-xl">All {total} admin routes</h2>
+        <p className="text-xs text-muted-foreground">
+          {orphans.length > 0 && <span className="font-semibold text-goods-terracotta">{orphans.length} unreachable. </span>}
+          The sidebar shows the work. Everything else lives inside the hub that owns it.
+        </p>
+      </div>
+
+      <div className="mt-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {ADMIN_ROUTE_DIRECTORY.map((group) => (
+          <div key={group.group}>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">{group.group}</p>
+            <ul className="mt-2 space-y-1.5">
+              {group.routes.map((r) => (
+                <li key={r.href} className="text-sm leading-snug">
+                  <Link href={r.href} className="font-medium hover:underline">{r.name}</Link>
+                  <span className={`ml-2 rounded px-1.5 py-0.5 align-middle text-[9px] font-semibold uppercase tracking-wide ${ROUTE_TONE[r.status]}`}>
+                    {ROUTE_STATUS_LABEL[r.status]}
+                  </span>
+                  {r.note && <span className="block text-[11px] text-muted-foreground">{r.note}</span>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
 

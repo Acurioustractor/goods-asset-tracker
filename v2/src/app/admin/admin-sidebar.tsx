@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
+import { ADMIN_ROUTE_DIRECTORY } from '@/lib/data/admin-routes';
 import {
   Map as MapIcon,
   MapPin,
@@ -25,9 +26,9 @@ import {
   LogOut,
   Search,
   MoreHorizontal,
-  ChevronDown,
-  ChevronRight,
   CornerDownLeft,
+  CornerDownRight,
+  Users,
   Route,
 } from 'lucide-react';
 
@@ -41,101 +42,116 @@ type NavGroup = { group: string; items: NavItem[] };
 // Everything else stays reachable through the More drawer and ⌘K until each
 // front absorbs it as a tab. Sweep + keep/fold/retire table:
 // wiki/outputs/2026-07-20-admin-see-do-public-sweep.md
+/**
+ * THE SIDEBAR SHOWS THE WORK, and the route directory holds everything else.
+ *
+ * Ben, 17 September 2026: "we need a full rethink of the sidebar and data, it is a mess and all
+ * over the place and confusing me." He was right, and the counting says why.
+ *
+ *   It listed 52 routes. Twenty-three of them are declared `absorbed` in admin-routes.ts, which
+ *   means "folded into a hub; still works, linked from that hub's tabs". The sidebar listed them
+ *   as though each were its own destination, so Voices hub, Registry, Story atlas, Quotes,
+ *   Stories (EL), Storytellers (EL), Community stories and Field notes were eight lines for one
+ *   thing. The IA was decided in July. The sidebar never followed it.
+ *
+ *   /admin/cost-model appeared twice, as "Money" in Cockpit and "Cost Story" in Funder room.
+ *
+ *   "Products & Plant" pointed at /admin/products, which next.config.ts redirects to /admin, so
+ *   it took you back to the dashboard. Fixed 17 September.
+ *
+ *   "More (38)" was a junk drawer holding stale redirects, one-off tools and five routes nothing
+ *   links to at all.
+ *
+ * SO THE GROUPS ARE NOUNS NOW. Cockpit, Funder room and Field were metaphors that said nothing about
+ * what is behind them. Place, People, Making, Money and Story are the five things Goods has, and
+ * every route in the directory belongs to exactly one of them.
+ *
+ * WHAT IS HIDDEN IS STILL REACHABLE. Every absorbed route is linked from its hub's tabs, and
+ * every route without exception is in the directory rendered on /admin and in ⌘K. Nothing was
+ * deleted here; the sidebar stopped pretending 52 routes are 52 destinations.
+ */
 const navigation: NavGroup[] = [
   {
-    group: 'Cockpit',
+    group: 'Now',
     items: [
+      { name: 'Today',             href: '/admin/today',          icon: Sun },
       { name: 'The Map',           href: '/admin',                icon: MapIcon },
+    ],
+  },
+  {
+    group: 'Place',
+    items: [
       { name: 'Communities',       href: '/admin/communities',    icon: MapPin },
       { name: 'Pathways',          href: '/admin/pathways',       icon: Route },
-      { name: 'Media Room',        href: '/admin/media-library',  icon: ImageIcon },
-      { name: 'Money',             href: '/admin/cost-model',     icon: CircleDollarSign },
-      { name: 'Products & Plant',  href: '/admin/facility',       icon: Factory },
-      { name: 'Pipeline',          href: '/admin/pipeline',       icon: KanbanSquare },
       { name: 'Procurement',       href: '/admin/procurement',    icon: ClipboardList },
+      { name: 'Atlas',             href: '/admin/atlas',          icon: MapIcon },
     ],
   },
   {
-    group: 'Funder room',
+    group: 'People',
     items: [
-      { name: 'Start Here',   href: '/investors',           icon: DoorOpen },
-      { name: 'The Ask',      href: '/admin/ask',           icon: HandCoins },
-      { name: 'Cost Story',   href: '/admin/cost-model',    icon: ReceiptText },
-      { name: 'Voice Impact', href: '/admin/voice-impact',  icon: Quote },
+      { name: 'People',            href: '/admin/people',         icon: Users },
+      { name: 'Voices',            href: '/admin/voices',         icon: Quote },
+      { name: 'Voice impact',      href: '/admin/voice-impact',   icon: Quote },
+      { name: 'Consent',           href: '/admin/consent',        icon: ShieldCheck },
     ],
   },
   {
-    group: 'Field',
+    group: 'Making',
     items: [
-      { name: 'Today',    href: '/admin/today',          icon: Sun },
-      { name: 'Register', href: '/admin/assets',         icon: ClipboardList },
-      { name: 'Trips',    href: '/admin/bed-preflight',  icon: Truck },
-      { name: 'Fleet',    href: '/admin/fleet',          icon: Radio },
-      { name: 'Consent',  href: '/admin/consent',        icon: ShieldCheck },
+      { name: 'Facility',          href: '/admin/facility',       icon: Factory },
+      { name: 'Production',        href: '/admin/production',     icon: Factory },
+      { name: 'Register',          href: '/admin/assets',         icon: ClipboardList },
+      { name: 'Fleet',             href: '/admin/fleet',          icon: Radio },
+      { name: 'Trips',             href: '/admin/bed-preflight',  icon: Truck },
+    ],
+  },
+  {
+    group: 'Money',
+    items: [
+      { name: 'Cost model',        href: '/admin/cost-model',     icon: CircleDollarSign },
+      { name: 'Raise',             href: '/admin/deals',          icon: KanbanSquare },
+      { name: 'Orders',            href: '/admin/orders',         icon: ReceiptText },
+      { name: 'Requests',          href: '/admin/requests',       icon: HandCoins },
+      { name: 'Reports',           href: '/admin/reports',        icon: ReceiptText },
+    ],
+  },
+  {
+    group: 'Story',
+    items: [
+      { name: 'Media room',        href: '/admin/media-library',  icon: ImageIcon },
+      { name: 'Visuals',           href: '/admin/system-visuals', icon: ImageIcon },
+      { name: 'Pitch cockpit',     href: '/admin/pitch-cockpit',  icon: DoorOpen },
+      { name: 'Content library',   href: '/admin/library',        icon: ImageIcon },
     ],
   },
 ];
 
-// More drawer + ⌘K target list — still-active routes not yet absorbed into a
-// front. Grouped loosely by the front that will eventually own each.
-const moreNavigation: NavItem[] = [
-  // → Communities
-  { name: 'Atlas (full map)',   href: '/admin/atlas',             icon: MapIcon },
-  { name: 'People',             href: '/admin/people',            icon: MapPin },
-  // → Media Room
-  { name: 'Canon board',        href: '/admin/canon',             icon: ImageIcon },
-  { name: 'Visuals',            href: '/admin/system-visuals',    icon: ImageIcon },
-  { name: 'Media gaps',         href: '/admin/media-gaps',        icon: ImageIcon },
-  { name: 'Quote cards',        href: '/admin/quote-cards',       icon: Quote },
-  { name: 'Dashboard images',   href: '/admin/dashboard-images',  icon: ImageIcon },
-  // → Voices (consent wing)
-  { name: 'Voices hub',         href: '/admin/voices',            icon: Quote },
-  { name: 'Registry',           href: '/admin/storytellers',      icon: Quote },
-  { name: 'Story atlas',        href: '/admin/story-atlas',       icon: Quote },
-  { name: 'Quotes',             href: '/admin/quotes',            icon: Quote },
-  { name: 'Stories (EL)',       href: '/admin/el-stories',        icon: Quote },
-  { name: 'Storytellers (EL)',  href: '/admin/el-storytellers',   icon: Quote },
-  { name: 'Community stories',  href: '/admin/community-stories', icon: Quote },
-  { name: 'Field notes',        href: '/admin/field-notes',       icon: Quote },
-  // → Money
-  { name: 'Xero recon',         href: '/admin/xero-reconciliation', icon: CircleDollarSign },
-  { name: 'Orders',             href: '/admin/orders',            icon: CircleDollarSign },
-  { name: 'Requests',           href: '/admin/requests',          icon: CircleDollarSign },
-  { name: 'Trip receipts',      href: '/admin/trip-receipts',     icon: ReceiptText },
-  { name: 'Funders',            href: '/admin/funders',           icon: CircleDollarSign },
-  { name: 'Funder reports',     href: '/admin/reports',           icon: ReceiptText },
-  { name: 'Impact reports',     href: '/admin/reports/impact',    icon: ReceiptText },
-  // → Pipeline
-  { name: 'Deals (Kanban)',     href: '/admin/deals',             icon: KanbanSquare },
-  { name: 'LOI tracker',        href: '/admin/loi-tracker',       icon: KanbanSquare },
-  // → Products & Plant
-  { name: 'Facility',           href: '/admin/facility',          icon: Factory },
-  { name: 'Production',         href: '/admin/production',        icon: Factory },
-  // → Field
-  { name: 'Bed signals',        href: '/admin/bed-signals',       icon: Radio },
-  { name: 'Scans',              href: '/admin/scans',             icon: Radio },
-  { name: 'Install',            href: '/admin/install-bulk',      icon: Truck },
-  { name: 'Install checklist',  href: '/admin/install-checklist', icon: ClipboardList },
-  { name: 'Operating systems',  href: '/admin/operating-systems', icon: Radio },
-  { name: 'Roadmap',            href: '/admin/roadmap',           icon: ClipboardList },
-  // Pitch + comms
-  { name: 'Pitch cockpit',      href: '/admin/pitch-cockpit',     icon: ImageIcon },
-  { name: 'Deck builder',       href: '/admin/deck-builder',      icon: ImageIcon },
-  { name: 'Site content',       href: '/admin/site-content',      icon: ReceiptText },
-  { name: 'Content library',    href: '/admin/library',           icon: ImageIcon },
-  { name: 'Reach out',          href: '/admin/reach-out',         icon: Radio },
-  // Route review board
-  { name: 'Route review',       href: '/admin/route-review',      icon: KanbanSquare },
-];
-
-// Flat list of everything ⌘K can jump to (fronts + more), de-duplicated by href.
+/**
+ * ⌘K reaches every route, and takes its list from ADMIN_ROUTE_DIRECTORY.
+ *
+ * It used to run off a hand-kept array beside the sidebar, which is how fifteen routes built
+ * since July became unreachable from anywhere. The directory is guarded by
+ * scripts/check-admin-routes.mjs, which fails the build when a route exists and is not declared,
+ * so sourcing ⌘K from it means a new route is jumpable the moment it is declared and can never
+ * fall behind again.
+ *
+ * Routes marked `stale` or `one-off` are still here. Somebody looking for the Alice fill wizard
+ * by name should find it; they just should not have to scroll past it every day.
+ */
 const ALL_ROUTES: NavItem[] = (() => {
   const seen = new Set<string>();
   const out: NavItem[] = [];
-  for (const item of [...navigation.flatMap((g) => g.items), ...moreNavigation]) {
-    if (seen.has(item.href)) continue;
+  for (const item of navigation.flatMap((g) => g.items)) {
     seen.add(item.href);
     out.push(item);
+  }
+  for (const group of ADMIN_ROUTE_DIRECTORY) {
+    for (const r of group.routes) {
+      if (seen.has(r.href)) continue;
+      seen.add(r.href);
+      out.push({ name: r.name, href: r.href, icon: CornerDownRight });
+    }
   }
   return out;
 })();
@@ -225,8 +241,6 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
-  const inMore = moreNavigation.some((m) => pathname === m.href || pathname.startsWith(m.href + '/'));
-  const [moreOpen, setMoreOpen] = useState(inMore);
 
   // ⌘K / Ctrl+K opens the palette
   useEffect(() => {
@@ -299,39 +313,19 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
             </li>
           ))}
 
-          {/* More drawer */}
+          {/* Everything else. The directory on /admin renders all 85 routes with their status. */}
           <li>
-            <button
-              type="button"
-              onClick={() => setMoreOpen((v) => !v)}
-              className="flex w-full items-center justify-between px-2 text-[10.5px] font-bold leading-6 text-muted-foreground uppercase tracking-[0.14em] mb-1 hover:text-foreground transition-colors"
+            <Link
+              href="/admin#routes"
+              onClick={() => setMobileMenuOpen(false)}
+              className="group flex items-center gap-x-3 rounded-lg px-2.5 py-1.5 text-sm leading-6 font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
-              <span className="flex items-center gap-2">
-                <MoreHorizontal className="h-3.5 w-3.5" /> More
-                <span className="text-[10px] normal-case tracking-normal">({moreNavigation.length})</span>
-              </span>
-              {moreOpen ? <ChevronDown className="h-3.5 w-3.5" /> : <ChevronRight className="h-3.5 w-3.5" />}
-            </button>
-            {moreOpen && (
-              <ul role="list" className="space-y-0.5">
-                {moreNavigation.map((item) => (
-                  <li key={item.name}>
-                    <Link
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={`group flex items-center gap-x-3 rounded-lg px-2.5 py-1.5 text-sm leading-6 font-medium transition-all ${
-                        isActive(item.href)
-                          ? 'bg-primary/10 text-primary'
-                          : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-                      }`}
-                    >
-                      <item.icon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
+              <MoreHorizontal className="h-4 w-4 shrink-0" aria-hidden="true" />
+              All {ALL_ROUTES.length} routes
+            </Link>
+            <p className="px-2.5 pt-1 text-[10px] leading-snug text-muted-foreground">
+              Everything is in ⌘K. The rest live inside the hub that owns them.
+            </p>
           </li>
 
           {/* Footer */}
