@@ -50,6 +50,25 @@ describe('funder moments', () => {
     }
   });
 
+  it('never routes a funder through the community voice path either', () => {
+    // The mirror of the test above. `producedVoice` renders through the community Voice
+    // component, which prints "name · role · community". A funder in that slot would be
+    // filed among the people Goods serves, which is the exact thing the registry forbids.
+    for (const m of FUNDER_MOMENTS) {
+      if (!m.producedVoice) continue;
+      const person = getStorytellerBySlug(m.producedVoice.slug);
+      expect(person, `${m.producedVoice.slug} is not in the registry`).toBeTruthy();
+      expect(
+        person!.tier,
+        `${person!.name} is tier ${person!.tier}. Only an external community voice may render here.`,
+      ).toBe('external');
+
+      const matches = person!.quotes.filter((q) => q.text.includes(m.producedVoice!.quoteContains));
+      expect(matches, `no quote of ${person!.name} contains "${m.producedVoice.quoteContains}"`).toHaveLength(1);
+      expect(['primary', 'approved']).toContain(matches[0].status);
+    }
+  });
+
   it('prints an approved quote, matched on its own words', () => {
     for (const m of FUNDER_MOMENTS) {
       if (!m.voice) continue;

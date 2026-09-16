@@ -14,6 +14,7 @@
 import Image from 'next/image';
 import { getStorytellerBySlug } from '@/lib/data/storyteller-registry';
 import { grantLineFor, type FunderMoment } from '@/lib/data/funder-moments';
+import { Voice } from '@/components/pitch/voice';
 
 function funderQuote(moment: FunderMoment) {
   if (!moment.voice) return null;
@@ -25,12 +26,28 @@ function funderQuote(moment: FunderMoment) {
   return quote ? { person, quote } : null;
 }
 
+/**
+ * The community voice a grant produced. Tier `external` only, the mirror of the funder
+ * check above, so the two paths can never be crossed in either direction. A `primary`
+ * quote counts here as well as an `approved` one, matching leadVoice().
+ */
+function producedVoice(moment: FunderMoment) {
+  if (!moment.producedVoice) return null;
+  const person = getStorytellerBySlug(moment.producedVoice.slug);
+  if (!person || person.tier !== 'external') return null;
+  const quote = person.quotes.find(
+    (q) => (q.status === 'primary' || q.status === 'approved') && q.text.includes(moment.producedVoice!.quoteContains),
+  );
+  return quote ? { person, quote } : null;
+}
+
 export function FunderMomentBlock({ moment }: { moment: FunderMoment }) {
   // The grant line is read only for what it BOUGHT. Ben, 2026-09-16: no dollar
   // figures on the funder surfaces. An amount invites a new funder to anchor on
   // it, and it turns a record of trust into a league table.
   const grant = grantLineFor(moment);
   const voice = funderQuote(moment);
+  const produced = producedVoice(moment);
 
   return (
     <aside
@@ -80,9 +97,33 @@ export function FunderMomentBlock({ moment }: { moment: FunderMoment }) {
         </figure>
       )}
 
+      {produced && (
+        <div className="mt-7 border-t border-[#e6dfd1] pt-6">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-terracotta">
+            And the person it produced
+          </p>
+          <div className="mt-4">
+            <Voice person={produced.person} quote={produced.quote} />
+          </div>
+        </div>
+      )}
+
       {grant?.bought && (
         <p className="mt-7 border-t border-[#e6dfd1] pt-4 text-[13px] leading-snug text-[#5d574c]">
           <span className="font-semibold text-goods-ink">What it paid for.</span> {grant.bought}
+        </p>
+      )}
+
+      {moment.link && (
+        <p className="mt-4 text-[13px] leading-snug">
+          <a
+            href={moment.link.href}
+            target="_blank"
+            rel="noreferrer"
+            className="underline decoration-goods-terracotta underline-offset-2 hover:text-goods-terracotta focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-goods-terracotta"
+          >
+            {moment.link.label}
+          </a>
         </p>
       )}
     </aside>

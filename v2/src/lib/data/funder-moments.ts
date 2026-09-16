@@ -41,6 +41,16 @@ export interface FunderMoment {
   photo: { src: string; alt: string; caption: string } | null;
   /** Registry slug + a distinctive fragment of the approved quote to print. */
   voice: { slug: string; quoteContains: string } | null;
+  /**
+   * A COMMUNITY voice the grant produced, tier `external`, rendered under the block
+   * with its own label and never inside it. Palm Island needs this: FRRR and VFFF have
+   * given us no words, so without it the block reads thinner than Snow's and the point
+   * of a youth grant, which is a person, goes unsaid. Jahvan Oui cannot go in `voice`
+   * above, and should not: that slot is for funders and the guard enforces it.
+   */
+  producedVoice?: { slug: string; quoteContains: string };
+  /** Somewhere the funder has published this work themselves, for a reader to follow. */
+  link?: { href: string; label: string };
 }
 
 export const FUNDER_MOMENTS: readonly FunderMoment[] = [
@@ -58,6 +68,10 @@ export const FUNDER_MOMENTS: readonly FunderMoment[] = [
       alt: 'Six people talking outside a house in Tennant Creek, a dumped mattress on the ground and a sheet strung up for shade',
       caption: 'Tennant Creek, 3 April 2025. No cheque, no stage: the funder outside the house, being shown what a bed has to answer.',
     },
+    link: {
+      href: 'https://www.snowfoundation.org.au/news/end-rheumatic-heart-disease-advocacy-event-parliament-house-rhd/',
+      label: "Snow's own account of the Parliament House RHD event",
+    },
     voice: {
       slug: 'georgina-byron',
       // "It's not a for, it's a with". A funder stating the design-in-community principle,
@@ -73,7 +87,7 @@ export const FUNDER_MOMENTS: readonly FunderMoment[] = [
     when: 'August to November 2025',
     place: 'Palm Island',
     line:
-      "Backing the Future is FRRR's youth program, co-funded by the Vincent Fairfax Family Foundation. It paid for the Palm Island pilot: 25 beds built on the island, three community sessions, and 30 young people on the build. Jahvan Oui and Ebony Oui were hosted at the Sydney factory in September 2025 to learn the production side. The work cost $73,000 against a $50,000 grant and A Curious Tractor carried the difference. Acquitted in March 2026, the only grant here that is finished, reported and closed.",
+      "Backing the Future is FRRR's youth program, co-funded by the Vincent Fairfax Family Foundation. It paid for the Palm Island pilot: 25 beds built on the island, three community sessions, and 30 young people on the build. Jahvan Oui and Ebony Oui were hosted at the Sydney factory in September 2025 to learn the production side. The pilot cost more than the grant covered and A Curious Tractor carried the difference. Acquitted in March 2026, the only grant here that is finished, reported and closed.",
     photo: {
       src: '/images/community/palm-island/crate-build-shed.jpg',
       alt: 'People of all ages laying out black collapsible crates in rows inside a shed on Palm Island, building Basket Beds',
@@ -83,6 +97,9 @@ export const FUNDER_MOMENTS: readonly FunderMoment[] = [
     // tier `external`, a community voice, so he belongs in the stop's Voice slot with
     // his own label and never inside a funder's block. The guard enforces it.
     voice: null,
+    // The grant's actual output is a person. Jahvan visited the Sydney factory on it and
+    // now wants to run a factory himself.
+    producedVoice: { slug: 'jahvan-oui', quoteContains: "There's gotta be a break in the cycle" },
   },
 ];
 
