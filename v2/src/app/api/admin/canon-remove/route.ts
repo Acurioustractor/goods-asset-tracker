@@ -5,6 +5,7 @@
 // writable FS only (Vercel prod is read-only; commit the edit from local to ship).
 
 import { NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/auth/admin';
 import { revalidatePath } from 'next/cache';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -28,6 +29,9 @@ function repoRoot(): string {
 }
 
 export async function POST(req: Request) {
+  const guard = await requireAdmin();
+  if (guard) return guard;
+
   let body: { canonicalPath?: string };
   try {
     body = (await req.json()) as { canonicalPath?: string };

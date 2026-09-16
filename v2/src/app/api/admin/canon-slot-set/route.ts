@@ -6,6 +6,7 @@
 // Dev/local writable FS only (Vercel prod is read-only); picks ship once committed.
 
 import { NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/auth/admin';
 import fs from 'node:fs';
 import path from 'node:path';
 import { revalidatePath } from 'next/cache';
@@ -35,6 +36,9 @@ interface CanonImg {
 }
 
 export async function POST(req: Request) {
+  const guard = await requireAdmin();
+  if (guard) return guard;
+
   let body: Body;
   try {
     body = (await req.json()) as Body;

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/auth/admin';
 
 const GHL_API_KEY = process.env.GHL_API_KEY || '';
 const GHL_LOCATION_ID = process.env.GHL_LOCATION_ID || '';
@@ -43,11 +44,15 @@ async function ghlRequest(endpoint: string, method: string, body?: Record<string
 }
 
 export async function POST(request: NextRequest) {
-  // Simple auth check — require admin key
-  const { searchParams } = new URL(request.url);
-  const key = searchParams.get('key');
-  if (key !== process.env.ADMIN_API_KEY) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  // An authenticated admin session is the preferred way in. The ?key= form is
+  // kept so any existing caller keeps working, but it is the weaker of the two:
+  // a secret in a query string lands in server logs, browser history and
+  // referrer headers. Prefer the session; retire the key once nothing uses it.
+  const guard = await requireAdmin(request);
+  if (guard) {
+    const key = new URL(request.url).searchParams.get('key');
+    const expected = process.env.ADMIN_API_KEY;
+    if (!expected || key !== expected) return guard;
   }
 
   if (!GHL_ENABLED) {

@@ -7,6 +7,7 @@
 // be absent, in which case deck-assets images 404 (cards show a broken tile);
 // public images still resolve. No copies are ever made (canon is no-copy).
 import fs from 'node:fs';
+import { requireAdmin } from '@/lib/auth/admin';
 import path from 'node:path';
 import type { NextRequest } from 'next/server';
 
@@ -41,6 +42,9 @@ function allowedPaths(root: string): Set<string> {
 }
 
 export async function GET(req: NextRequest) {
+  const guard = await requireAdmin();
+  if (guard) return guard;
+
   const rel = req.nextUrl.searchParams.get('path') || '';
   const root = repoRoot();
 

@@ -5,6 +5,7 @@
 // generated-images/ is gitignored (see CLAUDE.md "no large media in git"), so on
 // Vercel those requests 404 and the board shows a broken tile with a note.
 import fs from 'node:fs';
+import { requireAdmin } from '@/lib/auth/admin';
 import path from 'node:path';
 import type { NextRequest } from 'next/server';
 
@@ -27,6 +28,9 @@ function repoRoot(): string {
 }
 
 export async function GET(req: NextRequest) {
+  const guard = await requireAdmin();
+  if (guard) return guard;
+
   const rel = req.nextUrl.searchParams.get('path') || '';
   if (!ALLOWED_PREFIXES.some((prefix) => rel.startsWith(prefix))) {
     return new Response('Not allowed', { status: 403 });

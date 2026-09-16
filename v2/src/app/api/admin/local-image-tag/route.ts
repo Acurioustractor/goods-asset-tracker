@@ -5,6 +5,7 @@
 // route never touches Empathy Ledger.
 
 import { NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/auth/admin';
 import { setLocalImageTags } from '@/lib/data/local-image-tags';
 import { revalidatePath } from 'next/cache';
 
@@ -16,6 +17,9 @@ interface Body {
 }
 
 export async function POST(req: Request) {
+  const guard = await requireAdmin();
+  if (guard) return guard;
+
   let body: Body;
   try {
     body = (await req.json()) as Body;
