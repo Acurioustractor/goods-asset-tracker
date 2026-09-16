@@ -25,6 +25,27 @@ Two of those already hold Goods product. So the question stops being how to make
 organisation into a supplier, and becomes how to sell to the ones that are already winning the
 work and are already building the rooms the beds go in.
 
+THEN THE FINDING THAT MATTERS MORE, and it is a negative one.
+
+Nobody in the NT Government buys a bed for a remote community house. The housing agencies
+spent $817,871,353 across 1,394 contracts and nine of them mention furniture: office chairs in
+Darwin, and removalists. Across all 26,591 contracts, 125 mention furniture or whitegoods and
+not one is for a remote community. Most are roadside furniture, which is guard rails.
+
+Checked from the other direction too: only six contracts mention housing and bedding together,
+and every "bed" in them is the word inside "3 Bedroom Dwelling".
+
+So a head contractor builds the house and hands it over empty. The construction scope stops at
+the building. There is $1.7 billion of remote housing here and no procurement channel for the
+thing that goes in the bedroom, which means the tenant buys it, which is the problem Goods
+exists for.
+
+That correction matters: the contractors are not the customer for a bed inside their build
+scope. Where they could be a customer is their MAINTENANCE and tenancy contracts, where
+replacing a failed appliance is in scope. Bukmak holds remote housing maintenance at Galiwinku,
+Milingimbi and Gapuwiyak, and Binjari holds remote tenancy management at Binjari. That is a
+different and much smaller conversation than the build.
+
 Read only. Usage: python3 scripts/pull-nt-contracts.py
 """
 
@@ -120,6 +141,29 @@ def main() -> int:
             p['valueAud'] += value
             p['top'][name[:50]] += 1
 
+    # The furnishing gap. Computed here, because it is the finding and an assertion would not do.
+    furn = re.compile(
+        r'\b(furniture|furnishing|whitegood|white goods|domestic appliance|refrigerator|'
+        r'fridge|washing machine|mattress|bedding|linen)\b', re.I)
+    roadside = re.compile(r'roadside|airfield|road infrastructure', re.I)
+    housing_agency = re.compile(r'territory families|department of housing|local government, housing', re.I)
+
+    all_rows = []
+    wb2 = openpyxl.load_workbook(WORKBOOK, read_only=True, data_only=True)
+    rows2 = wb2['Government awarded contracts'].iter_rows(values_only=True)
+    next(rows2)
+    for row in rows2:
+        all_rows.append(row)
+
+    furn_rows = [r for r in all_rows if furn.search(str(field(r, 'Description of Procurement') or ''))]
+    household = [r for r in furn_rows if not roadside.search(str(field(r, 'Description of Procurement') or ''))]
+    hous_agency_rows = [r for r in all_rows if housing_agency.search(str(field(r, 'Agency') or ''))]
+    hous_agency_furn = [r for r in hous_agency_rows if furn.search(str(field(r, 'Description of Procurement') or ''))]
+    remote_furn = [
+        r for r in household
+        if re.search(r'remote|homeland|town camp', str(field(r, 'Description of Procurement') or ''), re.I)
+    ]
+
     def known_for(name: str):
         low = name.lower()
         for key, label in KNOWN.items():
@@ -140,6 +184,19 @@ def main() -> int:
                 if INFRA.search(str(field(r, 'Agency') or '')))),
             'territoryEnterpriseContracts': sum(
                 1 for r in housing if str(field(r, 'Territory Enterprise') or '').strip() == 'Yes'),
+        },
+        'furnishingGap': {
+            'furnitureOrWhitegoodsContracts': len(furn_rows),
+            'onceRoadsideRemoved': len(household),
+            'forARemoteCommunity': len(remote_furn),
+            'housingAgencyContracts': len(hous_agency_rows),
+            'housingAgencyValueAud': round(sum(float(field(r, 'Contract Value') or 0) for r in hous_agency_rows)),
+            'housingAgencyFurnitureContracts': len(hous_agency_furn),
+            'verdict': (
+                'The NT Government builds remote houses and hands them over empty. Its housing agencies '
+                'spent this much and bought office chairs and removalists. No procurement channel exists '
+                'for the thing that goes in the bedroom, so the tenant buys it.'
+            ),
         },
         'contractors': [
             {

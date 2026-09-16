@@ -8,6 +8,15 @@
     "infraAgencyValueAud": 1656085893,
     "territoryEnterpriseContracts": 1112
   },
+  "furnishingGap": {
+    "furnitureOrWhitegoodsContracts": 125,
+    "onceRoadsideRemoved": 112,
+    "forARemoteCommunity": 0,
+    "housingAgencyContracts": 1394,
+    "housingAgencyValueAud": 817871353,
+    "housingAgencyFurnitureContracts": 9,
+    "verdict": "The NT Government builds remote houses and hands them over empty. Its housing agencies spent this much and bought office chairs and removalists. No procurement channel exists for the thing that goes in the bedroom, so the tenant buys it."
+  },
   "contractors": [
     {
       "name": "DT Hobbs Pty Ltd",

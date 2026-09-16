@@ -47,6 +47,11 @@ interface NtPull {
   totals: { allContracts: number; housingRelated: number; housingValueAud: number; infraAgencyValueAud: number; territoryEnterpriseContracts: number };
   contractors: { name: string; known: string | null; contracts: number; valueAud: number; roomToBreathe: number; beddingMentions: number; territoryEnterprise: boolean; topPlaces: string[]; topAgency: string | null; sample: string | null }[];
   places: { place: string; contracts: number; valueAud: number; topContractor: string }[];
+  furnishingGap?: {
+    furnitureOrWhitegoodsContracts: number; onceRoadsideRemoved: number; forARemoteCommunity: number;
+    housingAgencyContracts: number; housingAgencyValueAud: number; housingAgencyFurnitureContracts: number;
+    verdict: string;
+  };
 }
 
 async function readNt(): Promise<NtPull | null> {
@@ -279,17 +284,43 @@ export default async function ProcurementPage() {
             <code className="rounded bg-muted px-1 py-0.5 text-[11px]">scripts/pull-nt-contracts.py</code>.
           </p>
 
-          <div className="mt-4 rounded-lg border-2 p-6" style={{ borderColor: '#4F6138' }}>
-            <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: '#4F6138' }}>The finding that changes the customer</p>
-            <h3 className="mt-2 font-display text-xl leading-snug">
-              The head contractors on remote housing are Aboriginal corporations, and we already know six of them.
-            </h3>
-            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-              The program is Room to Breathe, whose stated purpose is reducing overcrowding by adding sleeping
-              space. Bukmak is building 87 dwellings at Galiwin&rsquo;ku. Binjari is working at Bulman, Weemol and
-              Beswick. Bawinanga is at Maningrida. MacDonnell is at Titjikala and Kintore. So the question stops
-              being how to turn a community organisation into a supplier. They are already winning the work, they
-              are already Aboriginal-owned, and they are building the rooms the beds go in.
+          {nt.furnishingGap && (
+            <div className="mt-4 rounded-lg border-2 p-6" style={{ borderColor: '#C45C3E' }}>
+              <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: '#C45C3E' }}>The finding, and it is a negative one</p>
+              <h3 className="mt-2 font-display text-xl leading-snug">
+                Nobody buys a bed for a remote community house. The house is built and handed over empty.
+              </h3>
+              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+                The NT housing agencies spent {audShort(nt.furnishingGap.housingAgencyValueAud)} across{' '}
+                {nt.furnishingGap.housingAgencyContracts.toLocaleString('en-AU')} contracts.{' '}
+                {nt.furnishingGap.housingAgencyFurnitureContracts} of those mention furniture, and they are office
+                chairs in Darwin and removalists. Across all {nt.totals.allContracts.toLocaleString('en-AU')}{' '}
+                contracts, {nt.furnishingGap.furnitureOrWhitegoodsContracts} mention furniture or whitegoods,{' '}
+                {nt.furnishingGap.onceRoadsideRemoved} once roadside furniture is removed, and{' '}
+                <strong>{nt.furnishingGap.forARemoteCommunity}</strong> are for a remote community.
+              </p>
+              <p className="mt-3 max-w-3xl text-sm leading-relaxed">
+                So the construction scope stops at the building. There is {audShort(nt.totals.housingValueAud)} of
+                remote housing work here and no procurement channel at all for the thing that goes in the bedroom,
+                which means the tenant buys it. That is the problem Goods exists for, stated in the government&rsquo;s
+                own contract record.
+              </p>
+            </div>
+          )}
+
+          <div className="mt-4 rounded-lg border p-6">
+            <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: '#4F6138' }}>Who is building, and where they could still be a customer</p>
+            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+              The head contractors are Aboriginal corporations, and we already know six of them. Bukmak is building
+              87 dwellings at Galiwin&rsquo;ku under Room to Breathe, a program whose stated purpose is reducing
+              overcrowding by adding sleeping space. Binjari is at Bulman, Weemol and Beswick. Bawinanga is at
+              Maningrida. They are already Aboriginal-owned and already hold the contract.
+            </p>
+            <p className="mt-3 max-w-3xl text-sm leading-relaxed">
+              A bed is not in their build scope. Where it could be is their <strong>maintenance and tenancy</strong>{' '}
+              contracts, where replacing a failed appliance is in scope: Bukmak holds remote housing maintenance at
+              Galiwinku, Milingimbi and Gapuwiyak, and Binjari holds remote tenancy management at Binjari. Smaller
+              than the build, and a conversation with a real scope behind it.
             </p>
           </div>
 
