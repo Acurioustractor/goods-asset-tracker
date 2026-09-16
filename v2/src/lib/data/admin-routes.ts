@@ -1,18 +1,21 @@
 /**
- * The complete admin route directory — every route under /admin, grouped and
+ * The complete admin route directory · every route under /admin, grouped and
  * dispositioned. Mirrors wiki/investor/09-admin-ia.md (all routes reviewed
  * 2026-07-19; directory surfaced on /admin 2026-07-20).
  *
  * status:
- *   hub       — a wing/hub destination on the sidebar
- *   active    — working surface, reachable via a hub tab or More drawer
- *   absorbed  — folded into a hub; still works, linked from that hub's tabs
- *   utility   — workflow tool used on trips/installs
- *   stale     — no edits in 3+ months; direct URL only
- *   one-off   — built for a single past job; never re-linked
+ *   hub       · a wing/hub destination on the sidebar
+ *   active    · working surface, reachable via a hub tab or More drawer
+ *   absorbed  · folded into a hub; still works, linked from that hub's tabs
+ *   utility   · workflow tool used on trips/installs
+ *   stale     · no edits in 3+ months; direct URL only
+ *   one-off   · built for a single past job; never re-linked
+ *   orphan    · works, and nothing links to it. Added 2026-09-17: fifteen routes built since the
+ *               19 July review were never declared here, and the directory had no way to say so.
+ *               A route nobody can reach is a decision nobody made, so it gets its own word.
  */
 
-export type RouteStatus = 'hub' | 'active' | 'absorbed' | 'utility' | 'stale' | 'one-off';
+export type RouteStatus = 'hub' | 'active' | 'absorbed' | 'utility' | 'stale' | 'one-off' | 'orphan';
 
 export interface AdminRoute {
   href: string;
@@ -130,6 +133,28 @@ export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
       { href: '/admin/deck-photo-review', name: 'Deck photo review', status: 'stale', note: 'was /pitch/photo-review; /admin/photo-review is a different, older redirect stub' },
     ],
   },
+  {
+    // Everything built after the 19 July review, declared 17 September 2026 when the drift guard
+    // went in. Until then the directory had no idea any of these existed.
+    group: 'Built since the review',
+    routes: [
+      { href: '/admin/procurement', name: 'Procurement desk', status: 'active', note: 'who can buy a bed and how; linked from Cockpit 2026-09-17' },
+      { href: '/admin/impact-cycles', name: 'Impact cycles', status: 'orphan', note: '2026-08-03, 190 lines, nothing links to it' },
+      { href: '/admin/impact-system', name: 'Impact system', status: 'orphan', note: '2026-08-03, 254 lines, nothing links to it' },
+      { href: '/admin/model', name: 'Model placemat', status: 'orphan', note: '2026-09-15, built for the pitch' },
+      { href: '/admin/model/structure', name: 'Model structure', status: 'orphan', note: '2026-09-15' },
+      { href: '/admin/model/ten-years', name: 'Model ten years', status: 'orphan', note: '2026-09-15' },
+      { href: '/admin/model/svg', name: 'Model SVG (legacy)', status: 'stale', note: 'redirects to /admin/model' },
+      { href: '/admin/orders/launch-checklist', name: 'Order launch checklist', status: 'absorbed', note: 'reached from Orders' },
+      { href: '/admin/field-notes/library', name: 'Field notes library', status: 'absorbed', note: 'reached from Field notes' },
+      { href: '/admin/el-stories/new', name: 'New EL story', status: 'absorbed', note: 'create form under EL stories' },
+      { href: '/admin/el-storytellers/new', name: 'New EL storyteller', status: 'absorbed', note: 'create form under EL storytellers' },
+      { href: '/admin/funders/new', name: 'New funder', status: 'absorbed', note: 'create form under Funders' },
+      { href: '/admin/products/story', name: 'Product story', status: 'absorbed', note: 'reached from the product pages' },
+      { href: '/admin/login', name: 'Admin login', status: 'utility', note: 'auth plumbing, never a destination' },
+      { href: '/admin/unauthorized', name: 'Unauthorized', status: 'utility', note: 'auth plumbing, never a destination' },
+    ],
+  },
 ];
 
 export const ROUTE_STATUS_LABEL: Record<RouteStatus, string> = {
@@ -139,4 +164,5 @@ export const ROUTE_STATUS_LABEL: Record<RouteStatus, string> = {
   utility: 'FIELD TOOL',
   stale: 'STALE',
   'one-off': 'ONE-OFF',
+  orphan: 'UNREACHABLE',
 };

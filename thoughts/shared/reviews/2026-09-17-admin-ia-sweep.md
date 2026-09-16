@@ -206,10 +206,27 @@ once it passes 90 days. The page can no longer claim to be fresher than its data
 
 Still to do: the other 96 admin pages, one at a time, raising the floor as each lands.
 
-### 4. Give `admin-routes.ts` a gate
+### 4. Give `admin-routes.ts` a gate  ·  DONE 17 Sep
 
-Copy the `route-audience.ts` drift guard. The moment it exists, the 15 undeclared routes surface,
-and the 11 tombstones and 12 `stale` entries can be archived deliberately instead of accumulating.
+`scripts/check-admin-routes.mjs`, in `check:drift` and `check:drift:ci`. It fails when a route
+exists and is not declared, when the directory lists a route that does not exist, and when the
+sidebar links somewhere that does not exist or is not declared.
+
+The directory is now **85 real routes, 85 declared, 52 linked from the sidebar**, and every link
+goes somewhere.
+
+Two things it made visible on the first run:
+
+- **A new status, `orphan`: works, and nothing links to it.** Five routes have it, and they are
+  real work nobody can reach: `/admin/impact-cycles` and `/admin/impact-system` (3 August, 190 and
+  254 lines) and three `/admin/model/*` pages built for the pitch on 15 September. The number is
+  printed on every run and is meant to go down.
+- **"Products & Plant" in the Cockpit pointed at `/admin/products`**, which `next.config.ts`
+  redirects to `/admin`. The nav item bounced you back to the dashboard. It points at
+  `/admin/facility` now.
+
+`/admin/procurement` is linked from the Cockpit, which is the thing that started this: a page
+built the day before that nothing pointed at.
 
 ### Then the dashboard function
 
@@ -225,3 +242,19 @@ Four spines exist and are well built: `canon.ts` for provenance, `communities` f
 `community-record.ts` for the join, `admin-routes.ts` for the map. Every one of them is optional.
 Nothing fails when a new surface ignores them, so every new surface has. The work is not designing
 a spine. It is making the four that exist compulsory, and widening the registry so the keys resolve.
+
+## Where it got to, 17 September
+
+Three of the four are compulsory now, each with a guard in `check:drift`:
+
+| | Guard | State |
+|---|---|---|
+| Place identity | `check:place-registry` + 30 unit guards | 108 places, one resolver, three alias lists down to one |
+| Provenance and dates | `as-at.guards.test.ts`, two ratchets | Contract built, one surface wired, 52 hand-formatters frozen |
+| The route map | `check:admin-routes` | 85 real, 85 declared, every link resolves, 5 orphans named |
+| The join (`community-record.ts`) | none yet | Still imported by two public pages and zero admin routes |
+
+Along the way the guards found what conventions had been hiding: `Galiwinku` and `Galiwin'ku` as
+two places, `Santa` and `Teresa` as two invented communities, Warlpiri resolving Lajamanu to
+Yuendumu, two people holding two consent records each, and a Cockpit nav item that bounced you
+back to the dashboard.

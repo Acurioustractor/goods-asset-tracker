@@ -50,8 +50,9 @@ const navigation: NavGroup[] = [
       { name: 'Pathways',          href: '/admin/pathways',       icon: Route },
       { name: 'Media Room',        href: '/admin/media-library',  icon: ImageIcon },
       { name: 'Money',             href: '/admin/cost-model',     icon: CircleDollarSign },
-      { name: 'Products & Plant',  href: '/admin/products',       icon: Factory },
+      { name: 'Products & Plant',  href: '/admin/facility',       icon: Factory },
       { name: 'Pipeline',          href: '/admin/pipeline',       icon: KanbanSquare },
+      { name: 'Procurement',       href: '/admin/procurement',    icon: ClipboardList },
     ],
   },
   {

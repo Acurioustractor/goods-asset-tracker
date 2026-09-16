@@ -190,4 +190,6 @@ const ROUTE_TONE: Record<RouteStatus, string> = {
   utility: 'bg-muted text-foreground',
   stale: 'bg-muted text-muted-foreground',
   'one-off': 'bg-muted text-muted-foreground',
+  // Unreachable is the one that should catch your eye, because it is the one nobody decided on.
+  orphan: 'bg-goods-terracotta/15 text-goods-terracotta',
 };
