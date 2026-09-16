@@ -18,4 +18,4 @@ Built by `v2/scripts/build-attachments.mjs` from the site's data modules. Rebuil
 - 12-goods-on-country-money-map.pdf
 - 13-what-300000-produces.pdf
 
-The production log (03) and strategic plan (06) are marked blank and draft on their face. The grants received list (08) prints no total because its lines sit on two different bases.
+The production log (03) and strategic plan (06) are marked blank and draft on their face. The grants received list (08) prints one total, $772,788, with the source of every line named; it was reconciled against Xero and the charity's FY26 statements on 16 September 2026.
