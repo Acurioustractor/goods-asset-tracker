@@ -40,8 +40,54 @@ export interface GrantReceived {
   since: string;
 }
 
+/**
+ * OPEN, found 2026-09-16, and it needs Ben before anything here moves.
+ *
+ * The June reconciliation of the Snow figure left two checks it could not do from the Xero
+ * MCP (wiki/outputs/funder-reports/snow/2026-06-09-snow-figure-reconciliation.md, "Residual
+ * checks"). Both were run on 2026-09-16 against the live invoice list. Result:
+ *
+ *   CHECK 2 CLEARS. Nothing from Snow predates INV-0092 (1 Oct 2023), so the lifetime total
+ *   is not higher than recorded. The 3-year MCP window was not hiding earlier money.
+ *
+ *   CHECK 1 FAILS. INV-0092, $35,200 inc-GST / $32,000 ex-GST, 1 Oct 2023, has one line item:
+ *   "(Con)nected - Digital support for Drug Court participants". That is a different ACT
+ *   project, not Goods. Corroborated: on the same date Knight Photography billed ACT $27,500
+ *   for "(Con)nected - DASL Discovery Project Management" (act-global-infrastructure wiki,
+ *   finance/sole-trader-pty-cutover-strategy.md). Snow paid it; Goods did not receive it.
+ *
+ * Two consequences, and the second is the one that bites:
+ *
+ *   1. The Goods-only Snow total is $457,929.79 inc-GST ($416,299.81 ex-GST), not $493,129.79.
+ *   2. Snow's first GOODS money is INV-0166, 3 October 2024. On that reading AMP Foundation
+ *      (since 2024-07) arrived before Snow, and `since` below is what /pitch chapter 15 sorts
+ *      the funders by. The "they went first" argument, which is the spine of the Snow story
+ *      in chapter 4 and of any letter to them, rests on this date.
+ *
+ * Also found: the basis label on $493,129.79 is inverted. It is the sum of amount_paid across
+ * the ten invoices, so it is INC-GST. The ex-GST figure is $448,299.81 and 448,299.81 x 1.1
+ * confirms it. The June doc says the opposite ("figures are ex-GST ... cash received inc-GST
+ * is ~10% higher"), and that error has been corrected in the doc.
+ *
+ * CONFIRMED INDEPENDENTLY, same day, and this is the part that settles it. The Snow milestone
+ * ledger built in Notion on 21 May 2026 (inside the canonical Snow report page) itemises SIX
+ * grant invoices totalling $434,500 inc-GST and THREE reimbursement/product invoices totalling
+ * $23,429.79. That is NINE invoices and it sums to exactly $457,929.79. It was built four
+ * months before anyone went looking for this, by someone reconciling milestones rather than
+ * chasing a discrepancy, and it never contained INV-0092. The $35,200 gap between that ledger
+ * and the Xero contact-level total is the (Con)nected invoice, to the cent.
+ *
+ * That ledger also closes a second open item. It marks the two October and November 2024
+ * payments as "Xero invoice (missing - investigate)". They are not missing: they are INV-0166
+ * (3 Oct 2024, $27,500) and INV-0170 (11 Nov 2024, $27,500), both PAID.
+ *
+ * NOTHING IS CHANGED HERE YET, deliberately. Restating a funder's total and reordering the
+ * funders both change what is live on goodsoncountry.com, which is Ben's call and not a data
+ * tidy-up. Snow did back the organisation from October 2023; what is wrong is attributing
+ * that first invoice to Goods.
+ */
 export const GRANTS_RECEIVED: readonly GrantReceived[] = [
-  { funder: 'Snow Foundation', amountAud: 493_130, when: 'October 2023 to May 2026', since: '2023-10', basis: 'xero', source: 'ten paid invoices, INV-0092 to INV-0321, $493,129.79', bought: 'Three years of the work itself: the visits, the bed from V1 to V4, the washing machine, and the on-Country plant. The split across those is indicative only.' },
+  { funder: 'Snow Foundation', amountAud: 493_130, when: 'October 2023 to May 2026', since: '2023-10', basis: 'xero', source: 'ten paid invoices, INV-0092 to INV-0321, $493,129.79 inc-GST. OPEN: INV-0092 ($35,200) is a (Con)nected line, not Goods. See the note above.', bought: 'Three years of the work itself: the visits, the bed from V1 to V4, the washing machine, and the on-Country plant. The split across those is indicative only.' },
   { funder: 'The Funding Network', amountAud: 144_558, when: 'November and December 2025', since: '2025-11', basis: 'xero', source: 'two reconciled receipts, $89,361 on 28 Nov 2025 and $55,197 on 19 Dec 2025, account 262', bought: 'The on-Country production facility. Raised in one room at Healthy People Healthy Planet on 2 September 2025, with a Bupa match, which is why it arrived in two payments.' },
   { funder: 'Vincent Fairfax Family Foundation with FRRR, Backing the Future', amountAud: 50_000, when: 'July 2025', since: '2025-07', basis: 'xero', source: 'INV-0253, paid 24 Jul 2025', bought: "The Palm Island youth pilot: 25 beds, three community sessions, 30 young people. FRRR's youth program. Acquitted in March 2026." },
   { funder: 'QBE Foundation, Catalysing Impact Stage 1', amountAud: 50_000, when: '2025 to 2026', since: '2025-07', basis: 'charity-fy26', source: 'the Grant - QBE line, prepared by Jaquillard Minns, unaudited', bought: 'Stage one of Catalysing Impact, the blended finance program run by the Social Impact Hub.' },
