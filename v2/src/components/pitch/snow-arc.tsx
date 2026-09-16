@@ -53,6 +53,18 @@ export function SnowArc() {
   const funder = registryQuote('georgina-byron', 'funder', 'we can catalyse change');
   const founder = registryQuote('nicholas-marchesi', 'internal', 'passionate leadership and generosity');
   const georginaName = getStorytellerBySlug('georgina-byron')?.name ?? 'The Snow Foundation';
+  // Norman Frank Jupurrurla founded Wilya Janta, the community-designed housing movement at
+  // Tennant Creek that Snow backs alongside Goods. Georgina describes that house in her own
+  // recording, which is where the claim comes from.
+  const wilyaJanta = registryQuote('norman-frank', 'external', 'better future for our kids');
+  // Dianne Stokes designed and named both products. Pakkimjalki Kari is her Warumungu name for
+  // the washing machine, and the machine is the clearest thing Snow's money turned into.
+  // The two Elders in the photograph with Georgina and Sally, named by Ben on 16 September:
+  // Annie Morrison is the one wearing glasses, Patricia Frank is the other.
+  const patricia = registryQuote('patricia-frank', 'external', 'wash their blanket');
+  const annie = registryQuote('annie-morrison', 'external', 'important for the old people');
+  const patriciaName = getStorytellerBySlug('patricia-frank')?.name ?? '';
+  const annieName = getStorytellerBySlug('annie-morrison')?.name ?? '';
 
   const steps: FilmStep[] = [
     {
@@ -92,9 +104,88 @@ export function SnowArc() {
       ),
     },
     {
+      id: 'snow-on-country',
+      body: (
+        <>
+          <Beat n="03" when="April 2025" title="On Country">
+            <p>
+              Snow came to Tennant Creek and spent the days where the beds go. Not a site visit with a
+              schedule, days of sitting down with the people whose houses these are.
+            </p>
+          </Beat>
+          {annie && (
+            <figure className="m-0 mt-6 border-l-2 border-goods-terracotta pl-5">
+              <blockquote className="text-[17px] leading-relaxed text-goods-cream/90">
+                &ldquo;{annie.quote.text}&rdquo;
+              </blockquote>
+              <figcaption className="mt-2 text-sm text-goods-cream/65">
+                {annie.person.name} · {annie.person.community}
+              </figcaption>
+            </figure>
+          )}
+        </>
+      ),
+      ...(patricia
+        ? {
+            voice: {
+              portrait: patricia.person.portrait ?? undefined,
+              name: patricia.person.name,
+              role: patricia.person.role,
+              community: patricia.person.community,
+              quote: patricia.quote.text,
+            },
+          }
+        : {}),
+      image: {
+        src: '/images/media-pack/sally-georgina-tennant-creek-jul-2025.jpg',
+        alt: `${georginaName}, Sally Grimsley-Ballard, ${patriciaName} and ${annieName} standing together on red dirt at Tennant Creek`,
+        place: `${georginaName} and Sally Grimsley-Ballard with ${patriciaName} and ${annieName}, Warumungu Country.`,
+      },
+    },
+    {
+      id: 'snow-wilya-janta',
+      body: (
+        <Beat n="04" when="Tennant Creek" title="Wilya Janta">
+          <p>
+            Snow backs Wilya Janta as well, the community-designed housing movement at Tennant Creek,
+            including a solar-powered house drawn by the people who will live in it. The same funder,
+            the same place, a different part of the same problem.
+          </p>
+        </Beat>
+      ),
+      ...(wilyaJanta
+        ? {
+            voice: {
+              portrait: wilyaJanta.person.portrait ?? undefined,
+              name: wilyaJanta.person.name,
+              role: wilyaJanta.person.role,
+              community: wilyaJanta.person.community,
+              quote: wilyaJanta.quote.text,
+            },
+          }
+        : {}),
+    },
+    {
+      id: 'snow-factory',
+      body: (
+        <Beat n="05" when="September 2025" title="A factory">
+          <p>
+            A room at The Funding Network&rsquo;s Healthy People Healthy Planet event paid for the
+            on-Country production plant. The money came from the people in that room on one night,
+            with Bupa matching what they gave, which is why it arrived in two payments.
+          </p>
+        </Beat>
+      ),
+      image: {
+        src: '/images/process/factory-panorama.jpg',
+        alt: 'The containerised on-Country production plant, with the press and router inside',
+        place: 'The plant the room paid for.',
+      },
+    },
+    {
       id: 'snow-project',
       body: (
-        <Beat n="03" when="2025" title="A project">
+        <Beat n="06" when="2025" title="A project">
           <p>
             Beds and washing machines in houses at Tennant Creek, Palm Island, Maningrida and Utopia. Vincent Fairfax
             with FRRR funded the Palm Island youth pilot and acquitted it in March 2026.
@@ -110,7 +201,7 @@ export function SnowArc() {
     {
       id: 'snow-charity',
       body: (
-        <Beat n="04" when="2026" title="A 100% Indigenous not-for-profit">
+        <Beat n="07" when="2026" title="A 100% Indigenous not-for-profit">
           <p>
             The products, the making and the sales moved into the charity under an Indigenous board. A Curious Tractor
             keeps the research and development.
@@ -182,6 +273,7 @@ export function SnowArc() {
       alt="Tingkkarli, Lake Mary Ann, north of Tennant Creek, at sunset from the air"
       credit="Tingkkarli / Lake Mary Ann, Tennant Creek. 3 April 2025."
       steps={steps}
+      scrim="heavy"
     />
   );
 }
