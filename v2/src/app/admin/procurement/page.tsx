@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
 import {
   BUYER_CHANNELS, IPP_COMPLIANCE, PROCUREMENT_RULES, PROCUREMENT_STATE, REPEAT_BUYERS,
   SELLER_PATHWAY,
@@ -22,8 +24,37 @@ export const metadata: Metadata = {
 };
 
 const aud = (n: number) => `$${n.toLocaleString('en-AU')}`;
+const audShort = (n: number) => (n >= 1_000_000 ? `$${(n / 1_000_000).toFixed(1)}M` : aud(n));
 
-export default function ProcurementPage() {
+/**
+ * The evidence pull, written by scripts/pull-procurement.mjs. Read from disk, because it
+ * comes from another project's database and an admin page that breaks when a different team
+ * rotates a key is worse than one showing a dated number.
+ */
+interface Pull {
+  readAt: string;
+  totals: { contracts: number; buyers: number; communitiesTagged: number; contractsTaggedToCommunity: number };
+  buyers: { buyer: string; contracts: number; valueAud: number; products: string[]; communities: string[]; sampleTitle: string | null }[];
+  communities: { community: string; contracts: number; valueAud: number; products: string[]; topBuyer: string | null }[];
+}
+
+async function readPull(): Promise<Pull | null> {
+  try {
+    return JSON.parse(await readFile(join(process.cwd(), 'data/procurement-buyers.json'), 'utf8')) as Pull;
+  } catch {
+    return null;
+  }
+}
+
+/** Places Goods already works, so the table can say which of these we are already inside. */
+const OURS = new Set(['Tennant Creek', 'Maningrida', 'Alice Springs', 'Utopia', 'Palm Island', 'Katherine', 'Kalgoorlie']);
+
+export default async function ProcurementPage() {
+  const pull = await readPull();
+  const dipl = pull ? pull.buyers.filter((b) => b.buyer.startsWith('NT Department of Infrastructure')) : [];
+  const diplValue = dipl.reduce((n, b) => n + b.valueAud, 0);
+  const diplContracts = dipl.reduce((n, b) => n + b.contracts, 0);
+  const diplCommunities = new Set(dipl.flatMap((b) => b.communities)).size;
   const coverage = Math.round((PROCUREMENT_STATE.withProcurementContact / PROCUREMENT_STATE.communities) * 100);
 
   return (
@@ -147,6 +178,71 @@ export default function ProcurementPage() {
           ))}
         </div>
       </section>
+
+      {/* The evidence pull. */}
+      {pull && (
+        <section className="mt-10">
+          <h2 className="font-display text-2xl">Who is actually buying this, and where</h2>
+          <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
+            {pull.totals.contracts.toLocaleString('en-AU')} awarded federal contracts mention a bed, mattress,
+            washing machine, laundry, whitegood or linen, across {pull.totals.buyers} buyers.{' '}
+            {pull.totals.contractsTaggedToCommunity} of them name a community we can identify, covering{' '}
+            {pull.totals.communitiesTagged} places. Pulled {pull.readAt} by{' '}
+            <code className="rounded bg-muted px-1 py-0.5 text-[11px]">scripts/pull-procurement.mjs</code>.
+          </p>
+
+          {dipl.length > 0 && (
+            <div className="mt-4 rounded-lg border-2 p-6" style={{ borderColor: '#C45C3E' }}>
+              <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: '#C45C3E' }}>The finding</p>
+              <h3 className="mt-2 font-display text-xl leading-snug">
+                One buyer family spends {audShort(diplValue)} on this, in {diplCommunities} of the{' '}
+                {pull.totals.communitiesTagged} communities.
+              </h3>
+              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+                The NT Department of Infrastructure, Planning and Logistics appears under {dipl.length} names across{' '}
+                {diplContracts} contracts. It is the top buyer in every community below, including all five where
+                Goods already works. Remote-area procurement carries the mandatory set-aside at any value, so every
+                one of these had to be tested against Aboriginal and Torres Strait Islander business capability
+                first.
+              </p>
+            </div>
+          )}
+
+          <table className="mt-5 w-full text-left text-sm">
+            <thead>
+              <tr className="border-b text-[11px] uppercase tracking-wide text-muted-foreground">
+                <th className="py-2 pr-3 font-semibold">Community</th>
+                <th className="py-2 pr-3 text-right font-semibold">Contracts</th>
+                <th className="py-2 pr-3 text-right font-semibold">Value</th>
+                <th className="py-2 pr-3 font-semibold">Products named</th>
+                <th className="py-2 font-semibold">Top buyer</th>
+              </tr>
+            </thead>
+            <tbody>
+              {pull.communities.slice(0, 20).map((c) => (
+                <tr key={c.community} className="border-b last:border-0 align-top">
+                  <td className="py-2 pr-3 font-medium">
+                    {c.community}
+                    {OURS.has(c.community) && (
+                      <span className="ml-2 rounded-full px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide" style={{ backgroundColor: '#E6EDDD', color: '#4F6138' }}>
+                        we are here
+                      </span>
+                    )}
+                  </td>
+                  <td className="py-2 pr-3 text-right tabular-nums">{c.contracts}</td>
+                  <td className="py-2 pr-3 text-right tabular-nums">{audShort(c.valueAud)}</td>
+                  <td className="py-2 pr-3 text-muted-foreground">{c.products.length > 0 ? c.products.join(', ') : 'not specified in the title'}</td>
+                  <td className="py-2 text-muted-foreground">{c.topBuyer}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="mt-3 text-xs text-muted-foreground">
+            Contract values are for the whole contract, and most of that is construction or maintenance. The figure
+            says where the money and the obligation sit, never what a bed order would be worth.
+          </p>
+        </section>
+      )}
 
       {/* Named targets. */}
       <section className="mt-10">

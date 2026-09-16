@@ -1,0 +1,1675 @@
+{
+  "readAt": "2026-09-16",
+  "source": "austender_contracts in the shared grantscope project, deduplicated on ocid",
+  "keywords": [
+    "bed",
+    "mattress",
+    "washing machine",
+    "laundry",
+    "whitegood",
+    "white goods",
+    "linen"
+  ],
+  "totals": {
+    "contracts": 1671,
+    "buyers": 200,
+    "communitiesTagged": 58,
+    "contractsTaggedToCommunity": 264
+  },
+  "buyers": [
+    {
+      "buyer": "Victorian Health Building Authority",
+      "contracts": 15,
+      "valueAud": 561590484.6,
+      "products": [
+        "bed",
+        "washer"
+      ],
+      "communities": [],
+      "sampleTitle": "Wonthaggi Hospital Expansion - Main Works"
+    },
+    {
+      "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+      "contracts": 180,
+      "valueAud": 293541421.0599999,
+      "products": [
+        "bed",
+        "washer"
+      ],
+      "communities": [
+        "Angurugu",
+        "Nauiyu",
+        "Binjari",
+        "Katherine",
+        "Tennant Creek",
+        "Bulman",
+        "Manyallaluk",
+        "Galiwinku",
+        "Ampilatwatja",
+        "Mt Liebig",
+        "Yarralin",
+        "Alice Springs",
+        "Kalkarindji",
+        "Minyerri",
+        "Amanbidji",
+        "Gunbalanya",
+        "Wadeye",
+        "Pirlangimpi",
+        "Gunyangara",
+        "Lajamanu",
+        "Maningrida",
+        "Minjilang",
+        "Gapuwiyak",
+        "Alpurrurulam",
+        "Yirrkala",
+        "Nganmarriyanga",
+        "Beswick",
+        "Yuendumu",
+        "Barunga",
+        "Rittarangu",
+        "Ramingining",
+        "Ngukurr",
+        "Robinson River",
+        "Papunya",
+        "Imanpa",
+        "Wurrumiyanga",
+        "Wilora",
+        "Umbakumba",
+        "Atitjere",
+        "Laramba",
+        "Kaltukatjara",
+        "Belyuen",
+        "Engawala",
+        "Hermannsburg",
+        "Warruwi",
+        "Bulla",
+        "Titjikala",
+        "Numbulwar",
+        "Pigeon Hole",
+        "Milikapiti",
+        "Kintore"
+      ],
+      "sampleTitle": "East Arnhem Region - Angurugu (Lots 409, 410 and 411) - Remote Community Housing (RCH) - Demolition of 3 Lots, and Const"
+    },
+    {
+      "buyer": "Department of Health - Victorian Health Building Authority",
+      "contracts": 4,
+      "valueAud": 111035966.8,
+      "products": [
+        "bed",
+        "linen"
+      ],
+      "communities": [],
+      "sampleTitle": "Cohuna Public Sector Residential Aged Care Services (PSRACS) – Main Works – Request for Tender"
+    },
+    {
+      "buyer": "Department of Defence",
+      "contracts": 780,
+      "valueAud": 73544886.88999996,
+      "products": [
+        "bed",
+        "linen",
+        "washer",
+        "whitegoods"
+      ],
+      "communities": [],
+      "sampleTitle": "4501045892"
+    },
+    {
+      "buyer": "Department of Health and Human Services",
+      "contracts": 49,
+      "valueAud": 59380586,
+      "products": [
+        "bed",
+        "washer",
+        "linen"
+      ],
+      "communities": [],
+      "sampleTitle": "Electric Beds"
+    },
+    {
+      "buyer": "NSW Aboriginal Housing Office",
+      "contracts": 55,
+      "valueAud": 47030041.08,
+      "products": [],
+      "communities": [],
+      "sampleTitle": "AHO - Residential Construction – Granny Flats (four sites): - 333 Murton Street BROKEN HILL - 12 Cambridge Court KINGSCL"
+    },
+    {
+      "buyer": "HealthShare NSW",
+      "contracts": 29,
+      "valueAud": 41608913.5,
+      "products": [
+        "bed",
+        "washer",
+        "linen"
+      ],
+      "communities": [],
+      "sampleTitle": "SWSA51656708"
+    },
+    {
+      "buyer": "NT Department of Infrastructure, Planning and Logistics - Housing Program Office",
+      "contracts": 15,
+      "valueAud": 33802106.33,
+      "products": [
+        "bed"
+      ],
+      "communities": [
+        "Areyonga",
+        "Pigeon Hole",
+        "Tennant Creek",
+        "Bulman",
+        "Katherine",
+        "Amanbidji",
+        "Imanpa",
+        "Maningrida",
+        "Santa Teresa",
+        "Wurrumiyanga",
+        "Numbulwar"
+      ],
+      "sampleTitle": "Alice Springs Region - Areyonga - Demolition of 2 Existing Dwellings and Construction of 1x3 Bedroom House (Lot 74) and "
+    },
+    {
+      "buyer": "NT Department of Infrastructure - Building Services",
+      "contracts": 13,
+      "valueAud": 31046939.28,
+      "products": [
+        "bed",
+        "washer"
+      ],
+      "communities": [
+        "Galiwinku",
+        "Finke",
+        "Ramingining",
+        "Tennant Creek",
+        "Ngukurr",
+        "Alice Springs",
+        "Nyirripi",
+        "Katherine"
+      ],
+      "sampleTitle": "Darwin - Beatrice Hill - Supply & Construct 4 Bedroom Demountable with Verandah"
+    },
+    {
+      "buyer": "Ministry of Health",
+      "contracts": 5,
+      "valueAud": 29881100,
+      "products": [
+        "bed"
+      ],
+      "communities": [],
+      "sampleTitle": "Specialist Residential Aged Care Facility, Hunter New England LHD"
+    },
+    {
+      "buyer": "NT Department of Infrastructure - Construction",
+      "contracts": 32,
+      "valueAud": 27481335.47,
+      "products": [
+        "bed",
+        "washer"
+      ],
+      "communities": [
+        "Warruwi",
+        "Katherine",
+        "Lajamanu",
+        "Ramingining",
+        "Alice Springs",
+        "Yuendumu",
+        "Ngukurr",
+        "Kalkarindji",
+        "Maningrida",
+        "Tennant Creek",
+        "Groote Eylandt",
+        "Gunbalanya",
+        "Atitjere"
+      ],
+      "sampleTitle": "Darwin Region - Rosebery - 7 McAulay Street - Construct New 4x2 and 3x1 Bedroom Dwellings"
+    },
+    {
+      "buyer": "Victorian Infrastructure Delivery Authority (VIDA) - Victorian Health Building Authority",
+      "contracts": 1,
+      "valueAud": 24232567.7,
+      "products": [
+        "bed"
+      ],
+      "communities": [],
+      "sampleTitle": "Mildura Alcohol and Other Drugs Residential Facility – Main Works Contractor"
+    },
+    {
+      "buyer": "Alfred Health",
+      "contracts": 4,
+      "valueAud": 18000750,
+      "products": [
+        "bed"
+      ],
+      "communities": [],
+      "sampleTitle": "Residential Eating Disorder Treat. Center"
+    },
+    {
+      "buyer": "Australian Taxation Office",
+      "contracts": 4,
+      "valueAud": 16692263.67,
+      "products": [],
+      "communities": [],
+      "sampleTitle": "11.208-0-4"
+    },
+    {
+      "buyer": "Homes NSW",
+      "contracts": 11,
+      "valueAud": 14732192.11,
+      "products": [
+        "washer"
+      ],
+      "communities": [],
+      "sampleTitle": "Project Management Services For Seniors Living – Airds and Claymore"
+    },
+    {
+      "buyer": "NSW Department of Communities and Justice",
+      "contracts": 6,
+      "valueAud": 11563201.760000002,
+      "products": [
+        "bed",
+        "washer"
+      ],
+      "communities": [],
+      "sampleTitle": "PDFTron Licenses - prj_4498"
+    },
+    {
+      "buyer": "NSW Public Works",
+      "contracts": 7,
+      "valueAud": 10566903.969999999,
+      "products": [
+        "bed"
+      ],
+      "communities": [],
+      "sampleTitle": "THA New Supply Ariah Park NSW"
+    },
+    {
+      "buyer": "Victorian Institute of Forensic Mental Health",
+      "contracts": 3,
+      "valueAud": 10362984.68,
+      "products": [
+        "bed"
+      ],
+      "communities": [],
+      "sampleTitle": "Provision of Food Services and Cleaning Services"
+    },
+    {
+      "buyer": "NT Department of Infrastructure - Major Projects",
+      "contracts": 8,
+      "valueAud": 8998317.35,
+      "products": [],
+      "communities": [
+        "Santa Teresa",
+        "Galiwinku",
+        "Imanpa",
+        "Milikapiti",
+        "Atitjere",
+        "Areyonga",
+        "Kintore"
+      ],
+      "sampleTitle": "Alice Springs Region - Santa Teresa - Demolition of 3 Dwellings and the Construction of 3 x 3 Bedroom Dwellings"
+    },
+    {
+      "buyer": "QH_SPS",
+      "contracts": 1,
+      "valueAud": 8900000,
+      "products": [
+        "bed"
+      ],
+      "communities": [],
+      "sampleTitle": "HSQ88370 Beds & Mattress, Medical [SOA 39 & 41]"
+    },
+    {
+      "buyer": "Energy Safe Victoria",
+      "contracts": 1,
+      "valueAud": 8712000,
+      "products": [],
+      "communities": [],
+      "sampleTitle": "COES Audit"
+    },
+    {
+      "buyer": "Australian Digital Health Agency",
+      "contracts": 14,
+      "valueAud": 8370061,
+      "products": [
+        "bed"
+      ],
+      "communities": [],
+      "sampleTitle": "DH1294"
+    },
+    {
+      "buyer": "CSIRO",
+      "contracts": 1,
+      "valueAud": 7354743,
+      "products": [],
+      "communities": [],
+      "sampleTitle": null
+    },
+    {
+      "buyer": "NT Department of Health - NT Health",
+      "contracts": 5,
+      "valueAud": 7138401.61,
+      "products": [
+        "bed",
+        "linen"
+      ],
+      "communities": [],
+      "sampleTitle": "All of NT - Provision of Service and Repair of Assorted Hospital Beds and Patient Lifters for a Period of 36 Months"
+    },
+    {
+      "buyer": "Department of Health",
+      "contracts": 5,
+      "valueAud": 6020770,
+      "products": [
+        "bed",
+        "washer",
+        "linen"
+      ],
+      "communities": [],
+      "sampleTitle": "Southern Mental Health Beds Development - Principal Consultant"
+    },
+    {
+      "buyer": "Transport for NSW (Legacy Transport Infrastructure Projects)",
+      "contracts": 2,
+      "valueAud": 5532293.8,
+      "products": [],
+      "communities": [],
+      "sampleTitle": "Redfern North Eveleigh Precinct Renewal - Senior Management Stakeholder Engagement & Communications"
+    },
+    {
+      "buyer": "NT Department of Infrastructure - Regional Services",
+      "contracts": 10,
+      "valueAud": 5297401,
+      "products": [
+        "bed"
+      ],
+      "communities": [
+        "Gapuwiyak",
+        "Nyirripi",
+        "Minyerri",
+        "Milingimbi",
+        "Ngukurr",
+        "Engawala",
+        "Kalkarindji"
+      ],
+      "sampleTitle": "East Arnhem Region - Lot 202 Gapuwiyak - Consultancy - Design and Certify 2 x 2 Bed Dwellings"
+    },
+    {
+      "buyer": "State Services Authority",
+      "contracts": 1,
+      "valueAud": 4091912,
+      "products": [],
+      "communities": [],
+      "sampleTitle": "Victorian Government eRecruitment Services"
+    },
+    {
+      "buyer": "Department of Foreign Affairs and Trade",
+      "contracts": 3,
+      "valueAud": 3833341.3200000003,
+      "products": [
+        "whitegoods"
+      ],
+      "communities": [],
+      "sampleTitle": "4500000398"
+    },
+    {
+      "buyer": "Peninsula Health",
+      "contracts": 1,
+      "valueAud": 3715951,
+      "products": [
+        "bed"
+      ],
+      "communities": [],
+      "sampleTitle": "Electronic Patient Flow Management Solution"
+    },
+    {
+      "buyer": "Geelong Performing Arts Centre",
+      "contracts": 2,
+      "valueAud": 3705000,
+      "products": [],
+      "communities": [],
+      "sampleTitle": "Church Redevelopment Project - ATN 0002 GAC"
+    },
+    {
+      "buyer": "Mt Hotham Alpine Resort Management Board",
+      "contracts": 2,
+      "valueAud": 3463103,
+      "products": [],
+      "communities": [],
+      "sampleTitle": "Two Level Carpark Structural Concrete Works"
+    },
+    {
+      "buyer": "NSW Department of Primary Industries",
+      "contracts": 1,
+      "valueAud": 3410000,
+      "products": [],
+      "communities": [],
+      "sampleTitle": "Modernisation of DPI Hunting Regulatory System"
+    },
+    {
+      "buyer": "Department of Infrastructure, Transport, Regional Development, Communications, Sport and the Arts",
+      "contracts": 3,
+      "valueAud": 3277507.5,
+      "products": [
+        "washer"
+      ],
+      "communities": [],
+      "sampleTitle": "0042010487"
+    },
+    {
+      "buyer": "NT Department of Health - Top End Health Services",
+      "contracts": 4,
+      "valueAud": 3146442.26,
+      "products": [
+        "bed",
+        "washer"
+      ],
+      "communities": [],
+      "sampleTitle": "All Centres - Hospitals - Supply and Delivery of Hospital Beds for a Period of 36 Months"
+    },
+    {
+      "buyer": "eHealth NSW",
+      "contracts": 2,
+      "valueAud": 2709238.42,
+      "products": [],
+      "communities": [],
+      "sampleTitle": "Emergency Overbed Cameras"
+    },
+    {
+      "buyer": "Royal Melbourne Hospital Capital Works",
+      "contracts": 4,
+      "valueAud": 2699517,
+      "products": [
+        "bed"
+      ],
+      "communities": [],
+      "sampleTitle": "2024_043 Neuropsychiatry Beds"
+    },
+    {
+      "buyer": "Geoscience Australia",
+      "contracts": 12,
+      "valueAud": 2695215.91,
+      "products": [
+        "bed",
+        "whitegoods"
+      ],
+      "communities": [],
+      "sampleTitle": "CON005021"
+    },
+    {
+      "buyer": "QLD Queensland Health",
+      "contracts": 3,
+      "valueAud": 2680000,
+      "products": [
+        "washer"
+      ],
+      "communities": [],
+      "sampleTitle": "Laundry Chemicals and Laundry Support Services"
+    },
+    {
+      "buyer": "Dept of Human Services - Eastern Metropolitan Region - CLOSED (See DHHS)",
+      "contracts": 1,
+      "valueAud": 2674654,
+      "products": [
+        "washer",
+        "linen"
+      ],
+      "communities": [],
+      "sampleTitle": "Provision of linen laundry and resident clothing laundry service"
+    },
+    {
+      "buyer": "Canberra Health Services",
+      "contracts": 3,
+      "valueAud": 2515758,
+      "products": [
+        "bed"
+      ],
+      "communities": [],
+      "sampleTitle": "SERVICING AND MAINTENANCE OF HOSPITAL BEDS, STRETCHES, COTS, PLINTHS, PATIENT LIFTERS, WHEELCHAIRS AND HOSPITAL BED MOVE"
+    },
+    {
+      "buyer": "National Capital Authority",
+      "contracts": 7,
+      "valueAud": 2214089.83,
+      "products": [
+        "bed"
+      ],
+      "communities": [],
+      "sampleTitle": "C25/033"
+    },
+    {
+      "buyer": "Sydney Trains",
+      "contracts": 1,
+      "valueAud": 2147011,
+      "products": [
+        "bed"
+      ],
+      "communities": [],
+      "sampleTitle": "Shotcreting and Planting Services"
+    },
+    {
+      "buyer": "Department of Justice and Community Safety",
+      "contracts": 3,
+      "valueAud": 2124174.49,
+      "products": [
+        "bed"
+      ],
+      "communities": [],
+      "sampleTitle": "Engagement of a contractor for the construction of the Franco Community Reconfiguration Project"
+    },
+    {
+      "buyer": "ACT Territory and Municipal Services Directorate",
+      "contracts": 2,
+      "valueAud": 2070000,
+      "products": [
+        "bed",
+        "linen"
+      ],
+      "communities": [],
+      "sampleTitle": "Mattress Recycling at the Hume Sheds"
+    },
+    {
+      "buyer": "NT Department of Infrastructure, Planning and Logistics - Lands and Planning",
+      "contracts": 3,
+      "valueAud": 2037497.46,
+      "products": [],
+      "communities": [
+        "Katherine"
+      ],
+      "sampleTitle": "Darwin and Katherine Regions - Prescribed Burning Program for a Period of 12 Months"
+    },
+    {
+      "buyer": "Department of Home Affairs",
+      "contracts": 10,
+      "valueAud": 1993631.22,
+      "products": [
+        "bed",
+        "linen"
+      ],
+      "communities": [],
+      "sampleTitle": "0070015490"
+    },
+    {
+      "buyer": "Lower Murray Water",
+      "contracts": 2,
+      "valueAud": 1767393.07,
+      "products": [
+        "bed"
+      ],
+      "communities": [],
+      "sampleTitle": "Mildura WWTP Hardstand Construction"
+    },
+    {
+      "buyer": "Department of Health - Regulation, Health Protection & Regions - CLOSED (See DHHS)",
+      "contracts": 1,
+      "valueAud": 1730700,
+      "products": [],
+      "communities": [],
+      "sampleTitle": "Supply of Absorbed Diptheria and Tetanus (ADT) Vaccine (Years 1-3)"
+    },
+    {
+      "buyer": "Greater Western Water",
+      "contracts": 1,
+      "valueAud": 1648181,
+      "products": [],
+      "communities": [],
+      "sampleTitle": "Bald Hill to Diggers Rest Watermain"
+    },
+    {
+      "buyer": "Health Infrastructure",
+      "contracts": 5,
+      "valueAud": 1647069.05,
+      "products": [
+        "bed",
+        "linen"
+      ],
+      "communities": [],
+      "sampleTitle": "Blacktown and Mount Druitt Hospitals – Additional Beds (\"Project\") –Civil & Structural Engineering"
+    },
+    {
+      "buyer": "Department of Justice",
+      "contracts": 6,
+      "valueAud": 1520344,
+      "products": [
+        "bed",
+        "washer"
+      ],
+      "communities": [],
+      "sampleTitle": "Bed Frames for Ron Barwick Minimum Security Prison and Mary Hutchinson Women&#39;s Prison"
+    },
+    {
+      "buyer": "Director of National Parks",
+      "contracts": 3,
+      "valueAud": 1472854,
+      "products": [],
+      "communities": [],
+      "sampleTitle": "7095/PAD00643"
+    },
+    {
+      "buyer": "Albury Wodonga Health",
+      "contracts": 1,
+      "valueAud": 1400000,
+      "products": [],
+      "communities": [],
+      "sampleTitle": "Electronic Health Information and Scanning System"
+    },
+    {
+      "buyer": "Victorian Electoral Commission",
+      "contracts": 1,
+      "valueAud": 1400000,
+      "products": [],
+      "communities": [],
+      "sampleTitle": "Mail House Services"
+    },
+    {
+      "buyer": "NT Department of Housing - Service Delivery North",
+      "contracts": 1,
+      "valueAud": 1310884,
+      "products": [],
+      "communities": [
+        "Groote Eylandt"
+      ],
+      "sampleTitle": "Groote Eylandt - Umbakumba - Lots 192 and 193 - Demolish, Document and Construct 2 x 3 Bedroom Remote Community Housing "
+    },
+    {
+      "buyer": "NT Power and Water Corporation - Water Services",
+      "contracts": 1,
+      "valueAud": 1245933,
+      "products": [
+        "bed"
+      ],
+      "communities": [],
+      "sampleTitle": "Yulara - Construction of Additional Sludge Drying Beds"
+    },
+    {
+      "buyer": "NT Department of Health - Central Australia",
+      "contracts": 6,
+      "valueAud": 1205379,
+      "products": [
+        "bed",
+        "whitegoods",
+        "washer"
+      ],
+      "communities": [
+        "Alice Springs"
+      ],
+      "sampleTitle": "Alice Springs, Hospital Intensive Care Unit - Repairs and Maintenance of ICU Beds for a Period of 36 Months"
+    },
+    {
+      "buyer": "Australian Prudential Regulation Authority",
+      "contracts": 7,
+      "valueAud": 1177288.68,
+      "products": [],
+      "communities": [],
+      "sampleTitle": "5128"
+    },
+    {
+      "buyer": "Dept of Human Services - Barwon-South Western Region- CLOSED (See DHHS)",
+      "contracts": 2,
+      "valueAud": 1174500,
+      "products": [
+        "washer",
+        "linen"
+      ],
+      "communities": [],
+      "sampleTitle": "Provision of linen and laundry services to Colanda Residential Services"
+    }
+  ],
+  "communities": [
+    {
+      "community": "Galiwinku",
+      "contracts": 9,
+      "valueAud": 58903144,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 5
+        },
+        {
+          "buyer": "NT Department of Infrastructure - Major Projects",
+          "contracts": 2
+        },
+        {
+          "buyer": "NT Department of Infrastructure - Building Services",
+          "contracts": 2
+        }
+      ],
+      "products": [
+        "bed"
+      ],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Tennant Creek",
+      "contracts": 24,
+      "valueAud": 33294053.63,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 14
+        },
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Housing Program Office",
+          "contracts": 3
+        },
+        {
+          "buyer": "NT Department of Infrastructure - Construction",
+          "contracts": 2
+        },
+        {
+          "buyer": "NT Northern Territory Police, Fire and Emergency Services - Corporate Service",
+          "contracts": 2
+        }
+      ],
+      "products": [
+        "bed",
+        "washer"
+      ],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Katherine",
+      "contracts": 27,
+      "valueAud": 30278415.76,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 18
+        },
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Lands and Planning",
+          "contracts": 2
+        },
+        {
+          "buyer": "NT Department of Infrastructure - Construction",
+          "contracts": 2
+        },
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Housing Program Office",
+          "contracts": 2
+        }
+      ],
+      "products": [
+        "washer"
+      ],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Maningrida",
+      "contracts": 13,
+      "valueAud": 23288589.15,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 8
+        },
+        {
+          "buyer": "NT Department of Infrastructure - Construction",
+          "contracts": 4
+        },
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Housing Program Office",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Alice Springs",
+      "contracts": 47,
+      "valueAud": 16233110.379999999,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 14
+        },
+        {
+          "buyer": "NT Department of Health - Central Australia Health Service",
+          "contracts": 8
+        },
+        {
+          "buyer": "NT Department of Health - Central Australia",
+          "contracts": 6
+        },
+        {
+          "buyer": "NT Department of Health - Central Australia Hospital Network",
+          "contracts": 4
+        }
+      ],
+      "products": [
+        "bed",
+        "whitegoods",
+        "washer"
+      ],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Wadeye",
+      "contracts": 7,
+      "valueAud": 15991340.75,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 6
+        },
+        {
+          "buyer": "NT Territory Families - Families and Regional Services",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Ngukurr",
+      "contracts": 8,
+      "valueAud": 14390192.779999997,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 5
+        },
+        {
+          "buyer": "NT Department of Infrastructure - Construction",
+          "contracts": 1
+        },
+        {
+          "buyer": "NT Department of Infrastructure - Regional Services",
+          "contracts": 1
+        },
+        {
+          "buyer": "NT Department of Infrastructure - Building Services",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Gunbalanya",
+      "contracts": 7,
+      "valueAud": 12915877.42,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 4
+        },
+        {
+          "buyer": "NT Department of Infrastructure - Construction",
+          "contracts": 3
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Yarralin",
+      "contracts": 5,
+      "valueAud": 10917860.19,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 5
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Wurrumiyanga",
+      "contracts": 5,
+      "valueAud": 9358392.91,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 4
+        },
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Housing Program Office",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Yirrkala",
+      "contracts": 3,
+      "valueAud": 8772932.620000001,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 3
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Minyerri",
+      "contracts": 4,
+      "valueAud": 8726225.5,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 3
+        },
+        {
+          "buyer": "NT Department of Infrastructure - Regional Services",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Ramingining",
+      "contracts": 6,
+      "valueAud": 8019946,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 4
+        },
+        {
+          "buyer": "NT Department of Infrastructure - Construction",
+          "contracts": 1
+        },
+        {
+          "buyer": "NT Department of Infrastructure - Building Services",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Pigeon Hole",
+      "contracts": 3,
+      "valueAud": 7546634.71,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 2
+        },
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Housing Program Office",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Kalkarindji",
+      "contracts": 6,
+      "valueAud": 7321562.24,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 4
+        },
+        {
+          "buyer": "NT Department of Infrastructure - Construction",
+          "contracts": 1
+        },
+        {
+          "buyer": "NT Department of Infrastructure - Regional Services",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Angurugu",
+      "contracts": 3,
+      "valueAud": 6876198,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 3
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Rittarangu",
+      "contracts": 4,
+      "valueAud": 6599704.97,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 4
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Gunyangara",
+      "contracts": 2,
+      "valueAud": 6274000,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 2
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Imanpa",
+      "contracts": 4,
+      "valueAud": 6250103.96,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 2
+        },
+        {
+          "buyer": "NT Department of Infrastructure - Major Projects",
+          "contracts": 1
+        },
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Housing Program Office",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Gapuwiyak",
+      "contracts": 3,
+      "valueAud": 5747380,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure - Regional Services",
+          "contracts": 2
+        },
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 1
+        }
+      ],
+      "products": [
+        "bed"
+      ],
+      "topBuyer": "NT Department of Infrastructure - Regional Services"
+    },
+    {
+      "community": "Binjari",
+      "contracts": 3,
+      "valueAud": 5554923.25,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 3
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Alpurrurulam",
+      "contracts": 3,
+      "valueAud": 5423741.869999999,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 3
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Barunga",
+      "contracts": 3,
+      "valueAud": 4862153.87,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 3
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Numbulwar",
+      "contracts": 2,
+      "valueAud": 4335742.529999999,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Housing Program Office",
+          "contracts": 1
+        },
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Housing Program Office"
+    },
+    {
+      "community": "Lajamanu",
+      "contracts": 5,
+      "valueAud": 4247328,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 4
+        },
+        {
+          "buyer": "NT Department of Infrastructure - Construction",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Santa Teresa",
+      "contracts": 2,
+      "valueAud": 4214361,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure - Major Projects",
+          "contracts": 1
+        },
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Housing Program Office",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure - Major Projects"
+    },
+    {
+      "community": "Amanbidji",
+      "contracts": 2,
+      "valueAud": 3850350.4699999997,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 1
+        },
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Housing Program Office",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Wilora",
+      "contracts": 2,
+      "valueAud": 3801157.6,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 2
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Nganmarriyanga",
+      "contracts": 2,
+      "valueAud": 3733000,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 2
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Warruwi",
+      "contracts": 2,
+      "valueAud": 3363037.01,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure - Construction",
+          "contracts": 1
+        },
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 1
+        }
+      ],
+      "products": [
+        "bed"
+      ],
+      "topBuyer": "NT Department of Infrastructure - Construction"
+    },
+    {
+      "community": "Groote Eylandt",
+      "contracts": 3,
+      "valueAud": 3341101.7,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure - Construction",
+          "contracts": 2
+        },
+        {
+          "buyer": "NT Department of Housing - Service Delivery North",
+          "contracts": 1
+        }
+      ],
+      "products": [
+        "bed"
+      ],
+      "topBuyer": "NT Department of Infrastructure - Construction"
+    },
+    {
+      "community": "Areyonga",
+      "contracts": 2,
+      "valueAud": 2831545.4299999997,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Housing Program Office",
+          "contracts": 1
+        },
+        {
+          "buyer": "NT Department of Infrastructure - Major Projects",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Housing Program Office"
+    },
+    {
+      "community": "Hermannsburg",
+      "contracts": 1,
+      "valueAud": 2553060,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Atitjere",
+      "contracts": 4,
+      "valueAud": 2443068.69,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 2
+        },
+        {
+          "buyer": "NT Department of Infrastructure - Construction",
+          "contracts": 1
+        },
+        {
+          "buyer": "NT Department of Infrastructure - Major Projects",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Engawala",
+      "contracts": 3,
+      "valueAud": 2430893.5,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 2
+        },
+        {
+          "buyer": "NT Department of Infrastructure - Regional Services",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Beswick",
+      "contracts": 2,
+      "valueAud": 2371385.74,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 2
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Yuendumu",
+      "contracts": 3,
+      "valueAud": 2348583,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure - Construction",
+          "contracts": 2
+        },
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure - Construction"
+    },
+    {
+      "community": "Belyuen",
+      "contracts": 1,
+      "valueAud": 2308220.78,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Minjilang",
+      "contracts": 3,
+      "valueAud": 2186172,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 2
+        },
+        {
+          "buyer": "NT Department of Housing - Contract Implementation",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Bulman",
+      "contracts": 2,
+      "valueAud": 2130321.71,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 1
+        },
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Housing Program Office",
+          "contracts": 1
+        }
+      ],
+      "products": [
+        "bed"
+      ],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Milikapiti",
+      "contracts": 2,
+      "valueAud": 1932530,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure - Major Projects",
+          "contracts": 1
+        },
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure - Major Projects"
+    },
+    {
+      "community": "Pirlangimpi",
+      "contracts": 2,
+      "valueAud": 1862089,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 2
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Kaltukatjara",
+      "contracts": 1,
+      "valueAud": 1556195,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Umbakumba",
+      "contracts": 2,
+      "valueAud": 1532597,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 2
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Finke",
+      "contracts": 1,
+      "valueAud": 1530850,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure - Building Services",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure - Building Services"
+    },
+    {
+      "community": "Papunya",
+      "contracts": 2,
+      "valueAud": 1424108,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 2
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Bulla",
+      "contracts": 1,
+      "valueAud": 1406200,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Kintore",
+      "contracts": 2,
+      "valueAud": 1363613.35,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure - Major Projects",
+          "contracts": 1
+        },
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 1
+        }
+      ],
+      "products": [
+        "washer"
+      ],
+      "topBuyer": "NT Department of Infrastructure - Major Projects"
+    },
+    {
+      "community": "Laramba",
+      "contracts": 1,
+      "valueAud": 1180060,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Robinson River",
+      "contracts": 1,
+      "valueAud": 1078000,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Manyallaluk",
+      "contracts": 1,
+      "valueAud": 956869.85,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Milingimbi",
+      "contracts": 1,
+      "valueAud": 953933,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure - Regional Services",
+          "contracts": 1
+        }
+      ],
+      "products": [
+        "bed"
+      ],
+      "topBuyer": "NT Department of Infrastructure - Regional Services"
+    },
+    {
+      "community": "Nyirripi",
+      "contracts": 2,
+      "valueAud": 868996.28,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure - Regional Services",
+          "contracts": 1
+        },
+        {
+          "buyer": "NT Department of Infrastructure - Building Services",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure - Regional Services"
+    },
+    {
+      "community": "Mt Liebig",
+      "contracts": 1,
+      "valueAud": 832510,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Titjikala",
+      "contracts": 1,
+      "valueAud": 798400,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Ampilatwatja",
+      "contracts": 1,
+      "valueAud": 720044.8,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Nauiyu",
+      "contracts": 1,
+      "valueAud": 146734,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
+          "contracts": 1
+        }
+      ],
+      "products": [],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts"
+    },
+    {
+      "community": "Utopia",
+      "contracts": 1,
+      "valueAud": 56502,
+      "buyers": [
+        {
+          "buyer": "NT Department of Infrastructure, Planning and Logistics - Transport and Civil Services",
+          "contracts": 1
+        }
+      ],
+      "products": [
+        "bed"
+      ],
+      "topBuyer": "NT Department of Infrastructure, Planning and Logistics - Transport and Civil Services"
+    }
+  ]
+}
