@@ -11,7 +11,7 @@
 // and it works here, on the procurement desk and in every drift check at the same time.
 //
 // What stays here is the part that is a FILING DECISION about media, and no claim about
-// geography: see ROLLUP below.
+// geography: see ORG_AS_PLACE below.
 
 import { PLACES, placeById } from './place-registry';
 
@@ -22,21 +22,20 @@ export interface CommunityLite {
 }
 
 /**
- * Where media about a smaller place gets filed. These are not claims that one place is another.
+ * Organisation names that stand in for a place in a media title.
  *
- * OPEN FOR BEN. The registry now holds Ampilatwatja, Angurugu and Umbakumba as communities in
- * their own right, because that is what the NT contract record calls them. This map still files
- * their media under a parent, which is what the May-trip galleries were titled with. Those two
- * answers can both be right, and the previous version of this file already flagged it:
- * "Remove from here if they should be their own community."
+ * Oonchiumpa is an organisation. It is here because the Alice Springs production partner's media
+ * is filed under the org name, and no registry of places will ever contain it.
  *
- * Oonchiumpa is an organisation. It is here because the Alice Springs production
- * partner's media is filed under the org name.
+ * MEDIA FOLLOWS THE REGISTRY (Ben, 17 September 2026). This map used to fold Ampilatwatja into
+ * Utopia, and Angurugu and Umbakumba into Groote, which is how the May-trip galleries were
+ * titled. The registry holds all three as communities in their own right, because that is what
+ * the NT contract record calls them, and Ben ruled the registry wins. Counted before the change:
+ * one media asset is titled with Ampilatwatja and none with the other two, so this moved one row.
+ * It belongs to Ampilatwatja now and will surface when Ampilatwatja is a community row.
  */
-const ROLLUP: Record<string, string[]> = {
+const ORG_AS_PLACE: Record<string, string[]> = {
   'alice-springs': ['oonchiumpa'],
-  'utopia': ['ampilatwatja'],
-  'groote-archipelago': ['angurugu', 'umbakumba'],
 };
 
 // Strings too broad to attribute to one community (EL defaults many rows to these).
@@ -57,32 +56,41 @@ export interface CommunityMatcher {
 }
 
 /**
- * Every spelling the registry holds for one community id: its name, its aliases, and any place
- * rolled up into it. A traditional name is deliberately not included, because the column holds
- * people and language names as often as place names and Warlpiri is two communities.
+ * Every spelling the registry holds for one place id, plus any organisation name that stands in
+ * for it. A traditional name is deliberately not included, because the column holds people and
+ * language names as often as place names and Warlpiri is two communities.
  */
 export function spellingsFor(id: string): string[] {
   const place = placeById(id);
-  const rolled = (ROLLUP[id] ?? []).flatMap((childId) => {
-    const child = PLACES.find((p) => p.id === childId);
-    return child ? [child.name, ...(child.aliases ?? [])] : [childId];
-  });
-  return [...(place ? [place.name, ...(place.aliases ?? [])] : []), ...rolled];
+  return [...(place ? [place.name, ...(place.aliases ?? [])] : []), ...(ORG_AS_PLACE[id] ?? [])];
 }
 
+/**
+ * Places the matcher will name even though no row exists for them yet. A media title that says
+ * Ampilatwatja resolves to Ampilatwatja, and a caller keyed on the live community rows simply
+ * finds nothing, which is the honest answer: we know where it belongs and we have no page for it.
+ * Folding it into a parent so it had somewhere to land was the thing Ben ruled against.
+ */
+const MATCHABLE_KINDS = new Set(['community', 'homelands', 'town']);
+
 export function makeCommunityMatcher(communities: CommunityLite[]): CommunityMatcher {
-  // normalized key -> community id, longest keys first so the most specific wins
+  // normalized key -> place id, longest keys first so the most specific wins
   // (e.g. "kalgoorlie" beats a short alias).
   const keys: { key: string; id: string }[] = [];
+  const add = (raw: string | null | undefined, id: string) => {
+    if (!raw) return;
+    const k = norm(raw);
+    if (k.length >= 4 && !GENERIC.has(k)) keys.push({ key: k, id });
+  };
   for (const c of communities) {
-    const add = (raw: string | null | undefined) => {
-      if (!raw) return;
-      const k = norm(raw);
-      if (k.length >= 4 && !GENERIC.has(k)) keys.push({ key: k, id: c.id });
-    };
     // The row's own name still counts, so a community absent from the registry keeps matching.
-    add(c.name);
-    for (const spelling of spellingsFor(c.id)) add(spelling);
+    add(c.name, c.id);
+    for (const spelling of spellingsFor(c.id)) add(spelling, c.id);
+  }
+  const named = new Set(communities.map((c) => c.id));
+  for (const p of PLACES) {
+    if (named.has(p.id) || !MATCHABLE_KINDS.has(p.kind)) continue;
+    for (const spelling of [p.name, ...(p.aliases ?? [])]) add(spelling, p.id);
   }
   keys.sort((a, b) => b.key.length - a.key.length);
 

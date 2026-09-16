@@ -160,16 +160,34 @@ describe('community-match still resolves everything its own alias map used to', 
     ['Elcho Island', 'galiwinku'],
     ['Galiwinku', 'galiwinku'],
     ['Groote Eylandt', 'groote-archipelago'],
-    ['Angurugu', 'groote-archipelago'],
-    ['Umbakumba', 'groote-archipelago'],
     ['Utopia', 'utopia'],
-    ['Ampilatwatja', 'utopia'],
     ['Arlparra', 'utopia'],
     ['Thursday Island', 'torres-strait'],
   ];
 
   it.each(cases)('%s resolves to %s', (text, id) => {
     expect(makeCommunityMatcher(LIVE_COMMUNITIES).matchText(text)).toBe(id);
+  });
+
+  /**
+   * Ben, 17 September 2026: media follows the registry. The matcher used to fold these three into
+   * a parent so the media had somewhere to land. Now it names the real place, and a caller keyed
+   * on the live community rows finds nothing, which is the honest answer.
+   */
+  it.each([
+    ['Ampilatwatja', 'ampilatwatja'],
+    ['Angurugu', 'angurugu'],
+    ['Umbakumba', 'umbakumba'],
+  ])('%s resolves to itself, not to a parent', (text, id) => {
+    expect(makeCommunityMatcher(LIVE_COMMUNITIES).matchText(text)).toBe(id);
+    expect(resolvePlace(text)?.id).toBe(id);
+  });
+
+  it('a place with no community row still resolves, and a caller keyed on rows finds nothing', () => {
+    const byId = new Map(LIVE_COMMUNITIES.map((c) => [c.id, c]));
+    const id = makeCommunityMatcher(LIVE_COMMUNITIES).matchText('Ampilatwatja');
+    expect(id).toBe('ampilatwatja');
+    expect(byId.get(id as string)).toBeUndefined();
   });
 
   it('reads a full Empathy Ledger location string', () => {
