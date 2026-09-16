@@ -320,7 +320,7 @@ function AskGoodsPageContent() {
 
         {/* Escalation link */}
         <div className="text-center mt-2">
-          <a href="tel:+61400000000" className="text-xs text-stone-400 hover:text-stone-600">
+          <a href="tel:+61422883943" className="text-xs text-stone-400 hover:text-stone-600">
             Can&apos;t find what you need? Talk to Ben
           </a>
         </div>

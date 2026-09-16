@@ -144,7 +144,7 @@ export default function PortalHomePage() {
       {/* Quick help */}
       <div className="mt-8 p-4 bg-green-50 rounded-xl border border-green-100 text-center">
         <p className="text-sm text-green-800">
-          Need to talk to a person? <a href="tel:+61400000000" className="font-bold underline">Call Ben</a> anytime.
+          Need to talk to a person? <a href="tel:+61422883943" className="font-bold underline">Call Ben</a> anytime.
         </p>
       </div>
     </div>

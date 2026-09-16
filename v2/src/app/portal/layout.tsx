@@ -36,7 +36,7 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
       {/* Simple footer */}
       <footer className="bg-white border-t border-stone-200 px-4 py-4">
         <div className="max-w-4xl mx-auto text-center text-sm text-stone-500">
-          <p>Need help? <a href="tel:+61400000000" className="text-green-700 font-medium">Call Ben</a> or <Link href="/support" className="text-green-700 font-medium">Submit a ticket</Link></p>
+          <p>Need help? <a href="tel:+61422883943" className="text-green-700 font-medium">Call Ben</a> or <Link href="/support" className="text-green-700 font-medium">Submit a ticket</Link></p>
         </div>
       </footer>
     </div>

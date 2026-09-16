@@ -16,7 +16,7 @@ to be pasted.
 | Reply-to | `hi@act.place` |
 | Response time | **two business days**, the same on every branch |
 | Media pack link | `https://www.goodsoncountry.com/press` (the page already has one-tap downloads) |
-| Phone on the General branch | a real number, **Ben to supply**. Marked `[PHONE]` below |
+| Phone on the General branch | **0422 883 943** (Ben, 17 Sep). Already public on `/site`. |
 
 ---
 
@@ -129,20 +129,18 @@ to work for it.
 
 > Thanks for writing. I will come back to you within two business days.
 >
-> If it is urgent, ring [PHONE].
+> If it is urgent, ring Ben on 0422 883 943.
 >
 > Ben
 
 ---
 
-## Still needed
+## Nothing outstanding
 
-**The phone number for branch 5.** Give it to me and I will put it in. I am not reusing one I found
-elsewhere in the codebase, because a wrong number on an urgent line is worse than no line.
+All four blanks are filled. The workflow can be built and published from the steps above.
 
-**Unrelated but live:** three portal pages publish `+61 400 000 000` as a tap-to-call number
-(`/portal`, `/portal/layout`, `/portal/ask-goods`). That is a placeholder. Someone in a community
-tapping "call us" today reaches nothing.
+The placeholder `+61 400 000 000` on the three portal pages was replaced with the same real number
+in this commit.
 
 ## Not covered here
 
