@@ -16,6 +16,33 @@ interface ContactFormData {
   subscribe?: boolean;
 }
 
+/**
+ * The only subjects this route accepts.
+ *
+ * Each one becomes a `goods-<slug>` tag on the contact, and each slug is mapped
+ * to a role/interest in lib/ghl/canonical-tags. Before this list existed the
+ * subject was free text, so any POST to this endpoint could mint a new tag in a
+ * GHL account shared with Harvest, JusticeHub and CONTAINED. Anything not on
+ * this list now falls back to General Inquiry.
+ *
+ * Adding a subject here means adding its mapping in canonical-tags too, or you
+ * get a contact carrying a tag nothing can find.
+ */
+const CONTACT_SUBJECTS = new Set([
+  'General Inquiry',
+  'Partnership Inquiry',
+  'Bulk Order Inquiry',
+  'Facility Funding Inquiry',
+  'Community Interest',
+  'Media Pack Request',
+  'LGANT 2026: place put forward',
+]);
+
+function safeSubject(raw: string | undefined): string {
+  const trimmed = typeof raw === 'string' ? raw.trim() : '';
+  return CONTACT_SUBJECTS.has(trimmed) ? trimmed : 'General Inquiry';
+}
+
 export async function POST(request: NextRequest) {
   let submissionId: string | null = null;
   try {
@@ -41,17 +68,20 @@ export async function POST(request: NextRequest) {
     // This is the source-of-truth receipt for the public form. It is written
     // before GHL/email calls and retried by the cron if either destination is
     // down, rather than silently treating a failed integration as a submission.
+    const subject = safeSubject(body.subject);
+    body.subject = subject;
+
     const submission = {
       kind: 'contact' as const,
       email: body.email,
       name: body.name,
-      subject: body.subject || 'General Inquiry',
+      subject,
       payload: body as unknown as Record<string, unknown>,
     };
     submissionId = await recordContactSubmission(submission);
 
     // Route to appropriate GHL method based on subject
-    const isMediaRequest = body.subject === 'Media Pack Request';
+    const isMediaRequest = subject === 'Media Pack Request';
 
     let ghlResult;
 
@@ -67,15 +97,13 @@ export async function POST(request: NextRequest) {
       });
     } else {
       // General inquiries — base goods-inquiry + the subject-specific tag.
-      const subjectTag = body.subject
-        ? `goods-${body.subject.toLowerCase().replace(/\s+/g, '-')}`
-        : 'goods-inquiry';
+      const subjectTag = `goods-${subject.toLowerCase().replace(/\s+/g, '-')}`;
 
       // Full inquiry text for the mergeable `message` field — this is what the
       // GHL internal-notification email merges so the team can action it from
       // their inbox without opening GHL. Subject prefixed so it's visible.
       const inquiryDetails = [
-        `Subject: ${body.subject || 'General Inquiry'}`,
+        `Subject: ${subject}`,
         '',
         body.message,
       ].join('\n');
@@ -84,7 +112,7 @@ export async function POST(request: NextRequest) {
         phone: body.phone,
         companyName: body.organisation,
         message: inquiryDetails,
-        source: `Website Contact: ${body.subject || 'General Inquiry'}`,
+        source: `Website Contact: ${subject}`,
       });
 
       // R8 (Spam Act 2003): `subscribe === true` is the explicit opt-in signal —
@@ -128,7 +156,7 @@ export async function POST(request: NextRequest) {
       await ghl.addInboundEmail({
         contactId: ghlResult.contact.id,
         fromEmail: body.email,
-        subject: `Website Contact: ${body.subject || 'General Inquiry'}`,
+        subject: `Website Contact: ${subject}`,
         html: inquiryHtml,
         text: body.message,
       });

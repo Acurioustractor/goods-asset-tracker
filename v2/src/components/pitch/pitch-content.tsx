@@ -1004,15 +1004,54 @@ export async function PitchContent({ variant }: { variant: PitchVariant }) {
         return <MadeWithCommunity outline={outline} places={listeningPlaces(locations, voices)} voices={voices} draft={!contributionsConfirmed()} />;
       })()}
 
-      {/* The last thing on the page: a way to reach the team. */}
+      {/* The last thing on the page: three doors rather than one button.
+          A procurement officer, a philanthropist and someone from a community all
+          pressed the same "Talk to us" and landed in the same undifferentiated
+          inbox. Each door now carries its own subject, which becomes its own tag
+          (lib/ghl/canonical-tags), its own board and its own reply. */}
       <section aria-label="Contact Goods on Country" className="bg-goods-ink px-6 py-14 text-goods-cream md:px-10 md:py-16 lg:px-14">
-        <div className="mx-auto flex max-w-6xl flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-terracotta-light">Goods on Country</p>
-            <p className="mt-2 font-display text-3xl font-semibold leading-tight md:text-4xl">Talk to the team.</p>
-            <p className="mt-2 max-w-xl text-goods-cream/80">A question about the model, beds for your organisation, or backing the work. The message comes straight to us.</p>
+        <div className="mx-auto max-w-6xl">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-terracotta-light">Goods on Country</p>
+          <p className="mt-2 font-display text-3xl font-semibold leading-tight md:text-4xl">Three ways in.</p>
+          <p className="mt-2 max-w-xl text-goods-cream/80">Tell us which one you are and the right person answers.</p>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {([
+              {
+                title: 'Order beds',
+                body: 'You have a budget and a community waiting. We quote the beds and the freight to your place in one figure.',
+                label: 'Order beds',
+                subject: 'Bulk Order Inquiry',
+              },
+              {
+                title: 'Fund a facility',
+                body: 'You want to put capital behind a plant a community comes to own. A grant, or something recoverable.',
+                label: 'Fund a facility',
+                subject: 'Facility Funding Inquiry',
+              },
+              {
+                title: 'Bring this to my community',
+                body: 'Your community wants a say in what gets made, who gets paid and what comes next. A person rings you.',
+                label: 'Start a conversation',
+                subject: 'Community Interest',
+              },
+            ] as const).map((door) => (
+              <div
+                key={door.subject}
+                className="flex flex-col rounded-[22px] border border-goods-cream/20 bg-goods-cream/5 p-6"
+              >
+                <p className="font-display text-xl font-semibold">{door.title}</p>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-goods-cream/75">{door.body}</p>
+                <div className="mt-5">
+                  <ContactGoodsButton variant="solid" label={door.label} subject={door.subject} />
+                </div>
+              </div>
+            ))}
           </div>
-          <ContactGoodsButton variant="solid" label="Send a message" subject="Partnership Inquiry" />
+
+          <p className="mt-7 text-sm text-goods-cream/60">
+            Something else? <ContactGoodsButton label="Send a message" subject="General Inquiry" />
+          </p>
         </div>
       </section>
     </main>

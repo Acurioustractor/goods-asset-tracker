@@ -20,7 +20,17 @@ import { Mail, X } from 'lucide-react';
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react';
 import { trackContactEvent } from '@/lib/analytics/contact';
 
-type Subject = 'General Inquiry' | 'Partnership Inquiry' | 'Bulk Order Inquiry';
+/**
+ * Must stay a subset of CONTACT_SUBJECTS in api/contact/route.ts. A subject not
+ * on that allowlist is silently downgraded to General Inquiry, so a typo here
+ * costs you the routing without failing anywhere visible.
+ */
+type Subject =
+  | 'General Inquiry'
+  | 'Partnership Inquiry'
+  | 'Bulk Order Inquiry'
+  | 'Facility Funding Inquiry'
+  | 'Community Interest';
 
 export function ContactGoodsButton({
   label = 'Contact Goods',

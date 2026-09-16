@@ -89,6 +89,24 @@ const FLAT_TO_CANONICAL: Record<string, string[]> = {
   // any comms:* anyway.) goods-no-contact intentionally maps to nothing.
   'goods-consent-to-contact': ['interest:story-followup'],
 
+  // --- Contact-form subjects ---
+  // api/contact builds `goods-<subject-slug>` from the form's subject. Those
+  // slugs used to fall through this map unchanged, so a bulk-order inquiry
+  // produced `goods-bulk-order-inquiry` and nothing else: no role, no interest,
+  // and no way for a GHL workflow or a smart list to see a buyer. Mapping them
+  // is what makes the front door feed the audiences.
+  'goods-bulk-order-inquiry': ['role:buyer', 'interest:bulk-order'],
+  'goods-partnership-inquiry': ['role:partner'],
+  'goods-facility-funding-inquiry': ['role:funder', 'interest:capital'],
+  // "Bring this to my community". Deliberately NOT lane:community. The lane is a
+  // relationship and a human confirms it (R9: community opt-ins are
+  // human-confirmed). Anyone can press this button on the pitch page, and
+  // auto-laning a council officer would both dilute the community line and
+  // silence someone who never asked to be silenced. role:community routes it to
+  // a person, which is all this needs to do.
+  'goods-community-interest': ['role:community', 'interest:community'],
+  // 'goods-general-inquiry' carries no role: we do not know what they want yet.
+
   // --- Strategic prospecting (internal, cold — must NEVER get comms:) ---
   'goods-buyer-target': ['role:buyer'],
   'goods-capital-target': ['role:funder'],
