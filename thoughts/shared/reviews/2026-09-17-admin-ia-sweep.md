@@ -182,12 +182,29 @@ Still to do, and it needs a schema change: `storyteller_id` and `ghl_contact_id`
 `crm_contacts`, and `organization` pointed at an organisation token instead of one of 61 free
 strings. Five of those 61 match an organisation already held in `organisations.json`.
 
-### 3. One date contract, borrowed from `canon.ts`
+### 3. One date contract, borrowed from `canon.ts`  ·  BUILT 17 Sep, one surface wired
 
-Every server-loaded surface returns `{ asAt, source, check }` beside its data. One `<AsAt/>`
-component renders it. One formatter, one option shape. A guard that fails any route reading a data
-source without a stamp. The contract is already written and tested for canon facts. This
-widens its reach and invents nothing.
+`src/lib/data/as-at.ts` carries the contract: `{ asAt, source, check, owner?, staleAfterDays? }`,
+the same shape `canon.ts` has held per fact since July. `<AsAt/>` in `components/ui/` renders it.
+
+**A date is a date and a label is a label.** `asAt` accepts `YYYY-MM-DD`, `YYYY-MM` or `YYYY`, and
+refuses everything else, including the seven prose shapes that were living in date fields. The
+pattern to copy is `procurement-openings.ts`, which already stores `when: '2026-09'` beside
+`whenLabel: 'September to November 2026'`. A field that is sometimes sortable and sometimes prose
+is neither.
+
+`formatAsAt` is the only date formatter: "17 Sep 2026", "Sep 2026", "2026". It behaves the same on
+the server and in the browser, which `toLocaleDateString` does not.
+
+**Two ratchets, in `as-at.guards.test.ts`.** Files formatting a date by hand may fall from 52 and
+never rise. Admin surfaces carrying a real stamp may rise from 1 and never fall. Each one names the
+number to change when you move it.
+
+`/admin/procurement` is the wired surface, and it is the proof: four pulls, four real dates from
+the pulls themselves, four sources, and the NT workbook turns terracotta and says "due a re-read"
+once it passes 90 days. The page can no longer claim to be fresher than its data.
+
+Still to do: the other 96 admin pages, one at a time, raising the floor as each lands.
 
 ### 4. Give `admin-routes.ts` a gate
 

@@ -9,6 +9,7 @@ import { OPENINGS } from '@/lib/data/procurement-openings';
 import { ProcurementDashboard } from '@/components/partners/procurement-dashboard';
 import type { IntelRow } from '@/components/partners/procurement-dashboard';
 import type { Org } from '@/components/partners/org-list';
+import type { AsAt } from '@/lib/data/as-at';
 
 /**
  * PROCUREMENT. One route, one filter bar, many lenses on the same question.
@@ -35,9 +36,10 @@ async function readJson<T>(rel: string): Promise<T | null> {
   }
 }
 
-interface IntelFile { communities: IntelRow[] }
-interface BuyerFile { totals?: { contracts?: number }; communities: { community: string; valueAud: number; topBuyer: string | null }[] }
-interface NtFile {
+interface Pull { readAt?: string; source?: string }
+interface IntelFile extends Pull { communities: IntelRow[] }
+interface BuyerFile extends Pull { totals?: { contracts?: number }; communities: { community: string; valueAud: number; topBuyer: string | null }[] }
+interface NtFile extends Pull {
   totals?: { allContracts?: number };
   furnishingGap?: { housingAgencyValueAud?: number; housingAgencyFurnitureContracts?: number };
   expiryTotal?: number;
@@ -45,11 +47,25 @@ interface NtFile {
 
 export default async function ProcurementPage() {
   const [orgData, intel, buyers, nt] = await Promise.all([
-    readJson<{ organisations: Org[] }>('data/organisations.json'),
+    readJson<Pull & { organisations: Org[] }>('data/organisations.json'),
     readJson<IntelFile>('data/community-intel.json'),
     readJson<BuyerFile>('data/procurement-buyers.json'),
     readJson<NtFile>('data/nt-housing-contractors.json'),
   ]);
+
+  /**
+   * One stamp per pull, on the contract in lib/data/as-at.ts. Each one carries the date the pull
+   * itself recorded, so the page cannot claim to be fresher than its data. `staleAfterDays` says
+   * how fast each source actually moves: a contract register is re-published constantly, and an
+   * ABS census table is fixed until the next census. The full provenance sentence stays in each
+   * JSON file's own `source` field; these are the short forms that fit beside a date.
+   */
+  const stamps: AsAt[] = [
+    { asAt: orgData?.readAt ?? '', source: 'pull-organisations.py, three sources joined', check: 'auto', owner: 'Ben', staleAfterDays: 30 },
+    { asAt: buyers?.readAt ?? '', source: 'AusTender contracts, deduplicated on ocid', check: 'auto', owner: 'Ben', staleAfterDays: 30 },
+    { asAt: nt?.readAt ?? '', source: 'NT contracts workbook, exported 15 Mar 2026', check: 'manual', owner: 'Ben', staleAfterDays: 90 },
+    { asAt: intel?.readAt ?? '', source: 'ABS Census 2021 table I16', check: 'manual', owner: 'Ben' },
+  ];
 
   const data = {
     orgs: orgData?.organisations ?? [],
@@ -63,6 +79,7 @@ export default async function ProcurementPage() {
       ntHousingAgencyFurnitureContracts: nt?.furnishingGap?.housingAgencyFurnitureContracts ?? 0,
       expiries: nt?.expiryTotal ?? 0,
     },
+    stamps,
   };
 
   return (

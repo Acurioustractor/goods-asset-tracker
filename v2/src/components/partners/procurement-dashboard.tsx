@@ -39,6 +39,8 @@ import type { Opening } from '@/lib/data/procurement-openings';
 import { OPENING_KINDS } from '@/lib/data/procurement-openings';
 import type { Jurisdiction } from '@/lib/data/procurement-model';
 import { isNotAPlace, resolvePlace } from '@/lib/data/place-registry';
+import { AsAt } from '@/components/ui/as-at';
+import type { AsAt as AsAtStamp } from '@/lib/data/as-at';
 
 export interface IntelRow {
   community: string;
@@ -64,6 +66,8 @@ export interface DashboardData {
   jurisdictions: readonly Jurisdiction[];
   intel: IntelRow[];
   read: ReadCounts;
+  /** One freshness stamp per pull, on the contract in lib/data/as-at.ts. */
+  stamps: AsAtStamp[];
 }
 
 type Row =
@@ -323,10 +327,11 @@ export function ProcurementDashboard({ data }: { data: DashboardData }) {
           </button>
         )}
 
-        <div className="border-t px-2 pt-3 text-[10px] leading-relaxed text-muted-foreground">
-          <p>Read 17 Sep 2026</p>
-          <p>AusTender · NT contracts workbook · ABS Census 2021 table I16 · grantscope</p>
-          <p className="mt-2">Filters live in the address bar, so this view can be sent to someone and it will land where you are. Press / to search the records.</p>
+        <div className="space-y-1.5 border-t px-2 pt-3">
+          {data.stamps.map((s) => <AsAt key={s.source} stamp={s} showSource className="block" />)}
+          <p className="pt-1.5 text-[10px] leading-relaxed text-muted-foreground">
+            Filters live in the address bar, so this view can be sent to someone and it will land where you are. Press / to search the records.
+          </p>
         </div>
       </aside>
 
