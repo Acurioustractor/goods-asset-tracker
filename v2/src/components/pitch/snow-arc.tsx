@@ -33,8 +33,14 @@ function registryQuote(slug: string, tier: VoiceTier, contains: string) {
   return quote ? { person, quote } : null;
 }
 
+/**
+ * A funder's mark over the film. On a cream chip because these logos are dark artwork
+ * (FRRR's is dark green) and were unreadable sitting straight on the footage at h-7.
+ */
 const Mark = ({ src, alt }: { src: string; alt: string }) => (
-  <Image src={src} alt={alt} width={600} height={300} className="mb-5 h-7 w-auto opacity-90" />
+  <span className="mb-6 inline-flex items-center rounded-[10px] bg-goods-cream px-4 py-3">
+    <Image src={src} alt={alt} width={600} height={300} className="h-10 w-auto md:h-12" />
+  </span>
 );
 
 const Beat = ({ n, when, title, children }: { n: string; when: string; title: string; children: React.ReactNode }) => (
@@ -83,7 +89,7 @@ export function SnowArc() {
       body: (
         <>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
-            <Image src="/images/partners/snow-foundation-white.png" alt="Snow Foundation" width={2194} height={1056} className="h-8 w-auto" />
+            <Image src="/images/partners/snow-foundation-white.png" alt="Snow Foundation" width={2194} height={1056} className="h-11 w-auto md:h-14" />
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-terracotta-light">Who backed the experiment</p>
           </div>
           <div className="mt-8">
@@ -107,7 +113,7 @@ export function SnowArc() {
       id: 'snow-program',
       body: (
         <>
-          <Mark src="/images/partners/amp-foundation.svg" alt="AMP Foundation" />
+          <Mark src="/images/partners/amp-foundation.png" alt="AMP Foundation" />
           <Beat n="02" when="2024" title="A program">
           <p>
             A place in AMP&rsquo;s Tomorrow Makers Spark, and Snow invoices arriving through the years the bed went from
@@ -267,7 +273,9 @@ export function SnowArc() {
             voice: {
               portrait: jahvan.person.portrait ?? undefined,
               name: jahvan.person.name,
-              role: jahvan.person.role,
+              // His registry role is a sentence that doubles as an internal note. The credit
+              // just needs his name and his place.
+              role: '',
               community: jahvan.person.community,
               quote: jahvan.quote.text,
             },

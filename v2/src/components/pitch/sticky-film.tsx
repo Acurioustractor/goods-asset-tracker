@@ -78,8 +78,10 @@ export function StickyFilm({ src, poster, alt, credit, steps, scrim = 'default' 
                     {step.voice.portrait && <Image src={step.voice.portrait} alt={step.voice.name} width={160} height={160} className="h-20 w-20 shrink-0 rounded-full object-cover ring-2 ring-goods-cream/60 sm:h-24 sm:w-24" />}
                     <div>
                       <blockquote className="font-display text-2xl leading-snug text-goods-cream md:text-3xl">“{step.voice.quote}”</blockquote>
+                      {/* Empty parts are dropped: some registry roles double as internal notes and
+                          are a sentence long, so a caller can pass '' and get a clean credit. */}
                       <figcaption className="mt-3 text-sm text-goods-cream/80">
-                        {step.voice.name} · {step.voice.role} · {step.voice.community}
+                        {[step.voice.name, step.voice.role, step.voice.community].filter(Boolean).join(' · ')}
                       </figcaption>
                     </div>
                   </figure>
