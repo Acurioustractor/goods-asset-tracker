@@ -1401,9 +1401,28 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
     role: 'Co-founder',
     community: 'Goods team',
     tier: 'internal',
-    quotes: [],
+    quotes: [
+      {
+        text: 'The moment was a surreal take back to 2016 when Lucas Patchett OAM and I were at the back of a room where we first heard Bo Remenyi talk about rheumatic heart disease.',
+        context: 'Where it starts. Nic and Lucas Patchett hearing Dr Boe Remenyi explain that a washing machine and reliable hot water are health hardware, seven years before the first Goods invoice.',
+        status: 'approved',
+      },
+      {
+        text: 'So last week I was up the back of this room with tears of pride for what we have done and tears for why we are still talking about this.',
+        context: 'Ten years on, in another room with Dr Boe Remenyi, Georgina Byron AM, Viki Wade, Adjunct Professor Maree Meredith and Sally Grimsley-Ballard.',
+        status: 'approved',
+      },
+      {
+        text: 'If it was not for the passionate leadership and generosity of Georgina Byron AM I am really not sure we would have progressed anywhere near what has been done.',
+        context: 'The co-founder on the funder. The clearest statement anywhere in the record of what catalytic capital actually did here.',
+        status: 'approved',
+      },
+    ],
     portrait: null,
-    notes: 'Filtered out of public storyteller grids.',
+    notes:
+      'Filtered out of public storyteller grids: tier `internal` means he is team, never a community storyteller, and the Voice component (tier `external`) will not render him. A surface that wants his words has to say Co-founder next to them. ' +
+      'Quotes added 2026-09-16, verbatim from his own public LinkedIn post about the Orange Sky NIAA grants and the RHD room. Provenance is that post, so nothing here needs a separate consent decision. ' +
+      'The post also carries "between 2017 and 2022, First Nations peoples accounted for 92% of acute rheumatic fever cases in Australia". That figure is deliberately NOT lifted into canon: he cites no source for it, no surface in this repo carries it, and scabies-to-RHD is the why and never a claimed outcome. Quote him saying it if it is needed; do not restate it as our own number without a citation.',
   },
   // ── Palm Island ──────────────────────────────────────────────────────────
   {
