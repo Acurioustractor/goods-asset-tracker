@@ -12,9 +12,11 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import {
-  ALIGNMENT, BECAUSE_OF, FILMS, MAP_PLACES, NOT_FINISHED, PLACE_BEATS, SNOW_MONEY, TOGETHER,
-  TOGETHER_KINDS, WALLS,
+  ALIGNMENT, BECAUSE_OF, BUYER_TOTALS, BUYERS, FILMS, MAP_PLACES, NOT_FINISHED, PLACE_BEATS,
+  PRICE_LADDER, SNOW_MONEY, TOGETHER, TOGETHER_KINDS, WALLS, WASHER_PLACES, WASHER_TELEMETRY,
 } from '@/lib/data/snow-partnership';
+import { PAID_INVOICES, PAID_INVOICE_BEDS } from '@/lib/data/paid-trade';
+import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import { GRANTS_RECEIVED } from '@/lib/data/grants-received';
 import { getStorytellerBySlug } from '@/lib/data/storyteller-registry';
 
@@ -59,6 +61,46 @@ describe('snow partnership report', () => {
     expect(film).toContain('sticky top-0');
     expect(film, 'a negative z-index hides the film behind the page background').not.toContain('-z-10');
     expect(film, '-mt-screen is not a Tailwind class').not.toContain('-mt-screen');
+  });
+
+  it('the buyers reconcile to the paid invoices, bed for bed', () => {
+    // BUYERS is written by hand because "what route to market is this an example of" is a
+    // judgement. The numbers are not, so they are held to the invoice record.
+    expect(BUYER_TOTALS.beds).toBe(PAID_INVOICE_BEDS);
+    expect(BUYER_TOTALS.invoices).toBe(PAID_INVOICES.length);
+    const byBuyer = new Map<string, number>();
+    for (const i of PAID_INVOICES) byBuyer.set(i.buyer, (byBuyer.get(i.buyer) ?? 0) + i.beds);
+    expect(BUYERS.length).toBe(byBuyer.size);
+    for (const b of BUYERS) {
+      expect(byBuyer.get(b.buyer), `${b.buyer} is not a buyer in the invoice record`).toBe(b.beds);
+    }
+    const prices = [...new Set(PAID_INVOICES.map((i) => i.bedUnitPriceAud))].sort((a, b) => a - b);
+    expect([...PRICE_LADDER]).toEqual(prices);
+  });
+
+  it('prints no withdrawn demand figure', () => {
+    // Ben, 15 September: the "who has asked" numbers are made up and withdrawn. They must
+    // never appear, and this page is the most likely place for them to creep back in.
+    // Comments stripped: both files name the withdrawn figures in order to forbid them, and a
+    // guard that matches its own prohibition can never pass.
+    const strip = (t: string) => t.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
+    const page = strip(readFileSync(PAGE, 'utf8'));
+    const data = strip(readFileSync(join(process.cwd(), 'src/lib/data/snow-partnership.ts'), 'utf8'));
+    const withdrawn = /\b(150|65|500)\s+beds|200\s*(to|-|–)\s*350|\bGroote\b/i;
+    for (const [what, text] of [['page', page], ['data', data]] as const) {
+      expect(withdrawn.test(text), `a withdrawn demand figure is back in the ${what}`).toBe(false);
+    }
+  });
+
+  it('the washer count matches canon and the telemetry is internally consistent', () => {
+    const summed = WASHER_PLACES.reduce((n, w) => n + w.inCommunity, 0);
+    expect(summed, 'the per-place washers do not add to the canonical figure').toBe(CANONICAL_ASSETS.washersInCommunity);
+    // Only ten machines report, which is fewer than are in community. If that ever inverts,
+    // somebody has counted a controller as a machine.
+    expect(WASHER_TELEMETRY.reporting).toBeLessThanOrEqual(summed);
+    expect(WASHER_TELEMETRY.flagship.cycles).toBeLessThanOrEqual(WASHER_TELEMETRY.totalCycles);
+    expect(WASHER_TELEMETRY.flagship.kwh).toBeLessThanOrEqual(WASHER_TELEMETRY.totalKwh);
+    expect(WASHER_TELEMETRY.readAt).toMatch(/^\d{4}-\d{2}-\d{2}$/);
   });
 
   it('every moment is dated, sourced and sortable', () => {

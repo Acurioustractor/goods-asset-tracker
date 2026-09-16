@@ -9,8 +9,9 @@ import { getStorytellerBySlug } from '@/lib/data/storyteller-registry';
 import { ORGANISATION } from '@/lib/data/organisation';
 import { goodsBoard } from '@/lib/data/goods-board';
 import {
-  ALIGNMENT, BECAUSE_OF, FILMS, heroFrames, MAP_PLACES, NOT_FINISHED, OONCHIUMPA_NEXT,
-  PLACE_BEATS, SNOW_MONEY, TOGETHER, WALLS,
+  ALIGNMENT, BECAUSE_OF, BUYER_TOTALS, BUYERS, DEMAND_GAPS, FILMS, heroFrames, MAP_PLACES,
+  NOT_FINISHED, OONCHIUMPA_NEXT, PLACE_BEATS, PRICE_LADDER, SNOW_MONEY, TOGETHER, WALLS,
+  WASHER_NEXT, WASHER_PLACES, WASHER_TELEMETRY,
 } from '@/lib/data/snow-partnership';
 import { ChapterRail } from '@/components/pitch/chapter-rail';
 import { CountUp } from '@/components/pitch/count-up';
@@ -56,14 +57,16 @@ const CHAPTERS = [
   { id: 'ch-making', number: '01', label: 'What we are doing' },
   { id: 'ch-first', number: '02', label: 'Snow went first' },
   { id: 'ch-alice', number: '03', label: 'Alice Springs' },
-  { id: 'ch-films', number: '04', label: 'In their own words' },
-  { id: 'ch-archive', number: '05', label: 'The archive' },
-  { id: 'ch-together', number: '06', label: 'What we have done' },
-  { id: 'ch-because', number: '07', label: 'What Goods is now' },
-  { id: 'ch-board', number: '08', label: 'Who holds it' },
-  { id: 'ch-align', number: '09', label: 'Your strategy, our evidence' },
-  { id: 'ch-unfinished', number: '10', label: 'What is not finished' },
-  { id: 'ch-next', number: '11', label: 'What we are asking' },
+  { id: 'ch-buyers', number: '04', label: 'Who is buying' },
+  { id: 'ch-washers', number: '05', label: 'The machines' },
+  { id: 'ch-films', number: '06', label: 'In their own words' },
+  { id: 'ch-archive', number: '07', label: 'The archive' },
+  { id: 'ch-together', number: '08', label: 'What we have done' },
+  { id: 'ch-because', number: '09', label: 'What Goods is now' },
+  { id: 'ch-board', number: '10', label: 'Who holds it' },
+  { id: 'ch-align', number: '11', label: 'Your strategy, our evidence' },
+  { id: 'ch-unfinished', number: '12', label: 'What is not finished' },
+  { id: 'ch-next', number: '13', label: 'What we are asking' },
 ] as const;
 
 /** Default-deny, same shape as funder-moments: wrong tier or unapproved renders nothing. */
@@ -326,7 +329,131 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </Chapter>
 
       <Chapter
-        id="ch-films" number="04" label="In their own words"
+        id="ch-buyers" number="04" label="Who is buying"
+        title="Four buyers, five invoices, 320 beds, and the price went up"
+        lead="This is the thing Sally asked for most, and it is the deliverable the QBE volunteer team is working on. Everything here is an invoice that was issued and paid. Nothing here is a forecast."
+      >
+        <div className="rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>What a bed has sold for, in order</p>
+          <div className="mt-5 flex flex-wrap items-end gap-2 sm:gap-3">
+            {PRICE_LADDER.map((p, i) => (
+              <div key={p} className="flex flex-col items-center">
+                <div
+                  className="w-14 rounded-t sm:w-20"
+                  style={{ height: `${Math.round((p / 800) * 120)}px`, backgroundColor: i === PRICE_LADDER.length - 1 ? RUST : '#D8CFC4' }}
+                />
+                <span className="mt-2 text-xs font-semibold" style={{ color: CHARCOAL }}>${p}</span>
+              </div>
+            ))}
+          </div>
+          <p className="mt-5 max-w-2xl text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
+            The unit price has more than doubled across four buyers, and they kept buying. Centrecorp came back at a
+            higher price for nearly twice the volume. That is the only demand signal in this document that means
+            anything, because somebody paid it.
+          </p>
+        </div>
+
+        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          {BUYERS.map((b) => (
+            <div key={b.id} className="rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderTop: `3px solid ${RUST}` }}>
+              <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>{b.route}</p>
+              <p className="mt-2 font-display text-lg leading-snug" style={{ color: CHARCOAL }}>{b.buyer}</p>
+              <p className="mt-1 text-xs" style={{ color: '#A99C8F' }}>{b.forPlace} &middot; {b.invoices}</p>
+              <div className="mt-3 flex gap-6">
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: '#A99C8F' }}>Beds</p>
+                  <p className="font-display text-xl leading-none" style={{ color: CHARCOAL }}>{b.beds}</p>
+                </div>
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: '#A99C8F' }}>Paid per bed</p>
+                  <p className="font-display text-xl leading-none" style={{ color: CHARCOAL }}>
+                    {b.firstPrice === b.latestPrice ? `$${b.latestPrice}` : `$${b.firstPrice} then $${b.latestPrice}`}
+                  </p>
+                </div>
+              </div>
+              <p className="mt-3 text-sm leading-relaxed" style={{ color: `${CHARCOAL}99` }}>{b.what}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-6 rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+          <p className="text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
+            <strong>{BUYER_TOTALS.beds} beds, {BUYER_TOTALS.buyers} buyers, {BUYER_TOTALS.invoices} invoices.</strong>{' '}
+            {money(BUYER_TOTALS.netOfGstAud)} net of GST, {money(BUYER_TOTALS.inclGstAud)} including it. {BUYER_TOTALS.basis}
+          </p>
+        </div>
+
+        <div className="mt-6 rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderLeft: `3px solid ${SAGE}` }}>
+          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: SAGE }}>What we do not know about demand</p>
+          <ul className="mt-3 space-y-3 text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
+            {DEMAND_GAPS.map((g) => <li key={g}>{g}</li>)}
+          </ul>
+        </div>
+      </Chapter>
+
+      <Chapter
+        id="ch-washers" number="05" label="The machines"
+        title="How the fleet got to twenty three, and what it reports"
+        lead="Snow bought one of these outright. They are the only part of the work that tells us how it is going without anyone having to visit."
+      >
+        <div className="grid gap-4 sm:grid-cols-4">
+          {WASHER_PLACES.map((w) => (
+            <div key={w.place} className="rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+              <p className="font-display text-3xl leading-none" style={{ color: CHARCOAL }}>{w.inCommunity}</p>
+              <p className="mt-2 text-sm font-semibold leading-snug" style={{ color: CHARCOAL }}>{w.place}</p>
+              <p className="mt-2 text-xs leading-relaxed" style={{ color: `${CHARCOAL}99` }}>{w.note}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-6 rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>
+            What the machines reported, read {WASHER_TELEMETRY.readAt}
+          </p>
+          <div className="mt-4 grid gap-6 sm:grid-cols-3">
+            <div>
+              <p className="font-display text-4xl leading-none" style={{ color: CHARCOAL }}>{WASHER_TELEMETRY.totalCycles.toLocaleString('en-AU')}</p>
+              <p className="mt-2 text-xs" style={{ color: `${CHARCOAL}99` }}>Wash cycles recorded</p>
+            </div>
+            <div>
+              <p className="font-display text-4xl leading-none" style={{ color: CHARCOAL }}>{WASHER_TELEMETRY.totalKwh.toLocaleString('en-AU')}</p>
+              <p className="mt-2 text-xs" style={{ color: `${CHARCOAL}99` }}>Kilowatt hours drawn</p>
+            </div>
+            <div>
+              <p className="font-display text-4xl leading-none" style={{ color: CHARCOAL }}>{WASHER_TELEMETRY.reporting}</p>
+              <p className="mt-2 text-xs" style={{ color: `${CHARCOAL}99` }}>Machines that report at all</p>
+            </div>
+          </div>
+          <div className="mt-6 rounded-lg p-5" style={{ backgroundColor: CREAM }}>
+            <p className="font-display text-xl leading-snug" style={{ color: CHARCOAL }}>
+              {WASHER_TELEMETRY.flagship.cycles} washes in one house.
+            </p>
+            <p className="mt-2 text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
+              {WASHER_TELEMETRY.flagship.assetId}, at {WASHER_TELEMETRY.flagship.where}, has drawn{' '}
+              {WASHER_TELEMETRY.flagship.kwh.toLocaleString('en-AU')} kilowatt hours between{' '}
+              {WASHER_TELEMETRY.flagship.from} and {WASHER_TELEMETRY.flagship.to}. It was still reporting on the day
+              this was written.
+            </p>
+          </div>
+          <ul className="mt-6 space-y-3 text-sm leading-relaxed" style={{ color: `${CHARCOAL}99` }}>
+            {WASHER_TELEMETRY.honest.map((h) => <li key={h}>{h}</li>)}
+          </ul>
+          <p className="mt-4 text-xs" style={{ color: '#A99C8F' }}>Source: {WASHER_TELEMETRY.source}.</p>
+        </div>
+
+        <div className="mt-6 grid gap-4 sm:grid-cols-3">
+          {WASHER_NEXT.map((n) => (
+            <div key={n.title} className="rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderTop: '3px solid #B8AEA4' }}>
+              <p className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: '#6A5E54' }}>Where it goes next</p>
+              <p className="mt-2 font-display text-base leading-snug" style={{ color: CHARCOAL }}>{n.title}</p>
+              <p className="mt-2 text-xs leading-relaxed" style={{ color: `${CHARCOAL}99` }}>{n.detail}</p>
+            </div>
+          ))}
+        </div>
+      </Chapter>
+
+      <Chapter
+        id="ch-films" number="06" label="In their own words"
         title="The films"
         lead="Five, including one Snow have not been shown. Each plays where it sits, and only one at a time."
       >
@@ -335,7 +462,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
 
       <div id="ch-archive" className="scroll-mt-24 px-5 py-16 sm:px-8 sm:py-24">
         <div className="mx-auto max-w-4xl">
-          <p className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: RUST }}>05 &middot; The archive</p>
+          <p className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: RUST }}>07 &middot; The archive</p>
           <h2 className="mt-3 font-display text-3xl leading-tight sm:text-4xl" style={{ color: CHARCOAL }}>The photographs</h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed sm:text-lg" style={{ color: `${CHARCOAL}cc` }}>
             Five sets. The first one is the thinnest, and it is the one about us and you.
@@ -351,7 +478,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </div>
 
       <Chapter
-        id="ch-together" number="06" label="What we have done"
+        id="ch-together" number="08" label="What we have done"
         title="Two years, and the money is the smallest part of it"
         lead="Trips, rooms, introductions and the times Snow told this story in its own voice. Filter the money out and see what is left."
       >
@@ -360,7 +487,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </Chapter>
 
       <Chapter
-        id="ch-because" number="07" label="What Goods is now"
+        id="ch-because" number="09" label="What Goods is now"
         title="What the money turned into"
         lead="Counts where we have counts, and labels where we do not. The last number on this list is zero, and it is the one we print against ourselves."
       >
@@ -388,7 +515,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </Chapter>
 
       <Chapter
-        id="ch-board" number="08" label="Who holds it"
+        id="ch-board" number="10" label="Who holds it"
         title={ORGANISATION.boardLine}
         lead="Snow said in November 2025 that all future grants would require First Nations leadership, and that every partner would be reviewed. This is our answer, and it was underway before the question."
       >
@@ -414,7 +541,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </Chapter>
 
       <Chapter
-        id="ch-align" number="09" label="Your strategy, our evidence"
+        id="ch-align" number="11" label="Your strategy, our evidence"
         title="Read your own words back, with the gaps marked"
         lead="Six things Snow has published about what it funds, and what Goods can actually put against each one. Two of these are weak and one is a thing we are not asking you to fund."
       >
@@ -422,7 +549,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </Chapter>
 
       <Chapter
-        id="ch-unfinished" number="10" label="What is not finished"
+        id="ch-unfinished" number="12" label="What is not finished"
         title="The parts we would rather you heard from us"
         lead="A funder who asks for evidence-based and culturally safe programs should be told what the evidence does not cover."
       >
@@ -437,7 +564,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </Chapter>
 
       <Chapter
-        id="ch-next" number="11" label="What we are asking"
+        id="ch-next" number="13" label="What we are asking"
         title="133 beds, and a longer conversation"
         lead="The same ask we have put to our other bed funders, so nobody is being asked for something shaped specially for them."
       >

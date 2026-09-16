@@ -729,3 +729,142 @@ export const MAP_PLACES: readonly MapPlaceData[] = [
   { id: 'utopia', name: 'Utopia Homelands', lat: -22.235, lng: 134.741, since: '2026-05', beds: 147, note: 'Eighty-seven beds over two days with Oonchiumpa and the Utopia Council, a bed under thirty-six households.' },
   { id: 'alice-springs', name: 'Mparntwe / Alice Springs', lat: -23.698, lng: 133.881, since: '2026-06', beds: 20, note: 'Where Oonchiumpa would operate the second facility. The federal submission is lodged and the decision is pending.' },
 ];
+
+// ---------------------------------------------------------------------------
+// WHO IS BUYING, AND THE MACHINES THAT REPORT
+//
+// Ben, 16 September 2026, and it is also the main thing Sally asked for and the deliverable
+// the QBE volunteer team is working on: map the buyers and the routes to market.
+//
+// THE RULE THAT GOVERNS THIS WHOLE SECTION. The "who has asked" bed figures were withdrawn as
+// made up (Ben, 15 September): Utopia 150, Maningrida 65, Palm Island 40, Tennant Creek 20 and
+// 3, Groote 500, NPY 200 to 350. None of them are printed here or anywhere. The ONLY demand
+// record is the paid trade, so this section is built entirely from invoices that were issued
+// and paid, and it says so.
+
+export interface BuyerRoute {
+  id: string;
+  buyer: string;
+  /** The route to market this buyer is an instance of. Jay Boolkin's framing, 4 Sep 2026. */
+  route: string;
+  beds: number;
+  firstPrice: number;
+  latestPrice: number;
+  forPlace: string;
+  invoices: string;
+  what: string;
+}
+
+/**
+ * Four buyers, five invoices, 320 beds. Written by hand from PAID_INVOICES, because the route
+ * to market is a judgement about what each buyer is an example of, and a judgement does not
+ * belong in a reduce(). The numbers are held to PAID_INVOICES by the guard.
+ */
+export const BUYERS: readonly BuyerRoute[] = [
+  {
+    id: 'centrecorp', buyer: 'Centrecorp Foundation', route: 'Philanthropic trust buying for a community',
+    beds: 167, firstPrice: 370, latestPrice: 560, forPlace: 'Utopia Homelands',
+    invoices: 'INV-0259 and INV-0291, paid September 2025 and February 2026',
+    what: 'The first repeat buyer. They came back at a higher price for nearly twice the volume, which is the only kind of demand signal worth anything. They buy beds; they have never given a grant, and the footer says so.',
+  },
+  {
+    id: 'malala', buyer: "Mala'la Health Service Aboriginal Corporation", route: 'Aboriginal community controlled health service',
+    beds: 13, firstPrice: 380, latestPrice: 380, forPlace: 'Maningrida',
+    invoices: 'INV-0283, paid November 2025',
+    what: 'An ACCHO buying bedding as health hardware out of its own budget. Small, and the most strategically interesting line in the book: it is a health service acting on the housing end of the pathway.',
+  },
+  {
+    id: 'homeland-school', buyer: 'Homeland School Company', route: 'School',
+    beds: 40, firstPrice: 750, latestPrice: 750, forPlace: 'Maningrida homelands',
+    invoices: 'INV-0303, paid July 2026',
+    what: 'A school buying beds for homelands families, at the full $750, plus two washing machines. These are the forty pressed in our own facility.',
+  },
+  {
+    id: 'alive', buyer: 'ALIVE National Centre', route: 'Research programme buying for the communities it works with',
+    beds: 100, firstPrice: 800, latestPrice: 800, forPlace: 'Communities in the Gathering the Parts programme',
+    invoices: 'INV-0342, paid August 2026',
+    what: 'The largest single order and the highest price paid. A national research centre bought a hundred beds at $800 in August 2026.',
+  },
+];
+
+/**
+ * The price ladder. The point a funder should take from it: the unit price has more than
+ * doubled across four buyers and they kept buying. Read from BUYERS so it cannot drift.
+ */
+export const PRICE_LADDER = [370, 380, 560, 750, 800] as const;
+
+export const BUYER_TOTALS = {
+  beds: BUYERS.reduce((n, b) => n + b.beds, 0),
+  buyers: BUYERS.length,
+  invoices: 5,
+  netOfGstAud: 247_770,
+  inclGstAud: 273_966,
+  basis: 'Net of GST is the revenue and EBITDA basis; inc-GST is what landed in the bank. Name the basis every time.',
+} as const;
+
+/** What is honestly not known about demand, said before anyone asks. */
+export const DEMAND_GAPS: readonly string[] = [
+  'Every projected demand figure Goods used to carry was withdrawn in September 2026 as unevidenced. Nothing has replaced them, and nothing here is a forecast.',
+  'No individual has ever bought a bed at $750 with their own money. Every bed in the book was bought by an organisation for a community, which is a different market with a different question attached.',
+  'Whether $750 holds once freight is inside it is still being worked out. Goods absorbs $100 of freight and $100 of facilitation out of its own share today.',
+  'A QBE volunteer team is running a market demand assessment across five priority regions, reporting in the week of 19 October 2026. It is the first independent look at any of this.',
+];
+
+export interface WasherPlace {
+  place: string;
+  inCommunity: number;
+  note: string;
+}
+
+/**
+ * How the fleet got to twenty three, and who has them.
+ *
+ * Canon is 23, per Ben's ruling of 21 July 2026 as amended 16 September. The register carries
+ * more deployed rows than that, and canon already says why: ten are stale and pending restatus
+ * to retired. Repeating that here, instead of quietly publishing the larger number, is the
+ * whole point of having a canon.
+ */
+export const WASHER_PLACES: readonly WasherPlace[] = [
+  { place: 'Tennant Creek', inCommunity: 9, note: 'Where it started. Dianne Stokes named the machine Pakkimjalki Kari in Warumungu. Julalikari Council Aboriginal Corporation holds two.' },
+  { place: 'Maningrida', inCommunity: 8, note: 'Six in community plus two bought by the Homeland School Company on INV-0303.' },
+  { place: 'Palm Island', inCommunity: 5, note: 'Alongside the Backing the Future youth pilot.' },
+  { place: 'Alice Springs', inCommunity: 1, note: 'With the Oonchiumpa relationship.' },
+];
+
+/**
+ * What the machines actually report. Read from the live fleet tables on 16 September 2026 and
+ * written down with its date. It is not queried at render time, because a funder report that
+ * changes its own figures between two readings of it has stopped being a report.
+ *
+ * Controller identity is reconciled first, using the aliases Ben reviewed on 14 May 2026, so a
+ * machine that has had two controller ids is not counted twice. After that reconciliation
+ * nothing is unresolved.
+ */
+export const WASHER_TELEMETRY = {
+  readAt: '2026-09-16',
+  reporting: 10,
+  totalCycles: 2_330,
+  totalKwh: 3_546,
+  source: 'daily_machine_rollups, reconciled against the asset register through the reviewed controller aliases in src/lib/fleet/identity.ts',
+  flagship: {
+    assetId: 'GB0-113',
+    where: "Norm's house, Tennant Creek",
+    cycles: 951,
+    kwh: 2_611,
+    from: '17 November 2025',
+    to: '16 September 2026',
+  },
+  /** Said plainly, because a funder will work it out anyway. */
+  honest: [
+    'Only ten machines report at all. The rest have no controller fitted, so the fleet is measured where it is instrumented and estimated nowhere else.',
+    'Three controllers reported and then went silent. One did 550 cycles before it stopped in March 2026 and has not been seen since. They sit on the register as under investigation, which is what they are.',
+    'Ten register rows still read deployed that canon does not count, pending restatus. The public figure is 23 and stays 23 until the register catches up.',
+  ],
+} as const;
+
+/** Where the machine goes next. Intent, labelled as intent. */
+export const WASHER_NEXT: readonly { title: string; detail: string }[] = [
+  { title: 'A machine that says how it is going', detail: 'The controllers already report cycles and power. The next version reports fault codes and water use, so a service trip is made because a machine asked for it.' },
+  { title: 'Parts that can be replaced in community', detail: 'The Speed Queen base was chosen because it can be repaired. The enclosure, the controller and the plumbing are ours to make simpler.' },
+  { title: 'Measured against the laundry it replaces', detail: 'A commercial remote laundry is the comparison nobody has costed properly. The cycles and kilowatt hours above are the beginning of that number.' },
+];
