@@ -48,6 +48,7 @@ export default function ContactPage() {
       organisation: formData.get('organization') as string || undefined,
       subject: subjectMap[inquiryType] || 'General Inquiry',
       message: formData.get('message') as string,
+      _companyWebsite: (formData.get('_companyWebsite') as string) || undefined,
     };
 
     try {
@@ -134,6 +135,8 @@ export default function ContactPage() {
               <Card className="border-0 shadow-lg bg-white">
                 <CardContent className="p-8">
                   <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Honeypot: hidden from people and screen readers, filled by bots. Checked in api/contact. */}
+                    <input name="_companyWebsite" type="text" tabIndex={-1} autoComplete="off" className="sr-only" aria-hidden="true" />
                     {/* Inquiry Type */}
                     <div>
                       <Label className="text-sm font-medium mb-3 block" style={{ color: '#2E2E2E' }}>

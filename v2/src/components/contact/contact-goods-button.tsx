@@ -20,7 +20,17 @@ import { Mail, X } from 'lucide-react';
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react';
 import { trackContactEvent } from '@/lib/analytics/contact';
 
-type Subject = 'General Inquiry' | 'Partnership Inquiry' | 'Bulk Order Inquiry';
+/**
+ * Must stay a subset of CONTACT_SUBJECTS in api/contact/route.ts. A subject not
+ * on that allowlist is silently downgraded to General Inquiry, so a typo here
+ * costs you the routing without failing anywhere visible.
+ */
+type Subject =
+  | 'General Inquiry'
+  | 'Partnership Inquiry'
+  | 'Bulk Order Inquiry'
+  | 'Facility Funding Inquiry'
+  | 'Community Interest';
 
 export function ContactGoodsButton({
   label = 'Contact Goods',
@@ -83,6 +93,7 @@ export function ContactGoodsButton({
           organisation: String(data.get('organisation') ?? '') || undefined,
           subject,
           message: `Sent from ${page}\n\n${String(data.get('message') ?? '')}`,
+          _companyWebsite: String(data.get('_companyWebsite') ?? '') || undefined,
         }),
       });
       const json = (await res.json().catch(() => ({}))) as { error?: string };
@@ -160,6 +171,8 @@ export function ContactGoodsButton({
                 </div>
               ) : (
                 <form onSubmit={submit} className="space-y-5">
+                  {/* Honeypot: hidden from people and screen readers, filled by bots. Checked in api/contact. */}
+                  <input name="_companyWebsite" type="text" tabIndex={-1} autoComplete="off" className="sr-only" aria-hidden="true" />
                   <div className="grid gap-5 sm:grid-cols-2">
                     <label className="block">
                       <span className={labelCls}>Name</span>
