@@ -16,10 +16,63 @@
  *
  * Add lists/segments conservatively. Each one is another way to accidentally
  * blast hundreds of contacts; keep it intentional and capped.
+ *
+ * ── REPOINTED 17 September 2026 ──────────────────────────────────────────────
+ * Every audience here used to query a flat `goods-*` tag. The GHL account had
+ * moved to the namespaced contract (see ./canonical-tags) and nobody repointed
+ * this file, so all thirteen definitions resolved to between 0 and 9 contacts
+ * against an account holding 580 Goods contacts. Measured that day:
+ *
+ *     goods-newsletter      8     comms:goods-newsletter   164
+ *     audience-funder       0     role:funder               99
+ *     goods-supplier        0     role:supplier             36
+ *     goods-buyer-target    9     role:buyer                84
+ *
+ * Two things stop that happening again:
+ *
+ *  - `npm run audit:audiences` (scripts/ghl-audience-audit.mjs) prints the live
+ *    count behind every definition below. Run it before trusting any of them.
+ *  - `readiness` on each audience says whether it is expected to hold people
+ *    yet, so an empty list reads as a known gap rather than a silent failure.
+ *
+ * SUPPRESSION: 109 contacts carried `comms:do-not-contact` and nothing excluded
+ * them. SUPPRESSED_TAGS is now filtered out of every resolved audience.
  */
 
 import type { LoiRung } from '@/lib/data/loi-pipeline';
 import { GOODS_PIPELINES } from '@/lib/data/loi-pipeline';
+
+/**
+ * A contact carrying any of these is never in a resolved audience, whatever
+ * else they are tagged. Checked in code as well as in the GHL smart-list recipe
+ * so a hand-built list and an in-app preview cannot disagree.
+ */
+export const SUPPRESSED_TAGS = [
+  'comms:do-not-contact',
+  'comms:paused',
+  'suppression:ghl-dnd',
+  'consent:withdrawn',
+] as const;
+
+/** True when a contact's tags put them out of every audience. */
+export function isSuppressed(tags: string[] | undefined | null): boolean {
+  if (!tags?.length) return false;
+  const lower = new Set(tags.map((t) => t.toLowerCase()));
+  return SUPPRESSED_TAGS.some((t) => lower.has(t));
+}
+
+/** The clause to paste into any hand-built GHL smart list, so both agree. */
+export const SUPPRESSION_RECIPE = `AND contact tag is none of: ${SUPPRESSED_TAGS.join(', ')}.`;
+
+/**
+ * Whether an audience is expected to hold people yet.
+ *  - `live`          the tag is applied and the audience is real.
+ *  - `needs-tagging` the tag exists in the contract but nothing applies it yet.
+ *  - `needs-flow`    the audience fills from a flow nobody has used yet (the QR
+ *                    claim has 0 claimed assets, so every claim list is empty).
+ * An empty `live` audience is a bug. An empty `needs-*` audience is a to-do.
+ */
+export type AudienceReadiness = 'live' | 'needs-tagging' | 'needs-flow';
 
 export interface SmartList {
   /** Stable identifier used in URLs and API calls */
@@ -30,6 +83,10 @@ export interface SmartList {
   description: string;
   /** Single GHL tag the contact must carry. (Multi-tag filters via custom endpoint later.) */
   tag: string;
+  /** Whether this list is expected to hold anyone yet. See AudienceReadiness. */
+  readiness: AudienceReadiness;
+  /** When readiness is not 'live', what has to happen for it to fill. */
+  blockedOn?: string;
   /** Suggested cap — UI warns if the actual count exceeds this */
   softCap: number;
   /** Hard cap — dispatch endpoint refuses sends larger than this */
@@ -40,11 +97,43 @@ export interface SmartList {
 
 export const SMART_LISTS: SmartList[] = [
   {
+    id: 'community-line',
+    name: 'Community line (never auto-contacted)',
+    description:
+      'Everyone on the community relationship lane. Shown so you can SEE them and ring them. lane:community is never an automated audience (ruling R9), so this list exists to pick one person, not to send to all of them.',
+    tag: 'lane:community',
+    readiness: 'live',
+    softCap: 1,
+    hardCap: 1,
+  },
+  {
+    id: 'washer-interest',
+    name: 'Washing machine prospects',
+    description: 'Registered interest in a Pakkimjalki Kari. Use for product update + waitlist comms.',
+    tag: 'interest:washer',
+    readiness: 'live',
+    softCap: 50,
+    hardCap: 200,
+  },
+  {
+    id: 'storytellers',
+    name: 'Storytellers',
+    description:
+      'People who have shared a story. Consent to tell a story is NOT consent to be messaged (ruling R11), so treat this as a list to pick from by hand.',
+    tag: 'role:storyteller',
+    readiness: 'live',
+    softCap: 5,
+    hardCap: 20,
+  },
+  {
     id: 'bed-recipients-consented',
     name: 'Bed recipients (consented to contact)',
     description:
-      'People who claimed a bed via QR and ticked "ok to contact". Highest-signal list for proactive check-ins.',
-    tag: 'goods-consent-to-contact',
+      'Claimed a bed via QR and ticked "ok to contact". The highest-signal list for proactive check-ins, once anyone has claimed.',
+    tag: 'interest:story-followup',
+    readiness: 'needs-flow',
+    blockedOn:
+      'The QR claim flow has never been used: 0 rows in user_assets. Walk one community through /claim/<asset_id> first.',
     softCap: 100,
     hardCap: 250,
     defaultMessageSeed:
@@ -52,50 +141,30 @@ export const SMART_LISTS: SmartList[] = [
   },
   {
     id: 'bed-owners-claimed',
-    name: 'Bed owners — claimed via QR',
+    name: 'Bed owners (claimed via QR)',
     description: 'Everyone who scanned a bed QR and claimed it with their phone.',
     tag: 'goods-claimed-bed',
+    readiness: 'needs-flow',
+    blockedOn: 'Nobody has claimed an asset yet (0 rows in user_assets).',
     softCap: 100,
     hardCap: 250,
   },
   {
     id: 'washer-owners',
     name: 'Washing machine owners',
-    description: '14 households with a Pakkimjalki Kari deployed. Use for fleet check-ins.',
+    description: 'Households with a Pakkimjalki Kari deployed. Use for fleet check-ins.',
     tag: 'goods-claimed-washer',
+    readiness: 'needs-flow',
+    blockedOn: 'Nobody has claimed an asset yet (0 rows in user_assets).',
     softCap: 20,
     hardCap: 50,
   },
   {
-    id: 'washer-interest',
-    name: 'Washing machine prospects',
-    description: 'Submitted "Register Interest" on the washing machine page. Use for product update + waitlist comms.',
-    tag: 'goods-washer-interest',
-    softCap: 50,
-    hardCap: 200,
-  },
-  {
-    id: 'bed-buyers',
-    name: 'Stretch Bed buyers (Stripe)',
-    description:
-      'People who paid for a bed via stripe. Use sparingly — they bought, not granted permission to be texted.',
-    tag: 'goods-bed-owner',
-    softCap: 50,
-    hardCap: 200,
-  },
-  {
-    id: 'story-submitters-consented',
-    name: 'Story submitters (consented)',
-    description: 'Shared a story or photo and ticked "ok to contact". Good for follow-up + thanks.',
-    tag: 'goods-story-submitter',
-    softCap: 50,
-    hardCap: 100,
-  },
-  {
     id: 'support-recent',
     name: 'Recent support contacts',
-    description: 'Opened a support ticket in the last while. Use for "did your fix work?" follow-ups.',
-    tag: 'goods-support-request',
+    description: 'Opened a support ticket. Use for "did your fix work?" follow-ups.',
+    tag: 'interest:support',
+    readiness: 'live',
     softCap: 30,
     hardCap: 80,
   },
@@ -140,6 +209,10 @@ export interface AudienceSegment {
   source: SegmentSource;
   /** The exact filter to build the matching smart list in the GHL UI. */
   ghlSmartListRecipe: string;
+  /** Whether this segment is expected to hold anyone yet. See AudienceReadiness. */
+  readiness: AudienceReadiness;
+  /** When readiness is not 'live', what has to happen for it to fill. */
+  blockedOn?: string;
   /** Advisory cap — UI warns when the live count exceeds this. */
   softCap: number;
   /** Hard cap — a reminder of the largest campaign this segment should drive. */
@@ -156,102 +229,138 @@ export const AUDIENCE_SEGMENTS: AudienceSegment[] = [
     name: 'Funders — active',
     supportLevel: 'Committed / giving',
     description:
-      'Funders who have committed or are giving — sitting at the committed → delivering → cash/stewarding rungs of the Supporter Journey. Steward them: show what the money did.',
+      'Funders who have committed or are giving, at the committed → delivering → stewarding rungs of GOODS - Funding. Steward them: show what the money did.',
     source: {
       kind: 'pipeline-stage',
       pipelineId: SUPPORTER_JOURNEY_PIPELINE_ID,
       rungs: ['signed', 'contract', 'cash'],
-      alsoTag: 'audience-funder',
+      alsoTag: 'role:funder',
     },
     ghlSmartListRecipe:
-      'Opportunity in "Goods Supporter Journey" at stage Committed, Delivering, Stewarding/Reporting or Renewing — AND contact tag is audience-funder.',
+      'Opportunity in "GOODS - Funding" at stage Committed, Delivering, Stewarding / Reporting or Renewing, AND contact tag is role:funder. ' + SUPPRESSION_RECIPE,
+    readiness: 'live',
     softCap: 40,
     hardCap: 120,
     recommendedReportId: 'funder-impact',
     campaignNote:
-      'Stewardship cadence: a quarterly impact report + renewal/scale ask. Small, high-value list — personalise where you can.',
+      'Stewardship cadence: a quarterly impact report + renewal/scale ask. Small, high-value list, so personalise where you can.',
   },
   {
     id: 'funder-prospect',
     name: 'Funders — prospect',
     supportLevel: 'In cultivation',
     description:
-      'Funders being cultivated or asked but not yet committed — the target rung of the Supporter Journey (Identified, Qualified, Cultivating, Ask made). Use the impact report as the proof behind the ask.',
+      'Funders being cultivated or asked but not yet committed: Identified, Qualified, Cultivating, Ask made. Use the impact report as the proof behind the ask.',
     source: {
       kind: 'pipeline-stage',
       pipelineId: SUPPORTER_JOURNEY_PIPELINE_ID,
       rungs: ['target'],
-      alsoTag: 'audience-funder',
+      alsoTag: 'role:funder',
     },
     ghlSmartListRecipe:
-      'Opportunity in "Goods Supporter Journey" at stage Identified, Qualified, Cultivating or Ask made — AND contact tag is audience-funder.',
+      'Opportunity in "GOODS - Funding" at stage Identified, Qualified, Cultivating or Ask made, AND contact tag is role:funder. ' + SUPPRESSION_RECIPE,
+    readiness: 'live',
     softCap: 80,
     hardCap: 250,
     recommendedReportId: 'funder-impact',
     campaignNote:
-      'Cultivation cadence: lead with the impact report as evidence, then the ask. Never claim DGR is live for Goods (Butterfly routing is FY2026-27).',
+      'Cultivation cadence: lead with the impact report as evidence, then the ask. The charity is Goods on Country Ltd.',
   },
   {
     id: 'buyer',
     name: 'Buyers & procurement',
     supportLevel: 'Commercial pipeline',
     description:
-      'Procurement orgs, housing bodies and government buyers in the Goods Buyer Pipeline. They underwrite spec, warranty and total cost of ownership — not charity.',
+      'Procurement orgs, housing bodies and government buyers in GOODS - Buyers. They underwrite spec, warranty and total cost of ownership.',
     source: {
       kind: 'pipeline-stage',
       pipelineId: BUYER_PIPELINE_ID,
       rungs: ['target', 'signed', 'contract', 'cash'],
+      alsoTag: 'role:buyer',
     },
     ghlSmartListRecipe:
-      'Opportunity in "Goods — Buyer Pipeline" (any active stage). Grantscope-sourced buyer prospects also carry the goods-buyer-target tag if you want to widen the net.',
+      'Opportunity in "GOODS - Buyers" (any active stage). Widen with contact tag role:buyer for prospects with no opportunity yet. ' + SUPPRESSION_RECIPE,
+    readiness: 'live',
     softCap: 50,
     hardCap: 150,
     recommendedReportId: 'procurement-buyer',
     campaignNote:
-      'Procurement cadence: the buyer brief + a delivered-price offer. Keep it spec-first; stories are evidence of demand, not the headline.',
+      'Procurement cadence: the buyer brief + a delivered price. Keep it spec-first; stories are evidence of demand rather than the headline.',
   },
   {
     id: 'supplier',
     name: 'Suppliers (BOM / plant)',
     supportLevel: 'Supply partner',
     description:
-      'Component and plant suppliers — HDPE, steel, canvas, fasteners, plastic-plant builders. The emailable current-supplier list. Detail (price, MOQ, lead time) lives in supplier-quotes.ts.',
-    source: { kind: 'tag', tag: 'goods-supplier' },
-    ghlSmartListRecipe: 'Contact tag is goods-supplier (optionally goods-supplier-active for current only).',
+      'Component and plant suppliers: HDPE, steel, canvas, fasteners, plastic-plant builders. Price, MOQ and lead time live in supplier-quotes.ts.',
+    source: { kind: 'tag', tag: 'role:supplier' },
+    ghlSmartListRecipe: 'Contact tag is role:supplier. ' + SUPPRESSION_RECIPE,
+    readiness: 'live',
     softCap: 30,
     hardCap: 80,
     recommendedReportId: 'supply-partner',
     campaignNote:
-      'Relationship cadence: the supply-partner brief + a volume forecast. Drives prioritisation and volume pricing, not fundraising.',
+      'Relationship cadence: the supply-partner brief + a volume forecast. Drives prioritisation and volume pricing.',
   },
   {
-    id: 'vendor',
-    name: 'Vendors (services / logistics)',
-    supportLevel: 'Service partner',
+    id: 'partner',
+    name: 'Partners',
+    supportLevel: 'Delivery partner',
     description:
-      'Service, logistics, print and tech vendors who keep production moving (freight, IoT, tooling, design). Tagged goods-vendor in the supplier/vendor sweep.',
-    source: { kind: 'tag', tag: 'goods-vendor' },
-    ghlSmartListRecipe: 'Contact tag is goods-vendor (sub-tags: vendor-freight, vendor-tech, vendor-print, vendor-services).',
-    softCap: 40,
-    hardCap: 100,
+      'Organisations we deliver with: community orgs, health services, councils, land councils. The largest single audience in the account.',
+    source: { kind: 'tag', tag: 'role:partner' },
+    ghlSmartListRecipe: 'Contact tag is role:partner. ' + SUPPRESSION_RECIPE,
+    readiness: 'live',
+    softCap: 160,
+    hardCap: 400,
     recommendedReportId: 'supply-partner',
     campaignNote:
-      'Lighter touch than suppliers — periodic update + forecasting where relevant. Same supply-partner report works.',
+      'Many of these people also sit on lane:community. The suppression filter does not catch that, so check the lane before any send: a community-line contact is never an automated audience (ruling R9).',
+  },
+  {
+    id: 'media',
+    name: 'Media',
+    supportLevel: 'Press',
+    description: 'Journalists and outlets who have asked for the media pack or covered Goods.',
+    source: { kind: 'tag', tag: 'role:media' },
+    ghlSmartListRecipe: 'Contact tag is role:media. ' + SUPPRESSION_RECIPE,
+    readiness: 'live',
+    softCap: 20,
+    hardCap: 60,
+    recommendedReportId: 'supporter-update',
+    campaignNote: 'Pitch a story with a person and a place in it, not an announcement.',
   },
   {
     id: 'supporter',
     name: 'Supporters & donors',
     supportLevel: 'Community of support',
     description:
-      'Individual supporters and the newsletter list — the broad warm audience. Donors who sponsored a bed also carry goods-sponsor.',
-    source: { kind: 'tag', tag: 'goods-newsletter' },
+      'The newsletter list: everyone who ticked the explicit consent box. comms:goods-newsletter is the ONLY send-trigger tag and it is minted in one place (grantNewsletterComms in ./canonical-tags).',
+    source: { kind: 'tag', tag: 'comms:goods-newsletter' },
     ghlSmartListRecipe:
-      'Contact tag is goods-newsletter (the supporter/subscriber list). For the donor sub-segment, AND-in goods-sponsor.',
+      'Contact tag is comms:goods-newsletter. For the donor sub-segment, AND-in role:supporter. ' + SUPPRESSION_RECIPE,
+    readiness: 'live',
     softCap: 800,
     hardCap: 3000,
     recommendedReportId: 'supporter-update',
     campaignNote:
-      'Newsletter cadence: warm, story-first supporter update. Lead with a person, not a metric. This is the big list — respect opt-outs.',
+      'Newsletter cadence: warm, story-first. Lead with a person. Ben ruled on 17 Sep 2026 that nothing goes to this list until there is something worth sending, and the first send needs a warmed dedicated domain.',
+  },
+  {
+    id: 'vendor',
+    name: 'Vendors (services / logistics)',
+    supportLevel: 'Service partner',
+    description:
+      'Service, logistics, print and tech vendors who keep production moving (freight, IoT, tooling, design).',
+    source: { kind: 'tag', tag: 'role:vendor' },
+    ghlSmartListRecipe: 'Contact tag is role:vendor. ' + SUPPRESSION_RECIPE,
+    readiness: 'needs-tagging',
+    blockedOn:
+      'role:vendor is on 0 contacts and the flat goods-vendor it replaced was also on 0. Nothing has ever tagged a vendor. Run the supplier/vendor sweep before using this.',
+    softCap: 40,
+    hardCap: 100,
+    recommendedReportId: 'supply-partner',
+    campaignNote: 'Lighter touch than suppliers: periodic update + forecasting where relevant.',
   },
 ];
 
