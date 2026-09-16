@@ -21,14 +21,14 @@ Five metric tiles, the blocker as one sentence and three seller cards, two chart
 tender, by jurisdiction; crowding from the census), a dated openings timeline, and four sortable
 tables with a record drawer. Filters live in the URL. Press `/` for the record palette.
 
-**Two cautions carried forward.**
-1. **The `.pen` file on disk is still 315 bytes.** Pencil holds the document in memory. The design
-   is in the open editor and needs a save (⌘S) before it survives a restart. `.pen` is gitignored
-   (`.gitignore:243`), so it will never be in a commit either way.
-2. **Pencil's renderer wedged mid-session** and drew nothing new for about ten calls, while the
-   document data stayed correct. `Get` bounds went stale with a phantom 50px offset at the same
-   time. It recovered on its own. If it happens again: the data is fine, keep building, and verify
-   with `Export` to PNG instead of `TakeScreenshot`.
+**Saved by Ben 17 Sep 07:47, 915KB on disk.** `.pen` is gitignored (`.gitignore:243`), so the
+design file lives only in the working tree and will never appear in a commit. It is not backed up
+by git. Same as every other `.pen` in `design/`.
+
+**One caution carried forward.** Pencil's renderer wedged mid-session and drew nothing new for
+about ten calls, while the document data stayed correct. `Get` bounds went stale with a phantom
+50px offset at the same time. It recovered on its own. If it happens again: the data is fine,
+keep building, and verify with `Export` to PNG instead of `TakeScreenshot`.
 
 **TanStack Table is installed at v9 and unused.** Its API is atoms, stores and registered features,
 which four in-memory tables of a few hundred rows do not earn. Sorting is a 20-line hook in the
