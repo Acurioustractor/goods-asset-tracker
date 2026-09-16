@@ -124,6 +124,9 @@ export default async function ProcurementPage() {
         <Link href="/admin/procurement/openings" className="rounded-full border px-3 py-1.5 text-xs font-semibold" style={{ borderColor: '#D8CFC4', color: '#6A5E54' }}>
           Openings: everything with a date
         </Link>
+        <Link href="/admin/procurement/organisations" className="rounded-full border px-3 py-1.5 text-xs font-semibold" style={{ borderColor: '#D8CFC4', color: '#6A5E54' }}>
+          Organisations to ring
+        </Link>
       </nav>
 
       {/* The blocker, first. */}

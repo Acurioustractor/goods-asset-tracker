@@ -46,6 +46,8 @@ export default async function BoardPage() {
           <Link href="/admin/procurement" className="underline">The rules</Link>
           {' · '}
           <Link href="/admin/procurement/openings" className="underline">Openings</Link>
+          {' · '}
+          <Link href="/admin/procurement/organisations" className="underline">Organisations</Link>
         </span>
       </div>
       <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground">

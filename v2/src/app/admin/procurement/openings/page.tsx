@@ -41,6 +41,8 @@ export default async function OpeningsPage() {
           <Link href="/admin/procurement/board" className="underline">The board</Link>
           {' · '}
           <Link href="/admin/procurement" className="underline">The rules</Link>
+          {' · '}
+          <Link href="/admin/procurement/organisations" className="underline">Organisations</Link>
         </span>
       </div>
 
