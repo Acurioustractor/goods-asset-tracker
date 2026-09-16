@@ -63,6 +63,10 @@ export function SnowArc() {
   // Annie Morrison is the one wearing glasses, Patricia Frank is the other.
   const patricia = registryQuote('patricia-frank', 'external', 'wash their blanket');
   const annie = registryQuote('annie-morrison', 'external', 'important for the old people');
+  // Jimmy Frank is in photographs from the same trip and his line is about housing, so he
+  // stands beside Norman on the Wilya Janta moment, which keeps the section from growing
+  // another screen.
+  const jimmy = registryQuote('jimmy-frank', 'external', 'easier for our people to live in their homes');
   const patriciaName = getStorytellerBySlug('patricia-frank')?.name ?? '';
   const annieName = getStorytellerBySlug('annie-morrison')?.name ?? '';
 
@@ -109,8 +113,8 @@ export function SnowArc() {
         <>
           <Beat n="03" when="April 2025" title="On Country">
             <p>
-              Snow came to Tennant Creek and spent the days where the beds go. Not a site visit with a
-              schedule, days of sitting down with the people whose houses these are.
+              Snow came to Tennant Creek and spent the days where the beds go, sitting down with the
+              people whose houses these are.
             </p>
           </Beat>
           {annie && (
@@ -151,6 +155,16 @@ export function SnowArc() {
             including a solar-powered house drawn by the people who will live in it. The same funder,
             the same place, a different part of the same problem.
           </p>
+          {jimmy && (
+            <figure className="m-0 mt-6 border-l-2 border-goods-terracotta pl-5">
+              <blockquote className="text-[17px] leading-relaxed text-goods-cream/90">
+                &ldquo;{jimmy.quote.text}&rdquo;
+              </blockquote>
+              <figcaption className="mt-2 text-sm text-goods-cream/65">
+                {jimmy.person.name} · {jimmy.person.role}
+              </figcaption>
+            </figure>
+          )}
         </Beat>
       ),
       ...(wilyaJanta
