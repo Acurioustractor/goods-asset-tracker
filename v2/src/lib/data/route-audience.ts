@@ -190,6 +190,14 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     verdict: 'keep',
   },
   {
+    route: '/admin/procurement',
+    audience: 'internal',
+    access: 'admin',
+    leadsWithNow: null,
+    whyUnread: 'admin surface, client-rendered behind the admin gate',
+    verdict: 'keep',
+  },
+  {
     route: '/admin/impact-cycles',
     audience: 'internal',
     access: 'admin',
@@ -1389,6 +1397,14 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     whyUnread: 'dynamic route with no nameable representative instance',
     verdict: 'plumbing',
     why: 'a per-surface password gate',
+  },
+  {
+    route: '/partners/[slug]/story',
+    audience: 'partner',
+    access: 'open',
+    leadsWithNow: null,
+    whyUnread: 'dynamic route with no nameable representative instance',
+    verdict: 'keep',
   },
   {
     route: '/partners/[slug]/outcomes',

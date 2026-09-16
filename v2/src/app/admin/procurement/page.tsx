@@ -6,19 +6,20 @@ import { join } from 'node:path';
 import { buildOpportunities } from '@/lib/data/procurement-board';
 import { JURISDICTIONS, MODEL_GAPS } from '@/lib/data/procurement-model';
 import { OPENINGS } from '@/lib/data/procurement-openings';
-import { PROCUREMENT_STATE } from '@/lib/data/procurement';
 import { ProcurementDashboard } from '@/components/partners/procurement-dashboard';
+import type { IntelRow } from '@/components/partners/procurement-dashboard';
 import type { Org } from '@/components/partners/org-list';
 
 /**
- * PROCUREMENT. One route, one filter bar, four views of the same question.
+ * PROCUREMENT. One route, one filter bar, many lenses on the same question.
  *
- * Ben, 17 September 2026, chose this over the four separate pages built the day before:
- * organisations, communities, openings and rules are lenses on one dataset, and splitting them
- * across four URLs meant four filter bars and no shareable state.
+ * Ben, 17 September 2026, chose this over the four separate pages built the day before, then
+ * asked for the whole thing to be designed in Pencil and brought back. The design file is
+ * design/Goods Dashboard.pen, frame "Desk Overview".
  *
  * Everything loads on the server from the three JSON pulls plus the typed modules, so the
- * client component holds no data-fetching and the filter work is pure.
+ * client component holds no data-fetching and the filter work is pure. The blocker, the charts
+ * and the timeline all live inside the dashboard now, because each one moves with the filter.
  */
 
 export const metadata: Metadata = {
@@ -34,11 +35,20 @@ async function readJson<T>(rel: string): Promise<T | null> {
   }
 }
 
+interface IntelFile { communities: IntelRow[] }
+interface BuyerFile { totals?: { contracts?: number }; communities: { community: string; valueAud: number; topBuyer: string | null }[] }
+interface NtFile {
+  totals?: { allContracts?: number };
+  furnishingGap?: { housingAgencyValueAud?: number; housingAgencyFurnitureContracts?: number };
+  expiryTotal?: number;
+}
+
 export default async function ProcurementPage() {
-  const [orgData, intel, buyers] = await Promise.all([
+  const [orgData, intel, buyers, nt] = await Promise.all([
     readJson<{ organisations: Org[] }>('data/organisations.json'),
-    readJson<{ communities: { community: string; state: string | null; overcrowdedPct: number | null; personsPerDwelling: number | null }[] }>('data/community-intel.json'),
-    readJson<{ communities: { community: string; valueAud: number; topBuyer: string | null }[] }>('data/procurement-buyers.json'),
+    readJson<IntelFile>('data/community-intel.json'),
+    readJson<BuyerFile>('data/procurement-buyers.json'),
+    readJson<NtFile>('data/nt-housing-contractors.json'),
   ]);
 
   const data = {
@@ -46,37 +56,22 @@ export default async function ProcurementPage() {
     places: buildOpportunities(intel?.communities ?? [], buyers?.communities ?? []),
     openings: OPENINGS,
     jurisdictions: JURISDICTIONS,
+    intel: intel?.communities ?? [],
+    read: {
+      contracts: (nt?.totals?.allContracts ?? 0) + (buyers?.totals?.contracts ?? 0),
+      ntHousingAgencyValueAud: nt?.furnishingGap?.housingAgencyValueAud ?? 0,
+      ntHousingAgencyFurnitureContracts: nt?.furnishingGap?.housingAgencyFurnitureContracts ?? 0,
+      expiries: nt?.expiryTotal ?? 0,
+    },
   };
 
   return (
-    <main className="mx-auto max-w-7xl px-5 py-10 sm:px-8">
-      <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">Admin &middot; internal</p>
-      <h1 className="mt-2 font-display text-3xl leading-tight sm:text-4xl">Procurement</h1>
-      <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground">
-        Who can buy a bed, who could sell one, where the need is, and what is open. Filter once and every view
-        answers the same question.
-      </p>
+    <main className="mx-auto max-w-[1600px] px-4 sm:px-6">
+      <Suspense fallback={<p className="py-10 text-sm text-muted-foreground">Loading…</p>}>
+        <ProcurementDashboard data={data} />
+      </Suspense>
 
-      {/* The blocker stays at the top, because it governs everything below it. */}
-      <div className="mt-6 rounded-lg border p-5" style={{ borderColor: '#C45C3E' }}>
-        <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: '#C45C3E' }}>The thing that governs all of this</p>
-        <p className="mt-2 max-w-4xl text-sm leading-relaxed">
-          Every Indigenous procurement instrument tests the entity that <strong>sells</strong>, and orders are
-          invoiced by {PROCUREMENT_STATE.sellerEntity}, which does not pass. The community organisations we work with
-          do. So beds handed over as stock a community organisation owns are what makes them a supplier into a
-          channel Goods cannot reach. Two jurisdictions, Queensland and Western Australia, instead test the
-          composition of the <strong>board</strong>, which Goods on Country Ltd may already satisfy. That is
-          unresolved and is a question for the Industry Capability Network.
-        </p>
-      </div>
-
-      <div className="mt-8">
-        <Suspense fallback={<p className="text-sm text-muted-foreground">Loading…</p>}>
-          <ProcurementDashboard data={data} />
-        </Suspense>
-      </div>
-
-      <section className="mt-10 rounded-lg border border-dashed p-5">
+      <section className="my-10 rounded-xl border border-dashed p-5">
         <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">What this cannot tell you</p>
         <ul className="mt-2 space-y-2 text-sm leading-relaxed text-muted-foreground">
           {MODEL_GAPS.map((g) => <li key={g}>{g}</li>)}
