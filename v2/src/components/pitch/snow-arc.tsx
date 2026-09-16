@@ -22,6 +22,7 @@
  */
 
 import Image from 'next/image';
+import { GRANTS_RECEIVED } from '@/lib/data/grants-received';
 import { ORGANISATION } from '@/lib/data/organisation';
 import { StickyFilm, type FilmStep } from '@/components/pitch/sticky-film';
 import { getStorytellerBySlug, type VoiceTier } from '@/lib/data/storyteller-registry';
@@ -29,7 +30,11 @@ import { getStorytellerBySlug, type VoiceTier } from '@/lib/data/storyteller-reg
 function registryQuote(slug: string, tier: VoiceTier, contains: string) {
   const person = getStorytellerBySlug(slug);
   if (!person || person.tier !== tier) return null;
-  const quote = person.quotes.find((q) => q.status === 'approved' && q.text.includes(contains));
+  // `primary` is the preferred quote, a stronger status than `approved`, so both count.
+  // Taking only `approved` silently dropped Patricia Frank's line off the page.
+  const quote = person.quotes.find(
+    (q) => (q.status === 'primary' || q.status === 'approved') && q.text.includes(contains),
+  );
   return quote ? { person, quote } : null;
 }
 
@@ -41,6 +46,27 @@ const Mark = ({ src, alt }: { src: string; alt: string }) => (
   <span className="mb-6 inline-flex items-center rounded-[10px] bg-goods-cream px-4 py-3">
     <Image src={src} alt={alt} width={600} height={300} className="h-10 w-auto md:h-12" />
   </span>
+);
+
+/** A second voice on a beat, with the portrait the registry holds for them. */
+const Aside = ({ v }: { v: { person: { name: string; role: string; community: string; portrait: string | null }; quote: { text: string } } }) => (
+  <figure className="m-0 mt-6 flex gap-4">
+    {v.person.portrait && (
+      <Image
+        src={v.person.portrait}
+        alt={v.person.name}
+        width={160}
+        height={160}
+        className="h-14 w-14 shrink-0 rounded-full object-cover"
+      />
+    )}
+    <div className={v.person.portrait ? '' : 'border-l-2 border-goods-terracotta pl-5'}>
+      <blockquote className="text-[17px] leading-relaxed text-goods-cream/90">&ldquo;{v.quote.text}&rdquo;</blockquote>
+      <figcaption className="mt-2 text-sm text-goods-cream/65">
+        {[v.person.name, v.person.role, v.person.community].filter(Boolean).join(' · ')}
+      </figcaption>
+    </div>
+  </figure>
 );
 
 const Beat = ({ n, when, title, children }: { n: string; when: string; title: string; children: React.ReactNode }) => (
@@ -63,6 +89,9 @@ export function SnowArc() {
   const funder = registryQuote('georgina-byron', 'funder', 'we can catalyse change');
   const founder = registryQuote('nicholas-marchesi', 'internal', 'passionate leadership and generosity');
   const georginaName = getStorytellerBySlug('georgina-byron')?.name ?? 'The Snow Foundation';
+  // The span of the Snow invoices comes from the reconciled list, so the sentence below moves
+  // when the books move. No amount, per the no-dollars ruling.
+  const snow = GRANTS_RECEIVED.find((g) => g.funder === 'Snow Foundation');
   // Norman Frank Jupurrurla founded Wilya Janta, the community-designed housing movement at
   // Tennant Creek that Snow backs alongside Goods. Georgina describes that house in her own
   // recording, which is where the claim comes from.
@@ -80,6 +109,11 @@ export function SnowArc() {
   // Jahvan Oui is what the Backing the Future youth grant produced. A different quote from the
   // one on road stop 4, so the two surfaces do not print the same sentence twice.
   const jahvan = registryQuote('jahvan-oui', 'external', 'listening to our stories');
+  // Linda Turner is in the waterhole photograph and her line is the reason Wilya Janta exists,
+  // so it sits on that beat under Norman's.
+  const linda = registryQuote('linda-turner', 'external', 'never been asked what sort of house');
+  const lindaName = getStorytellerBySlug('linda-turner')?.name ?? '';
+  const jimmyName = getStorytellerBySlug('jimmy-frank')?.name ?? '';
   const patriciaName = getStorytellerBySlug('patricia-frank')?.name ?? '';
   const annieName = getStorytellerBySlug('annie-morrison')?.name ?? '';
 
@@ -99,6 +133,11 @@ export function SnowArc() {
                 reliable hot water are health hardware. Seven years later the question had become a bed, and Snow paid
                 the first invoice with nothing to show them but that question.
               </p>
+              {snow && (
+                <p className="mt-4">
+                  Ten invoices followed, {snow.when}.
+                </p>
+              )}
             </Beat>
           </div>
         </>
@@ -138,26 +177,17 @@ export function SnowArc() {
               people whose houses these are.
             </p>
           </Beat>
-          {annie && (
-            <figure className="m-0 mt-6 border-l-2 border-goods-terracotta pl-5">
-              <blockquote className="text-[17px] leading-relaxed text-goods-cream/90">
-                &ldquo;{annie.quote.text}&rdquo;
-              </blockquote>
-              <figcaption className="mt-2 text-sm text-goods-cream/65">
-                {annie.person.name} · {annie.person.community}
-              </figcaption>
-            </figure>
-          )}
+          {patricia && <Aside v={patricia} />}
         </>
       ),
-      ...(patricia
+      ...(annie
         ? {
             voice: {
-              portrait: patricia.person.portrait ?? undefined,
-              name: patricia.person.name,
-              role: patricia.person.role,
-              community: patricia.person.community,
-              quote: patricia.quote.text,
+              portrait: annie.person.portrait ?? undefined,
+              name: annie.person.name,
+              role: annie.person.role,
+              community: annie.person.community,
+              quote: annie.quote.text,
             },
           }
         : {}),
@@ -186,16 +216,8 @@ export function SnowArc() {
               wilyajanta.org
             </a>
           </p>
-          {jimmy && (
-            <figure className="m-0 mt-6 border-l-2 border-goods-terracotta pl-5">
-              <blockquote className="text-[17px] leading-relaxed text-goods-cream/90">
-                &ldquo;{jimmy.quote.text}&rdquo;
-              </blockquote>
-              <figcaption className="mt-2 text-sm text-goods-cream/65">
-                {jimmy.person.name} · {jimmy.person.role}
-              </figcaption>
-            </figure>
-          )}
+          {jimmy && <Aside v={jimmy} />}
+          {linda && <Aside v={linda} />}
         </Beat>
       ),
       ...(wilyaJanta
@@ -211,8 +233,8 @@ export function SnowArc() {
         : {}),
       image: {
         src: '/images/community/tennant-creek/waterhole-group.jpg',
-        alt: 'Snow Foundation staff standing with Warumungu Elders on rock beside a waterhole at Tennant Creek',
-        place: 'At the waterhole, Tennant Creek.',
+        alt: `Sally Grimsley-Ballard, ${jimmyName}, ${lindaName}, ${georginaName} and ${patriciaName} standing together on rock beside a waterhole at Tennant Creek`,
+        place: `Left to right: Sally Grimsley-Ballard, ${jimmyName}, ${lindaName}, ${georginaName}, ${patriciaName}. At the waterhole, Tennant Creek.`,
       },
     },
     {
@@ -262,8 +284,7 @@ export function SnowArc() {
             <p>
               FRRR and the Vincent Fairfax Family Foundation funded the Palm Island pilot through Backing
               the Future, their youth program: 25 beds, three community sessions, thirty young people, and
-              Jahvan and Ebony hosted at the Sydney factory to learn the production side. Acquitted in March
-              2026, the only grant here that is finished, reported and closed.
+              Jahvan and Ebony hosted at the Sydney factory to learn the production side.
             </p>
           </Beat>
         </>

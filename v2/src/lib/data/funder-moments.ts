@@ -87,7 +87,7 @@ export const FUNDER_MOMENTS: readonly FunderMoment[] = [
     when: 'August to November 2025',
     place: 'Palm Island',
     line:
-      "Backing the Future is FRRR's youth program, co-funded by the Vincent Fairfax Family Foundation. It paid for the Palm Island pilot: 25 beds built on the island, three community sessions, and 30 young people on the build. Jahvan Oui and Ebony Oui were hosted at the Sydney factory in September 2025 to learn the production side. The pilot cost more than the grant covered and A Curious Tractor carried the difference. Acquitted in March 2026, the only grant here that is finished, reported and closed.",
+      "Backing the Future is FRRR's youth program, co-funded by the Vincent Fairfax Family Foundation. It paid for the Palm Island pilot: 25 beds built on the island, three community sessions, and 30 young people on the build. Jahvan Oui and Ebony Oui were hosted at the Sydney factory in September 2025 to learn the production side. The pilot cost more than the grant covered and A Curious Tractor carried the difference.",
     photo: {
       src: '/images/community/palm-island/crate-build-shed.jpg',
       alt: 'People of all ages laying out black collapsible crates in rows inside a shed on Palm Island, building Basket Beds',
