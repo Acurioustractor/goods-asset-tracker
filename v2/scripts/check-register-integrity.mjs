@@ -78,7 +78,7 @@ if (!url.includes(GOODS_PROJECT_REF)) {
 
 const rows = [];
 for (let from = 0; ; from += 1000) {
-  const res = await fetch(`${url}/rest/v1/assets?select=product,status,quantity,community&limit=1000&offset=${from}`, {
+  const res = await fetch(`${url}/rest/v1/assets?select=product,status,quantity,community,unique_id,name,machine_id&limit=1000&offset=${from}`, {
     headers: { apikey: key, Authorization: `Bearer ${key}` },
   });
   if (!res.ok) { console.error('fetch error:', res.status, await res.text()); process.exit(2); }
@@ -165,6 +165,85 @@ for (const [name, products] of Object.entries(live)) {
   }
 }
 if (!washerHeaderPrinted) console.log('  (no washer rows found)');
+
+// 5. Controller identity: one device, one asset.
+//
+// Added 2026-09-16 after a telemetry read turned up a device that had done 66 cycles
+// and 1,475 kWh, last seen the previous day, sitting against a register row marked
+// `retired`. That specific case is benign: identity.ts carries Ben's 14 May 2026
+// `reviewedControllers` map, so resolveWasher() already routes it to the household row
+// and the fleet page labels the other row "Duplicate record".
+//
+// What nothing checked is the register underneath. Two failure shapes matter:
+//   - the same device id written onto two asset rows, which is how the duplicate pairs
+//     were created in the first place; and
+//   - a machine_id holding a HUMAN NAME ("Norms House", "Barkley Arts") instead of a
+//     device id. Those never match a reading, so the machines whose data is most wanted
+//     are the ones that silently cannot join. Five deployed washers are in that state.
+// Neither breaks a total, so neither would ever fail a count-based guard.
+// src/lib/fleet/ is NOT on main as at 2026-09-16: identity.ts, readers.ts and
+// particle-event.ts live only on feat/empathy-ledger-accountability-events. So the
+// reviewed map may be absent here. When it is, the duplicate-device and name-as-id
+// checks below still run (they need only the register), and the cross-check against
+// the reviewed pairs is skipped rather than crashing the guard.
+let reviewed = {};
+let identitySrc = null;
+try {
+  identitySrc = readFileSync(new URL('../src/lib/fleet/identity.ts', import.meta.url), 'utf8');
+} catch {
+  console.log('  NOTE: src/lib/fleet/identity.ts is not on this branch, so the reviewed-controller');
+  console.log('        cross-check is skipped. The duplicate-device and name-as-id checks still run.');
+}
+if (identitySrc) {
+  for (const m of identitySrc.matchAll(/(\w{24}):\s*\{\s*assetId:\s*'([^']+)',\s*duplicateId:\s*'([^']+)'/g)) {
+    reviewed[m[1]] = { assetId: m[2], duplicateId: m[3] };
+  }
+}
+
+const withDevice = rows.filter((r) => r.machine_id);
+const DEVICE_ID = /^e00fce68[0-9a-f]{16}$/;
+const byUniqueId = new Map(rows.map((r) => [r.unique_id, r]));
+
+console.log('\nController identity (register machine_id vs the reviewed controller map):\n');
+
+const deviceOwners = {};
+for (const r of withDevice) (deviceOwners[r.machine_id] ??= []).push(r.unique_id);
+for (const [device, owners] of Object.entries(deviceOwners)) {
+  if (owners.length > 1) {
+    cite(
+      `device ${device} is written on ${owners.length} asset rows (${owners.join(', ')})`,
+      'One controller, one asset. If two rows are the same machine, add the pair to reviewedControllers in src/lib/fleet/identity.ts and clear machine_id from the duplicate row.',
+    );
+  }
+}
+
+for (const [device, map] of Object.entries(reviewed)) {
+  if (!byUniqueId.has(map.assetId)) {
+    cite(
+      `reviewedControllers maps ${device} to ${map.assetId}, which is not in the register`,
+      'resolveWasher() returns null when the canonical target is missing, so the readings go unresolved. Fix the map or restore the row.',
+    );
+  }
+}
+
+const namedNotDevice = withDevice.filter((r) => !DEVICE_ID.test(r.machine_id) && r.machine_id !== 'test123');
+console.log(`  ${withDevice.length} rows carry a machine_id · ${withDevice.length - namedNotDevice.length} are device ids · ${namedNotDevice.length} are names`);
+for (const r of namedNotDevice) {
+  console.log(`    name-as-id: ${r.unique_id.padEnd(20)} ${String(r.status).padEnd(12)} machine_id='${r.machine_id}' (${r.name ?? 'unnamed'})`);
+}
+
+const orphans = rows.filter((r) => r.status === 'under_investigation');
+if (orphans.length) {
+  console.log(`\n  ${orphans.length} asset(s) under investigation (identity unconfirmed):`);
+  for (const r of orphans) console.log(`    ${r.unique_id.padEnd(20)} ${r.community ?? '(no community)'} · ${r.name ?? 'unnamed'}`);
+}
+
+const pending = rows.filter((r) => r.status === 'deployed' && /pending assignment/i.test(r.name ?? ''));
+if (pending.length) {
+  console.log(`\n  ${pending.length} deployed row(s) still named "Pending Assignment":`);
+  for (const r of pending) console.log(`    ${r.unique_id.padEnd(20)} ${r.community ?? '(no community)'} · ${r.product}`);
+  console.log('    These are counted as deployed but nobody is recorded as having them.');
+}
 
 // ── Verdict ──────────────────────────────────────────────────────────────────
 if (failures.length) {
