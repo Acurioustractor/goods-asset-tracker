@@ -144,17 +144,17 @@ export const STACK_LAYERS: StackLayer[] = [
   // and names Snow explicitly: every grant except QBE buys 133 beds at $750. Nobody is asked
   // for running cost, and the $150K loan in the raise is SEFA's line, not Snow's.
   //
-  // STILL OPEN, and not for this file to decide: the Snow partner dashboard separately invites
-  // Snow in as an impact investor with "as much of the next commitment as possible as a loan",
-  // with the amount explicitly left to settle together. A bed grant and a loan are different
-  // instruments. Until Ben rules, this row carries the ruling and the dashboard carries the
-  // conversation, and the two are noted here so nobody has to rediscover the gap.
+  // SETTLED 2026-09-16, Ben: the bed grant is the ask NOW, and the recoverable-capital
+  // conversation is named as the next chapter rather than folded into this ask. The partner
+  // dashboard was rewritten to match, and to stop saying Snow had opened the loan conversation
+  // themselves: a full mailbox sweep found no Snow person has ever put that in writing. All
+  // three sources for it were our own words.
   {
     funder: 'Snow Foundation (R4/R5)',
     amount: '$99,750',
     instrument: 'Grant: 133 beds at $750',
     concession: 'Purpose: beds for a community organisation to sell or give out. Already delivered over three years, $0 outstanding.',
-    status: 'Warm. Not signed. Instrument unsettled: see the impact-investor conversation on the Snow dashboard.',
+    status: 'Warm. Not signed. A letter is written and unsent. Snow route the decision through their advisory committee, and an in-principle letter is wanted by about 21 September.',
     signedPaper: 'Grant deed or letter of commitment.',
   },
   // CENTRECORP REMOVED FROM THE STACK 2026-08-02, Ben. They are a BUYER and will not give a

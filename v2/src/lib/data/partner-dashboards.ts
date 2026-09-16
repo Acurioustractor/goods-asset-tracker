@@ -302,8 +302,22 @@ const snow: PartnerDashboard = {
     ],
     invitation: {
       eyebrow: 'An invitation to Snow',
-      title: 'From grant partner to impact investor',
-      body: 'Snow has opened a conversation about coming into this next chapter as more than a grant maker: as an impact investor. Our hope is to structure as much of the next commitment as possible as a loan, recoverable capital that returns to Snow over time and can be put back to work, rather than a grant. The three things we want to settle together with Snow are the amount, the conditions it carries, and the impact it is held to. It is an exploration, not a commitment, and it sits alongside the partnership we already have, not in place of it.',
+      title: 'The next 133 beds, and a longer conversation',
+      // REWRITTEN 2026-09-16, twice over.
+      //
+      // First, the ask. Ben's ruling the same day: the bed grant is what is asked for now and
+      // the recoverable structure is named as where we would like to go, not settled in the
+      // same breath. $99,750 is 133 beds at $750, the same ask as Brian M. Davis and Tim
+      // Fairfax.
+      //
+      // Second, and this is the one that had to change: the old wording opened "Snow has
+      // opened a conversation about coming into this next chapter as more than a grant
+      // maker". A full sweep of the mailbox found NO Snow person has ever written that. The
+      // three sources are all our own words (Nic's January proposal, Nic's February note to
+      // QBE, Ben's June email). Putting an intention in a funder's mouth, on the page that
+      // funder opens, is not a thing to leave standing. It is our proposal now, which is what
+      // it always was.
+      body: 'What we are asking for next is $99,750: 133 beds at $750, for a community organisation to sell or give out, the same ask we have put to our other bed funders. Beyond that, we would like to talk with Snow about whether some of what comes after could be structured as recoverable capital, money that returns to Snow over time and can be put back to work. That is a conversation we are opening, not a proposal on the table, and the amount, the conditions it would carry and the impact it would be held to are all things to work out together. It sits alongside the partnership we already have.',
     },
     qbeNote:
       'Goods was selected into QBE Catalysing Impact 2026, a blended finance accelerator run by the Social Impact Hub. Stage 2 can match up to $400,000, but only against capital we raise alongside it, and repayable finance is prioritised over grants. The match is contingent, and it is not secured until it is awarded.',
