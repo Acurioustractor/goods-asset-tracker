@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { honeypotValue } from '@/lib/forms/honeypot';
 
 export function NewsletterForm() {
   const [email, setEmail] = useState('');
@@ -16,7 +17,7 @@ export function NewsletterForm() {
       const response = await fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, tag: 'footer', consent }),
+        body: JSON.stringify({ email, tag: 'footer', consent, _companyWebsite: honeypotValue(e) }),
       });
 
       const data = await response.json();
@@ -43,6 +44,8 @@ export function NewsletterForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
+      {/* Honeypot: hidden from people and screen readers, filled by bots. Checked server-side. */}
+      <input name="_companyWebsite" type="text" tabIndex={-1} autoComplete="off" className="sr-only" aria-hidden="true" />
       <div className="flex flex-col sm:flex-row gap-3">
         <input
           type="email"

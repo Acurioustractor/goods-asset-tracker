@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { guardContactSubmission } from '@/lib/contact-delivery/anti-abuse';
 import { createServiceClient } from '@/lib/supabase/server';
 import { ghl, tagForAsset } from '@/lib/ghl';
 
@@ -48,6 +49,24 @@ export async function POST(
   const includeLocation = form.get('include_location') === '1';
   const photo = form.get('photo') as File | null;
   const audio = form.get('audio') as File | null;
+
+  // Same abuse guard as /api/contact, read off the multipart form rather than a
+  // JSON body. A honeypot hit returns the success a person would see, and the
+  // story is never written. This endpoint accepts a photo and an audio file, so
+  // an unguarded one is a storage bill as well as a junk-record problem.
+  const guard = await guardContactSubmission(req, {
+    honeypot: (form.get('_companyWebsite') as string | null) || undefined,
+    identity: contact,
+  });
+  if (guard.reason === 'honeypot') {
+    return NextResponse.json({ ok: true });
+  }
+  if (!guard.allowed) {
+    return NextResponse.json(
+      { error: 'Too many submissions. Please wait a few minutes and try again.' },
+      { status: 429 },
+    );
+  }
 
   const VALID_THEMES = new Set([
     'practical-need',

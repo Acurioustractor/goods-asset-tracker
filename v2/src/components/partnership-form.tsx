@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { honeypotValue } from '@/lib/forms/honeypot';
 import { Button } from '@/components/ui/button';
 import { trackContactEvent } from '@/lib/analytics/contact';
 
@@ -84,6 +85,7 @@ export function PartnershipForm({ defaultType }: PartnershipFormProps = {}) {
           partnerSegment: partnerSegment || undefined,
           partnershipType: defaultType || 'partnership-inquiry',
           message: message || undefined,
+          _companyWebsite: honeypotValue(e),
         }),
       });
 
@@ -223,6 +225,8 @@ export function PartnershipForm({ defaultType }: PartnershipFormProps = {}) {
   // Stage 1: lead capture
   return (
     <form onSubmit={submitStageOne} className="space-y-8">
+      {/* Honeypot: hidden from people and screen readers, filled by bots. Checked server-side. */}
+      <input name="_companyWebsite" type="text" tabIndex={-1} autoComplete="off" className="sr-only" aria-hidden="true" />
       {/* Identity block: the essentials, captured first */}
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
