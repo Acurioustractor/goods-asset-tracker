@@ -100,6 +100,41 @@ NAMED = [
 ]
 
 
+# Is this a community or Aboriginal organisation, or a general contractor who happens to have
+# won a housing job? The first cut of this script did not ask, so the list opened with Darwin
+# plumbers, a health software company, IBM and Honeywell, while Aurukun Shire Council and
+# Nganampa Health sat at the bottom with "none".
+#
+# The lesson is grantscope's: apply a structural gate BEFORE ranking, and require a SHAPED
+# match. A generic one is not enough. Winning a maintenance contract is generic. Being an
+# Aboriginal corporation, a shire council, a land council, a health service or a homelands
+# resource centre is shaped.
+COMMUNITY_PATTERNS = re.compile(
+    r'\b(aboriginal|torres strait|indigenous|first nations|anangu|arrernte|warlpiri|'
+    r'pitjantjatjara|yolngu|noongar|bawinanga|julalikari|oonchiumpa|urapuntja|nganampa|'
+    r'ngaanyatjarra|anindilyakwa|marthakal|laynhapuy|thamarrurr|tangentyere|binjari|bukmak|'
+    r'wunan|nirrumbuk|mowanjum|milingimbi|juunjuwarra|alpa|saaccon|picc)\b', re.I)
+STRUCTURE_PATTERNS = re.compile(
+    r'\b(shire council|regional council|land council|health service|health board|health council|'
+    r'homelands|resource centre|progress association|community company|housing)\b', re.I)
+# A general trading company, however much housing work it has won.
+CONTRACTOR_PATTERNS = re.compile(
+    r'\b(pty\.? ?ltd|pty limited|proprietary|constructions?|contracting|contractors?|plumbing|'
+    r'electrical|refrigeration|landscaping|painting|builders?|building|engineering|diesel|'
+    r'machinery|hire|solutions|systems|technologies|industries|services group)\b', re.I)
+
+
+def classify_org(name: str, kind: str) -> str:
+    """community | contractor. Community wins whenever the name carries a community marker."""
+    if COMMUNITY_PATTERNS.search(name) or STRUCTURE_PATTERNS.search(name):
+        return 'community'
+    if kind in {'council', 'health_service', 'land_council', 'community_org', 'store', 'royalty', 'education', 'housing_provider'}:
+        return 'community'
+    if CONTRACTOR_PATTERNS.search(name):
+        return 'contractor'
+    return 'contractor'
+
+
 def env(path):
     out = {}
     for line in path.read_text().split('\n'):
@@ -116,14 +151,19 @@ def main() -> int:
         # Normalise before keying, and do NOT truncate. Truncating at 44 characters put "The
         # Arnhem Land Progress Aboriginal Corporation" and the same name with "(ALPA)" appended
         # into two different buckets, so ALPA appeared twice.
-        key = re.sub(r'\(.*?\)', '', name.lower())
-        key = re.sub(r'\b(pty|ltd|limited|incorporated|inc|the|aboriginal|corporation|council)\b', '', key)
+        key = name.lower()
+        key = re.sub(r'\(.*?\)', '', key)                      # drop "(ALPA)"
+        key = re.split(r'\bas trustee for\b|\batf\b', key)[0]  # drop trustee tails
+        key = re.sub(r'\b(pty|ltd|limited|incorporated|inc|co|the|aboriginal|torres strait|'
+                     r'islander|corporation|corp|council|trust|association|services?|'
+                     r'constructions?|group|australia)\b', '', key)
         key = re.sub(r'[^a-z]', '', key)
         cur = orgs.get(key)
         if cur is None:
             orgs[key] = {'name': name, 'kind': kind, 'state': state, 'place': place,
                          'known': known, 'note': note, 'sources': [source],
-                         'govtContractValueAud': value, 'govtContractCount': count}
+                         'govtContractValueAud': value, 'govtContractCount': count,
+                         'group': classify_org(name, kind)}
             return
         cur['govtContractValueAud'] = max(cur['govtContractValueAud'], value)
         cur['govtContractCount'] = max(cur['govtContractCount'], count)
@@ -211,17 +251,22 @@ def main() -> int:
 
     out = {
         'readAt': '2026-09-17',
+        # Community organisations first, then the ones we already know, then contract size.
+        # Sorting on contract value alone put general contractors above every Aboriginal
+        # organisation in the list, which is the opposite of what the list is for.
         'organisations': sorted(
             ({**o, 'proximityOnly': o['sources'] == ['shared-graph']} for o in orgs.values()),
-            key=lambda o: (-o['govtContractValueAud'], o['name'])),
+            key=lambda o: (o['group'] != 'community', not o['known'], -o['govtContractValueAud'], o['name'])),
         'kinds': sorted({o['kind'] for o in orgs.values()}),
+        'groups': ['community', 'contractor'],
         'states': sorted({o['state'] for o in orgs.values() if o['state']}),
         'note': 'Nothing here says an organisation buys beds. It says they hold contracts, or serve a community, or we already know them. Whether they buy bedding is the question to ask them.',
     }
     OUT.write_text(json.dumps(out, indent=2) + '\n')
     known = sum(1 for o in out['organisations'] if o['known'])
+    comm = sum(1 for o in out['organisations'] if o['group'] == 'community')
     eviden = sum(1 for o in out['organisations'] if o['govtContractValueAud'] > 0)
-    print(f"{len(out['organisations'])} organisations, {known} we already know, {eviden} with contract evidence")
+    print(f"{len(out['organisations'])} organisations: {comm} community, {len(out['organisations']) - comm} contractors, {known} we know, {eviden} with contract evidence")
     print(f'written to {OUT}')
     return 0
 

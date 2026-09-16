@@ -2,569 +2,6 @@
   "readAt": "2026-09-17",
   "organisations": [
     {
-      "name": "Akron Group NT Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin",
-      "known": false,
-      "note": "Won 37 NT housing or maintenance contracts worth $97,390,597. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 97390597,
-      "govtContractCount": 37,
-      "proximityOnly": false
-    },
-    {
-      "name": "InterSystems Australia Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Implementation, Support and Ma",
-      "known": false,
-      "note": "Won 2 NT housing or maintenance contracts worth $76,360,001.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 76360001,
-      "govtContractCount": 2,
-      "proximityOnly": false
-    },
-    {
-      "name": "DT Hobbs Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin Region",
-      "known": false,
-      "note": "Won 9 NT housing or maintenance contracts worth $70,008,897. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 70008897,
-      "govtContractCount": 9,
-      "proximityOnly": false
-    },
-    {
-      "name": "C & R Constructions Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin Region",
-      "known": false,
-      "note": "Won 14 NT housing or maintenance contracts worth $62,662,164. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 62662164,
-      "govtContractCount": 14,
-      "proximityOnly": false
-    },
-    {
-      "name": "Bukmak Constructions Pty Ltd as Trustee for Bukmak Constructions Trust",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Nhulunbuy",
-      "known": false,
-      "note": "Won 1 NT housing or maintenance contracts worth $51,527,332. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 51527332,
-      "govtContractCount": 1,
-      "proximityOnly": false
-    },
-    {
-      "name": "Quality Plumbing & Building Contractors Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Greater Darwin Region",
-      "known": false,
-      "note": "Won 10 NT housing or maintenance contracts worth $49,831,724. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 49831724,
-      "govtContractCount": 10,
-      "proximityOnly": false
-    },
-    {
-      "name": "Craven Diesel Services Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Katherine Region",
-      "known": false,
-      "note": "Won 5 NT housing or maintenance contracts worth $45,885,552. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 45885552,
-      "govtContractCount": 5,
-      "proximityOnly": false
-    },
-    {
-      "name": "Binjari Community Aboriginal Corporation",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Katherine region",
-      "known": false,
-      "note": "25 NT contracts worth $48.9M across Ngukurr, Borroloola, Minyerri, Gunbalanya and Beswick. Also holds remote tenancy management.",
-      "sources": [
-        "research",
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 42974610,
-      "govtContractCount": 19,
-      "proximityOnly": false
-    },
-    {
-      "name": "WTD Constructions Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Arafura Region",
-      "known": false,
-      "note": "Won 23 NT housing or maintenance contracts worth $41,073,673. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 41073673,
-      "govtContractCount": 23,
-      "proximityOnly": false
-    },
-    {
-      "name": "Precision Group (NT) Pty Ltd as The Trustee for C Kantros Family Trust",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin Region",
-      "known": false,
-      "note": "Won 2 NT housing or maintenance contracts worth $40,212,694. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 40212694,
-      "govtContractCount": 2,
-      "proximityOnly": false
-    },
-    {
-      "name": "Sterling NT Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Greater Darwin Region",
-      "known": false,
-      "note": "Won 29 NT housing or maintenance contracts worth $39,882,392. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 39882392,
-      "govtContractCount": 29,
-      "proximityOnly": false
-    },
-    {
-      "name": "Masterpath Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Alice Springs Region",
-      "known": false,
-      "note": "Won 11 NT housing or maintenance contracts worth $37,382,021. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 37382021,
-      "govtContractCount": 11,
-      "proximityOnly": false
-    },
-    {
-      "name": "Asbuild (NT) Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Alice Springs Region",
-      "known": false,
-      "note": "Won 12 NT housing or maintenance contracts worth $35,905,859. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 35905859,
-      "govtContractCount": 12,
-      "proximityOnly": false
-    },
-    {
-      "name": "Paradise Landscaping (NT) Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin",
-      "known": false,
-      "note": "Won 8 NT housing or maintenance contracts worth $29,392,656. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 29392656,
-      "govtContractCount": 8,
-      "proximityOnly": false
-    },
-    {
-      "name": "LA Build Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Katherine Region",
-      "known": false,
-      "note": "Won 6 NT housing or maintenance contracts worth $29,182,488. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 29182488,
-      "govtContractCount": 6,
-      "proximityOnly": false
-    },
-    {
-      "name": "Blueprint (NT) Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Tennant Creek Region",
-      "known": false,
-      "note": "Won 3 NT housing or maintenance contracts worth $25,524,240. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 25524240,
-      "govtContractCount": 3,
-      "proximityOnly": false
-    },
-    {
-      "name": "Pedersen NT Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Alice Springs Region",
-      "known": false,
-      "note": "Won 12 NT housing or maintenance contracts worth $24,151,381. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 24151381,
-      "govtContractCount": 12,
-      "proximityOnly": false
-    },
-    {
-      "name": "Shawnco Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Alice Springs",
-      "known": false,
-      "note": "Won 7 NT housing or maintenance contracts worth $23,734,058. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 23734058,
-      "govtContractCount": 7,
-      "proximityOnly": false
-    },
-    {
-      "name": "Woodhill & Sons Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Katherine Region",
-      "known": false,
-      "note": "Won 7 NT housing or maintenance contracts worth $23,138,418. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 23138418,
-      "govtContractCount": 7,
-      "proximityOnly": false
-    },
-    {
-      "name": "B & K Investments (NT) Pty Limited",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin Region",
-      "known": false,
-      "note": "Won 5 NT housing or maintenance contracts worth $22,898,431. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 22898431,
-      "govtContractCount": 5,
-      "proximityOnly": false
-    },
-    {
-      "name": "Murray River North Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Alice Springs Region",
-      "known": false,
-      "note": "Won 10 NT housing or maintenance contracts worth $22,162,080. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 22162080,
-      "govtContractCount": 10,
-      "proximityOnly": false
-    },
-    {
-      "name": "A1 Plant and Civil Pty Limited",
-      "kind": "builder",
-      "state": "NT",
-      "place": "East Arnhem Region",
-      "known": false,
-      "note": "Won 2 NT housing or maintenance contracts worth $21,551,346. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 21551346,
-      "govtContractCount": 2,
-      "proximityOnly": false
-    },
-    {
-      "name": "Scott Hammet Building and Carpentry Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Arafura Region",
-      "known": false,
-      "note": "Won 14 NT housing or maintenance contracts worth $21,051,209. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 21051209,
-      "govtContractCount": 14,
-      "proximityOnly": false
-    },
-    {
-      "name": "Central Land Council",
-      "kind": "land_council",
-      "state": "NT",
-      "place": "Central Australia",
-      "known": false,
-      "note": "$20.8M of federal contracts across 44 awards. Royalty distribution is invisible in every dataset, so this is a conversation and never a query.",
-      "sources": [
-        "research",
-        "shared-graph"
-      ],
-      "govtContractValueAud": 20837626,
-      "govtContractCount": 44,
-      "proximityOnly": false
-    },
-    {
-      "name": "Colemans Contracting & Earthmoving Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin Region",
-      "known": false,
-      "note": "Won 2 NT housing or maintenance contracts worth $20,466,710. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 20466710,
-      "govtContractCount": 2,
-      "proximityOnly": false
-    },
-    {
-      "name": "Olympus Australia Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "All Centres",
-      "known": false,
-      "note": "Won 2 NT housing or maintenance contracts worth $20,379,161.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 20379161,
-      "govtContractCount": 2,
-      "proximityOnly": false
-    },
-    {
-      "name": "M and C Fior Constructions Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Alice Springs Region",
-      "known": false,
-      "note": "Won 7 NT housing or maintenance contracts worth $20,198,509. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 20198509,
-      "govtContractCount": 7,
-      "proximityOnly": false
-    },
-    {
-      "name": "Phillips Earthmoving Contractors Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Tennant Creek Region",
-      "known": false,
-      "note": "Won 6 NT housing or maintenance contracts worth $20,159,963. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 20159963,
-      "govtContractCount": 6,
-      "proximityOnly": false
-    },
-    {
-      "name": "Hakiba Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin Region",
-      "known": false,
-      "note": "Won 4 NT housing or maintenance contracts worth $18,762,657. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 18762657,
-      "govtContractCount": 4,
-      "proximityOnly": false
-    },
-    {
-      "name": "Ri-con Contractors Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Tennant Creek",
-      "known": false,
-      "note": "Won 9 NT housing or maintenance contracts worth $17,688,004. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 17688004,
-      "govtContractCount": 9,
-      "proximityOnly": false
-    },
-    {
-      "name": "Northern Transportables Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "All Centres",
-      "known": false,
-      "note": "Won 5 NT housing or maintenance contracts worth $17,411,706. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 17411706,
-      "govtContractCount": 5,
-      "proximityOnly": false
-    },
-    {
-      "name": "Power Projects (NT) Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Katherine",
-      "known": false,
-      "note": "Won 10 NT housing or maintenance contracts worth $17,354,678. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 17354678,
-      "govtContractCount": 10,
-      "proximityOnly": false
-    },
-    {
-      "name": "Downer Edi Works Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Tennant Creek Region",
-      "known": false,
-      "note": "Won 5 NT housing or maintenance contracts worth $16,777,115. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 16777115,
-      "govtContractCount": 5,
-      "proximityOnly": false
-    },
-    {
-      "name": "Rusca Developments Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin Region",
-      "known": false,
-      "note": "Won 5 NT housing or maintenance contracts worth $16,574,328. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 16574328,
-      "govtContractCount": 5,
-      "proximityOnly": false
-    },
-    {
-      "name": "Hitachi  Data Systems Australia Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin",
-      "known": false,
-      "note": "Won 1 NT housing or maintenance contracts worth $16,300,000.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 16300000,
-      "govtContractCount": 1,
-      "proximityOnly": false
-    },
-    {
-      "name": "KG Kimlin Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Alice Springs",
-      "known": false,
-      "note": "Won 4 NT housing or maintenance contracts worth $16,256,834. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 16256834,
-      "govtContractCount": 4,
-      "proximityOnly": false
-    },
-    {
-      "name": "Parkmore Investments Pty Limited",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Repairs and Maintenance of Chi",
-      "known": false,
-      "note": "Won 6 NT housing or maintenance contracts worth $16,246,862. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 16246862,
-      "govtContractCount": 6,
-      "proximityOnly": false
-    },
-    {
-      "name": "AUS Projects NT (Pty Ltd)",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Northern Region",
-      "known": false,
-      "note": "Won 1 NT housing or maintenance contracts worth $16,240,812. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 16240812,
-      "govtContractCount": 9,
-      "proximityOnly": false
-    },
-    {
-      "name": "NJ Homes (NT) Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Katherine Region",
-      "known": false,
-      "note": "Won 6 NT housing or maintenance contracts worth $15,941,317. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 15941317,
-      "govtContractCount": 6,
-      "proximityOnly": false
-    },
-    {
-      "name": "The Arnhem Land Progress Aboriginal Corporation (ALPA)",
-      "kind": "store",
-      "state": "NT",
-      "place": "27 remote locations",
-      "known": false,
-      "note": "The largest Aboriginal corporation in Australia. Runs stores, does furniture-making, owns Bukmak Constructions, 1,200+ employees.",
-      "sources": [
-        "research",
-        "shared-graph"
-      ],
-      "govtContractValueAud": 15507257,
-      "govtContractCount": 36,
-      "proximityOnly": false
-    },
-    {
       "name": "Bawinanga Aboriginal Corporation",
       "kind": "builder",
       "state": "NT",
@@ -577,35 +14,7 @@
       ],
       "govtContractValueAud": 15102929,
       "govtContractCount": 8,
-      "proximityOnly": false
-    },
-    {
-      "name": "Far Northern Contractors Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Barkly Region",
-      "known": false,
-      "note": "Won 9 NT housing or maintenance contracts worth $15,052,110. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 15052110,
-      "govtContractCount": 9,
-      "proximityOnly": false
-    },
-    {
-      "name": "MacDonnell Regional Council",
-      "kind": "council",
-      "state": "NT",
-      "place": "Central Australia",
-      "known": false,
-      "note": "Won 6 NT housing or maintenance contracts worth $14,928,037. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "research",
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 14928037,
-      "govtContractCount": 6,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -621,622 +30,7 @@
       ],
       "govtContractValueAud": 14826096,
       "govtContractCount": 5,
-      "proximityOnly": false
-    },
-    {
-      "name": "Ingkerreke Commercial Pty Ltd as Trustee for the Ingkerreke Operational Trust",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Barkly Region",
-      "known": false,
-      "note": "Won 11 NT housing or maintenance contracts worth $14,740,081. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 14740081,
-      "govtContractCount": 11,
-      "proximityOnly": false
-    },
-    {
-      "name": "F & J BItumen Services Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Katherine Region",
-      "known": false,
-      "note": "Won 1 NT housing or maintenance contracts worth $14,560,343. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 14560343,
-      "govtContractCount": 1,
-      "proximityOnly": false
-    },
-    {
-      "name": "Auskron Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Royal Darwin Hospital and Palm",
-      "known": false,
-      "note": "Won 4 NT housing or maintenance contracts worth $14,357,749. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 14357749,
-      "govtContractCount": 4,
-      "proximityOnly": false
-    },
-    {
-      "name": "West Arnhem Regional Council",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin Region",
-      "known": false,
-      "note": "Won 5 NT housing or maintenance contracts worth $14,169,050. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 14169050,
-      "govtContractCount": 5,
-      "proximityOnly": false
-    },
-    {
-      "name": "Ribshire Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "East Arnhem Region",
-      "known": false,
-      "note": "Won 9 NT housing or maintenance contracts worth $14,051,742. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 14051742,
-      "govtContractCount": 9,
-      "proximityOnly": false
-    },
-    {
-      "name": "S&R Building & Construction Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Central Australia Region",
-      "known": false,
-      "note": "Won 11 NT housing or maintenance contracts worth $13,874,271. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 13874271,
-      "govtContractCount": 11,
-      "proximityOnly": false
-    },
-    {
-      "name": "Cairns Industries Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Big Rivers Region",
-      "known": false,
-      "note": "Won 12 NT housing or maintenance contracts worth $13,832,152. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 13832152,
-      "govtContractCount": 12,
-      "proximityOnly": false
-    },
-    {
-      "name": "Quality Plumbing and Building Contractors Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Alice Springs",
-      "known": false,
-      "note": "Won 5 NT housing or maintenance contracts worth $13,775,867. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 13775867,
-      "govtContractCount": 5,
-      "proximityOnly": false
-    },
-    {
-      "name": "Remote Build (NT) Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Barkly Region",
-      "known": false,
-      "note": "Won 3 NT housing or maintenance contracts worth $13,694,880. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 13694880,
-      "govtContractCount": 3,
-      "proximityOnly": false
-    },
-    {
-      "name": "GT Builders Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Katherine Region",
-      "known": false,
-      "note": "Won 9 NT housing or maintenance contracts worth $13,093,069. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 13093069,
-      "govtContractCount": 9,
-      "proximityOnly": false
-    },
-    {
-      "name": "MG Electrical Services Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "All Centres",
-      "known": false,
-      "note": "Won 3 NT housing or maintenance contracts worth $12,850,000. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 12850000,
-      "govtContractCount": 3,
-      "proximityOnly": false
-    },
-    {
-      "name": "Deltareef Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin",
-      "known": false,
-      "note": "Won 5 NT housing or maintenance contracts worth $12,651,050. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 12651050,
-      "govtContractCount": 5,
-      "proximityOnly": false
-    },
-    {
-      "name": "Top End Resources Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin Region",
-      "known": false,
-      "note": "Won 7 NT housing or maintenance contracts worth $12,624,141. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 12624141,
-      "govtContractCount": 7,
-      "proximityOnly": false
-    },
-    {
-      "name": "GEBIE Civil and Construction Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Arnhem Region",
-      "known": false,
-      "note": "Won 11 NT housing or maintenance contracts worth $12,529,169. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 12529169,
-      "govtContractCount": 11,
-      "proximityOnly": false
-    },
-    {
-      "name": "Probuild (NT) Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin Region",
-      "known": false,
-      "note": "Won 6 NT housing or maintenance contracts worth $12,250,110. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 12250110,
-      "govtContractCount": 6,
-      "proximityOnly": false
-    },
-    {
-      "name": "United Air Conditioning and Mechanical Services Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin Region",
-      "known": false,
-      "note": "Won 4 NT housing or maintenance contracts worth $12,214,178. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 12214178,
-      "govtContractCount": 4,
-      "proximityOnly": false
-    },
-    {
-      "name": "Scott Hammet Building & Carpentry Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Katherine Region",
-      "known": false,
-      "note": "Won 6 NT housing or maintenance contracts worth $12,034,225. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 12034225,
-      "govtContractCount": 6,
-      "proximityOnly": false
-    },
-    {
-      "name": "NTEX Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin",
-      "known": false,
-      "note": "Won 1 NT housing or maintenance contracts worth $11,998,238. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 11998238,
-      "govtContractCount": 1,
-      "proximityOnly": false
-    },
-    {
-      "name": "Aminjarrinja Enterprises Aboriginal Corporation",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Housing Maintenance Program",
-      "known": false,
-      "note": "Won 11 NT housing or maintenance contracts worth $11,914,400. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 11914400,
-      "govtContractCount": 11,
-      "proximityOnly": false
-    },
-    {
-      "name": "LP Airconditioning Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin",
-      "known": false,
-      "note": "Won 7 NT housing or maintenance contracts worth $11,586,915. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 11586915,
-      "govtContractCount": 7,
-      "proximityOnly": false
-    },
-    {
-      "name": "Remote Area Machinery Hire NT Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Alice Springs Region",
-      "known": false,
-      "note": "Won 1 NT housing or maintenance contracts worth $11,504,400. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 11504400,
-      "govtContractCount": 1,
-      "proximityOnly": false
-    },
-    {
-      "name": "IBM Australia Limited",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin",
-      "known": false,
-      "note": "Won 2 NT housing or maintenance contracts worth $11,438,376.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 11438376,
-      "govtContractCount": 2,
-      "proximityOnly": false
-    },
-    {
-      "name": "REMOTE AREA MACHINERY HIRE",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Alice Springs",
-      "known": false,
-      "note": "Won 3 NT housing or maintenance contracts worth $11,391,111.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 11391111,
-      "govtContractCount": 3,
-      "proximityOnly": false
-    },
-    {
-      "name": "Morningside Electrical Contractors and Consultants Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "East Arnhem Region",
-      "known": false,
-      "note": "Won 3 NT housing or maintenance contracts worth $11,322,102. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 11322102,
-      "govtContractCount": 3,
-      "proximityOnly": false
-    },
-    {
-      "name": "Nilsen (NT) Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin Region",
-      "known": false,
-      "note": "Won 1 NT housing or maintenance contracts worth $11,000,000. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 11000000,
-      "govtContractCount": 1,
-      "proximityOnly": false
-    },
-    {
-      "name": "Honeywell Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin",
-      "known": false,
-      "note": "Won 6 NT housing or maintenance contracts worth $10,799,691. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 10799691,
-      "govtContractCount": 6,
-      "proximityOnly": false
-    },
-    {
-      "name": "DJ Air & Electrical Services Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Big Rivers Region",
-      "known": false,
-      "note": "Won 4 NT housing or maintenance contracts worth $10,764,536. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 10764536,
-      "govtContractCount": 4,
-      "proximityOnly": false
-    },
-    {
-      "name": "NT Link Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "All Centres",
-      "known": false,
-      "note": "Won 4 NT housing or maintenance contracts worth $10,564,153. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 10564153,
-      "govtContractCount": 4,
-      "proximityOnly": false
-    },
-    {
-      "name": "Spears Construction (NT) Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Alice Springs",
-      "known": false,
-      "note": "Won 5 NT housing or maintenance contracts worth $10,536,053. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 10536053,
-      "govtContractCount": 5,
-      "proximityOnly": false
-    },
-    {
-      "name": "Trustee for AA Essential Services Trust",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Northern Region",
-      "known": false,
-      "note": "Won 1 NT housing or maintenance contracts worth $10,378,628. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 10378628,
-      "govtContractCount": 1,
-      "proximityOnly": false
-    },
-    {
-      "name": "E-P-G Solutions Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Panel Contract for Repairs, Ma",
-      "known": false,
-      "note": "Won 3 NT housing or maintenance contracts worth $9,776,250. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 9776250,
-      "govtContractCount": 3,
-      "proximityOnly": false
-    },
-    {
-      "name": "Zenco Constructions Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Nhulunbuy",
-      "known": false,
-      "note": "Won 4 NT housing or maintenance contracts worth $9,733,213. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 9733213,
-      "govtContractCount": 4,
-      "proximityOnly": false
-    },
-    {
-      "name": "PTM Group Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "All Centres",
-      "known": false,
-      "note": "Won 3 NT housing or maintenance contracts worth $9,731,643. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 9731643,
-      "govtContractCount": 3,
-      "proximityOnly": false
-    },
-    {
-      "name": "Sonwane Pty Limited as Trustee for Tangentyere Charitable No. 2",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Alice Springs",
-      "known": false,
-      "note": "Won 3 NT housing or maintenance contracts worth $9,664,104. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 9664104,
-      "govtContractCount": 3,
-      "proximityOnly": false
-    },
-    {
-      "name": "Scope Building NT Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Alice Springs Region",
-      "known": false,
-      "note": "Won 9 NT housing or maintenance contracts worth $9,644,568. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 9644568,
-      "govtContractCount": 9,
-      "proximityOnly": false
-    },
-    {
-      "name": "Bathurst Island Housing Association Incorporated",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Arafura Region",
-      "known": false,
-      "note": "Won 4 NT housing or maintenance contracts worth $9,618,139. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 9618139,
-      "govtContractCount": 4,
-      "proximityOnly": false
-    },
-    {
-      "name": "Emperor Refrigeration Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Alice Springs Region",
-      "known": false,
-      "note": "Won 4 NT housing or maintenance contracts worth $9,445,209. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 9445209,
-      "govtContractCount": 4,
-      "proximityOnly": false
-    },
-    {
-      "name": "Harvey Developments (NT) Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Barkly Region",
-      "known": false,
-      "note": "Won 9 NT housing or maintenance contracts worth $9,316,612. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 9316612,
-      "govtContractCount": 9,
-      "proximityOnly": false
-    },
-    {
-      "name": "Security & Technology Services (NT) Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Royal Darwin Hospital Campus",
-      "known": false,
-      "note": "Won 6 NT housing or maintenance contracts worth $9,098,888. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 9098888,
-      "govtContractCount": 6,
-      "proximityOnly": false
-    },
-    {
-      "name": "Whatareya Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Alice Springs Region",
-      "known": false,
-      "note": "Won 4 NT housing or maintenance contracts worth $8,877,592. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 8877592,
-      "govtContractCount": 4,
-      "proximityOnly": false
-    },
-    {
-      "name": "Regional Asset Maintenance Services Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin Waterfront Precinct",
-      "known": false,
-      "note": "Won 5 NT housing or maintenance contracts worth $8,749,024. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 8749024,
-      "govtContractCount": 5,
-      "proximityOnly": false
-    },
-    {
-      "name": "Power Projects NT (Pty Ltd)",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Big Rivers Region",
-      "known": false,
-      "note": "Won 3 NT housing or maintenance contracts worth $8,555,320.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 8555320,
-      "govtContractCount": 3,
-      "proximityOnly": false
-    },
-    {
-      "name": "DJC Build Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "East Arnhem Region",
-      "known": false,
-      "note": "Won 4 NT housing or maintenance contracts worth $8,378,277. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 8378277,
-      "govtContractCount": 4,
-      "proximityOnly": false
-    },
-    {
-      "name": "Defend Fire Services Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin",
-      "known": false,
-      "note": "Won 8 NT housing or maintenance contracts worth $8,099,947. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 8099947,
-      "govtContractCount": 8,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -1252,76 +46,343 @@
       ],
       "govtContractValueAud": 7883277,
       "govtContractCount": 6,
+      "group": "community",
       "proximityOnly": false
     },
     {
-      "name": "Hawkins and Clements Pty Ltd as Trustee for Hawkins and Clements Unit Trust",
-      "kind": "builder",
+      "name": "Miwatj Health Aboriginal Corporation",
+      "kind": "health_service",
       "state": "NT",
-      "place": "Northern Region",
-      "known": false,
-      "note": "Won 2 NT housing or maintenance contracts worth $7,856,643. Flagged a Territory Enterprise on the public record.",
+      "place": "East Arnhem",
+      "known": true,
+      "note": "Asked about beds and washing machines for East Arnhem communities in November 2025.",
       "sources": [
-        "nt-workbook"
+        "research",
+        "shared-graph"
       ],
-      "govtContractValueAud": 7856643,
-      "govtContractCount": 2,
-      "proximityOnly": false
-    },
-    {
-      "name": "Siemens Healthcare Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "All Centres",
-      "known": false,
-      "note": "Won 3 NT housing or maintenance contracts worth $7,630,640.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 7630640,
-      "govtContractCount": 3,
-      "proximityOnly": false
-    },
-    {
-      "name": "Scatt's Plumbing Services Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Katherine",
-      "known": false,
-      "note": "Won 6 NT housing or maintenance contracts worth $7,547,271. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 7547271,
-      "govtContractCount": 6,
-      "proximityOnly": false
-    },
-    {
-      "name": "Insight Oceania Quantum Healthcare Group Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Royal Darwin Hospital",
-      "known": false,
-      "note": "Won 1 NT housing or maintenance contracts worth $7,402,064.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 7402064,
+      "govtContractValueAud": 48000,
       "govtContractCount": 1,
+      "group": "community",
       "proximityOnly": false
     },
     {
-      "name": "B & K Investments NT Pty Ltd",
+      "name": "Anyinginyi Health Aboriginal Corporation",
+      "kind": "health_service",
+      "state": "NT",
+      "place": "Tennant Creek",
+      "known": true,
+      "note": "Four washing machines quoted February 2026 and never answered. The quote is still open.",
+      "sources": [
+        "research"
+      ],
+      "govtContractValueAud": 0,
+      "govtContractCount": 0,
+      "group": "community",
+      "proximityOnly": false
+    },
+    {
+      "name": "Centrecorp Foundation",
+      "kind": "royalty",
+      "state": "NT",
+      "place": "Central Australia",
+      "known": true,
+      "note": "Our largest bed buyer: 167 beds across two invoices, and they came back at a higher price. They buy; they have never given a grant.",
+      "sources": [
+        "research"
+      ],
+      "govtContractValueAud": 0,
+      "govtContractCount": 0,
+      "group": "community",
+      "proximityOnly": false
+    },
+    {
+      "name": "East Arnhem Regional Council",
+      "kind": "council",
+      "state": "NT",
+      "place": "East Arnhem",
+      "known": true,
+      "note": "Our partner at Galiwin'ku and Ramingining. $2.7M of federal contracts.",
+      "sources": [
+        "research"
+      ],
+      "govtContractValueAud": 0,
+      "govtContractCount": 0,
+      "group": "community",
+      "proximityOnly": false
+    },
+    {
+      "name": "Homeland School Company",
+      "kind": "education",
+      "state": "NT",
+      "place": "Maningrida",
+      "known": true,
+      "note": "Bought 40 beds and two washing machines on INV-0303. A paying customer already.",
+      "sources": [
+        "research"
+      ],
+      "govtContractValueAud": 0,
+      "govtContractCount": 0,
+      "group": "community",
+      "proximityOnly": false
+    },
+    {
+      "name": "Julalikari Council Aboriginal Corporation",
+      "kind": "council",
+      "state": "NT",
+      "place": "Tennant Creek",
+      "known": true,
+      "note": "Our Tennant Creek procurement contact. Holds two of our washing machines and NT housing contracts.",
+      "sources": [
+        "research"
+      ],
+      "govtContractValueAud": 0,
+      "govtContractCount": 0,
+      "group": "community",
+      "proximityOnly": false
+    },
+    {
+      "name": "Mala'la Health Service Aboriginal Corporation",
+      "kind": "health_service",
+      "state": "NT",
+      "place": "Maningrida",
+      "known": true,
+      "note": "Bought 13 beds on INV-0283. An ACCHO buying bedding as health hardware from its own budget.",
+      "sources": [
+        "research"
+      ],
+      "govtContractValueAud": 0,
+      "govtContractCount": 0,
+      "group": "community",
+      "proximityOnly": false
+    },
+    {
+      "name": "Oonchiumpa Consultancy and Services",
+      "kind": "community_org",
+      "state": "NT",
+      "place": "Alice Springs",
+      "known": true,
+      "note": "Our partner. Kristy Bloomfield directs it and is a director of Goods on Country. The Alice Springs facility submission is with them.",
+      "sources": [
+        "research"
+      ],
+      "govtContractValueAud": 0,
+      "govtContractCount": 0,
+      "group": "community",
+      "proximityOnly": false
+    },
+    {
+      "name": "Palm Island Community Company",
+      "kind": "community_org",
+      "state": "QLD",
+      "place": "Palm Island",
+      "known": true,
+      "note": "Our Palm Island relationship. Not itself named on the QPP Indigenous council list, so its status needs checking.",
+      "sources": [
+        "research"
+      ],
+      "govtContractValueAud": 0,
+      "govtContractCount": 0,
+      "group": "community",
+      "proximityOnly": false
+    },
+    {
+      "name": "The Community Shed",
+      "kind": "community_org",
+      "state": "WA",
+      "place": "Kalgoorlie",
+      "known": true,
+      "note": "Our Kalgoorlie partner.",
+      "sources": [
+        "research"
+      ],
+      "govtContractValueAud": 0,
+      "govtContractCount": 0,
+      "group": "community",
+      "proximityOnly": false
+    },
+    {
+      "name": "Urapuntja Aboriginal Corporation",
+      "kind": "community_org",
+      "state": "NT",
+      "place": "Utopia Homelands",
+      "known": true,
+      "note": "Our Utopia procurement contact. Centrecorp bought the beds for this place instead.",
+      "sources": [
+        "research"
+      ],
+      "govtContractValueAud": 0,
+      "govtContractCount": 0,
+      "group": "community",
+      "proximityOnly": false
+    },
+    {
+      "name": "Wilya Janta",
+      "kind": "community_org",
+      "state": "NT",
+      "place": "Tennant Creek",
+      "known": true,
+      "note": "Housing partner at Tennant Creek.",
+      "sources": [
+        "research"
+      ],
+      "govtContractValueAud": 0,
+      "govtContractCount": 0,
+      "group": "community",
+      "proximityOnly": false
+    },
+    {
+      "name": "Winnellie Health Service Aboriginal Corporation (WHSAC)",
+      "kind": "health_service",
+      "state": "NT",
+      "place": "Groote Archipelago",
+      "known": true,
+      "note": "Our Groote contact. The signal rests on a single email from May 2025.",
+      "sources": [
+        "research"
+      ],
+      "govtContractValueAud": 0,
+      "govtContractCount": 0,
+      "group": "community",
+      "proximityOnly": false
+    },
+    {
+      "name": "Bukmak Constructions Pty Ltd",
       "kind": "builder",
       "state": "NT",
-      "place": "All Centres",
+      "place": "Galiwin'ku",
       "known": false,
-      "note": "Won 2 NT housing or maintenance contracts worth $7,350,000. Flagged a Territory Enterprise on the public record.",
+      "note": "An ALPA subsidiary, 100 per cent Indigenous owned. Building 87 dwellings at Galiwinku for $51.5M and holds remote housing maintenance at three communities.",
+      "sources": [
+        "research",
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 51527332,
+      "govtContractCount": 1,
+      "group": "community",
+      "proximityOnly": false
+    },
+    {
+      "name": "Binjari Community Aboriginal Corporation",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Katherine region",
+      "known": false,
+      "note": "25 NT contracts worth $48.9M across Ngukurr, Borroloola, Minyerri, Gunbalanya and Beswick. Also holds remote tenancy management.",
+      "sources": [
+        "research",
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 42974610,
+      "govtContractCount": 19,
+      "group": "community",
+      "proximityOnly": false
+    },
+    {
+      "name": "Central Land Council",
+      "kind": "land_council",
+      "state": "NT",
+      "place": "Central Australia",
+      "known": false,
+      "note": "$20.8M of federal contracts across 44 awards. Royalty distribution is invisible in every dataset, so this is a conversation and never a query.",
+      "sources": [
+        "research",
+        "shared-graph"
+      ],
+      "govtContractValueAud": 20837626,
+      "govtContractCount": 44,
+      "group": "community",
+      "proximityOnly": false
+    },
+    {
+      "name": "The Arnhem Land Progress Aboriginal Corporation (ALPA)",
+      "kind": "store",
+      "state": "NT",
+      "place": "27 remote locations",
+      "known": false,
+      "note": "The largest Aboriginal corporation in Australia. Runs stores, does furniture-making, owns Bukmak Constructions, 1,200+ employees.",
+      "sources": [
+        "research",
+        "shared-graph"
+      ],
+      "govtContractValueAud": 15507257,
+      "govtContractCount": 36,
+      "group": "community",
+      "proximityOnly": false
+    },
+    {
+      "name": "MacDonnell Regional Council",
+      "kind": "council",
+      "state": "NT",
+      "place": "Central Australia",
+      "known": false,
+      "note": "Won 6 NT housing or maintenance contracts worth $14,928,037. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "research",
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 14928037,
+      "govtContractCount": 6,
+      "group": "community",
+      "proximityOnly": false
+    },
+    {
+      "name": "West Arnhem Regional Council",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin Region",
+      "known": false,
+      "note": "Won 5 NT housing or maintenance contracts worth $14,169,050. Flagged a Territory Enterprise on the public record.",
       "sources": [
         "nt-workbook"
       ],
-      "govtContractValueAud": 7350000,
-      "govtContractCount": 2,
+      "govtContractValueAud": 14169050,
+      "govtContractCount": 5,
+      "group": "community",
+      "proximityOnly": false
+    },
+    {
+      "name": "Aminjarrinja Enterprises Aboriginal Corporation",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Housing Maintenance Program",
+      "known": false,
+      "note": "Won 11 NT housing or maintenance contracts worth $11,914,400. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 11914400,
+      "govtContractCount": 11,
+      "group": "community",
+      "proximityOnly": false
+    },
+    {
+      "name": "Sonwane Pty Limited as Trustee for Tangentyere Charitable No. 2",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Alice Springs",
+      "known": false,
+      "note": "Won 3 NT housing or maintenance contracts worth $9,664,104. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 9664104,
+      "govtContractCount": 3,
+      "group": "community",
+      "proximityOnly": false
+    },
+    {
+      "name": "Bathurst Island Housing Association Incorporated",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Arafura Region",
+      "known": false,
+      "note": "Won 4 NT housing or maintenance contracts worth $9,618,139. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 9618139,
+      "govtContractCount": 4,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -1336,20 +397,7 @@
       ],
       "govtContractValueAud": 7326944,
       "govtContractCount": 3,
-      "proximityOnly": false
-    },
-    {
-      "name": "Harvey Developments NT Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Barkly Region",
-      "known": false,
-      "note": "Won 7 NT housing or maintenance contracts worth $7,132,417. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 7132417,
-      "govtContractCount": 7,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -1365,244 +413,7 @@
       ],
       "govtContractValueAud": 7077054,
       "govtContractCount": 50,
-      "proximityOnly": false
-    },
-    {
-      "name": "Demountable Sales and Hire Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "All Regions",
-      "known": false,
-      "note": "Won 1 NT housing or maintenance contracts worth $7,066,880. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 7066880,
-      "govtContractCount": 1,
-      "proximityOnly": false
-    },
-    {
-      "name": "GK Painting Contractors Pty Limited",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Barkly Region",
-      "known": false,
-      "note": "Won 4 NT housing or maintenance contracts worth $7,020,779. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 7020779,
-      "govtContractCount": 4,
-      "proximityOnly": false
-    },
-    {
-      "name": "Damday Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin",
-      "known": false,
-      "note": "Won 3 NT housing or maintenance contracts worth $7,020,023. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 7020023,
-      "govtContractCount": 3,
-      "proximityOnly": false
-    },
-    {
-      "name": "Wilson Security Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Health House",
-      "known": false,
-      "note": "Won 5 NT housing or maintenance contracts worth $6,939,737. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 6939737,
-      "govtContractCount": 5,
-      "proximityOnly": false
-    },
-    {
-      "name": "Veolia Energy Technical Services Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin Region",
-      "known": false,
-      "note": "Won 4 NT housing or maintenance contracts worth $6,926,098. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 6926098,
-      "govtContractCount": 4,
-      "proximityOnly": false
-    },
-    {
-      "name": "Micca Holdings Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Panel Contract for Repairs, Ma",
-      "known": false,
-      "note": "Won 3 NT housing or maintenance contracts worth $6,776,250. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 6776250,
-      "govtContractCount": 3,
-      "proximityOnly": false
-    },
-    {
-      "name": "Suffren Contracting and Plant Hire Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Katherine Region",
-      "known": false,
-      "note": "Won 2 NT housing or maintenance contracts worth $6,750,573.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 6750573,
-      "govtContractCount": 2,
-      "proximityOnly": false
-    },
-    {
-      "name": "Remote Area Machinery NT Hire Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Alice Springs",
-      "known": false,
-      "note": "Won 1 NT housing or maintenance contracts worth $6,741,550. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 6741550,
-      "govtContractCount": 1,
-      "proximityOnly": false
-    },
-    {
-      "name": "Australian Maritime Systems Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin Port Corporation",
-      "known": false,
-      "note": "Won 1 NT housing or maintenance contracts worth $6,722,759.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 6722759,
-      "govtContractCount": 1,
-      "proximityOnly": false
-    },
-    {
-      "name": "Bawinanga Aboriginal Corp",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin Region",
-      "known": false,
-      "note": "Won 3 NT housing or maintenance contracts worth $6,706,098. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 6706098,
-      "govtContractCount": 3,
-      "proximityOnly": false
-    },
-    {
-      "name": "Atkin Building Co Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Big Rivers Region",
-      "known": false,
-      "note": "Won 5 NT housing or maintenance contracts worth $6,700,115. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 6700115,
-      "govtContractCount": 5,
-      "proximityOnly": false
-    },
-    {
-      "name": "Ausplumb (NT) Pty Limited",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Darwin Region",
-      "known": false,
-      "note": "Won 2 NT housing or maintenance contracts worth $6,624,289. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 6624289,
-      "govtContractCount": 2,
-      "proximityOnly": false
-    },
-    {
-      "name": "Bitumax Pty Limited",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Alice Springs Region",
-      "known": false,
-      "note": "Won 1 NT housing or maintenance contracts worth $6,552,618. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 6552618,
-      "govtContractCount": 1,
-      "proximityOnly": false
-    },
-    {
-      "name": "Ross Engineering Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Alice Springs Region",
-      "known": false,
-      "note": "Won 6 NT housing or maintenance contracts worth $6,517,315. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 6517315,
-      "govtContractCount": 6,
-      "proximityOnly": false
-    },
-    {
-      "name": "ICRG North Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Katherine Region",
-      "known": false,
-      "note": "Won 2 NT housing or maintenance contracts worth $6,293,415.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 6293415,
-      "govtContractCount": 2,
-      "proximityOnly": false
-    },
-    {
-      "name": "Hastings Deering (Aust) Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "All Centres",
-      "known": false,
-      "note": "Won 2 NT housing or maintenance contracts worth $6,179,206.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 6179206,
-      "govtContractCount": 2,
-      "proximityOnly": false
-    },
-    {
-      "name": "Custom AV Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Royal Darwin Hospital",
-      "known": false,
-      "note": "Won 7 NT housing or maintenance contracts worth $6,178,808. Flagged a Territory Enterprise on the public record.",
-      "sources": [
-        "nt-workbook"
-      ],
-      "govtContractValueAud": 6178808,
-      "govtContractCount": 7,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -1618,6 +429,7 @@
       ],
       "govtContractValueAud": 3113493,
       "govtContractCount": 14,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -1632,6 +444,7 @@
       ],
       "govtContractValueAud": 3095702,
       "govtContractCount": 2,
+      "group": "community",
       "proximityOnly": true
     },
     {
@@ -1647,6 +460,7 @@
       ],
       "govtContractValueAud": 3015555,
       "govtContractCount": 8,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -1661,6 +475,7 @@
       ],
       "govtContractValueAud": 2116250,
       "govtContractCount": 6,
+      "group": "community",
       "proximityOnly": true
     },
     {
@@ -1676,6 +491,7 @@
       ],
       "govtContractValueAud": 2039174,
       "govtContractCount": 5,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -1690,6 +506,7 @@
       ],
       "govtContractValueAud": 1073818,
       "govtContractCount": 11,
+      "group": "community",
       "proximityOnly": true
     },
     {
@@ -1704,6 +521,7 @@
       ],
       "govtContractValueAud": 464000,
       "govtContractCount": 10,
+      "group": "community",
       "proximityOnly": true
     },
     {
@@ -1719,6 +537,7 @@
       ],
       "govtContractValueAud": 270005,
       "govtContractCount": 5,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -1734,6 +553,7 @@
       ],
       "govtContractValueAud": 168217,
       "govtContractCount": 1,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -1748,6 +568,7 @@
       ],
       "govtContractValueAud": 76131,
       "govtContractCount": 1,
+      "group": "community",
       "proximityOnly": true
     },
     {
@@ -1762,22 +583,8 @@
       ],
       "govtContractValueAud": 70500,
       "govtContractCount": 1,
+      "group": "community",
       "proximityOnly": true
-    },
-    {
-      "name": "Miwatj Health Aboriginal Corporation",
-      "kind": "health_service",
-      "state": "NT",
-      "place": "East Arnhem",
-      "known": true,
-      "note": "Asked about beds and washing machines for East Arnhem communities in November 2025.",
-      "sources": [
-        "research",
-        "shared-graph"
-      ],
-      "govtContractValueAud": 48000,
-      "govtContractCount": 1,
-      "proximityOnly": false
     },
     {
       "name": "Aboriginal Housing Northern Territory",
@@ -1791,20 +598,7 @@
       ],
       "govtContractValueAud": 0,
       "govtContractCount": 0,
-      "proximityOnly": false
-    },
-    {
-      "name": "Anyinginyi Health Aboriginal Corporation",
-      "kind": "health_service",
-      "state": "NT",
-      "place": "Tennant Creek",
-      "known": true,
-      "note": "Four washing machines quoted February 2026 and never answered. The quote is still open.",
-      "sources": [
-        "research"
-      ],
-      "govtContractValueAud": 0,
-      "govtContractCount": 0,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -1819,34 +613,7 @@
       ],
       "govtContractValueAud": 0,
       "govtContractCount": 0,
-      "proximityOnly": false
-    },
-    {
-      "name": "Birubi Australia Pty Ltd",
-      "kind": "supplier",
-      "state": "SA",
-      "place": "Adelaide and Whyalla",
-      "known": false,
-      "note": "The only Aboriginal-owned firm identifiable on the SA Housing Trust pre-qualified builders list. Supply Nation certified.",
-      "sources": [
-        "research"
-      ],
-      "govtContractValueAud": 0,
-      "govtContractCount": 0,
-      "proximityOnly": false
-    },
-    {
-      "name": "Bukmak Constructions Pty Ltd",
-      "kind": "builder",
-      "state": "NT",
-      "place": "Galiwin'ku",
-      "known": false,
-      "note": "An ALPA subsidiary, 100 per cent Indigenous owned. Building 87 dwellings at Galiwinku for $51.5M and holds remote housing maintenance at three communities.",
-      "sources": [
-        "research"
-      ],
-      "govtContractValueAud": 0,
-      "govtContractCount": 0,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -1861,20 +628,7 @@
       ],
       "govtContractValueAud": 0,
       "govtContractCount": 0,
-      "proximityOnly": false
-    },
-    {
-      "name": "Centrecorp Foundation",
-      "kind": "royalty",
-      "state": "NT",
-      "place": "Central Australia",
-      "known": true,
-      "note": "Our largest bed buyer: 167 beds across two invoices, and they came back at a higher price. They buy; they have never given a grant.",
-      "sources": [
-        "research"
-      ],
-      "govtContractValueAud": 0,
-      "govtContractCount": 0,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -1889,6 +643,7 @@
       ],
       "govtContractValueAud": 0,
       "govtContractCount": 0,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -1903,6 +658,7 @@
       ],
       "govtContractValueAud": 0,
       "govtContractCount": 0,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -1917,48 +673,7 @@
       ],
       "govtContractValueAud": 0,
       "govtContractCount": 0,
-      "proximityOnly": false
-    },
-    {
-      "name": "East Arnhem Regional Council",
-      "kind": "council",
-      "state": "NT",
-      "place": "East Arnhem",
-      "known": true,
-      "note": "Our partner at Galiwin'ku and Ramingining. $2.7M of federal contracts.",
-      "sources": [
-        "research"
-      ],
-      "govtContractValueAud": 0,
-      "govtContractCount": 0,
-      "proximityOnly": false
-    },
-    {
-      "name": "Homeland School Company",
-      "kind": "education",
-      "state": "NT",
-      "place": "Maningrida",
-      "known": true,
-      "note": "Bought 40 beds and two washing machines on INV-0303. A paying customer already.",
-      "sources": [
-        "research"
-      ],
-      "govtContractValueAud": 0,
-      "govtContractCount": 0,
-      "proximityOnly": false
-    },
-    {
-      "name": "Julalikari Council Aboriginal Corporation",
-      "kind": "council",
-      "state": "NT",
-      "place": "Tennant Creek",
-      "known": true,
-      "note": "Our Tennant Creek procurement contact. Holds two of our washing machines and NT housing contracts.",
-      "sources": [
-        "research"
-      ],
-      "govtContractValueAud": 0,
-      "govtContractCount": 0,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -1973,6 +688,7 @@
       ],
       "govtContractValueAud": 0,
       "govtContractCount": 0,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -1987,20 +703,7 @@
       ],
       "govtContractValueAud": 0,
       "govtContractCount": 0,
-      "proximityOnly": false
-    },
-    {
-      "name": "Mala'la Health Service Aboriginal Corporation",
-      "kind": "health_service",
-      "state": "NT",
-      "place": "Maningrida",
-      "known": true,
-      "note": "Bought 13 beds on INV-0283. An ACCHO buying bedding as health hardware from its own budget.",
-      "sources": [
-        "research"
-      ],
-      "govtContractValueAud": 0,
-      "govtContractCount": 0,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -2015,6 +718,7 @@
       ],
       "govtContractValueAud": 0,
       "govtContractCount": 0,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -2029,24 +733,11 @@
       ],
       "govtContractValueAud": 0,
       "govtContractCount": 0,
+      "group": "community",
       "proximityOnly": false
     },
     {
       "name": "Ngaanyatjarra Council Aboriginal Corporation",
-      "kind": "housing_provider",
-      "state": "WA",
-      "place": "Ngaanyatjarra Lands",
-      "known": false,
-      "note": "The sole housing regional service provider on the Ngaanyatjarra Lands.",
-      "sources": [
-        "research"
-      ],
-      "govtContractValueAud": 0,
-      "govtContractCount": 0,
-      "proximityOnly": false
-    },
-    {
-      "name": "Ngaanyatjarra Services Aboriginal Corporation",
       "kind": "housing_provider",
       "state": "WA",
       "place": "Ngaanyatjarra Lands",
@@ -2057,6 +748,7 @@
       ],
       "govtContractValueAud": 0,
       "govtContractCount": 0,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -2071,6 +763,7 @@
       ],
       "govtContractValueAud": 0,
       "govtContractCount": 0,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -2085,20 +778,7 @@
       ],
       "govtContractValueAud": 0,
       "govtContractCount": 0,
-      "proximityOnly": false
-    },
-    {
-      "name": "Oonchiumpa Consultancy and Services",
-      "kind": "community_org",
-      "state": "NT",
-      "place": "Alice Springs",
-      "known": true,
-      "note": "Our partner. Kristy Bloomfield directs it and is a director of Goods on Country. The Alice Springs facility submission is with them.",
-      "sources": [
-        "research"
-      ],
-      "govtContractValueAud": 0,
-      "govtContractCount": 0,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -2113,6 +793,7 @@
       ],
       "govtContractValueAud": 0,
       "govtContractCount": 0,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -2127,20 +808,7 @@
       ],
       "govtContractValueAud": 0,
       "govtContractCount": 0,
-      "proximityOnly": false
-    },
-    {
-      "name": "Palm Island Community Company",
-      "kind": "community_org",
-      "state": "QLD",
-      "place": "Palm Island",
-      "known": true,
-      "note": "Our Palm Island relationship. Not itself named on the QPP Indigenous council list, so its status needs checking.",
-      "sources": [
-        "research"
-      ],
-      "govtContractValueAud": 0,
-      "govtContractCount": 0,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -2155,20 +823,7 @@
       ],
       "govtContractValueAud": 0,
       "govtContractCount": 0,
-      "proximityOnly": false
-    },
-    {
-      "name": "RIDEM Pty Ltd t/a Dexter Barnes Electrical",
-      "kind": "supplier",
-      "state": "NT",
-      "place": "Tennant Creek",
-      "known": false,
-      "note": "Aboriginal Enterprise on the public record, and already supplies and installs washing machines for the NT Government. A channel partner or an installer, and a template.",
-      "sources": [
-        "research"
-      ],
-      "govtContractValueAud": 0,
-      "govtContractCount": 0,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -2183,6 +838,7 @@
       ],
       "govtContractValueAud": 0,
       "govtContractCount": 0,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -2197,20 +853,7 @@
       ],
       "govtContractValueAud": 0,
       "govtContractCount": 0,
-      "proximityOnly": false
-    },
-    {
-      "name": "The Community Shed",
-      "kind": "community_org",
-      "state": "WA",
-      "place": "Kalgoorlie",
-      "known": true,
-      "note": "Our Kalgoorlie partner.",
-      "sources": [
-        "research"
-      ],
-      "govtContractValueAud": 0,
-      "govtContractCount": 0,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -2225,48 +868,7 @@
       ],
       "govtContractValueAud": 0,
       "govtContractCount": 0,
-      "proximityOnly": false
-    },
-    {
-      "name": "Urapuntja Aboriginal Corporation",
-      "kind": "community_org",
-      "state": "NT",
-      "place": "Utopia Homelands",
-      "known": true,
-      "note": "Our Utopia procurement contact. Centrecorp bought the beds for this place instead.",
-      "sources": [
-        "research"
-      ],
-      "govtContractValueAud": 0,
-      "govtContractCount": 0,
-      "proximityOnly": false
-    },
-    {
-      "name": "Wilya Janta",
-      "kind": "community_org",
-      "state": "NT",
-      "place": "Tennant Creek",
-      "known": true,
-      "note": "Housing partner at Tennant Creek.",
-      "sources": [
-        "research"
-      ],
-      "govtContractValueAud": 0,
-      "govtContractCount": 0,
-      "proximityOnly": false
-    },
-    {
-      "name": "Winnellie Health Service Aboriginal Corporation (WHSAC)",
-      "kind": "health_service",
-      "state": "NT",
-      "place": "Groote Archipelago",
-      "known": true,
-      "note": "Our Groote contact. The signal rests on a single email from May 2025.",
-      "sources": [
-        "research"
-      ],
-      "govtContractValueAud": 0,
-      "govtContractCount": 0,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -2281,6 +883,7 @@
       ],
       "govtContractValueAud": 0,
       "govtContractCount": 0,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -2295,6 +898,7 @@
       ],
       "govtContractValueAud": 0,
       "govtContractCount": 0,
+      "group": "community",
       "proximityOnly": false
     },
     {
@@ -2309,6 +913,1537 @@
       ],
       "govtContractValueAud": 0,
       "govtContractCount": 0,
+      "group": "community",
+      "proximityOnly": false
+    },
+    {
+      "name": "Akron Group NT Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin",
+      "known": false,
+      "note": "Won 37 NT housing or maintenance contracts worth $97,390,597. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 97390597,
+      "govtContractCount": 37,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "InterSystems Australia Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Implementation, Support and Ma",
+      "known": false,
+      "note": "Won 2 NT housing or maintenance contracts worth $76,360,001.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 76360001,
+      "govtContractCount": 2,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "DT Hobbs Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin Region",
+      "known": false,
+      "note": "Won 9 NT housing or maintenance contracts worth $70,008,897. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 70008897,
+      "govtContractCount": 9,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "C & R Constructions Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin Region",
+      "known": false,
+      "note": "Won 14 NT housing or maintenance contracts worth $62,662,164. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 62662164,
+      "govtContractCount": 14,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Quality Plumbing & Building Contractors Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Greater Darwin Region",
+      "known": false,
+      "note": "Won 10 NT housing or maintenance contracts worth $49,831,724. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 49831724,
+      "govtContractCount": 10,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Craven Diesel Services Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Katherine Region",
+      "known": false,
+      "note": "Won 5 NT housing or maintenance contracts worth $45,885,552. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 45885552,
+      "govtContractCount": 5,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "WTD Constructions Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Arafura Region",
+      "known": false,
+      "note": "Won 23 NT housing or maintenance contracts worth $41,073,673. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 41073673,
+      "govtContractCount": 23,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Precision Group (NT) Pty Ltd as The Trustee for C Kantros Family Trust",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin Region",
+      "known": false,
+      "note": "Won 2 NT housing or maintenance contracts worth $40,212,694. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 40212694,
+      "govtContractCount": 2,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Sterling NT Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Greater Darwin Region",
+      "known": false,
+      "note": "Won 29 NT housing or maintenance contracts worth $39,882,392. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 39882392,
+      "govtContractCount": 29,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Masterpath Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Alice Springs Region",
+      "known": false,
+      "note": "Won 11 NT housing or maintenance contracts worth $37,382,021. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 37382021,
+      "govtContractCount": 11,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Asbuild (NT) Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Alice Springs Region",
+      "known": false,
+      "note": "Won 12 NT housing or maintenance contracts worth $35,905,859. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 35905859,
+      "govtContractCount": 12,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Paradise Landscaping (NT) Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin",
+      "known": false,
+      "note": "Won 8 NT housing or maintenance contracts worth $29,392,656. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 29392656,
+      "govtContractCount": 8,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "LA Build Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Katherine Region",
+      "known": false,
+      "note": "Won 6 NT housing or maintenance contracts worth $29,182,488. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 29182488,
+      "govtContractCount": 6,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Blueprint (NT) Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Tennant Creek Region",
+      "known": false,
+      "note": "Won 3 NT housing or maintenance contracts worth $25,524,240. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 25524240,
+      "govtContractCount": 3,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Pedersen NT Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Alice Springs Region",
+      "known": false,
+      "note": "Won 12 NT housing or maintenance contracts worth $24,151,381. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 24151381,
+      "govtContractCount": 12,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Shawnco Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Alice Springs",
+      "known": false,
+      "note": "Won 7 NT housing or maintenance contracts worth $23,734,058. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 23734058,
+      "govtContractCount": 7,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Woodhill & Sons Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Katherine Region",
+      "known": false,
+      "note": "Won 7 NT housing or maintenance contracts worth $23,138,418. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 23138418,
+      "govtContractCount": 7,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "B & K Investments (NT) Pty Limited",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin Region",
+      "known": false,
+      "note": "Won 5 NT housing or maintenance contracts worth $22,898,431. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 22898431,
+      "govtContractCount": 5,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Murray River North Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Alice Springs Region",
+      "known": false,
+      "note": "Won 10 NT housing or maintenance contracts worth $22,162,080. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 22162080,
+      "govtContractCount": 10,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "A1 Plant and Civil Pty Limited",
+      "kind": "builder",
+      "state": "NT",
+      "place": "East Arnhem Region",
+      "known": false,
+      "note": "Won 2 NT housing or maintenance contracts worth $21,551,346. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 21551346,
+      "govtContractCount": 2,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Scott Hammet Building and Carpentry Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Arafura Region",
+      "known": false,
+      "note": "Won 14 NT housing or maintenance contracts worth $21,051,209. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 21051209,
+      "govtContractCount": 14,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Colemans Contracting & Earthmoving Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin Region",
+      "known": false,
+      "note": "Won 2 NT housing or maintenance contracts worth $20,466,710. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 20466710,
+      "govtContractCount": 2,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Olympus Australia Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "All Centres",
+      "known": false,
+      "note": "Won 2 NT housing or maintenance contracts worth $20,379,161.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 20379161,
+      "govtContractCount": 2,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "M and C Fior Constructions Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Alice Springs Region",
+      "known": false,
+      "note": "Won 7 NT housing or maintenance contracts worth $20,198,509. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 20198509,
+      "govtContractCount": 7,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Phillips Earthmoving Contractors Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Tennant Creek Region",
+      "known": false,
+      "note": "Won 6 NT housing or maintenance contracts worth $20,159,963. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 20159963,
+      "govtContractCount": 6,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Hakiba Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin Region",
+      "known": false,
+      "note": "Won 4 NT housing or maintenance contracts worth $18,762,657. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 18762657,
+      "govtContractCount": 4,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Ri-con Contractors Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Tennant Creek",
+      "known": false,
+      "note": "Won 9 NT housing or maintenance contracts worth $17,688,004. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 17688004,
+      "govtContractCount": 9,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Northern Transportables Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "All Centres",
+      "known": false,
+      "note": "Won 5 NT housing or maintenance contracts worth $17,411,706. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 17411706,
+      "govtContractCount": 5,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Power Projects (NT) Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Katherine",
+      "known": false,
+      "note": "Won 10 NT housing or maintenance contracts worth $17,354,678. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 17354678,
+      "govtContractCount": 10,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Downer Edi Works Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Tennant Creek Region",
+      "known": false,
+      "note": "Won 5 NT housing or maintenance contracts worth $16,777,115. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 16777115,
+      "govtContractCount": 5,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Rusca Developments Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin Region",
+      "known": false,
+      "note": "Won 5 NT housing or maintenance contracts worth $16,574,328. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 16574328,
+      "govtContractCount": 5,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Hitachi  Data Systems Australia Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin",
+      "known": false,
+      "note": "Won 1 NT housing or maintenance contracts worth $16,300,000.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 16300000,
+      "govtContractCount": 1,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "KG Kimlin Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Alice Springs",
+      "known": false,
+      "note": "Won 4 NT housing or maintenance contracts worth $16,256,834. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 16256834,
+      "govtContractCount": 4,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Parkmore Investments Pty Limited",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Repairs and Maintenance of Chi",
+      "known": false,
+      "note": "Won 6 NT housing or maintenance contracts worth $16,246,862. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 16246862,
+      "govtContractCount": 6,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "AUS Projects NT (Pty Ltd)",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Northern Region",
+      "known": false,
+      "note": "Won 1 NT housing or maintenance contracts worth $16,240,812. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 16240812,
+      "govtContractCount": 9,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "NJ Homes (NT) Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Katherine Region",
+      "known": false,
+      "note": "Won 6 NT housing or maintenance contracts worth $15,941,317. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 15941317,
+      "govtContractCount": 6,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Far Northern Contractors Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Barkly Region",
+      "known": false,
+      "note": "Won 9 NT housing or maintenance contracts worth $15,052,110. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 15052110,
+      "govtContractCount": 9,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Ingkerreke Commercial Pty Ltd as Trustee for the Ingkerreke Operational Trust",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Barkly Region",
+      "known": false,
+      "note": "Won 11 NT housing or maintenance contracts worth $14,740,081. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 14740081,
+      "govtContractCount": 11,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "F & J BItumen Services Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Katherine Region",
+      "known": false,
+      "note": "Won 1 NT housing or maintenance contracts worth $14,560,343. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 14560343,
+      "govtContractCount": 1,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Precision Group Pty Ltd as trustee for the C Kantros Family Trust",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Greater Darwin Region",
+      "known": false,
+      "note": "Won 1 NT housing or maintenance contracts worth $14,493,781. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 14493781,
+      "govtContractCount": 1,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Auskron Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Royal Darwin Hospital and Palm",
+      "known": false,
+      "note": "Won 4 NT housing or maintenance contracts worth $14,357,749. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 14357749,
+      "govtContractCount": 4,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Ribshire Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "East Arnhem Region",
+      "known": false,
+      "note": "Won 9 NT housing or maintenance contracts worth $14,051,742. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 14051742,
+      "govtContractCount": 9,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "S&R Building & Construction Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Central Australia Region",
+      "known": false,
+      "note": "Won 11 NT housing or maintenance contracts worth $13,874,271. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 13874271,
+      "govtContractCount": 11,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Cairns Industries Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Big Rivers Region",
+      "known": false,
+      "note": "Won 12 NT housing or maintenance contracts worth $13,832,152. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 13832152,
+      "govtContractCount": 12,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Quality Plumbing and Building Contractors Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Alice Springs",
+      "known": false,
+      "note": "Won 5 NT housing or maintenance contracts worth $13,775,867. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 13775867,
+      "govtContractCount": 5,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Remote Build (NT) Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Barkly Region",
+      "known": false,
+      "note": "Won 3 NT housing or maintenance contracts worth $13,694,880. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 13694880,
+      "govtContractCount": 3,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "GT Builders Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Katherine Region",
+      "known": false,
+      "note": "Won 9 NT housing or maintenance contracts worth $13,093,069. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 13093069,
+      "govtContractCount": 9,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "MG Electrical Services Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "All Centres",
+      "known": false,
+      "note": "Won 3 NT housing or maintenance contracts worth $12,850,000. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 12850000,
+      "govtContractCount": 3,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Deltareef Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin",
+      "known": false,
+      "note": "Won 5 NT housing or maintenance contracts worth $12,651,050. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 12651050,
+      "govtContractCount": 5,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Top End Resources Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin Region",
+      "known": false,
+      "note": "Won 7 NT housing or maintenance contracts worth $12,624,141. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 12624141,
+      "govtContractCount": 7,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "GEBIE Civil and Construction Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Arnhem Region",
+      "known": false,
+      "note": "Won 11 NT housing or maintenance contracts worth $12,529,169. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 12529169,
+      "govtContractCount": 11,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Probuild (NT) Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin Region",
+      "known": false,
+      "note": "Won 6 NT housing or maintenance contracts worth $12,250,110. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 12250110,
+      "govtContractCount": 6,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "United Air Conditioning and Mechanical Services Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin Region",
+      "known": false,
+      "note": "Won 4 NT housing or maintenance contracts worth $12,214,178. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 12214178,
+      "govtContractCount": 4,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Scott Hammet Building & Carpentry Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Katherine Region",
+      "known": false,
+      "note": "Won 6 NT housing or maintenance contracts worth $12,034,225. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 12034225,
+      "govtContractCount": 6,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "NTEX Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin",
+      "known": false,
+      "note": "Won 1 NT housing or maintenance contracts worth $11,998,238. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 11998238,
+      "govtContractCount": 1,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "LP Airconditioning Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin",
+      "known": false,
+      "note": "Won 7 NT housing or maintenance contracts worth $11,586,915. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 11586915,
+      "govtContractCount": 7,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Remote Area Machinery Hire NT Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Alice Springs Region",
+      "known": false,
+      "note": "Won 1 NT housing or maintenance contracts worth $11,504,400. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 11504400,
+      "govtContractCount": 1,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "IBM Australia Limited",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin",
+      "known": false,
+      "note": "Won 2 NT housing or maintenance contracts worth $11,438,376.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 11438376,
+      "govtContractCount": 2,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "REMOTE AREA MACHINERY HIRE",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Alice Springs",
+      "known": false,
+      "note": "Won 3 NT housing or maintenance contracts worth $11,391,111.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 11391111,
+      "govtContractCount": 3,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Morningside Electrical Contractors and Consultants Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "East Arnhem Region",
+      "known": false,
+      "note": "Won 3 NT housing or maintenance contracts worth $11,322,102. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 11322102,
+      "govtContractCount": 3,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Nilsen (NT) Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin Region",
+      "known": false,
+      "note": "Won 1 NT housing or maintenance contracts worth $11,000,000. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 11000000,
+      "govtContractCount": 1,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Honeywell Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin",
+      "known": false,
+      "note": "Won 6 NT housing or maintenance contracts worth $10,799,691. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 10799691,
+      "govtContractCount": 6,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "DJ Air & Electrical Services Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Big Rivers Region",
+      "known": false,
+      "note": "Won 4 NT housing or maintenance contracts worth $10,764,536. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 10764536,
+      "govtContractCount": 4,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "NT Link Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "All Centres",
+      "known": false,
+      "note": "Won 4 NT housing or maintenance contracts worth $10,564,153. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 10564153,
+      "govtContractCount": 4,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Spears Construction (NT) Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Alice Springs",
+      "known": false,
+      "note": "Won 5 NT housing or maintenance contracts worth $10,536,053. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 10536053,
+      "govtContractCount": 5,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Trustee for AA Essential Services Trust",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Northern Region",
+      "known": false,
+      "note": "Won 1 NT housing or maintenance contracts worth $10,378,628. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 10378628,
+      "govtContractCount": 1,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "E-P-G Solutions Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Panel Contract for Repairs, Ma",
+      "known": false,
+      "note": "Won 3 NT housing or maintenance contracts worth $9,776,250. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 9776250,
+      "govtContractCount": 3,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Zenco Constructions Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Nhulunbuy",
+      "known": false,
+      "note": "Won 4 NT housing or maintenance contracts worth $9,733,213. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 9733213,
+      "govtContractCount": 4,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "PTM Group Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "All Centres",
+      "known": false,
+      "note": "Won 3 NT housing or maintenance contracts worth $9,731,643. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 9731643,
+      "govtContractCount": 3,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Scope Building NT Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Alice Springs Region",
+      "known": false,
+      "note": "Won 9 NT housing or maintenance contracts worth $9,644,568. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 9644568,
+      "govtContractCount": 9,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Emperor Refrigeration Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Alice Springs Region",
+      "known": false,
+      "note": "Won 4 NT housing or maintenance contracts worth $9,445,209. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 9445209,
+      "govtContractCount": 4,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Harvey Developments (NT) Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Barkly Region",
+      "known": false,
+      "note": "Won 9 NT housing or maintenance contracts worth $9,316,612. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 9316612,
+      "govtContractCount": 9,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Security & Technology Services (NT) Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Royal Darwin Hospital Campus",
+      "known": false,
+      "note": "Won 6 NT housing or maintenance contracts worth $9,098,888. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 9098888,
+      "govtContractCount": 6,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Whatareya Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Alice Springs Region",
+      "known": false,
+      "note": "Won 4 NT housing or maintenance contracts worth $8,877,592. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 8877592,
+      "govtContractCount": 4,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Regional Asset Maintenance Services Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin Waterfront Precinct",
+      "known": false,
+      "note": "Won 5 NT housing or maintenance contracts worth $8,749,024. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 8749024,
+      "govtContractCount": 5,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Power Projects NT (Pty Ltd)",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Big Rivers Region",
+      "known": false,
+      "note": "Won 3 NT housing or maintenance contracts worth $8,555,320.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 8555320,
+      "govtContractCount": 3,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "DJC Build Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "East Arnhem Region",
+      "known": false,
+      "note": "Won 4 NT housing or maintenance contracts worth $8,378,277. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 8378277,
+      "govtContractCount": 4,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Defend Fire Services Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin",
+      "known": false,
+      "note": "Won 8 NT housing or maintenance contracts worth $8,099,947. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 8099947,
+      "govtContractCount": 8,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Hawkins and Clements Pty Ltd as Trustee for Hawkins and Clements Unit Trust",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Northern Region",
+      "known": false,
+      "note": "Won 2 NT housing or maintenance contracts worth $7,856,643. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 7856643,
+      "govtContractCount": 2,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Siemens Healthcare Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "All Centres",
+      "known": false,
+      "note": "Won 3 NT housing or maintenance contracts worth $7,630,640.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 7630640,
+      "govtContractCount": 3,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Scatt's Plumbing Services Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Katherine",
+      "known": false,
+      "note": "Won 6 NT housing or maintenance contracts worth $7,547,271. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 7547271,
+      "govtContractCount": 6,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Insight Oceania Quantum Healthcare Group Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Royal Darwin Hospital",
+      "known": false,
+      "note": "Won 1 NT housing or maintenance contracts worth $7,402,064.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 7402064,
+      "govtContractCount": 1,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "B & K Investments NT Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "All Centres",
+      "known": false,
+      "note": "Won 2 NT housing or maintenance contracts worth $7,350,000. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 7350000,
+      "govtContractCount": 2,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Harvey Developments NT Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Barkly Region",
+      "known": false,
+      "note": "Won 7 NT housing or maintenance contracts worth $7,132,417. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 7132417,
+      "govtContractCount": 7,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Demountable Sales and Hire Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "All Regions",
+      "known": false,
+      "note": "Won 1 NT housing or maintenance contracts worth $7,066,880. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 7066880,
+      "govtContractCount": 1,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "GK Painting Contractors Pty Limited",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Barkly Region",
+      "known": false,
+      "note": "Won 4 NT housing or maintenance contracts worth $7,020,779. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 7020779,
+      "govtContractCount": 4,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Damday Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin",
+      "known": false,
+      "note": "Won 3 NT housing or maintenance contracts worth $7,020,023. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 7020023,
+      "govtContractCount": 3,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Wilson Security Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Health House",
+      "known": false,
+      "note": "Won 5 NT housing or maintenance contracts worth $6,939,737. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 6939737,
+      "govtContractCount": 5,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Veolia Energy Technical Services Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin Region",
+      "known": false,
+      "note": "Won 4 NT housing or maintenance contracts worth $6,926,098. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 6926098,
+      "govtContractCount": 4,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Micca Holdings Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Panel Contract for Repairs, Ma",
+      "known": false,
+      "note": "Won 3 NT housing or maintenance contracts worth $6,776,250. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 6776250,
+      "govtContractCount": 3,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Suffren Contracting and Plant Hire Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Katherine Region",
+      "known": false,
+      "note": "Won 2 NT housing or maintenance contracts worth $6,750,573.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 6750573,
+      "govtContractCount": 2,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Remote Area Machinery NT Hire Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Alice Springs",
+      "known": false,
+      "note": "Won 1 NT housing or maintenance contracts worth $6,741,550. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 6741550,
+      "govtContractCount": 1,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Australian Maritime Systems Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin Port Corporation",
+      "known": false,
+      "note": "Won 1 NT housing or maintenance contracts worth $6,722,759.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 6722759,
+      "govtContractCount": 1,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Atkin Building Co Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Big Rivers Region",
+      "known": false,
+      "note": "Won 5 NT housing or maintenance contracts worth $6,700,115. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 6700115,
+      "govtContractCount": 5,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Ausplumb (NT) Pty Limited",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Darwin Region",
+      "known": false,
+      "note": "Won 2 NT housing or maintenance contracts worth $6,624,289. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 6624289,
+      "govtContractCount": 2,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Bitumax Pty Limited",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Alice Springs Region",
+      "known": false,
+      "note": "Won 1 NT housing or maintenance contracts worth $6,552,618. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 6552618,
+      "govtContractCount": 1,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Ross Engineering Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Alice Springs Region",
+      "known": false,
+      "note": "Won 6 NT housing or maintenance contracts worth $6,517,315. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 6517315,
+      "govtContractCount": 6,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "ICRG North Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Katherine Region",
+      "known": false,
+      "note": "Won 2 NT housing or maintenance contracts worth $6,293,415.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 6293415,
+      "govtContractCount": 2,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Hastings Deering (Aust) Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "All Centres",
+      "known": false,
+      "note": "Won 2 NT housing or maintenance contracts worth $6,179,206.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 6179206,
+      "govtContractCount": 2,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Custom AV Pty Ltd",
+      "kind": "builder",
+      "state": "NT",
+      "place": "Royal Darwin Hospital",
+      "known": false,
+      "note": "Won 7 NT housing or maintenance contracts worth $6,178,808. Flagged a Territory Enterprise on the public record.",
+      "sources": [
+        "nt-workbook"
+      ],
+      "govtContractValueAud": 6178808,
+      "govtContractCount": 7,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "Birubi Australia Pty Ltd",
+      "kind": "supplier",
+      "state": "SA",
+      "place": "Adelaide and Whyalla",
+      "known": false,
+      "note": "The only Aboriginal-owned firm identifiable on the SA Housing Trust pre-qualified builders list. Supply Nation certified.",
+      "sources": [
+        "research"
+      ],
+      "govtContractValueAud": 0,
+      "govtContractCount": 0,
+      "group": "contractor",
+      "proximityOnly": false
+    },
+    {
+      "name": "RIDEM Pty Ltd t/a Dexter Barnes Electrical",
+      "kind": "supplier",
+      "state": "NT",
+      "place": "Tennant Creek",
+      "known": false,
+      "note": "Aboriginal Enterprise on the public record, and already supplies and installs washing machines for the NT Government. A channel partner or an installer, and a template.",
+      "sources": [
+        "research"
+      ],
+      "govtContractValueAud": 0,
+      "govtContractCount": 0,
+      "group": "contractor",
       "proximityOnly": false
     }
   ],
@@ -2323,6 +2458,10 @@
     "royalty",
     "store",
     "supplier"
+  ],
+  "groups": [
+    "community",
+    "contractor"
   ],
   "states": [
     "NT",

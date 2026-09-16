@@ -64,6 +64,9 @@ export function ProcurementDashboard({ data }: { data: DashboardData }) {
   const known = params.get('known') === '1';
   const routed = params.get('route') === '1';
   const crowded = params.get('crowded') === '1';
+  // Contractors are opt-in. The list is for community organisations, and the first cut opened
+  // with Darwin plumbers and a health software company because it ranked on contract size.
+  const withContractors = params.get('all') === '1';
 
   const toggleState = (s: string) =>
     set('state', (states.includes(s) ? states.filter((x) => x !== s) : [...states, s]).join(','));
@@ -74,11 +77,12 @@ export function ProcurementDashboard({ data }: { data: DashboardData }) {
   );
 
   const orgs = useMemo(() => data.orgs.filter((o) => {
+    if (!withContractors && o.group === 'contractor') return false;
     if (known && !o.known) return false;
     if (routed && o.govtContractValueAud <= 0) return false;
     if (states.length && o.state && !states.includes(o.state)) return false;
     return matchesText(`${o.name} ${o.place} ${o.note}`);
-  }), [data.orgs, known, routed, states, matchesText]);
+  }), [data.orgs, known, routed, states, matchesText, withContractors]);
 
   const places = useMemo(() => data.places.filter((p) => {
     if (known && p.parts.presence === 0) return false;
@@ -98,10 +102,10 @@ export function ProcurementDashboard({ data }: { data: DashboardData }) {
     [data.jurisdictions, states],
   );
 
-  const anyFilter = Boolean(q || states.length || known || routed || crowded);
+  const anyFilter = Boolean(q || states.length || known || routed || crowded || withContractors);
 
   const metrics = [
-    { k: 'Organisations', v: orgs.length, sub: `${orgs.filter((o) => o.known).length} we know` },
+    { k: 'Organisations', v: orgs.length, sub: withContractors ? `${orgs.filter((o) => o.group === 'community').length} community, rest contractors` : `${orgs.filter((o) => o.known).length} we know` },
     { k: 'Communities', v: places.length, sub: `${places.filter((p) => p.routeExists).length} with a route` },
     { k: 'Openings', v: openings.length, sub: `${openings.filter((o) => o.kind === 'in-market' || o.kind === 'standing').length} actionable now` },
     { k: 'Contract value', v: money(orgs.reduce((n, o) => n + o.govtContractValueAud, 0)), sub: 'already spent, never a bed order' },
@@ -137,6 +141,7 @@ export function ProcurementDashboard({ data }: { data: DashboardData }) {
             <Check on={known} onChange={(v) => set('known', v ? '1' : null)} label="We already know them" />
             <Check on={routed} onChange={(v) => set('route', v ? '1' : null)} label="Holds government contracts" />
             <Check on={crowded} onChange={(v) => set('crowded', v ? '1' : null)} label="50%+ overcrowded" />
+            <Check on={withContractors} onChange={(v) => set('all', v ? '1' : null)} label="Include general contractors" />
           </div>
         </Facet>
 
@@ -191,6 +196,7 @@ export function ProcurementDashboard({ data }: { data: DashboardData }) {
                       <span className="font-medium">{o.name}</span>
                       {o.known && <Badge className="ml-2" variant="secondary">known</Badge>}
                       {o.proximityOnly && <Badge className="ml-2" variant="outline" title="Only source is the proximity-matched shared graph">proximity only</Badge>}
+                      {o.group === 'contractor' && <Badge className="ml-2" variant="outline">contractor</Badge>}
                       <span className="block text-xs text-muted-foreground">{[o.state, o.place].filter(Boolean).join(' · ') || 'place not recorded'}</span>
                     </TableCell>
                     <TableCell className="text-muted-foreground">{o.kind.replace(/_/g, ' ')}</TableCell>

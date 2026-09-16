@@ -26,6 +26,8 @@ export interface Org {
   govtContractCount: number;
   /** True when the only source is the shared graph, which is proximity-matched. */
   proximityOnly?: boolean;
+  /** community | contractor. Community organisations are what this list is for. */
+  group?: 'community' | 'contractor';
 }
 
 const KIND_LABEL: Record<string, string> = {
