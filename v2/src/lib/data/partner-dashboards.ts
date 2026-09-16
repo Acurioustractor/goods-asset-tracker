@@ -84,8 +84,18 @@ export interface FunderImpact {
   breakdown: { heading: string; note?: string; items: { label: string; value: string; percent?: number }[] };
   /** Shared moments on Country: visits, treks, handovers. Kept short. */
   moments: TimelineItem[];
-  /** The funder's own words back to them (board-forwardable social proof). */
-  quotes: { text: string; attribution: string }[];
+  /**
+   * The funder's own words back to them (board-forwardable social proof).
+   *
+   * Resolved from storyteller-registry.ts at render time, NEVER typed here. Same shape and
+   * same reason as `voice` in funder-moments.ts: a quote typed into a component drifts away
+   * from the consent record that governs it, and on 2026-09-16 exactly that drift was found
+   * on this person (two tier `hold` community quotes were publishable through her funder
+   * record for eight weeks). Matching is on a fragment of the quote TEXT, so an editorial
+   * tweak can never silently swap which words publish. Default-deny: unknown slug, wrong
+   * tier or a quote that is not `approved` renders nothing.
+   */
+  quotes: { slug: string; quoteContains: string }[];
 }
 
 /**
@@ -253,16 +263,28 @@ const snow: PartnerDashboard = {
       { date: 'Jan 2026', title: 'First washing machine given to Dianne Stokes', detail: 'In Tennant Creek. She named it Pakkimjalki Kari in Warumungu.', image: { src: '/images/product/washing-machine-name.jpg', alt: 'Pakkimjalki Kari name plate at sunset, Tennant Creek' } },
       { date: 'Mar 2026', title: 'Goods bed on stage at Parliament House, Canberra', detail: 'Snow Foundation, NACCHO, and the Rheumatic Heart Disease Alliance event. The Stretch Bed on stage as health hardware for RHD prevention.', image: { src: '/images/media-pack/parliament-house-event-mar-2025.jpg', alt: 'Panel discussion at Parliament House, Canberra, March 2026, Snow Foundation, NACCHO and the RHD Alliance' } },
     ],
-    quotes: [],
+    // Georgina Byron AM, tier `funder`, all four `approved` in the registry. Chosen for the
+    // catalytic frame in her own words rather than ours (Ben, 2026-09-16: quote it, do not
+    // assert it). Her two `hold` quotes (the Gadigal transcript error and the referendum
+    // passage, which is Snow's to publish) are deliberately absent and the resolver would
+    // refuse them anyway.
+    quotes: [
+      { slug: 'georgina-byron', quoteContains: 'we can catalyse others to do their bit' },
+      { slug: 'georgina-byron', quoteContains: "It's also about backing really great people" },
+      { slug: 'georgina-byron', quoteContains: "It's not a for, it's a with" },
+      { slug: 'georgina-byron', quoteContains: 'you start small and then you realize' },
+    ],
   },
   nextChapter: {
     intro:
-      "Snow's backing came as grants. That was the right capital for an idea that was still more promise than proof. The idea is proven now, and the model was always built to stand on its own: a production economy that earns its keep, and that the community comes to own. The capital that takes it there looks different from the capital that started it.",
+      "Snow's backing came as grants, and the tenth invoice was paid in May 2026, so this is a live partnership. "
+      + 'What that money bought was the chance to find out whether a bed could be made on Country and owned in community, and that work is still running. '
+      + 'The next stretch needs a production economy that earns its keep and an asset base the community comes to own, and the capital that funds it can take a different shape from the capital that started it.',
     arc: [
       {
-        stage: 'Grant funded',
+        stage: 'Grant backed',
         meaning:
-          'Where we began. Snow and a small group of trusting funders carried the early risk, before the proof was in the houses.',
+          'Where this started, and still running. Snow and a small group of trusting funders carried the early risk, and Snow grant money is current: the most recent invoice was paid in May 2026.',
         state: 'done',
       },
       {

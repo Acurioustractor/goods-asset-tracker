@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getPartnerDashboard, type OwnershipStage } from '@/lib/data/partner-dashboards';
+import { getStorytellerBySlug } from '@/lib/data/storyteller-registry';
 import { getDashboardImageOverrides, resolveDashImg } from '@/lib/data/partner-dashboard-images';
 import { safeImageUrl } from '@/lib/empathy-ledger/media-tier';
 import { getAssetStats } from '@/lib/data/impact-fetcher';
@@ -185,6 +186,21 @@ export default async function PartnerDashboardPage({ params }: Props) {
   const facilityGallery = resolveGal(partner.facilityGallery ?? [], 'facility').filter((g) => g.consent === 'documented');
   const partnership = partner.communityPartnership;
   const nextChapter = partner.nextChapter;
+
+  /**
+   * The funder's own words, resolved from the consent registry rather than typed into the
+   * dashboard data. Default-deny in the same shape as FunderMomentBlock: an unknown slug, a
+   * tier that is not `funder`, or a quote that is not `approved` drops out silently. There is
+   * no fallback to something publishable.
+   */
+  const funderQuotes = (partner.funderImpact?.quotes ?? [])
+    .map((ref) => {
+      const person = getStorytellerBySlug(ref.slug);
+      if (!person || person.tier !== 'funder') return null;
+      const quote = person.quotes.find((q) => q.status === 'approved' && q.text.includes(ref.quoteContains));
+      return quote ? { person, quote } : null;
+    })
+    .filter((x): x is NonNullable<typeof x> => x !== null);
   const partnershipPhotos = resolveGal(partnership?.photos ?? [], 'partnership').filter((g) => g.consent === 'documented');
 
   // Single-image + nested-image slots resolved the same way.
@@ -612,12 +628,12 @@ export default async function PartnerDashboardPage({ params }: Props) {
               </div>
             ) : null}
 
-            {partner.funderImpact.quotes.length > 0 ? (
+            {funderQuotes.length > 0 ? (
               <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                {partner.funderImpact.quotes.map((q) => (
-                  <figure key={q.attribution} className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
-                    <blockquote className="font-display text-lg leading-snug" style={{ color: CHARCOAL }}>&ldquo;{q.text}&rdquo;</blockquote>
-                    <figcaption className="mt-3 text-xs uppercase tracking-wide" style={{ color: SAGE }}>{q.attribution}</figcaption>
+                {funderQuotes.map(({ person, quote }) => (
+                  <figure key={quote.text} className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+                    <blockquote className="font-display text-lg leading-snug" style={{ color: CHARCOAL }}>&ldquo;{quote.text}&rdquo;</blockquote>
+                    <figcaption className="mt-3 text-xs uppercase tracking-wide" style={{ color: SAGE }}>{person.name}{person.role ? `, ${person.role}` : ''}</figcaption>
                   </figure>
                 ))}
               </div>

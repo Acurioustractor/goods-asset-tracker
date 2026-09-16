@@ -363,7 +363,7 @@ function ThroughLinesSection() {
     {
       label: 'The economics are the impact',
       color: '#5E7D9A',
-      text: 'A basic good is out of reach in remote communities because of the freight tax and goods that fail in months. Goods answers with a durable, washable, repairable bed built to beat the true remote cost, made On Country so the value and the jobs stay local, with an in-house cost-down that moves the work from grant-funded toward a community-owned enterprise that can stand on its own.',
+      text: 'A basic good is out of reach in remote communities because of the freight tax and goods that fail in months. Goods answers with a durable, washable, repairable bed built to beat the true remote cost, made On Country so the value and the jobs stay local, with an in-house cost-down that carries the making, and in time the ownership of it, further into community hands.',
     },
     {
       label: 'Indigenous sovereignty',
