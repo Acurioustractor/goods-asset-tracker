@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { honeypotValue } from '@/lib/forms/honeypot';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -46,7 +47,7 @@ export function FeedbackWidget() {
       const response = await fetch('/api/feedback', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ page: pathname, message, email }),
+        body: JSON.stringify({ page: pathname, message, email, _companyWebsite: honeypotValue(e) }),
       });
 
       const data = await response.json();
@@ -120,6 +121,8 @@ export function FeedbackWidget() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-1 flex-col gap-4 p-4">
+              {/* Honeypot: hidden from people and screen readers, filled by bots. Checked server-side. */}
+              <input name="_companyWebsite" type="text" tabIndex={-1} autoComplete="off" className="sr-only" aria-hidden="true" />
               {/* Page (read-only) */}
               <div>
                 <Label className="mb-2 block text-sm" style={{ color: '#5E5E5E' }}>

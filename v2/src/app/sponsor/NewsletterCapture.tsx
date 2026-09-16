@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { honeypotValue } from '@/lib/forms/honeypot';
 import { CREAM, RUST, CHARCOAL, SAGE } from './palette';
 
 // "Not ready to sponsor today?" newsletter capture — funnels browsers who
@@ -22,6 +23,7 @@ export default function NewsletterCapture() {
           email: newsletterEmail,
           tag: 'sponsor-interest',
           consent: newsletterConsent,
+          _companyWebsite: honeypotValue(e),
         }),
       });
       if (!res.ok) throw new Error('Failed');
@@ -55,6 +57,8 @@ export default function NewsletterCapture() {
           </div>
         ) : (
           <form onSubmit={handleNewsletter} className="space-y-3">
+            {/* Honeypot: hidden from people and screen readers, filled by bots. Checked server-side. */}
+            <input name="_companyWebsite" type="text" tabIndex={-1} autoComplete="off" className="sr-only" aria-hidden="true" />
             <div className="flex flex-col sm:flex-row gap-3">
               <input
                 type="email"

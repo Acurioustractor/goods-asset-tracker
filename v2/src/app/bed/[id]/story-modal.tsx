@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { honeypotValue } from '@/lib/forms/honeypot';
 import { Button } from '@/components/ui/button';
 
 type Props = {
@@ -160,6 +161,7 @@ export function StoryModal({
 
     try {
       const form = new FormData();
+      form.append('_companyWebsite', honeypotValue(e) ?? '');
       form.append('name', name);
       form.append('contact', contact);
       form.append('story', story);
@@ -236,6 +238,8 @@ export function StoryModal({
           </div>
         ) : (
           <form onSubmit={submit} className="p-6 space-y-4">
+            {/* Honeypot: hidden from people and screen readers, filled by bots. Checked server-side. */}
+            <input name="_companyWebsite" type="text" tabIndex={-1} autoComplete="off" className="sr-only" aria-hidden="true" />
             <div>
               <label className="block text-sm font-medium mb-1">Your name (optional)</label>
               <input

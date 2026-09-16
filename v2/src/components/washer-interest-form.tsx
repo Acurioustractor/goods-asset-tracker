@@ -61,6 +61,7 @@ export function WasherInterestForm() {
       contactPhone: (formData.get('contact_phone') as string) || undefined,
       partnershipType: 'washer-interest',
       message: messageLines.join('\n') || undefined,
+      _companyWebsite: (formData.get('_companyWebsite') as string) || undefined,
     };
 
     try {
@@ -104,6 +105,8 @@ export function WasherInterestForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Honeypot: hidden from people and screen readers, filled by bots. Checked server-side. */}
+      <input name="_companyWebsite" type="text" tabIndex={-1} autoComplete="off" className="sr-only" aria-hidden="true" />
       {/* Identity */}
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="sm:col-span-2">
