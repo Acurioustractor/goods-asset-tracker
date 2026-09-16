@@ -1,0 +1,117 @@
+/**
+ * The Snow report is a claim about a relationship, a consent decision and a money figure all
+ * on one page, so all three are tested.
+ *
+ * The rule that earns its keep here is the last one. This page is allowed to carry dollar
+ * figures BECAUSE it is password gated in proxy.ts. If someone later un-gates /partners/<slug>/story,
+ * a page written for one funder about their own money becomes public. The gate is therefore
+ * part of the contract and is asserted against the actual proxy source, not assumed.
+ */
+
+import { describe, it, expect } from 'vitest';
+import { readFileSync, existsSync } from 'node:fs';
+import { join } from 'node:path';
+import {
+  ALIGNMENT, BECAUSE_OF, NOT_FINISHED, SNOW_MONEY, TOGETHER, TOGETHER_KINDS,
+} from '@/lib/data/snow-partnership';
+import { GRANTS_RECEIVED } from '@/lib/data/grants-received';
+import { getStorytellerBySlug } from '@/lib/data/storyteller-registry';
+
+const PAGE = join(process.cwd(), 'src/app/partners/[slug]/story/page.tsx');
+
+describe('snow partnership report', () => {
+  it('the page is behind the partner password gate', () => {
+    // Not "is there a gate somewhere" but "does the gate's own regex match this route".
+    const proxy = readFileSync(join(process.cwd(), 'src/proxy.ts'), 'utf8');
+    const line = proxy.split('\n').find((l) => l.includes('partnerDashMatch') && l.includes('match('));
+    expect(line, 'the partner gate regex has moved or been renamed').toBeTruthy();
+    const src = line!.slice(line!.indexOf('/^'), line!.lastIndexOf('/'));
+    const re = new RegExp(src.slice(1));
+    expect(re.test('/partners/snow/story'), 'the Snow report route is NOT gated').toBe(true);
+    expect(re.test('/partners/snow/dashboard'), 'the dashboard gate was broken').toBe(true);
+    expect(re.test('/partners/centrecorp'), 'the public partner page must stay open').toBe(false);
+  });
+
+  it('every moment is dated, sourced and sortable', () => {
+    for (const m of TOGETHER) {
+      expect(m.when, `${m.title} has no date`).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(m.source.length, `${m.title} has no source`).toBeGreaterThan(8);
+      expect(Object.keys(TOGETHER_KINDS)).toContain(m.kind);
+    }
+  });
+
+  it('the moments are in order and nothing is dated in the future', () => {
+    const sorted = TOGETHER.map((m) => m.when).slice().sort();
+    expect(TOGETHER.map((m) => m.when)).toEqual(sorted);
+    const today = new Date().toISOString().slice(0, 10);
+    for (const m of TOGETHER) expect(m.when <= today, `${m.title} is dated in the future`).toBe(true);
+  });
+
+  it('every photo on the timeline exists', () => {
+    for (const m of TOGETHER) {
+      if (!m.image) continue;
+      expect(existsSync(join(process.cwd(), 'public', m.image.src)), `missing: ${m.image.src}`).toBe(true);
+    }
+  });
+
+  it('the Goods-only figure and the all-paid figure differ by exactly INV-0092', () => {
+    // $35,200 is the (Con)nected Drug Court invoice. If either figure is edited without the
+    // other, this catches it before a funder sees two numbers that do not reconcile.
+    expect(SNOW_MONEY.allPaidIncGstAud - SNOW_MONEY.goodsOnlyIncGstAud).toBeCloseTo(35_200, 2);
+    // Both are inc-GST, so the ex-GST pair must sit at the same 1.1 ratio.
+    expect(SNOW_MONEY.goodsOnlyIncGstAud / SNOW_MONEY.goodsOnlyExGstAud).toBeCloseTo(1.1, 3);
+  });
+
+  it('the Snow share of philanthropy is derived from the same basis on both sides', () => {
+    const total = GRANTS_RECEIVED.reduce((n, g) => n + g.amountAud, 0);
+    // Take the same $35,200 off the denominator, or the share is computed against a total
+    // that still counts an invoice we have excluded from the numerator.
+    const share = (SNOW_MONEY.goodsOnlyIncGstAud / (total - 35_200)) * 100;
+    expect(Math.round(share)).toBe(SNOW_MONEY.shareOfAllPhilanthropyPct);
+  });
+
+  it('every quote on the page resolves from the registry and is approved', () => {
+    const page = readFileSync(PAGE, 'utf8');
+    const calls = [...page.matchAll(/quote\('([a-z-]+)',\s*'(funder|external)',\s*(['"])(.+?)\3\)/g)];
+    expect(calls.length, 'no registry quote calls found; did the resolver change shape?').toBeGreaterThan(4);
+    for (const [, slug, tier, , contains] of calls) {
+      const person = getStorytellerBySlug(slug);
+      expect(person, `unknown slug: ${slug}`).toBeTruthy();
+      expect(person!.tier, `${slug} is tier ${person!.tier}, the page asks for ${tier}`).toBe(tier);
+      const matches = person!.quotes.filter((q) => q.text.includes(contains));
+      expect(matches.length, `no quote of ${person!.name} contains "${contains}"`).toBe(1);
+      expect(['primary', 'approved'], `${person!.name}'s matched quote is ${matches[0].status}`).toContain(matches[0].status);
+    }
+  });
+
+  it('does not put words in Snow\'s mouth', () => {
+    // No Snow person has ever put the loan or impact-investment pathway in writing. Every
+    // Snow intention on this page is a dated quote or it is absent.
+    const page = readFileSync(PAGE, 'utf8');
+    const banned = /Snow has (opened|asked|offered|committed to|indicated)|Snow wants|Snow is ready to/i;
+    expect(banned.test(page), 'the page asserts a Snow intention rather than quoting one').toBe(false);
+  });
+
+  it('does not pitch the thing Snow excludes', () => {
+    // Snow's published exclusions name "Environmental causes". Recycling is here as local
+    // economics, and the alignment row says so; it must never become a reason to fund.
+    const env = ALIGNMENT.find((a) => a.id === 'environment');
+    expect(env, 'the environment row was removed; Snow still excludes it').toBeTruthy();
+    expect(env!.strength).toBe('not-yet');
+  });
+
+  it('keeps the honest rows', () => {
+    // A page of only strong rows is a pitch. The weak ones are why the strong ones are
+    // believable, so at least one of each must survive an edit.
+    expect(ALIGNMENT.some((a) => a.strength === 'partial')).toBe(true);
+    expect(ALIGNMENT.some((a) => a.strength === 'strong')).toBe(true);
+    expect(NOT_FINISHED.length).toBeGreaterThanOrEqual(3);
+    expect(BECAUSE_OF.some((b) => b.status === 'future' && b.value === 0), 'the zero community-owned sites row is the one we print against ourselves').toBe(true);
+  });
+
+  it('claims no health outcome', () => {
+    const page = readFileSync(PAGE, 'utf8');
+    const banned = /prevent(s|ed|ing)? (rheumatic|heart disease|RHD)|cardiac prevention|cases prevented|reduc(es|ed) (rheumatic|RHD)/i;
+    expect(banned.test(page), 'the report claims a health outcome').toBe(false);
+  });
+});

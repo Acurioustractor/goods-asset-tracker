@@ -106,10 +106,15 @@ export async function proxy(request: NextRequest) {
     }
   }
 
-  // Partner dashboards — per-slug password gate. Only /partners/<slug>/dashboard
-  // is gated; the public partner pages (/partners/centrecorp etc.) stay open.
-  // Login at /partners/<slug>/login, auth at /api/partners/<slug>/auth.
-  const partnerDashMatch = pathname.match(/^\/partners\/([^/]+)\/dashboard/)
+  // Partner dashboards — per-slug password gate. /partners/<slug>/dashboard and
+  // /partners/<slug>/story are gated; the public partner pages (/partners/centrecorp
+  // etc.) stay open. Login at /partners/<slug>/login, auth at /api/partners/<slug>/auth.
+  //
+  // `story` added 2026-09-16 with the Snow partnership report. A new route under
+  // /partners/ is PUBLIC by default, which is the wrong default for a page that carries
+  // dollar figures and a named funder relationship, so it goes on the gate the same day
+  // it is written rather than after someone notices.
+  const partnerDashMatch = pathname.match(/^\/partners\/([^/]+)\/(dashboard|story)/)
   if (partnerDashMatch) {
     const slug = partnerDashMatch[1]
     const partner = PARTNER_DASHBOARDS.find((p) => p.slug === slug)

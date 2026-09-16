@@ -13,13 +13,14 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { FUNDER_MOMENTS, grantLineFor } from '@/lib/data/funder-moments';
 import { GRANTS_RECEIVED } from '@/lib/data/grants-received';
 import { getStorytellerBySlug } from '@/lib/data/storyteller-registry';
 import { PARTNER_DASHBOARDS } from '@/lib/data/partner-dashboards';
 import { snowConfig } from '@/lib/funders/configs/snow';
+import { ALIGNMENT, BECAUSE_OF, NOT_FINISHED, TOGETHER } from '@/lib/data/snow-partnership';
 
 /**
  * The graduation story, in the words it actually reaches for. Ben, 2026-09-16.
@@ -128,6 +129,12 @@ describe('funder moments', () => {
     for (const cfg of [snowConfig]) {
       surfaces.push({ where: `${cfg.slug} funder report`, text: JSON.stringify(cfg) });
     }
+
+    // The Snow partnership report, added 2026-09-16. It is the longest piece of prose written
+    // to a funder anywhere in the repo, which makes it the likeliest place for the story to
+    // creep back in.
+    surfaces.push({ where: 'snow partnership report data', text: JSON.stringify({ ALIGNMENT, BECAUSE_OF, NOT_FINISHED, TOGETHER }) });
+    surfaces.push({ where: 'snow partnership report page', text: readFileSync(join(process.cwd(), 'src/app/partners/[slug]/story/page.tsx'), 'utf8') });
 
     for (const s of surfaces) {
       const hit = s.text.match(GRADUATION);
