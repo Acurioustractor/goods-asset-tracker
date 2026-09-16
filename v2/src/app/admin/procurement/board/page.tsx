@@ -42,9 +42,11 @@ export default async function BoardPage() {
       <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">Admin &middot; internal</p>
       <div className="mt-2 flex flex-wrap items-end justify-between gap-3">
         <h1 className="font-display text-3xl leading-tight sm:text-4xl">Procurement board</h1>
-        <Link href="/admin/procurement" className="text-sm underline text-muted-foreground">
-          The evidence and the rules behind it
-        </Link>
+        <span className="text-sm text-muted-foreground">
+          <Link href="/admin/procurement" className="underline">The rules</Link>
+          {' · '}
+          <Link href="/admin/procurement/openings" className="underline">Openings</Link>
+        </span>
       </div>
       <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground">
         Every community we work in, against how crowded it is, how easy that jurisdiction makes a purchase, whether

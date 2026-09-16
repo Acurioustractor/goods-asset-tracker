@@ -17,6 +17,1089 @@
     "housingAgencyFurnitureContracts": 9,
     "verdict": "The NT Government builds remote houses and hands them over empty. Its housing agencies spent this much and bought office chairs and removalists. No procurement channel exists for the thing that goes in the bedroom, so the tenant buys it."
   },
+  "expiries": [
+    {
+      "expires": "2026-09",
+      "awarded": "2023-09",
+      "valueAud": 54000,
+      "contractor": "KEEP MOVING PTY LTD",
+      "territoryEnterprise": true,
+      "what": "Alice Springs, Hospital Intensive Care Unit - Repairs and Maintenance of ICU Beds for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2026-09",
+      "awarded": "2023-09",
+      "valueAud": 399865,
+      "contractor": "PASH Contracting Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Katherine Region - Repairs And Maintenance Of Portable Fire Equipment for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2026-09",
+      "awarded": "2024-09",
+      "valueAud": 208102,
+      "contractor": "BV Contracting Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "East Arnhem Region - Milingimbi Aerodrome - Inspections, Repairs and Maintenance for a Period of 24 Months",
+      "months": 24
+    },
+    {
+      "expires": "2026-10",
+      "awarded": "2020-10",
+      "valueAud": 60000,
+      "contractor": "GETINGE AUSTRALIA PTY. LTD.",
+      "territoryEnterprise": false,
+      "what": "Alice Springs - Intensive Care Unit Alice Springs Hospital - Preventative Maintenance Agreement  Annual Servicing on all equipment for a Period of 72 Months - 6",
+      "months": 72
+    },
+    {
+      "expires": "2026-10",
+      "awarded": "2024-10",
+      "valueAud": 339549,
+      "contractor": "Bukmak Constructions Pty Ltd  As Trustee for Bukmak Constructions Trust",
+      "territoryEnterprise": true,
+      "what": "Nhulunbuy Region - Ramingining Aerodrome - Inspections, Repairs and Maintenance for a Period of 24 Months",
+      "months": 24
+    },
+    {
+      "expires": "2026-11",
+      "awarded": "2023-11",
+      "valueAud": 1517833,
+      "contractor": "Renfree Pastoral Co Pty Ltd as The Trustee for Renfree Family Trust",
+      "territoryEnterprise": true,
+      "what": "Katherine Region - Provision of Grounds Maintenance, Litter Control and Cleaning of Urban Housing Complexes for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2026-11",
+      "awarded": "2023-11",
+      "valueAud": 2442485,
+      "contractor": "Cairns Industries Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Katherine Region - Borroloola - Provision of Responsive, Vacate, Planned Works and Grounds Maintenance to Urban and GEH Housing for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2026-11",
+      "awarded": "2024-11",
+      "valueAud": 1452238,
+      "contractor": "Northern Building and Property Services Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Katherine Region - Minyerri - Repairs and Maintenance of Remote Community Housing and Government Employee Housing Assets for a Period of 24 Months",
+      "months": 24
+    },
+    {
+      "expires": "2026-11",
+      "awarded": "2023-11",
+      "valueAud": 595587,
+      "contractor": "GenOffGrid NT Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Alice Springs and Tennant Creek Regions - Repairs and Maintenance of Solar Pv/Hybrid Power Systems for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2026-11",
+      "awarded": "2024-11",
+      "valueAud": 126336,
+      "contractor": "Remote Maintenance Services Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "East Arnhem Region - Lake Evella Aerodrome - Inspections, Repairs and Maintenance for a Period of 24 Months",
+      "months": 24
+    },
+    {
+      "expires": "2026-11",
+      "awarded": "2021-11",
+      "valueAud": 2750000,
+      "contractor": "Northtech Solutions Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "All Centres - Panel Contract - General Maintenance Support, Fabrication & Installation of Mechanical Structures and Small Projects for a Period of 60 Months",
+      "months": 60
+    },
+    {
+      "expires": "2026-11",
+      "awarded": "2021-11",
+      "valueAud": 2750000,
+      "contractor": "Ribshire Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "All Centres - Panel Contract - General Maintenance Support, Fabrication & Installation of Mechanical Structures and Small Projects for a Period of 60 Months",
+      "months": 60
+    },
+    {
+      "expires": "2026-11",
+      "awarded": "2021-11",
+      "valueAud": 2750000,
+      "contractor": "Ross Engineering Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "All Centres - Panel Contract - General Maintenance Support, Fabrication & Installation of Mechanical Structures and Small Projects for a Period of 60 Months",
+      "months": 60
+    },
+    {
+      "expires": "2026-11",
+      "awarded": "2021-11",
+      "valueAud": 2750000,
+      "contractor": "SWEL Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "All Centres - Panel Contract - General Maintenance Support, Fabrication & Installation of Mechanical Structures and Small Projects for a Period of 60 Months",
+      "months": 60
+    },
+    {
+      "expires": "2026-12",
+      "awarded": "2024-12",
+      "valueAud": 1803847,
+      "contractor": "GSD Solutions Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Alice Springs Region - Repairs and Maintenance of Remote Community Housing and Government Employee Housing Assets for a Period of 24 Months",
+      "months": 24
+    },
+    {
+      "expires": "2026-12",
+      "awarded": "2024-12",
+      "valueAud": 1824568,
+      "contractor": "SDA & CO Pty Limited",
+      "territoryEnterprise": true,
+      "what": "Alice Springs Region - Repairs and Maintenance of Remote Community Housing and Government Employee Housing Assets for a Period of 24 Months",
+      "months": 24
+    },
+    {
+      "expires": "2026-12",
+      "awarded": "2024-12",
+      "valueAud": 1895964,
+      "contractor": "Harvey Developments (NT) Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Alice Springs Region - Repairs and Maintenance of Remote Community Housing and Government Employee Housing Assets for a Period of 24 Months",
+      "months": 24
+    },
+    {
+      "expires": "2026-12",
+      "awarded": "2024-12",
+      "valueAud": 2575200,
+      "contractor": "S & R Building & Construction Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Alice Springs Region - Repairs and Maintenance of Remote Community Housing and Government Employee Housing Assets for a Period of 24 Months",
+      "months": 24
+    },
+    {
+      "expires": "2026-12",
+      "awarded": "2024-12",
+      "valueAud": 3595474,
+      "contractor": "Akron Group NT Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Alice Springs Region - Repairs and Maintenance of Remote Community Housing and Government Employee Housing Assets for a Period of 24 Months",
+      "months": 24
+    },
+    {
+      "expires": "2026-12",
+      "awarded": "2024-12",
+      "valueAud": 1348108,
+      "contractor": "Harvey Developments NT Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Tennant Creek Region - Repairs and Maintenance of Remote Community Housing and Government Employee Housing Assets for a Period of 24 Months",
+      "months": 24
+    },
+    {
+      "expires": "2026-12",
+      "awarded": "2024-12",
+      "valueAud": 1692725,
+      "contractor": "GSD Solutions Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Tennant Creek Region - Repairs and Maintenance of Remote Community Housing and Government Employee Housing Assets for a Period of 24 Months",
+      "months": 24
+    },
+    {
+      "expires": "2026-12",
+      "awarded": "2023-12",
+      "valueAud": 1535188,
+      "contractor": "AUS Projects NT Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Katherine Region - Repairs and Maintenance of Diesel Generators and Ancillary Mechanical Equipment for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2026-12",
+      "awarded": "2023-12",
+      "valueAud": 8901389,
+      "contractor": "B & K Investments (NT) Pty Limited",
+      "territoryEnterprise": true,
+      "what": "Darwin - Repairs And Maintenance Of General Electrical Equipment for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2026-12",
+      "awarded": "2023-12",
+      "valueAud": 471469,
+      "contractor": "Port Hughes Investments Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "East Arnhem Region - Gove District Hospital - Provision of Plumbing Maintenance Services for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2026-12",
+      "awarded": "2025-12",
+      "valueAud": 289300,
+      "contractor": "JGKT Pty Ltd as the Trustee for JGKT Family Trust",
+      "territoryEnterprise": false,
+      "what": "All of NT - Consultancy - Maintenance of Supply Chain Database and Specialist NT Freight and Logistics Advice and Input for a Period of 12 Months",
+      "months": 12
+    },
+    {
+      "expires": "2027-01",
+      "awarded": "2024-02",
+      "valueAud": 4151083,
+      "contractor": "Morningside Electrical Contractors and Consultants Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "East Arnhem Region - Nhulunbuy, Gapuwiyak, Yirrkala and remote Communities - Provision of Mechanical and Electrical Repairs, Maintenance and Installation Servic",
+      "months": 36
+    },
+    {
+      "expires": "2027-01",
+      "awarded": "2024-01",
+      "valueAud": 1354303,
+      "contractor": "The Trustee for the Larrakia Development Trust",
+      "territoryEnterprise": true,
+      "what": "Defence Accommodation Precinct Darwin - Provision of Grounds Maintenances Services for a Period of 36 Months - Mandatory Site Inspection",
+      "months": 36
+    },
+    {
+      "expires": "2027-01",
+      "awarded": "2024-01",
+      "valueAud": 396649,
+      "contractor": "Advanced Weighing Technology NT Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "All Centres - Provision of Specialised Services - Urgent and Cyclical Maintenance to Weighbridges for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-01",
+      "awarded": "2024-01",
+      "valueAud": 482399,
+      "contractor": "Centratech Systems Pty Ltd",
+      "territoryEnterprise": false,
+      "what": "Darwin - Maintenance of Telemetry Controllers and Database Information for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-01",
+      "awarded": "2026-01",
+      "valueAud": 148044,
+      "contractor": "SCHNEIDER ELECTRIC (AUSTRALIA) PTY LIMITED",
+      "territoryEnterprise": true,
+      "what": "Alice Springs Region - Repairs and Maintenance of Building Management Systems and Automatic Gates for a Period of 12 Months",
+      "months": 12
+    },
+    {
+      "expires": "2027-01",
+      "awarded": "2026-01",
+      "valueAud": 107800,
+      "contractor": "CSA Contracting (NT) Pty Ltd as The Trustee for The Dunwell Family Trust",
+      "territoryEnterprise": true,
+      "what": "Katherine Region - Various Location - Repairs and Maintenance of Variable Message Boards and Electronic Message Boards for a Period of 12 Months",
+      "months": 12
+    },
+    {
+      "expires": "2027-01",
+      "awarded": "2026-01",
+      "valueAud": 158647,
+      "contractor": "WS Tregea Pty Ltd as The trustee for Tregea Family Trust",
+      "territoryEnterprise": true,
+      "what": "Alice Springs - ANZAC Oval and Snow Kenna Park Grounds Maintenance for a Period of 12 Months",
+      "months": 12
+    },
+    {
+      "expires": "2027-01",
+      "awarded": "2022-01",
+      "valueAud": 2922007,
+      "contractor": "Royal Flying Doctor Service of Australia Central Operations",
+      "territoryEnterprise": true,
+      "what": "Alice Springs, Darwin - Repairs and Maintenance of Two (2) Pilatus PC-12 Aircraft for a Period of 60 Months",
+      "months": 60
+    },
+    {
+      "expires": "2027-02",
+      "awarded": "2024-02",
+      "valueAud": 490144,
+      "contractor": "Better Mows and Gardens Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Nhulunbuy - Provision of Grounds Maintenance Services to Public Housing Complexes for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-02",
+      "awarded": "2024-02",
+      "valueAud": 531723,
+      "contractor": "Pristine Pools and Spas Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Darwin - Howard Springs Nature Park and Defence Accommodation Precinct Darwin - Inspection, Maintenance and Cleaning of Rock Pools, Pools and Associated Plant a",
+      "months": 36
+    },
+    {
+      "expires": "2027-02",
+      "awarded": "2024-02",
+      "valueAud": 484508,
+      "contractor": "Pristine Pools and Spas Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Darwin Region - Dundee Grounds and Waste Facility Maintenance Services for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-03",
+      "awarded": "2023-03",
+      "valueAud": 92620,
+      "contractor": "GE HEALTHCARE AUSTRALIA PTY LIMITED",
+      "territoryEnterprise": false,
+      "what": "Darwin - Repairs and Maintenance of RDH ICU Vivid S70 Ultrasound for a Period of 48 Months",
+      "months": 48
+    },
+    {
+      "expires": "2027-03",
+      "awarded": "2024-03",
+      "valueAud": 151338,
+      "contractor": "Media Equation Pty Ltd",
+      "territoryEnterprise": false,
+      "what": "Provision and Maintenance of Lookatme Digital Asset Management Solution for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-04",
+      "awarded": "2022-04",
+      "valueAud": 52521,
+      "contractor": "Alcon Laboratories (Australia) Pty Ltd",
+      "territoryEnterprise": false,
+      "what": "Nhulunbuy - Repairs and Maintenance of Service Agreement for GDH Operating Theatres Centurion Vision System for a Period of 60 Months",
+      "months": 60
+    },
+    {
+      "expires": "2027-04",
+      "awarded": "2022-04",
+      "valueAud": 57773,
+      "contractor": "Alcon Laboratories (Australia) Pty Ltd",
+      "territoryEnterprise": false,
+      "what": "Darwin - Palmerston Regional Hospital - Repairs and Maintenance of Five year Service Agreement for PRH Operating Theatres Centurion Vision System for a Period o",
+      "months": 60
+    },
+    {
+      "expires": "2027-04",
+      "awarded": "2024-04",
+      "valueAud": 7768296,
+      "contractor": "Deltareef Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "East Arnhem Region - Provision of Building and Plumbing Maintenance Services to NT Government Facilities for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-05",
+      "awarded": "2024-05",
+      "valueAud": 677520,
+      "contractor": "Lear Siegler Australasia Pty Limited",
+      "territoryEnterprise": false,
+      "what": "Darwin - Provision of Support and Maintenance Services for the Ambient Air Quality Monitoring Stations for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-05",
+      "awarded": "2024-05",
+      "valueAud": 97812,
+      "contractor": "Keep Moving Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "All of NT - Primary Health Care - Provision of Preventative Maintenance And Repair of Stryker M1 Emergency Stretchers for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-05",
+      "awarded": "2024-05",
+      "valueAud": 4237506,
+      "contractor": "Hakiba Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Darwin - Defence Accommodation Precinct - Repairs and Maintenance to Air-Conditioning Plant and Equipment for a Period of 36 Months - Mandatory Site Inspection",
+      "months": 36
+    },
+    {
+      "expires": "2027-05",
+      "awarded": "2024-05",
+      "valueAud": 3408750,
+      "contractor": "Far Northern Contractors Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Katherine - Inner Area - Repairs and Maintenance of Airconditioning, Refrigeration and Mechanical Building Services for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-05",
+      "awarded": "2024-05",
+      "valueAud": 853867,
+      "contractor": "B & K Investments (NT) Pty Limited",
+      "territoryEnterprise": true,
+      "what": "Royal Darwin Hospital and Palmerston Regional Hospital - Provision of Low Voltage Electrical Maintenance Services for a Period of 36 Months - MANDATORY INDUSTRY",
+      "months": 36
+    },
+    {
+      "expires": "2027-05",
+      "awarded": "2024-05",
+      "valueAud": 1171080,
+      "contractor": "Good Sparks Electrical Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Royal Darwin Hospital and Palmerston Regional Hospital - Provision of Low Voltage Electrical Maintenance Services for a Period of 36 Months - MANDATORY INDUSTRY",
+      "months": 36
+    },
+    {
+      "expires": "2027-05",
+      "awarded": "2024-05",
+      "valueAud": 512675,
+      "contractor": "John Bedwell Management Pty Limited",
+      "territoryEnterprise": true,
+      "what": "Gove District Hospital - Provision of Plumbing Maintenance Services for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-05",
+      "awarded": "2024-05",
+      "valueAud": 2207279,
+      "contractor": "Cairns Industries Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Katherine Region - Borroloola - Repairs and Maintenance of Various Government Assets for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-05",
+      "awarded": "2024-05",
+      "valueAud": 1215894,
+      "contractor": "Tr!pl3 Fire Electrical & Contracting Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Alice Springs Region - Repairs and Maintenance of Fire, Smoke Detection and Fire Sprinkler Systems for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-05",
+      "awarded": "2024-05",
+      "valueAud": 257382,
+      "contractor": "Top End Resources Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Darwin Region - Provision of Basins and Drains Maintenance for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-05",
+      "awarded": "2024-05",
+      "valueAud": 324852,
+      "contractor": "DDC Building and Construction Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Darwin Region - Provision of Basins and Drains Maintenance for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-05",
+      "awarded": "2024-05",
+      "valueAud": 28267,
+      "contractor": "Central Business Equipment",
+      "territoryEnterprise": true,
+      "what": "Darwin - Supply, Delivery, Installation and De-Commissioning of a Folding Machine Including On-going Support and Maintenance for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-06",
+      "awarded": "2024-06",
+      "valueAud": 47328,
+      "contractor": "SERENDIPITY NURSERY & GARDEN DECOR",
+      "territoryEnterprise": true,
+      "what": "Katherine - Provision of Indoor Plant Hire and Maintenance for Big Rivers Government Centre  for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-06",
+      "awarded": "2022-06",
+      "valueAud": 38500,
+      "contractor": "VYAIRE MEDICAL PTY LTD",
+      "territoryEnterprise": false,
+      "what": "Darwin - Repairs and Maintenance of RDH NICU Fabian HFO Infant Ventilators for a Period of 60 Months",
+      "months": 60
+    },
+    {
+      "expires": "2027-06",
+      "awarded": "2024-06",
+      "valueAud": 117464,
+      "contractor": "SMC Instruments Group Pty Ltd as the Trustee for the S & H McBride Family Trust",
+      "territoryEnterprise": false,
+      "what": "Darwin, Katherine - Preventative Maintenance Agreement for Servicing of Histology equipment and Laboratory Microscopes at Berrimah Farm Science Precinct (BFSP) ",
+      "months": 36
+    },
+    {
+      "expires": "2027-06",
+      "awarded": "2024-06",
+      "valueAud": 2042754,
+      "contractor": "CHE Proximity Pty Ltd",
+      "territoryEnterprise": false,
+      "what": "Provision of the Supply, Implementation, Support and Maintenance of Marketing Technologies for Tourism NT for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-06",
+      "awarded": "2024-06",
+      "valueAud": 1531976,
+      "contractor": "Honeywell Ltd",
+      "territoryEnterprise": true,
+      "what": "Alice Springs, Tennant Creek and East Arnhem Regions - Correction Centre and Work Camps - Provision of Security Maintenance Services for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-06",
+      "awarded": "2024-06",
+      "valueAud": 405438,
+      "contractor": "FRM Refrigeration & Airconditioning Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Royal Darwin Hospital and Palmerston Regional Hospital - Repairs and Maintenance of Refrigeration and Airconditioning Equipment for a Period of 36 Months - Mand",
+      "months": 36
+    },
+    {
+      "expires": "2027-06",
+      "awarded": "2024-06",
+      "valueAud": 5845200,
+      "contractor": "B & K Investments (NT) Pty Limited",
+      "territoryEnterprise": true,
+      "what": "Defence Accommodation Precinct Darwin - Repairs and Maintenance to Electrical Plant and Equipment for a Period of 36 Months - Mandatory Site Inspection",
+      "months": 36
+    },
+    {
+      "expires": "2027-06",
+      "awarded": "2022-06",
+      "valueAud": 4334901,
+      "contractor": "Yurika Pty Ltd",
+      "territoryEnterprise": false,
+      "what": "Operation and Maintenance Agreement for SP2 Transmission Line and Sub-station infrastructure for a Period of 60 Months",
+      "months": 60
+    },
+    {
+      "expires": "2027-06",
+      "awarded": "2024-06",
+      "valueAud": 300000,
+      "contractor": "WS Tregea Pty Ltd as trustee for Tregea Family Trust",
+      "territoryEnterprise": true,
+      "what": "Provision of Grounds Maintenance at Various Sites for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-06",
+      "awarded": "2024-06",
+      "valueAud": 700000,
+      "contractor": "Sterling NT Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Provision of Grounds Maintenance at Various Sites for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-07",
+      "awarded": "2024-07",
+      "valueAud": 1638954,
+      "contractor": "Benash Nominees Pty Ltd as The Trustee for Benash Unit Trust",
+      "territoryEnterprise": true,
+      "what": "Katherine Region - Repairs and Maintenance of Fire, Security and Communication Equipment for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-07",
+      "awarded": "2024-07",
+      "valueAud": 2849283,
+      "contractor": "Akron Group NT Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Darwin - Defence Accommodation Precinct - General Building Repairs and Maintenance for a Period of 36 Months - Mandatory Site Inspection",
+      "months": 36
+    },
+    {
+      "expires": "2027-07",
+      "awarded": "2024-07",
+      "valueAud": 1634102,
+      "contractor": "F.M.A. Contracting PTY LTD",
+      "territoryEnterprise": true,
+      "what": "Tennant Creek Region - Test and Maintenance of Fixed and Portable Fire Equipment, Fire Detection and Electronic Security Equipment for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-07",
+      "awarded": "2024-07",
+      "valueAud": 1651024,
+      "contractor": "Healthabitat Ltd",
+      "territoryEnterprise": true,
+      "what": "All of NT - Supply of Healthy Homes Preventative Maintenance Program for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-07",
+      "awarded": "2024-07",
+      "valueAud": 1982230,
+      "contractor": "Extreme Auto Installations Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Darwin - Provision of Automobile Electrical Services including Radio and Electronic Equipment Fit out and De-Commissioning for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-08",
+      "awarded": "2024-08",
+      "valueAud": 1419606,
+      "contractor": "Electricon Contracting Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Alice Springs Region - Repairs and Maintenance of Generators and Solar Hybrid Systems for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-08",
+      "awarded": "2024-08",
+      "valueAud": 222156,
+      "contractor": "DDC Building & Construction Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Darwin - Lot 6364 Town of Darwin (Myilly Point) - Provision of Ground Maintenance for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-08",
+      "awarded": "2024-08",
+      "valueAud": 199188,
+      "contractor": "MIP (Aust) Pty Ltd",
+      "territoryEnterprise": false,
+      "what": "Darwin - Provision of Licencing, Maintenance and Support for Tableau and WhereScape RED for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-08",
+      "awarded": "2025-08",
+      "valueAud": 806136,
+      "contractor": "Akron Group NT Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Darwin - Defence Accommodation Precinct - Provision of Grounds Maintenance Services for a Period of 24 Months",
+      "months": 24
+    },
+    {
+      "expires": "2027-09",
+      "awarded": "2022-09",
+      "valueAud": 84535,
+      "contractor": "Philips Healthcare",
+      "territoryEnterprise": false,
+      "what": "Darwin - Repairs and Maintenance of Philips EPIQ Elite Ultrasound Service Agreement for a Period of 60 Months",
+      "months": 60
+    },
+    {
+      "expires": "2027-09",
+      "awarded": "2024-09",
+      "valueAud": 4809914,
+      "contractor": "GEBIE Civil and Construction Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "East Arnhem Region - Groote Eylandt and Bickerton Island - Provision of Building, Plumbing, Mechanical and Electrical Repairs, Maintenance and Installation Serv",
+      "months": 36
+    },
+    {
+      "expires": "2027-09",
+      "awarded": "2024-09",
+      "valueAud": 2073513,
+      "contractor": "SEMCorp NT Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Royal Darwin Hospital and Palmerston Regional Hospital - Building Maintenance Services for a Period of 36 Months - Mandatory Briefing",
+      "months": 36
+    },
+    {
+      "expires": "2027-09",
+      "awarded": "2024-09",
+      "valueAud": 2444061,
+      "contractor": "Piening Holdings Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Tennant Creek Region - Maintenance of Rural Roadside Amenities Facilities for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-09",
+      "awarded": "2024-09",
+      "valueAud": 50800,
+      "contractor": "ZED HOSPITALITY AUSTRALIA PTY LTD",
+      "territoryEnterprise": true,
+      "what": "Tennant Creek - Wauchope Rest Area and Truck Park - Maintenance of Rural Roadside Amenities  for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-09",
+      "awarded": "2024-09",
+      "valueAud": 203276,
+      "contractor": "Alawa Aboriginal Corporation",
+      "territoryEnterprise": true,
+      "what": "Katherine Region- Minyerri Aerodrome- Repairs and Maintenance for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-10",
+      "awarded": "2024-10",
+      "valueAud": 793667,
+      "contractor": "Taarna Enterprises Aboriginal Corporation",
+      "territoryEnterprise": true,
+      "what": "Alice Springs Region - Repairs and Maintenance of Window Glazing and Roller Doors to Northern Territory Government Assets for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-10",
+      "awarded": "2024-10",
+      "valueAud": 4175081,
+      "contractor": "Aertex Group Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Alice Springs Region - Supply, Installation and Maintenance of Roadside and Airfield Furniture for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-10",
+      "awarded": "2024-10",
+      "valueAud": 4788609,
+      "contractor": "D&D Klidaras Nominees Pty Ltd as Trustee for D&D Klidaras Family Trust",
+      "territoryEnterprise": true,
+      "what": "Darwin Region - Repairs and Maintenance of Minor Concrete and Drainage Structures for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-10",
+      "awarded": "2025-10",
+      "valueAud": 69380,
+      "contractor": "Paradise Group",
+      "territoryEnterprise": true,
+      "what": "Darwin Region - East Arm - Grounds Maintenance for 11 Export Drive for a Period of 24 Months",
+      "months": 24
+    },
+    {
+      "expires": "2027-10",
+      "awarded": "2024-10",
+      "valueAud": 737847,
+      "contractor": "Larrakia Development Corporation Pty Ltd as the Trustee for the Larrakia Development Trust",
+      "territoryEnterprise": true,
+      "what": "Darwin Region - Provision of Grounds Maintenance Services at Various Police, Fire and Emergency Services Stations for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-11",
+      "awarded": "2024-11",
+      "valueAud": 193544,
+      "contractor": "Xcellerate IT Pty Limited",
+      "territoryEnterprise": false,
+      "what": "Provision of Support and Maintenance of Kofax Software for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-11",
+      "awarded": "2024-11",
+      "valueAud": 2686675,
+      "contractor": "MYtech Consulting Services Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Provision of Support and Maintenance Services for the Integrated Offender Management System for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-11",
+      "awarded": "2025-11",
+      "valueAud": 13971110,
+      "contractor": "Quality Plumbing & Building Contractors Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Darwin Region - Repairs and Maintenance on Public and Social Housing Assets for a Period of 24 Months",
+      "months": 24
+    },
+    {
+      "expires": "2027-11",
+      "awarded": "2025-11",
+      "valueAud": 19430425,
+      "contractor": "Akron Group NT Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Darwin Region - Repairs and Maintenance on Public and Social Housing Assets for a Period of 24 Months",
+      "months": 24
+    },
+    {
+      "expires": "2027-11",
+      "awarded": "2025-11",
+      "valueAud": 24598941,
+      "contractor": "Precision Group (NT) Pty Ltd as The Trustee for C Kantros Family Trust",
+      "territoryEnterprise": true,
+      "what": "Darwin Region - Repairs and Maintenance on Public and Social Housing Assets for a Period of 24 Months",
+      "months": 24
+    },
+    {
+      "expires": "2027-11",
+      "awarded": "2024-11",
+      "valueAud": 65340,
+      "contractor": "iWeigh Solutions Pty Ltd",
+      "territoryEnterprise": false,
+      "what": "All of NT - Provision of Software Support And Maintenance For NTG Weighbridge Sites for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-12",
+      "awarded": "2024-12",
+      "valueAud": 217974,
+      "contractor": "Hill-Rom Pty Ltd",
+      "territoryEnterprise": false,
+      "what": "Darwin - Supply, Delivery, Commissioning and Maintenance of Centrella 355 Comfort Smart Beds and AF600 Birthing Beds for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-12",
+      "awarded": "2024-12",
+      "valueAud": 3267815,
+      "contractor": "S&R Building & Construction Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Alice Springs Region - Repairs and Maintenance to the Northern Territory Government Building Assets for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-12",
+      "awarded": "2024-12",
+      "valueAud": 1927789,
+      "contractor": "Atkin Building Co Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Katherine Region - General Building Repairs and Maintenance to NTG Leased and Owned Assets for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2027-12",
+      "awarded": "2024-12",
+      "valueAud": 1165748,
+      "contractor": "West Daly Regional Council",
+      "territoryEnterprise": true,
+      "what": "Darwin Region - West Daly Regional Aerodromes - Inspection and Maintenance for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2028-01",
+      "awarded": "2023-01",
+      "valueAud": 1356234,
+      "contractor": "Siemens Healthcare Pty Ltd",
+      "territoryEnterprise": false,
+      "what": "All Centres - Provision of a Lease Agreement for Analytical Systems for Haematology (Haemostasis) including Equipment, Maintenance, Reagents and Consumables for",
+      "months": 60
+    },
+    {
+      "expires": "2028-01",
+      "awarded": "2025-01",
+      "valueAud": 3064667,
+      "contractor": "Remote Civil Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Katherine Region - Supply, Installation and Maintenance of Roadside Furniture for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2023-02",
+      "valueAud": 13308090,
+      "contractor": "Paradise Landscaping (NT) Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Darwin Region - Urban Network - Area A - Landscape Maintenance for a Period of 60 Months - Mandatory Industry Briefing",
+      "months": 60
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2023-02",
+      "valueAud": 14954437,
+      "contractor": "Sterling NT Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Darwin Region - Urban Network - Area B - Landscape Maintenance for a Period of 60 Months - Mandatory Industry Briefing",
+      "months": 60
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2025-02",
+      "valueAud": 1538462,
+      "contractor": "M & J Builders Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Northern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2025-02",
+      "valueAud": 1538462,
+      "contractor": "TAG Modular Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Northern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2025-02",
+      "valueAud": 1538462,
+      "contractor": "The Kalano Building Company Pty Ltd as the Trustee for Kalano Building Company Aboriginal Charitable Trust",
+      "territoryEnterprise": true,
+      "what": "Northern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2025-02",
+      "valueAud": 1538462,
+      "contractor": "Transportable Solutions NT Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Northern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2025-02",
+      "valueAud": 1818182,
+      "contractor": "AKJ Services Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Northern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2025-02",
+      "valueAud": 1818182,
+      "contractor": "Richard Mitchell Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Northern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2025-02",
+      "valueAud": 3356643,
+      "contractor": "C & R Constructions Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Northern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2025-02",
+      "valueAud": 3356643,
+      "contractor": "DJC Build Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Northern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2025-02",
+      "valueAud": 3356643,
+      "contractor": "Hawkins and Clements Pty Ltd as Trustee for Hawkins and Clements Unit Trust",
+      "territoryEnterprise": true,
+      "what": "Northern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2025-02",
+      "valueAud": 3356643,
+      "contractor": "JKJ Constructions Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Northern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2025-02",
+      "valueAud": 3356643,
+      "contractor": "Murray River North Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Northern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2025-02",
+      "valueAud": 3356643,
+      "contractor": "Northern Transportables Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Northern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2025-02",
+      "valueAud": 3356643,
+      "contractor": "NT Link Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Northern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2025-02",
+      "valueAud": 3356643,
+      "contractor": "PTM Group Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Northern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2025-02",
+      "valueAud": 3356643,
+      "contractor": "Rusca Developments Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Northern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2025-02",
+      "valueAud": 2000000,
+      "contractor": "M and C Fior Constructions Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Southern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2025-02",
+      "valueAud": 2000000,
+      "contractor": "TAG Modular Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Southern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2025-02",
+      "valueAud": 4500000,
+      "contractor": "DJC Build Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Southern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2025-02",
+      "valueAud": 4500000,
+      "contractor": "Hawkins and Clements Pty Ltd as Trustee for Hawkins and Clements Unit Trust",
+      "territoryEnterprise": true,
+      "what": "Southern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2025-02",
+      "valueAud": 4500000,
+      "contractor": "M&J Builders Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Southern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2025-02",
+      "valueAud": 4500000,
+      "contractor": "Murray River North Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Southern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2025-02",
+      "valueAud": 4500000,
+      "contractor": "Northern Transportables Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Southern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months",
+      "months": 36
+    },
+    {
+      "expires": "2028-02",
+      "awarded": "2025-02",
+      "valueAud": 4500000,
+      "contractor": "NT Link Pty Ltd",
+      "territoryEnterprise": true,
+      "what": "Southern Region - Panel Contract - Design and Construct, Storage and Installation of Modular Housing for a Period of 36 Months",
+      "months": 36
+    }
+  ],
+  "expiryTotal": 248,
   "contractors": [
     {
       "name": "DT Hobbs Pty Ltd",

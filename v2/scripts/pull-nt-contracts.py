@@ -50,6 +50,7 @@ Read only. Usage: python3 scripts/pull-nt-contracts.py
 """
 
 import collections
+import datetime
 import json
 import pathlib
 import re
@@ -164,6 +165,42 @@ def main() -> int:
         if re.search(r'remote|homeland|town camp', str(field(r, 'Description of Procurement') or ''), re.I)
     ]
 
+    # EXPIRIES. Contracts state their own term in the description ("for a Period of 24 Months"),
+    # so an end date is computable from that plus the award date. A re-tender is the moment a
+    # supplier can get on a list, and this is the only forward signal in the whole dataset:
+    # there is no open-tender feed anywhere, on any portal, that we can reach.
+    period = re.compile(r'period of (\w+|\d+)\s*(month|year)', re.I)
+    words = {'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'twelve': 12,
+             'eighteen': 18, 'twenty': 20, 'twentyfour': 24, 'thirtysix': 36}
+    today = datetime.datetime(2026, 9, 17)
+    expiries = []
+    for row in all_rows:
+        desc = str(field(row, 'Description of Procurement') or '')
+        if not HOUSING.search(desc) and not re.search(r'maintenance', desc, re.I):
+            continue
+        m = period.search(desc)
+        awarded = field(row, 'Awarded')
+        if not m or not isinstance(awarded, datetime.datetime):
+            continue
+        raw = m.group(1).lower()
+        n = int(raw) if raw.isdigit() else words.get(raw)
+        if not n:
+            continue
+        months = n * (1 if m.group(2).lower().startswith('month') else 12)
+        end = awarded + datetime.timedelta(days=int(months * 30.44))
+        if end <= today:
+            continue
+        expiries.append({
+            'expires': end.strftime('%Y-%m'),
+            'awarded': awarded.strftime('%Y-%m'),
+            'valueAud': round(float(field(row, 'Contract Value') or 0)),
+            'contractor': str(field(row, 'Contractor Name') or ''),
+            'territoryEnterprise': str(field(row, 'Territory Enterprise') or '').strip() == 'Yes',
+            'what': desc[:160],
+            'months': months,
+        })
+    expiries.sort(key=lambda e: e['expires'])
+
     def known_for(name: str):
         low = name.lower()
         for key, label in KNOWN.items():
@@ -198,6 +235,8 @@ def main() -> int:
                 'for the thing that goes in the bedroom, so the tenant buys it.'
             ),
         },
+        'expiries': expiries[:120],
+        'expiryTotal': len(expiries),
         'contractors': [
             {
                 'name': name,
@@ -227,6 +266,7 @@ def main() -> int:
     known = [c for c in out['contractors'] if c['known']]
     print(f"{total} NT contracts, {len(housing)} housing related, ${out['totals']['housingValueAud']:,}")
     print(f"{len(known)} of the top contractors are organisations Goods already knows")
+    print(f"{len(expiries)} contracts have a computable expiry still ahead; next is {expiries[0]['expires'] if expiries else 'none'}")
     print(f'written to {OUT}')
     return 0
 

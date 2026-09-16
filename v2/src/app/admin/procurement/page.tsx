@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { JURISDICTIONS, MODEL_GAPS, QLD_NOTES, SA_NOTES, WA_BOARD_TEST } from '@/lib/data/procurement-model';
@@ -114,6 +115,16 @@ export default async function ProcurementPage() {
         Who can buy a bed, what obliges them to look at an Aboriginal supplier first, and why that supplier should
         be a community organisation. Read {PROCUREMENT_STATE.readAt}.
       </p>
+
+      <nav className="mt-5 flex flex-wrap gap-2">
+        <span className="rounded-full px-3 py-1.5 text-xs font-semibold" style={{ backgroundColor: '#2E2E2E', color: '#FFF' }}>The rules and the evidence</span>
+        <Link href="/admin/procurement/board" className="rounded-full border px-3 py-1.5 text-xs font-semibold" style={{ borderColor: '#D8CFC4', color: '#6A5E54' }}>
+          The board: communities ranked
+        </Link>
+        <Link href="/admin/procurement/openings" className="rounded-full border px-3 py-1.5 text-xs font-semibold" style={{ borderColor: '#D8CFC4', color: '#6A5E54' }}>
+          Openings: everything with a date
+        </Link>
+      </nav>
 
       {/* The blocker, first. */}
       <section className="mt-8 rounded-lg border border-destructive/30 bg-destructive/5 p-6">
