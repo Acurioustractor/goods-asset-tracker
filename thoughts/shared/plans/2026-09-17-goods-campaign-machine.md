@@ -124,21 +124,86 @@ This is good news. The expensive half is built.
 
 ## 2. The rule that shapes the design
 
-**Communities are not a funnel.** `lane:community` means zero automated comms, ever. That is ruling
-R9, it is enforced by a strip-guard in `canonical-tags.ts`, and 86 contacts carry it today. A
-campaign machine that treats a community as a lead is precisely the thing not to build.
+I had this too strict on the first pass. The ruling in `canonical-tags.ts` does not say communities
+hear nothing. It says:
 
-So the machine has two halves, and they are different machines.
+> `lane:community` ... Out of the machine, not out of communication.
 
-**The campaign half** (buyers, procurement, funders, recyclers, supporters, media). Consent-based,
-automated, GHL owns the send.
+The line is not between contacting a community and leaving them alone. It runs between three kinds
+of message, and only one of them is banned.
 
-**The relationship half** (communities, Elders, storytellers). GHL holds the record, the history and
-the reminder. It never sends. Its output is a person's name on your list this week with what was
-last said and what was promised.
+**1. Answers.** They wrote to us. A reply is owed, fast, in the channel they used, with a person's
+name on it. Withholding this is neglect dressed up as protection.
 
-The procurement work already proved why. Its open question is "do our partner organisations want to
-be sellers? None has agreed to anything." No sequence answers that. A phone call does.
+**2. Service.** About a thing they already hold. The bed shipped. The part is on the truck. Here are
+the plans you asked for. Factual, tied to an object, refusable per object.
+
+**3. Broadcast.** We decided to tell a group something. Off by default on the community line. It
+happens only with that person's own explicit choice, human-confirmed, and never because somebody
+built a segment that swept them in.
+
+The strip-guard already implements exactly this. It removes `comms:*`, which is class 3, and touches
+nothing else. The code was right and my first pass at the prose was wrong.
+
+So the two halves are not "sends" and "does not send". They are:
+
+**The campaign half.** Goods decides who hears what, inside consent.
+**The relationship half.** The community decides who hears what, and Goods keeps the promises.
+
+### The automation points inward
+
+Every automation on the community line has a Goods staff member as its recipient. The machine nags
+us. It reminds a named person that Tennant Creek has not been called in six weeks, that a part was
+promised on the 3rd, that a request has been open for two days. It reminds a community of nothing.
+
+### What "best experience" means, and why it is not built yet
+
+The channel already exists, and it suits remote better than email does:
+
+- `/my-items`, with items, messages and requests, behind a phone-number login with OTP. No email
+  address required.
+- `/admin/messages` and `/admin/requests` on the staff side. Two-way, with read receipts.
+- `/claim/[asset_id]`, the QR on the bed itself.
+- `/partners/[slug]/dashboard`, reading the live asset register.
+- `/portal`, nine modules and Ask Goods.
+
+It has never been used. Live counts in the v2 project on this date: **0 messages, 0 requests,
+0 claimed assets, 7 profiles.** Against 86 contacts carrying `lane:community`.
+
+And if somebody did use it, `POST /api/user/requests` inserts a row and notifies nobody. No email,
+no SMS, no GHL task. A community member asking for a replacement part is filing it into a table that
+no human watches.
+
+So the community work is four things, and none of them is a funnel.
+
+**1. Make silence impossible.** Every inbound (message, request, claim, form, SMS reply) raises a
+task in GHL against a named person with a clock on it. This is the highest-value change on this
+side of the machine and it is small.
+
+**2. Send the invitation.** The QR on the bed is the door, and it fits the place: scan, phone
+number, no email, no app. Nobody has been walked through it.
+
+**3. Give the named person a reason to be there.** One relationship holder per community, their name
+visible to the community, their list in front of them each week.
+
+**4. Make it theirs.** Their place, their beds, their own stories from Empathy Ledger, what was
+promised and whether it happened.
+
+### The promise ledger
+
+What we said we would do, by when, and whether we did it. This is what builds trust in these
+relationships and it is the first thing lost between sessions and staff. It belongs on the Community
+record, visible to the community, and it is the list Goods should be judged against.
+
+### Cultural protocol as a field
+
+GHL already carries `cultural_protocols` (long text) and `protocol:cultural-authority`. Two things
+need to become states any staff member can set and everyone can see: **who speaks for this place**,
+and **pause all contact** for sorry business. A pause has to stop everything including the internal
+reminders, and it should be one switch.
+
+The procurement work already showed why none of this can be a sequence. Its open question is "do our
+partner organisations want to be sellers? None has agreed to anything." A phone call answers that.
 
 ---
 
@@ -171,9 +236,10 @@ A community organisation holding stock and becoming the supplier. `/sell-beds` e
 This is the door the procurement session says has no tooling anywhere: *"a price, a lead time, an
 invoice, a delivery. That is the step between holding stock and being a supplier and no tooling in
 either repo touches it."*
-**Lands** GOODS - Community, not Buyers. Human-paced.
-**Within 24h** a human. And then the missing thing: a one-page seller pack that a community org can
-put in front of their own buyer.
+**Lands** GOODS - Community. Human-paced.
+**Within 24h** a task against a named person with a clock on it, and that person makes contact. Then
+the missing thing the procurement session named: a one-page seller pack, with a price, a lead time
+and an invoice, that a community org can put in front of their own buyer.
 
 ### Door 4. Recycling connections
 
@@ -256,27 +322,35 @@ would lose both.
 
 **Repairs first. None of these is a new feature, and together they are most of the value.**
 
-1. Repoint `smart-lists.ts` and `AUDIENCE_SEGMENTS` at the namespaced tags. Thirteen dead
+1. **Notify a named human on every community inbound.** `POST /api/user/requests` and the portal
+   message path currently write a row and tell nobody. Raise a GHL task with a clock. Small change,
+   and until it is made the whole community side is a room with no one in it.
+2. Repoint `smart-lists.ts` and `AUDIENCE_SEGMENTS` at the namespaced tags. Thirteen dead
    definitions become thirteen live audiences. The flat tags were kept only because "the live Smart
    Router branches on them", and there is no Smart Router, so the reason has evaporated.
-2. Set `GHL_FIELD_NEWSLETTER_CONSENT` in both environments. Consent starts being recorded.
-3. Publish "Goods Inquiry → Acknowledge" and give each of the five form subjects its own branch and
+3. Set `GHL_FIELD_NEWSLETTER_CONSENT` in both environments. Consent starts being recorded.
+4. Publish "Goods Inquiry → Acknowledge" and give each of the five form subjects its own branch and
    its own useful reply. Nobody contacts Goods into silence after this.
-4. Publish "New Order Notification". The env var already points at it.
-5. Retire the Notion Command Centre snapshot.
+5. Publish "New Order Notification". The env var already points at it.
+6. Retire the Notion Command Centre snapshot.
 
 **Then build.**
 
-6. Dedicated sending domain, warmed.
-7. The Smart Router workflow, and `GHL_WORKFLOW_SMART_ROUTER` set.
-8. Newsletter number one to the 164, re-introducing and offering the exit.
-9. Custom Objects: Community and Organisation, after agreeing the budget with the other projects.
-10. UTMs on every outbound link, then read the Forecast tab.
-11. Stewardship cadence on the 99 funders.
-12. Decide the fate of the Resend cron and `crm_contacts`.
+7. Dedicated sending domain, warmed.
+8. The Smart Router workflow, and `GHL_WORKFLOW_SMART_ROUTER` set.
+9. One named relationship holder per community, their name visible to the community, their list in
+   front of them weekly.
+10. The invitation: walk one community through the QR claim on a bed they already have, and watch
+    where it breaks before doing it anywhere else.
+11. Newsletter number one to the 164, re-introducing and offering the exit.
+12. Custom Objects: Community and Organisation, after agreeing the budget with the other projects.
+    The Community record carries the promise ledger, who speaks for the place, and the pause switch.
+13. UTMs on every outbound link, then read the Forecast tab.
+14. Stewardship cadence on the 99 funders.
+15. Decide the fate of the Resend cron and `crm_contacts`.
 
-Doors 2 and 4 (procurement, recycling) stay with the other session. They are research, not campaign,
-until there is something to say.
+Doors 2 and 4 (procurement, recycling) stay with the other session. Both are research until there is
+something true to say.
 
 ---
 
