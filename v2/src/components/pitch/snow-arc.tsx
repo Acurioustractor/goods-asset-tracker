@@ -92,6 +92,16 @@ export function SnowArc() {
   // The span of the Snow invoices comes from the reconciled list, so the sentence below moves
   // when the books move. No amount, per the no-dollars ruling.
   const snow = GRANTS_RECEIVED.find((g) => g.funder === 'Snow Foundation');
+  // The room in 2016 is the one Dr Boe Remenyi was speaking in, so the argument that started
+  // all of this belongs on this beat in their own words.
+  const remenyi = registryQuote('boe-remenyi', 'external', 'if you don');
+  // Aunty Vicki Wade was on the Parliament House panel. Her line about where funding has to
+  // land is the argument that beat is making, in the voice of someone who is not us.
+  const vicki = registryQuote('vicki-wade', 'external', 'funding needs to go directly to community');
+  // The design photograph is Dianne Stokes at the controls. She designed and named both
+  // products, and Pakkimjalki Kari is her Warumungu name for the machine.
+  const dianne = registryQuote('dianne-stokes', 'external', 'really makes me happy');
+  const dianneName = getStorytellerBySlug('dianne-stokes')?.name ?? '';
   // Norman Frank Jupurrurla founded Wilya Janta, the community-designed housing movement at
   // Tennant Creek that Snow backs alongside Goods. Georgina describes that house in her own
   // recording, which is where the claim comes from.
@@ -138,6 +148,7 @@ export function SnowArc() {
                   Ten invoices followed, {snow.when}.
                 </p>
               )}
+              {remenyi && <Aside v={remenyi} />}
             </Beat>
           </div>
         </>
@@ -157,14 +168,16 @@ export function SnowArc() {
           <p>
             A place in AMP&rsquo;s Tomorrow Makers Spark, and Snow invoices arriving through the years the bed went from
             its first version to its fourth, and the washing machine went from an idea to a machine with a name.
+            {dianneName ? ` ${dianneName} designed it with them and named it Pakkimjalki Kari, in Warumungu.` : ''}
           </p>
+          {dianne && <Aside v={dianne} />}
           </Beat>
         </>
       ),
       image: {
         src: '/images/media-pack/speed-queen-controls.jpg',
-        alt: 'Hands on the controls of the washing machine during its design',
-        place: 'Designing the machine, with the Elders who would use it.',
+        alt: `${dianneName} at the controls of the washing machine during its design at Tennant Creek`,
+        place: `Designing the machine with ${dianneName}, who named it.`,
       },
     },
     {
@@ -317,6 +330,7 @@ export function SnowArc() {
             Alliance, and again in the middle of Canberra Airport for Reconciliation Week, where travellers
             stopped and read why a washable bed has anything to do with a heart.
           </p>
+          {vicki && <Aside v={vicki} />}
         </Beat>
       ),
       image: {
@@ -340,29 +354,6 @@ export function SnowArc() {
         </Beat>
       ),
     },
-    ...(funder
-      ? [
-          {
-            id: 'snow-voice',
-            body: (
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-terracotta-light">
-                The funder, in her own words
-              </p>
-            ),
-            voice: {
-              name: funder.person.name,
-              role: funder.person.role,
-              community: funder.person.community,
-              quote: funder.quote.text,
-            },
-            image: {
-              src: '/images/media-pack/sally-georgina-tennant-creek-jul-2025.jpg',
-              alt: `${georginaName} and Sally Grimsley-Ballard of the Snow Foundation standing on red dirt with two Elders at Tennant Creek`,
-              place: `${georginaName} and Sally Grimsley-Ballard on Warumungu Country.`,
-            },
-          } satisfies FilmStep,
-        ]
-      : []),
     {
       id: 'snow-ways',
       image: {
@@ -396,6 +387,25 @@ export function SnowArc() {
         </>
       ),
     },
+    ...(funder
+      ? [
+          {
+            id: 'snow-voice',
+            body: (
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-terracotta-light">
+                The funder, in her own words
+              </p>
+            ),
+            voice: {
+              portrait: funder.person.portrait ?? undefined,
+              name: funder.person.name,
+              role: funder.person.role,
+              community: funder.person.community,
+              quote: funder.quote.text,
+            },
+          } satisfies FilmStep,
+        ]
+      : []),
   ];
 
   return (

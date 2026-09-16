@@ -17,6 +17,7 @@ export const PEOPLE_PORTRAIT_FILES: readonly string[] = [
   "eric-pascoe.jpg",
   "fred-campbell.png",
   "gary.jpg",
+  "georgina-byron.jpg",
   "gloria-turner.jpg",
   "heather-mundo.jpg",
   "ivy.jpg",
@@ -40,6 +41,7 @@ export const PEOPLE_PORTRAIT_FILES: readonly string[] = [
   "tanya-turner.jpg",
   "tehmineh-mason.jpg",
   "tracy-mccartney.jpg",
+  "vicki-wade.jpg",
   "wayne-glenn.jpg",
   "xavier-stretch-bed-alice-springs.jpg"
 ];

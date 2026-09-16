@@ -302,9 +302,13 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
   },
   {
     slug: 'jimmy-frank',
-    name: 'Jimmy Frank',
-    aliases: ['Jimmy Frank Jupurrurla'],
-    role: 'Traditional Owner, Cultural Liaison',
+    // Corrected 2026-09-16 by Ben. He is Jimmy Frank Jupurrurla, and the title that matters
+    // is Chair of Wilya Janta: he chairs the community-designed housing movement that appears
+    // on the pitch beside this work, which "Traditional Owner, Cultural Liaison" did not say.
+    // Full description in `notes`; the role stays short because it renders in credit lines.
+    name: 'Jimmy Frank Jupurrurla',
+    aliases: ['Jimmy Frank'],
+    role: 'Chief Cultural Officer and Chair of Wilya Janta',
     community: 'Tennant Creek',
     tier: 'external',
     turns: 'strengthens 1, 5',
@@ -337,7 +341,12 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
     ],
     bannedFragments: ['weave a bed', 'Weave Bed Co-designer'],
     portrait: '/images/people/jimmy-frank.jpg',
-    notes: 'His Weave Bed line is never used: the product is discontinued (removed from compendium 2026-07-12).',
+    notes:
+      'His Weave Bed line is never used: the product is discontinued (removed from compendium 2026-07-12). ' +
+      'Name and titles corrected by Ben on 16 September 2026: he is Jimmy Frank Jupurrurla, Chief Cultural ' +
+      'Officer and Chair of Wilya Janta, a Warumungu Emerging Leader and a spokesman for Tennant Creek. The ' +
+      'old record read "Jimmy Frank, Traditional Owner, Cultural Liaison", which understated the role; that ' +
+      'spelling is now an alias.',
   },
   {
     slug: 'annie-morrison',
@@ -1265,6 +1274,45 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
     notes: 'Quote recovered 2026-07-21 from Georgina misfiling; earlier "no usable transcript" note superseded.',
   },
 
+  {
+    slug: 'vicki-wade',
+    name: 'Aunty Vicki Wade',
+    aliases: ['Vicki Wade', 'Associate Professor Vicki Wade'],
+    role: 'Senior Noongar Woman, Co-Chair of Deadly Hearts',
+    community: 'Deadly Heart Trek',
+    tier: 'external',
+    quotes: [
+      {
+        text: 'We are not on track to eliminate rheumatic heart disease by 2031. And we\'ve signed up to it. Australia signed up at the World Health Assembly in 2018 to eliminate rheumatic heart disease in Australia by 2031. We cannot be complacent now. Now is the time to ramp up efforts and we need funding. And the funding needs to go directly to community.',
+        context: 'What the money has to do, and where it has to land. The clearest statement in the record of why a funder matters here.',
+        status: 'primary',
+      },
+      {
+        text: 'When we go into community, particularly my old Nan Lily, she said, you go in there with your eyes and you go in there with your ears. And you keep that mouth shut.',
+        context: 'How to enter community. Her grandmother\'s instruction, and the Trek\'s working rule.',
+        status: 'approved',
+      },
+      {
+        text: 'I never go onto country unless I am welcomed by traditional owners.',
+        context: 'Cultural protocol on the Trek',
+        status: 'approved',
+      },
+      {
+        text: 'Community leadership, community ownership, our mob is smart. We got a lot of real deadly people out there in communities that know what the community want and how they can get the resources from that community to make a difference.',
+        context: 'Community ownership, in her words',
+        status: 'approved',
+      },
+    ],
+    portrait: '/images/people/vicki-wade.jpg',
+    notes:
+      'Added 2026-09-16 from a transcript and portrait Ben supplied. A PRACTITIONER and advocate, not a Goods ' +
+      'community recipient, and must be labelled that way on any surface (the same rule as Dr Boe Remenyi). ' +
+      'Co-Chair of Deadly Hearts and an Associate Professor at Menzies School of Health Research; she was on the ' +
+      'Parliament House panel with Snow, NACCHO and the RHD Alliance. Her own spelling is Aunty Vicki Wade. ' +
+      'The 2031 elimination target and the 2018 World Health Assembly commitment are HER statements: quote her, ' +
+      'and do not restate either as a Goods figure without a citation.',
+  },
+
   // ── Funder-only ──────────────────────────────────────────────────────────
   {
     slug: 'georgina-byron',
@@ -1366,7 +1414,7 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         note: 'Speaker attribution unconfirmed: sounds like a community voice from the same trip transcript that carried the two misfiled quotes (moved to Kylie/Katherine 2026-07-21). Confirm it is actually Georgina before use. 2026-09-16: a SECOND copy of this same line sat here at status approved, which would have published a line this note says is unconfirmed. The approved copy was deleted; default-deny wins.',
       },
     ],
-    portrait: null,
+    portrait: '/images/people/georgina-byron.jpg', // Supplied by Ben 2026-09-16, Deadly Heart Trek portrait sitting.
     notes:
       'Funder testimonial only, clearly labelled. NEVER in the community storyteller set. ' +
       '2026-07-21: two misfiled quotes were reattributed to Kylie Bloomfield and Katherine (Deadly Heart Trek). ' +
