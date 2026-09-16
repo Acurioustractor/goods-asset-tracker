@@ -1,5 +1,5 @@
 ---
-date: 2026-09-16T21:20:00+10:00
+date: 2026-09-17T07:50:00+10:00
 session_name: procurement-model
 branch: fix/snow-ask-and-figure
 status: active
@@ -9,13 +9,32 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-16T21:20:00+10:00
+**Updated:** 2026-09-17T07:50:00+10:00
 **Goal:** Work out who can buy a bed, what obliges them to look at an Aboriginal supplier first, and how a community organisation becomes the seller. Build it as a model that travels: NT, then SA, then WA, then QLD.
-**Branch:** `fix/snow-ask-and-figure` in `../goods-ledger-wt`, 26 commits ahead of main, NOT pushed.
+**Branch:** `fix/snow-ask-and-figure` in `../goods-ledger-wt`, 40 commits ahead of main, NOT pushed.
 **Test:** `cd v2 && npx vitest run && npm run check:drift:ci && npm run build`
 
 ### Now
-[->] **Queensland research running.** It is the last jurisdiction and the most unusual: seven of our nine QLD communities are Aboriginal Shire Councils, which makes them the buyer and the Aboriginal entity in one body. When it lands it slots into `JURISDICTIONS` in `procurement-model.ts` the same way the other three did.
+[->] **The desk is built and live at `/admin/procurement` (dev 3013).** Designed in Pencil first
+(`design/Goods Dashboard.pen`, frame "Desk Overview"), then ported. Commit `e4e611b`.
+Five metric tiles, the blocker as one sentence and three seller cards, two charts (beds before a
+tender, by jurisdiction; crowding from the census), a dated openings timeline, and four sortable
+tables with a record drawer. Filters live in the URL. Press `/` for the record palette.
+
+**Two cautions carried forward.**
+1. **The `.pen` file on disk is still 315 bytes.** Pencil holds the document in memory. The design
+   is in the open editor and needs a save (⌘S) before it survives a restart. `.pen` is gitignored
+   (`.gitignore:243`), so it will never be in a commit either way.
+2. **Pencil's renderer wedged mid-session** and drew nothing new for about ten calls, while the
+   document data stayed correct. `Get` bounds went stale with a phantom 50px offset at the same
+   time. It recovered on its own. If it happens again: the data is fine, keep building, and verify
+   with `Export` to PNG instead of `TakeScreenshot`.
+
+**TanStack Table is installed at v9 and unused.** Its API is atoms, stores and registered features,
+which four in-memory tables of a few hundred rows do not earn. Sorting is a 20-line hook in the
+dashboard. Either drop the dependency or find it a job.
+
+[ ] **Queensland research running.** It is the last jurisdiction and the most unusual: seven of our nine QLD communities are Aboriginal Shire Councils, which makes them the buyer and the Aboriginal entity in one body. When it lands it slots into `JURISDICTIONS` in `procurement-model.ts` the same way the other three did.
 
 **Everything is at `/admin/procurement`.** Dev server on 3013.
 
