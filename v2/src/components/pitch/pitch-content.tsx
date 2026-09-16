@@ -491,9 +491,11 @@ export async function PitchContent({ variant }: { variant: PitchVariant }) {
             <p className="w-full text-center text-sm text-goods-cream/80 sm:w-auto">{ORIGIN.graduated}</p>
           </div>
 
-          {/* The handover is stated above. This is who paid across the whole of it. */}
-          <SnowArc />
         </div>
+
+        {/* Full bleed, so it sits OUTSIDE the max-w wrapper above. The handover is stated in
+            that band; this is who paid across the whole of it. */}
+        <SnowArc />
       </section>
 
       {/* S05 · Governance and people */}
