@@ -33,6 +33,10 @@ const audShort = (n: number) => (n >= 1_000_000 ? `$${(n / 1_000_000).toFixed(1)
  */
 interface Pull {
   readAt: string;
+  stateTenders?: {
+    matching: number; withRemoteOrIndigenousSignal: number; states: string[];
+    buyers: { buyer: string; valueAud: number }[]; verdict: string;
+  };
   totals: { contracts: number; buyers: number; communitiesTagged: number; contractsTaggedToCommunity: number };
   buyers: { buyer: string; contracts: number; valueAud: number; products: string[]; communities: string[]; sampleTitle: string | null }[];
   communities: { community: string; contracts: number; valueAud: number; products: string[]; topBuyer: string | null }[];
@@ -240,6 +244,26 @@ export default async function ProcurementPage() {
           <p className="mt-3 text-xs text-muted-foreground">
             Contract values are for the whole contract, and most of that is construction or maintenance. The figure
             says where the money and the obligation sit, never what a bed order would be worth.
+          </p>
+        </section>
+      )}
+
+      {/* The state pull, and why it is a dead end for now. */}
+      {pull?.stateTenders && (
+        <section className="mt-8 rounded-lg border border-dashed p-6">
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+            State tenders: checked, and currently a dead end
+          </p>
+          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+            {pull.stateTenders.matching} state rows mention something Goods makes, and{' '}
+            <strong>{pull.stateTenders.withRemoteOrIndigenousSignal}</strong> of them carry any remote or Indigenous
+            signal. {pull.stateTenders.verdict} The buyers are{' '}
+            {pull.stateTenders.buyers.slice(0, 4).map((b) => b.buyer).join(', ')}: institutional bedding for prisons,
+            schools and youth detention.
+          </p>
+          <p className="mt-2 max-w-3xl text-xs text-muted-foreground">
+            The pull runs against it every time anyway, so this stays a checked number. It starts being useful the
+            day somebody loads the NT contract data that is already sitting in the grantscope repo.
           </p>
         </section>
       )}

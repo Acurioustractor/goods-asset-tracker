@@ -10,6 +10,40 @@
     "white goods",
     "linen"
   ],
+  "stateTenders": {
+    "matching": 62,
+    "withRemoteOrIndigenousSignal": 0,
+    "states": [
+      "QLD"
+    ],
+    "buyers": [
+      {
+        "buyer": "Queensland Corrective Services",
+        "valueAud": 7558807.619999999
+      },
+      {
+        "buyer": "Department of Education",
+        "valueAud": 1968830
+      },
+      {
+        "buyer": "Department of Youth Justice",
+        "valueAud": 815868.4199999999
+      },
+      {
+        "buyer": "Department of Employment, Small Business and Training",
+        "valueAud": 639794.41
+      },
+      {
+        "buyer": "Department of Children, Youth Justice and Multicultural Affairs",
+        "valueAud": 15730
+      },
+      {
+        "buyer": "Department of Child Safety, Seniors and Disability Services",
+        "valueAud": 11220
+      }
+    ],
+    "verdict": "Queensland only, institutional bedding, no remote or Indigenous signal. NT, WA and SA hold no rows at all."
+  },
   "totals": {
     "contracts": 1671,
     "buyers": 200,
@@ -26,7 +60,7 @@
         "washer"
       ],
       "communities": [],
-      "sampleTitle": "Wonthaggi Hospital Expansion - Main Works"
+      "sampleTitle": "North West Women's PARC - Construction Contractor"
     },
     {
       "buyer": "NT Department of Infrastructure, Planning and Logistics - Infrastructure, Investment and Contracts",
@@ -105,7 +139,7 @@
     {
       "buyer": "Department of Defence",
       "contracts": 780,
-      "valueAud": 73544886.88999996,
+      "valueAud": 73544886.88999994,
       "products": [
         "bed",
         "linen",
@@ -113,7 +147,7 @@
         "whitegoods"
       ],
       "communities": [],
-      "sampleTitle": "4501045892"
+      "sampleTitle": "4501043337"
     },
     {
       "buyer": "Department of Health and Human Services",
@@ -133,7 +167,7 @@
       "valueAud": 47030041.08,
       "products": [],
       "communities": [],
-      "sampleTitle": "AHO - Residential Construction – Granny Flats (four sites): - 333 Murton Street BROKEN HILL - 12 Cambridge Court KINGSCL"
+      "sampleTitle": "AHO - Residential Construction - 100 Hood Street WILCANNIA"
     },
     {
       "buyer": "HealthShare NSW",
@@ -145,7 +179,7 @@
         "linen"
       ],
       "communities": [],
-      "sampleTitle": "SWSA51656708"
+      "sampleTitle": "SWS51656706"
     },
     {
       "buyer": "NT Department of Infrastructure, Planning and Logistics - Housing Program Office",
@@ -250,7 +284,7 @@
       "valueAud": 16692263.67,
       "products": [],
       "communities": [],
-      "sampleTitle": "11.208-0-4"
+      "sampleTitle": "13.149-0-1"
     },
     {
       "buyer": "Homes NSW",
@@ -260,7 +294,7 @@
         "washer"
       ],
       "communities": [],
-      "sampleTitle": "Project Management Services For Seniors Living – Airds and Claymore"
+      "sampleTitle": "Project Management services for Seniors Living - Claymore 3C and 4"
     },
     {
       "buyer": "NSW Department of Communities and Justice",
@@ -281,7 +315,7 @@
         "bed"
       ],
       "communities": [],
-      "sampleTitle": "THA New Supply Ariah Park NSW"
+      "sampleTitle": "THA New Supply Griffith NSW"
     },
     {
       "buyer": "Victorian Institute of Forensic Mental Health",
@@ -335,7 +369,7 @@
         "bed"
       ],
       "communities": [],
-      "sampleTitle": "DH1294"
+      "sampleTitle": "DH1295"
     },
     {
       "buyer": "CSIRO",
@@ -587,7 +621,7 @@
         "linen"
       ],
       "communities": [],
-      "sampleTitle": "0070015490"
+      "sampleTitle": "0070014524"
     },
     {
       "buyer": "Lower Murray Water",

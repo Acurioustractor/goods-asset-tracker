@@ -19,6 +19,15 @@
  *   - austender_contracts carries dual-key duplicate rows, so everything is keyed on `ocid`.
  *   - a contract matching two keywords must not be counted twice, hence the map.
  *
+ * STATE TENDERS ARE IN HERE AND THEY ARE ALMOST WORTHLESS FOR THIS, which is worth recording
+ * so nobody spends a day rediscovering it. `state_tenders` holds 199,719 rows and 199,679 of
+ * them are Queensland. NT, WA, SA, TAS and ACT are all ZERO, despite an NT contracts file
+ * sitting in the grantscope repo unloaded. Of the 62 rows that mention something Goods makes,
+ * every buyer is Corrective Services, Education, Youth Justice or Child Safety buying
+ * institutional bedding, and not one carries a remote or Indigenous signal. The pull runs
+ * anyway, which keeps the number checked, and means it starts working by itself the day
+ * somebody loads the NT data.
+ *
  * Read only. Touches nothing in either database.
  *
  * Usage: node scripts/pull-procurement.mjs [--out data/procurement-buyers.json]
@@ -104,6 +113,31 @@ async function main() {
   }
   const contracts = [...byOcid.values()];
 
+  // 2b. The same question of the state tenders. See the note at the top: this is currently a
+  //     Queensland-only table and returns institutional bedding, but it costs one round trip.
+  const stateById = new Map();
+  for (const kw of KEYWORDS) {
+    const q = encodeURIComponent(kw);
+    const rows = await rest(
+      base, key,
+      `state_tenders?or=(title.ilike.*${q}*,description.ilike.*${q}*)&select=id,state,title,description,contract_value,buyer_name,buyer_department,supplier_name&limit=1000`,
+    );
+    for (const r of rows) stateById.set(r.id, r);
+  }
+  const stateRows = [...stateById.values()];
+  const REMOTE = /palm island|aboriginal|indigenous|torres|remote|shire|cape york|mornington|doomadgee|yarrabah|cherbourg|woorabinda|hope vale|napranum|aurukun/i;
+  const stateSummary = {
+    matching: stateRows.length,
+    withRemoteOrIndigenousSignal: stateRows.filter((r) => REMOTE.test(`${r.title ?? ''} ${r.description ?? ''} ${r.buyer_name ?? ''}`)).length,
+    states: [...new Set(stateRows.map((r) => r.state).filter(Boolean))],
+    buyers: [...stateRows.reduce((m, r) => {
+      const b = (r.buyer_name || r.buyer_department || 'Unknown').trim();
+      m.set(b, (m.get(b) ?? 0) + (Number(r.contract_value) || 0));
+      return m;
+    }, new Map())].sort((a, b) => b[1] - a[1]).slice(0, 8).map(([buyer, valueAud]) => ({ buyer, valueAud })),
+    verdict: 'Queensland only, institutional bedding, no remote or Indigenous signal. NT, WA and SA hold no rows at all.',
+  };
+
   // 3. Roll up by buyer, and separately by community.
   const buyers = new Map();
   const communities = new Map();
@@ -136,6 +170,7 @@ async function main() {
     readAt: new Date().toISOString().slice(0, 10),
     source: 'austender_contracts in the shared grantscope project, deduplicated on ocid',
     keywords: KEYWORDS,
+    stateTenders: stateSummary,
     totals: {
       contracts: contracts.length,
       buyers: buyers.size,
@@ -159,7 +194,8 @@ async function main() {
   const argOut = process.argv.indexOf('--out');
   const dest = join(ROOT, argOut > -1 ? process.argv[argOut + 1] : 'data/procurement-buyers.json');
   writeFileSync(dest, `${JSON.stringify(out, null, 2)}\n`);
-  console.log(`${contracts.length} contracts, ${buyers.size} buyers, ${communities.size} communities tagged`);
+  console.log(`${contracts.length} federal contracts, ${buyers.size} buyers, ${communities.size} communities tagged`);
+  console.log(`${stateSummary.matching} state rows matched, ${stateSummary.withRemoteOrIndigenousSignal} with a remote or Indigenous signal`);
   console.log(`written to ${dest}`);
 }
 
