@@ -131,22 +131,56 @@ modules in `lib/data`.
 
 ## What to do, in the order that unlocks the most
 
-### 1. One entity registry, generalising what already works
+### 1. One entity registry, generalising what already works  ·  DONE 17 Sep
 
-Widen Supabase `communities` to the fifty-odd places the data actually names. Fill `name_aliases`
-from the variants already visible in the pulls. Split `place` into `community_id` (a token) and
-`region` (a separate field). Promote `community-match.ts` from an Empathy Ledger helper to the one
-resolver every pull script and every route must call, with a guard test in the shape of the
-storyteller-registry tests.
+Built as `src/lib/data/place-registry.ts`: 108 places, 9 declared non-places, one resolver. The
+`kind` field is what does the work, because a community, a region, a jurisdiction, a building and
+a sentinel were all living in one string column. `resolveCommunity()` refuses a region.
 
-This is first because the date work and the dashboard work both need a stable key to hang on.
+`community-match.ts` now takes its spellings from the registry instead of its own map, which took
+three alias lists down to one. `procurement-board.ts` had a fourth normaliser, which made
+"Galiwinku" and "Galiwin'ku" two places.
 
-### 2. Make `crm_contacts` the contact token, or retire it
+Guarded by `place-registry.guards.test.ts` (30 tests, fails on any place string in the data that
+neither resolves nor is declared) and `scripts/check-place-registry.mjs` in `check:drift`, which
+checks the registry against the live table and the 608-row asset register.
 
-Add `ghl_contact_id` and backfill from GHL, which is where the relationships actually live. Point
-`organization` at an organisation token instead of a free string. A table whose three token columns
-are 0/135 is either about to become the spine or it is dead weight, and right now it is being read
-by three admin surfaces as though it were the spine.
+Ben ruled 17 September that **media follows the registry**, so Ampilatwatja, Angurugu and Umbakumba
+resolve to themselves instead of folding into a parent. One Empathy Ledger media asset moved, and
+it is unreachable until Ampilatwatja is a row in the `communities` table.
+
+Still to do: widen the live Supabase table to match, which is a write and needs a decision.
+
+### 2. Give `crm_contacts` a consent link and an organisation token
+
+**Corrected 17 September, after counting it.** This section originally read "make it the contact
+token, or retire it", on the assumption it was a stale copy of GHL. It is not, and retiring it
+would have destroyed the relationship record for 68 people and organisations.
+
+Of its 135 rows, **68 have no GHL counterpart**, and those 68 are Elders, community people and
+organisations: Dianne Stokes, Norman Frank, Frankie Holmes OAM, Donald Thompson OAM, Carmelita and
+Colette, Karen Liddle, plus Tim Fairfax Family Foundation, Envirobank, Wilya Janta and PICC. GHL
+holds 3,715 contacts and none of these. The table holds what GHL does not.
+
+What it is missing is the link to consent. **All 34 storytellers are in it, every one tier
+gated**, and the row carries no `storyteller_id`. So a gated voice sits beside funders and buyers
+with nothing on the row saying the voice is gated. `empathy_ledger_id` is filled on 11 of 135;
+`grantscope_id`, `compendium_partner_id` and `supabase_partner_id` are 0 of 135.
+
+The live check (`npm run check:people`, wired into `check:drift`) found **two gated storytellers
+carrying GHL tags that put them in something that sends**. Both are written into a KNOWN list with
+their reason, because neither is a clear breach and the real defect is that one human is in two
+roles with no record holding both facts:
+
+- **Katrina Bloomfield** carries ACT Harvest tags, a different project.
+- **Jimmy Frank** carries `comms:goods-newsletter` at `jf@wilyajanta.org`. He is Wilya Janta staff
+  and a gated storyteller at the same time.
+
+A third case fails the build.
+
+Still to do, and it needs a schema change: `storyteller_id` and `ghl_contact_id` columns on
+`crm_contacts`, and `organization` pointed at an organisation token instead of one of 61 free
+strings. Five of those 61 match an organisation already held in `organisations.json`.
 
 ### 3. One date contract, borrowed from `canon.ts`
 
