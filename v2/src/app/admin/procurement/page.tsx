@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { JURISDICTIONS, MODEL_GAPS, SA_NOTES } from '@/lib/data/procurement-model';
 import {
   BUYER_CHANNELS, IPP_COMPLIANCE, NT_ABE_PREFERENCE, NT_BENCHMARKS, NT_CONTACTS,
   NT_DEPARTMENTS, NT_HEALTHY_LIVING, NT_PROGRAM, NT_TIER_NOTE, NT_TIERS, NT_UNSOURCED,
@@ -433,6 +434,75 @@ export default async function ProcurementPage() {
             ))}
           </tbody>
         </table>
+      </section>
+
+      {/* The model, jurisdiction by jurisdiction. */}
+      <section className="mt-10">
+        <h2 className="font-display text-2xl">The model, jurisdiction by jurisdiction</h2>
+        <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
+          Every jurisdiction answers the same six questions. The one that matters most is the threshold below which
+          somebody can simply buy, so it is shown in beds. A jurisdiction we have not researched says so.
+        </p>
+
+        <div className="mt-4 grid gap-4 md:grid-cols-2">
+          {JURISDICTIONS.map((j) => (
+            <div key={j.id} className="rounded-lg border p-5" style={{ borderColor: j.status === 'done' ? '#4F6138' : '#E8DED4' }}>
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="font-display text-lg leading-snug">{j.name}</p>
+                  <p className="text-[11px] uppercase tracking-wide text-muted-foreground">{j.communities} of our communities</p>
+                </div>
+                <span
+                  className="shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide"
+                  style={j.status === 'done' ? { backgroundColor: '#E6EDDD', color: '#4F6138' } : { backgroundColor: '#EEE9E3', color: '#6A5E54' }}
+                >
+                  {j.status === 'done' ? 'researched' : 'pending'}
+                </span>
+              </div>
+
+              {j.directPurchase ? (
+                <div className="mt-4 rounded-lg p-4" style={{ backgroundColor: '#F6E4DE' }}>
+                  <p className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: '#9A4023' }}>Buy without a tender</p>
+                  <p className="mt-1 font-display text-3xl leading-none" style={{ color: '#9A4023' }}>
+                    {j.directPurchase.beds} beds
+                  </p>
+                  <p className="mt-1 text-xs" style={{ color: '#9A4023' }}>up to {aud(j.directPurchase.limitAud)}</p>
+                  <p className="mt-2 text-xs leading-relaxed" style={{ color: '#6A5E54' }}>{j.directPurchase.rule}</p>
+                </div>
+              ) : (
+                <p className="mt-4 rounded-lg p-4 text-xs" style={{ backgroundColor: '#EEE9E3', color: '#6A5E54' }}>
+                  Threshold not yet established.
+                </p>
+              )}
+
+              <dl className="mt-4 space-y-2 text-xs">
+                {j.buyer && <div><dt className="font-semibold">Who holds the money</dt><dd className="text-muted-foreground">{j.buyer}</dd></div>}
+                {j.preference && <div><dt className="font-semibold">The preference</dt><dd className="text-muted-foreground">{j.preference}</dd></div>}
+                {j.register && <div><dt className="font-semibold">Register</dt><dd className="text-muted-foreground">{j.register}</dd></div>}
+                {j.portal && <div><dt className="font-semibold">Portal</dt><dd className="text-muted-foreground">{j.portal}</dd></div>}
+                {j.door && <div><dt className="font-semibold">The door</dt><dd className="text-muted-foreground">{j.door}</dd></div>}
+              </dl>
+              <p className="mt-3 text-xs leading-relaxed">{j.note}</p>
+            </div>
+          ))}
+        </div>
+
+        <h3 className="mt-6 text-sm font-semibold">South Australia, the parts that do not fit the shape</h3>
+        <div className="mt-2 grid gap-3 sm:grid-cols-2">
+          {SA_NOTES.map((n) => (
+            <div key={n.title} className="rounded-lg border p-4">
+              <p className="text-sm font-semibold">{n.title}</p>
+              <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{n.detail}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-4 rounded-lg border border-dashed p-5">
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">The same gap in every jurisdiction</p>
+          <ul className="mt-2 space-y-2 text-sm leading-relaxed text-muted-foreground">
+            {MODEL_GAPS.map((g) => <li key={g}>{g}</li>)}
+          </ul>
+        </div>
       </section>
 
       {/* Community intelligence. */}

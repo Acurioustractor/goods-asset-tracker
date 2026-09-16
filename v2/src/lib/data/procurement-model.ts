@@ -88,15 +88,19 @@ export const JURISDICTIONS: readonly Jurisdiction[] = [
   {
     id: 'sa',
     name: 'South Australia',
-    status: 'pending',
+    status: 'done',
     communities: 2,
-    buyer: null,
-    directPurchase: null,
-    preference: 'Aboriginal businesses can reportedly be directly engaged up to $550,000, with a minimum 20 per cent tender evaluation weighting for economic contribution to the state. The figure needs verifying against the instrument that sets it.',
-    register: null,
-    portal: null,
-    door: null,
-    note: 'Ceduna and Port Augusta. If the $550,000 direct-engagement figure holds it is by far the most permissive in the country, at 733 beds with no tender. Research in progress.',
+    buyer: 'Department for Housing and Urban Development sets policy; the SA Housing Trust, renamed from the SA Housing Authority, owns and runs the housing. Both names are live in the contract record.',
+    directPurchase: {
+      limitAud: 550_000,
+      beds: beds(550_000),
+      rule: 'A public authority may directly engage an eligible Aboriginal business for procurements valued up to and including $550,000 including GST. One written quote and a value-for-money note. The instrument names the APY Lands explicitly: "This includes but is not limited to contracts delivered in APY lands."',
+    },
+    preference: 'No set-aside and no standalone Aboriginal procurement policy. The lever is the $550,000 direct engagement, plus SAIPP clause 4.3, which MANDATES South Australian manufactured products for public housing construction and maintenance above $55,000, forbids specifications that obstruct South Australian supply, and requires any brand name to be followed by "or equivalent". The Industry Advocate monitors compliance.',
+    register: 'Eligibility is 50 per cent Aboriginal ownership, not Supply Nation\u2019s 51, and a 50/50 joint venture qualifies where management and financial decisions sit with the Aboriginal partner. Registered charities operating as a business are explicitly inside the definition. Listed on the Office of the Industry Advocate\u2019s SA Aboriginal Business Directory; Supply Nation is recognised but is not the SA register.',
+    portal: 'SA Tenders and Contracts, tenders.sa.gov.au, with awards mirrored at contracts.sa.gov.au.',
+    door: 'John Chapman OAM, Industry Advocate, oia@sa.gov.au, (08) 8429 2700. Deputy is Phillip Dowsett. The office runs Meet the Buyer and Ready to Tender sessions.',
+    note: 'Ceduna and Port Augusta today, and the APY Lands is the real prize. 733 beds in a single direct engagement, no tender, is the most permissive threshold in the country. Two windows are open now: Treasury\u2019s stated 2026-27 target is to establish an Aboriginal procurement policy, so it is being drafted this financial year; and the SA Housing Trust\u2019s $1.012 billion maintenance contract carries a named-brand Electrolux appliances schedule against a clause that requires "or equivalent".',
   },
   {
     id: 'wa',
@@ -155,6 +159,33 @@ export const COMMUNITY_ROUTES: readonly CommunityRoute[] = [
   { community: 'Palm Island', state: 'QLD', partner: 'PICC', holdsGovtContracts: 'unknown', contractEvidence: 'Palm Island Aboriginal Shire Council is an active Goods relationship and a council in its own right.', weHave: 'Five washing machines, 85 beds, the Backing the Future youth pilot.' },
   { community: 'Kalgoorlie', state: 'WA', partner: 'The Community Shed', holdsGovtContracts: 'unknown', contractEvidence: null, weHave: '20 beds, and the Ninga Mia footage.' },
   { community: 'Kununurra', state: 'WA', partner: null, holdsGovtContracts: 'unknown', contractEvidence: null, weHave: 'An Elder clearance gate that is still open.' },
+];
+
+/**
+ * SA specifics worth carrying, because they do not fit the six-question shape and are the
+ * strongest material in any jurisdiction so far.
+ */
+export const SA_NOTES: readonly { title: string; detail: string }[] = [
+  {
+    title: 'The washing machine is written into the funding standard',
+    detail: 'The Commonwealth remote housing schedule defines its target as the "acceptable standard of housing", which requires working facilities for washing clothes or bedding. SA must allocate a meaningful proportion to Aboriginal organisations and report the proportion.',
+  },
+  {
+    title: 'Nganampa Health Council wrote the standard',
+    detail: 'The Aboriginal community controlled health service for the APY Lands runs the UPK environmental health programme, and the original 1987 UPK report is where the healthy living practices come from: washing people, washing clothes and bedding. The whole national definition descends from it. The most natural Aboriginal-controlled partner in the APY Lands for both our products, and they defined the problem before we existed.',
+  },
+  {
+    title: 'There is no panel in the way',
+    detail: 'SA has no across-government contract for furniture, whitegoods or appliances. A household goods purchase is an ordinary procurement, so it sits fully inside the $550,000 rule. Appliances are currently bought inside the maintenance head contracts instead.',
+  },
+  {
+    title: 'A new furnishing buyer appeared this year',
+    detail: '100 APY Lands houses moved to the Department for Education on 1 April 2026. An unencumbered buyer with no incumbent supply arrangement.',
+  },
+  {
+    title: 'Who holds the maintenance',
+    detail: 'The $1.012 billion Head Contractors for Maintenance Services contract runs to 2028 with an option to 2030, across about 35,000 properties. RTC Facilities Maintenance holds Contract Area 06, Western Country and Far North, which is the remote one. Birubi Australia is the only Aboriginal-owned firm identifiable on the SA Housing Trust pre-qualified builders list.',
+  },
 ];
 
 /** What the model still cannot answer anywhere, and it is the same gap in every jurisdiction. */
