@@ -63,6 +63,22 @@ if (KEY && LOC && process.env.GHL_ENABLED !== 'false') {
   console.log('GHL is off in this environment. Skipping the send-side check.');
 }
 
+/**
+ * TWO ROWS FOR ONE PERSON IS A CONSENT DEFECT. It fails the check instead of printing a count.
+ *
+ * Found 17 September 2026 by the identity backfill: 34 storyteller rows, 32 distinct people.
+ * Both copies are gated today, so nothing is exposed. The hole is what happens next. Every
+ * lookup in this repo resolves a storyteller by NAME, so with two rows a lookup takes whichever
+ * the map hit last. Clear one copy and a name lookup can return the cleared row for a person
+ * whose other record still says gated.
+ */
+const byName = new Map();
+for (const t of tellers) {
+  const k = personKey(t.display_name);
+  byName.set(k, [...(byName.get(k) ?? []), t]);
+}
+const dupes = [...byName.values()].filter((rows) => rows.length > 1);
+
 const gated = tellers.filter((t) => t.consent_tier === 'gated');
 const gatedKeys = new Map();
 for (const t of gated) for (const sp of [t.display_name, t.slug, ...(t.aliases ?? [])]) if (sp) gatedKeys.set(personKey(sp), t);
@@ -81,6 +97,11 @@ console.log(`  gated storytellers carried in crm_contacts: ${tellersInCrm.length
 console.log(`  crm_contacts rows with an empathy_ledger_id: ${contacts.filter((c) => c.empathy_ledger_id).length}`);
 console.log(`  distinct organization strings:              ${new Set(contacts.map((c) => (c.organization ?? '').trim()).filter(Boolean)).size}`);
 
+for (const rows of dupes) {
+  console.error(`  DUPLICATE consent record for ${rows[0].display_name}:`);
+  for (const r of rows) console.error(`    storytellers/${r.slug}  tier ${r.consent_tier}`);
+}
+
 const breaches = [];
 for (const g of ghl) {
   const teller = gatedKeys.get(personKey(g.name));
@@ -91,6 +112,13 @@ for (const g of ghl) {
   const line = `${teller.display_name} (storytellers/${teller.slug}, tier gated) is in GHL as ${g.id} carrying ${sends.join(', ')}`;
   if (roles.length) console.log(`  OK: ${line}\n      Written to as ${roles.join(', ')}, which is a relationship and not a voice.`);
   else breaches.push(line);
+}
+
+if (dupes.length) {
+  console.error(`\n${dupes.length === 1 ? 'One person has' : dupes.length + ' people have'} more than one storyteller row.`);
+  console.error('Every lookup here resolves a storyteller by name, so two rows means a lookup takes');
+  console.error('whichever it hit last. Merge them, keeping the row the code already points at.');
+  process.exit(1);
 }
 
 if (breaches.length) {
