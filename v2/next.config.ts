@@ -120,10 +120,6 @@ const nextConfig: NextConfig = {
       // #183 — internal tooling moves behind the admin gate. noindex was never a gate: a
       // noindexed page is fully readable by anyone holding the URL, and these sat on a
       // funder-facing path prefix.
-      { source: '/pitch/investor-lab', destination: '/admin/investor-lab', permanent: false },
-      { source: '/pitch/workshop', destination: '/admin/pitch-workshop', permanent: false },
-      { source: '/pitch/miro-board', destination: '/admin/miro-board', permanent: false },
-      { source: '/pitch/photo-review', destination: '/admin/deck-photo-review', permanent: false },
 
       // #185 — products.ts says the canonical slug is stretch-bed; the live URL is
       // stretch-bed-single and sits in Stripe checkout flows, so the canonical slug redirects

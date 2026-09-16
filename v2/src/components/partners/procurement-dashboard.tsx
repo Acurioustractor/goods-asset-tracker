@@ -39,6 +39,7 @@ import type { Opening } from '@/lib/data/procurement-openings';
 import { OPENING_KINDS } from '@/lib/data/procurement-openings';
 import type { Jurisdiction } from '@/lib/data/procurement-model';
 import { isNotAPlace, resolvePlace } from '@/lib/data/place-registry';
+import { PROCUREMENT_STATE } from '@/lib/data/procurement';
 import { AsAt } from '@/components/ui/as-at';
 import type { AsAt as AsAtStamp } from '@/lib/data/as-at';
 
@@ -389,7 +390,7 @@ export function ProcurementDashboard({ data }: { data: DashboardData }) {
           </div>
           <div className="mt-3 grid gap-2.5 md:grid-cols-3">
             {[
-              { mark: '✕', c: 'var(--goods-terracotta)', n: 'A Curious Tractor Pty Ltd', s: 'Invoices the beds today. It is not Indigenous-owned, so it fails Supply Nation, the federal IPP and the NT Aboriginal Business register.' },
+              { mark: '✕', c: 'var(--goods-terracotta)', n: PROCUREMENT_STATE.sellerEntity, s: 'Invoices the beds today. It is not Indigenous-owned, so it fails Supply Nation, the federal IPP and the NT Aboriginal Business register.' },
               { mark: '✓', c: 'var(--goods-sage)', n: 'A community organisation', s: 'Passes in all four jurisdictions. Bawinanga, Thamarrurr and Roper Gulf already hold government contracts in their own name.' },
               { mark: '?', c: 'var(--goods-gold)', n: 'Goods on Country Ltd', s: 'Queensland and Western Australia test the composition of the board. 100% Indigenous directors may already satisfy both. The question is with the Industry Capability Network.' },
             ].map((t) => (

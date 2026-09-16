@@ -10,9 +10,10 @@
  *   utility   · workflow tool used on trips/installs
  *   stale     · no edits in 3+ months; direct URL only
  *   one-off   · built for a single past job; never re-linked
- *   orphan    · works, and nothing links to it. Added 2026-09-17: fifteen routes built since the
- *               19 July review were never declared here, and the directory had no way to say so.
- *               A route nobody can reach is a decision nobody made, so it gets its own word.
+ *   orphan    · works, and nothing links to it. Added 2026-09-17 when the guard found five,
+ *               and empty by the end of the same day because all five were deleted. A route
+ *               nobody can reach is a decision nobody made, so it gets its own word, and the
+ *               word is there so the next one is caught on the day it appears.
  */
 
 export type RouteStatus = 'hub' | 'active' | 'absorbed' | 'utility' | 'stale' | 'one-off' | 'orphan';
@@ -67,10 +68,8 @@ export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
   {
     group: 'Pitch and content',
     routes: [
-      { href: '/admin/deck-builder', name: 'Deck builder', status: 'absorbed', note: 'via Pitch hub' },
       { href: '/admin/deck', name: 'Deck preview', status: 'absorbed' },
       { href: '/admin/canon', name: 'Canon board', status: 'absorbed', note: 'via Visuals' },
-      { href: '/admin/site-content', name: 'Site content', status: 'absorbed' },
       { href: '/admin/media-gaps', name: 'Media gaps', status: 'absorbed' },
       { href: '/admin/dashboard-images', name: 'Dashboard images', status: 'active' },
       { href: '/admin/library', name: 'Content library', status: 'active' },
@@ -100,27 +99,18 @@ export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
       { href: '/admin/install-bulk', name: 'Bulk install', status: 'utility' },
       { href: '/admin/install-checklist', name: 'Install checklist', status: 'utility' },
       { href: '/admin/bed-signals', name: 'Bed signals', status: 'active' },
-      { href: '/admin/maps/deployed', name: 'Map: deployed', status: 'active', note: 'register on the map' },
-      { href: '/admin/maps/need', name: 'Map: need', status: 'active' },
-      { href: '/admin/maps/ask', name: 'Map: ask', status: 'active' },
       { href: '/admin/scans', name: 'Scans', status: 'active' },
       { href: '/admin/fleet', name: 'Fleet', status: 'active', note: 'quarterly' },
       { href: '/admin/operating-systems', name: 'Operating systems', status: 'active' },
-      { href: '/admin/roadmap', name: 'Roadmap', status: 'active' },
     ],
   },
   {
     group: 'Comms and legacy',
     routes: [
       { href: '/admin/reach-out', name: 'Reach out', status: 'active', note: 'as-needed' },
-      { href: '/admin/route-review', name: 'Route review', status: 'one-off', note: '2026-07 IA review artifact; produced this directory' },
       // Moved off /pitch/* on 2026-08-02 (route sweep, map #177 ticket #183). They were internal
       // working surfaces on a funder-facing path prefix, relying on noindex, which was never a
       // gate: a noindexed page is fully readable by anyone holding the URL.
-      { href: '/admin/investor-lab', name: 'Investor narrative lab', status: 'stale', note: 'was /pitch/investor-lab' },
-      { href: '/admin/pitch-workshop', name: 'Pitch workshop', status: 'stale', note: 'was /pitch/workshop' },
-      { href: '/admin/miro-board', name: 'Miro board', status: 'stale', note: 'was /pitch/miro-board' },
-      { href: '/admin/deck-photo-review', name: 'Deck photo review', status: 'stale', note: 'was /pitch/photo-review; /admin/photo-review is a different, older redirect stub' },
     ],
   },
   {
@@ -129,17 +119,11 @@ export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
     group: 'Built since the review',
     routes: [
       { href: '/admin/procurement', name: 'Procurement desk', status: 'active', note: 'who can buy a bed and how; linked from Cockpit 2026-09-17' },
-      { href: '/admin/impact-cycles', name: 'Impact cycles', status: 'orphan', note: '2026-08-03, 190 lines, nothing links to it' },
-      { href: '/admin/impact-system', name: 'Impact system', status: 'orphan', note: '2026-08-03, 254 lines, nothing links to it' },
-      { href: '/admin/model', name: 'Model placemat', status: 'orphan', note: '2026-09-15, built for the pitch' },
-      { href: '/admin/model/structure', name: 'Model structure', status: 'orphan', note: '2026-09-15' },
-      { href: '/admin/model/ten-years', name: 'Model ten years', status: 'orphan', note: '2026-09-15' },
       { href: '/admin/orders/launch-checklist', name: 'Order launch checklist', status: 'absorbed', note: 'reached from Orders' },
       { href: '/admin/field-notes/library', name: 'Field notes library', status: 'absorbed', note: 'reached from Field notes' },
       { href: '/admin/el-stories/new', name: 'New EL story', status: 'absorbed', note: 'create form under EL stories' },
       { href: '/admin/el-storytellers/new', name: 'New EL storyteller', status: 'absorbed', note: 'create form under EL storytellers' },
       { href: '/admin/funders/new', name: 'New funder', status: 'absorbed', note: 'create form under Funders' },
-      { href: '/admin/products/story', name: 'Product story', status: 'absorbed', note: 'reached from the product pages' },
       { href: '/admin/login', name: 'Admin login', status: 'utility', note: 'auth plumbing, never a destination' },
       { href: '/admin/unauthorized', name: 'Unauthorized', status: 'utility', note: 'auth plumbing, never a destination' },
     ],
