@@ -121,7 +121,11 @@ export async function proxy(request: NextRequest) {
     if (partner) {
       const authCookie = request.cookies.get(`partner_${slug}`)?.value
       if (authCookie !== partner.password) {
-        return NextResponse.redirect(new URL(`/partners/${slug}/login`, request.url))
+        // Carry where they were going. With `story` added there are two gated routes, so
+        // sending everyone to the dashboard after login drops you on the wrong page.
+        const to = new URL(`/partners/${slug}/login`, request.url)
+        to.searchParams.set('next', pathname)
+        return NextResponse.redirect(to)
       }
     }
   }
