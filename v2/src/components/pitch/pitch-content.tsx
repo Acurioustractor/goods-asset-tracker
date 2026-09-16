@@ -434,6 +434,23 @@ export async function PitchContent({ variant }: { variant: PitchVariant }) {
             <SectionHead number={4} title={ORIGIN.headline} dark />
             <p className="mt-6 max-w-3xl font-display text-2xl leading-snug text-goods-cream/95 md:text-3xl">{ORIGIN.studio}</p>
             <p className="mt-6 max-w-3xl text-lg leading-relaxed text-goods-cream/85">{ORIGIN.body}</p>
+
+            {/* Snow enters here, at the start, because that is when they did. Ben,
+                2026-09-16: Snow needs to be up top, and no dollar figures. */}
+            <div className="mt-10 flex max-w-3xl flex-col gap-4 border-t border-goods-cream/20 pt-6 sm:flex-row sm:items-start sm:gap-6">
+              <Image
+                src="/images/partners/snow-foundation-white.png"
+                alt="Snow Foundation"
+                width={2194}
+                height={1056}
+                className="h-8 w-auto shrink-0"
+              />
+              <p className="text-[17px] leading-relaxed text-goods-cream/85">
+                The Snow Foundation paid the first invoice in October 2023, when there was no product, no
+                register, no charity, no board and no customer. They have paid ten since, the most recent in
+                May 2026.
+              </p>
+            </div>
           </div>
         </div>
 

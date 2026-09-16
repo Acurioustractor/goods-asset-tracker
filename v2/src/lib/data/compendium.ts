@@ -409,7 +409,7 @@ export interface CommunityDeployment {
 // This array is the SINGLE source for the static deployed-bed count via
 // getDeploymentTotals(); content.ts derives its counts from EXPECTED_DEPLOYED_BEDS.
 export const deployments: CommunityDeployment[] = [
-  { id: 'palm-island', community: 'Palm Island', traditionalName: 'Bwgcolman', state: 'QLD', beds: 131, washers: 4, status: 'active', partner: 'PICC', contacts: ['Eb & Jahvan Oui'] },
+  { id: 'palm-island', community: 'Palm Island', traditionalName: 'Bwgcolman', state: 'QLD', beds: 131, washers: 5, status: 'active', partner: 'PICC', contacts: ['Eb & Jahvan Oui'] },
   { id: 'tennant-creek', community: 'Tennant Creek', traditionalName: 'Wumpurrarni', state: 'NT', beds: 160, washers: 9, status: 'active', partner: 'Wilya Janta', contacts: ['Norman Frank', 'Dr Simon Quilty'] },
   { id: 'alice-homelands', community: 'Alice Homelands', state: 'NT', beds: 16, washers: 1, status: 'active', partner: 'Oonchiumpa', contacts: ['Kristy Bloomfield'] },
   { id: 'maningrida', community: 'Maningrida', state: 'NT', beds: 58, washers: 8, status: 'active', partner: 'Homeland Schools Co.' },
@@ -451,8 +451,8 @@ export function getDeploymentTotals() {
 }
 
 // Same guard for washing machines. Per-community split is Ben's ruling of
-// 2026-07-21 (Maningrida 8, Tennant Creek 9, Palm Island 4, Alice Springs 1,
-// Darwin 0 = 22), superseding the old curated 20.
+// 2026-07-21 (Maningrida 8, Tennant Creek 9, Palm Island 5, Alice Springs 1,
+// Darwin 0 = 23 after the 2026-09-16 Palm Island amendment), superseding the old curated 20.
 {
   const sum = deployments.reduce((s, d) => s + d.washers, 0);
   if (sum !== CANONICAL_ASSETS.washersInCommunity) {

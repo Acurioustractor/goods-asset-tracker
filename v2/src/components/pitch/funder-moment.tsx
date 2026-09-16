@@ -15,8 +15,6 @@ import Image from 'next/image';
 import { getStorytellerBySlug } from '@/lib/data/storyteller-registry';
 import { grantLineFor, type FunderMoment } from '@/lib/data/funder-moments';
 
-const aud = (n: number) => `$${n.toLocaleString('en-AU')}`;
-
 function funderQuote(moment: FunderMoment) {
   if (!moment.voice) return null;
   const person = getStorytellerBySlug(moment.voice.slug);
@@ -28,6 +26,9 @@ function funderQuote(moment: FunderMoment) {
 }
 
 export function FunderMomentBlock({ moment }: { moment: FunderMoment }) {
+  // The grant line is read only for what it BOUGHT. Ben, 2026-09-16: no dollar
+  // figures on the funder surfaces. An amount invites a new funder to anchor on
+  // it, and it turns a record of trust into a league table.
   const grant = grantLineFor(moment);
   const voice = funderQuote(moment);
 
@@ -79,10 +80,9 @@ export function FunderMomentBlock({ moment }: { moment: FunderMoment }) {
         </figure>
       )}
 
-      {grant && (
+      {grant?.bought && (
         <p className="mt-7 border-t border-[#e6dfd1] pt-4 text-[13px] leading-snug text-[#5d574c]">
-          <span className="font-semibold text-goods-ink">{aud(grant.amountAud)}</span> received,{' '}
-          {grant.when.toLowerCase()}. {grant.source.charAt(0).toUpperCase() + grant.source.slice(1)}.
+          <span className="font-semibold text-goods-ink">What it paid for.</span> {grant.bought}
         </p>
       )}
     </aside>

@@ -160,7 +160,7 @@ for (const [name, products] of Object.entries(live)) {
   if (!ok) {
     cite(
       `${name}: register has ${regWashers} deployed washer rows; ruling allows ${canonWashers} in community + ${ruledStale} known-stale = ${canonWashers + ruledStale}`,
-      "Ben 2026-07-21: washers in community = 22 (Maningrida 8, Tennant Creek 9, Palm Island 4, Alice Springs 1, Darwin 0); stale rows TC 7 / Alice 2 / Darwin 1 await restatus to 'retired'. If the restatus landed, clear WASHER_STALE_DEPLOYED_ROWS and hard-check washers.",
+      "Ben 2026-07-21: washers in community = 22 (Maningrida 8, Tennant Creek 9, Palm Island 5, Alice Springs 1, Darwin 0); stale rows TC 7 / Alice 2 / Darwin 1 await restatus to 'retired'. If the restatus landed, clear WASHER_STALE_DEPLOYED_ROWS and hard-check washers.",
     );
   }
 }
