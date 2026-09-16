@@ -169,6 +169,8 @@ export const COMMUNITY_ROUTES: readonly CommunityRoute[] = [
   { community: 'Palm Island', state: 'QLD', partner: 'PICC', holdsGovtContracts: 'unknown', contractEvidence: 'Palm Island Aboriginal Shire Council is an active Goods relationship and a council in its own right.', weHave: 'Five washing machines, 85 beds, the Backing the Future youth pilot.' },
   { community: 'Kalgoorlie', state: 'WA', partner: 'The Community Shed', holdsGovtContracts: 'unknown', contractEvidence: null, weHave: '20 beds, and the Ninga Mia footage.' },
   { community: 'Kununurra', state: 'WA', partner: null, holdsGovtContracts: 'unknown', contractEvidence: null, weHave: 'An Elder clearance gate that is still open.' },
+  { community: 'Ceduna', state: 'SA', partner: null, holdsGovtContracts: 'unknown', contractEvidence: 'Evco Building of Ceduna is on the SA Housing Trust pre-qualified builders list. EP Recycling Specialists holds a waste collection contract for the Ceduna Aboriginal Homelands.', weHave: 'Nothing yet.' },
+  { community: 'Port Augusta', state: 'SA', partner: null, holdsGovtContracts: 'unknown', contractEvidence: null, weHave: 'Nothing yet.' },
 ];
 
 /**
