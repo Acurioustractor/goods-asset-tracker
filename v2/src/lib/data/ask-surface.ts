@@ -129,18 +129,32 @@ export interface StackLayer {
 export const STACK_LAYERS: StackLayer[] = [
   {
     funder: 'SEFA',
-    amount: '$300K',
+    // $300K CORRECTED 2026-09-16 to the 15 September ruling: the loan sits INSIDE the ask at
+    // $150,000 for the first-year running cost, repaid from beds sold (RAISE.loanAud). The
+    // $300K here was the pre-ruling stack and survived into a surface the decks read from.
+    amount: '$150K',
     instrument: 'Repayable working-capital loan',
     concession: 'Price + Patience: below-market, patient terms. QBE’s preferred flavour.',
     status: 'Proposed, in conversation. Not signed.',
     signedPaper: 'Loan agreement: amount, term, funder legal name, a contact SIH can call.',
   },
+  // REBUILT 2026-09-16. This row still said "$100K, Grant: fresh money, flexible use", which
+  // predates Ben's 15 September ruling and was one of three different answers the repo held
+  // to the question of what Snow is asked for next. The ruling is in RAISE (model-placemat.ts)
+  // and names Snow explicitly: every grant except QBE buys 133 beds at $750. Nobody is asked
+  // for running cost, and the $150K loan in the raise is SEFA's line, not Snow's.
+  //
+  // STILL OPEN, and not for this file to decide: the Snow partner dashboard separately invites
+  // Snow in as an impact investor with "as much of the next commitment as possible as a loan",
+  // with the amount explicitly left to settle together. A bed grant and a loan are different
+  // instruments. Until Ben rules, this row carries the ruling and the dashboard carries the
+  // conversation, and the two are noted here so nobody has to rediscover the gap.
   {
     funder: 'Snow Foundation (R4/R5)',
-    amount: '$100K',
-    instrument: 'Grant: fresh money',
-    concession: 'Purpose: flexible use. ~$493K already delivered over three years, $0 outstanding.',
-    status: 'Warm. Not signed.',
+    amount: '$99,750',
+    instrument: 'Grant: 133 beds at $750',
+    concession: 'Purpose: beds for a community organisation to sell or give out. Already delivered over three years, $0 outstanding.',
+    status: 'Warm. Not signed. Instrument unsettled: see the impact-investor conversation on the Snow dashboard.',
     signedPaper: 'Grant deed or letter of commitment.',
   },
   // CENTRECORP REMOVED FROM THE STACK 2026-08-02, Ben. They are a BUYER and will not give a
@@ -246,7 +260,7 @@ export const GROWTH_STAGES: GrowthStage[] = [
     stage: 'Today',
     beds: '~120 beds/yr',
     means: 'Legs bought as kits. ~$65 of every bed stays. Philanthropy carries the block.',
-    fundedBy: 'Orders (Centrecorp $123,332 of beds, and others) plus existing grants (Snow ~$493K delivered, TFN $130K and others).',
+    fundedBy: 'Orders (Centrecorp $123,332 of beds, and others) plus existing grants (Snow delivered over three years, TFN $144,558 banked, and others).',
   },
   {
     stage: 'Break-even',
