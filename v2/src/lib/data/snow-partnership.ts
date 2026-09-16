@@ -625,3 +625,21 @@ export const OONCHIUMPA_NEXT = {
   connection:
     'Kristy Bloomfield directs Oonchiumpa and is a director of Goods on Country. Sally met Kristy and Tanya Turner through an introduction we made in Sydney in October 2025.',
 } as const;
+
+/**
+ * The hero mosaic pool. Drawn from WALLS so there is one list of photographs on this page and
+ * the hero cannot drift from the archive below it. Every frame carries a caption because the
+ * hero names what you are pointing at, and an uncaptioned photograph of a community is not
+ * something to put at the top of a funder report.
+ *
+ * Snow frames sort first: the mosaic opens on the two years we were in the same places.
+ */
+export function heroFrames(): { src: string; alt: string; caption: string }[] {
+  const out: { src: string; alt: string; caption: string }[] = [];
+  for (const w of WALLS) {
+    for (const f of w.files) {
+      out.push({ src: w.dir + f.file, alt: f.alt, caption: f.caption ?? `${f.alt}. ${w.label}.` });
+    }
+  }
+  return out;
+}

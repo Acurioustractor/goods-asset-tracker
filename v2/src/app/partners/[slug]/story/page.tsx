@@ -7,7 +7,7 @@ import { getStorytellerBySlug } from '@/lib/data/storyteller-registry';
 import { ORGANISATION } from '@/lib/data/organisation';
 import { goodsBoard } from '@/lib/data/goods-board';
 import {
-  ALIGNMENT, BECAUSE_OF, FILMS, NOT_FINISHED, OONCHIUMPA_NEXT, SNOW_MONEY, TOGETHER, WALLS,
+  ALIGNMENT, BECAUSE_OF, FILMS, heroFrames, NOT_FINISHED, OONCHIUMPA_NEXT, SNOW_MONEY, TOGETHER, WALLS,
 } from '@/lib/data/snow-partnership';
 import { StickyFilm, type FilmStep } from '@/components/pitch/sticky-film';
 import { ChapterRail } from '@/components/pitch/chapter-rail';
@@ -15,6 +15,7 @@ import { CountUp } from '@/components/pitch/count-up';
 import { TogetherTimeline } from '@/components/partners/together-timeline';
 import { AlignmentTable } from '@/components/partners/alignment-table';
 import { FilmGallery, type GalleryFilm } from '@/components/partners/film-gallery';
+import { StoryHero } from '@/components/partners/story-hero';
 import { PhotoWall } from '@/components/pitch/photo-wall';
 
 /**
@@ -210,26 +211,43 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
     <main style={{ backgroundColor: CREAM }}>
       <ChapterRail chapters={CHAPTERS} />
 
-      <header className="px-5 pb-10 pt-20 sm:px-8 sm:pt-28">
-        <div className="mx-auto max-w-4xl">
-          <p className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: RUST }}>
-            A report for the Snow Foundation
-          </p>
-          <h1 className="mt-4 font-display text-4xl leading-[1.1] sm:text-6xl" style={{ color: CHARCOAL }}>
-            You went first, and then you stayed.
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-            Two years of work, told as what we did together. It is written for the people
-            who have been on Country with us, so it carries the numbers, the parts that are not finished, and the
-            things we will not claim.
-          </p>
-          <p className="mt-6 text-xs" style={{ color: '#A99C8F' }}>
-            Password protected and not indexed. Prepared {new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}.
-            {' '}
-            <Link href={`/partners/${slug}/dashboard`} className="underline">The live dashboard is here.</Link>
-          </p>
-        </div>
-      </header>
+      <StoryHero
+        frames={heroFrames()}
+        film={{
+          src: '/video/maningrida/gamardi-drone.mp4',
+          poster: '/video/maningrida/gamardi-drone-poster.jpg',
+          alt: 'Gamardi, Maningrida, Arnhem Land, from the air',
+          caption: 'Gamardi, Maningrida. Forty Stretch Beds for Maningrida were pressed in our own facility before they were built here.',
+        }}
+      >
+        <p className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: RUST }}>
+          A report for the Snow Foundation
+        </p>
+        <h1 className="mt-4 font-display text-4xl leading-[1.05] sm:text-5xl lg:text-6xl" style={{ color: CHARCOAL }}>
+          You went first, and then you stayed.
+        </h1>
+        <p className="mt-6 max-w-xl text-lg leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
+          Two years of work, told as what we did together. It is written for the people who have been on Country
+          with us, so it carries the numbers, the parts that are not finished, and the things we will not claim.
+        </p>
+        <dl className="mt-8 grid max-w-xl grid-cols-3 gap-4">
+          {[
+            { k: 'Invoices', v: String(SNOW_MONEY.goodsInvoices) },
+            { k: 'Of all philanthropy', v: `${SNOW_MONEY.shareOfAllPhilanthropyPct}%` },
+            { k: 'Most recent', v: 'May 2026' },
+          ].map((x) => (
+            <div key={x.k}>
+              <dt className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: '#A99C8F' }}>{x.k}</dt>
+              <dd className="mt-1 font-display text-2xl leading-none" style={{ color: CHARCOAL }}>{x.v}</dd>
+            </div>
+          ))}
+        </dl>
+        <p className="mt-8 text-xs" style={{ color: '#A99C8F' }}>
+          Password protected and not indexed. Prepared {new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}.
+          {' '}
+          <Link href={`/partners/${slug}/dashboard`} className="underline">The live dashboard is here.</Link>
+        </p>
+      </StoryHero>
 
       <Chapter
         id="ch-making" number="01" label="What we are doing"
