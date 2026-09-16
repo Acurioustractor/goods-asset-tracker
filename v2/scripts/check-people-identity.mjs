@@ -5,9 +5,15 @@
  * comes from), Supabase `crm_contacts` (relationships, mostly community, half of them absent from
  * GHL), and Supabase `storytellers` (the consent authority, every row gated).
  *
- * THE ONE THING IT FAILS ON: a person on the gated storyteller list holding a GHL tag that puts
- * them in something that sends. That is unambiguous and it is the failure worth stopping, because
- * a campaign built from a tag has no way of knowing the person's voice is consent-gated.
+ * THE ONE THING IT FAILS ON: somebody in a send list whose ONLY recorded relationship with us is
+ * that they tell stories.
+ *
+ * Ben, 17 September 2026, on Jimmy Frank carrying comms:goods-newsletter while on the gated
+ * storyteller list: "Jimmy Frank is a storyteller and community partner for the Harvest and
+ * Goods." A consent tier governs what may be done with a person's STORY. It has never governed
+ * whether we may write to a partner about the work they partner on. So a gated storyteller in a
+ * send list is fine when the record also holds a partner, member or staff relationship, and is a
+ * problem when storytelling is all we have.
  *
  * Everything else it prints as a count, so the shape of the gap is visible without the guard
  * crying wolf. See src/lib/data/person-identity.ts for why `lane:community` is deliberately not
@@ -28,25 +34,9 @@ const CAMPAIGN_PREFIXES = ['comms:', 'campaign-stage:', 'engagement:', 'audience
 const NOT_A_SEND = new Set(['comms:manual-relationship']);
 const isCampaignTag = (t) => !NOT_A_SEND.has(t) && CAMPAIGN_PREFIXES.some((p) => t.startsWith(p));
 
-/**
- * The two people already in this state on 17 September 2026, with the reason each is here.
- * Neither is a clear breach, and that is exactly why they are written down instead of silenced:
- * the same human is in two roles and nothing on either record says so. A THIRD case fails the
- * build, which is the point.
- *
- * For Ben to rule on. Removing a line from here without moving the tag or the tier makes the
- * guard lie.
- */
-const KNOWN = [
-  {
-    slug: 'katrina-bloomfield',
-    why: 'Her campaign tags are ACT Harvest (comms:harvest-newsletter, project:act-hv, tier:member), a different project. Nothing Goods sends reaches her through them.',
-  },
-  {
-    slug: 'jimmy-frank',
-    why: 'Carries comms:goods-newsletter at jf@wilyajanta.org, a work address. He is Wilya Janta staff and a gated storyteller at the same time, and no record holds both facts.',
-  },
-];
+const ROLE_IS_ONLY_A_DESCRIPTION = new Set(['role:storyteller', 'role:community']);
+const isWorkingRelationshipTag = (t) =>
+  !ROLE_IS_ONLY_A_DESCRIPTION.has(t) && (t.startsWith('relationship:') || t.startsWith('role:') || t === 'tier:member');
 
 const sb = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
 
@@ -97,19 +87,17 @@ for (const g of ghl) {
   if (!teller) continue;
   const sends = g.tags.filter(isCampaignTag);
   if (!sends.length) continue;
-  const known = KNOWN.find((k) => k.slug === teller.slug);
+  const roles = g.tags.filter(isWorkingRelationshipTag);
   const line = `${teller.display_name} (storytellers/${teller.slug}, tier gated) is in GHL as ${g.id} carrying ${sends.join(', ')}`;
-  if (known) console.log(`  KNOWN: ${line}\n         ${known.why}`);
+  if (roles.length) console.log(`  OK: ${line}\n      Written to as ${roles.join(', ')}, which is a relationship and not a voice.`);
   else breaches.push(line);
 }
 
-const stale = KNOWN.filter((k) => !gated.some((t) => t.slug === k.slug));
-for (const k of stale) console.log(`  KNOWN entry "${k.slug}" no longer matches a gated storyteller. Delete it.`);
-
 if (breaches.length) {
-  console.error(`\n${breaches.length} gated storyteller${breaches.length === 1 ? '' : 's'} in something that sends, and not written down:`);
+  console.error(`\n${breaches.length} gated storyteller${breaches.length === 1 ? '' : 's'} in something that sends, with no other relationship on the record:`);
   for (const b of breaches) console.error(`  - ${b}`);
-  console.error('\nEither the consent tier moved, or the tag is wrong, or it belongs in KNOWN with a reason.');
+  console.error('\nStorytelling is all we hold about them, so this send reaches a gated voice.');
+  console.error('Either record the relationship that justifies writing to them, or drop the tag.');
   process.exit(1);
 }
-console.log('\nNo gated storyteller is in a campaign audience that has not been written down.');
+console.log('\nEverybody in a send list has a relationship on the record beyond their story.');

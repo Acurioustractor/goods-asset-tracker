@@ -34,8 +34,39 @@
  * them also carry a campaign tag. Reading the list, the tag means two different things: "is a
  * community member" and "works in the community lane". Most of the 31 are staff at community
  * organisations and funders, on work addresses, and a newsletter to them is ordinary. That
- * ambiguity is a real defect and it is NOT a consent breach, so the guard below tests the thing
- * that is unambiguous: a person on the gated storyteller list holding a campaign tag.
+ * ambiguity is a real defect and it is no consent breach, so nothing here tests it.
+ *
+ * ---------------------------------------------------------------------------
+ * CONSENT ATTACHES TO THE VOICE, NEVER TO THE WHOLE PERSON
+ * ---------------------------------------------------------------------------
+ *
+ * Ben, 17 September 2026, asked about Jimmy Frank carrying `comms:goods-newsletter` while sitting
+ * on the gated storyteller list: "Jimmy Frank is a storyteller and community partner for the
+ * Harvest and Goods."
+ *
+ * That is the ruling, and it is the Empathy Ledger philosophy stated plainly. A consent tier
+ * governs what may be done with somebody's STORY. It has never governed whether we may write to
+ * them about the work they partner on. Jimmy is both things at once, and the platform was built
+ * so a person can be.
+ *
+ * It follows that the test worth running is not "is a gated storyteller in a send list", which
+ * fails on a partner doing their job. It is:
+ *
+ *     Is somebody in a send list, and is being a storyteller the ONLY thing we record about them?
+ *
+ * If storytelling is the only relationship on the record, then writing to them is writing to a
+ * voice, and a voice is what the tier governs. If they also hold a partner, member or staff
+ * relationship, the send is to that role and the tier is untouched.
+ *
+ * Two further things the platform's philosophy makes non-negotiable here, and they shape the
+ * schema as much as the guard:
+ *
+ *   The tier is never copied. `crm_contacts` gets a `storyteller_id` POINTER to the authority and
+ *   no `consent_tier` column of its own. A copy drifts, and the moment it drifts the CRM has
+ *   quietly become a second authority on somebody else's consent.
+ *
+ *   Default-deny survives the join. A contact with no `storyteller_id` is not thereby cleared;
+ *   it means nobody has checked. Absence of a link is never evidence of consent.
  */
 
 /**
@@ -66,6 +97,29 @@ const NOT_A_SEND = new Set(['comms:manual-relationship']);
 export function isCampaignTag(tag: string): boolean {
   if (NOT_A_SEND.has(tag)) return false;
   return CAMPAIGN_TAG_PREFIXES.some((p) => tag.startsWith(p));
+}
+
+/**
+ * Tags that record a working relationship, which is to say a reason to be in touch that has
+ * nothing to do with somebody's story.
+ *
+ * `role:storyteller` is excluded because it is the thing being tested. `role:community` is
+ * excluded too: it says somebody is a community member, which is a description of who they are
+ * and not a relationship they have agreed to conduct with us.
+ */
+const ROLE_IS_ONLY_A_DESCRIPTION = new Set(['role:storyteller', 'role:community']);
+
+export function isWorkingRelationshipTag(tag: string): boolean {
+  if (ROLE_IS_ONLY_A_DESCRIPTION.has(tag)) return false;
+  return tag.startsWith('relationship:') || tag.startsWith('role:') || tag === 'tier:member';
+}
+
+/**
+ * The test, per Ben's ruling of 17 September 2026. True when the only thing we record about a
+ * person is that they tell stories, which makes any send to them a send to a gated voice.
+ */
+export function storytellingIsTheOnlyRelationship(tags: readonly string[]): boolean {
+  return !tags.some(isWorkingRelationshipTag);
 }
 
 export interface PersonLike {

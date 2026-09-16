@@ -12,9 +12,13 @@ import { makeCommunityMatcher } from './community-match';
  * that neither resolves nor is declared a non-place on purpose.
  */
 
-/** The 31 ids in the Supabase `communities` table, read 17 September 2026. */
+/**
+ * The ids in the Supabase `communities` table. 31 rows read 17 September 2026, then Ampilatwatja,
+ * Angurugu and Umbakumba added the same day so the registry and the table agree and the one
+ * Empathy Ledger media asset that moved has somewhere to land.
+ */
 const IN_LIVE_TABLE = [
-  'alice-springs', 'aurukun', 'borroloola', 'canberra', 'ceduna', 'cherbourg', 'darwin', 'doomadgee',
+  'alice-springs', 'ampilatwatja', 'angurugu', 'umbakumba', 'aurukun', 'borroloola', 'canberra', 'ceduna', 'cherbourg', 'darwin', 'doomadgee',
   'galiwinku', 'groote-archipelago', 'gunbalanya', 'kalgoorlie', 'katherine', 'kowanyama', 'kununurra',
   'lajamanu', 'maningrida', 'mt-isa', 'mutitjulu', 'ngukurr', 'palm-island', 'pending-delivery',
   'port-augusta', 'ramingining', 'tennant-creek', 'torres-strait', 'utopia', 'wadeye', 'woorabinda',
@@ -178,15 +182,17 @@ describe('community-match still resolves everything its own alias map used to', 
     ['Ampilatwatja', 'ampilatwatja'],
     ['Angurugu', 'angurugu'],
     ['Umbakumba', 'umbakumba'],
-  ])('%s resolves to itself, not to a parent', (text, id) => {
+  ])('%s resolves to itself and no longer folds into a parent', (text, id) => {
     expect(makeCommunityMatcher(LIVE_COMMUNITIES).matchText(text)).toBe(id);
     expect(resolvePlace(text)?.id).toBe(id);
   });
 
   it('a place with no community row still resolves, and a caller keyed on rows finds nothing', () => {
+    // Barunga is in the contract record and has no row in the communities table. Naming it and
+    // letting the caller find nothing beats folding it into a neighbour so it has somewhere to go.
     const byId = new Map(LIVE_COMMUNITIES.map((c) => [c.id, c]));
-    const id = makeCommunityMatcher(LIVE_COMMUNITIES).matchText('Ampilatwatja');
-    expect(id).toBe('ampilatwatja');
+    const id = makeCommunityMatcher(LIVE_COMMUNITIES).matchText('Barunga');
+    expect(id).toBe('barunga');
     expect(byId.get(id as string)).toBeUndefined();
   });
 
