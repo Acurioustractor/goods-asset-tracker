@@ -35,7 +35,8 @@
     "check:register": "node --env-file=.env.local scripts/check-register-integrity.mjs",
     "check:community-seam": "node --env-file=.env.local scripts/check-community-seam.mjs",
     "check:audience": "node scripts/check-audience.mjs",
-    "check:content-gate": "node scripts/check-content-gate.mjs"
+    "check:content-gate": "node scripts/check-content-gate.mjs",
+    "audit:audiences": "node scripts/ghl-audience-audit.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.74.0",

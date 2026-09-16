@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ghl } from '@/lib/ghl';
-import { findSmartList, estimateSegments, estimateCostCents } from '@/lib/ghl/smart-lists';
+import { findSmartList, estimateSegments, estimateCostCents, isSuppressed } from '@/lib/ghl/smart-lists';
 import { requireAdmin } from '@/lib/auth/admin';
 
 export const runtime = 'nodejs';
@@ -56,7 +56,17 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'GHL is not enabled — dispatch skipped' }, { status: 503 });
   }
 
-  const contacts = await ghl.findContactsByTag(tag, 250);
+  const rawContacts = await ghl.findContactsByTag(tag, 250);
+  // THE SEND GATE. Nothing carrying comms:do-not-contact, comms:paused,
+  // suppression:ghl-dnd or consent:withdrawn gets a message, whatever tag put
+  // them in this list. 109 contacts carried the first of those and nothing here
+  // used to check. Dropping them before the cap is deliberate: the cap should
+  // count messages that will actually be sent.
+  const contacts = rawContacts.filter((c) => !isSuppressed(c.tags));
+  const suppressedCount = rawContacts.length - contacts.length;
+  if (suppressedCount > 0) {
+    console.log(`[Reach-out] Suppressed ${suppressedCount} contact(s) on tag ${tag}`);
+  }
   const phoneContacts = contacts.filter((c) => c.phone && c.phone.length > 5);
 
   if (phoneContacts.length > hardCap) {

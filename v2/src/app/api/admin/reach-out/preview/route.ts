@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ghl, fetchOpportunitiesForPipelines } from '@/lib/ghl';
-import { findSmartList, findAudienceSegment } from '@/lib/ghl/smart-lists';
+import { findSmartList, findAudienceSegment, isSuppressed } from '@/lib/ghl/smart-lists';
 import { STAGE_TO_RUNG } from '@/lib/data/loi-pipeline';
 import { requireAdmin } from '@/lib/auth/admin';
 
@@ -37,7 +37,12 @@ export async function GET(request: NextRequest) {
     }
 
     if (segment.source.kind === 'tag') {
-      const contacts = await ghl.findContactsByTag(segment.source.tag, 250);
+      const raw = await ghl.findContactsByTag(segment.source.tag, 250);
+      // 109 contacts carry comms:do-not-contact. Nothing used to exclude them, so
+      // the count in the picker was larger than the audience you may actually
+      // contact. Filter here as well as in the GHL recipe, so the two agree.
+      const contacts = raw.filter((c) => !isSuppressed(c.tags));
+      const suppressed = raw.length - contacts.length;
       const withEmail = contacts.filter((c) => c.email && c.email.includes('@')).length;
       return NextResponse.json({
         enabled: true,
@@ -45,6 +50,9 @@ export async function GET(request: NextRequest) {
         kind: 'tag',
         unit: 'contacts',
         count: contacts.length,
+        suppressed,
+        readiness: segment.readiness,
+        blockedOn: segment.blockedOn ?? null,
         withEmail,
         softCap: segment.softCap,
         hardCap: segment.hardCap,
@@ -102,7 +110,9 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  const contacts = await ghl.findContactsByTag(tag, 250);
+  const rawList = await ghl.findContactsByTag(tag, 250);
+  const contacts = rawList.filter((c) => !isSuppressed(c.tags));
+  const suppressed = rawList.length - contacts.length;
   const withPhone = contacts.filter((c) => c.phone && c.phone.length > 5).length;
   const sample = contacts.slice(0, 10).map((c) => ({
     id: c.id,
@@ -111,10 +121,14 @@ export async function GET(request: NextRequest) {
     email: c.email,
   }));
 
+  const list = listId ? findSmartList(listId) : undefined;
   return NextResponse.json({
     enabled: true,
     tag,
     count: contacts.length,
+    suppressed,
+    readiness: list?.readiness ?? null,
+    blockedOn: list?.blockedOn ?? null,
     withPhone,
     sample,
   });
