@@ -643,3 +643,89 @@ export function heroFrames(): { src: string; alt: string; caption: string }[] {
   }
   return out;
 }
+
+// ---------------------------------------------------------------------------
+// THE ARC, AS PLACES
+//
+// Ben, 16 September 2026: a series of drone shots from different places, more voices,
+// especially about Indigenous knowledge and Country, and a map that grows underneath.
+//
+// The first cut ran one aerial behind four beats and the words said Tennant Creek while the
+// caption said Maningrida. A beat now owns its place, its footage and its voice together.
+// There are three community aerials in the archive, so there are three place beats plus a
+// closing one that hands over to the map.
+
+export interface PlaceBeatData {
+  id: string;
+  place: string;
+  when: string;
+  title: string;
+  body: string;
+  film: { src: string; poster: string; alt: string };
+  /** Registry slug plus a fragment. Default-deny: unresolved means the beat runs without it. */
+  voice?: { slug: string; contains: string };
+}
+
+export const PLACE_BEATS: readonly PlaceBeatData[] = [
+  {
+    id: 'kalgoorlie',
+    place: 'Ninga Mia, Kalgoorlie, Wongatha Country',
+    when: 'Why any of this',
+    title: 'The mattresses end up here.',
+    body: 'A community dump outside Kalgoorlie. One Alice Springs supplier sells about three million dollars of washing machines a year into remote communities and most are in a tip within months. The same is true of the bedding. This is the problem the bed was drawn against, and it is an economics problem before it is anything else.',
+    film: { src: '/video/kalgoorlie/ninga-mia-drone.mp4', poster: '/video/kalgoorlie/ninga-mia-drone-poster.jpg', alt: 'Ninga Mia, Kalgoorlie, from the air' },
+  },
+  {
+    id: 'tennant-creek',
+    place: 'Tingkkarli / Lake Mary Ann, Tennant Creek, Warumungu Country',
+    when: 'October 2024',
+    title: 'Snow goes first, and then comes to Country.',
+    body: 'Georgina commits $25,000, and another $25,000 to follow, before there is a product, a register, a charity, a board or a customer. Six weeks later she and Sally are at the Healthy Homes forum at Anyinginyi Health Corporation. Dianne Stokes received a bed here and asked for twenty more within a fortnight, then named the washing machine Pakkimjalki Kari in Warumungu.',
+    film: { src: '/video/tennant-creek/tingkkarli-drone.mp4', poster: '/video/tennant-creek/tingkkarli-drone-poster.jpg', alt: 'Tingkkarli, Lake Mary Ann, north of Tennant Creek, from the air' },
+    voice: { slug: 'dianne-stokes', contains: 'It means something that really makes me happy' },
+  },
+  {
+    id: 'maningrida',
+    place: 'Gamardi, Maningrida, Arnhem Land',
+    when: '2025',
+    title: 'The making moves.',
+    body: 'Forty Stretch Beds for Maningrida were pressed in our own facility: shredded, heat pressed, routed and shipped. Eight washing machines are in community here. This is the difference between saying production could move on Country and having moved it.',
+    film: { src: '/video/maningrida/gamardi-drone.mp4', poster: '/video/maningrida/gamardi-drone-poster.jpg', alt: 'Gamardi, Maningrida, Arnhem Land, from the air' },
+    voice: { slug: 'gary', contains: "We don't force nothing on them" },
+  },
+  {
+    id: 'everywhere',
+    place: 'Tingkkarli, Tennant Creek, where it started. Eleven communities now.',
+    when: 'Now',
+    title: 'Not only here.',
+    body: 'Five hundred and forty beds across eleven communities, twenty-three washing machines, and a charity held by Indigenous directors. Every dot on the map below arrived after somebody was willing to go first.',
+    film: { src: '/video/tennant-creek/tingkkarli-drone.mp4', poster: '/video/tennant-creek/tingkkarli-drone-poster.jpg', alt: 'Tingkkarli, Tennant Creek, from the air' },
+    voice: { slug: 'norman-frank', contains: "we've got our own ways" },
+  },
+];
+
+export interface MapPlaceData {
+  id: string;
+  name: string;
+  lat: number;
+  lng: number;
+  since: string;
+  beds: number;
+  note: string;
+}
+
+/**
+ * The places, in the order the work reached them. Coordinates come from communityLocations so
+ * this map and the one on /pitch put a place in the same spot. Bed counts are the register's.
+ *
+ * `since` is when the work first reached a place, which is a different question from when a
+ * funder's money arrived, and it is the one the map is answering.
+ */
+export const MAP_PLACES: readonly MapPlaceData[] = [
+  { id: 'tennant-creek', name: 'Tennant Creek', lat: -19.648, lng: 134.192, since: '2024-10', beds: 160, note: 'Where Snow came six weeks after the first invoice. Dianne Stokes asked for twenty more beds within a fortnight of receiving one.' },
+  { id: 'palm-island', name: 'Palm Island', lat: -18.744, lng: 146.581, since: '2024-12', beds: 85, note: 'Eighty-five beds built over a weekend on Bwgcolman, then the Backing the Future youth pilot with thirty young people on the build.' },
+  { id: 'maningrida', name: 'Maningrida', lat: -12.053, lng: 134.226, since: '2025-08', beds: 40, note: 'Forty beds pressed in our own facility before they were built on Country. Eight washing machines in community.' },
+  { id: 'katherine', name: 'Katherine', lat: -14.465, lng: 132.264, since: '2025-08', beds: 30, note: 'Beds travelling with the Deadly Heart Trek, alongside heart screening for over eight hundred children.' },
+  { id: 'utopia', name: 'Utopia Homelands', lat: -22.235, lng: 134.741, since: '2026-05', beds: 147, note: 'Eighty-seven beds over two days with Oonchiumpa and the Utopia Council, a bed under thirty-six households.' },
+  { id: 'alice-springs', name: 'Mparntwe / Alice Springs', lat: -23.698, lng: 133.881, since: '2026-06', beds: 20, note: 'Where Oonchiumpa would operate the second facility. The federal submission is lodged and the decision is pending.' },
+];

@@ -2,20 +2,24 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
 import { getPartnerDashboard } from '@/lib/data/partner-dashboards';
 import { getStorytellerBySlug } from '@/lib/data/storyteller-registry';
 import { ORGANISATION } from '@/lib/data/organisation';
 import { goodsBoard } from '@/lib/data/goods-board';
 import {
-  ALIGNMENT, BECAUSE_OF, FILMS, heroFrames, NOT_FINISHED, OONCHIUMPA_NEXT, SNOW_MONEY, TOGETHER, WALLS,
+  ALIGNMENT, BECAUSE_OF, FILMS, heroFrames, MAP_PLACES, NOT_FINISHED, OONCHIUMPA_NEXT,
+  PLACE_BEATS, SNOW_MONEY, TOGETHER, WALLS,
 } from '@/lib/data/snow-partnership';
-import { StickyFilm, type FilmStep } from '@/components/pitch/sticky-film';
 import { ChapterRail } from '@/components/pitch/chapter-rail';
 import { CountUp } from '@/components/pitch/count-up';
 import { TogetherTimeline } from '@/components/partners/together-timeline';
 import { AlignmentTable } from '@/components/partners/alignment-table';
 import { FilmGallery, type GalleryFilm } from '@/components/partners/film-gallery';
 import { StoryHero } from '@/components/partners/story-hero';
+import { PlaceFilms, type PlaceBeat } from '@/components/partners/place-films';
+import { GrowingMap } from '@/components/partners/growing-map';
 import { PhotoWall } from '@/components/pitch/photo-wall';
 
 /**
@@ -143,69 +147,22 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
   }));
   const norman = quote('norman-frank', 'external', "we've got our own ways");
 
-  // The arc over the drone: an idea, then a project, then a charity with its own board.
-  const steps: FilmStep[] = [
-    {
-      id: 'arc-2024',
-      body: (
-        <>
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-goods-cream/70">October 2024</p>
-          <p className="mt-3 font-display text-2xl leading-snug text-goods-cream sm:text-3xl">
-            Snow commits $25,000, and another $25,000 to follow.
-          </p>
-          <p className="mt-4 max-w-md text-goods-cream/85">
-            There is no product, no register, no charity, no board and no customer. Georgina writes the condition
-            herself: &ldquo;assuming all going well, I won&rsquo;t define &lsquo;going well&rsquo;, trust you to know that!&rdquo;
-          </p>
-        </>
-      ),
-    },
-    {
-      id: 'arc-trip',
-      body: (
-        <>
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-goods-cream/70">November 2024</p>
-          <p className="mt-3 font-display text-2xl leading-snug text-goods-cream sm:text-3xl">
-            The funder comes to Tennant Creek.
-          </p>
-          <p className="mt-4 max-w-md text-goods-cream/85">
-            Six weeks after the first invoice, Georgina and Sally are at the Healthy Homes forum at Anyinginyi
-            Health Corporation. Not a site visit at the end. The beginning.
-          </p>
-        </>
-      ),
-    },
-    {
-      id: 'arc-trek',
-      body: (
-        <>
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-goods-cream/70">2025</p>
-          <p className="mt-3 font-display text-2xl leading-snug text-goods-cream sm:text-3xl">
-            Beds start travelling with the heart screening.
-          </p>
-          <p className="mt-4 max-w-md text-goods-cream/85">
-            The Deadly Heart Trek, twice. Over 800 children screened at Katherine and Big Rivers, fifteen new
-            diagnoses, and a Basket Bed is what the children lie on to watch the film about the disease.
-          </p>
-        </>
-      ),
-    },
-    {
-      id: 'arc-charity',
-      body: (
-        <>
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-goods-cream/70">2026</p>
-          <p className="mt-3 font-display text-2xl leading-snug text-goods-cream sm:text-3xl">
-            {ORGANISATION.boardLine}
-          </p>
-          <p className="mt-4 max-w-md text-goods-cream/85">
-            An idea became a project, and the project became a charity that Indigenous directors hold. Snow&rsquo;s
-            money was in every one of those stages, and Snow&rsquo;s tenth invoice was paid in May 2026.
-          </p>
-        </>
-      ),
-    },
-  ];
+  // The arc, as places. Each beat carries its own aerial and its own voice, resolved here so
+  // the client component never decides what may be published.
+  const beats: PlaceBeat[] = PLACE_BEATS.map((b) => {
+    const v = b.voice ? quote(b.voice.slug, 'external', b.voice.contains) : null;
+    return {
+      id: b.id, place: b.place, when: b.when, title: b.title, body: b.body, film: b.film,
+      voice: v
+        ? { name: v.person.name, role: v.person.role, community: v.person.community, text: v.quote.text, portrait: v.person.portrait }
+        : null,
+    };
+  });
+
+  // The same outline the /pitch map draws, read on the server and passed in as a path string.
+  const outline = await readFile(join(process.cwd(), 'public/images/maps/australia-outline.svg'), 'utf8')
+    .then((x) => x.replace(/<\/?svg[^>]*>/g, '').trim())
+    .catch(() => '');
 
   return (
     <main style={{ backgroundColor: CREAM }}>
@@ -288,26 +245,28 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           <div className="mx-auto max-w-4xl">
             <p className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: RUST }}>02 &middot; Snow went first</p>
             <h2 className="mt-3 font-display text-3xl leading-tight sm:text-4xl" style={{ color: CHARCOAL }}>
-              An idea, a project, and now a charity with its own board
+              Four places, and the order they came in
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-relaxed sm:text-lg" style={{ color: `${CHARCOAL}cc` }}>
-              Snow&rsquo;s money was in all three stages. This is Gamardi at Maningrida, where forty beds were pressed
-              in our own facility before they were built on Country.
+              The argument is the order. Every place below arrived after somebody was willing to go first, and the
+              people who live in them say what the work is for better than we can.
             </p>
           </div>
         </div>
-        <StickyFilm
-          src="/video/maningrida/gamardi-drone.mp4"
-          poster="/video/maningrida/gamardi-drone-poster.jpg"
-          alt="Gamardi, Maningrida, Arnhem Land"
-          credit="Gamardi, Maningrida, Arnhem Land. Forty Stretch Beds for Maningrida were pressed in our own facility."
-          steps={steps}
-          scrim="heavy"
-        />
-        <div className="px-5 pb-4 sm:px-8">
+
+        <PlaceFilms beats={beats} />
+
+        <div className="px-5 py-16 sm:px-8 sm:py-20">
           <div className="mx-auto max-w-4xl">
-            {catalyse && <Pull v={catalyse} />}
-            {backing && <Pull v={backing} />}
+            <p className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: RUST }}>The map, as it filled in</p>
+            <p className="mt-3 max-w-2xl text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
+              Watch it grow, or scrub the years yourself. Snow&rsquo;s money was there before most of these dots
+              existed.
+            </p>
+            <div className="mt-8">
+              {outline ? <GrowingMap outline={outline} places={MAP_PLACES} /> : null}
+            </div>
+
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
               <div className="rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
                 <p className="font-display text-2xl" style={{ color: CHARCOAL }}>{money(SNOW_MONEY.goodsOnlyIncGstAud)}</p>
@@ -328,9 +287,10 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
                 </p>
               </div>
             </div>
-            <p className="mt-4 text-xs leading-relaxed" style={{ color: '#A99C8F' }}>
-              {SNOW_MONEY.basisNote}
-            </p>
+            <p className="mt-4 text-xs leading-relaxed" style={{ color: '#A99C8F' }}>{SNOW_MONEY.basisNote}</p>
+
+            {catalyse && <Pull v={catalyse} />}
+            {backing && <Pull v={backing} />}
           </div>
         </div>
       </div>

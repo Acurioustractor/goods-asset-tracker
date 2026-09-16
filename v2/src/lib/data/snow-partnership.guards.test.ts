@@ -12,7 +12,8 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import {
-  ALIGNMENT, BECAUSE_OF, NOT_FINISHED, SNOW_MONEY, TOGETHER, TOGETHER_KINDS,
+  ALIGNMENT, BECAUSE_OF, FILMS, MAP_PLACES, NOT_FINISHED, PLACE_BEATS, SNOW_MONEY, TOGETHER,
+  TOGETHER_KINDS, WALLS,
 } from '@/lib/data/snow-partnership';
 import { GRANTS_RECEIVED } from '@/lib/data/grants-received';
 import { getStorytellerBySlug } from '@/lib/data/storyteller-registry';
@@ -113,5 +114,61 @@ describe('snow partnership report', () => {
     const page = readFileSync(PAGE, 'utf8');
     const banned = /prevent(s|ed|ing)? (rheumatic|heart disease|RHD)|cardiac prevention|cases prevented|reduc(es|ed) (rheumatic|RHD)/i;
     expect(banned.test(page), 'the report claims a health outcome').toBe(false);
+  });
+
+  it('every film, aerial and photograph on the page exists', () => {
+    const paths: string[] = [];
+    for (const f of FILMS) paths.push(f.src, f.poster);
+    for (const b of PLACE_BEATS) paths.push(b.film.src, b.film.poster);
+    for (const w of WALLS) for (const f of w.files) paths.push(w.dir + f.file);
+    for (const rel of paths) {
+      expect(existsSync(join(process.cwd(), 'public', rel)), `missing asset: ${rel}`).toBe(true);
+    }
+  });
+
+  it('a place beat names the place its own footage was shot in', () => {
+    // The bug this exists for: the first cut ran one aerial behind four beats, so the words
+    // said Tennant Creek while the credit said Maningrida. A beat's film path and its `place`
+    // string must agree on the location, which is the only part a human can get wrong.
+    const WHERE: Record<string, string> = {
+      'tennant-creek': 'tennant creek',
+      maningrida: 'maningrida',
+      kalgoorlie: 'kalgoorlie',
+    };
+    for (const b of PLACE_BEATS) {
+      const dir = b.film.src.split('/')[2];
+      const needle = WHERE[dir];
+      expect(needle, `no known place for footage directory "${dir}"`).toBeTruthy();
+      expect(
+        b.place.toLowerCase().includes(needle),
+        `beat "${b.id}" runs ${dir} footage but its place reads "${b.place}"`,
+      ).toBe(true);
+    }
+  });
+
+  it('every voice in the films and the arc is cleared and approved', () => {
+    const refs = [
+      ...FILMS.flatMap((f) => (f.voice ? [f.voice] : [])),
+      ...PLACE_BEATS.flatMap((b) => (b.voice ? [b.voice] : [])),
+    ];
+    expect(refs.length, 'no registry-resolved voices left on the page').toBeGreaterThan(3);
+    for (const r of refs) {
+      const person = getStorytellerBySlug(r.slug);
+      expect(person, `unknown slug: ${r.slug}`).toBeTruthy();
+      expect(person!.tier, `${r.slug} must be an external community voice here`).toBe('external');
+      const matches = person!.quotes.filter((q) => q.text.includes(r.contains));
+      expect(matches.length, `no quote of ${person!.name} contains "${r.contains}"`).toBe(1);
+      expect(['primary', 'approved']).toContain(matches[0].status);
+    }
+  });
+
+  it('the map grows in time order and every place is on the register', () => {
+    const sorted = MAP_PLACES.map((p) => p.since).slice().sort();
+    expect(MAP_PLACES.map((p) => p.since)).toEqual(sorted);
+    for (const p of MAP_PLACES) {
+      expect(p.since, `${p.name} has no month`).toMatch(/^\d{4}-\d{2}$/);
+      expect(p.beds, `${p.name} has no beds`).toBeGreaterThan(0);
+      expect(Math.abs(p.lat), `${p.name} latitude looks wrong`).toBeGreaterThan(9);
+    }
   });
 });
