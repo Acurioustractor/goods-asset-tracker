@@ -443,13 +443,13 @@ export const IMPACT_DIMENSIONS: ImpactDimension[] = [
       {
         id: 'revenue',
         confidence: 'verified',
-        name: 'Total Revenue Received (cumulative since inception, ~89% grant-funded)',
+        name: 'Total Revenue Received (cumulative since inception, mostly grant-funded)',
         unit: '$',
         current: verifiedFinancials.revenueReceived, // 741,111 — total received since inception (grant + commercial), restated 2026-06-03 live-Xero reconcile
         targets: { year1: 1_100_000, year3: 4_000_000, vision2030: 15_000_000 }, // Year-1 TOTAL-revenue target across all 7 segments (not commercial-only)
         source: 'xero',
         sourceDetail:
-          'Xero workpaper (verified, not audited): TOTAL revenue received since inception (2023-07-01 → 2026-04-30), ~89% grant-funded (Snow + Centrecorp + VFFF + QIC) and ~11% commercial. This is NOT annual commercial traction — FY26 YTD commercial-only is ~$61K. The target is the Year-1 TOTAL-revenue target across all 7 segments (donor-institutional through adjacent), not a commercial-only target. Do not read cumulative grant-heavy revenue as recurring commercial run-rate.',
+          'Xero workpaper (verified, not audited): TOTAL revenue received since inception (2023-07-01 → 2026-04-30). The "~89% grant-funded (Snow + Centrecorp + VFFF + QIC)" split was REMOVED 2026-09-16, for the same reason it came off story-road.ts: it has no written-down denominator, it counts CENTRECORP as a grant when Centrecorp is a buyer (ruling, 2026-08-02), and grants received ($772,788) exceed the revenue figure printed beside it, so the percentage could never have held. The real share is roughly three quarters. Do not restore a percentage without a stated basis on both sides. This is NOT annual commercial traction — FY26 YTD commercial-only is ~$61K. The target is the Year-1 TOTAL-revenue target across all 7 segments (donor-institutional through adjacent), not a commercial-only target. Do not read cumulative grant-heavy revenue as recurring commercial run-rate.',
         optimizationLevers: ['B2B pipeline', 'Government procurement', 'E-commerce launch'],
       },
       // CLAIM CEILING (P0, 2026-06-18): the "govt-savings" metric (modelled government
