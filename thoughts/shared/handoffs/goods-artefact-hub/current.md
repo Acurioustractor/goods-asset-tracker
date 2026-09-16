@@ -117,9 +117,15 @@ Queried live against `yvnuayzslukamizrlhwb`, Goods project `6bd47c8a-e676-456f-a
 - extracted_quotes: **110 total, 98 approved, 0 carrying `public_display_consented`.**
 - media_assets: **270, all public.** This one matches what we thought.
 
-**The zero is the thing to stop on.** Approved means a human ruled on the text. It does not mean anyone agreed to it being shown. A quote in a Snow report is a new use and needs its own basis, checked per quote rather than inherited from approval. This sits directly under artefact 02, which I have described everywhere as "every quote in our applications comes from it, word for word", and under artefact 10, the consent summary. Both go to funders.
+**The zero is worth stopping on, but read it narrowly.** Corrected by empathy-ledger-v2-c0 after they saw my first write-up: `public_display_consented` is the gate for display on **Empathy Ledger's own public surfaces**, verified in that session by watching a quote leave the public archive while staying on the installation screen, because each door honours its own permission. What it does **not** govern is external use in a funder report, a Notion register or a deck. That runs on different machinery, including use-request and syndication, which nobody has traced.
+
+So **"0 public" does not mean no quote may appear in a Snow report.** It means the basis for that use has to be established on its own terms rather than inherited from `approval_status`. The sentence that holds is the narrow one: **approved means a human ruled on the text, not that anyone agreed to it being shown.** Whether the Goods five-tier record already carries a sufficient external-use basis is the open reconciliation, and EL has no view on it.
+
+This still sits under artefact 02, which I have described everywhere as "every quote in our applications comes from it, word for word", and under artefact 10, the consent summary. Both go to funders.
 
 **Two more evidence-integrity findings from the same session.** `npm run check:quotes-verbatim` found **540 transcript-sourced quotes matching no transcript, 313 of them approved and 135 publicly displayed.** And a Goods framework doc presented **409 lens answers as "in their words" when they were not**: speech accounted for 244 and a single word for 30. On that platform a lens answer is a reading, not a quote. Run that check before any quote reaches a funder page, and never lift a sentence out of an analysis output and set it in quote marks.
+
+**The "word for word" claim is checkable rather than arguable.** `npm run check:quotes-verbatim` in `empathy-ledger-v2` compares stored quote text against the transcripts. Run it before that sentence goes back in front of a funder and it either earns the sentence or names the exceptions. Cheaper than a policy argument, and it is the single next action here.
 
 This does not by itself mean the Goods tier system is wrong. Goods holds its own consent record in `cleared-voices.ts` and `storyteller-registry.ts` with five tiers, and Ben ruled on 11 September that EL consent is approved and to stop hedging. But the Goods-side tiers and the EL-side `public_display_consented` field currently disagree, and nobody has reconciled them. **That reconciliation is Ben's call and it should happen before the 37-voices claim goes in front of another funder.**
 
