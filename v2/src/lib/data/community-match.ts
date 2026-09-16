@@ -1,9 +1,19 @@
 // Map free-text EL location / media-title strings onto the canonical Goods
 // community list. Empathy Ledger stores a storyteller's (and story's) location as
 // free text ("Tennant Creek, Northern Territory, Australia") and only carries a
-// media asset's place inside its title / gallery name — there is no clean FK. So
+// media asset's place inside its title or gallery name. There is no clean FK, so
 // community coverage has to be *derived* by matching. Deterministic, read-time,
-// no writes. Add new spelling / language variants to ALIASES as they surface.
+// no writes.
+//
+// SPELLINGS NOW COME FROM place-registry.ts (17 Sep 2026). This file used to keep its own
+// ALIASES map, which made three alias lists in the repo counting the Supabase `name_aliases`
+// column. A spelling added to one did not reach the others. Add a new spelling to the registry
+// and it works here, on the procurement desk and in every drift check at the same time.
+//
+// What stays here is the part that is a FILING DECISION about media, and no claim about
+// geography: see ROLLUP below.
+
+import { PLACES, placeById } from './place-registry';
 
 export interface CommunityLite {
   id: string;
@@ -11,24 +21,22 @@ export interface CommunityLite {
   traditional_name?: string | null;
 }
 
-// Extra match keys per canonical community name — traditional/language names and
-// spelling variants actually seen in the EL data (storyteller locations, media
-// titles, gallery names). Traditional names in the communities table are matched
-// automatically; these cover the rest.
-const ALIASES: Record<string, string[]> = {
-  // Oonchiumpa is the Alice Springs production partner (Karen Liddle) — its media
-  // is filed under the org name, which is an Alice Springs place-proxy.
-  'Alice Springs': ['mparntwe', 'oonchiumpa'],
-  'Tennant Creek': ['wumpurrarni'],
-  'Palm Island': ['bwgcolman'],
-  'Kalgoorlie': ['ninga mia', 'wongatha'],
-  'Mt Isa': ['mount isa'],
-  "Galiwin'ku": ['elcho island', 'galiwinku'],
-  'Groote Archipelago': ['groote eylandt', 'groote', 'angurugu', 'umbakumba'],
-  // Ampilatwatja + Arlparra are homelands in the Utopia region; the May-trip media
-  // is titled with them. Remove from here if they should be their own community.
-  'Utopia Homelands': ['utopia', 'ampilatwatja', 'arlparra'],
-  'Torres Strait': ['thursday island'],
+/**
+ * Where media about a smaller place gets filed. These are not claims that one place is another.
+ *
+ * OPEN FOR BEN. The registry now holds Ampilatwatja, Angurugu and Umbakumba as communities in
+ * their own right, because that is what the NT contract record calls them. This map still files
+ * their media under a parent, which is what the May-trip galleries were titled with. Those two
+ * answers can both be right, and the previous version of this file already flagged it:
+ * "Remove from here if they should be their own community."
+ *
+ * Oonchiumpa is an organisation. It is here because the Alice Springs production
+ * partner's media is filed under the org name.
+ */
+const ROLLUP: Record<string, string[]> = {
+  'alice-springs': ['oonchiumpa'],
+  'utopia': ['ampilatwatja'],
+  'groote-archipelago': ['angurugu', 'umbakumba'],
 };
 
 // Strings too broad to attribute to one community (EL defaults many rows to these).
@@ -48,6 +56,20 @@ export interface CommunityMatcher {
   matchText(text: string | null | undefined): string | null;
 }
 
+/**
+ * Every spelling the registry holds for one community id: its name, its aliases, and any place
+ * rolled up into it. A traditional name is deliberately not included, because the column holds
+ * people and language names as often as place names and Warlpiri is two communities.
+ */
+export function spellingsFor(id: string): string[] {
+  const place = placeById(id);
+  const rolled = (ROLLUP[id] ?? []).flatMap((childId) => {
+    const child = PLACES.find((p) => p.id === childId);
+    return child ? [child.name, ...(child.aliases ?? [])] : [childId];
+  });
+  return [...(place ? [place.name, ...(place.aliases ?? [])] : []), ...rolled];
+}
+
 export function makeCommunityMatcher(communities: CommunityLite[]): CommunityMatcher {
   // normalized key -> community id, longest keys first so the most specific wins
   // (e.g. "kalgoorlie" beats a short alias).
@@ -58,9 +80,9 @@ export function makeCommunityMatcher(communities: CommunityLite[]): CommunityMat
       const k = norm(raw);
       if (k.length >= 4 && !GENERIC.has(k)) keys.push({ key: k, id: c.id });
     };
+    // The row's own name still counts, so a community absent from the registry keeps matching.
     add(c.name);
-    add(c.traditional_name);
-    for (const a of ALIASES[c.name] ?? []) add(a);
+    for (const spelling of spellingsFor(c.id)) add(spelling);
   }
   keys.sort((a, b) => b.key.length - a.key.length);
 

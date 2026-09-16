@@ -38,6 +38,7 @@ import type { Opportunity } from '@/lib/data/procurement-board';
 import type { Opening } from '@/lib/data/procurement-openings';
 import { OPENING_KINDS } from '@/lib/data/procurement-openings';
 import type { Jurisdiction } from '@/lib/data/procurement-model';
+import { isNotAPlace, resolvePlace } from '@/lib/data/place-registry';
 
 export interface IntelRow {
   community: string;
@@ -560,6 +561,35 @@ export function ProcurementDashboard({ data }: { data: DashboardData }) {
   );
 }
 
+/**
+ * A place column that says what kind of place it is.
+ *
+ * Nearly half the org list carried a region, a whole jurisdiction or a building in the place
+ * field, and the table printed them as if somebody lived there. Miwatj Health serves East Arnhem,
+ * which is a region; nobody delivers a bed to it. The registry knows the difference, so the table
+ * can show it.
+ */
+function PlaceCell({ raw }: { raw: string }) {
+  if (!raw) return <span>not recorded</span>;
+  // The NT workbook puts fragments of contract titles in its place column, truncated at 30
+  // characters. Those are declared non-places in the registry, so say so instead of printing
+  // "Panel Contract for Repairs, Ma" where a community should be.
+  if (isNotAPlace(raw)) return <span className="italic opacity-60">no place given</span>;
+  const place = resolvePlace(raw);
+  if (!place) return <span>{raw}</span>;
+  const qualifier =
+    place.kind === 'region' ? 'region'
+    : place.kind === 'jurisdiction' ? 'whole jurisdiction'
+    : place.kind === 'facility' ? 'building'
+    : null;
+  return (
+    <span>
+      {place.name}
+      {qualifier && <span className="ml-1.5 text-[9px] uppercase tracking-wide opacity-70">{qualifier}</span>}
+    </span>
+  );
+}
+
 /** One line per jurisdiction, short enough to sit under a bar. */
 function shortRule(short: string) {
   return {
@@ -670,7 +700,7 @@ function OrgTable({ orgs, onPick }: { orgs: Org[]; onPick: (o: Org) => void }) {
                 {o.proximityOnly && <Badge className="mt-1" variant="outline" title="Only source is the proximity-matched shared graph">proximity only</Badge>}
               </TableCell>
               <TableCell><Badge variant="secondary">{o.kind.replace(/_/g, ' ')}</Badge></TableCell>
-              <TableCell className="text-muted-foreground">{o.place || 'not recorded'}</TableCell>
+              <TableCell className="text-muted-foreground"><PlaceCell raw={o.place} /></TableCell>
               <TableCell className="text-muted-foreground">{o.state || 'not recorded'}</TableCell>
               <TableCell className="text-right font-semibold tabular-nums">{o.govtContractValueAud > 0 ? money(o.govtContractValueAud) : 'none'}</TableCell>
               <TableCell className="w-[30%] text-[11px] leading-snug text-muted-foreground"><span className="line-clamp-2">{o.note}</span></TableCell>

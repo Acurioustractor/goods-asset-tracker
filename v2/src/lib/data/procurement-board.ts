@@ -25,10 +25,13 @@
  * already there. Every component is shown on the row so the ranking can be disagreed with.
  */
 
+import { placeKey, resolvePlace } from './place-registry';
 import { JURISDICTIONS, COMMUNITY_ROUTES } from './procurement-model';
 
 export interface Opportunity {
   community: string;
+  /** The place-registry token, or null when the registry has never seen this name. */
+  placeId: string | null;
   state: string;
   /** ABS Census 2021 households needing one or more extra bedrooms. Null where not held. */
   crowdedPct: number | null;
@@ -58,21 +61,26 @@ interface IntelRow {
 }
 interface BuyerPlace { community: string; valueAud: number; topBuyer: string | null }
 
-const norm = (s: string) => s.toLowerCase().replace(/['’’]/g, '').replace(/[^a-z]/g, '');
+/**
+ * Join on the place token, falling back to the comparison key when the registry has never seen
+ * the string. Before 17 September 2026 this file carried its own normaliser, the fourth in the
+ * repo, and "Galiwinku" and "Galiwin'ku" were two different communities to it.
+ */
+const joinKey = (s: string) => resolvePlace(s)?.id ?? placeKey(s);
 
 /**
  * Built on the server from the three JSON pulls plus the hand-written routes. Everything is
- * matched on a normalised community name, which is imperfect and is why unmatched rows simply
- * carry nulls instead of guesses.
+ * matched through the place registry, so a row that fails to match is a place nobody has mapped.
+ * A spelling difference can no longer cause it, and an unmatched row carries nulls.
  */
 export function buildOpportunities(
   intel: IntelRow[],
   places: BuyerPlace[],
 ): Opportunity[] {
   const byName = new Map<string, IntelRow>();
-  for (const i of intel) byName.set(norm(i.community), i);
+  for (const i of intel) byName.set(joinKey(i.community), i);
   const spendByName = new Map<string, BuyerPlace>();
-  for (const p of places) spendByName.set(norm(p.community), p);
+  for (const p of places) spendByName.set(joinKey(p.community), p);
 
   const jur = new Map(JURISDICTIONS.map((j) => [j.name, j]));
   const stateToJur: Record<string, string> = {
@@ -80,8 +88,8 @@ export function buildOpportunities(
   };
 
   const rows: Opportunity[] = COMMUNITY_ROUTES.map((r) => {
-    const i = byName.get(norm(r.community));
-    const spend = spendByName.get(norm(r.community));
+    const i = byName.get(joinKey(r.community));
+    const spend = spendByName.get(joinKey(r.community));
     const j = jur.get(stateToJur[r.state] ?? '');
     const dp = j?.directPurchase ?? null;
 
@@ -100,6 +108,7 @@ export function buildOpportunities(
 
     return {
       community: r.community,
+      placeId: resolvePlace(r.community)?.id ?? null,
       state: r.state,
       crowdedPct,
       personsPerDwelling: i?.personsPerDwelling ?? null,
