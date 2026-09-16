@@ -105,15 +105,21 @@ export const JURISDICTIONS: readonly Jurisdiction[] = [
   {
     id: 'wa',
     name: 'Western Australia',
-    status: 'pending',
+    status: 'done',
     communities: 2,
-    buyer: null,
-    directPurchase: null,
-    preference: null,
-    register: null,
-    portal: null,
-    door: null,
-    note: 'Kalgoorlie and Kununurra. Kalgoorlie is where the Ninga Mia footage was shot, which is the clearest picture we hold of what happens when bedding fails. Research in progress.',
+    buyer: 'Department of Housing and Works, which commenced 1 July 2025 and took remote Aboriginal community housing out of the Department of Communities.',
+    directPurchase: {
+      // No cap. Recorded as the open-advertisement threshold so the number means something,
+      // and the rule text below is what actually governs it.
+      limitAud: 250_000,
+      beds: 0,
+      rule: 'Rule C4.2 of the Western Australian Procurement Rules: the minimum competitive requirements do not apply when purchasing from a Registered Aboriginal Business. THERE IS NO DOLLAR CAP. The agency documents how value for money was demonstrated, and that is the whole test. It can be used even where the goods are available on a whole-of-government Common Use Arrangement. Without the exception the bands are $50,000 direct sourcing, $250,000 open advertisement.',
+    },
+    preference: 'Targets are set on the NUMBER of contracts, not value: 5 per cent from 2026-27. Each purchase above $50,000 from a registered Aboriginal business under a panel counts as a separate contract toward the target, so an agency has a reason to want several bed orders. In 2024-25 the state placed $442 million and beat the target at 6.82 per cent, but the Auditor General found only 30 of 130 entities met their own, and that 52 per cent of Aboriginal contracts were works against 25 per cent sector-wide. Goods supply is the under-represented category, which is ours.',
+    register: 'Aboriginal Business Directory WA or Supply Nation Indigenous Business Direct, and nothing else. Both are free. Supply Nation Registered accepts not-for-profits and Aboriginal corporations at 50 per cent owned; NIAA is tightening to 51 with transitional arrangements to 30 June 2027.',
+    portal: 'Tenders WA. Contracts of $50,000 or more must be published there; below that is invisible.',
+    door: 'MaintenanceContractReview@dohw.wa.gov.au takes questions today. Morrgul, an Aboriginal-owned Kimberley not-for-profit, delivers the Aboriginal Procurement Advisory Service for Goldfields-Esperance, info@morrgul.com.au.',
+    note: 'The strongest lever in the country, and the clearest date. The head maintenance contract RFT is in market September to November 2026, which is now, for contracts starting July 2028, with a stated objective of increasing Aboriginal community controlled participation. David Michael is both Minister for Finance, who owns the Aboriginal Procurement Policy, and regional minister for Goldfields-Esperance, where Ninga Mia sits. One office, one conversation.',
   },
 ];
 
@@ -160,6 +166,39 @@ export const COMMUNITY_ROUTES: readonly CommunityRoute[] = [
   { community: 'Kalgoorlie', state: 'WA', partner: 'The Community Shed', holdsGovtContracts: 'unknown', contractEvidence: null, weHave: '20 beds, and the Ninga Mia footage.' },
   { community: 'Kununurra', state: 'WA', partner: null, holdsGovtContracts: 'unknown', contractEvidence: null, weHave: 'An Elder clearance gate that is still open.' },
 ];
+
+/**
+ * THE WA FINDING THAT MAY UNDO AN EARLIER CONCLUSION, and it needs checking before anyone
+ * relies on it.
+ *
+ * Everywhere else, the Indigenous procurement instruments test OWNERSHIP of the entity that
+ * sells, which Goods fails, because orders are invoiced by A Curious Tractor Pty Ltd.
+ *
+ * The Aboriginal Business Directory WA does not test ownership for an incorporated Aboriginal
+ * organisation. It tests the BOARD: "Have a Board or management committee comprised of at
+ * least 50% Aboriginal members", plus "Aboriginal representation in the management and
+ * operations". Goods on Country Ltd has 100 per cent Indigenous directors.
+ *
+ * And that register is one of the two that unlock Rule C4.2, which has no dollar cap.
+ *
+ * WHAT IS NOT ESTABLISHED, and it is most of it: whether the second limb about management and
+ * operations is satisfied when the employees are not Aboriginal; whether WA business
+ * registration, which the directory requires, is held or obtainable; and whether the charity
+ * could be the selling entity at all, given orders currently go through A Curious Tractor.
+ *
+ * This is a question to put to the Industry Capability Network, who administer the directory.
+ * It is not a finding, and nobody should act on it as one.
+ */
+export const WA_BOARD_TEST = {
+  rule: 'Incorporated Aboriginal organisations must have a board or management committee comprised of at least 50 per cent Aboriginal members, and Aboriginal representation in management and operations.',
+  whyItMatters: 'It is a board test, not an ownership test, and Goods on Country Ltd has 100 per cent Indigenous directors. It is one of the two registers that unlock Rule C4.2, which has no dollar cap.',
+  unresolved: [
+    'Whether the management and operations limb is met, given Ben and Nic are the employees.',
+    'Whether WA business registration, which the directory requires, is held or obtainable.',
+    'Whether the charity could be the selling entity, given orders are invoiced by A Curious Tractor Pty Ltd today.',
+  ],
+  ask: 'Put it to the Industry Capability Network, who administer the directory.',
+} as const;
 
 /**
  * SA specifics worth carrying, because they do not fit the six-question shape and are the

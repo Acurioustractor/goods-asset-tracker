@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { JURISDICTIONS, MODEL_GAPS, SA_NOTES } from '@/lib/data/procurement-model';
+import { JURISDICTIONS, MODEL_GAPS, SA_NOTES, WA_BOARD_TEST } from '@/lib/data/procurement-model';
 import {
   BUYER_CHANNELS, IPP_COMPLIANCE, NT_ABE_PREFERENCE, NT_BENCHMARKS, NT_CONTACTS,
   NT_DEPARTMENTS, NT_HEALTHY_LIVING, NT_PROGRAM, NT_TIER_NOTE, NT_TIERS, NT_UNSOURCED,
@@ -464,9 +464,11 @@ export default async function ProcurementPage() {
                 <div className="mt-4 rounded-lg p-4" style={{ backgroundColor: '#F6E4DE' }}>
                   <p className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: '#9A4023' }}>Buy without a tender</p>
                   <p className="mt-1 font-display text-3xl leading-none" style={{ color: '#9A4023' }}>
-                    {j.directPurchase.beds} beds
+                    {j.directPurchase.beds > 0 ? `${j.directPurchase.beds} beds` : 'No cap'}
                   </p>
-                  <p className="mt-1 text-xs" style={{ color: '#9A4023' }}>up to {aud(j.directPurchase.limitAud)}</p>
+                  <p className="mt-1 text-xs" style={{ color: '#9A4023' }}>
+                    {j.directPurchase.beds > 0 ? `up to ${aud(j.directPurchase.limitAud)}` : 'no dollar limit on the exception'}
+                  </p>
                   <p className="mt-2 text-xs leading-relaxed" style={{ color: '#6A5E54' }}>{j.directPurchase.rule}</p>
                 </div>
               ) : (
@@ -485,6 +487,22 @@ export default async function ProcurementPage() {
               <p className="mt-3 text-xs leading-relaxed">{j.note}</p>
             </div>
           ))}
+        </div>
+
+        <div className="mt-6 rounded-lg border-2 p-6" style={{ borderColor: '#BBA255' }}>
+          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: '#8A6A2F' }}>
+            A WA finding that may undo the blocker at the top of this page. Not established.
+          </p>
+          <h3 className="mt-2 font-display text-xl leading-snug">
+            The register that unlocks the uncapped rule tests the board. Ownership never comes into it.
+          </h3>
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed">&ldquo;{WA_BOARD_TEST.rule}&rdquo;</p>
+          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">{WA_BOARD_TEST.whyItMatters}</p>
+          <p className="mt-3 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">What is not established, which is most of it</p>
+          <ul className="mt-1.5 space-y-1 text-sm leading-relaxed text-muted-foreground">
+            {WA_BOARD_TEST.unresolved.map((u) => <li key={u}>{u}</li>)}
+          </ul>
+          <p className="mt-3 text-sm font-semibold">{WA_BOARD_TEST.ask}</p>
         </div>
 
         <h3 className="mt-6 text-sm font-semibold">South Australia, the parts that do not fit the shape</h3>
