@@ -55,6 +55,24 @@ interface NtPull {
   };
 }
 
+interface Intel {
+  readAt: string;
+  quality: { overcrowding: string; population: string; employment: string; recycling: string; health: string };
+  communities: {
+    community: string; state: string | null; population: number | null; populationReliable: boolean;
+    personsPerDwelling: number | null; overcrowdedPct: number | null; overcrowdedDwellings: number | null;
+    jobseekerRegional: number | null; healthServices: number | null; plasticWasteTpa: number | null;
+  }[];
+}
+
+async function readIntel(): Promise<Intel | null> {
+  try {
+    return JSON.parse(await readFile(join(process.cwd(), 'data/community-intel.json'), 'utf8')) as Intel;
+  } catch {
+    return null;
+  }
+}
+
 async function readNt(): Promise<NtPull | null> {
   try {
     return JSON.parse(await readFile(join(process.cwd(), 'data/nt-housing-contractors.json'), 'utf8')) as NtPull;
@@ -77,6 +95,8 @@ const OURS = new Set(['Tennant Creek', 'Maningrida', 'Alice Springs', 'Utopia', 
 export default async function ProcurementPage() {
   const pull = await readPull();
   const nt = await readNt();
+  const intel = await readIntel();
+  const crowded = intel ? intel.communities.filter((c) => c.overcrowdedPct !== null) : [];
   const ntKnown = nt ? nt.contractors.filter((c) => c.known) : [];
   const ntRtb = nt ? nt.contractors.filter((c) => c.roomToBreathe > 0).sort((a, b) => b.valueAud - a.valueAud).slice(0, 8) : [];
   const dipl = pull ? pull.buyers.filter((b) => b.buyer.startsWith('NT Department of Infrastructure')) : [];
@@ -414,6 +434,66 @@ export default async function ProcurementPage() {
           </tbody>
         </table>
       </section>
+
+      {/* Community intelligence. */}
+      {intel && (
+        <section className="mt-10">
+          <h2 className="font-display text-2xl">The communities, and what the census says about them</h2>
+          <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
+            Overcrowding is ABS Census 2021, Indigenous Profile table I16, per Indigenous Location, on the Canadian
+            National Occupancy Standard: households needing one or more extra bedrooms. {crowded.length} of our
+            communities have it. Read {intel.readAt} by{' '}
+            <code className="rounded bg-muted px-1 py-0.5 text-[11px]">scripts/pull-community-intel.py</code>.
+          </p>
+
+          <table className="mt-4 w-full text-left text-sm">
+            <thead>
+              <tr className="border-b text-[11px] uppercase tracking-wide text-muted-foreground">
+                <th className="py-2 pr-3 font-semibold">Community</th>
+                <th className="py-2 pr-3 font-semibold">State</th>
+                <th className="py-2 pr-3 text-right font-semibold">Needing a bedroom</th>
+                <th className="py-2 pr-3 text-right font-semibold">People per dwelling</th>
+                <th className="py-2 text-right font-semibold">Dwellings</th>
+              </tr>
+            </thead>
+            <tbody>
+              {crowded.map((c) => (
+                <tr key={c.community} className="border-b last:border-0">
+                  <td className="py-2 pr-3 font-medium">
+                    {c.community}
+                    {OURS.has(c.community) && (
+                      <span className="ml-2 rounded-full px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide" style={{ backgroundColor: '#E6EDDD', color: '#4F6138' }}>we are here</span>
+                    )}
+                  </td>
+                  <td className="py-2 pr-3 text-muted-foreground">{c.state}</td>
+                  <td className="py-2 pr-3 text-right">
+                    <span className="inline-flex items-center gap-2">
+                      <span
+                        className="inline-block h-2 rounded-full"
+                        style={{ width: `${Math.max(4, (c.overcrowdedPct ?? 0))}px`, backgroundColor: (c.overcrowdedPct ?? 0) >= 50 ? '#C45C3E' : '#BBA255' }}
+                      />
+                      <span className="tabular-nums font-semibold">{c.overcrowdedPct?.toFixed(0)}%</span>
+                    </span>
+                  </td>
+                  <td className="py-2 pr-3 text-right tabular-nums">{c.personsPerDwelling?.toFixed(1) ?? 'not held'}</td>
+                  <td className="py-2 text-right tabular-nums text-muted-foreground">{c.overcrowdedDwellings ?? 'not held'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          <div className="mt-4 rounded-lg border border-dashed p-5">
+            <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">What this data cannot do</p>
+            <dl className="mt-2 space-y-2 text-sm">
+              <div><dt className="inline font-semibold">Population. </dt><dd className="inline text-muted-foreground">{intel.quality.population}</dd></div>
+              <div><dt className="inline font-semibold">Employment. </dt><dd className="inline text-muted-foreground">{intel.quality.employment}</dd></div>
+              <div><dt className="inline font-semibold">Recycling. </dt><dd className="inline text-muted-foreground">{intel.quality.recycling}</dd></div>
+              <div><dt className="inline font-semibold">Health. </dt><dd className="inline text-muted-foreground">{intel.quality.health}</dd></div>
+              <div><dt className="inline font-semibold">Town camps. </dt><dd className="inline text-muted-foreground">Several Indigenous Locations explicitly exclude town camps, which is why Tennant Creek reads 10 per cent and Kalgoorlie 2. Those are not low-crowding places; the measure is looking past the part that matters.</dd></div>
+            </dl>
+          </div>
+        </section>
+      )}
 
       {/* The NT, specifically. */}
       <section className="mt-10">
