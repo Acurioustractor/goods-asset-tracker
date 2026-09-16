@@ -19,7 +19,12 @@ export interface FilmStep {
   voice?: { portrait?: string; name: string; role: string; community: string; quote: string };
 }
 
-export function StickyFilm({ src, poster, alt, credit, steps }: { src: string; poster: string; alt: string; credit?: string; steps: FilmStep[] }) {
+/**
+ * `scrim` darkens the film under the words. The default suits a dark film (the Kalgoorlie
+ * dump footage it was built for). Over a bright one, like the Tingkkarli sunset, the default
+ * leaves the text washed out and a logo almost invisible, so that caller passes 'heavy'.
+ */
+export function StickyFilm({ src, poster, alt, credit, steps, scrim = 'default' }: { src: string; poster: string; alt: string; credit?: string; steps: FilmStep[]; scrim?: 'default' | 'heavy' }) {
   const ref = useRef<HTMLVideoElement>(null);
   const host = useRef<HTMLDivElement>(null);
   const [motion, setMotion] = useState(false);
@@ -51,7 +56,14 @@ export function StickyFilm({ src, poster, alt, credit, steps }: { src: string; p
         <video ref={ref} className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${motion ? 'opacity-100' : 'opacity-0'}`} muted loop playsInline preload="metadata" poster={poster} aria-hidden="true">
           <source src={src} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-goods-ink/55 md:bg-transparent md:bg-gradient-to-r md:from-goods-ink/80 md:via-goods-ink/40 md:to-goods-ink/10" />
+        <div
+          className={
+            scrim === 'heavy'
+              ? 'absolute inset-0 bg-goods-ink/75 md:bg-transparent md:bg-gradient-to-r md:from-goods-ink md:via-goods-ink/80 md:to-goods-ink/45'
+              : 'absolute inset-0 bg-goods-ink/55 md:bg-transparent md:bg-gradient-to-r md:from-goods-ink/80 md:via-goods-ink/40 md:to-goods-ink/10'
+          }
+        />
+        {scrim === 'heavy' && <div className="absolute inset-0 bg-goods-ink/25" />}
         {credit && <p className="absolute bottom-4 right-6 text-xs text-goods-cream/70">{credit}</p>}
         </div>
       </div>
@@ -66,8 +78,10 @@ export function StickyFilm({ src, poster, alt, credit, steps }: { src: string; p
                     {step.voice.portrait && <Image src={step.voice.portrait} alt={step.voice.name} width={160} height={160} className="h-20 w-20 shrink-0 rounded-full object-cover ring-2 ring-goods-cream/60 sm:h-24 sm:w-24" />}
                     <div>
                       <blockquote className="font-display text-2xl leading-snug text-goods-cream md:text-3xl">“{step.voice.quote}”</blockquote>
+                      {/* Empty parts are dropped: some registry roles double as internal notes and
+                          are a sentence long, so a caller can pass '' and get a clean credit. */}
                       <figcaption className="mt-3 text-sm text-goods-cream/80">
-                        {step.voice.name} · {step.voice.role} · {step.voice.community}
+                        {[step.voice.name, step.voice.role, step.voice.community].filter(Boolean).join(' · ')}
                       </figcaption>
                     </div>
                   </figure>

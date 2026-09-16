@@ -1,0 +1,421 @@
+/**
+ * An idea, a program, a project, and now a 100% Indigenous not-for-profit, walked through over
+ * the Tennant Creek drone. Plus the funder who was there for all four.
+ *
+ * Ben, 16 September 2026: run the drone FULL SCREEN with a scrolling system for the moments,
+ * show the movement from an idea and a program to a project to the not-for-profit, name the
+ * different ways philanthropy supports us, and do not embed the recording. A quote and an image.
+ * So this is StickyFilm, the same pattern chapter 2 uses: the film pins to the viewport and the
+ * moments scroll over it. It has to sit OUTSIDE the chapter's max-w wrapper to go edge to edge.
+ *
+ * The film is Tingkkarli / Lake Mary Ann, five kilometres north of Tennant Creek, cut from the
+ * 3 April 2025 trip. Country with nobody in frame, and a publicly promoted recreation lake, so
+ * it raises no consent question of its own.
+ *
+ * NO DOLLAR FIGURES, same ruling as the rest of the funder surfaces. The argument is that Snow
+ * went first and then stayed. The size of the cheque is a different subject.
+ *
+ * Names and words come out of the registry. Nothing here is typed by hand:
+ * check-storyteller-registry.mjs fails the build on a non-external name appearing literally in
+ * a rendered surface, which caught two drafts of this component, once in a quote and once in a
+ * photo caption. Entity facts come from ORGANISATION so this cannot disagree with the footer.
+ */
+
+import Image from 'next/image';
+import { GRANTS_RECEIVED } from '@/lib/data/grants-received';
+import { ORGANISATION } from '@/lib/data/organisation';
+import { StickyFilm, type FilmStep } from '@/components/pitch/sticky-film';
+import { getStorytellerBySlug, type VoiceTier } from '@/lib/data/storyteller-registry';
+
+function registryQuote(slug: string, tier: VoiceTier, contains: string) {
+  const person = getStorytellerBySlug(slug);
+  if (!person || person.tier !== tier) return null;
+  // `primary` is the preferred quote, a stronger status than `approved`, so both count.
+  // Taking only `approved` silently dropped Patricia Frank's line off the page.
+  const quote = person.quotes.find(
+    (q) => (q.status === 'primary' || q.status === 'approved') && q.text.includes(contains),
+  );
+  return quote ? { person, quote } : null;
+}
+
+/**
+ * A funder's mark over the film. On a cream chip because these logos are dark artwork
+ * (FRRR's is dark green) and were unreadable sitting straight on the footage at h-7.
+ */
+const Mark = ({ src, alt }: { src: string; alt: string }) => (
+  <span className="mb-6 inline-flex items-center rounded-[10px] bg-goods-cream px-4 py-3">
+    <Image src={src} alt={alt} width={600} height={300} className="h-10 w-auto md:h-12" />
+  </span>
+);
+
+/** A second voice on a beat, with the portrait the registry holds for them. */
+const Aside = ({ v }: { v: { person: { name: string; role: string; community: string; portrait: string | null }; quote: { text: string } } }) => (
+  <figure className="m-0 mt-6 flex gap-4">
+    {v.person.portrait && (
+      <Image
+        src={v.person.portrait}
+        alt={v.person.name}
+        width={160}
+        height={160}
+        className="h-14 w-14 shrink-0 rounded-full object-cover"
+      />
+    )}
+    <div className={v.person.portrait ? '' : 'border-l-2 border-goods-terracotta pl-5'}>
+      <blockquote className="text-[17px] leading-relaxed text-goods-cream/90">&ldquo;{v.quote.text}&rdquo;</blockquote>
+      <figcaption className="mt-2 text-sm text-goods-cream/65">
+        {[v.person.name, v.person.role, v.person.community].filter(Boolean).join(' · ')}
+      </figcaption>
+    </div>
+  </figure>
+);
+
+const Beat = ({ n, when, title, children }: { n: string; when: string; title: string; children: React.ReactNode }) => (
+  <>
+    <p className="font-display text-sm text-goods-terracotta-light">
+      {n} · {when}
+    </p>
+    <h3 className="mt-2 font-display text-4xl font-semibold leading-[1.04] text-balance text-goods-cream md:text-5xl">{title}</h3>
+    <div className="mt-5 max-w-xl text-lg leading-relaxed text-goods-cream/90 md:text-xl">{children}</div>
+  </>
+);
+
+const WAYS = [
+  ['Catalytic capital', 'First money in, before there was anything to point at. Going first is the part that lets the next funder say yes, and almost nobody does it.'],
+  ['Relationships', 'The bed on the stage at Parliament House beside NACCHO and the Rheumatic Heart Disease Alliance. A door that money on its own cannot open.'],
+  ['Philanthropy', 'Paid for the learning: the travel, the prototypes that failed, the evidence systems. None of that is a cost a community buyer should be asked to carry.'],
+] as const;
+
+export function SnowArc() {
+  const funder = registryQuote('georgina-byron', 'funder', 'we can catalyse change');
+  const founder = registryQuote('nicholas-marchesi', 'internal', 'passionate leadership and generosity');
+  const georginaName = getStorytellerBySlug('georgina-byron')?.name ?? 'The Snow Foundation';
+  // The span of the Snow invoices comes from the reconciled list, so the sentence below moves
+  // when the books move. No amount, per the no-dollars ruling.
+  const snow = GRANTS_RECEIVED.find((g) => g.funder === 'Snow Foundation');
+  // The room in 2016 is the one Dr Boe Remenyi was speaking in, so the argument that started
+  // all of this belongs on this beat in their own words.
+  const remenyi = registryQuote('boe-remenyi', 'external', 'if you don');
+  // Aunty Vicki Wade was on the Parliament House panel. Her line about where funding has to
+  // land is the argument that beat is making, in the voice of someone who is not us.
+  const vicki = registryQuote('vicki-wade', 'external', 'funding needs to go directly to community');
+  // The design photograph is Dianne Stokes at the controls. She designed and named both
+  // products, and Pakkimjalki Kari is her Warumungu name for the machine.
+  const dianne = registryQuote('dianne-stokes', 'external', 'really makes me happy');
+  const dianneName = getStorytellerBySlug('dianne-stokes')?.name ?? '';
+  // Norman Frank Jupurrurla founded Wilya Janta, the community-designed housing movement at
+  // Tennant Creek that Snow backs alongside Goods. Georgina describes that house in her own
+  // recording, which is where the claim comes from.
+  const wilyaJanta = registryQuote('norman-frank', 'external', 'better future for our kids');
+  // Dianne Stokes designed and named both products. Pakkimjalki Kari is her Warumungu name for
+  // the washing machine, and the machine is the clearest thing Snow's money turned into.
+  // The two Elders in the photograph with Georgina and Sally, named by Ben on 16 September:
+  // Annie Morrison is the one wearing glasses, Patricia Frank is the other.
+  const patricia = registryQuote('patricia-frank', 'external', 'wash their blanket');
+  const annie = registryQuote('annie-morrison', 'external', 'important for the old people');
+  // Jimmy Frank is in photographs from the same trip and his line is about housing, so he
+  // stands beside Norman on the Wilya Janta moment, which keeps the section from growing
+  // another screen.
+  const jimmy = registryQuote('jimmy-frank', 'external', 'easier for our people to live in their homes');
+  // Jahvan Oui is what the Backing the Future youth grant produced. A different quote from the
+  // one on road stop 4, so the two surfaces do not print the same sentence twice.
+  const jahvan = registryQuote('jahvan-oui', 'external', 'listening to our stories');
+  // Linda Turner is in the waterhole photograph and her line is the reason Wilya Janta exists,
+  // so it sits on that beat under Norman's.
+  const linda = registryQuote('linda-turner', 'external', 'never been asked what sort of house');
+  const lindaName = getStorytellerBySlug('linda-turner')?.name ?? '';
+  const jimmyName = getStorytellerBySlug('jimmy-frank')?.name ?? '';
+  const patriciaName = getStorytellerBySlug('patricia-frank')?.name ?? '';
+  const annieName = getStorytellerBySlug('annie-morrison')?.name ?? '';
+
+  const steps: FilmStep[] = [
+    {
+      id: 'snow-idea',
+      body: (
+        <>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+            <Image src="/images/partners/snow-foundation-white.png" alt="Snow Foundation" width={2194} height={1056} className="h-11 w-auto md:h-14" />
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-terracotta-light">Who backed the experiment</p>
+          </div>
+          <div className="mt-8">
+            <Beat n="01" when="2016 to 2023" title="An idea">
+              <p>
+                It starts at the back of a room in 2016, hearing Dr Boe Remenyi explain that a washing machine and
+                reliable hot water are health hardware. Seven years later the question had become a bed, and Snow paid
+                the first invoice with nothing to show them but that question.
+              </p>
+              {snow && (
+                <p className="mt-4">
+                  Ten invoices followed, {snow.when}.
+                </p>
+              )}
+              {remenyi && <Aside v={remenyi} />}
+            </Beat>
+          </div>
+        </>
+      ),
+      image: {
+        src: '/images/media-pack/goods-early-2023-community.jpg',
+        alt: 'Two Elders sitting at a camp beside a tent with bedding on the ground, and Nic Marchesi standing, listening',
+        place: 'Listening at camp, 2023. No product, no register, no charity.',
+      },
+    },
+    {
+      id: 'snow-program',
+      body: (
+        <>
+          <Mark src="/images/partners/amp-foundation.png" alt="AMP Foundation" />
+          <Beat n="02" when="2024" title="A program">
+          <p>
+            A place in AMP&rsquo;s Tomorrow Makers Spark, and Snow invoices arriving through the years the bed went from
+            its first version to its fourth, and the washing machine went from an idea to a machine with a name.
+            {dianneName ? ` ${dianneName} designed it with them and named it Pakkimjalki Kari, in Warumungu.` : ''}
+          </p>
+          {dianne && <Aside v={dianne} />}
+          </Beat>
+        </>
+      ),
+      image: {
+        src: '/images/media-pack/speed-queen-controls.jpg',
+        alt: `${dianneName} at the controls of the washing machine during its design at Tennant Creek`,
+        place: `Designing the machine with ${dianneName}, who named it.`,
+      },
+    },
+    {
+      id: 'snow-on-country',
+      body: (
+        <>
+          <Beat n="03" when="April 2025" title="On Country">
+            <p>
+              Snow came to Tennant Creek and spent the days where the beds go, sitting down with the
+              people whose houses these are.
+            </p>
+          </Beat>
+          {patricia && <Aside v={patricia} />}
+        </>
+      ),
+      ...(annie
+        ? {
+            voice: {
+              portrait: annie.person.portrait ?? undefined,
+              name: annie.person.name,
+              role: annie.person.role,
+              community: annie.person.community,
+              quote: annie.quote.text,
+            },
+          }
+        : {}),
+      image: {
+        src: '/images/media-pack/sally-georgina-tennant-creek-jul-2025.jpg',
+        alt: `${georginaName}, Sally Grimsley-Ballard, ${patriciaName} and ${annieName} standing together on red dirt at Tennant Creek`,
+        place: `${georginaName} and Sally Grimsley-Ballard with ${patriciaName} and ${annieName}, Warumungu Country.`,
+      },
+    },
+    {
+      id: 'snow-wilya-janta',
+      body: (
+        <Beat n="04" when="Tennant Creek" title="Wilya Janta">
+          <p>
+            Snow backs Wilya Janta as well, the community-designed housing movement at Tennant Creek,
+            including a solar-powered house drawn by the people who will live in it. The same funder,
+            the same place, a different part of the same problem.
+          </p>
+          <p className="mt-4">
+            <a
+              href="https://wilyajanta.org/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[15px] underline decoration-goods-terracotta underline-offset-4 hover:text-goods-terracotta-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-goods-cream"
+            >
+              wilyajanta.org
+            </a>
+          </p>
+          {jimmy && <Aside v={jimmy} />}
+          {linda && <Aside v={linda} />}
+        </Beat>
+      ),
+      ...(wilyaJanta
+        ? {
+            voice: {
+              portrait: wilyaJanta.person.portrait ?? undefined,
+              name: wilyaJanta.person.name,
+              role: wilyaJanta.person.role,
+              community: wilyaJanta.person.community,
+              quote: wilyaJanta.quote.text,
+            },
+          }
+        : {}),
+      image: {
+        src: '/images/community/tennant-creek/waterhole-group.jpg',
+        alt: `Sally Grimsley-Ballard, ${jimmyName}, ${lindaName}, ${georginaName} and ${patriciaName} standing together on rock beside a waterhole at Tennant Creek`,
+        place: `Left to right: Sally Grimsley-Ballard, ${jimmyName}, ${lindaName}, ${georginaName}, ${patriciaName}. At the waterhole, Tennant Creek.`,
+      },
+    },
+    {
+      id: 'snow-trek',
+      body: (
+        <Beat n="05" when="August 2025" title="Alongside the doctors">
+          <p>
+            Goods travelled with the Deadly Heart Trek, the Snow-supported screening run across remote
+            Northern Territory communities. While the doctors screened for rheumatic heart disease, beds
+            went into houses in the same towns. A washable bed sits at the prevention end of that chain,
+            a long way upstream of a cardiologist.
+          </p>
+        </Beat>
+      ),
+      image: {
+        src: '/images/media-pack/deadly-heart-trek-aug-2025.jpg',
+        alt: 'The Deadly Heart Trek team together on the road, August 2025',
+        place: 'The Deadly Heart Trek, August 2025.',
+      },
+    },
+    {
+      id: 'snow-factory',
+      body: (
+        <>
+          <Mark src="/images/partners/tfn.svg" alt="The Funding Network" />
+          <Beat n="06" when="September 2025" title="A factory">
+          <p>
+            A room at The Funding Network&rsquo;s Healthy People Healthy Planet event paid for the
+            on-Country production plant. The money came from the people in that room on one night,
+            with Bupa matching what they gave, which is why it arrived in two payments.
+          </p>
+          </Beat>
+        </>
+      ),
+      image: {
+        src: '/images/process/factory-panorama.jpg',
+        alt: 'The containerised on-Country production plant, with the press and router inside',
+        place: 'The plant the room paid for.',
+      },
+    },
+    {
+      id: 'snow-palm-island',
+      body: (
+        <>
+          <Mark src="/images/partners/frrr.png" alt="FRRR" />
+          <Beat n="07" when="2025 to 2026" title="Palm Island">
+            <p>
+              FRRR and the Vincent Fairfax Family Foundation funded the Palm Island pilot through Backing
+              the Future, their youth program: 25 beds, three community sessions, thirty young people, and
+              Jahvan and Ebony hosted at the Sydney factory to learn the production side.
+            </p>
+          </Beat>
+        </>
+      ),
+      ...(jahvan
+        ? {
+            voice: {
+              portrait: jahvan.person.portrait ?? undefined,
+              name: jahvan.person.name,
+              // His registry role is a sentence that doubles as an internal note. The credit
+              // just needs his name and his place.
+              role: '',
+              community: jahvan.person.community,
+              quote: jahvan.quote.text,
+            },
+          }
+        : {}),
+      image: {
+        src: '/images/community/palm-island/panel-carry-aug-2025.jpg',
+        alt: 'Community members on Palm Island carrying a pressed recycled-plastic panel marked Goods x Snow Foundation',
+        place: 'Palm Island, 13 August 2025. The panel is pressed recycled plastic, and the mark on it reads Goods x Snow Foundation.',
+      },
+    },
+    {
+      id: 'snow-project',
+      body: (
+        <Beat n="08" when="2025 to 2026" title="Out in public">
+          <p>
+            Snow put the bed on the stage at Parliament House beside NACCHO and the Rheumatic Heart Disease
+            Alliance, and again in the middle of Canberra Airport for Reconciliation Week, where travellers
+            stopped and read why a washable bed has anything to do with a heart.
+          </p>
+          {vicki && <Aside v={vicki} />}
+        </Beat>
+      ),
+      image: {
+        src: '/images/media-pack/parliament-house-event-mar-2025.jpg',
+        alt: 'A panel on stage at Parliament House with Snow Foundation, NACCHO and RHD Alliance logos behind them, and a Goods Stretch Bed on the stage',
+        place: 'Parliament House. The bed is on the stage, bottom right.',
+      },
+    },
+    {
+      id: 'snow-charity',
+      body: (
+        <Beat n="09" when="2026" title="A 100% Indigenous not-for-profit">
+          <p>
+            The products, the making and the sales moved into the charity under an Indigenous board. A Curious Tractor
+            keeps the research and development.
+          </p>
+          <p className="mt-5 text-[15px] leading-snug text-goods-cream/75">
+            {ORGANISATION.legalName}. {ORGANISATION.identityLine} {ORGANISATION.charityLine}
+          </p>
+          <p className="mt-2 text-[15px] font-semibold leading-snug text-goods-terracotta-light">{ORGANISATION.boardLine}</p>
+        </Beat>
+      ),
+    },
+    {
+      id: 'snow-ways',
+      image: {
+        src: '/images/community/tennant-creek/wilya-janta-golden-hour.jpg',
+        alt: `Sally Grimsley-Ballard and ${georginaName} of the Snow Foundation with Nic Marchesi, in Wilya Janta shirts at Tennant Creek`,
+        place: `Sally Grimsley-Ballard, ${georginaName} and Nic Marchesi. Tennant Creek, last light.`,
+      },
+      body: (
+        <>
+          {founder && (
+            <figure className="m-0 mb-10">
+              <blockquote className="font-display text-2xl leading-snug text-balance text-goods-cream md:text-3xl">
+                &ldquo;{founder.quote.text}&rdquo;
+              </blockquote>
+              <figcaption className="mt-3 text-sm text-goods-cream/70">
+                {founder.person.name} · {founder.person.role}
+              </figcaption>
+            </figure>
+          )}
+          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-terracotta-light">
+            The three things philanthropy gave that a customer could not
+          </p>
+          <dl className="mt-5 space-y-5">
+            {WAYS.map(([title, body]) => (
+              <div key={title}>
+                <dt className="font-display text-xl font-semibold text-goods-cream">{title}</dt>
+                <dd className="mt-1 text-[16px] leading-relaxed text-goods-cream/85">{body}</dd>
+              </div>
+            ))}
+          </dl>
+        </>
+      ),
+    },
+    ...(funder
+      ? [
+          {
+            id: 'snow-voice',
+            body: (
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-goods-terracotta-light">
+                The funder, in her own words
+              </p>
+            ),
+            voice: {
+              portrait: funder.person.portrait ?? undefined,
+              name: funder.person.name,
+              role: funder.person.role,
+              community: funder.person.community,
+              quote: funder.quote.text,
+            },
+          } satisfies FilmStep,
+        ]
+      : []),
+  ];
+
+  return (
+    <StickyFilm
+      src="/video/tennant-creek/tingkkarli-drone.mp4"
+      poster="/video/tennant-creek/tingkkarli-drone-poster.jpg"
+      alt="Tingkkarli, Lake Mary Ann, north of Tennant Creek, at sunset from the air"
+      credit="Tingkkarli / Lake Mary Ann, Tennant Creek. 3 April 2025."
+      steps={steps}
+      scrim="heavy"
+    />
+  );
+}

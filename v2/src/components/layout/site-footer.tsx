@@ -7,20 +7,19 @@ import { usePathname } from 'next/navigation';
 import { FeedbackWidget } from '@/components/feedback/feedback-widget';
 import { NewsletterForm } from '@/components/layout/newsletter-form';
 
-const backedByPartners = [
+// PHILANTHROPY ONLY. Every logo here must have a matching line in
+// `grants-received.ts`. Centrecorp Foundation sat in this list until 2026-09-16:
+// they are a BUYER (107 beds on INV-0291), they have never given a grant, and
+// listing them as a backer overstated the philanthropic base by one on every
+// public page. A customer paying an invoice is a better story than a logo in the
+// wrong row, so they moved to `buyerPartners` below. Ruling: Ben, 2026-09-16.
+export const backedByPartners = [
   {
     name: 'Snow Foundation',
     src: '/images/partners/snow-foundation-mono.png',
     href: 'https://www.snowfoundation.org.au',
     width: 2194,
     height: 1056,
-  },
-  {
-    name: 'Centrecorp Foundation',
-    src: '/images/partners/centrecorp-foundation.jpg',
-    href: '/partners/centrecorp',
-    width: 400,
-    height: 240,
   },
   {
     name: 'The Funding Network',
@@ -49,6 +48,18 @@ const backedByPartners = [
     href: 'https://www.qbe.com/sustainability/qbe-foundation',
     width: 800,
     height: 220,
+  },
+];
+
+// Organisations that have BOUGHT beds. Not funders. Kept visually distinct from
+// "Backed by" so the page never blurs a customer into a donor.
+export const buyerPartners = [
+  {
+    name: 'Centrecorp Foundation',
+    src: '/images/partners/centrecorp-foundation.jpg',
+    href: '/partners/centrecorp',
+    width: 400,
+    height: 240,
   },
 ];
 
@@ -197,6 +208,7 @@ export function SiteFooter() {
         <div className="mt-12 border-t pt-8">
           <div className="flex flex-col items-center gap-6 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-12 sm:gap-y-6">
             <PartnerGroup label="Backed by" partners={backedByPartners} />
+            <PartnerGroup label="Buys from us" partners={buyerPartners} />
             <PartnerGroup label="Community partner" partners={communityPartners} />
           </div>
         </div>

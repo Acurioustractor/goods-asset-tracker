@@ -779,7 +779,9 @@ export const investmentCase = {
     { name: 'SEFA', type: 'Repayable finance, target $300K', status: 'Briefing' },
     { name: 'Snow Foundation', type: 'Multi-year LOI, target $100K', status: 'Pursuing' },
     { name: 'Centrecorp Foundation', type: 'Grant + bed order, target $75K', status: 'Pursuing' },
-    { name: 'The Funding Network', amount: '~$80K', type: 'Production facility', status: 'Completed' },
+    // $144,558 banked across two receipts (28 Nov and 19 Dec 2025, account 262), per
+    // grants-received.ts. Read '~$80K' until 2026-09-16, which understated it by $64,558.
+    { name: 'The Funding Network', amount: '$144,558', type: 'Production facility', status: 'Completed' },
   ],
 
   potentialFunders: [

@@ -10,6 +10,7 @@
 
 import { PLASTIC_KG_PER_BED } from './products';
 import { CANONICAL_ASSETS } from './asset-canonical';
+import { GRANTS_RECEIVED } from './grants-received';
 
 // ---------------------------------------------------------------------------
 // Advisory Board
@@ -244,20 +245,51 @@ export interface FundingRecord {
   notes?: string;
 }
 
+/**
+ * Contact metadata the reconciled grant list does not carry. Keyed by the exact
+ * `funder` string in grants-received.ts.
+ */
+const RECEIVED_EXTRAS: Record<string, Partial<FundingRecord>> = {
+  'Snow Foundation': {
+    contact: 'Sally Grimsley-Ballard',
+    contactEmail: 's.grimsley-ballard@snowfoundation.org.au',
+  },
+};
+
+/**
+ * Money actually received is DERIVED from grants-received.ts, never retyped here.
+ *
+ * Until 2026-09-16 this block was hand-maintained and had drifted three ways at once:
+ * The Funding Network read $130,000 against $144,558 banked; QBE Stage 1 read $10,000
+ * against $50,000; and FRRR and Vincent Fairfax were listed as two separate $50,000
+ * grants when they are ONE joint Backing the Future grant paid on INV-0253. The wiki
+ * warns about that double-count in five places and it was on the public /press page
+ * anyway, showing two backers where there is one.
+ *
+ * A hand-kept second copy of a reconciled figure is a drift generator. So there is
+ * one list, it is tied to the books, and this reads from it.
+ */
+const receivedFunding: FundingRecord[] = GRANTS_RECEIVED.map((g) => ({
+  id: g.funder.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '').slice(0, 40),
+  source: g.funder,
+  amount: g.amountAud,
+  program: g.source,
+  status: 'received' as const,
+  when: g.when,
+  ...RECEIVED_EXTRAS[g.funder],
+}));
+
 export const funding: FundingRecord[] = [
-  // Confirmed Received ($745,030+)
-  { id: 'snow-1', source: 'Snow Foundation', amount: 493130, program: 'Multiple grants + invoiced work, 3yr Xero total ($493,129.79, $0 outstanding — 2026-06-09 reconciliation, wiki/outputs/funder-reports/snow)', status: 'received', when: '2023–2026', contact: 'Sally Grimsley-Ballard', contactEmail: 's.grimsley-ballard@snowfoundation.org.au' },
-  { id: 'tfn', source: 'The Funding Network', amount: 130000, program: 'Pitch event', status: 'received', when: 'Sept 2025' },
-  { id: 'frrr', source: 'FRRR', amount: 50000, program: 'Backing the Future', status: 'received', when: '2025' },
-  { id: 'vfff', source: 'Vincent Fairfax Family Foundation', amount: 50000, program: 'Grant', status: 'received', when: '2025' },
-  { id: 'amp', source: 'AMP Spark', amount: 21900, program: 'Program funding', status: 'received', when: '2025' },
+  ...receivedFunding,
 
   // Pending / In Discussion
   { id: 'snow-4', source: 'Snow Foundation (R4/R5 fresh ask)', amount: 100000, status: 'pending', contact: 'Sally Grimsley-Ballard', notes: 'Per 2026-07-03 lead stack (SEFA $300K + Snow $100K + Centrecorp $75K = $475K). Historic Snow receipts sit in snow-1.' },
   { id: 'sefa', source: 'SEFA', amount: 500000, program: 'Social impact loan', status: 'pending', contact: 'Joel Bird', notes: '23 communications' },
   { id: 'real-alice', source: 'REAL Innovation Fund: Alice Springs', amount: 1200000, program: 'Federal grant, 3yr', status: 'pending', notes: 'EOI submitted Mar 2, DEWR. Alice Springs / Central Australia site pathway.' },
   { id: 'real-townsville', source: 'REAL Innovation Fund: Townsville', amount: 1200000, program: 'Federal grant, 3yr', status: 'pending', notes: 'EOI submitted Mar 2, DEWR. Townsville / North Queensland site pathway.' },
-  { id: 'qbe-1', source: 'QBE Foundation (Tranche 1)', amount: 10000, program: 'Grant', status: 'received', when: '2026' },
+  // QBE Foundation Stage 1 is a RECEIVED line and now comes from grants-received.ts
+  // ($50,000, the charity's FY26 statements). The $10,000 'Tranche 1' row that sat here
+  // was stale by $40,000.
   { id: 'qbe-2', source: 'QBE Foundation (Remaining)', amount: 140000, program: 'Grant', status: 'pending', notes: 'Est $140K remaining. QBE typically $100-250K for community resilience' },
   { id: 'sedg', source: 'Social Enterprise Development Grants', amount: 75000, program: 'Grant', status: 'pending', notes: 'Draft (82% fit)' },
 
@@ -377,7 +409,7 @@ export interface CommunityDeployment {
 // This array is the SINGLE source for the static deployed-bed count via
 // getDeploymentTotals(); content.ts derives its counts from EXPECTED_DEPLOYED_BEDS.
 export const deployments: CommunityDeployment[] = [
-  { id: 'palm-island', community: 'Palm Island', traditionalName: 'Bwgcolman', state: 'QLD', beds: 131, washers: 4, status: 'active', partner: 'PICC', contacts: ['Eb & Jahvan Oui'] },
+  { id: 'palm-island', community: 'Palm Island', traditionalName: 'Bwgcolman', state: 'QLD', beds: 131, washers: 5, status: 'active', partner: 'PICC', contacts: ['Eb & Jahvan Oui'] },
   { id: 'tennant-creek', community: 'Tennant Creek', traditionalName: 'Wumpurrarni', state: 'NT', beds: 160, washers: 9, status: 'active', partner: 'Wilya Janta', contacts: ['Norman Frank', 'Dr Simon Quilty'] },
   { id: 'alice-homelands', community: 'Alice Homelands', state: 'NT', beds: 16, washers: 1, status: 'active', partner: 'Oonchiumpa', contacts: ['Kristy Bloomfield'] },
   { id: 'maningrida', community: 'Maningrida', state: 'NT', beds: 58, washers: 8, status: 'active', partner: 'Homeland Schools Co.' },
@@ -419,8 +451,8 @@ export function getDeploymentTotals() {
 }
 
 // Same guard for washing machines. Per-community split is Ben's ruling of
-// 2026-07-21 (Maningrida 8, Tennant Creek 9, Palm Island 4, Alice Springs 1,
-// Darwin 0 = 22), superseding the old curated 20.
+// 2026-07-21 (Maningrida 8, Tennant Creek 9, Palm Island 5, Alice Springs 1,
+// Darwin 0 = 23 after the 2026-09-16 Palm Island amendment), superseding the old curated 20.
 {
   const sum = deployments.reduce((s, d) => s + d.washers, 0);
   if (sum !== CANONICAL_ASSETS.washersInCommunity) {
@@ -696,7 +728,7 @@ export const timeline: Milestone[] = [
   { date: 'Sept 2023', event: 'A Curious Tractor formally incorporated' },
   { date: '2024', event: 'Active bed pilots begin; 389 assets tracked in register' },
   { date: 'Oct 2024', event: 'Snow Foundation relationship begins' },
-  { date: 'Sept 2025', event: 'The Funding Network pitch: $130K raised (largest single raise)' },
+  { date: 'Sept 2025', event: 'The Funding Network pitch, Healthy People Healthy Planet: $144,558 banked across two receipts (largest single raise)' },
   { date: 'Jan 2026', event: '15–20 V4 Stretch Beds deployed with ~8 families; Centre Corp approves 107 beds' },
   { date: 'Late Jan 2026', event: 'Nic travels to Alice Springs + Tennant Creek; builds 5 washing machines with Bloomfield family' },
   { date: 'Feb 2026', event: 'Envirobank recycled HDPE supply partnership discussions; Snow Q4 proposal submitted' },

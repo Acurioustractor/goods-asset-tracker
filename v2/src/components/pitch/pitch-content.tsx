@@ -12,6 +12,10 @@ import { StickyFilm } from '@/components/pitch/sticky-film';
 import { TenYearSlider } from '@/components/pitch/ten-year-slider';
 import { VideoModal } from '@/components/pitch/video-modal';
 import { Voice, leadVoice } from '@/components/pitch/voice';
+import { FunderMomentBlock } from '@/components/pitch/funder-moment';
+import { FundersSoFar } from '@/components/pitch/funders-so-far';
+import { SnowArc } from '@/components/pitch/snow-arc';
+import { funderMomentFor } from '@/lib/data/funder-moments';
 import { MadeWithCommunity } from '@/components/pitch/made-with-community';
 import { contributionsConfirmed, listeningPlaces, listeningVoices } from '@/lib/data/community-contributions';
 import { ProductVideo } from '@/components/shop/product-video';
@@ -431,6 +435,7 @@ export async function PitchContent({ variant }: { variant: PitchVariant }) {
             <SectionHead number={4} title={ORIGIN.headline} dark />
             <p className="mt-6 max-w-3xl font-display text-2xl leading-snug text-goods-cream/95 md:text-3xl">{ORIGIN.studio}</p>
             <p className="mt-6 max-w-3xl text-lg leading-relaxed text-goods-cream/85">{ORIGIN.body}</p>
+
           </div>
         </div>
 
@@ -485,7 +490,12 @@ export async function PitchContent({ variant }: { variant: PitchVariant }) {
             </div>
             <p className="w-full text-center text-sm text-goods-cream/80 sm:w-auto">{ORIGIN.graduated}</p>
           </div>
+
         </div>
+
+        {/* Full bleed, so it sits OUTSIDE the max-w wrapper above. The handover is stated in
+            that band; this is who paid across the whole of it. */}
+        <SnowArc />
       </section>
 
       {/* S05 · Governance and people */}
@@ -533,6 +543,9 @@ export async function PitchContent({ variant }: { variant: PitchVariant }) {
         <ol className="mt-14 space-y-14 md:space-y-20">
           {roadStops.map((stop, i) => {
             const v = leadVoice(stop);
+            // The funder who paid for this stop, rendered inside it. See funder-moments.ts
+            // for why this is not a logo row at the end of the page.
+            const funder = funderMomentFor(stop.id);
             const o = ROAD_OVERRIDES[stop.id] ?? {};
             const photo = o.photo ?? { src: stop.photo, alt: stop.photoAlt };
             const gallery = o.gallery ?? stop.gallery ?? [];
@@ -575,6 +588,7 @@ export async function PitchContent({ variant }: { variant: PitchVariant }) {
                         <Voice person={v.person} quote={v.quote} />
                       </div>
                     )}
+                    {funder && <FunderMomentBlock moment={funder} />}
                   </MobileReadMore>
                 </div>
               </li>
@@ -860,6 +874,9 @@ export async function PitchContent({ variant }: { variant: PitchVariant }) {
       <Section id="money" number={15} title="Keep each dollar in its own lane.">
         <p className="mt-6 max-w-3xl text-lg leading-relaxed text-[#4a4741] md:text-xl">Philanthropy buys the first beds. QBE builds the two facilities. A loan carries the first-year running cost and is repaid from the beds Goods sells. Customers pay the community organisation, and that money stays there.</p>
         <MoneyLanesView lanes={isQbe ? MONEY_LANES : MONEY_LANES.map((l) => ({ ...l, source: { ...l.source, named: "" } }))} never={MONEY_NEVER} total={MONEY_TOTAL} split={BED_SPLIT} price={BED.priceAud} ways={BED_WAYS} named={isQbe} />
+        {/* Money RECEIVED, which unlike the lanes above carries no confidentiality
+            problem, so it is named on both doors. See funders-so-far.tsx. */}
+        <FundersSoFar />
       </Section>
 
       {/* S16 · Capital status, QBE door only */}

@@ -302,9 +302,13 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
   },
   {
     slug: 'jimmy-frank',
-    name: 'Jimmy Frank',
-    aliases: ['Jimmy Frank Jupurrurla'],
-    role: 'Traditional Owner, Cultural Liaison',
+    // Corrected 2026-09-16 by Ben. He is Jimmy Frank Jupurrurla, and the title that matters
+    // is Chair of Wilya Janta: he chairs the community-designed housing movement that appears
+    // on the pitch beside this work, which "Traditional Owner, Cultural Liaison" did not say.
+    // Full description in `notes`; the role stays short because it renders in credit lines.
+    name: 'Jimmy Frank Jupurrurla',
+    aliases: ['Jimmy Frank'],
+    role: 'Chief Cultural Officer and Chair of Wilya Janta',
     community: 'Tennant Creek',
     tier: 'external',
     turns: 'strengthens 1, 5',
@@ -337,7 +341,12 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
     ],
     bannedFragments: ['weave a bed', 'Weave Bed Co-designer'],
     portrait: '/images/people/jimmy-frank.jpg',
-    notes: 'His Weave Bed line is never used: the product is discontinued (removed from compendium 2026-07-12).',
+    notes:
+      'His Weave Bed line is never used: the product is discontinued (removed from compendium 2026-07-12). ' +
+      'Name and titles corrected by Ben on 16 September 2026: he is Jimmy Frank Jupurrurla, Chief Cultural ' +
+      'Officer and Chair of Wilya Janta, a Warumungu Emerging Leader and a spokesman for Tennant Creek. The ' +
+      'old record read "Jimmy Frank, Traditional Owner, Cultural Liaison", which understated the role; that ' +
+      'spelling is now an alias.',
   },
   {
     slug: 'annie-morrison',
@@ -1265,6 +1274,45 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
     notes: 'Quote recovered 2026-07-21 from Georgina misfiling; earlier "no usable transcript" note superseded.',
   },
 
+  {
+    slug: 'vicki-wade',
+    name: 'Aunty Vicki Wade',
+    aliases: ['Vicki Wade', 'Associate Professor Vicki Wade'],
+    role: 'Senior Noongar Woman, Co-Chair of Deadly Hearts',
+    community: 'Deadly Heart Trek',
+    tier: 'external',
+    quotes: [
+      {
+        text: 'We are not on track to eliminate rheumatic heart disease by 2031. And we\'ve signed up to it. Australia signed up at the World Health Assembly in 2018 to eliminate rheumatic heart disease in Australia by 2031. We cannot be complacent now. Now is the time to ramp up efforts and we need funding. And the funding needs to go directly to community.',
+        context: 'What the money has to do, and where it has to land. The clearest statement in the record of why a funder matters here.',
+        status: 'primary',
+      },
+      {
+        text: 'When we go into community, particularly my old Nan Lily, she said, you go in there with your eyes and you go in there with your ears. And you keep that mouth shut.',
+        context: 'How to enter community. Her grandmother\'s instruction, and the Trek\'s working rule.',
+        status: 'approved',
+      },
+      {
+        text: 'I never go onto country unless I am welcomed by traditional owners.',
+        context: 'Cultural protocol on the Trek',
+        status: 'approved',
+      },
+      {
+        text: 'Community leadership, community ownership, our mob is smart. We got a lot of real deadly people out there in communities that know what the community want and how they can get the resources from that community to make a difference.',
+        context: 'Community ownership, in her words',
+        status: 'approved',
+      },
+    ],
+    portrait: '/images/people/vicki-wade.jpg',
+    notes:
+      'Added 2026-09-16 from a transcript and portrait Ben supplied. A PRACTITIONER and advocate, not a Goods ' +
+      'community recipient, and must be labelled that way on any surface (the same rule as Dr Boe Remenyi). ' +
+      'Co-Chair of Deadly Hearts and an Associate Professor at Menzies School of Health Research; she was on the ' +
+      'Parliament House panel with Snow, NACCHO and the RHD Alliance. Her own spelling is Aunty Vicki Wade. ' +
+      'The 2031 elimination target and the 2018 World Health Assembly commitment are HER statements: quote her, ' +
+      'and do not restate either as a Goods figure without a citation.',
+  },
+
   // ── Funder-only ──────────────────────────────────────────────────────────
   {
     slug: 'georgina-byron',
@@ -1274,15 +1322,85 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
     tier: 'funder',
     quotes: [
       {
-        text: 'Our role is to plug the gaps. There\'s quite a few gaps to plug. We can\'t do it all, but we can do our bit.',
-        context: 'Funder rationale',
+        text: "Our role is to plug the gaps. There's quite a few gaps to plug. So we can't do it all. We can do our bit. And we can catalyse others to do their bit as well.",
+        context: 'Funder rationale, and the catalytic role in her own words',
         status: 'approved',
+        note: 'RESTORED 2026-09-16 from the "Georgina Reflections" transcript. The earlier stored version stopped at "we can do our bit" and dropped the catalyse clause, which is the point of the quote. Do not re-truncate.',
       },
       {
         text: 'To have healthy kids grow up to be healthy parents and uncles and aunties: that is the goal, isn\'t it?',
         context: 'Intergenerational wellbeing',
         status: 'approved',
       },
+      {
+        text: "The reaction has been so overwhelmingly positive and for me to get that insight is just, validated what they're doing.",
+        context: 'Seeing community response to the beds on the Tennant Creek trip; funder validation in her own words.',
+        status: 'approved',
+      },
+      {
+        text: "For me, I wanted to see how the beds would be received and for me it was an overwhelming, yes, we want and need these beds ... And you're doing it with community. It's not a for, it's a with, and that's really important too.",
+        context: "Her closing verdict on the trip; the with-not-for line lands the design-with-community principle from a funder's mouth.",
+        status: 'approved',
+      },
+
+      // ── Added 2026-09-16 from the "Georgina Reflections" transcript (Descript QOpJepwNzo9).
+      // These are the catalytic-capital and backing-the-founder lines. Ben asked for that
+      // frame on 2026-09-16; it is hers, not ours, which is why it can be quoted rather
+      // than asserted. Clipped where noted to avoid the retired word "empowering".
+      {
+        text: "I think that's our bit, we can catalyse change. We are not government. We are never gonna be into housing, but we can do our little bit and share that.",
+        context: 'What catalytic capital means to Snow, said plainly',
+        status: 'approved',
+      },
+      {
+        text: 'It\'s also about backing really great people.',
+        context: "Snow's second objective. Clipped: the preceding clause carries the retired word \"empowering\".",
+        status: 'approved',
+      },
+      {
+        text: 'We look at ... backing entrepreneurs because we are well aware that social change requires innovation and great people to take those risks.',
+        context: 'Why Snow backs founders. Ellipsis replaces the retired word "empowering"; the omission is marked, not silent.',
+        status: 'approved',
+      },
+      {
+        text: "So you start small and then you realize that you're onto a good thing.",
+        context: 'How the Snow support grew from the first small grant into ten invoices over three years',
+        status: 'approved',
+      },
+      {
+        text: "It's one home, but it is gonna make an extraordinary difference ... And one home, there'll be another home, and then there'll be another, and then there'll be more.",
+        context: 'On the community-designed house at Tennant Creek. Her own replication logic, about a house rather than a facility; do not restate it as a claim about Goods facilities.',
+        status: 'approved',
+      },
+      {
+        text: 'Healthy homes is the start of everything, because you need to have a home that you can call home ... and you\'re free from mites in your home and in your walls and in your bed.',
+        context: 'The scabies prevention chain stated by the funder. Usable precisely because it is her framing, not a health outcome claimed by Goods.',
+        status: 'approved',
+      },
+      {
+        text: "We've been, as a foundation, very committed to rheumatic heart disease for 12, 13 years, and we've just done a new strategy and we're committed another five.",
+        context: 'Sizes the conviction behind the Goods support. Check the "another five" is still current before printing it.',
+        status: 'approved',
+      },
+      {
+        text: 'I always come thinking I know a bit, but I always come away thinking I don\'t know very much at all, but I know a little bit more every time.',
+        context: 'On cultural learning across repeat visits to Tennant Creek',
+        status: 'approved',
+      },
+      {
+        text: 'People are curious. I\'m from Gadigal land in Sydney: what were you doing in Tennant Creek? What did you hear? What did you learn? It\'s my job to share that.',
+        context: 'Her own account of taking what she saw back to Sydney and to the Snow board.',
+        status: 'hold',
+        note: 'HOLD on verbatim only: the auto-transcript renders Gadigal as "Gal Land". The sense is not in doubt, the spelling is. Check against the QOpJepwNzo9 audio, then promote to approved.',
+      },
+      {
+        text: 'I think philanthropy is gaining momentum in the understanding of Indigenous communities, and the momentum has accelerated with the First Nations referendum. Whilst it was no, and I personally and many were devastated ... philanthropy recognises it has a responsibility to keep doing work in First Nations space.',
+        context: 'Sector-level reflection on philanthropy after the referendum',
+        status: 'hold',
+        note: 'HOLD, two reasons. It is politically sensitive and it is a statement about the sector rather than about Goods, so it is Snow\'s to publish, not ours. Needs Snow comms sign-off AND an audio check before any external use.',
+      },
+
+      // ── Retired / reattributed ──
       {
         text: 'It\'s about empowering communities. They want those beds, and it\'s about supporting inspirational entrepreneurs like Ben.',
         context: 'On Goods on Country',
@@ -1291,48 +1409,20 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
       },
       {
         text: "We've waited so long for this house and no one in Alice Springs would touch it. Get two bloke to bring five contractors in that like, ... done in a week.",
-        context: "Contrasting years of service-system inaction with the one-week community build.",
+        context: 'Contrasting years of service-system inaction with the one-week community build.',
         status: 'hold',
-        note: 'Speaker attribution unconfirmed: sounds like a community voice from the same trip transcript that carried the two misfiled quotes (moved to Kylie/Katherine 2026-07-21). Confirm it is actually Georgina before use.',
-      },
-      {
-        text: "The reaction has been so overwhelmingly positive and for me to get that insight is just, validated what they're doing.",
-        context: "Seeing community response to the beds on the Tennant Creek trip; funder validation in her own words.",
-        status: 'approved',
-      },
-      {
-        text: "For me, I wanted to see how the beds would be received and for me it was an overwhelming, yes, we want and need these beds ... And you're doing it with community. It's not a for, it's a with, and that's really important too.",
-        context: "Her closing verdict on the trip; the with-not-for line lands the design-with-community principle from a funder's mouth.",
-        status: 'approved',
-      },
-      {
-        text: "my mum gets the phone call and she's like, your uncle said they had the best night's sleep just outta these beds, made outta crates with the cushion and the thing. It's like unreal, unreal. The impact that ... you have",
-        context: "Kylie recounts family feedback after Sarah (a nurse volunteer, 'adopted daughter') built beds for extended family at Utopia community.",
-        status: 'approved',
-      },
-      {
-        text: "We've waited so long for this house and no one in Alice Springs would touch it. Get two bloke to bring five contractors in that like, ... done in a week.",
-        context: "Contrasting years of service-system inaction with the one-week community build.",
-        status: 'approved',
-      },
-      {
-        text: "The reaction has been so overwhelmingly positive and for me to get that insight is just, validated what they're doing.",
-        context: "Seeing community response to the beds on the Tennant Creek trip; funder validation in her own words.",
-        status: 'approved',
-      },
-      {
-        text: "For me, I wanted to see how the beds would be received and for me it was an overwhelming, yes, we want and need these beds ... And you're doing it with community. It's not a for, it's a with, and that's really important too.",
-        context: "Her closing verdict on the trip; the with-not-for line lands the design-with-community principle from a funder's mouth.",
-        status: 'approved',
-      },
-      {
-        text: "The goods project Nick and Ben, and together with the family built a bed ... just seeing that family jump on that bed and do it together and have a bit of a laugh and just felt really, you know, welcoming and warm. So that was really special.",
-        context: "Katherine, on the Deadly Heart Trek: watching a family build a Basket Bed together.",
-        status: 'approved',
+        note: 'Speaker attribution unconfirmed: sounds like a community voice from the same trip transcript that carried the two misfiled quotes (moved to Kylie/Katherine 2026-07-21). Confirm it is actually Georgina before use. 2026-09-16: a SECOND copy of this same line sat here at status approved, which would have published a line this note says is unconfirmed. The approved copy was deleted; default-deny wins.',
       },
     ],
-    portrait: null,
-    notes: 'Funder testimonial only, clearly labelled. NEVER in the community storyteller set. 2026-07-21: two misfiled quotes moved out (Kylie Bloomfield, Katherine of the Deadly Heart Trek) per Ben; one further quote put on hold pending speaker confirmation.',
+    portrait: '/images/people/georgina-byron.jpg', // Supplied by Ben 2026-09-16, Deadly Heart Trek portrait sitting.
+    notes:
+      'Funder testimonial only, clearly labelled. NEVER in the community storyteller set. ' +
+      '2026-07-21: two misfiled quotes were reattributed to Kylie Bloomfield and Katherine (Deadly Heart Trek). ' +
+      '2026-09-16: that cleanup turned out to be half done. The reattributed lines were COPIED to the new records ' +
+      'but never deleted from here, so two community voices whose own records are tier `hold` were still sitting in ' +
+      'this record at status `approved`, publishable through a `funder` tier that is not theirs. Both are now deleted ' +
+      'from here and live only on their own records. Three exact duplicate quotes were also collapsed. ' +
+      'See the no-quote-belongs-to-two-people guard in consent.guards.test.ts, which now fails if this recurs.',
   },
   {
     slug: 'katherine-deadly-heart-trek',
@@ -1359,9 +1449,28 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
     role: 'Co-founder',
     community: 'Goods team',
     tier: 'internal',
-    quotes: [],
+    quotes: [
+      {
+        text: 'The moment was a surreal take back to 2016 when Lucas Patchett OAM and I were at the back of a room where we first heard Bo Remenyi talk about rheumatic heart disease.',
+        context: 'Where it starts. Nic and Lucas Patchett hearing Dr Boe Remenyi explain that a washing machine and reliable hot water are health hardware, seven years before the first Goods invoice.',
+        status: 'approved',
+      },
+      {
+        text: 'So last week I was up the back of this room with tears of pride for what we have done and tears for why we are still talking about this.',
+        context: 'Ten years on, in another room with Dr Boe Remenyi, Georgina Byron AM, Viki Wade, Adjunct Professor Maree Meredith and Sally Grimsley-Ballard.',
+        status: 'approved',
+      },
+      {
+        text: 'If it was not for the passionate leadership and generosity of Georgina Byron AM I am really not sure we would have progressed anywhere near what has been done.',
+        context: 'The co-founder on the funder. The clearest statement anywhere in the record of what catalytic capital actually did here.',
+        status: 'approved',
+      },
+    ],
     portrait: null,
-    notes: 'Filtered out of public storyteller grids.',
+    notes:
+      'Filtered out of public storyteller grids: tier `internal` means he is team, never a community storyteller, and the Voice component (tier `external`) will not render him. A surface that wants his words has to say Co-founder next to them. ' +
+      'Quotes added 2026-09-16, verbatim from his own public LinkedIn post about the Orange Sky NIAA grants and the RHD room. Provenance is that post, so nothing here needs a separate consent decision. ' +
+      'The post also carries "between 2017 and 2022, First Nations peoples accounted for 92% of acute rheumatic fever cases in Australia". That figure is deliberately NOT lifted into canon: he cites no source for it, no surface in this repo carries it, and scabies-to-RHD is the why and never a claimed outcome. Quote him saying it if it is needed; do not restate it as our own number without a citation.',
   },
   // ── Palm Island ──────────────────────────────────────────────────────────
   {
@@ -1486,6 +1595,18 @@ for (const rec of STORYTELLER_REGISTRY) {
 export function getStoryteller(name: string | null | undefined): StorytellerRecord | undefined {
   if (!name) return undefined;
   return byName.get(normalise(name));
+}
+
+const bySlug = new Map(STORYTELLER_REGISTRY.map((rec) => [rec.slug, rec]));
+
+/**
+ * Look a record up by its stable slug rather than its display name. Names carry honorifics
+ * and spellings that get edited; slugs do not. Callers that store a reference to a person in
+ * data (rather than reading a name out of a transcript) should use this, so a title change
+ * cannot silently turn a resolved person into `undefined`.
+ */
+export function getStorytellerBySlug(slug: string | null | undefined): StorytellerRecord | undefined {
+  return slug ? bySlug.get(slug) : undefined;
 }
 
 /** Tier check that understands aliases. Unknown names return 'hold' (default-deny). */

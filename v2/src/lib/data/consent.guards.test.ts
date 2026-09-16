@@ -226,4 +226,69 @@ describe('registry data integrity', () => {
       'a held voice has a usable quote and is not a known pending decision. Get the tier ruling before this line reaches a deck, then add the slug here or change the tier.',
     ).toEqual([]);
   });
+
+  it('no line of speech is filed under two different people', () => {
+    // Found in production data on 2026-09-16. The 2026-07-21 cleanup COPIED two
+    // misfiled quotes onto new records (Kylie Bloomfield, Katherine of the Deadly
+    // Heart Trek) but never deleted them from Georgina Byron's record. Both new
+    // records are tier 'hold'. Georgina's is tier 'funder'. Tier is resolved by
+    // NAME, so those two community members' words stayed publishable through a
+    // funder's entry, with her name and role attached, for eight weeks.
+    //
+    // This is worse than a duplicate. It is an attribution error and a consent
+    // bypass at the same time: the wrong person is credited AND the real
+    // speaker's own hold is routed around. A reattribution is not done until the
+    // line is deleted from where it used to be, and that is what this asserts.
+    const seen = new Map<string, string[]>();
+    for (const rec of STORYTELLER_REGISTRY) {
+      for (const q of rec.quotes) {
+        // Normalise so whitespace or a stray ellipsis edit cannot hide a copy.
+        const key = q.text.toLowerCase().replace(/\s+/g, ' ').replace(/[^a-z0-9 ]/g, '').trim();
+        if (!key) continue;
+        if (!seen.has(key)) seen.set(key, []);
+        const owners = seen.get(key)!;
+        if (!owners.includes(rec.slug)) owners.push(rec.slug);
+      }
+    }
+
+    const shared = [...seen.entries()]
+      .filter(([, owners]) => owners.length > 1)
+      .map(([key, owners]) => `${owners.join(' + ')} :: "${key.slice(0, 70)}..."`);
+
+    expect(
+      shared,
+      'the same words are filed under more than one speaker. Decide who said it, then DELETE it from the other record. Copying a quote to its rightful owner without removing the original leaves a consent bypass behind.',
+    ).toEqual([]);
+  });
+
+  it("the same quote is not held and approved at once under one speaker", () => {
+    // The other half of the same 2026-09-16 finding. Georgina's record carried
+    // the "we've waited so long for this house" line twice: once at 'hold' with
+    // a note saying the speaker was unconfirmed, once at 'approved'. Any reader
+    // that takes the first match, or filters on status === 'approved', publishes
+    // a line the registry itself says is not confirmed.
+    //
+    // Default-deny means the strictest status for a given line wins. Two copies
+    // at different statuses is not a decision, it is an unresolved argument.
+    const conflicts: string[] = [];
+    for (const rec of STORYTELLER_REGISTRY) {
+      const byText = new Map<string, Set<string>>();
+      for (const q of rec.quotes) {
+        const key = q.text.toLowerCase().replace(/\s+/g, ' ').replace(/[^a-z0-9 ]/g, '').trim();
+        if (!key) continue;
+        if (!byText.has(key)) byText.set(key, new Set());
+        byText.get(key)!.add(q.status);
+      }
+      for (const [key, statuses] of byText) {
+        if (statuses.size > 1) {
+          conflicts.push(`${rec.slug}: "${key.slice(0, 50)}..." is both ${[...statuses].sort().join(' and ')}`);
+        }
+      }
+    }
+
+    expect(
+      conflicts,
+      'one line carries two different statuses under the same speaker. Keep the strictest and delete the rest.',
+    ).toEqual([]);
+  });
 });

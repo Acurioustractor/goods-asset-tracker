@@ -160,13 +160,32 @@ export const curatedQuotes: Record<string, CuratedQuote[]> = {
   // banned pitch word "empowering". Registry storyteller-registry.ts:1242 keeps the verbatim
   // record at status 'retired'. Do not reinstate.
   'Georgina Byron AM': [
+    // The catalyse clause is load-bearing. It was missing here until 2026-09-16, which
+    // left the funder-rationale quote reading as modesty when it is a description of
+    // catalytic capital. See storyteller-registry.ts for the consent record.
     {
-      text: 'Our role is to plug the gaps. There\'s quite a few gaps to plug. We can\'t do it all, but we can do our bit.',
+      text: 'Our role is to plug the gaps. There\'s quite a few gaps to plug. So we can\'t do it all. We can do our bit. And we can catalyse others to do their bit as well.',
       context: 'Funder rationale',
+    },
+    {
+      text: 'I think that\'s our bit, we can catalyse change. We are not government. We are never gonna be into housing, but we can do our little bit and share that.',
+      context: 'What catalytic capital means',
+    },
+    {
+      text: 'We look at ... backing entrepreneurs because we are well aware that social change requires innovation and great people to take those risks.',
+      context: 'Why Snow backs founders',
+    },
+    {
+      text: 'So you start small and then you realize that you\'re onto a good thing.',
+      context: 'How the support grew',
     },
     {
       text: 'To have healthy kids grow up to be healthy parents and uncles and aunties: that is the goal, isn\'t it?',
       context: 'Intergenerational wellbeing',
+    },
+    {
+      text: 'For me, I wanted to see how the beds would be received and for me it was an overwhelming, yes, we want and need these beds ... And you\'re doing it with community. It\'s not a for, it\'s a with, and that\'s really important too.',
+      context: 'Her verdict on the Tennant Creek trip',
     },
   ],
 
