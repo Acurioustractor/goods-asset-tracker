@@ -33,6 +33,34 @@ describe('snow partnership report', () => {
     expect(re.test('/partners/centrecorp'), 'the public partner page must stay open').toBe(false);
   });
 
+  it('the marketing nav is suppressed on the report', () => {
+    // It shipped with "Buy a bed" and a cart above a private funder report. The rule already
+    // existed for the dashboard; this route was simply missed, so assert the pattern itself.
+    const chrome = readFileSync(join(process.cwd(), 'src/components/layout/conditional-chrome.tsx'), 'utf8');
+    const line = chrome.split('\n').find((l) => l.includes('STANDALONE_PATH_PATTERNS') && l.includes('['));
+    expect(line, 'the standalone pattern list has moved or been renamed').toBeTruthy();
+    const src = line!.slice(line!.indexOf('/^'), line!.lastIndexOf('/'));
+    const re = new RegExp(src.slice(1));
+    expect(re.test('/partners/snow/story'), 'the report still carries the marketing nav').toBe(true);
+    expect(re.test('/partners/snow/dashboard'), 'the dashboard rule was broken').toBe(true);
+    expect(re.test('/partners/centrecorp'), 'public partner pages must keep the chrome').toBe(false);
+  });
+
+  it('the pinned films use a layout that actually pins', () => {
+    // -mt-screen is not a Tailwind class. It silently did nothing, the steps fell below the
+    // film instead of over it, and -z-10 put the film behind the page background, so the
+    // whole chapter rendered as cream text on cream. Assert the working pattern from
+    // sticky-film.tsx instead of trusting the next edit.
+    const raw = readFileSync(join(process.cwd(), 'src/components/partners/place-films.tsx'), 'utf8');
+    // Strip comments first: the file explains this bug in prose, and a guard that matches its
+    // own explanation is a guard that can never be satisfied.
+    const film = raw.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '');
+    expect(film).toContain('-mt-[100svh]');
+    expect(film).toContain('sticky top-0');
+    expect(film, 'a negative z-index hides the film behind the page background').not.toContain('-z-10');
+    expect(film, '-mt-screen is not a Tailwind class').not.toContain('-mt-screen');
+  });
+
   it('every moment is dated, sourced and sortable', () => {
     for (const m of TOGETHER) {
       expect(m.when, `${m.title} has no date`).toMatch(/^\d{4}-\d{2}-\d{2}$/);

@@ -33,7 +33,9 @@ const STANDALONE_PATH_PREFIXES = [
 // dashboard (/partners/<slug>/dashboard) is a confidential, full-page funder
 // experience with its own header, so it must NOT carry the marketing nav, cart, or
 // "Buy Now". The PUBLIC partner pages (/partners/centrecorp etc.) keep the chrome.
-const STANDALONE_PATH_PATTERNS = [/^\/partners\/[^/]+\/dashboard(\/|$)/];
+// `story` added 2026-09-16 with the Snow partnership report, which is the same kind of thing
+// and was shipping with "Buy a bed" and a cart above a private funder report.
+const STANDALONE_PATH_PATTERNS = [/^\/partners\/[^/]+\/(dashboard|story)(\/|$)/];
 
 // Routes where the global ImpactBanner competes with page-specific stats.
 // These pages carry their own product/place numbers, so suppress the global strip.

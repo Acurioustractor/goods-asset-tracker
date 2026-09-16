@@ -1,22 +1,19 @@
 'use client';
 
 /**
- * The opening. A headline beside a mosaic of the archive that quietly changes while you read.
+ * The opening: a full-bleed aerial with the title on it, and the archive running underneath.
  *
- * Ben, 16 September 2026: the hero was a headline on cream with half the screen empty, and
- * this report is about two years of being in places together. So the places are the hero.
+ * The first attempt put a mosaic beside the headline and Ben did not like it, which was fair.
+ * A grid of nine small tiles next to text reads as a component where an opening was wanted.
+ * This is one image at full height with the words over it, in the same register as /pitch, and
+ * the photographs get their own band below where they can be big enough to read.
  *
- * How it behaves. Nine tiles, one of which runs the Gamardi film muted and looping so there
- * is motion without a full-screen video fighting the words. Every few seconds one tile, never
- * the film and never the tile you are pointing at, crossfades to another frame from the pool.
- * Pointing at a tile or tabbing to it holds it still and names it, because a photograph that
- * changes while you are reading its caption is worse than one that never moved.
- *
- * Reduced motion turns the whole thing into a still grid. No crossfade, no cycling, and the
- * film gets its poster instead of playing. The page loses nothing that carries meaning.
+ * The band scrolls on its own and stops the moment you point at it or tab into it, so nothing
+ * moves out from under someone reading a caption. Reduced motion never starts it and turns it
+ * into a normal horizontally scrollable strip, which loses nothing.
  */
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
 export interface HeroFrame {
@@ -24,20 +21,6 @@ export interface HeroFrame {
   alt: string;
   caption: string;
 }
-
-/** Tiles that keep their place in the grid. The film sits at index 0 and never cycles. */
-const SPANS = [
-  'col-span-2 row-span-2',
-  'col-span-1 row-span-1',
-  'col-span-1 row-span-1',
-  'col-span-1 row-span-2',
-  'col-span-1 row-span-1',
-  'col-span-1 row-span-1',
-  'col-span-2 row-span-1',
-  'col-span-1 row-span-1',
-] as const;
-
-const CYCLE_MS = 3600;
 
 export function StoryHero({
   frames,
@@ -48,12 +31,11 @@ export function StoryHero({
   film: { src: string; poster: string; alt: string; caption: string };
   children: React.ReactNode;
 }) {
-  const slots = SPANS.length;
-  const [shown, setShown] = useState<number[]>(() => frames.map((_, i) => i).slice(0, slots));
-  const [held, setHeld] = useState<number | null>(null);
   const [still, setStill] = useState(true);
-  const heldRef = useRef<number | null>(null);
-  heldRef.current = held;
+  const [paused, setPaused] = useState(false);
+  const [held, setHeld] = useState<string | null>(null);
+  const strip = useRef<HTMLDivElement>(null);
+  const offset = useRef(0);
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -64,100 +46,83 @@ export function StoryHero({
   }, []);
 
   useEffect(() => {
-    if (still || frames.length <= slots) return;
-    const t = setInterval(() => {
-      setShown((prev) => {
-        const candidates = prev.map((_, i) => i).filter((i) => i !== heldRef.current);
-        if (candidates.length === 0) return prev;
-        const slot = candidates[Math.floor(Math.random() * candidates.length)];
-        const unused = frames.map((_, i) => i).filter((i) => !prev.includes(i));
-        if (unused.length === 0) return prev;
-        const next = [...prev];
-        next[slot] = unused[Math.floor(Math.random() * unused.length)];
-        return next;
-      });
-    }, CYCLE_MS);
-    return () => clearInterval(t);
-  }, [frames, slots, still]);
+    if (still || paused) return;
+    let raf = 0;
+    const tick = () => {
+      const el = strip.current;
+      if (el) {
+        offset.current += 0.4;
+        if (offset.current >= el.scrollWidth / 2) offset.current = 0;
+        el.scrollLeft = offset.current;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [still, paused]);
 
-  const caption = useMemo(() => {
-    if (held === null) return null;
-    if (held === -1) return film.caption;
-    const f = frames[shown[held]];
-    return f ? f.caption : null;
-  }, [held, shown, frames, film.caption]);
-
-  const hold = useCallback((i: number | null) => setHeld(i), []);
+  // Doubled so the loop has somewhere to go without a visible jump.
+  const belt = [...frames, ...frames];
 
   return (
-    <header className="px-5 pb-10 pt-16 sm:px-8 sm:pt-20">
-      <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-14">
-        <div>{children}</div>
-
-        <div>
-          <div className="grid grid-cols-3 grid-rows-4 gap-2 sm:gap-3" style={{ aspectRatio: '4 / 5' }}>
-            {/* The film. Muted, looping, never cycles, poster only under reduced motion. */}
-            <div
-              className="relative col-span-2 row-span-2 overflow-hidden rounded-lg"
-              style={{ backgroundColor: '#E8DED4' }}
-              onMouseEnter={() => hold(-1)}
-              onMouseLeave={() => hold(null)}
-              onFocus={() => hold(-1)}
-              onBlur={() => hold(null)}
-              tabIndex={0}
-              role="img"
-              aria-label={film.alt}
-            >
-              {still ? (
-                <Image src={film.poster} alt={film.alt} fill sizes="40vw" className="object-cover" priority />
-              ) : (
-                <video
-                  src={film.src}
-                  poster={film.poster}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  aria-label={film.alt}
-                  className="h-full w-full object-cover"
-                />
-              )}
-            </div>
-
-            {SPANS.slice(1).map((span, i) => {
-              const slot = i + 1;
-              const f = frames[shown[slot]];
-              if (!f) return null;
-              return (
-                <button
-                  key={slot}
-                  type="button"
-                  className={`relative overflow-hidden rounded-lg ${span}`}
-                  style={{ backgroundColor: '#E8DED4' }}
-                  onMouseEnter={() => hold(slot)}
-                  onMouseLeave={() => hold(null)}
-                  onFocus={() => hold(slot)}
-                  onBlur={() => hold(null)}
-                  aria-label={f.caption}
-                >
-                  <Image
-                    key={f.src}
-                    src={f.src}
-                    alt={f.alt}
-                    fill
-                    sizes="25vw"
-                    className="object-cover transition-opacity duration-700 motion-reduce:transition-none"
-                  />
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Reserved line, so the grid never jumps when a caption appears. */}
-          <p className="mt-3 min-h-[2.5rem] text-xs leading-relaxed" style={{ color: '#6A5E54' }}>
-            {caption ?? 'Two years of it. Point at a frame to see where it is from.'}
-          </p>
+    <header>
+      <div className="relative h-[100svh] w-full overflow-hidden bg-goods-ink">
+        <div className="absolute inset-0">
+          {still ? (
+            <Image src={film.poster} alt={film.alt} fill sizes="100vw" className="object-cover" priority />
+          ) : (
+            <video
+              src={film.src}
+              poster={film.poster}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-goods-ink via-goods-ink/70 to-goods-ink/25" />
         </div>
+
+        <div className="relative flex h-full items-end px-6 pb-16 md:px-10 lg:px-14">
+          <div className="mx-auto w-full max-w-6xl text-goods-cream">{children}</div>
+        </div>
+
+        <p className="absolute bottom-4 right-6 max-w-md text-right text-xs leading-relaxed text-goods-cream/60">
+          {film.caption}
+        </p>
+      </div>
+
+      <div
+        className="border-y bg-goods-cream-muted py-4"
+        style={{ borderColor: '#E8DED4' }}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => { setPaused(false); setHeld(null); }}
+      >
+        <div
+          ref={strip}
+          className="flex gap-3 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {belt.map((f, i) => (
+            <button
+              key={`${f.src}-${i}`}
+              type="button"
+              className="relative h-40 w-64 shrink-0 overflow-hidden rounded-lg sm:h-52 sm:w-80"
+              style={{ backgroundColor: '#E8DED4' }}
+              onFocus={() => { setPaused(true); setHeld(f.caption); }}
+              onBlur={() => { setPaused(false); setHeld(null); }}
+              onMouseEnter={() => setHeld(f.caption)}
+              aria-label={f.caption}
+            >
+              <Image src={f.src} alt={f.alt} fill sizes="320px" className="object-cover" />
+            </button>
+          ))}
+        </div>
+        <p className="mx-auto mt-3 min-h-[2.25rem] max-w-6xl px-4 text-xs leading-relaxed" style={{ color: '#6A5E54' }}>
+          {held ?? `${frames.length} frames from two years. Point at one to see where it is from.`}
+        </p>
       </div>
     </header>
   );

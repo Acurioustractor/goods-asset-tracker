@@ -61,49 +61,56 @@ export function PlaceFilms({ beats }: { beats: readonly PlaceBeat[] }) {
 
   return (
     <div className="relative">
-      <div className="sticky top-0 -z-10 h-screen w-full overflow-hidden" style={{ backgroundColor: '#1B1A17' }}>
-        {still ? (
-          <Image src={current.film.poster} alt={current.film.alt} fill sizes="100vw" className="object-cover opacity-70" priority />
-        ) : (
-          <video
-            key={current.film.src}
-            src={current.film.src}
-            poster={current.film.poster}
-            autoPlay
-            muted
-            loop
-            playsInline
-            aria-label={current.film.alt}
-            className="h-full w-full object-cover opacity-75 transition-opacity duration-700"
-          />
-        )}
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(90deg, rgba(20,19,16,0.86) 0%, rgba(20,19,16,0.62) 45%, rgba(20,19,16,0.25) 100%)' }} />
-        <p className="absolute bottom-4 right-5 max-w-md text-right text-[11px] leading-relaxed text-goods-cream/70">
-          {current.place}
-        </p>
+      {/* Follows sticky-film.tsx exactly: no negative z-index (the page background would cover
+          the film) and the arbitrary -mt-[100svh], because -mt-screen is not a Tailwind class
+          and silently did nothing, which is what put cream text on a cream page. */}
+      <div className="sticky top-0 h-[100svh] w-full overflow-hidden bg-goods-ink">
+        <div className="absolute inset-0">
+          {still ? (
+            <Image src={current.film.poster} alt={current.film.alt} fill sizes="100vw" className="object-cover" priority />
+          ) : (
+            <video
+              key={current.film.src}
+              src={current.film.src}
+              poster={current.film.poster}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          )}
+          <div className="absolute inset-0 bg-goods-ink/75 md:bg-transparent md:bg-gradient-to-r md:from-goods-ink md:via-goods-ink/80 md:to-goods-ink/45" />
+          <div className="absolute inset-0 bg-goods-ink/20" />
+          <p className="absolute bottom-4 right-6 max-w-md text-right text-xs leading-relaxed text-goods-cream/70">
+            {current.place}
+          </p>
+        </div>
       </div>
 
-      <div className="-mt-screen">
+      <div className="relative -mt-[100svh]">
         {beats.map((b, i) => (
           <div
             key={b.id}
             ref={(el) => { stepRefs.current[i] = el; }}
-            className="flex min-h-screen items-center px-5 sm:px-8"
+            className="flex min-h-[100svh] items-center px-6 py-16 md:px-10 lg:px-14"
           >
-            <div className="mx-auto w-full max-w-4xl">
-              <div className="max-w-xl">
+            <div className="mx-auto w-full max-w-6xl">
+              <div className="max-w-2xl text-goods-cream">
                 <p className="text-[11px] font-semibold uppercase tracking-widest text-goods-cream/70">{b.when}</p>
-                <p className="mt-3 font-display text-3xl leading-tight text-goods-cream sm:text-4xl">{b.title}</p>
-                <p className="mt-4 text-base leading-relaxed text-goods-cream/85 sm:text-lg">{b.body}</p>
+                <p className="mt-3 font-display text-3xl leading-tight sm:text-4xl md:text-5xl">{b.title}</p>
+                <p className="mt-5 text-base leading-relaxed text-goods-cream/85 sm:text-lg">{b.body}</p>
                 {b.voice && (
-                  <figure className="m-0 mt-8 flex gap-4">
+                  <figure className="m-0 mt-8 flex items-start gap-4">
                     {b.voice.portrait && (
-                      <Image src={b.voice.portrait} alt={b.voice.name} width={160} height={160} className="h-12 w-12 shrink-0 rounded-full object-cover" />
+                      <Image src={b.voice.portrait} alt={b.voice.name} width={160} height={160} className="h-16 w-16 shrink-0 rounded-full object-cover ring-2 ring-goods-cream/60 sm:h-20 sm:w-20" />
                     )}
                     <div>
-                      <blockquote className="font-display text-lg leading-snug text-goods-cream">&ldquo;{b.voice.text}&rdquo;</blockquote>
-                      <figcaption className="mt-2 text-xs uppercase tracking-wide text-goods-cream/60">
-                        {b.voice.name}, {b.voice.role}, {b.voice.community}
+                      <blockquote className="font-display text-xl leading-snug text-goods-cream md:text-2xl">&ldquo;{b.voice.text}&rdquo;</blockquote>
+                      <figcaption className="mt-3 text-sm text-goods-cream/80">
+                        {[b.voice.name, b.voice.role, b.voice.community].filter(Boolean).join(' \u00b7 ')}
                       </figcaption>
                     </div>
                   </figure>

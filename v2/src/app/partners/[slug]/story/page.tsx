@@ -177,32 +177,32 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           caption: 'Gamardi, Maningrida. Forty Stretch Beds for Maningrida were pressed in our own facility before they were built here.',
         }}
       >
-        <p className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: RUST }}>
+        <p className="text-[11px] font-semibold uppercase tracking-widest text-goods-cream/70">
           A report for the Snow Foundation
         </p>
-        <h1 className="mt-4 font-display text-4xl leading-[1.05] sm:text-5xl lg:text-6xl" style={{ color: CHARCOAL }}>
+        <h1 className="mt-4 max-w-3xl font-display text-4xl leading-[1.05] sm:text-6xl lg:text-7xl">
           You went first, and then you stayed.
         </h1>
-        <p className="mt-6 max-w-xl text-lg leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
+        <p className="mt-6 max-w-xl text-lg leading-relaxed text-goods-cream/85">
           Two years of work, told as what we did together. It is written for the people who have been on Country
           with us, so it carries the numbers, the parts that are not finished, and the things we will not claim.
         </p>
-        <dl className="mt-8 grid max-w-xl grid-cols-3 gap-4">
+        <dl className="mt-8 flex flex-wrap gap-8">
           {[
             { k: 'Invoices', v: String(SNOW_MONEY.goodsInvoices) },
             { k: 'Of all philanthropy', v: `${SNOW_MONEY.shareOfAllPhilanthropyPct}%` },
             { k: 'Most recent', v: 'May 2026' },
           ].map((x) => (
             <div key={x.k}>
-              <dt className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: '#A99C8F' }}>{x.k}</dt>
-              <dd className="mt-1 font-display text-2xl leading-none" style={{ color: CHARCOAL }}>{x.v}</dd>
+              <dt className="text-[10px] font-semibold uppercase tracking-wide text-goods-cream/60">{x.k}</dt>
+              <dd className="mt-1 font-display text-3xl leading-none text-goods-cream">{x.v}</dd>
             </div>
           ))}
         </dl>
-        <p className="mt-8 text-xs" style={{ color: '#A99C8F' }}>
+        <p className="mt-8 text-xs text-goods-cream/55">
           Password protected and not indexed. Prepared {new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}.
           {' '}
-          <Link href={`/partners/${slug}/dashboard`} className="underline">The live dashboard is here.</Link>
+          <Link href={`/partners/${slug}/dashboard`} className="underline text-goods-cream/80">The live dashboard is here.</Link>
         </p>
       </StoryHero>
 
