@@ -23,7 +23,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { GRANTS_RECEIVED, GRANTS_RECEIVED_TOTAL_AUD } from '@/lib/data/grants-received';
+import { GRANTS_RECEIVED, GRANTS_RECEIVED_TOTAL_AUD, GRANTS_AWARDED_OUTSIDE_THESE_BOOKS } from '@/lib/data/grants-received';
 import { PAID_INVOICE_NET_AUD } from '@/lib/data/paid-trade';
 import { funding } from '@/lib/data/compendium';
 
@@ -55,6 +55,24 @@ describe('grants received', () => {
       'FRRR and VFFF are one joint $50,000 Backing the Future grant (INV-0253). Two lines is a $50,000 double-count.',
     ).toHaveLength(1);
     expect(frrrLines[0].amountAud).toBe(50_000);
+  });
+});
+
+describe('grants awarded but outside these books', () => {
+  it('is acknowledged, so the total is never mistaken for everything ever given', () => {
+    // FRRR's Community Led Climate Solutions grant is awarded and paid and is in none of
+    // the books this list is built from. While that is true the total is a total of THESE
+    // books, and a surface that calls it "all philanthropy received" is overstating its
+    // own precision. Emptying this array is the signal that it has been resolved.
+    for (const g of GRANTS_AWARDED_OUTSIDE_THESE_BOOKS) {
+      expect(g.funder).toBeTruthy();
+      expect(g.whyOutside, `${g.funder}: say why it is outside, or move it into GRANTS_RECEIVED`).toBeTruthy();
+    }
+    // No line may be in both places at once.
+    const inBooks = new Set(GRANTS_RECEIVED.map((g) => g.funder.toLowerCase()));
+    for (const g of GRANTS_AWARDED_OUTSIDE_THESE_BOOKS) {
+      expect(inBooks.has(g.funder.toLowerCase()), `${g.funder} is listed as both received and outside`).toBe(false);
+    }
   });
 });
 

@@ -50,6 +50,43 @@ export const GRANTS_RECEIVED: readonly GrantReceived[] = [
   { funder: 'The John Villiers Trust', amountAud: 1_200, when: 'May 2026', since: '2026-05', basis: 'xero', source: 'INV-0327, paid 3 May 2026', bought: 'Travel to Palm Island to film the work: flights through Townsville and accommodation.' },
 ];
 
+/**
+ * Grants that are AWARDED but sit outside this reconciliation. The total above counts
+ * what is in these books. It does not count everything philanthropy has given.
+ *
+ * Found 2026-09-16. Steph Pearson of FRRR congratulated Nic on the Community Led Climate
+ * Solutions grant on 16 July 2026, and Ben confirms it has been paid. It is in none of
+ * the books this list is built from:
+ *   - the only Xero contact matching "Fairfax" has one invoice, INV-0253, July 2025;
+ *   - there is no FRRR contact in that file at all;
+ *   - none of the 24 paid invoices issued in 2026 is it;
+ *   - the Grants Received account reads $0.00 for 1 May to 16 September 2026;
+ *   - no FRRR remittance or payment advice exists in the inbox.
+ * Only one Xero organisation is connected, the sole trader file. Ben's reading is that it
+ * went to another entity or was auspiced through another charity. On that reading it
+ * sits outside these books by design, and nothing here is broken.
+ *
+ * This is recorded here so nobody quotes the total as "everything philanthropy has given"
+ * while a known, awarded, paid grant is missing from it. Resolve it by finding the amount
+ * and the receiving entity, then either add a line above or note why it belongs elsewhere.
+ */
+export interface GrantOutsideTheseBooks {
+  funder: string;
+  program: string;
+  awarded: string;
+  whyOutside: string;
+}
+
+export const GRANTS_AWARDED_OUTSIDE_THESE_BOOKS: readonly GrantOutsideTheseBooks[] = [
+  {
+    funder: 'FRRR',
+    program: 'Community Led Climate Solutions',
+    awarded: 'Confirmed awarded by 16 July 2026; Ben confirms paid',
+    whyOutside:
+      'Amount and receiving entity unknown. Applied for with the organisation recorded as A Kind Tractor against A Curious Tractor details (Danielle Griffin, FRRR, 29 May 2026), and possibly auspiced through another charity. Not in the sole trader Xero file under any name.',
+  },
+];
+
 export const GRANTS_RECEIVED_TOTAL_AUD = GRANTS_RECEIVED.reduce((n, g) => n + g.amountAud, 0);
 
 export const GRANTS_RECEIVED_AS_AT = '16 September 2026';
