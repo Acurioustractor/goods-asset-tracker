@@ -225,25 +225,17 @@ export default function CommunityNarrativePage() {
       <OtherPitchSurfaceNotice note="This is the community-narrative cut." />
       <section className="border-b border-[#203833] bg-[#243d3a] text-white">
         <div className="mx-auto max-w-[1560px] px-4 py-8 md:px-6 md:py-12">
+          {/* The investor lab, workshop, photo review and Miro board were deleted on
+              17 September 2026 with their /pitch redirects. The links stayed and 404ed, which
+              only a browser found: Next prefetches them, so they were three console errors on
+              a funder-audience page. /pitch is the surface that replaced them. */}
           <div className="mb-8 flex flex-wrap items-center gap-3">
             <Link
-              href="/pitch/investor-lab"
+              href="/pitch"
               className="inline-flex items-center gap-2 rounded-md border border-white/15 px-3 py-2 text-sm font-semibold text-white/75 transition-colors hover:bg-white/10 hover:text-white"
             >
               <ArrowLeft className="h-4 w-4" />
-              Investor lab
-            </Link>
-            <Link
-              href="/pitch/workshop"
-              className="inline-flex items-center gap-2 rounded-md border border-white/15 px-3 py-2 text-sm font-semibold text-white/75 transition-colors hover:bg-white/10 hover:text-white"
-            >
-              Workshop
-            </Link>
-            <Link
-              href="/pitch/photo-review"
-              className="inline-flex items-center gap-2 rounded-md border border-white/15 px-3 py-2 text-sm font-semibold text-white/75 transition-colors hover:bg-white/10 hover:text-white"
-            >
-              Photo review
+              The pitch
             </Link>
           </div>
 
@@ -562,24 +554,10 @@ export default function CommunityNarrativePage() {
               </p>
               <div className="mt-4 grid gap-2">
                 <Link
-                  href="/pitch/investor-lab"
+                  href="/pitch"
                   className="inline-flex items-center justify-between rounded-md border border-white/15 px-3 py-2 text-sm font-semibold text-white/80 transition-colors hover:bg-white/10 hover:text-white"
                 >
-                  Investor lab
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  href="/pitch/photo-review"
-                  className="inline-flex items-center justify-between rounded-md border border-white/15 px-3 py-2 text-sm font-semibold text-white/80 transition-colors hover:bg-white/10 hover:text-white"
-                >
-                  Photo review
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  href="/pitch/miro-board"
-                  className="inline-flex items-center justify-between rounded-md border border-white/15 px-3 py-2 text-sm font-semibold text-white/80 transition-colors hover:bg-white/10 hover:text-white"
-                >
-                  Miro board
+                  The pitch
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>

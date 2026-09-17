@@ -20,26 +20,14 @@ export interface DeckPhotoSlot {
   check: string;
 }
 
+// Pitch workshop, Investor lab and Miro board were deleted on 17 September 2026 along with
+// their /pitch redirects. Their rows came out the same day, after a browser found the three
+// 404s they were still producing as Next prefetches on a funder-audience page.
 export const deckReviewLinks = [
-  {
-    label: 'Pitch workshop',
-    href: '/pitch/workshop',
-    note: 'Walk through the complete message, photos, places, and deck run.',
-  },
-  {
-    label: 'Investor lab',
-    href: '/pitch/investor-lab',
-    note: 'Compare narrative routes, investor lenses, maps, and deck decisions.',
-  },
   {
     label: 'Community narrative',
     href: '/pitch/community-narrative',
     note: 'Review all cleared storytellers, themes, transcript quotes, and deck use.',
-  },
-  {
-    label: 'Miro board',
-    href: '/pitch/miro-board',
-    note: 'Use the Miro-style canvas for sorting and live decision work.',
   },
   {
     label: 'Main Google Slides deck',

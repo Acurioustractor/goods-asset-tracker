@@ -18,8 +18,6 @@ const STANDALONE_PATH_PREFIXES = [
   '/field-notes',
   '/sites',
   '/pitch/community-narrative',
-  '/pitch/investor-lab',
-  '/pitch/miro-board',
   // THE deck (ruling R). Ben, 2026-08-06: the marketing nav and the impact banner were eating
   // the top of every panel, so no full-screen panel actually fit the screen. The deck carries
   // its own chrome (opener, contents bar, pack switcher) and its own stat line on the cover.
