@@ -14,7 +14,7 @@ import {
   COMMUNITY_MODEL, MONEY_EVENTS, MONTHS_BEFORE_FIRST_SALE, NOT_FINISHED, OONCHIUMPA_NEXT,
   OWNERSHIP_VOICES, PROGRESS_BRIDGE, THEMES, THE_NEXT_TEN, TRADE_BY_YEAR,
   PLACE_BEATS, PRICE_LADDER,
-  SNOW_MONEY, THE_ARC, THE_LETTER, TOGETHER,
+  FLEET_USE, SNOW_MONEY, THE_ARC, THE_LETTER, TOGETHER, WASHER_FLEET,
   WALLS, WHY_FLEXIBLE,
   WASHER_NEXT, WASHER_PLACES, WASHER_TELEMETRY,
 } from '@/lib/data/snow-partnership';
@@ -178,6 +178,18 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
   const smallStart = quote('georgina-byron', 'funder', 'you start small and then you realize');
   const vicki = quote('vicki-wade', 'external', 'Community leadership, community ownership');
   const karen = quote('karen-liddle', 'external', 'start your own business');
+  /**
+   * The cleared voices who talk about the machine itself. Norman Frank has no quote about his
+   * washing machine in the registry and no photograph with it, so he is not here. What is on the
+   * page from Norm is his house doing 951 washes.
+   */
+  const washerVoices = [
+    { slug: 'dianne-stokes', contains: 'If I need to wash my blanket' },
+    { slug: 'patricia-frank', contains: 'right there at home' },
+    { slug: 'annie-morrison', contains: 'Now we got our own washing' },
+  ]
+    .map((v) => quote(v.slug, 'external', v.contains))
+    .filter((v): v is NonNullable<typeof v> => v !== null);
   /**
    * One rung per invoice, cheapest first. Ben, 17 September, looking at Centrecorp's 107 beds at
    * $560: "thought this was more per bed?" He was right and the page was underselling itself.
@@ -824,6 +836,66 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           </ul>
           <p className="mt-4 text-xs" style={{ color: '#A99C8F' }}>Source: {WASHER_TELEMETRY.source}.</p>
         </div>
+
+        {/*
+          * The fleet, machine by machine. Ben, 17 September: the fun is in how we track this.
+          * The silent and unmatched rows are the reason to print it; a table of only the working
+          * machines would say less than the summary above it.
+          */}
+        <div className="mt-8 overflow-hidden rounded-lg" style={{ border: '1px solid #E8DED4', backgroundColor: '#FFFFFF' }}>
+          <div className="hidden grid-cols-[7rem_1fr_5rem_5rem_9rem] gap-4 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.12em] sm:grid" style={{ backgroundColor: '#F6F0E6', color: MUTED }}>
+            <span>Asset</span><span>Where</span><span className="text-right">Cycles</span><span className="text-right">kWh</span><span className="text-right">Reporting</span>
+          </div>
+          {WASHER_FLEET.map((r, i) => (
+            <div
+              key={`${r.assetId ?? 'unmatched'}-${r.from}`}
+              className="grid gap-1 px-5 py-4 sm:grid-cols-[7rem_1fr_5rem_5rem_9rem] sm:items-baseline sm:gap-4"
+              style={{ borderTop: i === 0 ? undefined : '1px solid #F0E7DC' }}
+            >
+              <span className="font-display text-sm" style={{ color: r.assetId ? CHARCOAL : MUTED }}>{r.assetId ?? 'unmatched'}</span>
+              <span className="text-[0.8125rem] leading-snug" style={{ color: `${CHARCOAL}b8` }}>
+                {r.where}
+                {r.note && <span className="block text-[11px]" style={{ color: MUTED }}>{r.note}</span>}
+              </span>
+              <span className="font-display text-base tabular-nums sm:text-right" style={{ color: CHARCOAL }}>{r.cycles.toLocaleString('en-AU')}</span>
+              <span className="font-display text-base tabular-nums sm:text-right" style={{ color: `${CHARCOAL}99` }}>{r.kwh.toLocaleString('en-AU')}</span>
+              <span className="text-[11px] sm:text-right" style={{ color: r.state === 'reporting' ? '#5E7A4C' : MUTED }}>
+                {r.state === 'reporting' ? `still reporting, ${r.to}` : `last seen ${r.to}`}
+              </span>
+            </div>
+          ))}
+        </div>
+        <p className="mt-3 text-xs leading-relaxed" style={{ color: MUTED }}>
+          Read {WASHER_TELEMETRY.readAt} from the same rollups the admin fleet screen uses, reconciled to the
+          register through the controller aliases reviewed on 14 May 2026. Twenty three machines are in community,
+          ten have a controller, seven have ever reported and three were reporting on the day of this read.
+        </p>
+
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          {FLEET_USE.map((u) => (
+            <div key={u.title} className="rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: u.state === 'next' ? '1px dashed #C2B6AA' : '1px solid #E8DED4' }}>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: u.state === 'next' ? '#6A5E54' : SAGE }}>
+                {u.state === 'next' ? 'Not yet' : 'What it is already for'}
+              </p>
+              <p className="mt-2 font-display text-base leading-snug" style={{ color: CHARCOAL }}>{u.title}</p>
+              <p className="mt-2 text-[0.875rem] leading-[1.65]" style={{ color: `${CHARCOAL}b8` }}>{u.body}</p>
+            </div>
+          ))}
+        </div>
+
+        {washerVoices.length > 0 && (
+          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            {washerVoices.map((v) => (
+              <figure key={v.person.name} className="m-0">
+                {v.person.portrait && (
+                  <Image src={v.person.portrait} alt={v.person.name} width={160} height={160} className="h-14 w-14 rounded-full object-cover" />
+                )}
+                <blockquote className="mt-3 font-display text-base leading-[1.4]" style={{ color: CHARCOAL }}>&ldquo;{v.quote.text}&rdquo;</blockquote>
+                <figcaption className="mt-2 text-[11px] uppercase tracking-[0.12em]" style={{ color: SAGE }}>{v.person.name}</figcaption>
+              </figure>
+            ))}
+          </div>
+        )}
 
         <div className="mt-7 grid gap-5 sm:grid-cols-3">
           {WASHER_NEXT.map((n) => (

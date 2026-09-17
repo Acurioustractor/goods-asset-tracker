@@ -1270,6 +1270,59 @@ export const WASHER_TELEMETRY = {
 } as const;
 
 /** Where the machine goes next. Intent, labelled as intent. */
+/**
+ * THE FLEET, MACHINE BY MACHINE, AS THE ADMIN SCREEN HOLDS IT.
+ *
+ * Ben, 17 September 2026: there is something fun here in how we track this data. Think about
+ * tables and the data we already have in the admin screen, how it is being used and the future
+ * for it.
+ *
+ * This is the same read as WASHER_TELEMETRY above, on the same day, taken from
+ * daily_machine_rollups and reconciled to the register through the controller aliases Ben
+ * reviewed on 14 May 2026. It is written down rather than queried at render, for the reason
+ * the summary is: a funder report that changes its own figures between two readings of it has
+ * stopped being a report.
+ *
+ * WHAT THE TABLE ADMITS, and it is the reason to print it. Twenty three machines are in
+ * community. Ten have a controller. Seven have ever reported. Three were still reporting on the
+ * day of this read, and one of those three is doing most of the work: Norm's house has more
+ * cycles on it than the rest of the fleet put together. Four controllers cannot be matched to a
+ * register row at all and are shown as unmatched rather than quietly dropped, because dropping
+ * them would make the fleet look tidier than it is.
+ */
+export interface FleetRow {
+  assetId: string | null;
+  where: string;
+  cycles: number;
+  kwh: number;
+  from: string;
+  to: string;
+  state: 'reporting' | 'silent' | 'unmatched';
+  note?: string;
+}
+
+export const WASHER_FLEET: readonly FleetRow[] = [
+  { assetId: 'GB0-113', where: "Norm's house, Tennant Creek", cycles: 951, kwh: 2_611, from: '2025-11-17', to: '2026-09-16', state: 'reporting', note: 'The machine the rest of the fleet is measured against.' },
+  { assetId: 'GB0-154-2', where: 'Tennant Creek', cycles: 341, kwh: 261, from: '2025-09-15', to: '2026-05-09', state: 'silent', note: 'Stopped reporting in May and has not been seen since.' },
+  { assetId: 'GB0-125', where: 'Tennant Creek', cycles: 48, kwh: 132, from: '2025-09-28', to: '2026-09-07', state: 'reporting', note: 'Reporting, and barely used. Worth a visit for that reason.' },
+  { assetId: 'GB0-132', where: 'Tennant Creek', cycles: 2, kwh: 1, from: '2025-09-19', to: '2026-03-01', state: 'silent' },
+  { assetId: null, where: 'Controller not matched to a register row', cycles: 550, kwh: 422, from: '2025-08-27', to: '2026-03-29', state: 'unmatched', note: 'Did 550 cycles, then stopped in March 2026. Under investigation on the register.' },
+  { assetId: null, where: 'Controller not matched to a register row', cycles: 397, kwh: 107, from: '2025-09-15', to: '2026-06-08', state: 'unmatched' },
+  { assetId: null, where: 'Controller not matched to a register row', cycles: 38, kwh: 10, from: '2025-09-15', to: '2025-09-30', state: 'unmatched' },
+  { assetId: null, where: 'Controller not matched to a register row', cycles: 3, kwh: 1, from: '2026-03-01', to: '2026-03-09', state: 'unmatched' },
+];
+
+/**
+ * What the telemetry is for, which is the part a funder has not been told before. It is not a
+ * dashboard: it is how a service trip gets decided without anyone flying in to look.
+ */
+export const FLEET_USE: readonly { title: string; body: string; state: 'now' | 'next' }[] = [
+  { state: 'now', title: 'A machine that has gone quiet is a visit', body: 'Three controllers reported and then stopped. That is the only way we would know, short of somebody asking, and it is why the silent rows are on this table rather than off it.' },
+  { state: 'now', title: 'Cycles are the use, not the delivery', body: 'A bed delivered is a bed delivered. A wash is somebody choosing to use the thing, nine hundred and fifty one times in one house, and that is a different kind of evidence.' },
+  { state: 'next', title: 'Thirteen machines with nothing on them', body: 'Ten of twenty three have a controller. Fitting the rest is the cheapest thing on this page and the one that would make the fleet measurable instead of sampled.' },
+  { state: 'next', title: 'The number nobody has costed', body: 'Kilowatt hours a cycle, against what a commercial remote laundry charges for the same wash. The rows above are the beginning of that arithmetic and not the end of it.' },
+];
+
 export const WASHER_NEXT: readonly { title: string; detail: string }[] = [
   { title: 'Cheaper, smaller and still durable', detail: 'The aim for the next version, in that order. It has to compete with what a family can already buy in town, or it stays a machine that arrives only when a funder pays for it. Ben, 17 September 2026.' },
   { title: 'Parts that can be replaced in community', detail: 'The drum is a Speed Queen and it stays, because it can be repaired anywhere. What we build around it, the enclosure, the controller and the plumbing, is where the cost and the size have to come out.' },

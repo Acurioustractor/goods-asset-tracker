@@ -13,7 +13,8 @@ import { readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import {
   ALIGNMENT, BECAUSE_OF, BUYER_TOTALS, BUYERS, FILMS, MAP_PLACES, NOT_FINISHED, PLACE_BEATS,
-  PRICE_LADDER, SNOW_MONEY, THE_ARC, THEMES, TOGETHER, TOGETHER_KINDS, WALLS, WASHER_PLACES,
+  PRICE_LADDER, SNOW_MONEY, THE_ARC, THEMES, TOGETHER, TOGETHER_KINDS, WALLS, WASHER_FLEET,
+  WASHER_PLACES,
   WASHER_TELEMETRY,
 } from '@/lib/data/snow-partnership';
 import { PAID_INVOICES, PAID_INVOICE_BEDS } from '@/lib/data/paid-trade';
@@ -111,6 +112,17 @@ describe('snow partnership report', () => {
     expect(WASHER_TELEMETRY.flagship.cycles).toBeLessThanOrEqual(WASHER_TELEMETRY.totalCycles);
     expect(WASHER_TELEMETRY.flagship.kwh).toBeLessThanOrEqual(WASHER_TELEMETRY.totalKwh);
     expect(WASHER_TELEMETRY.readAt).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+  });
+
+  it('the fleet table adds up to the fleet summary', () => {
+    // Two readings of the same day on one page. If the rows and the headline ever disagree, a
+    // funder who adds the column up finds the gap before we do.
+    expect(WASHER_FLEET.reduce((n, r) => n + r.cycles, 0)).toBe(WASHER_TELEMETRY.totalCycles);
+    expect(WASHER_FLEET.some((r) => r.state === 'unmatched'), 'the unmatched controllers were dropped, which makes the fleet look tidier than it is').toBe(true);
+    for (const r of WASHER_FLEET) {
+      expect(r.from <= r.to, `${r.assetId ?? r.where} reports backwards`).toBe(true);
+      expect(r.to <= WASHER_TELEMETRY.readAt, `${r.assetId ?? r.where} reports after the read date`).toBe(true);
+    }
   });
 
   it('every moment is dated, sourced and sortable', () => {
