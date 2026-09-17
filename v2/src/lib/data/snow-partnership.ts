@@ -658,7 +658,7 @@ export const THE_ARC: readonly ArcStage[] = [
     when: 'The first prototype, through 2024',
     state: 'given-away',
     stateLabel: 'Open source now',
-    body: 'Collapsible baskets, zip ties and a topper. It got people off the floor while we learned what a bed has to survive out here. Eighty-five of them were built on Palm Island over a weekend in December 2024. We have stopped selling it and the plans are free to download, which is the right end for a design that has been overtaken.',
+    body: 'Collapsible baskets, zip ties and a topper. It got people off the floor while we learned what a bed has to survive out here. Eighty-five of them were built on Palm Island over a weekend in December 2024, and Centrecorp bought sixty at $370 in August 2025. We have stopped selling it and the plans are free to download, which is the right end for a design that has been overtaken.',
     figure: { value: String(CANONICAL_ASSETS.basketBedsDeployed), label: 'in homes' },
     photo: { src: '/images/community/palm-island/woman-new-bed-home.jpg', alt: 'A Basket Bed at home on Palm Island' },
   },
@@ -678,7 +678,7 @@ export const THE_ARC: readonly ArcStage[] = [
     when: 'First paid order September 2025',
     state: 'now',
     stateLabel: 'The one we sell',
-    body: 'Two galvanised poles threaded through the canvas and into crossed legs pressed from recycled plastic. The canvas is structural, so the bed does not stand without it and twenty kilograms of plastic stays out of a tip for every one. Centrecorp bought the first sixty at $370 and came back for a hundred and seven. The price is $750 now because freight and the paid local work are counted in it.',
+    body: 'Two galvanised poles threaded through the canvas and into crossed legs pressed from recycled plastic. The canvas is structural, so the bed does not stand without it and twenty kilograms of plastic stays out of a tip for every one. Centrecorp bought a hundred and seven at $560 in November 2025, having bought Basket Beds first. The price is $750 now because freight and the paid local work are counted in it.',
     figure: { value: String(CANONICAL_ASSETS.stretchBedsDeployed), label: 'in homes' },
     photo: { src: '/images/community/alice-springs/stretch-bed-two-generations.jpg', alt: 'Two generations on a Stretch Bed' },
   },
@@ -697,7 +697,7 @@ export const THE_ARC: readonly ArcStage[] = [
     when: 'In development now',
     state: 'next',
     stateLabel: 'Not built yet',
-    body: 'Cheaper and smaller, without losing the durability. That is the aim, because the machine has to compete with what a family can already buy in town and it has to reach a lot more houses than twenty-three. The drum is a Speed Queen and it stays, because it can be repaired anywhere. What we build around it, the enclosure, the controller and the plumbing, is where the cost and the size have to come out.',
+    body: 'Cheaper and smaller, without losing the durability. That is the aim, because the machine has to compete with what a family can already buy in town and it has to reach a lot more houses than twenty-three. The cost and the size have to come out of what we build around the machine: the enclosure, the controller and the plumbing.',
   },
 ];
 
@@ -1369,6 +1369,6 @@ export const WASHER_FLEET: readonly FleetRow[] = [
 
 export const WASHER_NEXT: readonly { title: string; detail: string }[] = [
   { title: 'Cheaper, smaller and still durable', detail: 'The aim for the next version, in that order. It has to compete with what a family can already buy in town, or it stays a machine that arrives only when a funder pays for it.' },
-  { title: 'Parts that can be replaced in community', detail: 'The drum is a Speed Queen and it stays, because it can be repaired anywhere. What we build around it, the enclosure, the controller and the plumbing, is where the cost and the size have to come out.' },
+  { title: 'Parts that can be replaced in community', detail: 'The enclosure, the controller and the plumbing are ours to design, so they are what can be built to be swapped out in community. They are also where the cost and the size have to come out.' },
   { title: 'Measured against the laundry it replaces', detail: 'A commercial remote laundry is the comparison nobody has costed properly. The cycles and kilowatt hours above are the beginning of that number.' },
 ];
