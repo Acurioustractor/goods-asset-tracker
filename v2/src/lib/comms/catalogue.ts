@@ -28,8 +28,18 @@ import { buildCapitalReply } from './capital-reply';
 import { buildCommunityReply } from './community-reply';
 import { buildPartnerReply } from './partner-reply';
 import { buildGeneralReply } from './general-reply';
+import { buildWasherReply } from './washer-reply';
+import { buildNewsletterWelcome } from './newsletter-welcome';
 import type { BuiltEmail } from './facts';
 import type { PathwayAudience } from '@/lib/ghl/audience-pathways';
+
+/**
+ * Who puts it on the wire. Everything here is written in this repo and guarded the same way, but
+ * a campaign has to go through a GHL workflow so it carries a working unsubscribe, and a
+ * transactional reply must not carry one.
+ */
+export type SentBy = 'code' | 'ghl workflow';
+export type MessageKind = 'transactional' | 'campaign';
 
 export interface CatalogueEntry {
   id: string;
@@ -41,6 +51,11 @@ export interface CatalogueEntry {
   trigger: string;
   /** The example used to render it here and in the guard. Realistic, never a placeholder. */
   example: BuiltEmail;
+  /** Defaults to code and transactional, which is what all the replies are. */
+  sentBy?: SentBy;
+  kind?: MessageKind;
+  /** Only for a workflow message: what somebody has to do in GHL before it sends. */
+  pasteInto?: string;
 }
 
 export const MESSAGE_CATALOGUE: CatalogueEntry[] = [
@@ -137,6 +152,26 @@ export const MESSAGE_CATALOGUE: CatalogueEntry[] = [
     example: buildGeneralReply({}),
   },
   {
+    id: 'washer',
+    label: 'Registering interest in a washing machine',
+    audience: 'buyer',
+    trigger: 'The washing machine form, Washing Machine Interest',
+    example: buildWasherReply({ organisation: 'Ali Curung' }),
+  },
+  {
+    id: 'newsletter-welcome',
+    label: 'Somebody just subscribed',
+    audience: 'supporter',
+    trigger: 'Any of the five newsletter forms, with the consent box ticked',
+    example: buildNewsletterWelcome(),
+    sentBy: 'ghl workflow',
+    kind: 'campaign',
+    pasteInto:
+      'The Newsletter Signup workflow in GHL, which has been a draft since January. It is a ' +
+      'campaign, not a reply, so it goes through a workflow that adds and honours an unsubscribe ' +
+      'rather than being sent from the app.',
+  },
+  {
     id: 'media-pack',
     label: 'A journalist asked for the pack',
     audience: 'media',
@@ -155,4 +190,6 @@ export const BUILDER_NAMES = [
   'buildCommunityReply',
   'buildPartnerReply',
   'buildGeneralReply',
+  'buildWasherReply',
+  'buildNewsletterWelcome',
 ] as const;

@@ -100,9 +100,27 @@ describe('every message sounds like the same organisation', () => {
         ).toEqual([]);
       });
 
-      it('carries no unsubscribe, because none of these is a campaign', () => {
+      it('carries no unsubscribe unless it is a campaign', () => {
+        // A reply to something a person did must not offer to unsubscribe them: that is how a
+        // funder opts out of everything by answering their own enquiry. A campaign is the
+        // opposite, and the Spam Act requires the link, which is why it goes through a workflow.
+        if ((entry.kind ?? 'transactional') === 'campaign') return;
         expect(text.toLowerCase()).not.toContain('unsubscribe');
         expect(html.toLowerCase()).not.toContain('unsubscribe');
+      });
+
+      it('is sent the way its kind requires', () => {
+        const kind = entry.kind ?? 'transactional';
+        const sentBy = entry.sentBy ?? 'code';
+        if (kind === 'campaign') {
+          expect(
+            sentBy,
+            `${entry.id} is a campaign sent from code, which has no unsubscribe handling`,
+          ).toBe('ghl workflow');
+          expect(entry.pasteInto, `${entry.id} is a workflow message and says nowhere to put it`).toBeTruthy();
+        } else {
+          expect(sentBy, `${entry.id} is transactional and waits on somebody clicking publish`).toBe('code');
+        }
       });
 
       it('has no em-dash and no AI vocabulary', () => {

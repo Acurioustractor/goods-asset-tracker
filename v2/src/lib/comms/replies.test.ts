@@ -79,14 +79,18 @@ describe('acknowledgeOrReply', () => {
 });
 
 describe('the branch registry', () => {
-  it('only holds subjects the contact form can actually send', async () => {
-    const route = await import('node:fs').then((fs) =>
-      fs.readFileSync(new URL('../../app/api/contact/route.ts', import.meta.url), 'utf8'),
+  it('only holds subjects a route can actually send', async () => {
+    // Both routes, because they do not send the same set. The contact form sends its allowlisted
+    // subjects; the partner route sends Partnership, Facility Funding and Washing Machine
+    // Interest. A branch for a subject neither can produce is an email nobody will ever receive.
+    const fs = await import('node:fs');
+    const routes = ['contact', 'partnership'].map((name) =>
+      fs.readFileSync(new URL(`../../app/api/${name}/route.ts`, import.meta.url), 'utf8'),
     );
     for (const subject of subjectsWithOwnReply()) {
       expect(
-        route.includes(`'${subject}'`),
-        `${subject} has a written reply and is not in CONTACT_SUBJECTS, so it can never arrive`,
+        routes.some((src) => src.includes(`'${subject}'`)),
+        `${subject} has a written reply and no route sends it, so it can never arrive`,
       ).toBe(true);
     }
   });

@@ -48,7 +48,8 @@ describe('POST /api/newsletter', () => {
     expect(await response.json()).toEqual({
       success: true,
       status: 'subscribed',
-      message: "You're subscribed! We'll keep you in the loop.",
+      message:
+        'You are on the list. It is not a regular newsletter: you will hear from us when there is a story worth your time.',
     });
     expect(addToNewsletter).toHaveBeenCalledWith({
       email: 'person@example.com',

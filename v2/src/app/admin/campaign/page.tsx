@@ -227,6 +227,11 @@ export default async function AdminCampaignPage() {
                 </a>
               </div>
               <p className="mt-1 text-[11px] text-slate-500">Fires on: {message.trigger}</p>
+              {(message.sentBy ?? 'code') === 'ghl workflow' && (
+                <p className="mt-2 rounded border border-amber-200 bg-amber-50 px-2 py-1 text-[11px] leading-relaxed text-amber-900">
+                  Sent by a GHL workflow, not by the app. {message.pasteInto}
+                </p>
+              )}
               <p className="mt-3 border-l-2 border-slate-300 pl-3 text-sm font-medium text-slate-800">
                 {message.example.subject}
               </p>

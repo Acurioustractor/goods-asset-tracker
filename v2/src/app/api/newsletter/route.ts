@@ -76,10 +76,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // What the person sees on screen, and it has to be true. "We'll keep you in the loop" is a
+    // promise of frequency that nothing keeps: Ben ruled on 17 September that nothing goes to this
+    // list until there is something worth sending, and the welcome workflow in GHL is still a
+    // draft. Saying so is better than a cheerful line that leaves somebody wondering for nine
+    // months whether the box worked.
     return NextResponse.json({
       success: true,
       status: 'subscribed',
-      message: "You're subscribed! We'll keep you in the loop.",
+      message: 'You are on the list. It is not a regular newsletter: you will hear from us when there is a story worth your time.',
     });
   } catch (error) {
     console.error('Newsletter signup error:', error);

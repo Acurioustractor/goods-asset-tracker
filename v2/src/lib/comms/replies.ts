@@ -25,6 +25,7 @@ import { buildCapitalReply } from './capital-reply';
 import { buildCommunityReply } from './community-reply';
 import { buildPartnerReply } from './partner-reply';
 import { buildGeneralReply } from './general-reply';
+import { buildWasherReply } from './washer-reply';
 
 export type { BuiltEmail } from './facts';
 import type { BuiltEmail } from './facts';
@@ -54,6 +55,9 @@ export const REPLY_BUILDERS: Record<string, (ctx: ReplyContext) => BuiltEmail> =
   'Community Interest': buildCommunityReply,
   'Partnership Inquiry': buildPartnerReply,
   'General Inquiry': buildGeneralReply,
+  // Not one of the seven. It arrives through the partner route, and the generic letter promised a
+  // reply about a product that is not for sale.
+  'Washing Machine Interest': buildWasherReply,
 };
 
 export type ReplyOutcome = 'replied' | 'acknowledged' | 'failed';
