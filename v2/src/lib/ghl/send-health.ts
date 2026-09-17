@@ -94,9 +94,10 @@ export async function readWorkflowHealth(): Promise<WorkflowHealthReport> {
     return {
       readable: false,
       problem:
-        'GHL refused the read. The API token needs the workflows.readonly scope, which is set on ' +
-        'the private integration in GHL settings. Until it has it, this panel cannot tell you ' +
-        'which workflows are switched on and you have to open the dashboard to find out.',
+        'GHL refused the read. Either the API token is missing the workflows.readonly scope, set ' +
+        'on the private integration in GHL settings, or GHL_LOCATION_ID is not set here. Until ' +
+        'one of those is fixed this panel cannot tell you which workflows are switched on, and ' +
+        'you have to open the dashboard to find out.',
       rows: WATCHED_WORKFLOWS.map((w) => ({ ...w, status: 'unknown' })),
     };
   }

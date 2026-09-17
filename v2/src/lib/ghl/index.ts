@@ -1238,8 +1238,12 @@ export const ghl = {
   async listWorkflows(): Promise<{ id: string; name: string; status: string }[] | null> {
     if (!GHL_ENABLED) return null;
     try {
+      // locationId is REQUIRED as a query parameter here, and leaving it off returns 403 with
+      // "The token does not have access to this location", which reads like a scope problem and
+      // is not one. Cost an hour and a token rotation on 17 September before somebody tried the
+      // same call with the parameter attached.
       const res = await ghlRequest<{ workflows?: { id: string; name: string; status: string }[] }>(
-        '/workflows/',
+        `/workflows/?locationId=${encodeURIComponent(GHL_LOCATION_ID)}`,
         'GET',
       );
       return res.workflows || [];
