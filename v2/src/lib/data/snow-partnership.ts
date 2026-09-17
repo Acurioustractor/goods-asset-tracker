@@ -768,7 +768,7 @@ export const THEMES: readonly Theme[] = [
     id: 'enterprise',
     title: 'Enterprise',
     body: 'A community organisation holds the beds, sells them and keeps the whole price. After costs it decides what happens next. That is the difference between a program delivered to a place and a business run from it.',
-    proof: `${PAID_INVOICE_BEDS} beds bought and paid for by four organisations across five invoices, at $370 rising to $800.`,
+    proof: `${PAID_INVOICE_BEDS} beds bought and paid for by four organisations across five invoices, at $370 rising to $740, with the facilitation on top of it.`,
     limit: 'The trade is two years old and five invoices deep. It does not yet cover what the organisation costs to run, which is why philanthropy is still most of the money.',
   },
   {
@@ -1188,9 +1188,9 @@ export const BUYERS: readonly BuyerRoute[] = [
   },
   {
     id: 'alive', buyer: 'ALIVE National Centre', route: 'Research programme buying for the communities it works with',
-    beds: 100, firstPrice: 800, latestPrice: 800, forPlace: 'Communities in the Gathering the Parts programme',
+    beds: 100, firstPrice: 740, latestPrice: 740, forPlace: 'Communities in the Gathering the Parts programme',
     invoices: 'INV-0342, paid August 2026',
-    what: 'The largest single order and the highest price paid. A national research centre bought a hundred beds at $800 in August 2026.',
+    what: 'The largest single order in the book. A national research centre bought a hundred beds at $740 with $18,000 of facilitation on top, which is $920 a bed in the end, the most anyone has paid.',
   },
 ];
 
@@ -1198,7 +1198,7 @@ export const BUYERS: readonly BuyerRoute[] = [
  * The price ladder. The point a funder should take from it: the unit price has more than
  * doubled across four buyers and they kept buying. Read from BUYERS so it cannot drift.
  */
-export const PRICE_LADDER = [370, 380, 560, 750, 800] as const;
+export const PRICE_LADDER = [370, 380, 560, 740, 750] as const;
 
 export const BUYER_TOTALS = {
   beds: BUYERS.reduce((n, b) => n + b.beds, 0),
