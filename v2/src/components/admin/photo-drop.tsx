@@ -26,6 +26,8 @@ interface Dropped {
   trip?: { community: string; what: string } | null;
   viaUrl?: boolean;
   indexed?: boolean;
+  contentId?: string | null;
+  community?: string | null;
   /** What the browser actually put on the drag, when nothing usable came through. */
   debug?: string;
 }
@@ -173,52 +175,113 @@ export function PhotoDrop() {
       </div>
 
       {results.length > 0 && (
-        <ul className="mt-3 space-y-1.5">
-          {results.map((r, i) => (
-            <li
-              key={`${r.url ?? r.error}-${i}`}
-              className="rounded-lg border border-border px-3 py-2 text-xs"
-            >
-              {r.ok ? (
-                <div className="flex items-start gap-3">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={r.url} alt="" className="h-14 w-14 shrink-0 rounded object-cover" />
-                  <div className="min-w-0">
-                    <p className="text-foreground">
-                      {r.indexed ? 'In the library.' : 'On disk, not registered yet.'}{' '}
-                      <span className="text-muted-foreground">{r.note}</span>
-                    </p>
-                    {r.exif?.model && (
-                      <p className="text-[11px] text-muted-foreground">
-                        {[r.exif.make, r.exif.model, r.exif.lens].filter(Boolean).join(' ')}
-                      </p>
-                    )}
-                    <p className="mt-1 text-[11px] text-muted-foreground">
-                      Reload, then paste this into the search box to find and tag it:{' '}
-                      <button
-                        type="button"
-                        onClick={() => navigator.clipboard?.writeText(r.url?.split('/').pop() ?? '')}
-                        className="font-mono underline hover:text-foreground"
-                        title="Copy the filename"
-                      >
-                        {r.url?.split('/').pop()}
-                      </button>
-                    </p>
-                  </div>
-                </div>
-              ) : (
-                <>
-                  <span className="text-amber-700">{r.error}</span>
-                  {r.debug && <span className="ml-2 font-mono text-[10px] text-muted-foreground">{r.debug}</span>}
-                </>
-              )}
-            </li>
-          ))}
-          <li className="px-3 py-1 text-[11px] text-muted-foreground">
-            Reload to see them in the grid, then write the Notes, which is the caption every page reads.
-          </li>
+        <ul className="mt-3 space-y-2">
+          {results.map((r, i) =>
+            r.ok ? (
+              <DroppedCard key={`${r.url}-${i}`} item={r} />
+            ) : (
+              <li key={`err-${i}`} className="rounded-lg border border-border px-3 py-2 text-xs">
+                <span className="text-amber-700">{r.error}</span>
+                {r.debug && <span className="ml-2 font-mono text-[10px] text-muted-foreground">{r.debug}</span>}
+              </li>
+            ),
+          )}
         </ul>
       )}
     </div>
+  );
+}
+
+/**
+ * TAG IT WHERE IT LANDS.
+ *
+ * Ben: this is so clunky, why is it so hard. It was hard because dropping and tagging were in
+ * two different places: the zone put the file somewhere and then you had to reload, find it in a
+ * grid of eight hundred and open it. So the card that appears when a photograph lands IS the
+ * editor. Caption, community, tags, save, done, without leaving the spot you dropped on.
+ *
+ * It writes to the same endpoint the library uses, so a photograph tagged here and a photograph
+ * tagged in the grid are the same thing in the same place.
+ */
+function DroppedCard({ item }: { item: Dropped }) {
+  const [caption, setCaption] = useState('');
+  const [community, setCommunity] = useState(item.community ?? '');
+  const [extra, setExtra] = useState('');
+  const [state, setState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+  const [error, setError] = useState('');
+
+  const save = useCallback(async () => {
+    if (!item.contentId) {
+      setState('error');
+      setError('Not registered, so there is nothing to tag yet.');
+      return;
+    }
+    setState('saving');
+    const tags = [
+      ...(community.trim() ? [`community:${community.trim()}`] : []),
+      ...extra.split(/[,\s]+/).filter(Boolean),
+    ];
+    try {
+      const res = await fetch('/api/admin/content-item', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: item.contentId, tags, notes: caption.trim() || null }),
+      });
+      const data = (await res.json()) as { ok: boolean; error?: string };
+      if (!res.ok || !data.ok) {
+        setState('error');
+        setError(data.error || `HTTP ${res.status}`);
+        return;
+      }
+      setState('saved');
+    } catch (e) {
+      setState('error');
+      setError(e instanceof Error ? e.message : String(e));
+    }
+  }, [caption, community, extra, item.contentId]);
+
+  return (
+    <li className="rounded-lg border border-border p-3">
+      <div className="flex gap-3">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={item.url} alt="" className="h-24 w-24 shrink-0 rounded object-cover" />
+        <div className="min-w-0 flex-1 space-y-1.5">
+          <p className="text-[11px] text-muted-foreground">
+            {item.exif?.date ? `Taken ${item.exif.date}` : 'No date in the file'}
+            {item.trip ? ` · ${item.trip.what}` : ''}
+            {item.exif?.model ? ` · ${[item.exif.make, item.exif.model].filter(Boolean).join(' ')}` : ''}
+          </p>
+          <input
+            value={caption}
+            onChange={(e) => { setCaption(e.target.value); setState('idle'); }}
+            placeholder="What is in the picture. This is the caption every page reads."
+            className="w-full rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-ring"
+          />
+          <div className="flex gap-1.5">
+            <input
+              value={community}
+              onChange={(e) => { setCommunity(e.target.value); setState('idle'); }}
+              placeholder="community, e.g. tennant-creek"
+              className="flex-1 rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs font-mono focus:outline-none focus:ring-2 focus:ring-ring"
+            />
+            <input
+              value={extra}
+              onChange={(e) => { setExtra(e.target.value); setState('idle'); }}
+              placeholder="use:snow  people:norman-frank"
+              className="flex-1 rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs font-mono focus:outline-none focus:ring-2 focus:ring-ring"
+            />
+            <button
+              type="button"
+              onClick={save}
+              disabled={state === 'saving'}
+              className="rounded-lg bg-foreground px-3 py-1.5 text-xs font-semibold text-background hover:opacity-90 disabled:opacity-50"
+            >
+              {state === 'saving' ? 'Saving…' : state === 'saved' ? 'Saved' : 'Save'}
+            </button>
+          </div>
+          {state === 'error' && <p className="text-[11px] text-amber-700">{error}</p>}
+        </div>
+      </div>
+    </li>
   );
 }

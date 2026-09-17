@@ -131,6 +131,7 @@ export async function POST(req: Request) {
    * the moment it lands. The next full index sees the same checksum and leaves it alone.
    */
   let indexed = false;
+  let contentId: string | null = null;
   try {
     const supabase = createServiceClient();
     const checksum = createHash('md5').update(bytes).digest('hex');
@@ -141,18 +142,24 @@ export async function POST(req: Request) {
       .maybeSingle();
     if (already) {
       indexed = true;
+      contentId = already.id as string;
     } else {
-      const { error } = await supabase.from('content_items').insert({
-        source: 'local',
-        ref: rel,
-        url: rel,
-        media_type: 'image',
-        checksum,
-        area: area.split('/')[0],
-        tags: trip ? [`community:${trip.community}`] : [],
-        consent_tier: 'gated',
-      });
+      const { data, error } = await supabase
+        .from('content_items')
+        .insert({
+          source: 'local',
+          ref: rel,
+          url: rel,
+          media_type: 'image',
+          checksum,
+          area: area.split('/')[0],
+          tags: trip ? [`community:${trip.community}`] : [],
+          consent_tier: 'gated',
+        })
+        .select('id')
+        .single();
       indexed = !error;
+      contentId = (data?.id as string) ?? null;
     }
   } catch {
     indexed = false;
@@ -162,6 +169,8 @@ export async function POST(req: Request) {
     ok: true,
     url: rel,
     indexed,
+    contentId,
+    community: trip?.community ?? null,
     bytes: bytes.byteLength,
     exif,
     trip: trip ? { community: trip.community, what: trip.what } : null,
