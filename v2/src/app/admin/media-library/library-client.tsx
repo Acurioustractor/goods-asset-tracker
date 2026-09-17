@@ -884,6 +884,20 @@ export function MediaLibraryClient({
               <option value="__clear">— Clear community —</option>
             </select>
           )}
+          {/*
+            * One click for the tag being worked on all night. Ben, 17 September: can we have a
+            * button we click after selecting, that is Snow, so it is easy. Typing use:snow forty
+            * times is how a tag ends up half-applied.
+            */}
+          <button
+            type="button"
+            onClick={() => bulkAddTag('use:snow')}
+            title="Tag everything selected use:snow"
+            className="rounded-lg border px-2.5 py-1 text-xs font-semibold transition"
+            style={{ borderColor: '#C45C3E', color: '#9A4023' }}
+          >
+            + Snow
+          </button>
           <div className="flex items-center gap-1">
             <input
               type="text"
