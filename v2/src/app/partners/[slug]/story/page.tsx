@@ -541,8 +541,8 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             </h2>
             <p className="mt-5 max-w-[58ch] text-[1.0625rem] leading-[1.75] sm:text-lg" style={{ color: `${CHARCOAL}b8` }}>
               Kalgoorlie is where the mattresses end up. Tennant Creek is where your money landed first. Maningrida
-              is where the making moved onto Country. The people who live in these places say what the work is for
-              better than we can, so below they say it.
+              is where the making moved onto Country. The people who live there say what the work is for
+              better than we can.
             </p>
           </div>
         </div>
@@ -558,8 +558,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             <p className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: RUST }}>Every payment, in order</p>
             <p className="mt-3 max-w-2xl text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
               Eleven payments put beds in houses. Five of them were given before anybody had bought
-              anything. Read down: the order is the progress, and it is what the rest of this report
-              is built on.
+              anything. Read down. The rest of this report is built on that order.
             </p>
             <div className="mt-8">
               <MoneyLedger events={MONEY_EVENTS} monthsBefore={MONTHS_BEFORE_FIRST_SALE} />
@@ -720,7 +719,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           <p className="mt-3 max-w-[58ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}b8` }}>
             Community-led is a word that gets used loosely, so here is ours as four things that
             either happen or do not. Three of them happen today. The fourth has never happened
-            anywhere and it says so.
+            anywhere.
           </p>
           <ol className="m-0 mt-7 grid list-none gap-5 p-0 sm:grid-cols-2">
             {COMMUNITY_MODEL.map((s) => (
@@ -1193,7 +1192,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>What we would do together</p>
           <ul className="mt-3 space-y-3 text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
             <li>Keep the beds travelling with the heart screening, where the Trek has already shown it works.</li>
-            <li>Build the training the paid work card says we do not yet have, so capacity is a count rather than an intention.</li>
+            <li>Build the training the paid work card says we do not yet have, so capacity is a number we can count.</li>
             <li>Carry the first transfer of a production site into community hands and report on it whether or not it goes smoothly.</li>
             <li>Keep the story in the hands of the people telling it. Thirty-nine people have agreed by name and nobody else appears.</li>
           </ul>

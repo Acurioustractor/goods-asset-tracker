@@ -555,12 +555,12 @@ export const COMMUNITY_MODEL: readonly { step: string; title: string; body: stri
   {
     step: '03', state: 'now',
     title: 'They decide what happens next',
-    body: 'After costs it is theirs to spend: more beds, paid local work, or making something of their own. The build days are paid work and the training sits inside the price of the bed rather than beside it as a line item.',
+    body: 'After costs it is theirs to spend: more beds, paid local work, or making something of their own. The build days are paid work.',
   },
   {
     step: '04', state: 'future',
     title: 'They own the making',
-    body: 'The containerised plant is built to move to community operation and then to community ownership, on the Supply Nation 51 per cent path. No site has passed this point. Zero is the honest number and it is the one we print against ourselves.',
+    body: 'The containerised plant is built to move to community operation and then to community ownership, on the Supply Nation 51 per cent path. No site has passed this point yet.',
   },
 ];
 
@@ -678,7 +678,7 @@ export const THE_ARC: readonly ArcStage[] = [
     when: 'First paid order September 2025',
     state: 'now',
     stateLabel: 'The one we sell',
-    body: 'Two galvanised poles threaded through the canvas and into crossed legs pressed from recycled plastic. The canvas is structural, so the bed does not stand without it and twenty kilograms of plastic stays out of a tip for every one. Centrecorp bought the first sixty at $370 and came back for a hundred and seven. The price is $750 now because freight and the paid local work came inside it rather than beside it.',
+    body: 'Two galvanised poles threaded through the canvas and into crossed legs pressed from recycled plastic. The canvas is structural, so the bed does not stand without it and twenty kilograms of plastic stays out of a tip for every one. Centrecorp bought the first sixty at $370 and came back for a hundred and seven. The price is $750 now because freight and the paid local work are counted in it.',
     figure: { value: String(CANONICAL_ASSETS.stretchBedsDeployed), label: 'in homes' },
     photo: { src: '/images/community/alice-springs/stretch-bed-two-generations.jpg', alt: 'Two generations on a Stretch Bed' },
   },
@@ -687,7 +687,7 @@ export const THE_ARC: readonly ArcStage[] = [
     what: 'The production facility',
     when: 'Maningrida run, August 2025',
     state: 'commissioning',
-    body: 'Forty beds for Maningrida went through our own shredder, heat press and router, were shipped flat packed and were built at Gamardi by young people from the community. Production moving on Country is not a plan we are describing. It has happened once and we know what it cost. The containerised plant is built to move to community operation and then ownership.',
+    body: 'Forty beds for Maningrida went through our own shredder, heat press and router, were shipped flat packed and were built at Gamardi by young people from the community. That is the one time it has happened, and we know what it cost. The containerised plant is built to move to community operation and then ownership.',
     figure: { value: '40', label: 'beds pressed in house' },
     photo: { src: '/images/process/container-factory.jpg', alt: 'The containerised factory' },
   },
@@ -750,7 +750,7 @@ export const THEMES: readonly Theme[] = [
   {
     id: 'employment',
     title: 'Paid work',
-    body: 'A bed is assembled where it is delivered, by people who live there and are paid for it. The training goes inside the price of the bed rather than beside it as a line item, so a build day is work rather than a workshop.',
+    body: 'A bed is assembled where it is delivered, by people who live there and are paid for it. The training is part of what the bed costs, so a build day is paid work, not a workshop.',
     proof: 'Thirty young people on the Palm Island build. Forty beds assembled at Gamardi by young workers from Maningrida. Katrina Bloomfield has done train the trainer at the Queensland facility.',
     limit: 'These are instances and not a curriculum. There is no completion count and no accredited pathway, and capacity is the weakest of these five.',
   },
@@ -1072,7 +1072,7 @@ export const PLACE_BEATS: readonly PlaceBeatData[] = [
     place: 'Gamardi, Maningrida, Arnhem Land',
     when: '2025',
     title: 'The making moves.',
-    body: 'Forty Stretch Beds for Maningrida were pressed in our own facility: shredded, heat pressed, routed and shipped. Eight washing machines are in community here. This is the difference between saying production could move on Country and having moved it.',
+    body: 'Forty Stretch Beds for Maningrida were pressed in our own facility: shredded, heat pressed, routed and shipped. Eight washing machines are in community here.',
     film: { src: '/video/maningrida/gamardi-drone.mp4', poster: '/video/maningrida/gamardi-drone-poster.jpg', alt: 'Gamardi, Maningrida, Arnhem Land, from the air' },
     voices: [
       { slug: 'tehmineh-mason', contains: 'fresh and ready for school' },
@@ -1163,13 +1163,13 @@ export const BUYERS: readonly BuyerRoute[] = [
     id: 'centrecorp', buyer: 'Centrecorp Foundation', route: 'Philanthropic trust buying for a community',
     beds: 167, firstPrice: 370, latestPrice: 560, forPlace: 'Utopia Homelands',
     invoices: 'INV-0259 and INV-0291, paid September 2025 and February 2026',
-    what: 'The first repeat buyer. They came back at a higher price for nearly twice the volume, which is the only kind of demand signal worth anything. They buy beds; they have never given a grant and the footer says so.',
+    what: 'The first repeat buyer. They came back at a higher price for nearly twice the volume. They buy beds; they have never given a grant and the footer says so.',
   },
   {
     id: 'malala', buyer: "Mala'la Health Service Aboriginal Corporation", route: 'Aboriginal community controlled health service',
     beds: 13, firstPrice: 380, latestPrice: 380, forPlace: 'Maningrida',
     invoices: 'INV-0283, paid November 2025',
-    what: 'An ACCHO buying bedding as health hardware out of its own budget. Small and the most strategically interesting line in the book: it is a health service acting on the housing end of the pathway.',
+    what: 'An ACCHO buying bedding as health hardware out of its own budget. Small, and a health service buying at the housing end of the pathway.',
   },
   {
     id: 'homeland-school', buyer: 'Homeland School Company', route: 'School',
