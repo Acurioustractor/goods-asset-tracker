@@ -25,6 +25,7 @@ interface Dropped {
   exif?: { date?: string; make?: string; model?: string; lens?: string };
   trip?: { community: string; what: string } | null;
   viaUrl?: boolean;
+  indexed?: boolean;
   /** What the browser actually put on the drag, when nothing usable came through. */
   debug?: string;
 }
@@ -155,8 +156,8 @@ export function PhotoDrop() {
           {busy > 0 ? `Bringing in ${busy}…` : 'Drop photographs here'}
         </p>
         <p className="mt-1 text-xs text-muted-foreground">
-          From Finder, or drag an image straight out of a Google Photos tab. A file keeps its date and files
-          itself by trip. A drag from the web arrives without a date, because Google strips it.
+          From Finder, or straight out of a Google Photos tab. Where the photograph carries its own date it
+          files itself by trip or event; where it does not, it waits in unplaced for you to say.
         </p>
         <input
           ref={fileInput}
@@ -179,15 +180,32 @@ export function PhotoDrop() {
               className="rounded-lg border border-border px-3 py-2 text-xs"
             >
               {r.ok ? (
-                <>
-                  <span className="font-mono text-foreground">{r.url}</span>
-                  <span className="ml-2 text-muted-foreground">{r.note}</span>
-                  {r.exif?.model && (
-                    <span className="ml-2 text-muted-foreground">
-                      {[r.exif.make, r.exif.model, r.exif.lens].filter(Boolean).join(' ')}
-                    </span>
-                  )}
-                </>
+                <div className="flex items-start gap-3">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={r.url} alt="" className="h-14 w-14 shrink-0 rounded object-cover" />
+                  <div className="min-w-0">
+                    <p className="text-foreground">
+                      {r.indexed ? 'In the library.' : 'On disk, not registered yet.'}{' '}
+                      <span className="text-muted-foreground">{r.note}</span>
+                    </p>
+                    {r.exif?.model && (
+                      <p className="text-[11px] text-muted-foreground">
+                        {[r.exif.make, r.exif.model, r.exif.lens].filter(Boolean).join(' ')}
+                      </p>
+                    )}
+                    <p className="mt-1 text-[11px] text-muted-foreground">
+                      Reload, then paste this into the search box to find and tag it:{' '}
+                      <button
+                        type="button"
+                        onClick={() => navigator.clipboard?.writeText(r.url?.split('/').pop() ?? '')}
+                        className="font-mono underline hover:text-foreground"
+                        title="Copy the filename"
+                      >
+                        {r.url?.split('/').pop()}
+                      </button>
+                    </p>
+                  </div>
+                </div>
               ) : (
                 <>
                   <span className="text-amber-700">{r.error}</span>
@@ -197,8 +215,7 @@ export function PhotoDrop() {
             </li>
           ))}
           <li className="px-3 py-1 text-[11px] text-muted-foreground">
-            Then run <span className="font-mono">npm run content:index</span> and write the Notes, which is the
-            caption every page reads.
+            Reload to see them in the grid, then write the Notes, which is the caption every page reads.
           </li>
         </ul>
       )}

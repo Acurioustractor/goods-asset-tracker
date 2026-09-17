@@ -21,7 +21,9 @@ import { NextResponse } from 'next/server';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { requireAdmin } from '@/lib/auth/admin';
-import { readExif, tripFor, photoFilename } from '@/lib/media/exif';
+import { createHash } from 'node:crypto';
+import { readExif, tripFor, photoFilename, areaForTrip } from '@/lib/media/exif';
+import { createServiceClient } from '@/lib/supabase/server';
 
 export const runtime = 'nodejs';
 
@@ -106,7 +108,7 @@ export async function POST(req: Request) {
   const exif = readExif(bytes);
   const trip = tripFor(exif.date);
   const areaParam = new URL(req.url).searchParams.get('area');
-  const area = safeArea(areaParam ?? (trip ? `community/${trip.community}` : null));
+  const area = safeArea(areaParam ?? (trip ? areaForTrip(trip) : null));
   const name = photoFilename(originalName, exif.date);
   const rel = `/images/${area}/${name}`;
 
@@ -121,9 +123,45 @@ export async function POST(req: Request) {
     );
   }
 
+  /*
+   * REGISTER IT IMMEDIATELY. Ben: I just want to drop photos in, have the date, and tag it as
+   * needed. Until now a dropped photograph sat on disk and stayed invisible until somebody ran
+   * content:index from a terminal, which is not "tag it as needed", it is homework. The row goes
+   * in here, with the same shape the indexer writes, so the picture is in the grid and taggable
+   * the moment it lands. The next full index sees the same checksum and leaves it alone.
+   */
+  let indexed = false;
+  try {
+    const supabase = createServiceClient();
+    const checksum = createHash('md5').update(bytes).digest('hex');
+    const { data: already } = await supabase
+      .from('content_items')
+      .select('id')
+      .eq('checksum', checksum)
+      .maybeSingle();
+    if (already) {
+      indexed = true;
+    } else {
+      const { error } = await supabase.from('content_items').insert({
+        source: 'local',
+        ref: rel,
+        url: rel,
+        media_type: 'image',
+        checksum,
+        area: area.split('/')[0],
+        tags: trip ? [`community:${trip.community}`] : [],
+        consent_tier: 'gated',
+      });
+      indexed = !error;
+    }
+  } catch {
+    indexed = false;
+  }
+
   return NextResponse.json({
     ok: true,
     url: rel,
+    indexed,
     bytes: bytes.byteLength,
     exif,
     trip: trip ? { community: trip.community, what: trip.what } : null,
@@ -131,11 +169,13 @@ export async function POST(req: Request) {
     // The one thing the person dropping needs to know, in words.
     note: exif.date
       ? trip
-        ? `Taken ${exif.date}, which is the ${trip.what} trip, so it went to ${trip.community}.`
+        ? `Taken ${exif.date}, which is ${trip.what}, so it went to ${areaForTrip(trip)}.`
         : `Taken ${exif.date}, but no trip covers that date, so it is in unplaced. Set the community in the Media Room.`
       : viaUrl
         ? 'Dragged from a web page, so Google stripped the date out of it. Set the community yourself, or drag the downloaded file instead to keep the date.'
         : 'No date in the file, so it is in unplaced. Set the community in the Media Room.',
-    next: 'npm run content:index, then write the Notes, which is the caption every page reads.',
+    next: indexed
+      ? 'In the library now. Write the Notes, which is the caption every page reads.'
+      : 'On disk, but not registered. Run npm run content:index to see it in the grid.',
   });
 }

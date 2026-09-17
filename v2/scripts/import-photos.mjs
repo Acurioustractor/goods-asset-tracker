@@ -38,12 +38,15 @@ import { join, extname, basename } from 'node:path';
  * happens and every photograph from it lands tagged correctly for ever after.
  */
 const TRIPS = [
+  { from: '2024-10-29', to: '2024-11-01', community: 'philanthropy-australia', what: 'Philanthropy Australia Conference', area: 'events/philanthropy-australia-2024' },
   { from: '2024-11-01', to: '2024-11-30', community: 'tennant-creek', what: 'Healthy Homes forum, Anyinginyi' },
   { from: '2024-12-10', to: '2024-12-22', community: 'palm-island', what: '85 beds over a weekend' },
   { from: '2025-04-01', to: '2025-04-12', community: 'tennant-creek', what: 'Deadly Heart Trek' },
   { from: '2025-06-20', to: '2025-07-06', community: 'tennant-creek', what: 'Washing machines, Pakkimjalki Kari' },
   { from: '2025-08-01', to: '2025-08-20', community: 'katherine', what: 'Deadly Heart Trek, Big Rivers' },
   { from: '2025-08-21', to: '2025-09-10', community: 'maningrida', what: 'Gamardi build' },
+  { from: '2026-03-01', to: '2026-03-31', community: 'canberra', what: 'Parliamentary Friends for Ending RHD', area: 'events/parliament-house-2026' },
+  { from: '2026-05-01', to: '2026-05-14', community: 'canberra', what: 'Canberra Airport display', area: 'events/canberra-airport-2026' },
   { from: '2026-05-15', to: '2026-05-31', community: 'utopia', what: 'Utopia run with Oonchiumpa' },
   { from: '2026-06-01', to: '2026-06-20', community: 'alice-springs', what: 'Alice Springs and Oonchiumpa' },
 ];
@@ -127,13 +130,13 @@ function main() {
   for (const file of files.sort()) {
     const exif = readExif(join(src, file));
     const trip = tripFor(exif.date);
-    const area = areaArg ?? (trip ? `community/${trip.community}` : 'unplaced');
+    const area = areaArg ?? (trip ? trip.area ?? `community/${trip.community}` : 'unplaced');
     const name = `${exif.date ?? 'undated'}-${slug(basename(file))}${extname(file).toLowerCase()}`;
     const rel = `images/${area}/${name}`;
 
     const bits = [
       exif.date ?? 'NO DATE',
-      trip ? `-> ${trip.community} (${trip.what})` : areaArg ? `-> ${areaArg} (you said so)` : '-> unplaced, no trip matches',
+      trip ? `-> ${trip.area ?? `community/${trip.community}`} (${trip.what})` : areaArg ? `-> ${areaArg} (you said so)` : '-> unplaced, no trip matches',
       [exif.make, exif.model, exif.lens].filter(Boolean).join(' ') || null,
       exif.hasGps ? 'has GPS' : null,
     ].filter(Boolean);
