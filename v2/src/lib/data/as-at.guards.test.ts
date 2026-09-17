@@ -95,7 +95,7 @@ describe('nobody adds a ninth date format', () => {
  * real contract, and the number may only go up.
  */
 describe('freshness stamps spread', () => {
-  const FLOOR = 1;
+  const FLOOR = 2;
 
   const walk = (dir: string): string[] => {
     const out: string[] = [];

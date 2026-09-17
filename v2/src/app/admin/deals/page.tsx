@@ -8,6 +8,7 @@ import { LoiTrackerTab } from './tabs/loi-tracker/tab';
 import { PipelineTab } from './tabs/pipeline/tab';
 import { AskTab } from './tabs/ask/tab';
 import { StackTab } from './tabs/stack/tab';
+import { ReadinessTab } from './tabs/readiness/tab';
 
 export const dynamic = 'force-dynamic';
 
@@ -27,6 +28,7 @@ const TABS = [
   { id: 'board', label: 'Board' },
   { id: 'stack', label: 'The stack' },
   { id: 'ask', label: 'The ask' },
+  { id: 'readiness', label: 'Readiness' },
   { id: 'funders', label: 'Funders' },
   { id: 'loi', label: 'LOI tracker' },
   { id: 'pipeline', label: 'Pipeline' },
@@ -41,7 +43,7 @@ export default async function DealsPage({ searchParams }: { searchParams: Promis
       <div>
         <h1 className="text-2xl font-bold font-display text-foreground">The raise</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Sales, funding, partnerships and procurement. One board, and the five views behind it.
+          Sales, funding, partnerships and procurement. One board, and the views behind it.
         </p>
       </div>
 
@@ -60,6 +62,7 @@ export default async function DealsPage({ searchParams }: { searchParams: Promis
       {current === 'board' && <DealsBoard />}
       {current === 'stack' && <StackTab />}
       {current === 'ask' && <AskTab />}
+      {current === 'readiness' && <ReadinessTab />}
       {current === 'funders' && <FundersTab />}
       {current === 'loi' && <LoiTrackerTab />}
       {current === 'pipeline' && <PipelineTab />}
