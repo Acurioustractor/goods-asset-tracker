@@ -471,7 +471,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       <Chapter
         id="ch-making"
         title="A basket, a machine, a bed, a plant and the next machine"
-        lead="Five things in the order they were made, because the order is the argument. Each one taught the next and two of them we have stopped selling."
+        lead="The basket bed is given away now, the washing machine is still a prototype and the plant is being commissioned. One of the five is for sale today."
       >
         <ol className="m-0 list-none p-0">
           {THE_ARC.map((s) => (
