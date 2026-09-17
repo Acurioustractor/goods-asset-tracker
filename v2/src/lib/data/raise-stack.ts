@@ -46,7 +46,8 @@ export type LegalHome =
   | 'TBC';
 
 /** What the money does. `pool` lines buy beds; only they count toward the 1,000. */
-export type StackJob = 'pool' | 'proofs' | 'block' | 'demand' | 'equipment' | 'related';
+/** `plant` added 17 September 2026: QBE buys production facilities, which is not a pool of beds. */
+export type StackJob = 'pool' | 'proofs' | 'block' | 'demand' | 'equipment' | 'related' | 'plant';
 
 export interface StackLine {
   id: string;
@@ -121,16 +122,15 @@ export const STACK: readonly StackLine[] = [
   {
     id: 'qbe',
     funder: 'QBE Foundation, Catalysing Impact Stage 2',
-    amountAud: 250_000,
-    split: { poolAud: 150_000, proofsAud: 100_000 },
+    amountAud: 300_000,
     instrument: 'catalytic-grant',
     status: 'ask-made',
     legalHome: 'TBC',
-    job: 'pool',
+    job: 'plant',
     label: 'target',
-    source: 'Jay Boolkin to the cohort, 24 Aug 2026; wiki/investor/20-qbe-program-economics.md',
-    asAt: '2026-09-02',
-    note: 'Typically $150,000 to $400,000 from a pool of up to $1.1 million across ten enterprises. Discretionary. It sits on top of signed external commitments and does not double them. The ask is $250,000: one pool and the proof block (Ben, 2 Sep evening); $400,000 stays the ceiling. Applicant entity to be settled with Jay on 3 Sep. Form closes Fri 25 Sep 12pm AEST; review meeting Wed 7 Oct.',
+    source: 'Ben ruling 15 Sep 2026, confirmed 17 Sep; Jay Boolkin to the cohort, 24 Aug 2026',
+    asAt: '2026-09-17',
+    note: 'Two community production facilities at $150,000 each. QBE is asked for plant; beds are asked of the other funders at 133 beds and $99,750 each, and nobody is asked for the running cost. Typically $150,000 to $400,000 from a pool of up to $1.1 million across ten enterprises, discretionary, sitting on top of signed external commitments without doubling them. The $250,000 one-pool ask of 2 September is retired. Form closes Fri 25 Sep 12pm AEST; review meeting Wed 7 Oct.',
   },
   {
     id: 'bmdf',
@@ -337,29 +337,39 @@ function tier(aud: number, poolAud: number, buys: string): AskTier {
   return { aud, poolAud, proofsAud, beds: poolAud / BED_PRICE_AUD, buys };
 }
 
+/** A facilities ask: $150,000 of plant each, and no beds inside it. */
+function facility(count: number): { aud: number; facilities: number; buys: string } {
+  return {
+    aud: count * 150_000,
+    facilities: count,
+    buys:
+      `${count === 1 ? 'One community production facility' : `${count} community production facilities`} at ` +
+      `$150,000 each: the press, the router and the shredder that turn community plastic into legs, ` +
+      `plus the first fifty beds pressed at production rate, timed and costed with receipts, and the ` +
+      `rules agreements the making runs on.`,
+  };
+}
+
 export const QBE_ASK = {
   /**
-   * The ask (Ben, 2 Sep 2026, evening): one governed pool and the proof block. It does not
-   * have to be the maximum. It is easier to say, easier to grant, and every dollar above it
-   * buys beds at the same ratio (bed-ratio.ts). Form Q5.
+   * THE ASK IS TWO PRODUCTION FACILITIES, NOT A POOL OF BEDS.
+   *
+   * Ben, 15 September 2026, confirmed again on the 17th: QBE is asked for plant, $150,000 a
+   * facility for two. Every other funder is asked for 133 beds at the published $750, which is
+   * $99,750, and nobody is asked for the running cost. The 16 September placemat is built on
+   * this and it is what /pitch and /partner already say.
+   *
+   * RETIRED, 2 September 2026: a $250,000 recommended tier buying one governed pool of 200 beds
+   * plus the proof block, with $400,000 as a two-pool ceiling and $150,000 as a smaller tier.
+   * That ask was for beds and proofs. This one is for the plant that makes the beds, so the
+   * tiers are not a smaller or larger version of each other and must not be quoted together.
    */
-  recommended: tier(
-    250_000,
-    150_000,
-    'One community pool (200 beds) and the proof block: the first fifty beds pressed at the Goods on Country facility in Queensland at production rate, timed and costed with receipts; the rules agreements the pools run on; product traceability and the accounting repair that gives Goods on Country a gross margin on paper.',
-  ),
-  /** The ceiling, never the plan (ruling V): two pools and the proofs. */
-  full: tier(
-    400_000,
-    300_000,
-    'Two community pools (400 beds) and the proof block. The top of the typical range and 36% of the whole pool; carried as the ceiling, not the plan.',
-  ),
-  /** Form Q7. */
-  smaller: tier(
-    150_000,
-    75_000,
-    'The proof block and the first hundred beds. The loop is proven on half a pool; the second half waits for the next funder.',
-  ),
+  recommended: facility(2),
+  /** One facility, if the pool is thinner than hoped. Not a fallback anybody has offered. */
+  smaller: facility(1),
+  retiredPoolTiers:
+    'Retired 15 September 2026: $250,000 for one 200-bed pool, $400,000 for two, $150,000 for the ' +
+    'proof block and 100 beds. Superseded by the facilities ask; do not quote alongside it.',
   framing:
     'A discretionary Catalysing Impact grant, typically $150,000 to $400,000 from a pool of up to $1.1 million across ten enterprises. It sits on top of signed external commitments and does not double them. $0 is signed today.',
   leverageChain: [

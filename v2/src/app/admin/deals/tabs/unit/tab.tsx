@@ -64,7 +64,7 @@ export function UnitTab() {
       <div className="overflow-x-auto rounded-xl border bg-card">
         <div className="flex flex-wrap items-baseline justify-between gap-2 border-b px-4 py-3">
           <p className="text-xs font-semibold">Any amount, the same ratio</p>
-          <p className="text-[10px] text-muted-foreground">The ask sits at $250,000. $400,000 is the ceiling.</p>
+          <p className="text-[10px] text-muted-foreground">QBE is asked for two facilities at $300,000. Beds are asked of other funders, 133 at a time.</p>
         </div>
         <table className="w-full text-sm">
           <thead className="bg-muted/40">
