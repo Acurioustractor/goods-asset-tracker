@@ -34,6 +34,7 @@ interface Dropped {
 }
 
 const SESSION_KEY = 'goods.mediaroom.sessionTags';
+const QUEUE_KEY = 'goods.mediaroom.dropQueue';
 
 export function PhotoDrop() {
   /*
@@ -63,6 +64,29 @@ export function PhotoDrop() {
   const [busy, setBusy] = useState(0);
   const [results, setResults] = useState<Dropped[]>([]);
   const fileInput = useRef<HTMLInputElement>(null);
+
+  /*
+   * THE QUEUE SURVIVES A RELOAD. Ben dropped photographs, reloaded, and the cards he was about
+   * to caption disappeared: the queue was in memory only. The photographs were safe in the
+   * library, but the work in front of him was gone, which is the thing that made this feel
+   * unfinished. It is in local storage now, so the untagged ones are still waiting whenever the
+   * page comes back.
+   */
+  useEffect(() => {
+    try {
+      const raw = window.localStorage.getItem(QUEUE_KEY);
+      if (raw) setResults(JSON.parse(raw) as Dropped[]);
+    } catch {
+      /* nothing to restore */
+    }
+  }, []);
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(QUEUE_KEY, JSON.stringify(results.filter((r) => r.ok).slice(0, 24)));
+    } catch {
+      /* ignore */
+    }
+  }, [results]);
 
   const send = useCallback(async (init: RequestInit) => {
     setBusy((n) => n + 1);
@@ -221,7 +245,11 @@ export function PhotoDrop() {
         <ul className="mt-3 space-y-2">
           {[...results].sort((a, b) => Number(b.ok) - Number(a.ok)).map((r, i) =>
             r.ok ? (
-              <DroppedCard key={`${r.url}-${i}`} item={r} />
+              <DroppedCard
+                key={`${r.url}-${i}`}
+                item={r}
+                onDone={() => setResults((prev) => prev.filter((x) => x.url !== r.url))}
+              />
             ) : (
               <li key={`err-${i}`} className="flex items-start gap-2 rounded-lg border border-border px-3 py-2 text-xs">
                 <span className="flex-1 text-amber-700">
@@ -256,7 +284,7 @@ export function PhotoDrop() {
  * It writes to the same endpoint the library uses, so a photograph tagged here and a photograph
  * tagged in the grid are the same thing in the same place.
  */
-function DroppedCard({ item }: { item: Dropped }) {
+function DroppedCard({ item, onDone }: { item: Dropped; onDone: () => void }) {
   const applied = item.appliedTags ?? [];
   const [caption, setCaption] = useState('');
   const [community, setCommunity] = useState(
@@ -299,11 +327,12 @@ function DroppedCard({ item }: { item: Dropped }) {
         return;
       }
       setState('saved');
+      window.setTimeout(onDone, 1200);
     } catch (e) {
       setState('error');
       setError(e instanceof Error ? e.message : String(e));
     }
-  }, [applied, caption, community, extra, item.contentId]);
+  }, [applied, caption, community, extra, item.contentId, onDone]);
 
   return (
     <li
