@@ -15,7 +15,7 @@ import {
   OWNERSHIP_VOICES, PROGRESS_BRIDGE, THEMES, THE_NEXT_TEN, TRADE_BY_YEAR,
   PLACE_BEATS, PRICE_LADDER,
   NORM_MONTHS, SNOW_MONEY, THE_ARC, THE_LETTER, TOGETHER, WASHER_FLEET,
-  WALLS, WHY_FLEXIBLE,
+  WALLS,
   WASHER_NEXT, WASHER_PLACES, WASHER_TELEMETRY,
 } from '@/lib/data/snow-partnership';
 import { snowHeroFrames, snowTaggedGroup } from '@/lib/data/snow-photos';
@@ -117,6 +117,16 @@ const CH = new Map<string, { number: string; label: string }>(
   CHAPTERS.map((c, i) => [c.id as string, { number: String(i + 1).padStart(2, '0'), label: c.label as string }]),
 );
 const chapterNumber = (id: string) => CH.get(id)?.number ?? '';
+
+/** A community slug, written the way it is said. Anything unlisted title-cases cleanly. */
+const PLACE_NAMES: Record<string, string> = {
+  'mt-isa': 'Mount Isa',
+  'philanthropy-australia-2024': 'Philanthropy Australia, 2024',
+  'parliament-house-2026': 'Parliament House, 2026',
+  'canberra-airport-2026': 'Canberra Airport, 2026',
+};
+const placeLabel = (slug: string) =>
+  PLACE_NAMES[slug] ?? slug.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 const chapterLabel = (id: string) => CH.get(id)?.label ?? '';
 
 /** Default-deny, same shape as funder-moments: wrong tier or unapproved renders nothing. */
@@ -258,6 +268,41 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
   // The curated walls, plus anything Ben has tagged use:snow in the Media Room, which is the
   // one-step way to put a new photograph on this page without touching code.
   const taggedForSnow = await taggedPhotos('use:snow');
+  /*
+   * WHERE EACH TAGGED PHOTOGRAPH GOES.
+   *
+   * Ben tagged 95 photographs use:snow in one click and they all landed in a single block at the
+   * bottom called "Tagged for Snow", which is a dumping ground, not a page. A photograph knows
+   * where it was taken, so it can go to the stop on the road that names that place. The top of
+   * the page takes the starred ones, each road stop takes its own community, and whatever is
+   * left over is the gallery. Nothing appears twice.
+   */
+  const beatPlaces = new Set(PLACE_BEATS.map((b) => b.id));
+  const spent = new Set<string>();
+  const take = (n: number, pick: (p: (typeof taggedForSnow)[number]) => boolean) => {
+    const out = taggedForSnow.filter((p) => !spent.has(p.src) && pick(p)).slice(0, n);
+    out.forEach((p) => spent.add(p.src));
+    return out;
+  };
+  // The top of the page: starred first, and they are already sorted best-first.
+  const snowTopPhotos = take(8, (p) => p.starred);
+  // Each stop on the road takes the photographs carrying its own place.
+  const snowByBeat = new Map(
+    PLACE_BEATS.map((b) => [b.id, take(12, (p) => p.place === b.id)] as const),
+  );
+  // "Everywhere" is the stop with no single community, so it takes the places that have no stop.
+  const everywhere = snowByBeat.get('everywhere');
+  if (everywhere) {
+    everywhere.push(...take(12, (p) => !!p.place && !beatPlaces.has(p.place)));
+  }
+  // Whatever is left is the gallery, grouped so it reads as places rather than as a heap.
+  const leftovers = taggedForSnow.filter((p) => !spent.has(p.src));
+  const galleryGroups = [...new Set(leftovers.map((p) => p.place ?? ''))]
+    .map((place) => ({
+      label: place ? placeLabel(place) : 'More from the work',
+      photos: leftovers.filter((p) => (p.place ?? '') === place),
+    }))
+    .filter((g) => g.photos.length > 0);
   // The curated walls, plus anything tagged use:snow in the Media Room, and then every
   // photograph's Notes field laid over the top, so a wrong label is fixed in the admin rather
   // than in this file.
@@ -268,14 +313,12 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
     })),
     ...(snowTaggedGroup() ? [snowTaggedGroup()!] : []),
     // Tagged use:snow in the Media Room, which writes to the database rather than to the
-    // seed file the line above reads. Both, so an old tag and a new one both show.
-    ...(taggedForSnow.length ? [{ label: 'Tagged for Snow', photos: taggedForSnow }] : []),
+    // seed file the line above reads. Grouped by place, and only what the road did not take.
+    ...galleryGroups,
   ]);
   const heroWithCaptions = await withCaptions([
     ...snowHeroFrames(),
-    ...taggedForSnow
-      .filter((p) => p.caption)
-      .map((p) => ({ src: p.src, alt: p.alt, caption: p.caption as string })),
+    ...snowTopPhotos.map((p) => ({ src: p.src, alt: p.alt, caption: p.caption ?? p.alt })),
   ]);
   const norman = quote('norman-frank', 'external', "we've got our own ways");
 
@@ -292,7 +335,11 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         name: v.person.name, role: v.person.role, community: v.person.community,
         text: v.quote.text, portrait: v.person.portrait,
       })),
-    photos: b.photos ?? [],
+    // The hand-placed photographs first, then anything tagged for this place in the Media Room.
+    photos: [
+      ...(b.photos ?? []),
+      ...(snowByBeat.get(b.id) ?? []).map((p) => ({ src: p.src, alt: p.alt, caption: p.caption })),
+    ],
     showMap: b.showMap,
   }));
 
@@ -431,9 +478,6 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             </li>
           ))}
         </ol>
-        <p className="mt-10 max-w-[64ch] border-l-2 pl-5 text-base leading-[1.75]" style={{ borderColor: RUST, color: `${CHARCOAL}cc` }}>
-          {WHY_FLEXIBLE}
-        </p>
         {mykel && <Pull v={mykel} />}
         {mykelFilm && (
           <figure className="m-0 mt-6 max-w-xl sm:ml-[6.25rem]">

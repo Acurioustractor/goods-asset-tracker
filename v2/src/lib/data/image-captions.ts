@@ -116,22 +116,56 @@ export async function withGroupCaptions<T extends Captionable>(
  * database. So Ben tagged a photograph use:snow, watched it save, and it did not appear on the
  * page. It does now.
  */
-export async function taggedPhotos(tag: string): Promise<{ src: string; alt: string; caption?: string }[]> {
+export interface TaggedPhoto {
+  src: string;
+  alt: string;
+  caption?: string;
+  /** The community or event slug this photograph carries, if it carries one. */
+  place?: string;
+  starred: boolean;
+  rating: number;
+}
+
+export async function taggedPhotos(tag: string): Promise<TaggedPhoto[]> {
   try {
     const supabase = createServiceClient();
     const { data, error } = await supabase
       .from('content_items')
-      .select('url,notes,tags')
+      .select('url,notes,tags,starred,rating')
       .eq('media_type', 'image')
       .is('archived_at', null)
       .contains('tags', [tag]);
     if (error) return [];
-    return ((data ?? []) as { url: string | null; notes: string | null; tags: string[] | null }[])
+    return (
+      (data ?? []) as {
+        url: string | null;
+        notes: string | null;
+        tags: string[] | null;
+        starred: boolean | null;
+        rating: number | null;
+      }[]
+    )
       .filter((r) => r.url && !r.tags?.includes(`${tag}-hide`))
       .map((r) => {
         const note = r.notes?.trim();
-        return { src: r.url as string, alt: note || altFromUrl(r.url ?? ''), caption: note ?? undefined };
-      });
+        // A photograph knows where it was taken; that is what lets the page put it on the right
+        // stop of the road rather than tipping everything into one gallery at the bottom.
+        const placeTag = (r.tags ?? []).find((x) => x.startsWith('community:') || x.startsWith('event:'));
+        return {
+          src: r.url as string,
+          alt: note || altFromUrl(r.url ?? ''),
+          caption: note ?? undefined,
+          place: placeTag?.split(':')[1],
+          starred: r.starred === true,
+          rating: r.rating ?? 0,
+        };
+      })
+      // Best first: starred, then rated, then the ones somebody has captioned.
+      .sort((a, b) =>
+        Number(b.starred) - Number(a.starred) ||
+        b.rating - a.rating ||
+        Number(!!b.caption) - Number(!!a.caption),
+      );
   } catch {
     return [];
   }

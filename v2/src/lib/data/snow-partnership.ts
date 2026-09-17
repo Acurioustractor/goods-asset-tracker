@@ -702,14 +702,6 @@ export const THE_ARC: readonly ArcStage[] = [
 ];
 
 /**
- * The sentence the arc is for. It is the only place on this page we describe how Snow gave
- * rather than what they gave and it is deliberately made of the two awkward facts: a product
- * we stopped selling and a price that went up.
- */
-export const WHY_FLEXIBLE =
-  'None of that was a deliverable in a grant agreement. A product we stopped selling, a design we gave away, a price that moved twice and a machine still in prototype after two years: money tied to an output punishes every one of those and money given on trust pays for them. That is what Snow bought and it is why there is a fourth and fifth thing on this list at all.';
-
-/**
  * THE FIVE THINGS THIS WORK IS, AND WHAT EACH ONE CAN AND CANNOT SHOW.
  *
  * Ben, 17 September 2026: cut the Snow-strategy table and the separate not-finished list, and
