@@ -1,138 +1,149 @@
-# Goods Inquiry → Acknowledge: the five branches
+# Goods Inquiry → Acknowledge: build it in GHL
 
-Paste-ready copy for the GHL workflow that is currently sitting in draft. Five branches, one per
-contact-form subject. Nobody who writes to Goods gets a reply today, so this is the gap being closed.
+Final copy for the workflow that is still sitting in draft. Until it is published, an enquiry gets
+Ben an email, a contact, a tag and a card on the right board, and **the person who wrote gets
+nothing back.**
 
-**How the workflow branches.** The contact route tags every submission and stamps the subject into
-the Message custom field. Branch on the tag. Message text is unreliable. The tags are applied by
-`v2/src/app/api/contact/route.ts` through the canonical map, so `role:media` means a media request,
-`interest:bulk-order` means a buyer, and so on.
+There is no API for this. GHL exposes `get-workflow` (read) and `add-contact-to-workflow`, and no
+operation that creates or publishes one. So this is dashboard work, and everything below is written
+to be pasted.
 
-**Rules that apply to all five.**
+**Decisions, Ben, 17 September 2026**
 
-- Sent from a person, with a reply-to that a person reads. Not `noreply@`.
-- No bed price for a bulk order. Ben, 16 September 2026: it is quoted per community, freight
-  included. The $750 on the shop is the single-bed retail price and stays there.
-- No lead time until somebody fills in the blank below. I do not have a sourced one and will not
-  invent one.
-- Nothing here goes to a `lane:community` contact as an automated send. If a community-line contact
-  comes through the form, the acknowledgement is the class-1 answer they are owed, and the branch
-  stops there. No follow-up sequence.
+| Blank | Answer |
+|---|---|
+| Who signs | Ben |
+| Reply-to | `hi@act.place` |
+| Response time | **two business days**, the same on every branch |
+| Media pack link | `https://www.goodsoncountry.com/press` (the page already has one-tap downloads) |
+| Phone on the General branch | **0422 883 943** (Ben, 17 Sep). Already public on `/site`. |
 
 ---
 
-## 1. Bulk Order Inquiry
+## Build it
 
-**Tag** `interest:bulk-order` · **Also do** create an opportunity in GOODS - Buyers at Outreach
-Queued, and raise a task on the owner.
+1. GHL → **Automation** → open **Goods Inquiry → Acknowledge** (it exists, in draft).
+2. Trigger: **Contact Tag** added, tag `act-inquiry`. Every website enquiry gets that tag at the
+   chokepoint, so one trigger catches all five doors.
+3. Add a **Wait** of 1 minute. The contact's tags are written in a second call after creation, so a
+   branch that reads them immediately can read them before they land.
+4. Add **If/Else** with five branches on contact tag, in this order. First match wins, so the
+   specific ones come before the catch-all.
 
-> **Subject:** Your bed order, and what happens next
->
+| Branch | Condition, contact tag is | Send |
+|---|---|---|
+| 1 | `interest:bulk-order` | Bulk order reply |
+| 2 | `role:funder` | Facility funding reply |
+| 3 | `role:community` | Community reply |
+| 4 | `role:media` | Media reply |
+| 5 | (else) | General reply |
+
+5. In each branch add **Send Email**. From: Ben. Reply-to: `hi@act.place`.
+6. Publish.
+
+**Why those tags and not the `goods-*` ones.** The contact form maps every subject onto the
+canonical contract (`lib/ghl/canonical-tags`), so `Bulk Order Inquiry` now arrives carrying
+`role:buyer` and `interest:bulk-order` as well as the flat slug. Branch on the canonical tag: it is the
+one the audiences and smart lists use, and it is the one that will still be there after the flat
+tags are retired.
+
+**The Partnership subject** also lands on `role:partner` and opens a card on GOODS - Community. It
+falls through to the General reply unless you want a sixth branch, and the General reply is written
+to work for it.
+
+---
+
+## 1. Bulk order · `interest:bulk-order`
+
+**Subject:** Your bed order, and what happens next
+
 > Thanks for getting in touch about beds.
 >
 > Here is what we need to give you a real number: how many, which community, and when you want them
 > there. Freight is the part that moves the price most, so we quote the beds and the freight to your
 > place together, in one figure. No surprises at the end.
 >
-> [NAME] will come back to you within [X business days] with that quote.
+> I will come back to you within two business days with that quote.
 >
-> Orders are invoiced by A Curious Tractor Pty Ltd. If you need the charity for a donation or a
-> grant instead, that is Goods on Country Ltd, and we can point you to the right one.
+> Orders are invoiced by A Curious Tractor Pty Ltd. If you need the charity instead, for a donation
+> or a grant, that is Goods on Country Ltd and I can point you to the right one.
 >
-> [NAME]
+> Ben
 
 ---
 
-## 2. Partnership Inquiry
+## 2. Fund a facility · `role:funder`
 
-**Tag** `role:partner` · **Also do** create an opportunity in GOODS - Community at Invitation if the
-message names a community, otherwise leave it for the owner to route.
+**Subject:** Backing a facility
 
-This is the broadest subject and the one the pitch page points at, so it has to work for a community
-org, a funder and a supplier without guessing wrong.
-
-> **Subject:** We got your message
->
 > Thanks for writing.
 >
-> Partnership means a few different things here: a community deciding what gets made and who gets
-> paid, an organisation selling beds into its own place, someone putting capital behind a facility,
-> or a supplier who can move plastic, steel or canvas.
+> The short version: a facility is a plant in a community that presses beds from recycled plastic,
+> employs local people, and moves toward that community owning it. Capital can come in as a grant or
+> as something recoverable, and both are real conversations.
 >
-> [NAME] will read your message properly and come back within [X business days]. If it is easier to
-> talk than type, say so and we will ring you.
+> I will come back to you within two business days. If it is easier to talk it through than read a
+> deck, say so and we will find a time.
 >
-> [NAME]
+> Ben
 
 ---
 
-## 3. Media Pack Request
+## 3. Bring this to my community · `role:community`
 
-**Tag** `role:media` · **Also do** nothing else. Send the pack and get out of the way.
+**Subject:** Thanks for reaching out
 
-> **Subject:** The Goods media pack
+> Thanks for getting in touch.
 >
-> Here is the pack: [LINK, confirm the real URL before this goes live]
+> Nothing gets made for a community until that community has decided it wants it, who gets paid and
+> what gets made next. So the first step is a conversation, not a proposal.
 >
-> Photos in there are cleared for use. The people in them have given consent for those specific
-> images, so please use what is in the pack rather than pulling images off the site.
+> I will come back to you within two business days. If there is someone else who should be in that
+> conversation, tell me who and I will make sure they are.
 >
-> If you want to talk to someone in community rather than to us, tell us what the story is and we
-> will ask. That is their call, not ours, and it takes a bit of time.
->
-> [NAME]
+> Ben
 
 ---
 
-## 4. LGANT 2026: place put forward
+## 4. Media · `role:media`
 
-**Tag** the LGANT source tag · **Also do** create an opportunity in GOODS - Demand at Signal, with
-the place named.
+**Subject:** The Goods media pack
 
-Someone at the local government conference has named a community. Treat it as a signal about a place. The person is
-incidental.
-
-> **Subject:** [PLACE], noted
+> Thanks for getting in touch.
 >
-> Thanks for putting [PLACE] forward.
+> Everything is here: https://www.goodsoncountry.com/press
 >
-> We have written it down. What happens next is slow on purpose: nothing gets made for a community
-> until that community has decided it wants it, who gets paid and what gets made next.
+> Photos on that page are cleared for use. The people in them have given consent for those specific
+> images, so please use what is there rather than pulling images off the rest of the site.
 >
-> If you are the right person to have that conversation there, say so and we will ring you. If
-> somebody else is, tell us who.
+> If you want to talk to someone in community rather than to me, tell me what the story is and I
+> will ask. That is their call, and it takes a bit of time.
 >
-> [NAME]
+> Ben
 
 ---
 
-## 5. General Inquiry
+## 5. General · everything else
 
-**Tag** `project:act-gd` with no more specific interest · **Also do** raise a task on the owner.
+**Subject:** We got your message
 
-The catch-all. Short, because we do not know what they want yet.
-
-> **Subject:** We got your message
+> Thanks for writing. I will come back to you within two business days.
 >
-> Thanks for writing. [NAME] will come back to you within [X business days].
+> If it is urgent, ring Ben on 0422 883 943.
 >
-> If it is urgent, ring [PHONE].
->
-> [NAME]
+> Ben
 
 ---
 
-## Blanks to fill before this goes live
+## Nothing outstanding
 
-1. **[NAME]** and the reply-to address. One person, the same person, across all five.
-2. **[X business days]**. There is no sourced lead time or response time anywhere in the repo. Pick
-   one you will actually hit. A promise of two days that takes ten is worse than saying five.
-3. **The media pack URL.** There are cleared images under `v2/public/images/media-pack/`, and I
-   could not confirm a public pack page. Confirm the real link.
-4. **[PHONE]** on the general branch, or cut that line.
+All four blanks are filled. The workflow can be built and published from the steps above.
 
-## What this does not cover
+The placeholder `+61 400 000 000` on the three portal pages was replaced with the same real number
+in this commit.
 
-The Stripe order confirmation. That is the "New Order Notification" workflow, also in draft, with
-`GHL_WORKFLOW_NEW_ORDER` already pointing at it in production. Publishing it is a separate job and a
-one-click one.
+## Not covered here
+
+The Stripe order confirmation. That is **New Order Notification**, also in draft, with
+`GHL_WORKFLOW_NEW_ORDER` already pointing at it in production. Publishing it is one click and needs
+no copy from anyone.
