@@ -21,14 +21,24 @@ import { useState } from 'react';
  * story-media bucket urls) needs /api/portrait to resolve server-side with the EL key.
  */
 export function isDirectlyLoadable(src: string): boolean {
+  if (EL_RELATIVE.test(src)) return false; // EL's own relative media path, not ours
   if (!/^https?:\/\//.test(src)) return true; // local /images path or relative
   return /\/storage\/v1\/object\/public\//.test(src); // public supabase bucket
 }
 
+/**
+ * EL records a portrait as `/api/media/<uuid>/file`, a path on ITS origin. Rendered here it
+ * resolves against ours, so Margaret Lloyd's portrait was a 404 on goodsoncountry.com for as long
+ * as it has been in the data: a real photo, a real id, pointed at a route we do not have. Give it
+ * EL's host back and let /api/portrait resolve the id.
+ */
+const EL_RELATIVE = /^\/api\/media\/[0-9a-fA-F-]{36}\/file/;
+
 export function resolvePortraitSrc(src: string | null | undefined): string | null {
   if (!src) return null;
-  if (isDirectlyLoadable(src)) return src;
-  return `/api/portrait?src=${encodeURIComponent(src)}`;
+  const absolute = EL_RELATIVE.test(src) ? `https://www.empathyledger.com${src}` : src;
+  if (isDirectlyLoadable(absolute)) return absolute;
+  return `/api/portrait?src=${encodeURIComponent(absolute)}`;
 }
 
 export function StorytellerAvatar({
@@ -42,7 +52,11 @@ export function StorytellerAvatar({
   className?: string;
   size?: number;
 }) {
-  const [failed, setFailed] = useState(false);
+  // A direct url that fails gets one more try through /api/portrait, which can find a moved file
+  // by name. Shayne Bloomfield's portrait is the case: recorded against a public bucket that no
+  // longer answers, while the file itself sits in the private one under the same name. Only then
+  // do we give up and show initials.
+  const [stage, setStage] = useState<'direct' | 'proxy' | 'initials'>('direct');
 
   const initials = (name || '?')
     .split(/\s+/)
@@ -51,8 +65,12 @@ export function StorytellerAvatar({
     .join('');
 
   const resolved = resolvePortraitSrc(src);
+  const proxied = resolved && resolved.startsWith('/api/portrait');
+  const shown = stage === 'proxy' && resolved && !proxied
+    ? `/api/portrait?src=${encodeURIComponent(resolved)}`
+    : resolved;
 
-  if (!resolved || failed) {
+  if (!shown || stage === 'initials') {
     return (
       <div
         className={`flex items-center justify-center rounded-full bg-muted text-muted-foreground font-semibold ${className}`}
@@ -68,11 +86,12 @@ export function StorytellerAvatar({
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src={resolved}
+      key={shown}
+      src={shown}
       alt={name}
       loading="lazy"
       referrerPolicy="no-referrer"
-      onError={() => setFailed(true)}
+      onError={() => setStage(stage === 'direct' && !proxied ? 'proxy' : 'initials')}
       className={`rounded-full object-cover ${className}`}
       style={{ width: size, height: size }}
     />

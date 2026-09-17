@@ -32,87 +32,102 @@ export interface RouteGroup {
 
 export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
   {
-    group: 'The system (hubs)',
+    group: 'Home',
     routes: [
-      { href: '/admin', name: 'Dashboard', status: 'hub', note: 'canon strip + areas + system row' },
-      { href: '/admin/atlas', name: 'Goods Atlas', status: 'hub', note: 'the map of everything' },
-      { href: '/admin/voices', name: 'Voices hub', status: 'hub', note: 'registry, tiers, tabs to all story surfaces' },
-      { href: '/admin/voice-impact', name: 'Voice Impact Model', status: 'hub', note: '29 voices, 192 quotes, themes to domains' },
+      { href: '/admin', name: 'Home', status: 'hub', note: 'what is due, the map, what needs you' },
+      { href: '/admin/today', name: 'The day view', status: 'absorbed', note: 'today, the ops list' },
+      { href: '/admin/atlas', name: 'The full Atlas', status: 'absorbed', note: 'the whole map, from Home' },
+      { href: '/admin/operating-systems', name: 'Operating systems', status: 'absorbed', note: 'how the system runs' },
+    ],
+  },
+  {
+    group: 'Beds',
+    routes: [
+      { href: '/admin/assets', name: 'The register', status: 'hub', note: 'the source of truth, every bed' },
+      { href: '/admin/production', name: 'Production', status: 'absorbed', note: 'shifts, inventory, journal' },
+      { href: '/admin/facility', name: 'The facility', status: 'absorbed', note: 'production overview, 8 steps' },
+      { href: '/admin/scans', name: 'Scans', status: 'absorbed' },
+      { href: '/admin/bed-signals', name: 'Bed signals', status: 'absorbed' },
+      { href: '/admin/bed-preflight', name: 'Trip preflight', status: 'utility' },
+      { href: '/admin/install-bulk', name: 'Bulk install', status: 'utility' },
+      { href: '/admin/install-checklist', name: 'Install checklist', status: 'utility' },
+    ],
+  },
+  {
+    group: 'Washing machines',
+    routes: [
+      { href: '/admin/fleet', name: 'The fleet', status: 'hub', note: 'Pakkimjalki Kari, checked quarterly' },
+    ],
+  },
+  {
+    group: 'Communities',
+    routes: [
       { href: '/admin/communities', name: 'Communities', status: 'hub', note: 'per-place register + drill pages' },
-      { href: '/admin/pathways', name: 'Community pathways', status: 'hub', note: 'conversations, modules, media and artifacts' },
+      { href: '/admin/pathways', name: 'Community pathways', status: 'absorbed', note: 'conversations, modules, media, artifacts' },
+    ],
+  },
+  {
+    group: 'People',
+    routes: [
       { href: '/admin/people', name: 'People', status: 'hub', note: 'crm_contacts, 135 relationships' },
-      { href: '/admin/cost-model', name: 'Money story', status: 'hub', note: 'cost model v6, honest numbers' },
-      { href: '/admin/deals', name: 'Raise', status: 'hub', note: 'QBE pipeline, LOIs, match spine' },
-      { href: '/admin/pitch-cockpit', name: 'Pitch cockpit', status: 'hub', note: 'deck state + playout' },
-      { href: '/admin/media-library', name: 'Media library', status: 'hub', note: 'photos, videos, media_links' },
-      { href: '/admin/system-visuals', name: 'Visuals', status: 'hub', note: 'diagrams + held assets' },
-      { href: '/admin/consent', name: 'Consent gate', status: 'hub', note: 'default-deny worklist' },
-      { href: '/admin/facility', name: 'Facility', status: 'hub', note: 'production overview, 8 steps' },
-      { href: '/admin/today', name: 'Today (ops)', status: 'hub', note: 'the ops day view' },
     ],
   },
   {
-    group: 'Story and voices',
+    group: 'Stories',
     routes: [
-      { href: '/admin/quote-cards', name: 'Quote cards', status: 'absorbed', note: 'via Pitch hub' },
-      { href: '/admin/field-notes', name: 'Field notes', status: 'active', note: 'trip write-ups' },
-    ],
-  },
-  {
-    group: 'Pitch and content',
-    routes: [
-      { href: '/admin/deck', name: 'Deck preview', status: 'absorbed' },
-      { href: '/admin/canon', name: 'Canon board', status: 'absorbed', note: 'via Visuals' },
+      { href: '/admin/voices', name: 'The voice registry', status: 'hub', note: 'who has spoken, and on what terms' },
+      { href: '/admin/consent', name: 'Consent gate', status: 'absorbed', note: 'default-deny worklist' },
+      { href: '/admin/voice-impact', name: 'Voice impact model', status: 'absorbed', note: 'voices and quotes, themes to domains' },
+      { href: '/admin/quote-cards', name: 'Quote cards', status: 'absorbed' },
+      { href: '/admin/field-notes', name: 'Field notes', status: 'absorbed', note: 'trip write-ups' },
+      { href: '/admin/field-notes/library', name: 'Field notes library', status: 'absorbed' },
+      { href: '/admin/el-stories/new', name: 'New Empathy Ledger story', status: 'absorbed' },
+      { href: '/admin/el-storytellers/new', name: 'New Empathy Ledger storyteller', status: 'absorbed' },
+      { href: '/admin/media-library', name: 'Media library', status: 'absorbed', note: 'photos, videos, media_links' },
       { href: '/admin/media-gaps', name: 'Media gaps', status: 'absorbed' },
-      { href: '/admin/dashboard-images', name: 'Dashboard images', status: 'active' },
-      { href: '/admin/library', name: 'Content library', status: 'active' },
+      { href: '/admin/dashboard-images', name: 'Dashboard images', status: 'absorbed' },
+      { href: '/admin/library', name: 'Content library', status: 'absorbed' },
+      { href: '/admin/canon', name: 'Canon board', status: 'absorbed' },
+      { href: '/admin/system-visuals', name: 'Visuals', status: 'absorbed', note: 'diagrams + held assets' },
     ],
   },
   {
-    group: 'Money and funders',
+    group: 'Sales',
     routes: [
-      { href: '/admin/reports', name: 'Funder reports', status: 'active' },
-      { href: '/admin/reports/impact', name: 'Impact reports', status: 'active' },
-      { href: '/admin/orders', name: 'Orders', status: 'active' },
-      { href: '/admin/requests', name: 'Requests', status: 'active' },
-      { href: '/admin/xero-reconciliation', name: 'Xero recon', status: 'utility' },
+      { href: '/admin/orders', name: 'Orders', status: 'hub', note: 'who bought, what shipped' },
+      { href: '/admin/orders/launch-checklist', name: 'Order launch checklist', status: 'absorbed' },
+      { href: '/admin/requests', name: 'Requests', status: 'absorbed', note: 'register-interest and bulk enquiries' },
+      { href: '/admin/procurement', name: 'Procurement desk', status: 'absorbed', note: 'who can buy a bed and how, per jurisdiction' },
+    ],
+  },
+  {
+    group: 'Funding',
+    routes: [
+      { href: '/admin/deals', name: 'The raise', status: 'hub', note: 'pipeline, LOIs, match spine' },
+      { href: '/admin/funders/new', name: 'New funder', status: 'absorbed' },
+      { href: '/admin/reports', name: 'Funder reports', status: 'absorbed' },
+      { href: '/admin/reports/impact', name: 'Impact reports', status: 'absorbed' },
+      { href: '/admin/pitch-cockpit', name: 'Pitch cockpit', status: 'absorbed', note: 'deck state + playout' },
+      { href: '/admin/deck', name: 'Deck preview', status: 'absorbed' },
+    ],
+  },
+  {
+    group: 'Costs',
+    routes: [
+      { href: '/admin/cost-model', name: 'The cost model', status: 'hub', note: 'v6, honest numbers' },
+      { href: '/admin/xero-reconciliation', name: 'Xero reconciliation', status: 'utility' },
       { href: '/admin/trip-receipts', name: 'Trip receipts', status: 'utility' },
     ],
   },
   {
-    group: 'Field and fleet',
-    routes: [
-      { href: '/admin/production', name: 'Production', status: 'active', note: 'shifts, inventory, journal' },
-      { href: '/admin/assets', name: 'Asset register', status: 'active', note: 'the source of truth' },
-      { href: '/admin/bed-preflight', name: 'Trip preflight', status: 'utility' },
-      { href: '/admin/install-bulk', name: 'Bulk install', status: 'utility' },
-      { href: '/admin/install-checklist', name: 'Install checklist', status: 'utility' },
-      { href: '/admin/bed-signals', name: 'Bed signals', status: 'active' },
-      { href: '/admin/scans', name: 'Scans', status: 'active' },
-      { href: '/admin/fleet', name: 'Fleet', status: 'active', note: 'quarterly' },
-      { href: '/admin/operating-systems', name: 'Operating systems', status: 'active' },
-    ],
-  },
-  {
-    group: 'Comms and legacy',
+    group: 'Reaching people',
     routes: [
       { href: '/admin/reach-out', name: 'Reach out', status: 'active', note: 'as-needed' },
-      // Moved off /pitch/* on 2026-08-02 (route sweep, map #177 ticket #183). They were internal
-      // working surfaces on a funder-facing path prefix, relying on noindex, which was never a
-      // gate: a noindexed page is fully readable by anyone holding the URL.
     ],
   },
   {
-    // Everything built after the 19 July review, declared 17 September 2026 when the drift guard
-    // went in. Until then the directory had no idea any of these existed.
-    group: 'Built since the review',
+    group: 'Plumbing',
     routes: [
-      { href: '/admin/procurement', name: 'Procurement desk', status: 'active', note: 'who can buy a bed and how; linked from Cockpit 2026-09-17' },
-      { href: '/admin/orders/launch-checklist', name: 'Order launch checklist', status: 'absorbed', note: 'reached from Orders' },
-      { href: '/admin/field-notes/library', name: 'Field notes library', status: 'absorbed', note: 'reached from Field notes' },
-      { href: '/admin/el-stories/new', name: 'New EL story', status: 'absorbed', note: 'create form under EL stories' },
-      { href: '/admin/el-storytellers/new', name: 'New EL storyteller', status: 'absorbed', note: 'create form under EL storytellers' },
-      { href: '/admin/funders/new', name: 'New funder', status: 'absorbed', note: 'create form under Funders' },
       { href: '/admin/login', name: 'Admin login', status: 'utility', note: 'auth plumbing, never a destination' },
       { href: '/admin/unauthorized', name: 'Unauthorized', status: 'utility', note: 'auth plumbing, never a destination' },
     ],
@@ -120,10 +135,10 @@ export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
 ];
 
 export const ROUTE_STATUS_LABEL: Record<RouteStatus, string> = {
-  hub: 'HUB',
-  active: 'ACTIVE',
-  absorbed: 'IN HUB',
-  utility: 'FIELD TOOL',
+  hub: 'SIDEBAR',
+  active: 'PAGE',
+  absorbed: 'INSIDE',
+  utility: 'TOOL',
   stale: 'STALE',
   'one-off': 'ONE-OFF',
   orphan: 'UNREACHABLE',

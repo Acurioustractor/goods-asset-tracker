@@ -8,19 +8,13 @@ import { ADMIN_ROUTE_DIRECTORY } from '@/lib/data/admin-routes';
 import {
   Map as MapIcon,
   MapPin,
-  Image as ImageIcon,
   CircleDollarSign,
   HandCoins,
-  Factory,
   KanbanSquare,
   DoorOpen,
-  ReceiptText,
   Quote,
-  Sun,
   ClipboardList,
-  Truck,
   Radio,
-  ShieldCheck,
   Menu,
   X,
   LogOut,
@@ -35,62 +29,75 @@ import {
 type NavItem = { name: string; href: string; icon: React.ComponentType<{ className?: string }> };
 type NavGroup = { group: string; items: NavItem[] };
 
-// Consolidated nav (2026-07-20). The 58-route admin collapses into three doors:
-//   Cockpit  = the daily fronts (map-first, one per product of the redesign)
-//   Funder   = the sendable / gated surfaces
-//   Field    = phone-first ops tools
-// Everything else stays reachable through the More drawer and ⌘K until each
-// front absorbs it as a tab. Sweep + keep/fold/retire table:
-// wiki/outputs/2026-07-20-admin-see-do-public-sweep.md
 /**
- * THE ADMIN IS A LIST OF THINGS YOU CAN DO. Everything else is findable, and nothing else is on
- * the screen.
+ * THE SIDEBAR IS THE THINGS THE BUSINESS IS MADE OF, NAMED PLAINLY.
  *
- * Ben, 17 September 2026, twice, and the second time was the one that landed:
- *   "we need a full rethink of the sidebar and data, it is a mess and all over the place"
- *   "I don't want 74 things. I want a simple and powerful system with a list of important
- *    actions we can do."
+ * Ben, 17 September 2026, walking it: "those sidebar titles are shit and confusing, also still
+ * too many routes, still confusing and all over the place."
  *
- * The first rewrite regrouped 52 links into 24 and changed nothing that mattered, because a
- * shorter map of pages is still a map of pages. Nobody opens an admin to visit a page. They open
- * it to do one of about ten things.
+ * The version he was looking at was fifteen verbs. Verbs read well in a sentence and badly in a
+ * list: "Record a bed" was the asset register and "Make a bed" was the facility, so the two most
+ * important surfaces in the business had names you could swap without noticing. "Check the fleet"
+ * was washing machines. "Run the day" and "Everything" were both the home screen.
  *
- * So the sidebar is ten verbs. Each one goes to the surface that does that job, and the surface
- * is often a hub with its own tabs, which is where the other sixty routes live.
+ * Nine nouns instead. Each one names a thing that actually exists, and each one is a hub whose
+ * tabs hold the surfaces that used to be their own sidebar line:
  *
- * FINDING A SPECIFIC THING IS ⌘K, and it searches the records themselves: every
- * asset, community, contact, storyteller, and every place the registry knows that has no page
- * yet. About 850 rows. Looking for GB0-156-40 or Gapuwiyak or Dianne Stokes is one keystroke and
- * a name, and you never have to know which page lists that kind of thing.
+ *   Beds             register, production, scans, signals, trip preflight, installs
+ *   Washing machines the fleet, quarterly
+ *   Communities      the per-place register and the pathways
+ *   People           contacts and relationships
+ *   Stories          voices, the consent gate, quote cards, field notes, media
+ *   Sales            orders, requests, the procurement desk
+ *   Funding          the raise, funders, LOIs, funder and impact reports
+ *   Costs            the cost model, Xero reconciliation, trip receipts
  *
- * WHAT IS NOT HERE. No route directory link, no More drawer, no second copy of the same URL under
- * two names. /admin#routes still lists all 74 with their status for the once a month that
+ * FINDING A SPECIFIC THING IS STILL ⌘K, and it searches the records themselves: about 850 rows,
+ * every asset, community, contact and storyteller, plus every route. Looking for GB0-156-40 or
+ * Gapuwiyak or Dianne Stokes is one keystroke and a name.
+ *
+ * WHAT IS NOT HERE. No More drawer, no route directory link, no second copy of one URL under two
+ * names. /admin#routes lists every route with the hub it lives in, for the once a month that
  * question comes up.
  */
+/**
+ * A DOOR'S CHILDREN COME FROM THE ROUTE DIRECTORY, AND THEY OPEN IN THE SIDEBAR.
+ *
+ * The first attempt put them in a strip across the top of every page. Ben, immediately: "this
+ * double top bar is shit and hard to use." He was right, and the reason is a real distinction I
+ * had collapsed. /admin/voices already has its own tabs (Overview, Registry, Quotes) and those
+ * are VIEWS OF THAT PAGE. Consent gate and Quote cards are SEPARATE ROUTES. Stacking the two
+ * kinds of tab in two rows made a page look like it had eighteen tabs, and made the top of every
+ * screen scroll sideways.
+ *
+ * Views stay on the page. Routes live in the sidebar, under the door that owns them, and only
+ * the door you are standing in opens. Vertical space costs nothing here; horizontal space at the
+ * top of a working page costs everything.
+ */
+function childrenOf(href: string) {
+  const group = ADMIN_ROUTE_DIRECTORY.find((g) => g.routes.some((r) => r.href === href));
+  if (!group) return [];
+  return group.routes.filter((r) => r.href !== href);
+}
+
 const navigation: NavGroup[] = [
   {
-    group: 'Do',
+    group: 'The work',
     items: [
-      { name: 'Run the day',        href: '/admin/today',          icon: Sun },
-      { name: 'Record a bed',       href: '/admin/assets',         icon: ClipboardList },
-      { name: 'Plan a trip',        href: '/admin/bed-preflight',  icon: Truck },
-      { name: 'Find a buyer',       href: '/admin/procurement',    icon: HandCoins },
-      { name: 'Move the raise',     href: '/admin/deals',          icon: KanbanSquare },
-      { name: 'Answer a funder',    href: '/admin/reports',        icon: ReceiptText },
-      { name: 'Clear a voice',      href: '/admin/consent',        icon: ShieldCheck },
-      { name: 'Check the fleet',    href: '/admin/fleet',          icon: Radio },
-      { name: 'Make a bed',         href: '/admin/facility',       icon: Factory },
+      { name: 'Home',             href: '/admin',             icon: MapIcon },
+      { name: 'Beds',             href: '/admin/assets',      icon: ClipboardList },
+      { name: 'Washing machines', href: '/admin/fleet',       icon: Radio },
+      { name: 'Communities',      href: '/admin/communities', icon: MapPin },
+      { name: 'People',           href: '/admin/people',      icon: Users },
+      { name: 'Stories',          href: '/admin/voices',      icon: Quote },
     ],
   },
   {
-    group: 'Look at',
+    group: 'The money',
     items: [
-      { name: 'A community',        href: '/admin/communities',    icon: MapPin },
-      { name: 'A person',           href: '/admin/people',         icon: Users },
-      { name: 'The voices',         href: '/admin/voices',         icon: Quote },
-      { name: 'The money',          href: '/admin/cost-model',     icon: CircleDollarSign },
-      { name: 'The media',          href: '/admin/media-library',  icon: ImageIcon },
-      { name: 'Everything',         href: '/admin',                icon: MapIcon },
+      { name: 'Sales',            href: '/admin/orders',      icon: HandCoins },
+      { name: 'Funding',          href: '/admin/deals',       icon: KanbanSquare },
+      { name: 'Costs',            href: '/admin/cost-model',  icon: CircleDollarSign },
     ],
   },
 ];
@@ -275,6 +282,11 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
   const isActive = (href: string) =>
     href === '/admin' ? pathname === '/admin' : pathname === href || pathname.startsWith(href + '/');
 
+  // Standing anywhere in a door's section, including on one of its children, opens that door.
+  const inSection = (href: string) =>
+    isActive(href) ||
+    childrenOf(href).some((r) => pathname === r.href || pathname.startsWith(r.href + '/'));
+
   const renderNavContent = () => (
     <div className="admin-sidebar-scroll flex h-full flex-col overflow-y-auto bg-card border-r px-4 pb-4 pt-6">
       {/* Brand */}
@@ -323,6 +335,28 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
                       <item.icon className="h-4 w-4 shrink-0" aria-hidden="true" />
                       {item.name}
                     </Link>
+
+                    {/* Only the door you are standing in opens. */}
+                    {inSection(item.href) && childrenOf(item.href).length > 0 && (
+                      <ul role="list" className="mt-0.5 mb-1.5 ml-[1.45rem] space-y-px border-l pl-3">
+                        {childrenOf(item.href).map((child) => (
+                          <li key={child.href}>
+                            <Link
+                              href={child.href}
+                              onClick={() => setMobileMenuOpen(false)}
+                              aria-current={pathname === child.href ? 'page' : undefined}
+                              className={`block rounded-md px-2 py-1 text-[13px] leading-5 transition-colors ${
+                                pathname === child.href
+                                  ? 'font-semibold text-primary'
+                                  : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                              }`}
+                            >
+                              {child.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </li>
                 ))}
               </ul>
