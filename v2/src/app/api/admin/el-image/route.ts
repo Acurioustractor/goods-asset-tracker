@@ -35,13 +35,27 @@ export async function GET(req: Request) {
     : KEY
       ? { 'X-API-Key': KEY }
       : {};
+  /*
+   * A storage path does not say which bucket it is in. Rows that carry storage_path rather than
+   * source_url lose the bucket name, so the caller has to guess one; if the guess is wrong the
+   * object is still there, one bucket over. Try the other public buckets before giving up.
+   */
+  const PUBLIC_BUCKETS = ['story-images', 'media', 'story-media', 'gallery-photos', 'thumbnails'];
+  const alternatives = (u: string): string[] => {
+    const m = u.match(/^(.*\/storage\/v1\/object\/)([^/]+)\/(.+)$/);
+    if (!m || !PUBLIC_BUCKETS.includes(m[2])) return [u];
+    return [u, ...PUBLIC_BUCKETS.filter((b) => b !== m[2]).map((b) => `${m[1]}${b}/${m[3]}`)];
+  };
+
   try {
-    const upstream = await fetch(url, {
-      headers,
-      cache: 'force-cache',
-      next: { revalidate: 86400 },
-    });
-    if (!upstream.ok) return NextResponse.json({ error: `upstream ${upstream.status}` }, { status: 502 });
+    let upstream: Response | null = null;
+    for (const attempt of alternatives(url)) {
+      upstream = await fetch(attempt, { headers, cache: 'force-cache', next: { revalidate: 86400 } });
+      if (upstream.ok) break;
+    }
+    if (!upstream || !upstream.ok) {
+      return NextResponse.json({ error: `upstream ${upstream?.status ?? 'no response'}` }, { status: 502 });
+    }
     const buf = await upstream.arrayBuffer();
     return new NextResponse(buf, {
       headers: {

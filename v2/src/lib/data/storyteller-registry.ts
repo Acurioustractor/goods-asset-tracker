@@ -41,7 +41,8 @@ export interface RegistryQuote {
   /** Verbatim canonical text. Do not paraphrase on any surface. */
   text: string;
   /** Short context label. */
-  context: string;
+  /** Where and when it was said. Optional: some quotes need no gloss. */
+  context?: string;
   /** primary = the line to reach for first · approved = fine to use · hold = do not use pending a decision · retired = decided against, never reinstate */
   status: 'primary' | 'approved' | 'hold' | 'retired';
   note?: string;
@@ -256,9 +257,39 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         context: 'Self-determination',
         status: 'approved',
       },
+      {
+        // Cleared by Ben 2026-09-17 from the EL transcript of 6 April 2025, which is a WILYA
+        // JANTA interview: he is talking about his own housing organisation, not about Goods,
+        // and anything of his carries that context. Lightly cleaned the way the two above were,
+        // because the auto-transcription mishears names throughout ("Nan Creek" for Tennant
+        // Creek, "Willy Gunter" for Wilya Janta). His words themselves are untouched.
+        text: 'It\'ll be passed on from my kids to their kids, to their kids after them. So that\'s why it\'s really good to document everything now while we can.',
+        context: 'On why any of it gets written down, 6 April 2025',
+        status: 'approved',
+      },
     ],
     portrait: '/images/people/norman-frank.jpg',
     notes: 'Called requesting 3 beds in maroon after his daughter tried one. Boards: Anyinginyi Health, Julalikari Council, Central Land Council.',
+  },
+  {
+    slug: 'jeremy-donovan',
+    name: 'Jeremy Donovan',
+    role: 'Director of Goods on Country, Kuku-Yalanji and Gumbaynggirr',
+    community: 'Works across Australia',
+    tier: 'external',
+    quotes: [
+      {
+        // Cleared by Ben 2026-09-17. Verbatim from the Empathy Ledger transcript "Jeremy on
+        // Country with young people Kununurra", 13 July 2026, standard sensitivity. That is a
+        // Basecamps recording, not a Goods one, which is why the context says so: his words are
+        // about Country as the thing that gave him everything, not about beds.
+        text: 'I realised that my culture and country was what was giving me the keys to the world.',
+        context: 'On Country with young people at Kununurra, 13 July 2026',
+        status: 'approved',
+      },
+    ],
+    portrait: '/images/people/jeremy-donovan-official.jpg',
+    notes: 'Director of the charity. Keynote speaker, artist and musician. Portrait credited to his official website.',
   },
   {
     slug: 'linda-turner',
@@ -691,7 +722,6 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
       },
       {
         text: "We wanna be able to create generational wealth, economic development on our own land. We see too many times that a lot of other businesses are thriving. Why can't we thrive as Aboriginal people on our land as well?",
-        context: "Oonchiumpa's economic vision \u2014 the demand side of the Goods community-ownership pathway (on-country manufacturing moving to community ownership).",
         status: 'approved',
       },
     ],
@@ -731,7 +761,7 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         status: 'approved',
       },
       {
-        text: "We made 20 odd beds in aged care ... utilizing the young people of the aged care service ... They were so willing to learn about how these beds came together.",
+        text: "We made 20 odd beds in aged care ... utilising the young people of the aged care service ... They were so willing to learn about how these beds came together.",
         context: "Maningrida delivery: young people building beds for Elders at the aged-care service.",
         status: 'approved',
       },
@@ -1325,7 +1355,6 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
       },
       {
         text: 'Community leadership, community ownership, our mob is smart. We got a lot of real deadly people out there in communities that know what the community want and how they can get the resources from that community to make a difference.',
-        context: 'Community ownership, in her words',
         status: 'approved',
       },
     ],
@@ -1389,7 +1418,7 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         status: 'approved',
       },
       {
-        text: "So you start small and then you realize that you're onto a good thing.",
+        text: "So you start small and then you realise that you're onto a good thing.",
         context: 'How the Snow support grew from the first small grant into ten invoices over three years',
         status: 'approved',
       },

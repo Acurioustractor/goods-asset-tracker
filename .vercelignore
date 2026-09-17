@@ -15,6 +15,10 @@ deploy
 design
 generated-images
 media
+# NOTE (18 September 2026): this pattern also drops any SOURCE folder named media from the
+# Vercel upload. v2/src/lib/media/exif.ts built locally and failed on Vercel with
+# "Can't resolve '@/lib/media/exif'" twice before the file moved to v2/src/lib/photo-exif.ts.
+# Do not put application code in a folder called media.
 output
 tmp
 wiki/outputs

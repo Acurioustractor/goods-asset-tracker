@@ -21,8 +21,19 @@ interface Body {
   tags?: string[];
   consent_tier?: 'public' | 'gated' | 'red';
   community_id?: string | null;
+  /** A person, by storytellers.id, or null to clear. Drives the Person filter. */
+  storyteller_id?: string | null;
   /** Free-text curation note (nullable text column; cap 2000 chars). */
   notes?: string | null;
+  /**
+   * PHOTOGRAPHS THAT HAVE NO ROW YET, SO THEY CAN BE TAGGED ANYWAY.
+   *
+   * 70 images sat on disk and in the grid with no content_items row, which made them invisible
+   * to every write: select them, hit a tag, and the bulk tagger skipped them in silence because
+   * it filters on contentId. Registering them takes one insert, so the tag itself registers them
+   * rather than sending somebody to a terminal to run content:index first.
+   */
+  create?: { ref: string; url?: string; mediaType?: 'image' | 'video' }[];
 }
 
 export async function POST(request: NextRequest) {
@@ -37,8 +48,9 @@ export async function POST(request: NextRequest) {
   }
 
   const ids = (body.ids ?? (body.id ? [body.id] : [])).filter((x) => typeof x === 'string' && x);
-  if (ids.length === 0) {
-    return NextResponse.json({ ok: false, error: 'provide id or ids[]' }, { status: 400 });
+  const toCreate = (Array.isArray(body.create) ? body.create : []).filter((c) => c && typeof c.ref === 'string' && c.ref);
+  if (ids.length === 0 && toCreate.length === 0) {
+    return NextResponse.json({ ok: false, error: 'provide id, ids[] or create[]' }, { status: 400 });
   }
 
   // Build the patch from only the fields actually supplied.
@@ -63,6 +75,10 @@ export async function POST(request: NextRequest) {
   if ('community_id' in body) {
     patch.community_id = body.community_id ? String(body.community_id) : null;
   }
+  // Person: a uuid FK to storytellers.id, or null to clear.
+  if ('storyteller_id' in body) {
+    patch.storyteller_id = body.storyteller_id ? String(body.storyteller_id) : null;
+  }
   // Curation note: free text or null to clear. Requires the nullable `notes`
   // column (ALTER TABLE content_items ADD COLUMN IF NOT EXISTS notes text).
   if ('notes' in body) {
@@ -78,6 +94,37 @@ export async function POST(request: NextRequest) {
   }
 
   const supabase = createServiceClient();
+
+  // Register anything that has no row yet, then treat it like any other item.
+  let registered = 0;
+  for (const c of toCreate.slice(0, 500)) {
+    const { data: found } = await supabase.from('content_items').select('id').eq('ref', c.ref).maybeSingle();
+    if (found?.id) {
+      ids.push(found.id as string);
+      continue;
+    }
+    const { data: ins, error: insErr } = await supabase
+      .from('content_items')
+      .insert({
+        source: 'local',
+        ref: c.ref,
+        url: c.url || c.ref,
+        media_type: c.mediaType === 'video' ? 'video' : 'image',
+        // "/images/act/mark.png" -> "act", the same area the crawler assigns.
+        area: c.ref.split('/')[2] || 'unplaced',
+        consent_tier: 'gated',
+      })
+      .select('id')
+      .single();
+    if (insErr) {
+      return NextResponse.json({ ok: false, error: `could not register ${c.ref}: ${insErr.message}` }, { status: 500 });
+    }
+    if (ins?.id) {
+      ids.push(ins.id as string);
+      registered += 1;
+    }
+  }
+
   const { data, error } = await supabase
     .from('content_items')
     .update(patch)
@@ -87,5 +134,5 @@ export async function POST(request: NextRequest) {
   if (error) {
     return NextResponse.json({ ok: false, error: error.message }, { status: 500 });
   }
-  return NextResponse.json({ ok: true, updated: data?.length ?? 0 });
+  return NextResponse.json({ ok: true, updated: data?.length ?? 0, registered });
 }

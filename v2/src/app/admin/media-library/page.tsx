@@ -8,6 +8,7 @@ import { buildLocalItems } from './curation';
 import { MediaLibraryClient } from './library-client';
 import { AddMediaDialog, type AssetOption, type RecentBedContent } from './add-media-dialog';
 import { AdminHubTabs } from '../admin-hub-tabs';
+import { PhotoDrop } from '@/components/admin/photo-drop';
 import { createServiceClient } from '@/lib/supabase/server';
 
 const MEDIA_ROOM_TABS = [
@@ -27,6 +28,19 @@ async function fetchCommunities(): Promise<{ id: string; name: string }[]> {
     const supabase = createServiceClient();
     const { data } = await supabase.from('communities').select('id, name').order('name');
     return (data ?? []) as { id: string; name: string }[];
+  } catch {
+    return [];
+  }
+}
+
+/** People, for the drop zone's person picker. Same list the Person filter reads. */
+async function fetchPeople(): Promise<{ id: string; name: string }[]> {
+  try {
+    const supabase = createServiceClient();
+    const { data } = await supabase.from('storytellers').select('id, display_name').order('display_name');
+    return ((data ?? []) as { id: string; display_name: string | null }[])
+      .filter((p) => p.display_name)
+      .map((p) => ({ id: p.id, name: p.display_name as string }));
   } catch {
     return [];
   }
@@ -62,11 +76,12 @@ async function fetchRecentBedContent(): Promise<RecentBedContent[]> {
 }
 
 export default async function MediaLibraryPage() {
-  const [{ items, curationReady }, communities, assets, recentBedContent] = await Promise.all([
+  const [{ items, curationReady }, communities, assets, recentBedContent, people] = await Promise.all([
     buildLocalItems(),
     fetchCommunities(),
     fetchAssets(),
     fetchRecentBedContent(),
+    fetchPeople(),
   ]);
 
   return (
@@ -86,7 +101,8 @@ export default async function MediaLibraryPage() {
       <div className="mb-6">
         <AdminHubTabs tabs={MEDIA_ROOM_TABS} />
       </div>
-      <MediaLibraryClient items={items} curationReady={curationReady} communities={communities} />
+      <PhotoDrop communities={communities} people={people} />
+      <MediaLibraryClient items={items} curationReady={curationReady} communities={communities} people={people} />
     </div>
   );
 }

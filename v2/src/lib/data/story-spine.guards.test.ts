@@ -18,7 +18,7 @@ function everyStoryString(): string[] {
   for (const s of MAKE_STEPS) out.push(s.title, s.photo.alt);
   for (const l of MONEY_LANES) out.push(l.title, l.line);
   out.push(REQUEST.headline, REQUEST.note, ...GATES);
-  for (const d of goodsBoard) out.push(d.name, d.bio, d.goods, d.background, d.country, d.location);
+  for (const d of goodsBoard) out.push(d.name, d.bio, d.goods ?? '', d.background, d.country, d.location);
   return out.filter(Boolean);
 }
 
@@ -145,14 +145,13 @@ describe('the questions', () => {
 });
 
 describe('the board', () => {
-  it('prints three directors, each with a portrait, a credit and a source, and no chair', () => {
+  it('prints three directors, each with a portrait and a source, and no chair', () => {
     expect(goodsBoard).toHaveLength(3);
     for (const d of goodsBoard) {
       expect(d.role).toBe('Director');
       expect(d.photo.startsWith('/images/people/')).toBe(true);
-      expect(d.photoCredit.length).toBeGreaterThan(3);
       expect(d.source).toMatch(/^https:\/\//);
-      expect(d.goods).not.toMatch(/chair/i);
+      expect(d.goods ?? '').not.toMatch(/chair/i);
     }
   });
 });

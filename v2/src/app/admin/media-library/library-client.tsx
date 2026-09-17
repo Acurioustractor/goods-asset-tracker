@@ -1,7 +1,16 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { themeName } from '@/lib/data/themes';
+
+/**
+ * The string a photograph is indexed under. Local files are keyed by their path and Empathy
+ * Ledger items by their media id; the grid prefixes both so the two can never collide.
+ */
+function refOf(it: { id: string; full: string }): string {
+  return it.id.replace(/^(el|website):/, '') || it.full;
+}
 
 export interface UnifiedItem {
   id: string;
@@ -84,17 +93,31 @@ function isHeld(item: UnifiedItem): boolean {
 }
 
 /** A patch sent to /api/admin/content-item and applied optimistically to state. */
-type CurationPatch = { starred?: boolean; rating?: number; archived?: boolean; community_id?: string | null };
+type CurationPatch = {
+  starred?: boolean;
+  rating?: number;
+  archived?: boolean;
+  community_id?: string | null;
+  storyteller_id?: string | null;
+};
 
 export function MediaLibraryClient({
   items: initialItems,
   curationReady,
   communities = [],
+  people = [],
 }: {
   items: UnifiedItem[];
   curationReady: boolean;
   communities?: { id: string; name: string }[];
+  /**
+   * People from the v2 storytellers table, which is what content_items.storyteller_id points at.
+   * NOT the EL roster: the two use different ids (Xavier exists in one and not the other), so
+   * picking from the roster would have written a foreign key that does not resolve.
+   */
+  people?: { id: string; name: string }[];
 }) {
+  const router = useRouter();
   const commMap = useMemo(() => new Map(communities.map((c) => [c.id, c.name])), [communities]);
   // Local copy so saved tags + curation state update the grid without a reload.
   const [items, setItems] = useState<UnifiedItem[]>(initialItems);
@@ -128,6 +151,12 @@ export function MediaLibraryClient({
   const [selectMode, setSelectMode] = useState(false); // click tiles to select for batch ops
   const [cursor, setCursor] = useState(0); // index into `filtered`, for keyboard cull
   const [err, setErr] = useState('');
+  /*
+   * A WRITE THAT SUCCEEDS HAS TO SAY SO. The Snow button tagged 87 photographs and looked
+   * completely dead, because a tile shows a filename and a star and never its tags, so nothing
+   * on screen moved. Silence on success is indistinguishable from a broken button.
+   */
+  const [done, setDone] = useState('');
   // Empathy Ledger loads after first paint (kept out of the blocking server render).
   const elRef = useRef<UnifiedItem[]>([]);
   const [elState, setElState] = useState<'loading' | 'done' | 'error'>('loading');
@@ -184,6 +213,11 @@ export function MediaLibraryClient({
     return () => { if (aspectFlush.current) clearTimeout(aspectFlush.current); };
   }, [aspects]);
 
+  const say = useCallback((m: string) => {
+    setDone(m);
+    window.setTimeout(() => setDone((cur) => (cur === m ? '' : cur)), 4000);
+  }, []);
+
   const updateItemTags = useCallback((id: string, tags: string[]) => {
     setItems((prev) => prev.map((it) => (it.id === id ? { ...it, tags } : it)));
     setActive((cur) => (cur && cur.id === id ? { ...cur, tags } : cur));
@@ -199,8 +233,16 @@ export function MediaLibraryClient({
     async (ids: string[], patch: CurationPatch) => {
       const targets = items.filter((it) => ids.includes(it.id));
       const contentIds = targets.map((it) => it.contentId).filter((x): x is string => !!x);
-      if (contentIds.length === 0) {
-        setErr('These items are not indexed yet — run npm run content:index first.');
+      /*
+       * A photograph with no row used to be skipped here in silence, so a selection of forty
+       * could half-apply and still look like it worked. Send the unindexed ones to be
+       * registered instead: the write itself puts them in the library.
+       */
+      const create = targets
+        .filter((it) => !it.contentId)
+        .map((it) => ({ ref: refOf(it), url: it.full, mediaType: it.mediaType }));
+      if (contentIds.length === 0 && create.length === 0) {
+        setErr('Nothing in that selection can be written to.');
         return;
       }
       setErr('');
@@ -214,27 +256,50 @@ export function MediaLibraryClient({
           ? { community: patch.community_id ? commMap.get(patch.community_id) : undefined }
           : {}),
       });
-      setItems((prev) => prev.map((it) => (ids.includes(it.id) && it.contentId ? apply(it) : it)));
-      setActive((cur) => (cur && ids.includes(cur.id) && cur.contentId ? apply(cur) : cur));
+      setItems((prev) => prev.map((it) => (ids.includes(it.id) ? apply(it) : it)));
+      setActive((cur) => (cur && ids.includes(cur.id) ? apply(cur) : cur));
       try {
         const res = await fetch('/api/admin/content-item', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ids: contentIds, ...patch }),
+          body: JSON.stringify({ ids: contentIds, create, ...patch }),
         });
-        const data = (await res.json()) as { ok: boolean; error?: string };
+        const data = (await res.json()) as { ok: boolean; error?: string; registered?: number };
         if (!res.ok || !data.ok) throw new Error(data.error || `HTTP ${res.status}`);
+        const what =
+          patch.starred !== undefined ? (patch.starred ? 'Starred' : 'Unstarred')
+          : patch.rating !== undefined ? `Rated ${patch.rating}★`
+          : patch.archived !== undefined ? (patch.archived ? 'Archived' : 'Restored')
+          : patch.community_id !== undefined ? (patch.community_id ? `Community set to ${commMap.get(patch.community_id) ?? patch.community_id}` : 'Community cleared')
+          : patch.storyteller_id !== undefined ? (patch.storyteller_id ? 'Person set' : 'Person cleared')
+          : 'Saved';
+        say(`${what} · ${ids.length} ${ids.length === 1 ? 'item' : 'items'}`);
+        // Newly registered rows carry ids this page has never seen, so re-read them.
+        if (data.registered) router.refresh();
       } catch (e) {
         setItems(snapshot); // revert
         setErr(`Save failed: ${e instanceof Error ? e.message : String(e)}`);
       }
     },
-    [items, commMap],
+    [items, commMap, router, say],
   );
 
   const toggleStar = useCallback((it: UnifiedItem) => mutate([it.id], { starred: !it.starred }), [mutate]);
   const toggleArchive = useCallback((it: UnifiedItem) => mutate([it.id], { archived: !it.archived }), [mutate]);
   const setRating = useCallback((it: UnifiedItem, r: number) => mutate([it.id], { rating: r }), [mutate]);
+  /*
+   * Community and person were only settable from the bulk bar, which exists only once something
+   * is selected. Open one photograph and there was no way to say where it was or who is in it,
+   * which read as "tagging does not work". They belong on the item as well as on a selection.
+   */
+  const assignCommunity = useCallback(
+    (it: UnifiedItem, id: string | null) => mutate([it.id], { community_id: id }),
+    [mutate],
+  );
+  const assignPerson = useCallback(
+    (it: UnifiedItem, id: string | null) => mutate([it.id], { storyteller_id: id }),
+    [mutate],
+  );
   const bulkSet = useCallback(
     (patch: CurationPatch) => {
       const ids = Array.from(selected);
@@ -250,29 +315,32 @@ export function MediaLibraryClient({
     async (raw: string) => {
       const tag = raw.trim();
       if (!tag) return;
-      const targets = items.filter(
-        (it) => selected.has(it.id) && it.contentId && !it.tags.includes(tag),
-      );
+      const targets = items.filter((it) => selected.has(it.id) && !it.tags.includes(tag));
       if (targets.length === 0) return;
       setErr('');
       const snapshot = items;
       setItems((prev) =>
         prev.map((it) =>
-          selected.has(it.id) && it.contentId && !it.tags.includes(tag)
-            ? { ...it, tags: [...it.tags, tag] }
-            : it,
+          selected.has(it.id) && !it.tags.includes(tag) ? { ...it, tags: [...it.tags, tag] } : it,
         ),
       );
+      // An item with no row registers itself on the way through, so nothing is skipped quietly.
+      let registeredAny = false;
       const results = await Promise.allSettled(
         targets.map((it) =>
           fetch('/api/admin/content-item', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id: it.contentId, tags: [...it.tags, tag] }),
+            body: JSON.stringify(
+              it.contentId
+                ? { id: it.contentId, tags: [...it.tags, tag] }
+                : { create: [{ ref: refOf(it), url: it.full, mediaType: it.mediaType }], tags: [...it.tags, tag] },
+            ),
           })
             .then((r) => r.json())
-            .then((d: { ok: boolean; error?: string }) => {
+            .then((d: { ok: boolean; error?: string; registered?: number }) => {
               if (!d.ok) throw new Error(d.error || 'save failed');
+              if (d.registered) registeredAny = true;
             }),
         ),
       );
@@ -280,9 +348,13 @@ export function MediaLibraryClient({
       if (failed) {
         setItems(snapshot); // revert all on partial failure so state stays truthful
         setErr(`Bulk tag failed on ${failed}/${targets.length} — nothing changed.`);
+      } else {
+        say(`Tagged ${targets.length} ${targets.length === 1 ? 'item' : 'items'} ${tag}`);
+        // Some of those photographs had no row until just now; re-read so filters see them.
+        if (registeredAny) router.refresh();
       }
     },
-    [items, selected],
+    [items, selected, router, say],
   );
 
   const toggleSelect = useCallback((id: string) => {
@@ -619,6 +691,15 @@ export function MediaLibraryClient({
           {err}
         </p>
       )}
+      {done && (
+        <p
+          className="mb-4 rounded-md px-3 py-2 text-xs font-medium"
+          style={{ backgroundColor: '#EEF1E9', color: '#5E7A4C' }}
+          aria-live="polite"
+        >
+          ✓ {done}
+        </p>
+      )}
       {(elMissing || elState === 'error') && (
         <p className="mb-4 rounded-md bg-amber-50 px-3 py-2 text-xs text-amber-700 dark:bg-amber-950/40 dark:text-amber-300">
           {elMissing
@@ -832,6 +913,20 @@ export function MediaLibraryClient({
               <option value="__clear">— Clear community —</option>
             </select>
           )}
+          {/*
+            * One click for the tag being worked on all night. Ben, 17 September: can we have a
+            * button we click after selecting, that is Snow, so it is easy. Typing use:snow forty
+            * times is how a tag ends up half-applied.
+            */}
+          <button
+            type="button"
+            onClick={() => bulkAddTag('use:snow')}
+            title="Tag everything selected use:snow"
+            className="rounded-lg border px-2.5 py-1 text-xs font-semibold transition"
+            style={{ borderColor: '#C45C3E', color: '#9A4023' }}
+          >
+            + Snow
+          </button>
           <div className="flex items-center gap-1">
             <input
               type="text"
@@ -1029,12 +1124,15 @@ export function MediaLibraryClient({
           curationReady={curationReady}
           roster={roster}
           communities={communities}
+          people={people}
           onClose={() => setActive(null)}
           onSaveTags={updateItemTags}
           onSaveNotes={updateItemNotes}
           onToggleStar={toggleStar}
           onToggleArchive={toggleArchive}
           onSetRating={setRating}
+          onSetCommunity={assignCommunity}
+          onSetPerson={assignPerson}
           onMutatePeople={mutatePeople}
           onFilterTag={(t) => { setArea(t); setActive(null); }}
         />
@@ -1307,12 +1405,15 @@ function PreviewModal({
   curationReady,
   roster,
   communities,
+  people,
   onClose,
   onSaveTags,
   onSaveNotes,
   onToggleStar,
   onToggleArchive,
   onSetRating,
+  onSetCommunity,
+  onSetPerson,
   onMutatePeople,
   onFilterTag,
 }: {
@@ -1320,7 +1421,10 @@ function PreviewModal({
   curationReady: boolean;
   roster: RosterPerson[];
   communities: { id: string; name: string }[];
+  people: { id: string; name: string }[];
   onClose: () => void;
+  onSetCommunity: (item: UnifiedItem, id: string | null) => void;
+  onSetPerson: (item: UnifiedItem, id: string | null) => void;
   onSaveTags: (id: string, tags: string[]) => void;
   onSaveNotes: (id: string, notes: string | null) => void;
   onToggleStar: (it: UnifiedItem) => void;
@@ -1383,11 +1487,6 @@ function PreviewModal({
   }, []);
 
   const saveTags = useCallback(async () => {
-    if (!item.contentId) {
-      setSaveState('error');
-      setSaveError('Not indexed yet — run npm run content:index to tag this item.');
-      return;
-    }
     setSaveState('saving');
     setSaveError('');
     try {
@@ -1396,7 +1495,12 @@ function PreviewModal({
       const res = await fetch('/api/admin/content-item', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: item.contentId, tags: draftTags }),
+        body: JSON.stringify(
+          item.contentId
+            ? { id: item.contentId, tags: draftTags }
+            : // No row yet: the write registers it rather than sending anyone to a terminal.
+              { create: [{ ref: refOf(item), url: item.full, mediaType: item.mediaType }], tags: draftTags },
+        ),
       });
       const data = (await res.json()) as { ok: boolean; error?: string };
       if (!res.ok || !data.ok) {
@@ -1410,16 +1514,11 @@ function PreviewModal({
       setSaveState('error');
       setSaveError(e instanceof Error ? e.message : String(e));
     }
-  }, [item.contentId, item.id, draftTags, onSaveTags]);
+  }, [item, draftTags, onSaveTags]);
 
   // Notes save: optimistic (grid badge + state update immediately), reverts on
   // API failure. Same {ids:[...]} body shape as the other curation writes.
   const saveNotes = useCallback(async () => {
-    if (!item.contentId) {
-      setNotesState('error');
-      setNotesError('Not indexed yet. Run npm run content:index first.');
-      return;
-    }
     const prev = item.notes ?? null;
     const next = draftNotes.trim() === '' ? null : draftNotes;
     setNotesState('saving');
@@ -1430,7 +1529,11 @@ function PreviewModal({
       const res = await fetch('/api/admin/content-item', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ids: [item.contentId], notes: next ?? '' }),
+        body: JSON.stringify(
+          item.contentId
+            ? { ids: [item.contentId], notes: next ?? '' }
+            : { create: [{ ref: refOf(item), url: item.full, mediaType: item.mediaType }], notes: next ?? '' },
+        ),
       });
       const data = (await res.json()) as { ok: boolean; error?: string };
       if (!res.ok || !data.ok) throw new Error(data.error || `HTTP ${res.status}`);
@@ -1442,7 +1545,7 @@ function PreviewModal({
       setNotesError(msg);
       if (/column|schema cache|42703/i.test(msg)) setNotesColPending(true);
     }
-  }, [item.contentId, item.id, item.notes, draftNotes, onSaveNotes]);
+  }, [item, draftNotes, onSaveNotes]);
 
   const copy = useCallback(async (text: string) => {
     try {
@@ -1752,6 +1855,32 @@ function PreviewModal({
                     {ns}:
                   </button>
                 ))}
+              </div>
+
+              {/* Where it is and who is in it. Both save on change; no second button to forget. */}
+              <div className="mb-2 flex gap-1.5">
+                <select
+                  value={communities.find((c) => c.name === item.community)?.id ?? ''}
+                  onChange={(e) => onSetCommunity(item, e.target.value || null)}
+                  aria-label="Community"
+                  className="flex-1 rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-ring"
+                >
+                  <option value="">Community…</option>
+                  {communities.map((c) => (
+                    <option key={c.id} value={c.id}>{c.name}</option>
+                  ))}
+                </select>
+                <select
+                  value={people.find((p) => p.name === item.person)?.id ?? ''}
+                  onChange={(e) => onSetPerson(item, e.target.value || null)}
+                  aria-label="Person"
+                  className="flex-1 rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-ring"
+                >
+                  <option value="">Person…</option>
+                  {people.map((p) => (
+                    <option key={p.id} value={p.id}>{p.name}</option>
+                  ))}
+                </select>
               </div>
 
               <button

@@ -56,7 +56,7 @@ function resolveVoice(name: string): { person: StorytellerRecord; quote: string;
   const chosen = usable.find((q) => q.status === 'primary') ?? usable[0];
   if (!chosen) return null;
 
-  return { person, quote: chosen.text, context: chosen.context };
+  return { person, quote: chosen.text, context: chosen.context ?? '' };
 }
 
 function Voice({ name }: { name: string }) {

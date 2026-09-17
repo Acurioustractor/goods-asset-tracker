@@ -11,7 +11,7 @@ import { trackContactEvent } from '@/lib/analytics/contact';
 
 const INQUIRY_TYPES = [
   { id: 'partnership', label: 'Partnership Inquiry', description: 'Explore collaboration opportunities' },
-  { id: 'bulk-order', label: 'Bulk Order', description: 'Order 10+ beds for an organization' },
+  { id: 'bulk-order', label: 'Bulk Order', description: 'Order 10+ beds for an organisation' },
   { id: 'media', label: 'Media & Press', description: 'Interview requests, story features' },
   { id: 'general', label: 'General Inquiry', description: 'Questions about Goods on Country' },
 ];
@@ -203,7 +203,7 @@ export default function ContactPage() {
                         <Input
                           id="organization"
                           name="organization"
-                          placeholder="Your organization name"
+                          placeholder="Your organisation name"
                           className="border-goods-sand focus:border-goods-terracotta focus:ring-goods-terracotta"
                         />
                       </div>

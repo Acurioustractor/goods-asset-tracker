@@ -8,17 +8,23 @@ import { getPartnerDashboard } from '@/lib/data/partner-dashboards';
 import { getStorytellerBySlug } from '@/lib/data/storyteller-registry';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import { ORGANISATION } from '@/lib/data/organisation';
+import { REMOTE_PEOPLE, REMOTE_PLACES } from '@/lib/data/remote-communities';
+import { JURISDICTIONS } from '@/lib/data/procurement-model';
+import { MadeWithCommunity } from '@/components/pitch/made-with-community';
+import { contributionsConfirmed, listeningPlaces, listeningVoices } from '@/lib/data/community-contributions';
+import { liveCommunityLocations } from '@/lib/field-notes/resolve-live-map';
 import { goodsBoard } from '@/lib/data/goods-board';
 import {
   ALIGNMENT, BECAUSE_OF, BUYER_TOTALS, BUYERS, DEMAND_GAPS, FILMS, heroFrames, MAP_PLACES,
   COMMUNITY_MODEL, MONEY_EVENTS, MONTHS_BEFORE_FIRST_SALE, NOT_FINISHED, OONCHIUMPA_NEXT,
-  OWNERSHIP_VOICES, PROGRESS_BRIDGE, THEMES, THE_NEXT_TEN, TRADE_BY_YEAR,
+  BUYERS_MODEL, GROWS_INTO, MEMBERS_MODEL, OWNERSHIP_VOICES, THEMES, THE_NEXT_TEN, TRADE_BY_YEAR,
   PLACE_BEATS, PRICE_LADDER,
-  FLEET_USE, SNOW_MONEY, THE_ARC, THE_LETTER, TOGETHER, WASHER_FLEET,
-  WALLS, WHY_FLEXIBLE,
+  NORM_MONTHS, SNOW_MONEY, THE_ARC, THE_LETTER, TOGETHER, WASHER_FLEET,
+  WALLS,
   WASHER_NEXT, WASHER_PLACES, WASHER_TELEMETRY,
 } from '@/lib/data/snow-partnership';
-import { snowHeroFrames } from '@/lib/data/snow-photos';
+import { snowHeroFrames, snowTaggedGroup } from '@/lib/data/snow-photos';
+import { withCaptions, withGroupCaptions, taggedPhotos } from '@/lib/data/image-captions';
 import { ChapterRail } from '@/components/pitch/chapter-rail';
 import { CountUp } from '@/components/pitch/count-up';
 import { TogetherTimeline } from '@/components/partners/together-timeline';
@@ -27,9 +33,12 @@ import { FilmGallery, type GalleryFilm } from '@/components/partners/film-galler
 import { StoryHero } from '@/components/partners/story-hero';
 import { PlaceFilms, type PlaceBeat } from '@/components/partners/place-films';
 import { MoneyLedger } from '@/components/partners/money-ledger';
-import { PAID_INVOICES } from '@/lib/data/paid-trade';
+import { PAID_INVOICES, PAID_INVOICE_INCL_GST_AUD } from '@/lib/data/paid-trade';
 import { ModelLoopBuild } from '@/components/pitch/model-loop-build';
-import { TenYearSlider } from '@/components/pitch/ten-year-slider';
+import { TenYearModel } from '@/components/partners/ten-year-model';
+import { MembersFlow } from '@/components/partners/members-flow';
+import { PitchMenu } from '@/components/pitch/pitch-menu';
+import { SNOW_CHAPTERS, SNOW_MENU_TILES } from '@/lib/data/snow-chapters';
 import { LOOP_ARCS, LOOP_COUNTS, LOOP_STATIONS, LOOP_STEPS } from '@/lib/data/model-walkthrough';
 import { FLOWS, LOGOS, PANELS, STATIONS } from '@/lib/data/model-placemat';
 import { renderPlacematSvg, type PanelId } from '@/lib/model/placemat-svg';
@@ -62,9 +71,28 @@ const CREAM = '#FDF8F3';
 const CHARCOAL = '#2E2E2E';
 const RUST = '#C45C3E';
 const SAGE = '#8B9D77';
-/** One hairline and one muted label colour, so the page has a single quiet register. */
-const RULE = '#EBE2D8';
+/**
+ * THE PAGE'S PALETTE, AND THE ONLY PLACE A COLOUR IS CHOSEN.
+ *
+ * Ben, 17 September 2026, sweeping the page: think about the brand and whether anything can
+ * align better. It had twenty six distinct hexes on it, most of them one-offs a card away from
+ * their sibling. These are twelve, named for the job they do rather than the shade they are,
+ * and every near duplicate is collapsed onto the nearest one.
+ *
+ * SAGE MEANS PLASTIC AND MONEY AND NOTHING ELSE, per the Goods visual system, which is why the
+ * sage tokens are only used on machines, recycled material and the community share.
+ */
+const PANEL = '#FFFFFF';
+const SUNK = '#F6F0E6';
+const RULE = '#E8DED4';
+const RULE_SOFT = '#F0E7DC';
+const RULE_DASH = '#C2B6AA';
 const MUTED = '#A2958A';
+const MUTED_DEEP = '#6A5E54';
+const RUST_INK = '#9A4023';
+const RUST_WASH = '#F6E4DE';
+const SAGE_INK = '#5E7A4C';
+const SAGE_WASH = '#EEF1E9';
 
 export const metadata: Metadata = {
   title: { absolute: 'Snow and Goods | Goods on Country' },
@@ -72,20 +100,8 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-const CHAPTERS = [
-  { id: 'ch-making', label: 'What we made' },
-  { id: 'ch-first', label: 'Snow went first' },
-  { id: 'ch-board', label: 'Who holds it' },
-  { id: 'ch-alice', label: 'Alice Springs' },
-  { id: 'ch-buyers', label: 'Who is buying' },
-  { id: 'ch-washers', label: 'The machines' },
-  { id: 'ch-films', label: 'In their own words' },
-  { id: 'ch-archive', label: 'The archive' },
-  { id: 'ch-together', label: 'What we have done' },
-  { id: 'ch-because', label: 'What Goods is now' },
-  { id: 'ch-themes', label: 'What this is, and what it is not' },
-  { id: 'ch-next', label: 'What we are asking' },
-] as const;
+/** The chapters live in snow-chapters.ts now, so the menu, the rail and the headers read one list. */
+const CHAPTERS = SNOW_CHAPTERS;
 
 /**
  * A chapter's number and label come from CHAPTERS by id, never from the call site. They used to
@@ -97,6 +113,24 @@ const CH = new Map<string, { number: string; label: string }>(
   CHAPTERS.map((c, i) => [c.id as string, { number: String(i + 1).padStart(2, '0'), label: c.label as string }]),
 );
 const chapterNumber = (id: string) => CH.get(id)?.number ?? '';
+/** Today's figure for an area, from the same THEMES the impact model draws, so the closing cannot drift from it. */
+const themeFigure = (id: string) => THEMES.find((t) => t.id === id)?.figure.value ?? '';
+
+/** One entry per photograph, first mention wins. Keyed on src, which is what React keys on. */
+function dedupeBySrc<T extends { src: string }>(photos: T[]): T[] {
+  const seen = new Set<string>();
+  return photos.filter((p) => (seen.has(p.src) ? false : (seen.add(p.src), true)));
+}
+
+/** A community slug, written the way it is said. Anything unlisted title-cases cleanly. */
+const PLACE_NAMES: Record<string, string> = {
+  'mt-isa': 'Mount Isa',
+  'philanthropy-australia-2024': 'Philanthropy Australia, 2024',
+  'parliament-house-2026': 'Parliament House, 2026',
+  'canberra-airport-2026': 'Canberra Airport, 2026',
+};
+const placeLabel = (slug: string) =>
+  PLACE_NAMES[slug] ?? slug.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
 const chapterLabel = (id: string) => CH.get(id)?.label ?? '';
 
 /** Default-deny, same shape as funder-moments: wrong tier or unapproved renders nothing. */
@@ -109,9 +143,9 @@ function quote(slug: string, tier: 'funder' | 'external', contains: string) {
   return q ? { person, quote: q } : null;
 }
 
-function Pull({ v, note }: { v: NonNullable<ReturnType<typeof quote>>; note?: string }) {
+function Pull({ v, note, flush = false }: { v: NonNullable<ReturnType<typeof quote>>; note?: string; flush?: boolean }) {
   return (
-    <figure className="m-0 mt-12 flex max-w-[52ch] items-start gap-5">
+    <figure className={`m-0 flex max-w-[52ch] items-start gap-5 ${flush ? '' : 'mt-12'}`}>
       {v.person.portrait && (
         <Image src={v.person.portrait} alt={v.person.name} width={160} height={160} className="h-16 w-16 shrink-0 rounded-full object-cover sm:h-20 sm:w-20" />
       )}
@@ -131,11 +165,11 @@ function Pull({ v, note }: { v: NonNullable<ReturnType<typeof quote>>; note?: st
 
 /** The arc's state chips. Sage is in community, rust is live, grey is retired or not yet. */
 function chipStyle(state: (typeof THE_ARC)[number]['state']): React.CSSProperties {
-  if (state === 'in-community') return { backgroundColor: '#EEF1E9', color: '#556945' };
-  if (state === 'now') return { backgroundColor: '#F6E4DE', color: '#9A4023' };
-  if (state === 'commissioning') return { backgroundColor: '#F7EDE4', color: '#8A5A34' };
-  if (state === 'next') return { border: '1px dashed #C2B6AA', color: '#6A5E54' };
-  return { backgroundColor: '#EEE9E3', color: '#6A5E54' };
+  if (state === 'in-community') return { backgroundColor: SAGE_WASH, color: SAGE_INK };
+  if (state === 'now') return { backgroundColor: RUST_WASH, color: RUST_INK };
+  if (state === 'commissioning') return { backgroundColor: RUST_WASH, color: RUST_INK };
+  if (state === 'next') return { border: '1px dashed #C2B6AA', color: MUTED_DEEP };
+  return { backgroundColor: RULE_SOFT, color: MUTED_DEEP };
 }
 
 function Chapter({ id, title, lead, children }: {
@@ -146,9 +180,8 @@ function Chapter({ id, title, lead, children }: {
   return (
     <section id={id} className="scroll-mt-24 px-5 sm:px-8">
       <div className="mx-auto max-w-4xl border-t py-12 sm:py-16" style={{ borderColor: RULE }}>
-        <header className="flex items-baseline gap-4">
+        <header className="flex items-baseline justify-between gap-4">
           <span className="font-display text-base leading-none" style={{ color: RUST }}>{number}</span>
-          <span className="h-px flex-1" style={{ backgroundColor: RULE }} />
           <span className="text-[10px] font-semibold uppercase tracking-[0.2em]" style={{ color: MUTED }}>{label}</span>
         </header>
         <h2 className="mt-7 max-w-3xl font-display text-[2rem] leading-[1.14] sm:text-[2.6rem]" style={{ color: CHARCOAL }}>{title}</h2>
@@ -170,18 +203,23 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
   if (slug !== 'snow') notFound();
   const partner = getPartnerDashboard(slug);
   if (!partner) notFound();
+  // For the listening map that closes the page, the same live places the pitch map reads.
+  const locations = await liveCommunityLocations();
 
   const catalyse = quote('georgina-byron', 'funder', 'we can catalyse others to do their bit');
   const backing = quote('georgina-byron', 'funder', "It's also about backing really great people");
   const withNotFor = quote('georgina-byron', 'funder', "It's not a for, it's a with");
   const healthyHomes = quote('georgina-byron', 'funder', 'Healthy homes is the start of everything');
-  const smallStart = quote('georgina-byron', 'funder', 'you start small and then you realize');
+  const smallStart = quote('georgina-byron', 'funder', 'you start small and then you realise');
   const vicki = quote('vicki-wade', 'external', 'Community leadership, community ownership');
   const karen = quote('karen-liddle', 'external', 'start your own business');
   /** Cleared 17 September. Each sits where it is about something. */
   const proud = quote('dianne-stokes', 'external', 'It makes me feel proud');
   const recycled = quote('dianne-stokes', 'external', 'coming out of recycled');
   const blessings = quote('dianne-stokes', 'external', 'shared their blessings with us');
+  const documenting = quote('norman-frank', 'external', 'document everything now while we can');
+  /** Kristy on self-determination, under the members box. Not one of the three the board chapter takes. */
+  const kristyLeads = quote('kristy-bloomfield', 'external', 'We know what we wanna do on our land');
   /**
    * The cleared voices who talk about the machine itself. Norman Frank has no quote about his
    * washing machine in the registry and no photograph with it, so he is not here. What is on the
@@ -189,7 +227,6 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
    */
   const washerVoices = [
     { slug: 'jimmy-frank', contains: 'easier to fix, I would say for a washing machine' },
-    { slug: 'dianne-stokes', contains: 'If I need to wash my blanket' },
     { slug: 'patricia-frank', contains: 'right there at home' },
   ]
     .map((v) => quote(v.slug, 'external', v.contains))
@@ -236,10 +273,85 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
     };
   });
 
-  const wallGroups = WALLS.map((w) => ({
-    label: w.label,
-    photos: w.files.map((f) => ({ src: w.dir + f.file, alt: f.alt, caption: f.caption })),
-  }));
+  // The curated walls, plus anything Ben has tagged use:snow in the Media Room, which is the
+  // one-step way to put a new photograph on this page without touching code.
+  const taggedForSnow = await taggedPhotos('use:snow');
+  /*
+   * WHERE EACH TAGGED PHOTOGRAPH GOES.
+   *
+   * Ben tagged 95 photographs use:snow in one click and they all landed in a single block at the
+   * bottom called "Tagged for Snow", which is a dumping ground, not a page. A photograph knows
+   * where it was taken, so it can go to the stop on the road that names that place. The top of
+   * the page takes the starred ones, each road stop takes its own community, and whatever is
+   * left over is the gallery. Nothing appears twice.
+   */
+  const beatPlaces = new Set(PLACE_BEATS.map((b) => b.id));
+  /*
+   * Start from everything the page already places by hand. Half these photographs were tagged
+   * use:snow AND hard-coded into a wall or a road stop, so merging the two lists put the
+   * Kalgoorlie delivery truck on the same stop twice.
+   */
+  const spent = new Set<string>([
+    ...snowHeroFrames().map((f) => f.src),
+    ...WALLS.flatMap((w) => w.files.map((f) => w.dir + f.file)),
+    ...PLACE_BEATS.flatMap((b) => (b.photos ?? []).map((ph) => ph.src)),
+    ...(snowTaggedGroup()?.photos ?? []).map((ph) => ph.src),
+  ]);
+  const take = (n: number, pick: (p: (typeof taggedForSnow)[number]) => boolean) => {
+    const out = taggedForSnow.filter((p) => !spent.has(p.src) && pick(p)).slice(0, n);
+    out.forEach((p) => spent.add(p.src));
+    return out;
+  };
+  // The top of the page: the starred ones, then anything else captioned, best first.
+  const snowTopPhotos = [...take(12, (p) => p.starred), ...take(6, (p) => !!p.caption)];
+  // Each stop on the road takes the photographs carrying its own place.
+  const snowByBeat = new Map(
+    PLACE_BEATS.map((b) => [b.id, take(12, (p) => p.place === b.id)] as const),
+  );
+  // "Everywhere" is the stop with no single community, so it takes the places that have no stop.
+  const everywhere = snowByBeat.get('everywhere');
+  if (everywhere) {
+    everywhere.push(...take(12, (p) => !!p.place && !beatPlaces.has(p.place)));
+  }
+  // Whatever is left is the gallery, grouped so it reads as places rather than as a heap.
+  const leftovers = taggedForSnow.filter((p) => !spent.has(p.src));
+  const galleryGroups = [...new Set(leftovers.map((p) => p.place ?? ''))]
+    .map((place) => ({
+      label: place ? placeLabel(place) : 'More from the work',
+      photos: leftovers.filter((p) => (p.place ?? '') === place),
+    }))
+    .filter((g) => g.photos.length > 0);
+  // A place that already has a wall joins it rather than opening a second section with the
+  // same heading, which is both a duplicate React key and two "Maningrida" blocks to scroll past.
+  const galleryFor = (label: string) => galleryGroups.find((g) => g.label === label)?.photos ?? [];
+  const wallLabels = new Set(WALLS.map((w) => w.label));
+  // The curated walls, plus anything tagged use:snow in the Media Room, and then every
+  // photograph's Notes field laid over the top, so a wrong label is fixed in the admin rather
+  // than in this file.
+  const wallGroups = await withGroupCaptions([
+    ...WALLS.map((w) => ({
+      label: w.label,
+      photos: [
+        ...w.files.map((f) => ({ src: w.dir + f.file, alt: f.alt, caption: f.caption })),
+        ...galleryFor(w.label).map((p) => ({ src: p.src, alt: p.alt, caption: p.caption })),
+      ],
+    })),
+    ...(snowTaggedGroup() ? [snowTaggedGroup()!] : []),
+    // Tagged use:snow in the Media Room, which writes to the database rather than to the
+    // seed file the line above reads. Grouped by place, and only what nothing else took.
+    ...galleryGroups.filter((g) => !wallLabels.has(g.label)),
+  ]);
+  /*
+   * THE STRIP AT THE TOP LEADS WITH WHAT WAS TAGGED FOR SNOW.
+   *
+   * It used to open with the hard-coded wall and append the tagged photographs after it, so the
+   * first thing Snow saw was whatever was written into the file months ago rather than the
+   * photographs chosen for them. Tagged first, curated after, nothing twice.
+   */
+  const heroWithCaptions = await withCaptions([
+    ...snowTopPhotos.map((p) => ({ src: p.src, alt: p.alt, caption: p.caption ?? p.alt })),
+    ...snowHeroFrames(),
+  ]);
   const norman = quote('norman-frank', 'external', "we've got our own ways");
 
   // The arc, as places. Each beat carries its own aerial and its own voice, resolved here so
@@ -255,7 +367,12 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         name: v.person.name, role: v.person.role, community: v.person.community,
         text: v.quote.text, portrait: v.person.portrait,
       })),
-    photos: b.photos ?? [],
+    // The hand-placed photographs first, then anything tagged for this place in the Media Room.
+    // Deduped on src: the same photograph reaching a stop twice is a duplicate React key.
+    photos: dedupeBySrc([
+      ...(b.photos ?? []),
+      ...(snowByBeat.get(b.id) ?? []).map((p) => ({ src: p.src, alt: p.alt, caption: p.caption })),
+    ]),
     showMap: b.showMap,
   }));
 
@@ -279,9 +396,17 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
   return (
     <main style={{ backgroundColor: CREAM }}>
       <ChapterRail chapters={CHAPTERS.map((c) => ({ ...c, number: chapterNumber(c.id) }))} />
+      {/*
+        * Ben, 18 September: the pitch's chapter menu here too. One button top right naming the
+        * chapter you are in; it opens the contact sheet of photo tiles. Same component as /pitch.
+        */}
+      <PitchMenu
+        title="Snow and Goods"
+        chapters={CHAPTERS.map((c) => ({ id: c.id, label: c.label, number: chapterNumber(c.id), ...SNOW_MENU_TILES[c.id] }))}
+      />
 
       <StoryHero
-        frames={snowHeroFrames()}
+        frames={heroWithCaptions}
         film={{
           src: '/video/maningrida/gamardi-drone.mp4',
           poster: '/video/maningrida/gamardi-drone-poster.jpg',
@@ -356,7 +481,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       <Chapter
         id="ch-making"
         title="A basket, a machine, a bed, a plant and the next machine"
-        lead="Five things in the order they were made, because the order is the argument. Each one taught the next and two of them we have stopped selling."
+        lead="The basket bed is given away now, the washing machine is still a prototype and the plant is being commissioned."
       >
         <ol className="m-0 list-none p-0">
           {THE_ARC.map((s) => (
@@ -394,9 +519,6 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             </li>
           ))}
         </ol>
-        <p className="mt-10 max-w-[64ch] border-l-2 pl-5 text-base leading-[1.75]" style={{ borderColor: RUST, color: `${CHARCOAL}cc` }}>
-          {WHY_FLEXIBLE}
-        </p>
         {mykel && <Pull v={mykel} />}
         {mykelFilm && (
           <figure className="m-0 mt-6 max-w-xl sm:ml-[6.25rem]">
@@ -420,18 +542,17 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             * line of the lead and the two read as one broken thing (Ben, 17 September).
             */}
           <div className="mx-auto max-w-4xl border-t pb-16 pt-12 sm:pb-24 sm:pt-16" style={{ borderColor: RULE }}>
-            <header className="flex items-baseline gap-4">
+            <header className="flex items-baseline justify-between gap-4">
               <span className="font-display text-base leading-none" style={{ color: RUST }}>{chapterNumber('ch-first')}</span>
-              <span className="h-px flex-1" style={{ backgroundColor: RULE }} />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.2em]" style={{ color: MUTED }}>{chapterLabel('ch-first')}</span>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.2em]" style={{ color: MUTED }}>{chapterLabel('ch-first')}</span>
             </header>
             <h2 className="mt-7 max-w-3xl font-display text-[2rem] leading-[1.14] sm:text-[2.6rem]" style={{ color: CHARCOAL }}>
               Four places and the order they came in
             </h2>
             <p className="mt-5 max-w-[58ch] text-[1.0625rem] leading-[1.75] sm:text-lg" style={{ color: `${CHARCOAL}b8` }}>
               Kalgoorlie is where the mattresses end up. Tennant Creek is where your money landed first. Maningrida
-              is where the making moved onto Country. The people who live in these places say what the work is for
-              better than we can, so below they say it.
+              is where the making moved onto Country. The people who live there say what the work is for
+              better than we can.
             </p>
           </div>
         </div>
@@ -447,14 +568,13 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             <p className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: RUST }}>Every payment, in order</p>
             <p className="mt-3 max-w-2xl text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
               Eleven payments put beds in houses. Five of them were given before anybody had bought
-              anything. Read down: the order is the progress, and it is what the rest of this report
-              is built on.
+              anything. Read down. The rest of this report is built on that order.
             </p>
             <div className="mt-8">
               <MoneyLedger events={MONEY_EVENTS} monthsBefore={MONTHS_BEFORE_FIRST_SALE} />
             </div>
 
-            <div className="mt-10 rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+            <div className="mt-10 rounded-lg p-6 sm:p-8" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
               <p className="font-display text-xl leading-snug sm:text-2xl" style={{ color: CHARCOAL }}>{THE_NEXT_TEN.heading}</p>
               <div className="mt-7 space-y-5">
                 {TRADE_BY_YEAR.map((y) => {
@@ -470,7 +590,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
                           ${y.aud.toLocaleString('en-AU')}
                         </span>
                       </div>
-                      <div className="mt-2 h-3 overflow-hidden rounded-full" style={{ backgroundColor: '#F1E7DC' }}>
+                      <div className="mt-2 h-3 overflow-hidden rounded-full" style={{ backgroundColor: RULE_SOFT }}>
                         <span className="block h-full rounded-full" style={{ width: `${(y.aud / top) * 100}%`, backgroundColor: RUST }} />
                       </div>
                     </div>
@@ -481,46 +601,29 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
               <p className="mt-7 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{THE_NEXT_TEN.body}</p>
               <p className="mt-3 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{THE_NEXT_TEN.holder}</p>
               <p className="mt-3 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{THE_NEXT_TEN.forward}</p>
-              <p className="mt-5 max-w-[62ch] border-t pt-4 text-sm leading-relaxed" style={{ borderColor: RULE, color: MUTED }}>{THE_NEXT_TEN.ceiling}</p>
 
               {/*
-                * The deck's own ten-year model, pushable. Ben, 17 September: show where this can
-                * go as communities add facilities locally, how many beds get made in community,
-                * and give it a slider. It recomputes from ten-year-scale.ts, the module the deck
-                * slide prints from, and it carries its own claim ceiling, which is why the line
-                * above hands over to it rather than saying there is no ten-year number.
+                * The ten-year model used to sit here with a slider. Ben, 17 September, later the
+                * same day: the last part of the report is where the ten years belong, drawn on the
+                * base that holds them up. The forward line above points there now.
                 */}
-              <div className="mt-8 border-t pt-8" style={{ borderColor: RULE }}>
-                <TenYearSlider />
-              </div>
             </div>
-            {/*
-              * The map carries six places and the register carries eleven communities, so the
-              * bed count under the scrub is smaller than the canonical one. Said out loud here,
-              * because a funder who adds the dots up deserves to find the answer rather than a
-              * discrepancy.
-              */}
-            <p className="mt-3 text-xs leading-relaxed" style={{ color: MUTED }}>
-              Six places, which are the ones where the register holds a bed count against a
-              community and a date. Across all eleven communities the register holds{' '}
-              {CANONICAL_ASSETS.bedsDeployed} beds and {CANONICAL_ASSETS.washersInCommunity} machines.
-              The sage ring marks a place with machines in it.
-            </p>
+            
 
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
-              <div className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+              <div className="rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
                 <p className="font-display text-2xl" style={{ color: CHARCOAL }}>{money(SNOW_MONEY.goodsOnlyIncGstAud)}</p>
                 <p className="mt-1 text-xs leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>
                   Given to Goods across {SNOW_MONEY.goodsInvoices} invoices, including GST. Nothing outstanding.
                 </p>
               </div>
-              <div className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+              <div className="rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
                 <p className="font-display text-2xl" style={{ color: CHARCOAL }}>{SNOW_MONEY.shareOfAllPhilanthropyPct}%</p>
                 <p className="mt-1 text-xs leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>
                   Of every philanthropic dollar Goods has ever received.
                 </p>
               </div>
-              <div className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+              <div className="rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
                 <p className="font-display text-2xl" style={{ color: CHARCOAL }}>May 2026</p>
                 <p className="mt-1 text-xs leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>
                   The most recent invoice. This partnership is still running.
@@ -529,30 +632,13 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             </div>
 
 
-            {/*
-              * THE HINGE INTO CHAPTER THREE. Ben, 17 September: think about progress, then the
-              * way we are finding more buyers, and let that lead into the charity, its Indigenous
-              * governance and what that governance is for.
-              */}
-            <div className="mt-12 rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderLeft: `4px solid ${RUST}` }}>
-              <p className="font-display text-xl leading-snug sm:text-2xl" style={{ color: CHARCOAL }}>{PROGRESS_BRIDGE.heading}</p>
-              <p className="mt-4 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{PROGRESS_BRIDGE.progress}</p>
-              <p className="mt-3 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{PROGRESS_BRIDGE.buyers}</p>
-              <p className="mt-3 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{PROGRESS_BRIDGE.price}</p>
-              <p className="mt-6 max-w-[62ch] border-t pt-5 text-base leading-[1.75]" style={{ borderColor: RULE, color: `${CHARCOAL}cc` }}>
-                {PROGRESS_BRIDGE.charity}
-              </p>
-              <p className="mt-3 text-sm" style={{ color: MUTED }}>{PROGRESS_BRIDGE.forward}</p>
-            </div>
-
             {/* catalyse now opens the report in the hero, so the money chapter does not repeat it. */}
-            {backing && <Pull v={backing} />}
-            {blessings && (
-              <Pull
-                v={blessings}
-                note="Dianne is talking about Ben and Nic, on the day the washing machine she named arrived."
-              />
-            )}
+            <div className="mt-12 grid gap-8 sm:grid-cols-2">
+              {backing && <Pull v={backing} flush />}
+              {blessings && (
+                <Pull v={blessings} flush />
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -560,11 +646,11 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       <Chapter
         id="ch-board"
         title={ORGANISATION.boardLine}
-        lead="Snow said in November 2025 that all future grants would require First Nations leadership and that every partner would be reviewed. This is our answer and it was underway before the question."
+        lead="Snow said in November 2025 that all future grants would require First Nations leadership and that every partner would be reviewed. These are the three directors."
       >
         <div className="grid gap-5 sm:grid-cols-3">
           {goodsBoard.map((d) => (
-            <div key={d.name} className="overflow-hidden rounded-lg" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+            <div key={d.name} className="overflow-hidden rounded-lg" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
               <Image
                 src={d.photo} alt={d.name} width={640} height={640}
                 sizes="(min-width: 640px) 18rem, 100vw"
@@ -575,42 +661,65 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
               <p className="mt-1 text-xs uppercase tracking-wide" style={{ color: SAGE }}>{d.country}</p>
               <p className="mt-3 text-xs leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>{d.bio}</p>
               <p className="mt-3 text-xs leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>{d.goods}</p>
-              <p className="mt-3 text-[10px] uppercase tracking-wide" style={{ color: MUTED }}>{d.photoCredit}</p>
               </div>
             </div>
           ))}
         </div>
-        <div className="mt-6 rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+        <div className="mt-6 rounded-lg p-5" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
           <p className="text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
             {ORGANISATION.legalName}, ABN {ORGANISATION.abn}. A registered charity with deductible gift recipient
             status. The board handover is still in progress and no chair has been appointed, which we would rather
             say here than have you find later.
           </p>
         </div>
+
+
         {ownershipVoices.length > 0 && (
-          <div className="mt-12 grid gap-6 sm:grid-cols-3">
-            {ownershipVoices.map((v) => (
-              <figure key={`${v.person.name}-${v.quote.text.slice(0, 24)}`} className="m-0 rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
-                {v.person.portrait && (
-                  <Image src={v.person.portrait} alt={v.person.name} width={160} height={160} className="h-14 w-14 rounded-full object-cover" />
-                )}
-                <blockquote className="mt-4 font-display text-lg leading-[1.35]" style={{ color: CHARCOAL }}>
-                  &ldquo;{v.quote.text}&rdquo;
-                </blockquote>
-                <figcaption className="mt-3 text-[11px] uppercase tracking-[0.12em]" style={{ color: SAGE }}>
-                  {v.person.name}{v.person.role ? `, ${v.person.role}` : ''}
-                </figcaption>
-              </figure>
-            ))}
+          <div className="mt-16">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>
+              In their words
+            </p>
+            <ul className="m-0 mt-2 list-none p-0">
+              {ownershipVoices.map((v) => (
+                <li
+                  key={`${v.person.name}-${v.quote.text.slice(0, 24)}`}
+                  className="border-t py-9 first:border-t-0"
+                  style={{ borderColor: RULE }}
+                >
+                  <figure className="m-0 grid gap-6 sm:grid-cols-[4.5rem_1fr]">
+                    {v.person.portrait ? (
+                      <Image
+                        src={v.person.portrait}
+                        alt={v.person.name}
+                        width={200}
+                        height={200}
+                        className="h-[4.5rem] w-[4.5rem] rounded-full object-cover"
+                      />
+                    ) : (
+                      <span />
+                    )}
+                    <div>
+                      <blockquote className="m-0 font-display text-[1.375rem] leading-[1.45] sm:text-[1.625rem]" style={{ color: CHARCOAL }}>
+                        &ldquo;{v.quote.text}&rdquo;
+                      </blockquote>
+                      <figcaption className="mt-4 text-[11px] uppercase tracking-[0.12em]" style={{ color: SAGE }}>
+                        {v.person.name}{v.person.role ? `, ${v.person.role}` : ''}
+                      </figcaption>
+                      {v.quote.context && (
+                        <p className="mt-2 text-xs leading-relaxed" style={{ color: MUTED }}>{v.quote.context}</p>
+                      )}
+                    </div>
+                  </figure>
+                </li>
+              ))}
+            </ul>
           </div>
         )}
 
         <div className="mt-14">
           <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>The model, in plain words</p>
           <p className="mt-3 max-w-[58ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}b8` }}>
-            Community-led is a word that gets used loosely, so here is ours as four things that
-            either happen or do not. Three of them happen today. The fourth has never happened
-            anywhere and it says so.
+            What community-led means here, as four things you can check.
           </p>
           <ol className="m-0 mt-7 grid list-none gap-5 p-0 sm:grid-cols-2">
             {COMMUNITY_MODEL.map((s) => (
@@ -618,13 +727,13 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
                 key={s.step}
                 className="rounded-lg p-6"
                 style={{
-                  backgroundColor: '#FFFFFF',
+                  backgroundColor: PANEL,
                   border: s.state === 'future' ? '1px dashed #C2B6AA' : '1px solid #E8DED4',
                 }}
               >
                 <div className="flex items-baseline justify-between gap-3">
                   <span className="font-display text-sm" style={{ color: RUST }}>{s.step}</span>
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: s.state === 'future' ? '#6A5E54' : SAGE }}>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: s.state === 'future' ? MUTED_DEEP : SAGE }}>
                     {s.state === 'future' ? 'Not yet, anywhere' : 'Happens today'}
                   </span>
                 </div>
@@ -642,9 +751,9 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             date behind every one. Across all {CANONICAL_ASSETS.communitiesServed} communities it
             holds {CANONICAL_ASSETS.bedsDeployed} beds and {CANONICAL_ASSETS.washersInCommunity} machines.
           </p>
-          <ul className="m-0 mt-6 grid list-none gap-px overflow-hidden rounded-lg p-0" style={{ backgroundColor: '#E8DED4' }}>
+          <ul className="m-0 mt-6 grid list-none gap-px overflow-hidden rounded-lg p-0" style={{ backgroundColor: RULE }}>
             {MAP_PLACES.map((pl) => (
-              <li key={pl.id} className="grid gap-2 p-5 sm:grid-cols-[13rem_1fr] sm:gap-6" style={{ backgroundColor: '#FFFFFF' }}>
+              <li key={pl.id} className="grid gap-2 p-5 sm:grid-cols-[13rem_1fr] sm:gap-6" style={{ backgroundColor: PANEL }}>
                 <div>
                   <p className="font-display text-base leading-snug" style={{ color: CHARCOAL }}>{pl.name}</p>
                   <p className="mt-1 text-xs" style={{ color: MUTED }}>
@@ -666,43 +775,21 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         )}
       </Chapter>
 
-      {/*
-        * Full bleed, outside the chapter column. ModelLoopBuild pins its own stage to the
-        * viewport and scales the ring to min(width, height) of its box, so a max-width column
-        * with the component's own lg:pr-48 rail clearance inside it left the ring at a fifth of
-        * its size (Ben, 17 September: "why is it so tiny?").
-        */}
-      <div className="px-5 pt-16 sm:px-8">
-        <div className="mx-auto max-w-4xl">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>The same model, as the deck builds it</p>
-          <p className="mt-3 max-w-[58ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}b8` }}>
-            One station at a time as you scroll, and the whole thing on one sheet at the end. It is
-            the same loop the pitch deck walks through, so what Snow sees here and what a room sees
-            in the deck are the same drawing.
-          </p>
-        </div>
-      </div>
-      <ModelLoopBuild
-        steps={LOOP_STEPS} stations={LOOP_STATIONS} arcs={LOOP_ARCS} counts={LOOP_COUNTS}
-        sheetSvg={placematSvg} items={placematItems} arrows={placematArrows}
-      />
-
       <Chapter
         id="ch-alice"
         title="Oonchiumpa operate it, employ young people and keep leading that place"
-        lead="The Indigenous ownership story with a date attached. It is also the thing Snow is being invited into."
       >
-        <div className="rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+        <div className="rounded-lg p-6 sm:p-8" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
           <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>
             {OONCHIUMPA_NEXT.partner} &middot; {OONCHIUMPA_NEXT.place}
           </p>
           <p className="mt-2 font-display text-xl leading-snug sm:text-2xl" style={{ color: CHARCOAL }}>{OONCHIUMPA_NEXT.what}</p>
           <ol className="mt-6 grid gap-3 sm:grid-cols-4">
             {OONCHIUMPA_NEXT.steps.map((st, i) => (
-              <li key={st.title} className="rounded-lg p-4" style={{ backgroundColor: CREAM, borderTop: `3px solid ${st.state === 'future' ? '#B8AEA4' : RUST}` }}>
+              <li key={st.title} className="rounded-lg p-4" style={{ backgroundColor: CREAM, borderTop: `3px solid ${st.state === 'future' ? RULE_DASH : RUST}` }}>
                 <div className="flex items-baseline justify-between gap-2">
-                  <span className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: '#A99C8F' }}>{String(i + 1).padStart(2, '0')}</span>
-                  <span className="rounded-full px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wide" style={{ backgroundColor: st.state === 'future' ? '#EEE9E3' : '#F6E4DE', color: st.state === 'future' ? '#6A5E54' : '#9A4023' }}>
+                  <span className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: MUTED }}>{String(i + 1).padStart(2, '0')}</span>
+                  <span className="rounded-full px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wide" style={{ backgroundColor: st.state === 'future' ? RULE_SOFT : RUST_WASH, color: st.state === 'future' ? MUTED_DEEP : RUST_INK }}>
                     {st.state === 'future' ? 'not yet' : 'proposed'}
                   </span>
                 </div>
@@ -711,8 +798,6 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
               </li>
             ))}
           </ol>
-          <p className="mt-6 text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>{OONCHIUMPA_NEXT.status}</p>
-          <p className="mt-3 text-sm leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>{OONCHIUMPA_NEXT.connection}</p>
         </div>
         {karen && <Pull v={karen} />}
       </Chapter>
@@ -720,9 +805,8 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       <Chapter
         id="ch-buyers"
         title="Four buyers, five invoices, 320 beds and the price went up"
-        lead="This is the thing Sally asked for most and it is the deliverable the QBE volunteer team is working on. Everything here is an invoice that was issued and paid. Nothing here is a forecast."
       >
-        <div className="rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+        <div className="rounded-lg p-6 sm:p-8" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
           <div className="flex flex-wrap items-baseline justify-between gap-4">
             <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>What a buyer paid, per bed, in order</p>
             <p className="text-sm" style={{ color: MUTED }}>
@@ -734,44 +818,38 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           </div>
           {/* Each rung is an invoice, labelled with who paid it, so the rise is a list of people
               rather than a chart of a trend. */}
-          <ol className="m-0 mt-7 grid list-none grid-cols-5 items-end gap-2 p-0 sm:gap-4" style={{ minHeight: 190 }}>
+          <ol className="m-0 mt-7 grid list-none grid-cols-5 items-end gap-1.5 p-0 sm:gap-4" style={{ minHeight: 170 }}>
             {priceRungs.map((r, i) => {
               const last = i === priceRungs.length - 1;
               return (
                 <li key={r.invoice} className="flex h-full flex-col justify-end">
-                  <p className="mb-2 text-center font-display text-base leading-none sm:text-xl" style={{ color: last ? RUST : CHARCOAL }}>${r.perBed}</p>
+                  <p className="mb-2 text-center font-display text-[13px] leading-none sm:text-xl" style={{ color: last ? RUST : CHARCOAL }}>${r.perBed}</p>
                   <div
                     className="w-full rounded-t-md"
-                    style={{ height: `${Math.round((r.perBed / 920) * 132)}px`, backgroundColor: last ? RUST : '#DCD2C6' }}
+                    style={{ height: `${Math.round((r.perBed / 920) * 132)}px`, backgroundColor: last ? RUST : RULE_DASH }}
                   />
-                  <p className="mt-2 text-center text-[10px] leading-tight" style={{ color: MUTED }}>{r.who}</p>
-                  <p className="text-center text-[10px] leading-tight" style={{ color: MUTED }}>{r.beds} beds</p>
-                  <p className="text-center text-[10px] leading-tight" style={{ color: '#C2B6AA' }}>bed line ${r.line}</p>
+                  <p className="mt-2 text-center text-[9px] leading-tight sm:text-[10px]" style={{ color: MUTED }}>{r.who}</p>
+                  <p className="text-center text-[9px] leading-tight sm:text-[10px]" style={{ color: MUTED }}>{r.beds} beds</p>
+                  <p className="hidden text-center text-[10px] leading-tight sm:block" style={{ color: RULE_DASH }}>bed line ${r.line}</p>
                 </li>
               );
             })}
           </ol>
-          <p className="mt-6 max-w-[62ch] text-[0.9375rem] leading-[1.7]" style={{ color: `${CHARCOAL}cc` }}>
-            These are what the beds actually cost each buyer, which is not the same as the bed line on the
-            invoice: the earlier orders billed the facilitation separately and the $750 price has it inside.
-            Centrecorp came back at $728 a bed for nearly twice the volume they first bought at $570. That is the
-            only demand signal in this document that means anything, because somebody paid it.
-          </p>
         </div>
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           {BUYERS.map((b) => (
-            <div key={b.id} className="flex flex-col rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderTop: `2px solid ${RUST}` }}>
-              <p className="inline-block self-start rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em]" style={{ backgroundColor: '#F6E4DE', color: '#9A4023' }}>{b.route}</p>
+            <div key={b.id} className="flex flex-col rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4', borderTop: `2px solid ${RUST}` }}>
+              <p className="inline-block self-start rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em]" style={{ backgroundColor: RUST_WASH, color: RUST_INK }}>{b.route}</p>
               <p className="mt-4 font-display text-xl leading-[1.2]" style={{ color: CHARCOAL }}>{b.buyer}</p>
-              <p className="mt-1 text-xs" style={{ color: '#A99C8F' }}>{b.forPlace} &middot; {b.invoices}</p>
+              <p className="mt-1 text-xs" style={{ color: MUTED }}>{b.forPlace} &middot; {b.invoices}</p>
               <div className="mt-3 flex gap-6">
                 <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: '#A99C8F' }}>Beds</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: MUTED }}>Beds</p>
                   <p className="font-display text-xl leading-none" style={{ color: CHARCOAL }}>{b.beds}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: '#A99C8F' }}>Bed line</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: MUTED }}>Bed line</p>
                   <p className="font-display text-xl leading-none" style={{ color: CHARCOAL }}>
                     {b.firstPrice === b.latestPrice ? `$${b.latestPrice}` : `$${b.firstPrice} then $${b.latestPrice}`}
                   </p>
@@ -782,133 +860,148 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           ))}
         </div>
 
-        <div className="mt-6 rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
-          <p className="text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-            <strong>{BUYER_TOTALS.beds} beds, {BUYER_TOTALS.buyers} buyers, {BUYER_TOTALS.invoices} invoices.</strong>{' '}
-            {money(BUYER_TOTALS.netOfGstAud)} net of GST, {money(BUYER_TOTALS.inclGstAud)} including it. {BUYER_TOTALS.basis}
-          </p>
-        </div>
-
-        <div className="mt-6 rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderLeft: `3px solid ${SAGE}` }}>
-          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: SAGE }}>What we do not know about demand</p>
-          <ul className="mt-3 space-y-3 text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-            {DEMAND_GAPS.map((g) => <li key={g}>{g}</li>)}
-          </ul>
-        </div>
       </Chapter>
 
       <Chapter
         id="ch-washers"
-        title="How the fleet got to twenty three and what it reports"
-        lead="Snow bought one of these outright. They are the only part of the work that tells us how it is going without anyone having to visit."
+        title="Six machines are sending us readings"
       >
         <div className="grid gap-4 sm:grid-cols-4">
           {WASHER_PLACES.map((w) => (
-            <div key={w.place} className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+            <div key={w.place} className="rounded-lg p-5" style={{ backgroundColor: PANEL, border: `1px solid ${RULE}` }}>
               <p className="font-display text-3xl leading-none" style={{ color: CHARCOAL }}>{w.inCommunity}</p>
               <p className="mt-2 text-sm font-semibold leading-snug" style={{ color: CHARCOAL }}>{w.place}</p>
-              <p className="mt-2 text-xs leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>{w.note}</p>
             </div>
           ))}
         </div>
 
-        <div className="mt-6 rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
-          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>
-            What the machines reported, read {WASHER_TELEMETRY.readAt}
-          </p>
-          <div className="mt-4 grid gap-6 sm:grid-cols-3">
-            <div>
-              <p className="font-display text-4xl leading-none" style={{ color: CHARCOAL }}>{WASHER_TELEMETRY.totalCycles.toLocaleString('en-AU')}</p>
-              <p className="mt-2 text-xs" style={{ color: `${CHARCOAL}b8` }}>Wash cycles recorded</p>
+        {/* Norm's machine, given the room it earns. The bars are real months, not a shape. */}
+        <div className="mt-8 overflow-hidden rounded-lg" style={{ backgroundColor: PANEL, border: `1px solid ${RULE}` }}>
+          <div className="grid lg:grid-cols-[minmax(0,1fr)_16rem]">
+            <div className="p-6 sm:p-8">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>
+                Norm&rsquo;s house, Tennant Creek
+              </p>
+              {/*
+                * Ben supplied this on 17 September. Norman Frank with the machine, 28 June 2025,
+                * the day before Snow bought one. The name is pressed into the recycled plastic on
+                * the front of it, which is the whole argument in one photograph.
+                */}
+              <figure className="m-0 mt-4">
+                <Image
+                  src="/images/community/tennant-creek/norman-frank-pakkimjalki-kari.jpg"
+                  alt="Norman Frank beside Pakkimjalki Kari, the washing machine, its recycled plastic enclosure carrying the name"
+                  width={2000} height={1333}
+                  sizes="(min-width: 1024px) 34rem, 100vw"
+                  className="w-full rounded-lg object-cover"
+                />
+                <figcaption className="mt-2 text-xs" style={{ color: MUTED }}>
+                  Norman Frank with Pakkimjalki Kari, 28 June 2025. The name is pressed into the plastic.
+                </figcaption>
+              </figure>
+              <p className="mt-5 flex items-baseline gap-3">
+                <span className="font-display text-6xl leading-none" style={{ color: CHARCOAL }}>952</span>
+                <span className="text-sm" style={{ color: MUTED }}>washes, and 48 short of a thousand</span>
+              </p>
+
+              <div className="mt-8 flex h-40 items-end gap-1.5 sm:gap-2.5">
+                {NORM_MONTHS.map((m, i) => {
+                  const top = Math.max(...NORM_MONTHS.map((x) => x.washes));
+                  const part = i === NORM_MONTHS.length - 1;
+                  return (
+                    <div key={m.month} className="flex min-w-0 flex-1 flex-col items-center justify-end">
+                      <span className="mb-1.5 text-[10px] tabular-nums" style={{ color: MUTED }}>{m.washes}</span>
+                      <span
+                        className="w-full rounded-t"
+                        style={{
+                          height: `${Math.max(4, (m.washes / top) * 116)}px`,
+                          backgroundColor: RUST,
+                          opacity: part ? 0.45 : 1,
+                        }}
+                      />
+                      <span className="mt-1.5 text-[10px]" style={{ color: MUTED }}>{m.label}</span>
+                    </div>
+                  );
+                })}
+              </div>
+              <p className="mt-4 text-xs" style={{ color: MUTED }}>
+                Washes a month. September is part of a month, to the sixteenth.
+              </p>
             </div>
-            <div>
-              <p className="font-display text-4xl leading-none" style={{ color: CHARCOAL }}>{WASHER_TELEMETRY.totalKwh.toLocaleString('en-AU')}</p>
-              <p className="mt-2 text-xs" style={{ color: `${CHARCOAL}b8` }}>Kilowatt hours drawn</p>
-            </div>
-            <div>
-              <p className="font-display text-4xl leading-none" style={{ color: CHARCOAL }}>{WASHER_TELEMETRY.reporting}</p>
-              <p className="mt-2 text-xs" style={{ color: `${CHARCOAL}b8` }}>Machines that report at all</p>
+
+            <div className="border-t p-6 sm:p-8 lg:border-l lg:border-t-0" style={{ borderColor: RULE, backgroundColor: SUNK }}>
+              <div className="space-y-5">
+                {[
+                  { v: '2,613', k: 'kilowatt hours' },
+                  { v: '2.7', k: 'kWh a wash' },
+                  { v: '11', k: 'months without a gap' },
+                  { v: '3 a day', k: 'in one house' },
+                ].map((s) => (
+                  <div key={s.k}>
+                    <p className="font-display text-2xl leading-none" style={{ color: CHARCOAL }}>{s.v}</p>
+                    <p className="mt-1 text-xs" style={{ color: MUTED }}>{s.k}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-6 border-t pt-4 text-xs leading-relaxed" style={{ borderColor: RULE, color: `${CHARCOAL}b8` }}>
+                Still reporting on 16 September. Nobody models three washes a day in one house. This machine
+                measured it.
+              </p>
             </div>
           </div>
-          <div className="mt-6 rounded-lg p-5" style={{ backgroundColor: CREAM }}>
-            <p className="font-display text-xl leading-snug" style={{ color: CHARCOAL }}>
-              {WASHER_TELEMETRY.flagship.cycles} washes in one house.
-            </p>
-            <p className="mt-2.5 text-[0.9375rem] leading-[1.65]" style={{ color: `${CHARCOAL}cc` }}>
-              {WASHER_TELEMETRY.flagship.assetId}, at {WASHER_TELEMETRY.flagship.where}, has drawn{' '}
-              {WASHER_TELEMETRY.flagship.kwh.toLocaleString('en-AU')} kilowatt hours between{' '}
-              {WASHER_TELEMETRY.flagship.from} and {WASHER_TELEMETRY.flagship.to}. It was still reporting on the day
-              this was written.
-            </p>
-          </div>
-          <ul className="mt-6 space-y-3 text-sm leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>
-            {WASHER_TELEMETRY.honest.map((h) => <li key={h}>{h}</li>)}
-          </ul>
-          <p className="mt-4 text-xs" style={{ color: '#A99C8F' }}>Source: {WASHER_TELEMETRY.source}.</p>
+        </div>
+
+        <dl className="mt-8 grid gap-6 sm:grid-cols-3">
+          {[
+            { v: WASHER_TELEMETRY.totalCycles.toLocaleString('en-AU'), k: 'washes' },
+            { v: WASHER_TELEMETRY.totalKwh.toLocaleString('en-AU'), k: 'kilowatt hours' },
+            { v: `${WASHER_TELEMETRY.reporting} of ${CANONICAL_ASSETS.washersInCommunity}`, k: 'with a controller' },
+          ].map((s) => (
+            <div key={s.k}>
+              <dd className="font-display text-4xl leading-none" style={{ color: CHARCOAL }}>{s.v}</dd>
+              <dt className="mt-2 text-xs uppercase tracking-wide" style={{ color: MUTED }}>{s.k}</dt>
+            </div>
+          ))}
+        </dl>
+
+        {/* Machines that have recorded washes. Simple. */}
+        <div className="mt-8 overflow-hidden rounded-lg" style={{ border: `1px solid ${RULE}`, backgroundColor: PANEL }}>
+          {WASHER_FLEET.filter((r) => r.cycles >= 10).map((r, i) => {
+            const top = Math.max(...WASHER_FLEET.map((x) => x.cycles));
+            return (
+              <div
+                key={r.assetId}
+                className="grid items-center gap-2 px-5 py-4 sm:grid-cols-[1fr_9rem] sm:gap-6 sm:px-7"
+                style={{ borderTop: i === 0 ? undefined : `1px solid ${RULE_SOFT}` }}
+              >
+                <p className="text-sm font-semibold" style={{ color: CHARCOAL }}>{r.where}</p>
+                <div className="flex items-center gap-3">
+                  <span className="font-display text-xl tabular-nums" style={{ color: CHARCOAL }}>{r.cycles}</span>
+                  <span className="h-1.5 flex-1 rounded-full" style={{ backgroundColor: RULE_SOFT }}>
+                    <span className="block h-full rounded-full" style={{ width: `${(r.cycles / top) * 100}%`, backgroundColor: RUST }} />
+                  </span>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         {proud && (
-          <figure className="m-0 mb-2 flex max-w-[46ch] items-start gap-4">
+          <figure className="m-0 mx-auto mt-12 flex max-w-[44ch] flex-col items-center text-center">
             {proud.person.portrait && (
-              <Image src={proud.person.portrait} alt={proud.person.name} width={160} height={160} className="h-14 w-14 shrink-0 rounded-full object-cover" />
+              <Image src={proud.person.portrait} alt={proud.person.name} width={200} height={200} className="h-20 w-20 rounded-full object-cover" />
             )}
-            <div>
-              <blockquote className="font-display text-xl leading-[1.3]" style={{ color: CHARCOAL }}>&ldquo;{proud.quote.text}&rdquo;</blockquote>
-              <figcaption className="mt-2 text-xs" style={{ color: MUTED }}>
-                {proud.person.name}, asked how it feels to have a washing machine named in Warumungu
-              </figcaption>
-            </div>
+            <blockquote className="mt-5 font-display text-2xl leading-[1.3] sm:text-3xl" style={{ color: CHARCOAL }}>
+              &ldquo;{proud.quote.text}&rdquo;
+            </blockquote>
+            <figcaption className="mt-3 text-xs" style={{ color: MUTED }}>
+              {proud.person.name}, asked how it feels to have a washing machine named in Warumungu
+            </figcaption>
           </figure>
         )}
 
-        {/*
-          * The fleet, machine by machine. Ben, 17 September: the fun is in how we track this.
-          * The silent and unmatched rows are the reason to print it; a table of only the working
-          * machines would say less than the summary above it.
-          */}
-        <div className="mt-8 overflow-hidden rounded-lg" style={{ border: '1px solid #E8DED4', backgroundColor: '#FFFFFF' }}>
-          <div className="hidden grid-cols-[7rem_1fr_5rem_5rem_9rem] gap-4 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.12em] sm:grid" style={{ backgroundColor: '#F6F0E6', color: MUTED }}>
-            <span>Asset</span><span>Where</span><span className="text-right">Cycles</span><span className="text-right">kWh</span><span className="text-right">Reporting</span>
-          </div>
-          {WASHER_FLEET.map((r, i) => (
-            <div
-              key={`${r.assetId ?? 'unmatched'}-${r.from}`}
-              className="grid gap-1 px-5 py-4 sm:grid-cols-[7rem_1fr_5rem_5rem_9rem] sm:items-baseline sm:gap-4"
-              style={{ borderTop: i === 0 ? undefined : '1px solid #F0E7DC' }}
-            >
-              <span className="font-display text-sm" style={{ color: r.assetId ? CHARCOAL : MUTED }}>{r.assetId ?? 'unmatched'}</span>
-              <span className="text-[0.8125rem] leading-snug" style={{ color: `${CHARCOAL}b8` }}>
-                {r.where}
-                {r.note && <span className="block text-[11px]" style={{ color: MUTED }}>{r.note}</span>}
-              </span>
-              <span className="font-display text-base tabular-nums sm:text-right" style={{ color: CHARCOAL }}>{r.cycles.toLocaleString('en-AU')}</span>
-              <span className="font-display text-base tabular-nums sm:text-right" style={{ color: `${CHARCOAL}99` }}>{r.kwh.toLocaleString('en-AU')}</span>
-              <span className="text-[11px] sm:text-right" style={{ color: r.state === 'reporting' ? '#5E7A4C' : MUTED }}>
-                {r.state === 'reporting' ? `still reporting, ${r.to}` : `last seen ${r.to}`}
-              </span>
-            </div>
-          ))}
-        </div>
-        <p className="mt-3 text-xs leading-relaxed" style={{ color: MUTED }}>
-          Read {WASHER_TELEMETRY.readAt} from the same rollups the admin fleet screen uses, reconciled to the
-          register through the controller aliases reviewed on 14 May 2026. Twenty three machines are in community,
-          ten have a controller, seven have ever reported and three were reporting on the day of this read.
-        </p>
-
-        <div className="mt-8 grid gap-4 sm:grid-cols-2">
-          {FLEET_USE.map((u) => (
-            <div key={u.title} className="rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: u.state === 'next' ? '1px dashed #C2B6AA' : '1px solid #E8DED4' }}>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: u.state === 'next' ? '#6A5E54' : SAGE }}>
-                {u.state === 'next' ? 'Not yet' : 'What it is already for'}
-              </p>
-              <p className="mt-2 font-display text-base leading-snug" style={{ color: CHARCOAL }}>{u.title}</p>
-              <p className="mt-2 text-[0.875rem] leading-[1.65]" style={{ color: `${CHARCOAL}b8` }}>{u.body}</p>
-            </div>
-          ))}
-        </div>
-
         {washerVoices.length > 0 && (
-          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
             {washerVoices.map((v) => (
               <figure key={v.person.name} className="m-0">
                 {v.person.portrait && (
@@ -921,10 +1014,10 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           </div>
         )}
 
-        <div className="mt-7 grid gap-5 sm:grid-cols-3">
+        <div className="mt-10 grid gap-5 sm:grid-cols-3">
           {WASHER_NEXT.map((n) => (
-            <div key={n.title} className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderTop: '2px solid #B8AEA4' }}>
-              <p className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: '#6A5E54' }}>Where it goes next</p>
+            <div key={n.title} className="rounded-lg p-6" style={{ backgroundColor: PANEL, border: `1px dashed ${RULE_DASH}` }}>
+              <p className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: MUTED_DEEP }}>Next</p>
               <p className="mt-2 font-display text-base leading-snug" style={{ color: CHARCOAL }}>{n.title}</p>
               <p className="mt-2 text-xs leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>{n.detail}</p>
             </div>
@@ -932,10 +1025,24 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         </div>
       </Chapter>
 
+      {/*
+        * THE WHOLE MODEL, as its own chapter. Ben, 18 September: the model has to be findable in
+        * the menu, so it carries an id and sits between the products and the voices, after the
+        * machines and before the films. Full bleed, outside the chapter column: ModelLoopBuild
+        * pins its own stage to the viewport and scales the ring to min(width, height) of its
+        * box, so a max-width column left the ring at a fifth of its size (Ben, 17 September:
+        * "why is it so tiny?").
+        */}
+      <div id="ch-model" className="scroll-mt-24">
+        <ModelLoopBuild
+          steps={LOOP_STEPS} stations={LOOP_STATIONS} arcs={LOOP_ARCS} counts={LOOP_COUNTS}
+          sheetSvg={placematSvg} items={placematItems} arrows={placematArrows}
+        />
+      </div>
+
       <Chapter
         id="ch-films"
         title="The films"
-        lead="Three. Each plays where it sits and only one at a time."
       >
         <FilmGallery films={films} />
       </Chapter>
@@ -944,15 +1051,12 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         <div className="mx-auto max-w-4xl">
           <p className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: RUST }}>07 &middot; The archive</p>
           <h2 className="mt-3 font-display text-3xl leading-tight sm:text-4xl" style={{ color: CHARCOAL }}>The photographs</h2>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed sm:text-lg" style={{ color: `${CHARCOAL}cc` }}>
-            Five sets. The first one is the thinnest and it is the one about us and you.
-          </p>
         </div>
         <div className="mt-8">
           <PhotoWall
             groups={wallGroups}
             title="Two years, in frames"
-            sub="Everything here is already published. Where a set is short, it is short because that is what the archive holds."
+            sub=""
           />
         </div>
       </div>
@@ -969,23 +1073,12 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       <Chapter
         id="ch-because"
         title="What the money turned into"
-        lead="Counts where we have counts and labels where we do not. The last number on this list is zero and it is the one we print against ourselves."
+        lead="Beds in houses, machines in communities, people who said yes to their words being used, and the trade that followed. One of these is still zero."
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {BECAUSE_OF.map((b) => (
-            <div key={b.id} className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
-              {/* MeasureLabel has no `future` and inventing one here would put a word on a
-                  chip that the rest of the site does not use. A future row gets its own chip. */}
-              {b.status === 'future' ? (
-                <>
-                  <p className="font-display text-4xl leading-none" style={{ color: CHARCOAL }}>{b.value}</p>
-                  <span className="mt-2 inline-block rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide" style={{ backgroundColor: '#EEE9E3', color: '#6A5E54' }}>
-                    not yet
-                  </span>
-                </>
-              ) : (
-                <CountUp value={b.value} unit={b.unit} label={b.status} />
-              )}
+            <div key={b.id} className="rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
+              <CountUp value={b.value} unit={b.unit} />
               <p className="mt-2 text-sm font-semibold leading-snug" style={{ color: CHARCOAL }}>{b.headline}</p>
               <p className="mt-2 text-xs leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>{b.detail}</p>
             </div>
@@ -994,114 +1087,265 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         {withNotFor && <Pull v={withNotFor} />}
       </Chapter>
 
+      {/*
+        * THE LAST DRAWING. Ben, 17 September: the final part of the report has to carry the
+        * impact over ten years and how Indigenous ownership and leadership hold it up, through
+        * the board, the members, the community enterprises and the making on Country. Four
+        * boxes with their ten-year totals and today's figure under each, the years under them,
+        * and under the years a base in four layers. Two of the layers are in place and two are
+        * dashed, and the dashed two are what the ten years need.
+        *
+        * Ben, 18 September: the two-year chapter that sat before this (the invoice step chart
+        * and the four areas on a split base) came out. This chapter carries today's figures in
+        * its boxes, so the page said the same thing twice. Both drawings are still in
+        * components/partners if it is ever wanted back.
+        */}
       <Chapter
-        id="ch-themes"
-        title="Five things this is, and the limit on each one"
-        lead="Health, the plastic, paid work, enterprise and Indigenous ownership. Each card carries what we can show and what we cannot, in the same card, because a limit printed somewhere else reads as a disclaimer."
+        id="ch-ten"
+        title="What ten years of it could look like"
+        lead="If two communities a year take a facility, run it where they stand and sell what it makes. The Goods on Country facility stays the size it is and the growth is theirs. A scale study."
       >
-        {recycled && <Pull v={recycled} />}
-        <div className="mt-10 grid gap-5 sm:grid-cols-2">
-          {THEMES.map((th) => (
-            <div key={th.id} className="flex flex-col rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
-              <p className="font-display text-xl leading-[1.2]" style={{ color: CHARCOAL }}>{th.title}</p>
-              <p className="mt-3 text-[0.9375rem] leading-[1.7]" style={{ color: `${CHARCOAL}cc` }}>{th.body}</p>
-              <p className="mt-5 rounded-md px-4 py-3 text-[0.9375rem] leading-[1.6]" style={{ backgroundColor: '#EEF1E9', color: '#3F4E33' }}>
-                <span className="mr-2 text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: '#6F8257' }}>Shown</span>
-                {th.proof}
-              </p>
-              <p className="mt-3 rounded-md border px-4 py-3 text-[0.9375rem] leading-[1.6]" style={{ borderColor: '#E3D5CB', color: `${CHARCOAL}b3` }}>
-                <span className="mr-2 text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: RUST }}>Not shown</span>
-                {th.limit}
+        <TenYearModel
+          today={{
+            health: `${themeFigure('health')} off the floor today`,
+            plastic: `${themeFigure('plastic')} kg today`,
+            work: `${themeFigure('employment')} young people paid today`,
+            enterprise: `${new Set(PAID_INVOICES.map((i) => i.buyer)).size} organisations buying today`,
+          }}
+        />
+
+        {/*
+          * Ben, 18 September: his own frame here, between the drawing and the potential. Canon
+          * EOS 6D, 3 April 2025, 19:11, the same evening as the two Tennant Creek frames already
+          * in the repo (waterhole-group 11:10, wilya-janta-golden-hour 19:59). Not used elsewhere.
+          */}
+        <figure className="m-0 mt-14">
+          <Image
+            src="/images/community/tennant-creek/bed-on-the-lawn.jpg"
+            alt="Children around a Basket Bed being built on a lawn at Tennant Creek, late afternoon"
+            width={2000}
+            height={1333}
+            sizes="(min-width: 896px) 56rem, 100vw"
+            className="aspect-[3/2] w-full rounded-lg object-cover"
+          />
+          <figcaption className="mt-3 text-xs" style={{ color: MUTED }}>Tennant Creek, Warumungu Country, April 2025. A bed built on the lawn.</figcaption>
+        </figure>
+
+        {/*
+          * THE POTENTIAL. Ben, 18 September: directly under the ten-year drawing, the number of remote
+          * communities we have counted, then the total population. Our own count of places from the gazetteer,
+          * the ABS for the people, and what is served today beside them so the distance shows.
+          * It measures the place and never demand: remote-communities.ts refuses to derive a bed
+          * from a population and its guard checks that.
+          */}
+        <div className="mt-16 border-t pt-12" style={{ borderColor: RULE }}>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>The potential</p>
+          <div className="mt-8 grid gap-8 sm:grid-cols-3">
+            <div>
+              <p className="font-display text-[2.75rem] leading-none tabular-nums" style={{ color: CHARCOAL }}>{REMOTE_PLACES.total.toLocaleString('en-AU')}</p>
+              <p className="mt-3 text-sm font-semibold leading-snug" style={{ color: CHARCOAL }}>remote and very remote places</p>
+              <p className="mt-2 text-xs leading-relaxed" style={{ color: MUTED_DEEP }}>
+                {REMOTE_PLACES.byKind.filter((k) => k.kind !== 'other').map((k) => `${k.count.toLocaleString('en-AU')} ${k.kind}`).join(', ')}.
+                {' '}{REMOTE_PLACES.byState.map((st) => `${st.name} ${st.places.toLocaleString('en-AU')}`).join(', ')}.
               </p>
             </div>
-          ))}
-        </div>
-      </Chapter>
-
-      <Chapter
-        id="ch-next"
-        title="A letter this month and 133 beds behind it"
-        lead="Two asks. The first one is not money and it has a date on it. The second is the same ask we have put to our other bed funders, so nobody is being asked for something shaped specially for them."
-      >
-        <div className="rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderLeft: `4px solid ${RUST}` }}>
-          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>First and it is not money</p>
-          <p className="mt-2 font-display text-2xl leading-snug sm:text-3xl" style={{ color: CHARCOAL }}>
-            A letter of intent, by {THE_LETTER.by}
-          </p>
-          <p className="mt-4 text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-            Goods on Country is one of ten enterprises in {THE_LETTER.programme}. That application closes{' '}
-            {THE_LETTER.closes} and it asks QBE for ${THE_LETTER.qbeAskAud.toLocaleString('en-AU')} for{' '}
-            {THE_LETTER.qbeFor.toLowerCase()}. {THE_LETTER.cohort}
-          </p>
-          <p className="mt-3 text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-            What the programme counts from a funder is engagement and it counts several shapes of it.{' '}
-            {THE_LETTER.forms}
-          </p>
-          <figure className="m-0 mt-5 border-l-2 pl-4" style={{ borderColor: SAGE }}>
-            <blockquote className="font-display text-lg leading-snug" style={{ color: CHARCOAL }}>
-              &ldquo;{THE_LETTER.sihQuote}&rdquo;
-            </blockquote>
-            <figcaption className="mt-2 text-xs" style={{ color: SAGE }}>{THE_LETTER.sihSource}</figcaption>
-          </figure>
-          <p className="mt-5 text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>{THE_LETTER.enough}</p>
-          <p className="mt-3 text-sm leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>
-            {THE_LETTER.verify}{' '}
-            <Link href={THE_LETTER.sihLetterHref} className="underline" style={{ color: RUST }}>
-              The Hub&rsquo;s letter is here.
-            </Link>
-          </p>
-        </div>
-
-        <div className="mt-6 rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
-          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>Then, the ask itself</p>
-          <p className="mt-2 font-display text-3xl sm:text-4xl" style={{ color: CHARCOAL }}>$99,750</p>
-          <p className="mt-2 text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-            133 Stretch Beds at $750 each, for a community organisation to sell or give out. The money reaches the
-            community organisation, not us: customers pay them directly and after costs they decide whether it
-            becomes more beds, paid local work, or making their own.
-          </p>
-          <div className="mt-7 grid gap-5 sm:grid-cols-3">
-            {[
-              { k: 'Where it goes', v: 'To a community organisation, as stock they own.' },
-              { k: 'Who decides next', v: 'They do. More beds, paid work, or their own making.' },
-              { k: 'What we keep', v: 'What is left after making, freight and facilitation, which carries the organisation.' },
-            ].map((x) => (
-              <div key={x.k}>
-                <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>{x.k}</p>
-                <p className="mt-1.5 text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>{x.v}</p>
-              </div>
-            ))}
+            <div>
+              <p className="font-display text-[2.75rem] leading-none tabular-nums" style={{ color: CHARCOAL }}>{REMOTE_PEOPLE.estimate.remoteAndVeryRemote.toLocaleString('en-AU')}</p>
+              <p className="mt-3 text-sm font-semibold leading-snug" style={{ color: CHARCOAL }}>Aboriginal and Torres Strait Islander people living in them</p>
+              <p className="mt-2 text-xs leading-relaxed" style={{ color: MUTED_DEEP }}>
+                ABS estimate at 30 June 2021: {REMOTE_PEOPLE.estimate.remote.toLocaleString('en-AU')} in remote Australia and {REMOTE_PEOPLE.estimate.veryRemote.toLocaleString('en-AU')} in very remote Australia, {REMOTE_PEOPLE.estimate.remoteAndVeryRemotePct.toFixed(1)} per cent of all Aboriginal and Torres Strait Islander Australians.
+              </p>
+            </div>
+            <div>
+              <p className="font-display text-[2.75rem] leading-none tabular-nums" style={{ color: RUST }}>{CANONICAL_ASSETS.communitiesServed}</p>
+              <p className="mt-3 text-sm font-semibold leading-snug" style={{ color: CHARCOAL }}>communities served today</p>
+              <p className="mt-2 text-xs leading-relaxed" style={{ color: MUTED_DEEP }}>
+                {CANONICAL_ASSETS.bedsDeployed} beds and {CANONICAL_ASSETS.washersInCommunity} machines in the register. Two facilities a year is the working assumption and it reaches 20 of the places above. The pace is set by how many organisations want in, and how many buyers keep coming back.
+              </p>
+            </div>
           </div>
         </div>
 
-        <div className="mt-6 rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
-          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>The longer conversation</p>
-          <p className="mt-2 text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-            Beyond this, we would like to talk with you about whether some of what comes after could be recoverable
-            capital: money that returns to Snow over time and goes back to work. That is a conversation we are
-            opening. There is no proposal on the table. The amount, the conditions it would carry and the impact it would
-            be held to are all things to work out together and it sits alongside the partnership we already have.
+        <div className="mt-16 border-t pt-12" style={{ borderColor: RULE }}>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>{MEMBERS_MODEL.label}</p>
+          <p className="mt-4 max-w-[30ch] font-display text-[1.5rem] leading-[1.25] sm:text-[1.75rem]" style={{ color: CHARCOAL }}>
+            {MEMBERS_MODEL.heading}
           </p>
+          <p className="mt-6 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}b8` }}>{MEMBERS_MODEL.board}</p>
+          <p className="mt-4 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}b8` }}>{MEMBERS_MODEL.members}</p>
+
+          {/* The one drawing for this section: the flow. See members-flow.tsx. */}
+          <div className="mt-12">
+            <MembersFlow />
+          </div>
+
+          <div className="mt-10 grid gap-8 sm:grid-cols-2">
+            {[MEMBERS_MODEL.gives, MEMBERS_MODEL.gets].map((col) => (
+              <div key={col.title}>
+                <p className="font-display text-lg" style={{ color: CHARCOAL }}>{col.title}</p>
+                <ul className="m-0 mt-4 list-none p-0">
+                  {col.items.map((item) => (
+                    <li key={item} className="border-t py-3 text-[0.9375rem] leading-[1.65]" style={{ borderColor: RULE, color: `${CHARCOAL}b8` }}>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 rounded-lg p-6 sm:p-8" style={{ backgroundColor: RUST_WASH, borderLeft: `4px solid ${RUST}` }}>
+            <p className="m-0 max-w-[40ch] font-display text-[1.375rem] leading-[1.4] sm:text-[1.625rem]" style={{ color: CHARCOAL }}>
+              {MEMBERS_MODEL.compounding}
+            </p>
+          </div>
+          {kristyLeads && (
+            <Pull
+              v={kristyLeads}
+              note="Kristy is talking about Loves Creek and the 1994 land claim, enterprise led by Traditional Owners on their own land."
+            />
+          )}
         </div>
 
-        <div className="mt-6 rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
-          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>What we would do together</p>
-          <ul className="mt-3 space-y-3 text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-            <li>Keep the beds travelling with the heart screening, where the Trek has already shown it works.</li>
-            <li>Build the training the paid work card says we do not yet have, so capacity is a count rather than an intention.</li>
-            <li>Carry the first transfer of a production site into community hands and report on it whether or not it goes smoothly.</li>
-            <li>Keep the story in the hands of the people telling it. Thirty-eight people have agreed by name and nobody else appears.</li>
-          </ul>
+        {/*
+          * WHAT A MEMBER GROWS INTO. Three stages and their state; the third is the aim and
+          * says nobody is there yet, which is the ceiling on it.
+          */}
+        <div className="mt-16 border-t pt-12" style={{ borderColor: RULE }}>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>What a member grows into</p>
+          <ol className="m-0 mt-8 grid list-none gap-5 p-0 sm:grid-cols-3">
+            {GROWS_INTO.map((g, i) => (
+              <li
+                key={g.stage}
+                className="rounded-lg p-6"
+                style={{ backgroundColor: PANEL, border: g.state === 'aim' ? '1px dashed #C2B6AA' : '1px solid #E8DED4' }}
+              >
+                <div className="flex items-baseline justify-between gap-3">
+                  <span className="font-display text-sm" style={{ color: RUST }}>{String(i + 1).padStart(2, '0')}</span>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: g.state === 'aim' ? MUTED_DEEP : SAGE }}>
+                    {g.state === 'now' ? 'Happens today' : g.state === 'started' ? 'Started' : 'The aim'}
+                  </span>
+                </div>
+                <p className="mt-3 font-display text-lg leading-[1.25]" style={{ color: CHARCOAL }}>{g.stage}</p>
+                <p className="mt-2.5 text-[0.9375rem] leading-[1.7]" style={{ color: `${CHARCOAL}b8` }}>{g.body}</p>
+              </li>
+            ))}
+          </ol>
         </div>
+
+        {/*
+          * THE BUYERS, as figures. Ben, 18 September: mainly statistics, and the value that shows
+          * the scale. Three rows: what has been bought (from the invoices), what a public buyer
+          * can buy without a tender (from procurement-model.ts), and what is already being spent
+          * on remote housing. The point is the last sentence: every rule tests the seller, so
+          * the community organisation sells.
+          */}
+        <div className="mt-16 border-t pt-12" style={{ borderColor: RULE }}>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>{BUYERS_MODEL.label}</p>
+          <p className="mt-4 max-w-[30ch] font-display text-[1.5rem] leading-[1.25] sm:text-[1.75rem]" style={{ color: CHARCOAL }}>
+            {BUYERS_MODEL.heading}
+          </p>
+          {(() => {
+            const buyers = new Set(PAID_INVOICES.map((i) => i.buyer)).size;
+            const beds = PAID_INVOICES.reduce((n, i) => n + i.beds, 0);
+            const prices = PAID_INVOICES.map((i) => i.bedUnitPriceAud);
+            const repeat = PAID_INVOICES.length - buyers;
+            const whole = (n: number) => `$${Math.round(n).toLocaleString('en-AU')}`;
+            const lanes = ['nt', 'qld', 'sa'].map((id) => JURISDICTIONS.find((j) => j.id === id)).filter((j) => j && j.directPurchase);
+            const Stat = ({ v, l, rust = false }: { v: string; l: string; rust?: boolean }) => (
+              <div>
+                <p className="font-display text-[2rem] leading-none tabular-nums" style={{ color: rust ? RUST : CHARCOAL }}>{v}</p>
+                <p className="mt-2 text-xs leading-relaxed" style={{ color: MUTED_DEEP }}>{l}</p>
+              </div>
+            );
+            return (
+              <>
+                <p className="mt-10 text-[10px] font-semibold uppercase tracking-[0.14em]" style={{ color: MUTED }}>{BUYERS_MODEL.rows.bought}</p>
+                <div className="mt-4 grid grid-cols-2 gap-6 sm:grid-cols-5">
+                  <Stat v={String(buyers)} l="organisations" />
+                  <Stat v={String(beds)} l="beds" />
+                  <Stat v={whole(PAID_INVOICE_INCL_GST_AUD)} l="paid, including GST" />
+                  <Stat v={String(PAID_INVOICES.length)} l={`invoices, ${repeat === 1 ? 'one buyer came back' : `${repeat} came back`}`} />
+                  <Stat v={`$${Math.min(...prices)} to $${Math.max(...prices)}`} l="a bed, first invoice to latest" />
+                </div>
+
+                <p className="mt-10 text-[10px] font-semibold uppercase tracking-[0.14em]" style={{ color: MUTED }}>{BUYERS_MODEL.rows.lanes}</p>
+                <p className="mt-3 max-w-[62ch] text-[0.9375rem] leading-[1.7]" style={{ color: `${CHARCOAL}b8` }}>{BUYERS_MODEL.lanesExplainer}</p>
+                <div className="mt-6 grid grid-cols-2 gap-6 sm:grid-cols-4">
+                  {lanes.map((j) => j && j.directPurchase && (
+                    <Stat key={j.id} v={`${j.directPurchase.beds} beds`} l={BUYERS_MODEL.laneNotes[j.id] ?? j.name} />
+                  ))}
+                  <Stat v="No cap" l={BUYERS_MODEL.laneNotes.wa} />
+                </div>
+
+                <p className="mt-10 text-[10px] font-semibold uppercase tracking-[0.14em]" style={{ color: MUTED }}>{BUYERS_MODEL.rows.housing}</p>
+                <div className="mt-4 grid grid-cols-2 gap-6 sm:grid-cols-4">
+                  {BUYERS_MODEL.housing.map((h) => (
+                    <Stat key={h.value} v={h.value} l={h.label} rust={h.value === '$818M'} />
+                  ))}
+                </div>
+
+              </>
+            );
+          })()}
+        </div>
+
+
       </Chapter>
 
+{/*
+        * THE SECTION THIS WHOLE REPORT IS FOR. Ben, 17 September: this is the most important part
+        * of the page, so show what happens when you back Indigenous communities and let them lead.
+        * It was one card in a grid of five. The pathway is drawn now, because "ownership is a
+        * pathway" in a sentence reads as either a promise or an excuse, and drawn it reads as
+        * neither: two rings closed, one open, and the open one is what the money is for.
+        */}
+{/*
+        * THE LAST WORD IS NORM'S. Ben chose it on 17 September: a Warumungu Elder on why any of
+        * this gets written down, which is the argument for the consent register, the asset
+        * register and this report itself, made by one of the people the registers are about. It
+        * sits outside the ask chapter because it is not part of the ask.
+        */}
+      {documenting && (
+        <div className="px-5 pb-4 sm:px-8">
+          <div className="mx-auto max-w-4xl border-t pt-12" style={{ borderColor: RULE }}>
+            <figure className="m-0 flex max-w-[52ch] items-start gap-5">
+              {documenting.person.portrait && (
+                <Image
+                  src={documenting.person.portrait} alt={documenting.person.name} width={200} height={200}
+                  className="h-16 w-16 shrink-0 rounded-full object-cover sm:h-20 sm:w-20"
+                />
+              )}
+              <div>
+                <blockquote className="font-display text-xl leading-[1.35] sm:text-2xl" style={{ color: CHARCOAL }}>
+                  &ldquo;{documenting.quote.text}&rdquo;
+                </blockquote>
+                <figcaption className="mt-3 text-[11px] uppercase tracking-[0.14em]" style={{ color: SAGE }}>
+                  {documenting.person.name}, {documenting.person.role}
+                </figcaption>
+                <p className="mt-2 text-xs leading-relaxed" style={{ color: MUTED }}>
+                  Recorded 6 April 2025, talking about Wilya Janta, the Warumungu housing organisation he founded.
+                </p>
+              </div>
+            </figure>
+          </div>
+        </div>
+      )}
+
+      {/*
+        * THE LAST THING ON THE PAGE. Ben, 18 September: under Norm, the listening map from the
+        * pitch, because the best way to end is with voices from the community. Places glow where
+        * people spoke; tap one and it is their words, what that community asked for, and whose
+        * call it is. Same component, same data, same consent gate as /pitch: it renders in
+        * production only while data/community-contributions.json is confirmed.
+        */}
+      {(contributionsConfirmed() || process.env.NODE_ENV !== 'production') && (() => {
+        const voices = listeningVoices();
+        return <MadeWithCommunity outline={outline} places={listeningPlaces(locations, voices)} voices={voices} draft={!contributionsConfirmed()} />;
+      })()}
+
       <footer className="px-5 pb-20 sm:px-8">
-        <div className="mx-auto max-w-4xl border-t pt-8" style={{ borderColor: '#E8DED4' }}>
-          <p className="text-xs leading-relaxed" style={{ color: '#A99C8F' }}>
-            Every figure here traces to the live books, the register or the consent record and every Snow quote
-            carries a date. Where a number is modelled or a target, it says so on the number
-            itself. Prepared by {ORGANISATION.legalName} for the Snow Foundation.
-          </p>
+        <div className="mx-auto max-w-4xl border-t pt-8" style={{ borderColor: RULE }}>
         </div>
       </footer>
     </main>

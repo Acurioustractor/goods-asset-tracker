@@ -78,7 +78,7 @@ function StatsBar({ storytellers, insights }: {
           <div>
             <p className="text-2xl md:text-3xl font-bold">{insights?.project.transcriptCount ?? '—'}</p>
             <p className="text-sm font-medium text-primary-foreground/90">Conversations</p>
-            <p className="text-xs text-primary-foreground/60 mt-0.5">recorded &amp; analyzed</p>
+            <p className="text-xs text-primary-foreground/60 mt-0.5">recorded &amp; analysed</p>
           </div>
           <div>
             <p className="text-2xl md:text-3xl font-bold">{insights?.themes.length ?? '—'}</p>

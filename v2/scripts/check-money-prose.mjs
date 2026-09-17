@@ -67,6 +67,8 @@ const ALLOWED_COMPONENT_PREFIXES = [
   'strategy/', // internal working surface; formats ledger cents, not investor prose
   'pitch/money-lanes-view.tsx', // chapter 15 of /pitch and /pitch/qbe, the funder money surface; figures come from money-lanes.ts
   'partners/procurement-dashboard.tsx', // /admin/procurement, behind the admin gate. The dollars are government direct-purchase thresholds quoted from the rules, never our own prices or asks.
+  'partners/ten-year-model.tsx', // the Snow report's closing drawing, rendered only by the gated /partners/snow/story. The one dollar figure is the bed price the community organisation keeps, from model-placemat.ts.
+  'partners/members-flow.tsx', // the same page, the members drawing. Same single figure, same source.
 ];
 
 const MONEY = /\$\s?\d/;

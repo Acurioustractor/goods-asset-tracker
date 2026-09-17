@@ -510,7 +510,6 @@ export async function PitchContent({ variant }: { variant: PitchVariant }) {
               <p className="mt-4 font-display text-2xl font-semibold leading-tight">{d.name}</p>
               <p className="text-sm text-[#5d574c]">{d.role} · {d.country}</p>
               <p className="mt-3 text-[15px] leading-snug text-[#4a4741]">{d.goods}</p>
-              <p className="mt-2 text-[12px] text-[#5d574c]">Photograph: {d.photoCredit}</p>
             </li>
           ))}
         </ul>

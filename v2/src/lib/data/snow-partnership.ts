@@ -44,6 +44,7 @@
  *    funder-moments: unknown slug, wrong tier or a quote that is not approved renders nothing.
  */
 
+import { ORGANISATION } from './organisation';
 import { CANONICAL_ASSETS } from './asset-canonical';
 import { PAID_INVOICES, PAID_INVOICE_BEDS } from './paid-trade';
 import { BED, RAISE } from './model-placemat';
@@ -272,7 +273,7 @@ export const TOGETHER: readonly TogetherMoment[] = [
   {
     when: '2026-05-19', label: 'May 2026', kind: 'money',
     title: 'The FY26 agreement',
-    detail: 'Georgina sends the successful grant letter and the letter agreement herself, cc Sally: "We are so pleased to support Goods on Country / A Curious Tractor." The tenth invoice, INV-0321, is paid three days later.',
+    detail: '"We are so pleased to support Goods on Country / A Curious Tractor." The tenth invoice, INV-0321, is paid three days later.',
     who: 'Georgina Byron AM',
     source: 'Mailbox, 19 May 2026; Xero, INV-0321 paid 22 May 2026',
   },
@@ -287,9 +288,9 @@ export const TOGETHER: readonly TogetherMoment[] = [
   },
   {
     when: '2026-07-08', label: 'Jul 2026', kind: 'country',
-    title: 'Sally goes back to Tennant Creek',
-    detail: 'Her own trip. The partnership has reached the point where the funder visits Country without us organising it.',
-    who: 'Sally Grimsley-Ballard',
+    title: 'Sally and Maree head back to Tennant Creek',
+    detail: 'Their own trip, to support the Wilya Janta house warming.',
+    who: 'Sally Grimsley-Ballard and Maree Meredith',
     place: 'Tennant Creek, Warumungu Country',
     image: { src: '/images/media-pack/sally-georgina-tennant-creek-jul-2025.jpg', alt: 'Georgina Byron AM and Sally Grimsley-Ballard with community Elders in Tennant Creek' },
     source: 'Mailbox, 25 to 26 June 2026',
@@ -340,7 +341,6 @@ export const BECAUSE_OF: readonly BecauseOf[] = [
   { id: 'voices', value: 38, unit: 'voices', headline: 'Consent-cleared voices', status: 'verified', detail: 'People who have agreed, by name, to their words being used outside the organisation. A default-deny allowlist: if a name is not on it, nothing of theirs renders.' },
   { id: 'trade', value: 320, unit: 'beds', headline: 'Beds bought and paid for', status: 'verified', detail: 'Four buyers, real invoices. The unit price has moved from $370 to $800 across them, which is a price model finding its floor.' },
   { id: 'plastic', value: PLASTIC_KG_PER_BED, unit: 'kg per bed', headline: 'Plastic kept out of the dump', status: 'modelled', detail: 'A design and specification figure. Nothing has been across a weighbridge. It matters here because it lowers the landed cost of a bed and keeps the feedstock local.' },
-  { id: 'fte', value: 2, unit: 'FTE', headline: 'Paid roles', status: 'verified', detail: 'Two and we say two. Employment hours beyond that are modelled and community employment share is an estimate, so neither is presented as a count.' },
   { id: 'owned', value: 0, unit: 'sites', headline: 'Community-owned production sites', status: 'future', detail: 'Zero and this is the number we print against ourselves. Ownership is a pathway. The containerised plant is built to move to community operation and then ownership and Oonchiumpa now hold a four-year federal offer for the Alice Springs facility, dated 12 August 2026 and not yet executed.' },
 ];
 
@@ -392,7 +392,7 @@ export const ALIGNMENT: readonly Alignment[] = [
     id: 'capacity',
     snowSays: 'Invest in educational training and resources, building greater capacity, knowledge and ownership of RHD within communities. Education enables communities to set self-determined priorities.',
     snowSource: 'RHD Statement of Intent, principle four',
-    goodsHas: 'Training sits inside the price of a bed by design, alongside customer connections, contracts, logistics and product development. Real instances: thirty young people on the Palm Island build, Ebony and Jahvan Oui hosted at the Sydney factory, Katrina Bloomfield doing train-the-trainer. There is no curriculum, no completion count and no accreditation. This is the weakest of the strong areas and the most fixable.',
+    goodsHas: 'Training sits inside the price of a bed by design, alongside customer connections, contracts, logistics and product development. Real instances: thirty young people on the Palm Island build, Eb and Jahvan Oui hosted at the Sydney factory, Katrina Bloomfield doing train-the-trainer. There is no curriculum, no completion count and no accreditation. This is the weakest of the strong areas and the most fixable.',
     strength: 'partial',
   },
   {
@@ -473,40 +473,11 @@ export const TRADE_BY_YEAR: readonly { year: string; invoices: number; beds: num
 export const THE_NEXT_TEN = {
   heading: 'The shape, for the next five to ten years',
   body:
-    'One line comes down and the other goes up. Philanthropy carried the whole of the first eleven months and it still carries most of what this work costs. The buying is what has to take its place, until the beds pay for the making and the making is not ours to hold.',
+    'Philanthropy carried the whole of the first eleven months and it still carries most of what this work costs. The buying is what has to take its place, until the beds pay for the making and the making is not ours to hold.',
   holder:
-    'What holds it while that happens is the charity, and the charity is a board of Indigenous directors with the community organisations themselves behind it. That is the difference between an enterprise that is transferred and one that is only talked about being transferred.',
-  ceiling:
-    'Everything above this line is money that cleared, in the year it cleared. Everything below it is modelled capacity, and it says so on itself: push the slider and the numbers move, because they are what the making could carry rather than what anyone has ordered.',
+    'What holds it while that happens is the charity, and the charity is a board of Indigenous directors with the community organisations themselves behind it. A transfer needs somewhere to transfer to, and the board and the members are that.',
   forward:
-    'What changes the shape is communities adding their own facilities. Each one makes beds locally, sells them locally and keeps what it makes, so the line that matters is not our capacity but theirs.',
-} as const;
-
-/**
- * THE BRIDGE: WHAT THE ORDER OF THE LEDGER LEADS TO.
- *
- * Ben, 17 September 2026: think about progress, then build on the way we are finding more
- * buyers, and let that lead into the development of the charity, the Indigenous leadership and
- * governance, and what it is for, which is community-led enterprise, capacity and ownership.
- *
- * So this is the hinge between chapter two and chapter three, and it is made of three facts that
- * are all in the invoice record: the money came before the trade, the trade is now four
- * different KINDS of buyer rather than four customers, and the price rose while they kept
- * buying. The charity is the answer to the question those three raise, which is who ends up
- * holding the making.
- *
- * Nothing here claims ownership has moved. It has not, and the model block says so twice.
- */
-export const PROGRESS_BRIDGE = {
-  heading: 'What the order is actually telling you',
-  progress:
-    'Given first, bought after. That is the shape of the table above and it is the shape of the last two years.',
-  buyers:
-    'And the buying is not one customer repeated. It is four kinds of buyer: a philanthropic trust buying for a community, an Aboriginal community controlled health service buying bedding as health hardware out of its own budget, a school company buying for its homelands, and a national research centre buying for the communities it works with. Each one is a different door into the same market, and each is a door we can knock on again.',
-  price: `The price went ${[...new Set(PAID_INVOICES.map((i) => i.bedUnitPriceAud))].sort((a, b) => a - b).map((x) => `$${x}`).join(', ')} across those buyers and they kept buying, which is the only demand signal worth anything.`,
-  charity:
-    'That is what leads to the charity. A bed a community organisation sells and keeps the whole price of needs somewhere for the making to end up, and it cannot be us. Goods on Country Ltd is a DGR1 charity with a board of Indigenous directors, and it exists to do the part the trade cannot do on its own: hold the enterprise in community hands, build the capacity to run it, and carry the transfer of the making itself.',
-  forward: 'Who holds it, and what it is for, is the next chapter.',
+    'What changes the shape is communities adding their own facilities. Each one makes beds locally, sells them locally and keeps what it makes, so the line that matters is their capacity, and it is drawn at the end of this report.',
 } as const;
 
 /**
@@ -527,7 +498,7 @@ export const PROGRESS_BRIDGE = {
  */
 export const OWNERSHIP_VOICES: readonly { slug: string; contains: string }[] = [
   { slug: 'kristy-bloomfield', contains: 'create generational wealth, economic development on our own land' },
-  { slug: 'jeremy-donovan', contains: 'Goods on Country' },
+  { slug: 'jeremy-donovan', contains: 'giving me the keys to the world' },
   { slug: 'vicki-wade', contains: 'Community leadership, community ownership' },
   { slug: 'kristy-bloomfield', contains: 'We know what we wanna do on our land' },
 ];
@@ -557,12 +528,12 @@ export const COMMUNITY_MODEL: readonly { step: string; title: string; body: stri
   {
     step: '03', state: 'now',
     title: 'They decide what happens next',
-    body: 'After costs it is theirs to spend: more beds, paid local work, or making something of their own. The build days are paid work and the training sits inside the price of the bed rather than beside it as a line item.',
+    body: 'After costs it is theirs to spend: more beds, paid local work, or making something of their own. The build days are paid work.',
   },
   {
     step: '04', state: 'future',
     title: 'They own the making',
-    body: 'The containerised plant is built to move to community operation and then to community ownership, on the Supply Nation 51 per cent path. No site has passed this point. Zero is the honest number and it is the one we print against ourselves.',
+    body: 'The containerised plant is built to move to community operation and then to community ownership, on the Supply Nation 51 per cent path. No site has passed this point yet.',
   },
 ];
 
@@ -660,7 +631,7 @@ export const THE_ARC: readonly ArcStage[] = [
     when: 'The first prototype, through 2024',
     state: 'given-away',
     stateLabel: 'Open source now',
-    body: 'Collapsible baskets, zip ties and a topper. It got people off the floor while we learned what a bed has to survive out here. Eighty-five of them were built on Palm Island over a weekend in December 2024. We have stopped selling it and the plans are free to download, which is the right end for a design that has been overtaken.',
+    body: 'Collapsible baskets, zip ties and a topper. It got people off the floor while we learned what a bed has to survive out here. Eighty-five of them were built on Palm Island over a weekend in December 2024, and Centrecorp bought sixty at $370 in August 2025. We have stopped selling it and the plans are free to download, which is the right end for a design that has been overtaken.',
     figure: { value: String(CANONICAL_ASSETS.basketBedsDeployed), label: 'in homes' },
     photo: { src: '/images/community/palm-island/woman-new-bed-home.jpg', alt: 'A Basket Bed at home on Palm Island' },
   },
@@ -670,7 +641,7 @@ export const THE_ARC: readonly ArcStage[] = [
     when: 'Named in Tennant Creek, bought by Snow in June 2025',
     state: 'in-community',
     stateLabel: 'Prototype, in community',
-    body: 'Elder Dianne Stokes named the machine in Warumungu. A Speed Queen base, chosen because it can be repaired, in an enclosure we make. One Alice Springs supplier sells about three million dollars of machines a year into remote communities and most are in a tip within months, so the whole design question is repair. Snow bought one on 29 June 2025. It is still a prototype and it is not for sale.',
+    body: 'Elder Dianne Stokes named the machine in Warumungu. A Speed Queen base, chosen because it can be repaired, in an enclosure we make. One Alice Springs supplier sells about three million dollars of machines a year into remote communities and most are in a tip within months, so the whole design question is repair. Snow bought one on 29 June 2025. It is still a prototype.',
     figure: { value: String(CANONICAL_ASSETS.washersInCommunity), label: 'in community' },
     photo: { src: '/images/product/washing-machine-installed.jpg', alt: 'A machine installed in community' },
   },
@@ -680,7 +651,7 @@ export const THE_ARC: readonly ArcStage[] = [
     when: 'First paid order September 2025',
     state: 'now',
     stateLabel: 'The one we sell',
-    body: 'Two galvanised poles threaded through the canvas and into crossed legs pressed from recycled plastic. The canvas is structural, so the bed does not stand without it and twenty kilograms of plastic stays out of a tip for every one. Centrecorp bought the first sixty at $370 and came back for a hundred and seven. The price is $750 now because freight and the paid local work came inside it rather than beside it.',
+    body: 'Two galvanised poles threaded through the canvas and into crossed legs pressed from recycled plastic. The canvas is structural, so the bed does not stand without it and twenty kilograms of plastic stays out of a tip for every one. Centrecorp bought a hundred and seven at $560 in November 2025, having bought Basket Beds first. The price is $750 now because freight and the paid local work are counted in it.',
     figure: { value: String(CANONICAL_ASSETS.stretchBedsDeployed), label: 'in homes' },
     photo: { src: '/images/community/alice-springs/stretch-bed-two-generations.jpg', alt: 'Two generations on a Stretch Bed' },
   },
@@ -689,7 +660,7 @@ export const THE_ARC: readonly ArcStage[] = [
     what: 'The production facility',
     when: 'Maningrida run, August 2025',
     state: 'commissioning',
-    body: 'Forty beds for Maningrida went through our own shredder, heat press and router, were shipped flat packed and were built at Gamardi by young people from the community. Production moving on Country is not a plan we are describing. It has happened once and we know what it cost. The containerised plant is built to move to community operation and then ownership.',
+    body: 'Forty beds for Maningrida went through our own shredder, heat press and router, were shipped flat packed and were built at Gamardi by young people from the community. That is the one time it has happened, and we know what it cost. The containerised plant is built to move to community operation and then ownership.',
     figure: { value: '40', label: 'beds pressed in house' },
     photo: { src: '/images/process/container-factory.jpg', alt: 'The containerised factory' },
   },
@@ -699,17 +670,9 @@ export const THE_ARC: readonly ArcStage[] = [
     when: 'In development now',
     state: 'next',
     stateLabel: 'Not built yet',
-    body: 'Cheaper and smaller, without losing the durability. That is the aim, because the machine has to compete with what a family can already buy in town and it has to reach a lot more houses than twenty-three. The drum is a Speed Queen and it stays, because it can be repaired anywhere. What we build around it, the enclosure, the controller and the plumbing, is where the cost and the size have to come out.',
+    body: 'Cheaper and smaller, without losing the durability. That is the aim, because the machine has to compete with what a family can already buy in town and it has to reach a lot more houses than twenty-three. The cost and the size have to come out of what we build around the machine: the enclosure, the controller and the plumbing.',
   },
 ];
-
-/**
- * The sentence the arc is for. It is the only place on this page we describe how Snow gave
- * rather than what they gave and it is deliberately made of the two awkward facts: a product
- * we stopped selling and a price that went up.
- */
-export const WHY_FLEXIBLE =
-  'None of that was a deliverable in a grant agreement. A product we stopped selling, a design we gave away, a price that moved twice and a machine still in prototype after two years: money tied to an output punishes every one of those and money given on trust pays for them. That is what Snow bought and it is why there is a fourth and fifth thing on this list at all.';
 
 /**
  * THE FIVE THINGS THIS WORK IS, AND WHAT EACH ONE CAN AND CANNOT SHOW.
@@ -740,11 +703,19 @@ export interface Theme {
   proof: string;
   /** The limit, in the same card as the claim. */
   limit: string;
+  /**
+   * The one number that carries this theme, so the model can be read before the prose is. Each
+   * traces to the register or the books: 540 beds and 23 machines from the asset register, 3,540
+   * kilograms from the 177 Stretch Beds at 20kg of HDPE each, 30 from the Palm Island build,
+   * 320 from the five paid invoices, and zero because no site is owned where it stands.
+   */
+  figure: { value: string; unit: string };
 }
 
 export const THEMES: readonly Theme[] = [
   {
     id: 'health',
+    figure: { value: '540', unit: 'beds off the floor' },
     title: 'Health',
     body: 'Scabies runs to rheumatic heart disease, and scabies runs through bedding that cannot be washed, on a floor that cannot be cleaned. That pathway is why the bed is the shape it is and why the washing machine came after it.',
     proof: `${CANONICAL_ASSETS.bedsDeployed} beds off the floor across ${CANONICAL_ASSETS.communitiesServed} communities, with ${CANONICAL_ASSETS.washersInCommunity} machines to wash the bedding.`,
@@ -752,6 +723,7 @@ export const THEMES: readonly Theme[] = [
   },
   {
     id: 'plastic',
+    figure: { value: '3,540', unit: 'kilograms out of the tip' },
     title: 'The plastic',
     body: `Every bed is pressed from ${PLASTIC_KG_PER_BED} kilograms of recycled plastic that would otherwise be freighted to a tip. It sits here as economics rather than as an environmental case: it is what a community pays to have rubbish taken away and furniture brought in, twice over.`,
     proof: `${CANONICAL_ASSETS.plasticKg.toLocaleString('en-AU')} kilograms kept out of landfill and turned into the legs of a bed.`,
@@ -759,13 +731,15 @@ export const THEMES: readonly Theme[] = [
   },
   {
     id: 'employment',
+    figure: { value: '30', unit: 'young people paid' },
     title: 'Paid work',
-    body: 'A bed is assembled where it is delivered, by people who live there and are paid for it. The training goes inside the price of the bed rather than beside it as a line item, so a build day is work rather than a workshop.',
+    body: 'A bed is assembled where it is delivered, by people who live there and are paid for it. The training is part of what the bed costs, so a build day is paid work, not a workshop.',
     proof: 'Thirty young people on the Palm Island build. Forty beds assembled at Gamardi by young workers from Maningrida. Katrina Bloomfield has done train the trainer at the Queensland facility.',
     limit: 'These are instances and not a curriculum. There is no completion count and no accredited pathway, and capacity is the weakest of these five.',
   },
   {
     id: 'enterprise',
+    figure: { value: '320', unit: 'beds bought and paid for' },
     title: 'Enterprise',
     body: 'A community organisation holds the beds, sells them and keeps the whole price. After costs it decides what happens next. That is the difference between a program delivered to a place and a business run from it.',
     proof: `${PAID_INVOICE_BEDS} beds bought and paid for by four organisations across five invoices, at $370 rising to $740, with the facilitation on top of it.`,
@@ -773,6 +747,7 @@ export const THEMES: readonly Theme[] = [
   },
   {
     id: 'ownership',
+    figure: { value: '0', unit: 'sites owned in community' },
     title: 'Indigenous ownership',
     body: 'Goods on Country Ltd is a DGR1 charity and its directors are Indigenous. The making is built to move: a containerised plant that can be operated in community and then owned there, on the Supply Nation 51 per cent path.',
     proof: 'A board of three Indigenous directors, a public ABN, and a charity that holds the purpose, the assets and the decisions.',
@@ -862,7 +837,8 @@ export const FILMS: readonly Film[] = [
     title: 'Gamardi, Maningrida',
     why: 'Where the beds were pressed in our own facility, which is the proof the factory path works.',
     story:
-      'Forty Stretch Beds for Maningrida were pressed in house, so the claim that production can move is not a projection. Eight washing machines are in community there. Country with nobody in frame, so it carries no consent question of its own.',
+      'Forty Stretch Beds for Maningrida were pressed in house, so the claim that production can move is not a projection. Eight washing machines are in community there.',
+    voice: { slug: 'eric-pascoe', contains: 'like funeral or ceremony' },
     place: 'Maningrida, Arnhem Land',
   },
 
@@ -963,6 +939,116 @@ export const WALLS: readonly WallSet[] = [
 ];
 
 /**
+ * THE BOARD AND THE MEMBERS, as the way the whole thing is held.
+ *
+ * Ben, 18 September 2026: the model turns into a way to support Indigenous communities and
+ * organisations through the board and a charity with members. A member has access to
+ * compounding support (marketing, storytelling, reporting, case studies, shared story) and
+ * that support grows the members, which opens the next product, the next machine, and A
+ * Curious Tractor as a shared research and development service, until there is a large group
+ * of on-Country production using its own plastic and paying its own people.
+ *
+ * Membership is PROPOSED. The board line, the membership lines and the state come from
+ * organisation.ts, so the guard that keeps every surface saying "proposed" holds here too.
+ * The fridge is in the product plan (products.ts: the same facility can press machine and
+ * fridge components with different moulds) and nowhere else, so it is "after it", never a date.
+ */
+export const MEMBERS_MODEL = {
+  label: 'The board and the members',
+  heading: 'A charity with Indigenous directors, the community organisations proposed as its members, and a company behind it doing the research.',
+  board:
+    'Goods on Country Ltd is the charity. Three Indigenous directors hold the purpose, the assets and the decisions. The charity exists for the community organisations: the ones holding the beds, running the build days and, from the first facility onwards, doing the making.',
+  members: [ORGANISATION.membership.line, ORGANISATION.membership.why].join(' '),
+  gives: {
+    title: 'What a member brings',
+    items: [
+      'The making, on Country. A facility run where it stands, pressing the community\u2019s own plastic into beds.',
+      'The trade. It sells the beds, keeps the whole $750 and decides what comes next.',
+      'The jobs. Build days and production runs are paid local work.',
+      'The decisions. How beds are used, who is paid and what is made next.',
+    ],
+  },
+  gets: {
+    title: 'What a member gets',
+    items: [
+      'Research and development from A Curious Tractor: the bed, the washing machine, the fridge after it, and every improvement to the press and the moulds.',
+      'The story, told with consent. The Empathy Ledger, the films and the case studies, from people who have cleared their words for use outside the organisation. That is what brings the next buyer and the next funder.',
+      'Reporting a funder can check. Every bed in a register, and a page like this one.',
+      'The market. Goods on Country carries the brand, the buyers and the funder relationships, so a member sells into a market it did not have to build.',
+    ],
+  },
+  compounding:
+    'Each member adds to all four areas at once: beds off floors, plastic out of the tip, paid work, and an enterprise that keeps what it earns. Each one also adds to the shared story, and the shared story is what brings the next member.',
+} as const;
+
+/**
+ * THE BUYERS, AND WHO THEY PAY.
+ *
+ * Ben, 18 September 2026: the work identifying buyers and the people who will keep buying is
+ * part of the same idea. The customers exist, two came back, and the public ones can buy
+ * without a tender. Every one of those rules tests the organisation that sells, which is why
+ * the community organisation is the seller and the buyer pays it, never Goods.
+ *
+ * Ben, later the same day: mainly statistics, and the value that shows the scale. Counts come
+ * from PAID_INVOICES, the lanes from procurement-model.ts JURISDICTIONS, and the remote housing
+ * money is typed here with its source, so a threshold or a count changes in one place.
+ */
+export const BUYERS_MODEL = {
+  label: 'The buyers',
+  heading: 'The buyers already exist, and they pay the community organisation.',
+  rows: {
+    bought: 'Bought and paid for',
+    lanes: 'What a government buyer can buy from an Aboriginal organisation without a tender',
+    housing: 'What is already being spent on remote housing',
+  },
+  lanesExplainer:
+    'Each state and territory sets a dollar limit under which a government agency can buy straight from an Aboriginal business or council, with no tender. At $750 a bed, the limits are worth this many beds in a single purchase.',
+  /** Plain words for each lane, from the rules in procurement-model.ts. The bed count prints from the same module. */
+  laneNotes: {
+    nt: 'Northern Territory. Since October 2025 an agency can buy direct from a Territory business up to $50,000.',
+    qld: 'Queensland. A state agency can engage an Aboriginal Shire Council direct up to $500,000, with no quotes.',
+    sa: 'South Australia. A public authority can engage an Aboriginal business direct up to $550,000. The rule names the APY Lands.',
+    wa: 'Western Australia. The competitive rules do not apply at all when an agency buys from a Registered Aboriginal Business.',
+  } as Readonly<Record<string, string>>,
+  /**
+   * From procurement-model.ts, researched 16 September 2026: the NT note, the header on the
+   * $818M of housing-agency contracts, and the Queensland head maintenance contract.
+   */
+  housing: [
+    { value: '$4 billion', label: 'Northern Territory remote housing over ten years, 343 homes still to be tendered' },
+    { value: '1,508', label: 'bedrooms already built and empty in the Territory' },
+    { value: '$818M', label: 'through Territory housing agencies, nine furniture contracts, all of them office chairs' },
+    { value: '$1.012 billion', label: 'Queensland maintenance contract to 2028, about 35,000 properties' },
+  ],
+} as const;
+
+/**
+ * WHAT A MEMBER GROWS INTO: its own community first, then the skills, then it sells outwards.
+ *
+ * Ben, 18 September 2026: build the best products, better than what is coming into community
+ * now, build community enterprise and skill and talent, and then start to sell out of
+ * community once they have built the environment to supply their own community with the best
+ * products. Three stages, each with its state, and the third is the aim with nobody there yet.
+ */
+export const GROWS_INTO: readonly { stage: string; state: 'now' | 'started' | 'aim'; body: string }[] = [
+  {
+    stage: 'Its own community first',
+    state: 'now',
+    body: 'The best products for the place, designed there. A bed that lasts and a machine that can be repaired, where what comes in now is trucked in, breaks and goes to the tip. One Alice Springs supplier sells about three million dollars of washing machines a year into remote communities and most are in a tip within months.',
+  },
+  {
+    stage: 'The skills and the enterprise',
+    state: 'started',
+    body: 'Build days, production runs and train the trainer. Katrina Bloomfield has done it at the Queensland facility. Jahvan and Eb Oui learnt the production side at the Sydney factory. Forty beds were built at Gamardi by young people from Maningrida.',
+  },
+  {
+    stage: 'Then it sells out of community',
+    state: 'aim',
+    body: 'Once its own community has what it needs, the organisation sells to the next community, to the housing bodies and to anyone who wants the product.',
+  },
+];
+
+/**
  * The Alice Springs opportunity, which is the forward half of the Indigenous ownership story
  * and the thing Snow is actually being invited into. Oonchiumpa operate it, employ young
  * people and keep leading that place. Every claim here is labelled: the submission is real,
@@ -980,8 +1066,6 @@ export const OONCHIUMPA_NEXT = {
   ],
   status:
     'The decision came. On 12 August 2026 the department wrote to Oonchiumpa offering $1,695,000 excluding GST over four years to 30 June 2030, with Lhere Artepe support letters already signed. The letter says plainly that it is not a grant agreement: nothing is executed and no money has moved. The money would be Oonchiumpa\u2019s to hold and spend and we disclose it in our own applications without ever counting it as ours.',
-  connection:
-    'Kristy Bloomfield directs Oonchiumpa and is a director of Goods on Country. Sally met Kristy and Tanya Turner through an introduction we made in Sydney in October 2025.',
 } as const;
 
 /**
@@ -1081,7 +1165,7 @@ export const PLACE_BEATS: readonly PlaceBeatData[] = [
     place: 'Gamardi, Maningrida, Arnhem Land',
     when: '2025',
     title: 'The making moves.',
-    body: 'Forty Stretch Beds for Maningrida were pressed in our own facility: shredded, heat pressed, routed and shipped. Eight washing machines are in community here. This is the difference between saying production could move on Country and having moved it.',
+    body: 'Forty Stretch Beds for Maningrida were pressed in our own facility: shredded, heat pressed, routed and shipped. Eight washing machines are in community here.',
     film: { src: '/video/maningrida/gamardi-drone.mp4', poster: '/video/maningrida/gamardi-drone-poster.jpg', alt: 'Gamardi, Maningrida, Arnhem Land, from the air' },
     voices: [
       { slug: 'tehmineh-mason', contains: 'fresh and ready for school' },
@@ -1172,13 +1256,13 @@ export const BUYERS: readonly BuyerRoute[] = [
     id: 'centrecorp', buyer: 'Centrecorp Foundation', route: 'Philanthropic trust buying for a community',
     beds: 167, firstPrice: 370, latestPrice: 560, forPlace: 'Utopia Homelands',
     invoices: 'INV-0259 and INV-0291, paid September 2025 and February 2026',
-    what: 'The first repeat buyer. They came back at a higher price for nearly twice the volume, which is the only kind of demand signal worth anything. They buy beds; they have never given a grant and the footer says so.',
+    what: 'The first repeat buyer. They came back at a higher price for nearly twice the volume. They buy beds; they have never given a grant and the footer says so.',
   },
   {
     id: 'malala', buyer: "Mala'la Health Service Aboriginal Corporation", route: 'Aboriginal community controlled health service',
     beds: 13, firstPrice: 380, latestPrice: 380, forPlace: 'Maningrida',
     invoices: 'INV-0283, paid November 2025',
-    what: 'An ACCHO buying bedding as health hardware out of its own budget. Small and the most strategically interesting line in the book: it is a health service acting on the housing end of the pathway.',
+    what: 'An ACCHO buying bedding as health hardware out of its own budget. Small, and a health service buying at the housing end of the pathway.',
   },
   {
     id: 'homeland-school', buyer: 'Homeland School Company', route: 'School',
@@ -1250,14 +1334,14 @@ export const WASHER_PLACES: readonly WasherPlace[] = [
 export const WASHER_TELEMETRY = {
   readAt: '2026-09-16',
   reporting: 10,
-  totalCycles: 2_330,
-  totalKwh: 3_546,
+  totalCycles: 2_331,
+  totalKwh: 3_547,
   source: 'daily_machine_rollups, reconciled against the asset register through the reviewed controller aliases in src/lib/fleet/identity.ts',
   flagship: {
     assetId: 'GB0-113',
     where: "Norm's house, Tennant Creek",
-    cycles: 951,
-    kwh: 2_611,
+    cycles: 952,
+    kwh: 2_613,
     from: '17 November 2025',
     to: '16 September 2026',
   },
@@ -1283,48 +1367,101 @@ export const WASHER_TELEMETRY = {
  * the summary is: a funder report that changes its own figures between two readings of it has
  * stopped being a report.
  *
+ * ALL THREE ORPHANS ARE IDENTIFIED. Ben named them on 17 September: c4b9 is Dianne's daughter's
+ * house in Tennant Creek, fe6c is Jahvan's aunty's house on Palm Island and 689f is Billow on
+ * Palm Island. Two of the three are therefore NOT in Tennant Creek, which is what their register
+ * rows still say, and the rows are still GB0-WM-ORPHAN-* until somebody updates the register.
+ * The identities are on this page and the register work is outstanding.
+ *
+ * The energy readings back the identification. Kilowatt hours a wash fall into three clean
+ * pairs: Norm's and Barkly at 2.74 and 2.75, Nicole's and Dianne's daughter at 0.76 and 0.77,
+ * and the two Palm Island machines at 0.27 and 0.26. Same place, same number.
+ *
  * WHAT THE TABLE ADMITS, and it is the reason to print it. Twenty three machines are in
  * community. Ten have a controller. Seven have ever reported. Three were still reporting on the
  * day of this read, and one of those three is doing most of the work: Norm's house has more
- * cycles on it than the rest of the fleet put together. Four controllers cannot be matched to a
- * register row at all and are shown as unmatched rather than quietly dropped, because dropping
- * them would make the fleet look tidier than it is.
+ * cycles on it than the rest of the fleet put together. EVERY controller resolves to a register row. Three of them
+ * resolve to rows created for them, GB0-WM-ORPHAN-*, which the register carries as under
+ * investigation: the controller is known and the house is not yet. Ben, 17 September: "work out
+ * the unmatched ones, we already did this." He was right, the reconciliation existed and this
+ * table had not read it. Two more controllers report under house names rather than ids and merge
+ * into machines already here: Norms House into GB0-113 and Nicoles House into GB0-154-2.
+ *
+ * SUPPLY DATES ADDED 17 September 2026 from the asset register, because a bar that starts at the
+ * first report starts in the wrong place. Ben: we know when most machines were delivered, get it
+ * right. Three of the four dated machines waited between two and four months between being
+ * delivered and saying anything, which is time they were in a house being used and we cannot
+ * count it. GB0-154-2 is worse than that and its row says so: the controller reported three
+ * months BEFORE the register's supply date, so one of the two is wrong.
+ *
+ * RECOMPUTED 17 September 2026 from daily_machine_rollups with those aliases applied, which
+ * moved the flagship from 951 washes to 952 and the fleet from 2,330 to 2,331. Three further
+ * machines have controllers fitted and have never reported a cycle, so they are counted in the
+ * ten instrumented and are not rows here.
  */
 export interface FleetRow {
   assetId: string | null;
+  /**
+   * When the register says the machine was supplied. Null where the register has no date, which
+   * is every row still under investigation. The gap between this and the first report is the
+   * most interesting column on the chart: a machine delivered in July 2025 that says nothing
+   * until November was in a house, being used, for four months we cannot count.
+   */
+  supplied: string | null;
   where: string;
   cycles: number;
   kwh: number;
   from: string;
   to: string;
-  state: 'reporting' | 'silent' | 'unmatched';
+  state: 'reporting' | 'silent' | 'investigating';
   note?: string;
 }
 
-export const WASHER_FLEET: readonly FleetRow[] = [
-  { assetId: 'GB0-113', where: "Norm's house, Tennant Creek", cycles: 951, kwh: 2_611, from: '2025-11-17', to: '2026-09-16', state: 'reporting', note: 'The machine the rest of the fleet is measured against.' },
-  { assetId: 'GB0-154-2', where: 'Tennant Creek', cycles: 341, kwh: 261, from: '2025-09-15', to: '2026-05-09', state: 'silent', note: 'Stopped reporting in May and has not been seen since.' },
-  { assetId: 'GB0-125', where: 'Tennant Creek', cycles: 48, kwh: 132, from: '2025-09-28', to: '2026-09-07', state: 'reporting', note: 'Reporting, and barely used. Worth a visit for that reason.' },
-  { assetId: 'GB0-132', where: 'Tennant Creek', cycles: 2, kwh: 1, from: '2025-09-19', to: '2026-03-01', state: 'silent' },
-  { assetId: null, where: 'Controller not matched to a register row', cycles: 550, kwh: 422, from: '2025-08-27', to: '2026-03-29', state: 'unmatched', note: 'Did 550 cycles, then stopped in March 2026. Under investigation on the register.' },
-  { assetId: null, where: 'Controller not matched to a register row', cycles: 397, kwh: 107, from: '2025-09-15', to: '2026-06-08', state: 'unmatched' },
-  { assetId: null, where: 'Controller not matched to a register row', cycles: 38, kwh: 10, from: '2025-09-15', to: '2025-09-30', state: 'unmatched' },
-  { assetId: null, where: 'Controller not matched to a register row', cycles: 3, kwh: 1, from: '2026-03-01', to: '2026-03-09', state: 'unmatched' },
+/**
+ * NORM'S MACHINE, MONTH BY MONTH.
+ *
+ * Ben, 17 September 2026: make Norm's house special, with a graph, and it is close to a
+ * thousand. It is: 952 washes and climbing at about ninety five a month, so it passes a thousand
+ * inside a fortnight.
+ *
+ * The shape is the point. Eleven months without a gap, ninety odd washes every month, which is
+ * three a day in one house. Nobody models that; this machine measured it.
+ *
+ * Read 16 September 2026 from daily_machine_rollups, controller e00fce68...4f25 merged with the
+ * "Norms House" rename. September is part month, to the sixteenth.
+ */
+export const NORM_MONTHS: readonly { month: string; label: string; washes: number }[] = [
+  { month: '2025-11', label: 'Nov', washes: 33 },
+  { month: '2025-12', label: 'Dec', washes: 99 },
+  { month: '2026-01', label: 'Jan', washes: 104 },
+  { month: '2026-02', label: 'Feb', washes: 50 },
+  { month: '2026-03', label: 'Mar', washes: 93 },
+  { month: '2026-04', label: 'Apr', washes: 93 },
+  { month: '2026-05', label: 'May', washes: 93 },
+  { month: '2026-06', label: 'Jun', washes: 96 },
+  { month: '2026-07', label: 'Jul', washes: 94 },
+  { month: '2026-08', label: 'Aug', washes: 149 },
+  { month: '2026-09', label: 'Sep', washes: 48 },
 ];
 
-/**
- * What the telemetry is for, which is the part a funder has not been told before. It is not a
- * dashboard: it is how a service trip gets decided without anyone flying in to look.
- */
-export const FLEET_USE: readonly { title: string; body: string; state: 'now' | 'next' }[] = [
-  { state: 'now', title: 'A machine that has gone quiet is a visit', body: 'Three controllers reported and then stopped. That is the only way we would know, short of somebody asking, and it is why the silent rows are on this table rather than off it.' },
-  { state: 'now', title: 'Cycles are the use, not the delivery', body: 'A bed delivered is a bed delivered. A wash is somebody choosing to use the thing, nine hundred and fifty one times in one house, and that is a different kind of evidence.' },
-  { state: 'next', title: 'Thirteen machines with nothing on them', body: 'Ten of twenty three have a controller. Fitting the rest is the cheapest thing on this page and the one that would make the fleet measurable instead of sampled.' },
-  { state: 'next', title: 'The number nobody has costed', body: 'Kilowatt hours a cycle, against what a commercial remote laundry charges for the same wash. The rows above are the beginning of that arithmetic and not the end of it.' },
+export const WASHER_FLEET: readonly FleetRow[] = [
+  { assetId: 'GB0-113', supplied: '2025-07-02', where: "Norm's house, Tennant Creek", cycles: 952, kwh: 2_613, from: '2025-11-17', to: '2026-09-16', state: 'reporting', note: 'The machine the rest of the fleet is measured against. More washes on it than every other machine put together.' },
+  { assetId: 'GB0-WM-ORPHAN-c4b9', supplied: null, where: "Dianne's daughter's house, Tennant Creek", cycles: 550, kwh: 422, from: '2025-08-27', to: '2026-03-29', state: 'silent', note: 'Identified by Stopped in March. The register row is still an orphan until somebody updates it.' },
+  { assetId: 'GB0-WM-ORPHAN-fe6c', supplied: null, where: "Jahvan's aunty's house, Palm Island", cycles: 397, kwh: 107, from: '2025-09-15', to: '2026-06-08', state: 'silent', note: 'Identified by Nine months of washes, then nothing since June. The register still has it in Tennant Creek.' },
+  { assetId: 'GB0-154-2', supplied: '2025-12-13', where: "Nicole's house, Tennant Creek", cycles: 344, kwh: 262, from: '2025-09-15', to: '2026-05-09', state: 'silent', note: 'Its controller was reporting from September 2025, three months before the register says the machine was supplied. One of the two dates is wrong and we have not worked out which. It stopped in May either way.' },
+  { assetId: 'GB0-125', supplied: '2025-07-02', where: 'Barkly Arts, Tennant Creek', cycles: 48, kwh: 132, from: '2025-09-28', to: '2026-09-07', state: 'reporting', note: 'Reporting, and barely used. Worth a visit for that reason.' },
+  { assetId: 'GB0-WM-ORPHAN-689f', supplied: null, where: 'Billow, Palm Island', cycles: 38, kwh: 10, from: '2025-09-15', to: '2025-09-30', state: 'silent', note: 'Identified by Two weeks of washes in September 2025 and nothing since. The register still has it in Tennant Creek.' },
+  { assetId: 'GB0-132', supplied: '2025-07-02', where: 'Tennant Creek', cycles: 2, kwh: 1, from: '2025-09-19', to: '2026-03-01', state: 'silent', note: 'Two washes in six months, which almost certainly means the controller and not the machine. Its energy signature matches Palm Island, not Tennant Creek, so the register may have this one in the wrong place too.' },
+  // Three controllers that registered on 1 March 2026 and have never recorded a wash. They are
+  // on the list because a fleet page that only shows the working machines is a brochure.
+  { assetId: 'GB0-WM-DSS', supplied: null, where: "Dianne Stokes' son's house, Tennant Creek", cycles: 0, kwh: 0, from: '2026-03-01', to: '2026-03-01', state: 'silent', note: 'Controller fitted, never recorded a wash.' },
+  { assetId: 'GB0-WM-RD', supplied: null, where: 'Red Dust, Darwin', cycles: 0, kwh: 0, from: '2026-03-01', to: '2026-03-01', state: 'silent', note: 'Controller fitted, never recorded a wash.' },
+  { assetId: 'GB0-WM-8D1', supplied: null, where: 'Tennant Creek', cycles: 0, kwh: 0, from: '2026-03-01', to: '2026-03-01', state: 'silent', note: 'Controller fitted, never recorded a wash. Retired on the register.' },
 ];
+
 
 export const WASHER_NEXT: readonly { title: string; detail: string }[] = [
-  { title: 'Cheaper, smaller and still durable', detail: 'The aim for the next version, in that order. It has to compete with what a family can already buy in town, or it stays a machine that arrives only when a funder pays for it. Ben, 17 September 2026.' },
-  { title: 'Parts that can be replaced in community', detail: 'The drum is a Speed Queen and it stays, because it can be repaired anywhere. What we build around it, the enclosure, the controller and the plumbing, is where the cost and the size have to come out.' },
+  { title: 'Cheaper, smaller and still durable', detail: 'The aim for the next version, in that order. It has to compete with what a family can already buy in town, or it stays a machine that arrives only when a funder pays for it.' },
+  { title: 'Parts that can be replaced in community', detail: 'The enclosure, the controller and the plumbing are ours to design, so they are what can be built to be swapped out in community. They are also where the cost and the size have to come out.' },
   { title: 'Measured against the laundry it replaces', detail: 'A commercial remote laundry is the comparison nobody has costed properly. The cycles and kilowatt hours above are the beginning of that number.' },
 ];

@@ -279,7 +279,7 @@ function screenAbout(): string {
       <p>${esc(method.lines[0])}</p>
       <h3>Who holds the work</h3>
       <ul class="plain">
-        ${goodsBoard.map((d) => `<li><strong>${esc(d.name)}</strong>, ${esc(d.role)} · ${esc(d.country)}<br><span class="small">${esc(d.goods)}</span></li>`).join('')}
+        ${goodsBoard.map((d) => `<li><strong>${esc(d.name)}</strong>, ${esc(d.role)} · ${esc(d.country)}<br><span class="small">${esc(d.goods ?? '')}</span></li>`).join('')}
       </ul>
       <p class="small">The board handover is in progress and no chair is appointed. Ownership of the making is a pathway, tested at month six by four questions: who holds the keys, who runs the payroll, who invoices the buyer, and whether the community decides what gets made and who works on it.</p>
     </div>

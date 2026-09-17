@@ -272,7 +272,7 @@ const snow: PartnerDashboard = {
       { slug: 'georgina-byron', quoteContains: 'we can catalyse others to do their bit' },
       { slug: 'georgina-byron', quoteContains: "It's also about backing really great people" },
       { slug: 'georgina-byron', quoteContains: "It's not a for, it's a with" },
-      { slug: 'georgina-byron', quoteContains: 'you start small and then you realize' },
+      { slug: 'georgina-byron', quoteContains: 'you start small and then you realise' },
     ],
   },
   nextChapter: {

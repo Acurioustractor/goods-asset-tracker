@@ -1,7 +1,7 @@
 ---
-date: 2026-09-16T17:00:00+10:00
+date: 2026-09-17T22:10:00+10:00
 session_name: snow-foundation-ongoing
-branch: fix/snow-ask-and-figure
+branch: fix/snow-page-and-letter
 status: active
 ---
 
@@ -9,143 +9,76 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-16T17:00:00+10:00
-**Goal:** Settle what Goods asks the Snow Foundation for next, and put words in Ben's hands he can send himself. Done when the ask is one thing and the letter has passed act-voice, /straight and /ground.
-**Branch:** `fix/snow-ask-and-figure` in `../goods-ledger-wt`, off `docs/philanthropy-ledger` (= main + the two ledger commits). NOT pushed.
-**Test:** `cd v2 && npx vitest run && npm run check:drift:ci && npm run build`
+**Updated:** 2026-09-18T06:10:00+10:00
+**Goal:** The Snow partner report reads like a person wrote it and shows the argument in pictures, not paragraphs. Done when Ben will put it in front of Sally and the in-principle letter is drafted.
+**Branch:** `fix/snow-page-and-letter` in `../goods-ledger-wt`. **74 commits ahead of origin/main, NOT pushed, no PR.**
+**Test:** `cd v2 && npx vitest run && npm run check:voice && npm run check:drift:ci && npm run build` (1246 tests green at handoff)
 
 ### Now
-[->] **BUILT AND RUNNING: the Snow partnership report. `http://localhost:3013/partners/snow/story`, password `snow2026`.** Eight chapters in the shape of /pitch. Gated in `proxy.ts` in the same commit that created the route. Ben has not seen it yet.
+[->] **Ben to look at the new closing chapter, "What ten years of it could look like", at `http://localhost:3013/partners/snow/story#ch-ten`.** Built 17 September, 22:20, uncommitted. It is the impact model run forward: the same four boxes with ten-year totals and today's figure under each, ten year-columns (Goods on Country facility filled and flat from year two, community facilities dashed and growing), and under the years a base in four layers: Made on Country (facilities per year, dashed), Members of the charity (organisations per year, dashed, proposed), The enterprise (solid, happens today), The board (solid, in place today). Slider 1 to 3 facilities a year, everything recomputes from `ten-year-scale.ts`, claim ceiling printed. Component: `v2/src/components/partners/ten-year-model.tsx`. The `TenYearSlider` came OUT of the money chapter (it would have printed the model twice); the `THE_NEXT_TEN.forward` line now points at the closing. Two tells reworded in `THE_NEXT_TEN` ("That is the difference between", "not our capacity but theirs"). Gates: tsc clean, 1246 tests green, tells checker clean on the new file.
 
-Chapters: the health chain first (Sally's own instruction), the arc from idea to charity over the Tingkkarli drone, every engagement since Aug 2024 filterable by kind, what the money turned into ending on zero community-owned sites, the three Indigenous directors, Snow's published priorities with our evidence against each including the weak ones, what is not finished, then $99,750.
+[->] **18 September, 05:40. Chapter 11 is now the whole closing: the ten-year drawing (ceiling and slider caption removed on instruction, Enterprise box = organisations trading, 24 in FY36, "4 organisations buying today"), then "The board and the members" (`MEMBERS_MODEL` in snow-partnership.ts, membership wording pulled from `ORGANISATION.membership` so it stays proposed), then "The setting" from the new `remote-communities.ts`. The two-year chapter (step chart + four-on-a-base) was REMOVED on instruction; both components still exist unused.** Setting figures: **1,452 remote and very remote places** (874 communities, 542 outstations, 34 town camps, 2 other; NT 790, WA 338, QLD 181, SA 138, NSW 5) from `goods_communities` in the shared project `tednluwflfhxyucgwigh` (AGIL gazetteer + Bushtel), queried 18 Sep. **That table's `estimated_population` is a 150 placeholder on 988 of 1,434 very remote rows and its `demand_beds` is the banned households x 1.2 formula: never sum or print either.** People are the ABS ERP 30 June 2021: 58,700 remote + 92,100 very remote = **150,800** (Census raw count 44,072 + 74,135 = 118,207, carried in the module, never printed). Gates: tsc clean, 1254 tests, tells clean.
 
-Both blocking rulings are in (Ben, 16 Sep): **$99,750 for 133 beds as a grant now**, recoverable capital named as the next chapter; **the figure is footnoted, not restated**.
+[->] **18 September, 06:10. Chapter 11 now runs: ten-year drawing (Enterprise box = organisations trading) → Palm Island bed photo (`woman-boy-new-bed.jpg`, not used elsewhere) → The potential (1,452 places / 150,800 people / 11 served) → The board and the members (compounding line in a rust-wash box, then Kristy's "We know what we wanna do on our land" via Pull) → What a member grows into (three cards, third dashed as the aim) → The buyers as three rows of figures (bought: 4 orgs, 320 beds, $273,966 inc GST, 5 invoices, $370 to $800; no-tender lanes from `JURISDICTIONS` with plain-word labels; remote housing money $4B / 1,508 bedrooms / $818M / $1.012B). After Norm's last word the page now ends on the pitch's listening map (`MadeWithCommunity`, same consent gate, confirmed by Ben 16 Sep). Removed on instruction today: the ceiling paragraph, the slider caption, the "measures the place" line, the "tests the seller" sentence, "through the lanes above". Timeline edits: "Sally and Maree head back to Tennant Creek. Their own trip, to support the Wilya Janta house warming."; FY26 agreement entry opens on Snow's own words. Money chapter lead rewritten in plain voice. All gates green at each step; NOTHING COMMITTED.**
 
-**Clock: an in-principle letter is wanted by about 21 September; QBE submits the 25th.** Snow route the decision through their advisory committee.
+[->] (previous) **Hand the impact model to a Fable design pass.** The model lives in `v2/src/components/partners/impact-model.tsx` and renders inside the `ch-themes` chapter of `v2/src/app/partners/[slug]/story/page.tsx`. Page: `http://localhost:3013/partners/snow/story` (dev server already running on 3013 from this worktree).
 
-**Also inherited today** (the other session stood down, Ben moved it here): the Notion side, the Snow ask letter on row `3daebcf981cf8034b1cbe5f4f72f6906` (red HOLD awaiting the INV-0166 numbers), the Artefact Register and the front door. Their three commits sit unpushed on `fix/q3-structure-diagram-and-attachment-readme` in `../goods-public-wt`.
+**What the model has to say, and why it is shaped this way.** Four boxes across the top, one per area, each holding a single number: Health 540 beds off the floor, The plastic 3,540 kilograms out of the tip, Paid work 30 young people paid, Enterprise 320 beds bought and paid for. A line drops from each box onto a full-width base, and the base is Indigenous ownership and leadership. It is split: the left 55% is solid and filled (Indigenous leadership, three Indigenous directors holding the purpose, the assets and the decisions), the right is dashed and empty (Indigenous ownership, 0 sites owned where they stand). **The relationship is the whole point: the four are not peers of the fifth, they rest on it.** Ben rejected three earlier attempts (five equal rings in a row, a cumulative trade chart, and a separate ownership chapter) before this one.
 
-**Consent alarm: CLOSED.** `npm run check:quotes-verbatim` in empathy-ledger-v2 run live today: **0 public quotes non-verbatim**, control passed. The "135 publicly displayed" figure that was circulating is the script's own docstring from a 10 September measurement, since remediated. 189 approved-but-not-verbatim remain, none public. Three misattributions, all named, none of them Goods community storytellers (Sarah Mayers once, Ben twice). The `public_display_consented` half was never a Goods issue: `cleared-voices.ts` says in its header that EL exposes no per-storyteller consent flag to the syndication client, which is why the name allowlist is the gate.
-
-**One gate still worth hardening:** `isClearedForExternal` checks the speaker's name and never the words, so `/community`, `/gallery` and `/communities/[slug]` would render altered EL text under a cleared person's name. Nothing bad is coming through it today. Not changed, because closing it could blank live sections.
-
-### The ask conflict: mostly resolved, and not by a ruling
-Three answers were live. Two were stale rather than contested.
-
-- **`ask-surface.ts` "$100K, Grant: fresh money, flexible"** was simply pre-15-September. FIXED to $99,750 / 133 beds at $750, matching BMD and TFFF. `RAISE` in `model-placemat.ts` names Snow explicitly as one of the three bed grants, so the ruling was already in code.
-- **The $150K loan** in the raise is **SEFA's** line for first-year running cost, never Snow's. No conflict once you read whose it is.
-- **The dashboard's impact-investor invitation** is the only genuinely open one, and it says so itself: "the three things we want to settle together with Snow are the amount, the conditions it carries, and the impact it is held to".
-
-**What the 16 September check-in adds, and it outranks all three:** the immediate ask is **not money**. Sally wants a written impact snapshot. Georgie has routed the decision through Snow's **advisory committee**. Sally is checking with Marie about an **out-of-session in-principle letter**, and the record says "even a broad letter acknowledging alignment with Snow Foundation's strategy and an ongoing relationship would be sufficient". A letter of intent by ~21 Sep is the thing on the clock. The $99,750 sits behind it as the written ask. The loan is the Bhanvi track and has never been formally retired.
-
-**A $99,750 letter already exists**, unsent, in Notion: "Snow Foundation general Ask" `3daebcf981cf8034b1cbe5f4f72f6906`, body last edited 16 Sep 01:20. The row's `Amount (AUD)` property still says $100,000 against a body that says $99,750, which is the source of the open 399-versus-400 bed question.
-
-### The Snow figure: the HOLD is resolved, and $35,200 of it is not Goods
-The June reconciliation left two checks it could not run. Both were run today.
-
-- **CLEARS.** Nothing from Snow predates INV-0092 (1 Oct 2023). The three-year MCP window was not hiding earlier money.
-- **FAILS.** **INV-0092, $35,200 inc-GST, 1 Oct 2023, is "(Con)nected - Digital support for Drug Court participants"**, a different ACT project. Corroborated by a Knight Photography bill the same day for "(Con)nected - DASL Discovery Project Management" in the ACT wiki.
-
-**Confirmed independently, and this is what settles it.** The Snow milestone ledger built in Notion on **21 May 2026** itemises six grant invoices ($434,500 inc-GST) plus three reimbursement and product invoices ($23,429.79). Nine invoices, summing to **exactly $457,929.79**. It was built four months before anyone went looking, by someone reconciling milestones. It never contained INV-0092. The gap to the Xero contact-level total is $35,200 to the cent.
-
-| Figure | Basis | What it is |
-|---|---|---|
-| $493,129.79 | inc-GST cash | Everything Snow paid this ledger, **including** (Con)nected |
-| **$457,929.79** | inc-GST cash | **Goods only** |
-| $448,299.81 | ex-GST | Everything, ex-GST |
-| $416,299.81 | ex-GST | Goods only, ex-GST |
-
-Also: **the basis label was inverted.** $493,129.79 is the sum of `amount_paid`, so it is inc-GST. The June doc said the opposite. Corrected there.
-
-Also closed: the ledger's two "Xero invoice (missing - investigate)" rows are **INV-0166** (3 Oct 2024) and **INV-0170** (11 Nov 2024), both PAID.
-
-**The date bites harder than the money.** Snow's first *Goods* invoice is 3 October 2024. `grants-received.ts` has `since: '2023-10'`, and `/pitch` chapter 15 sorts funders by that field. AMP Foundation sits at `2024-07`. So "Snow went first", the spine of chapter 4 and of any letter, currently rests on the (Con)nected invoice. **Not changed. Ben's call, because it reorders a live public page.** Snow did back the organisation from Oct 2023; what is wrong is attributing that invoice to Goods.
+Above it in the same chapter is `growth-over-time.tsx`: a step chart of cumulative beds from the five real invoices, 60 in Aug 2025 to 320 in Jul 2026, with the buyer named above every step. That one Ben has not objected to. **The buyers make the argument by themselves** and no prose should restate it: Centrecorp Foundation (Aboriginal charitable trust) twice, Mala'la Health Service Aboriginal Corporation (ACCHO), Homeland School Company, ALIVE National Centre.
 
 ### This Session
-- [x] **The graduation story was live on the page Snow reads.** `partner-dashboards.ts` said "The idea is proven now" and "built to stand on its own", two of the five fragments Ben's 16 Sep ruling bans. The guard that bans them only ever read `funder-moments.ts`. Fixed, and **the guard now covers every funder-facing surface** (dashboards, arc, invitation, funder configs). Proved it bites by reintroducing the phrase and watching it fail
-- [x] The same phrase found and fixed on the **public /impact page** and in the Snow funder report
-- [x] `ask-surface.ts` rebuilt: Snow $99,750, SEFA $300K to $150K (the 15 Sep ruling), TFN $130K to $144,558
-- [x] **Dashboard quotes now resolve from the consent registry by slug**, not typed in. `quotes: []` had been empty while twelve approved Georgina quotes sat in the registry; typing them in is the pattern that caused the eight-week consent leak on her record. Four chosen for the catalytic frame in her own words
-- [x] `content.ts` "It's cardiac prevention" removed. It contradicted the claim ceiling in `claims-ledger.ts` and it was public
-- [x] `impact-model.ts` "~89% grant-funded" removed. No denominator, counts **Centrecorp as a grant** when Centrecorp is a buyer, and grants ($772,788) exceed the revenue printed beside it
-- [x] The **June first-mover loan draft** is banner-flagged DO NOT SEND. It still says "QBE will match external capital we raise, at least one to one", retired by **ruling V** on 1 Aug, and its August deadline has passed. The same retired claim is in the rendered 27 Jun brief HTML and PDF
-- [x] Gates: tsc clean, **799 tests pass**, `check:voice` and `check:drift:ci` clean, build passes
+- [x] **Photo drop finally works end to end.** The blocker was the host test: Google Photos serves from `photos.fife.usercontent.google.com`, which does not contain "googleusercontent", and the address ends `=w403-h268-no` not `.jpg`, so both the host list and the extension test threw the picture away. Fixed, plus `&quot;` stripped off dragged URLs. **The real fix was moving the fetch into the browser** (`fetchHere` in `photo-drop.tsx`), because the Google session lives in the tab and never on our server. Before: every imported photo was a 403px, 50KB thumbnail. After: 2000x1333 originals with Canon EOS 6D EXIF intact.
+- [x] **Tagging works for every photo.** 70 images were in the grid with no `content_items` row, so the bulk tagger, the per-item editor and the notes editor all skipped them **in silence**. `/api/admin/content-item` now takes `create[]` and registers a photo as part of the write. Backfilled 63 via `content:index`. One `+ Snow` button in the bulk bar tags a whole selection `use:snow`. **Every successful bulk write now says what it did** (the Snow button tagged 87 photos and looked completely dead, because a tile never shows its tags).
+- [x] **Community and person are pickers, not free text**, in the drop card and the item panel, and each writes the FK *and* the tag. `storyteller_id` points at the v2 `storytellers` table, **NOT** the EL roster: different id spaces, Xavier is in one and not the other.
+- [x] **121 Alice Springs build photos got their bucket back.** They carry `storage_path` with no bucket prefix and null `cdn_url`/`thumbnail_url`/`source_url`; `align.ts` only knew `source_url`. They are in `story-images` (public).
+- [x] **19 photos retagged** where the community tag disagreed with the folder (16 Kalgoorlie/Palm Island photos were carrying `community:mt-isa`). Ben spotted one; the sweep found the rest.
+- [x] **Conference is not a community:** the drop route wrote `community:philanthropy-australia`. Events that name an `events/` area now get an `event:` tag. Two rows corrected.
+- [x] **95 photos tagged `use:snow`, distributed across the page** (top strip, road stops by place, gallery grouped by place), deduped against everything hand-placed so nothing appears twice.
+- [x] **Whole-page prose pass against the AI tells.** Read all 98 rendering strings. Killed the "inside it rather than beside it" frame that ran three times, two "this is the difference between" frames, "production moving on Country is not a plan we are describing", and every instance of the page congratulating itself on its own honesty ("the one we print against ourselves", "and it says so").
+- [x] **Two factual corrections from Ben.** INV-0259 was **60 Basket Beds at $370** (Aug 2025), INV-0291 was **107 Stretch Beds at $560** (Nov 2025); the Stretch Bed entry had wrongly claimed the sixty. And the "the drum is a Speed Queen and it stays" claim came out of two places as **not right**.
+- [x] **Removed on instruction:** chapter 12 (the whole ask chapter, recoverable at `6ef7d6a`), the VERIFIED/MODELLED/NOT YET chips, the footer provenance note, the board photo credits and boilerplate director bios, the PROGRESS_BRIDGE buyers block, the Oonchiumpa status paragraphs, the frame-count line under the top strip, `WHY_FLEXIBLE`, and several one-liners.
 
 ### Next
-- [ ] **Decide the instrument, then write the letter.** See the two questions below
-- [ ] **The letter of intent for QBE**, by ~21 Sep. Separate from, and ahead of, the money letter
-- [ ] Four Notion pages still print retired Snow figures: the canonical **Snow Foundation Reporting** page `367ebcf981cf80838315d00d85555bad` (still headlines $395K/$275K/$120K and never mentions the reconciled figure); **snow-foundation-q4-fy26** `3d4ebcf981cf816891c2e75bcceddd87` (status "reviewed", prints $402,930 as lifetime); **Other grants** `3dbebcf981cf81e184b0ed9b9fabda25` ($795,000, TFN $130K, FRRR separate); **Q&A Write-ups** `36bebcf981cf801aa903c7acdba1142f` ($193,785)
-- [ ] **The 31 July FY26 Operational acquittal has no record of being submitted.** Ledger row still "Not started", register row still "Needed", nothing edited since 23 July. Six weeks overdue, and you do not ask for the next commitment over an open acquittal
-- [ ] Read the two FY26 PDFs on the 19 May thread (`19e3e43c5062ae00`): "Successful Grant Letter" and "Letter agreement", both "Goods on Country A Curious Tractor - FY26". Attachments cannot be opened from here; drop them in `~/Downloads` and they can be
-- [ ] Whether the 28 Jun Round 4 email to Sally ever went out is still unconfirmed
-- [ ] INV-0321 is AUTHORISED with "Eftsure verification pending" in the Notion ledger but PAID in Xero on 22 May. Close the loop
-- [ ] Decide whether the Snow dashboard becomes shareable. Georgina says in her own recording that taking what she saw back to Sydney is her job
-
-### The alignment case, which is stronger than the money case
-Snow's own published strategy, tested area by area:
-
-- **First Nations leadership is now a gate, not a preference.** Snow's Nov 2025 note: forming a First Nations advisory group, "**all future grants will require First Nations leadership**", and it "**will review all Snow Foundation partners**", flagged internally as a potential future challenge. **Goods on Country Ltd, DGR1, 100% Indigenous directors, public ABN, three sourced director profiles answers that outright.** This is the most important thing to put in front of Snow, and it turns a flagged risk into the strongest card in the hand
-- **Capacity building is a named Snow principle**: "building greater capacity, knowledge, and ownership of RHD within communities... Education enables communities to set self-determined priorities". Goods has training inside the bed price by design, plus countable instances (Palm Island, 30 young people; Katrina train-the-trainer). No curriculum, no completion count. The weakest fixable area
-- **RHD**: Goods is already named in Snow's own 2024 annual report as an RHD partner ("A Curious Tractor - Greate Beds"; the typo is theirs). Against a funder asking for "evidence-based and culturally safe programs", **refusing to claim a health outcome is the strongest possible signal**, and it is enforced in code, with two metrics deleted rather than overclaimed
-- **Community ownership**: zero community-owned sites, labelled `future` everywhere. Say it as a pathway with a named next step
-- **RECYCLING IS NOT A DOOR.** Snow's published exclusions: "We do not accept applications for initiatives that are focused on: **Environmental causes**". Not that Goods lacks the evidence; Snow lacks the priority. Frame 20kg a bed as local economics and freight substitution inside the RHD and ownership story. Sally personally values the circular story, which is a person, not a criterion
-- **Impact investing is real and growing**: $26.2M across 38 investments, 12% of corpus targeting 20%, catalytic at 32% of active commitments, patient loans via First Australians Capital and SEFA. **A $99,750 bed grant asks Snow to do what it already did. A recoverable instrument asks it to do what it says it is growing.** That is the argument for the loan, if Ben wants it
-- **Do not print an RHD strategy period.** The Statement of Intent reads 2024 to 2030; the 2024 annual report says 2024 to 2028 and "five-year". Georgina's own recorded words say "another five". Unresolved
-
-### What the mailbox adds, and it is the best material for the letter
-A full read-only sweep of every Snow thread, ~45 searches, `in:anywhere`. About 64 distinct engagements since March 2024.
-
-**Snow's four standing reservations about Goods, in Sally's words, 23 Jan 2026.** She asked for the risks to be fleshed out, "think about concerns that have been raised to date by us": **waste, demand for the plant, payment first, key learnings**. That is the objection list. A letter that answers those four by name lands better than one that does not know they exist.
-
-**How Snow wants the health case made.** Sally's 20 May 2026 critique of the Canberra landing page is the single most useful paragraph in the corpus: "A cold audience needs that chain explained immediately and plainly, **before the product, before the manufacturing story**." She even wrote the sentence she wanted: "Rheumatic heart disease (RHD) is a preventable condition that damages the heart valves of children and young people. It is almost eradicated everywhere in the world except in remote Aboriginal and Torres Strait Islander communities in Australia." And: "'Made by community. Made for community.' ... **The health stakes need to come first.**" Her suggested call to action: "Join us to help end Rheumatic Heart Disease".
-
-**Georgina's founding words, 2 October 2024**, at the moment of first commitment: "Snow is interested to provide some **initial seed funding** for your entrepreneurial remote mattress project... **Good on you and Ben getting started out in community with little funding, shows conviction and passion!**" That is catalytic capital and backing the founder in her own voice, and it is better than anything we would write. It is not in the registry yet; add it before quoting it anywhere public.
-
-**The loan was never Snow's idea in writing.** No Snow person has put the loan or impact-investment pathway in an email, ever. The three sources are all ours: Nic's Jan 2026 proposal ("Snow Foundation has offered access to social impact loans"), Nic's Feb 2026 note to QBE ("matched and potentially doubled by Snow"), and Ben's Jun 2026 "potential Snow loan system". The dashboard said "Snow has opened a conversation" and has been rewritten. **Do not put that intention in their mouth again.** What IS evidenced: Bhanvi Anand of Snow works on impact investing, named in their June 2026 newsletter on the $4.1M Thrive lending facility.
-
-**Reporting is the soft spot.** No acquittal or formal report was ever emailed to Snow. Goods' own Jan 2026 proposal timeline contains the line "Complete any outstanding reporting from previous Snow Foundation commitment", so it was already outstanding then. The only reporting artefact is Ben's 11 Jun 2026 package of links, which Snow never answered by email. The 31 July 2026 acquittal date is in neither the grant letter's indexed text nor any email.
-
-**The FY26 agreement, probed but not read.** Gmail full-text-indexes PDFs, so string presence is knowable. Present: `2024/OC0014`, `acquittal`, `395,000`, `275,000`, `120,000`, `100,000`, `2027`, `Operational`, `wages`, `washing`. Absent: every reconciled figure, `31 July`, `quarterly`, `12 months`. So the whole relationship is carried under one 2024-vintage grant reference, it does impose an acquittal, it runs into 2027, and it covers wages and washing machines as well as beds. **Which of the four amounts is the grant is unknown. Get the PDFs opened before a figure goes in a letter.**
-
-**Snow's new strategy, Georgina, 26 June 2026.** Pillars stay (Place, Country, Sector, Family); six priority areas: Gender, First Nations, Youth, LGBTIQ+, Community, "all underpinned by **Ecosystem**... backing social change makers, acting as the glue between funders and nonprofits, and **advancing the impact investing market**." 2025: 196 grants, 198 grants to individuals, 38 social impact investments.
-
-**People.** Bhanvi = **Bhanvi Anand**, impact investing (address not recoverable from the mailbox). **Carolyn Ludovici is NOT stale**, still named as Snow staff in June 2026. Also active: **Alex Lagelee Kean** (Impact & Engagement), **Lucy McKee** (Marketing), **Jimyong "Brenton" Um**, **Ashley Machuca**, **Maree Meredith**. Sally's title changed to Head of Partnerships, Our Country.
-
-**Loose end.** Nic asked Snow on 3 Oct 2024 whether to charge GST and was never answered in writing. That is the origin of the inc/ex-GST fork that has run through every figure since.
+- [ ] Ben's verdict on the ten-year closing (chapter 12). One pre-existing rendered tell left alone in `THEMES.plastic.body`: "as economics rather than as an environmental case".
+- [x] Fable design pass: done as the ten-year closing rather than a redraw of `impact-model.tsx`, which Ben had accepted.
+- [ ] **The in-principle letter.** Draft lives at `thoughts/shared/drafts/2026-09-17-snow-letters.md` (Ben-to-Sally email + a draft for Snow letterhead). **Wanted ~21 September. QBE closes Friday 25 September 12pm AEST.** NEVER SEND: hand Ben the words.
+- [ ] **Em dashes.** 386 spaced ` — ` in rendered prose across 122 non-admin files (1529 total including comments and tests). Ben: remove all of them site-wide. **Not started.** A blanket comma is wrong; a colon is the closest single substitute and act-voice permits comma, full stop or colon.
+- [ ] **Australian English sweep.** `realized` fixed in Jeremy's quote. Remaining: 4 `realize`, 1 `utilizing`, 1 `organizing`, 1 `analyzed`. **Do NOT touch `color` (1999) or `center` (1999)**: they are CSS properties.
+- [ ] **Too many factory images** in the Snow photo set, per Ben. Not yet triaged.
+- [ ] Captions: only 14 of the 95 `use:snow` photos have one, and the caption is what the page prints.
+- [ ] Two photos in the Snow set are not photographs of the work: `/images/community/maningrida/wordmark-wall.jpg` and `/images/model/sleeping-on-it-1e5a8385.jpg`. Tag `use:snow-hide`.
 
 ### Decisions
-- **Catalytic capital, never a graduation story** (Ben, 16 Sep). Now enforced across every funder surface, not one file
-- **No dollar figures on public funder surfaces** (Ben, 16 Sep). A private letter to Snow is different and CAN carry numbers. Do not carry that ruling across by mistake
-- **NEVER SEND EMAILS** (Ben, 12 Sep). Reading is fine. Drafting is fine. Sending is not
+- **Ben's writing-style ruling, 17 Sep, after pasting the whole Wikipedia "Signs of AI writing" page:** no bolded mini-headers, no reflex tables, no "X, not Y", no status sign-off formula, Australian English always. Applies to chat replies as well as published prose. Saved as `feedback-no-ai-tells-in-chat-replies`.
+- The four areas **rest on** Indigenous ownership and leadership. Not five peers. This was the fourth attempt and the one that stuck.
+- Growth is drawn as a **step, never a slope**, and nothing continues past the last invoice. A dashed line rising off the right edge is a forecast wearing a drawing's clothes.
+- A photograph already in the library is **tagged where it lives, not copied again** (checksum match); two Google Photos originals turned out to be byte-identical to an EL-held photo and to `basket-bed-hero.jpg`.
 
 ### Open Questions
-Both of the blocking ones are answered (see Now). What is left:
-- The FY26 grant letter's headline amount, term and acquittal date. Four amounts sit in the PDF and none of them can be read from here
-- Whether the FY26 Operational acquittal was ever lodged. No evidence either way
-- Whether the 28 Jun Round 4 email to Sally went out
-- The Snow Entrepreneurs outcome (2025/OC0146). No result email either way
-- Snow's RHD strategy period: 2024-2028 or 2024-2030. Do not print one
+- UNCONFIRMED: **what is actually inside the next washing machine?** The page no longer says, because "the drum is a Speed Queen and it stays" was wrong and I would not guess a replacement. Does it keep a Speed Queen, and is that the whole machine or a part?
+- UNCONFIRMED: **was removing chapter 12 (the ask) intended to be permanent?** The report now has no ask in it. Recoverable at `6ef7d6a`.
+- UNCONFIRMED: Patricia Frank's registry role reads `Aboriginal Corporation Worker, Oo Tribe, White Cockatoo clan`. "Oo Tribe" and "White Cockatoo clan group" come verbatim from EL `cultural_background`; **"Aboriginal Corporation Worker" is in no source** and was typed into our registry. Her clan is also being rendered inside a job title. **Do not "correct" her stated cultural identity without her.**
+- UNCONFIRMED: `/images/people/karen-liddle.jpg` is a real 170K portrait with no `content_items` row. Her life story is ON HOLD in EL until she reviews it, so I flagged rather than indexed it.
+- UNCONFIRMED: `basket-bed-hero.jpg` lost its rating and community during API testing. Tags restored to `use:snow`; if it had a rating or community before tonight, those two values are gone.
 
 ### Workflow State
-pattern: sequential
-phase: 3
-total_phases: 4
+pattern: iterative-design
+phase: 4
+total_phases: 5
 retries: 0
 max_retries: 3
 
 #### Resolved
-- snow_figure_hold: RESOLVED. INV-0092 is not Goods. Goods-only is $457,929.79 inc-GST, confirmed by two independent sources
-- gst_basis: RESOLVED. $493,129.79 is inc-GST, not ex-GST. The June doc had it backwards
-- ask_conflict: RESOLVED (Ben, 16 Sep). Bed grant $99,750 now, recoverable capital named as the next chapter. Two of the three answers were staleness, now fixed in code
-- snow_figure_publication: RESOLVED (Ben, 16 Sep). Footnote it; the live pages do not move
-- snow_loan_provenance: RESOLVED. No Snow person has ever put the loan in writing. All three sources were our own words
+- goal: "Save state so a Fable model can take a run at designing the impact model"
+- resource_allocation: balanced
 
 #### Unknowns
-- fy26_agreement_conditions: UNKNOWN. PDFs indexed by Gmail but not readable from here
-- fy26_acquittal_submitted: UNKNOWN. No acquittal was ever emailed; Goods' own Jan 2026 proposal says reporting was already outstanding then
+- next_machine_internals: UNKNOWN
+- ask_chapter_permanent: UNKNOWN
 
 #### Last Failure
-(none)
+(none: 1246 tests, voice, drift and build all green at handoff)
 
 ---
 

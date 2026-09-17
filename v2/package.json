@@ -32,6 +32,7 @@
     "check:retired-figures": "node scripts/check-retired-figures.mjs",
     "check:money-prose": "node scripts/check-money-prose.mjs",
     "check:voice": "node scripts/check-voice.mjs",
+    "import:photos": "node scripts/import-photos.mjs",
     "check:register": "node --env-file=.env.local scripts/check-register-integrity.mjs",
     "check:community-seam": "node --env-file=.env.local scripts/check-community-seam.mjs",
     "check:audience": "node scripts/check-audience.mjs",

@@ -87,7 +87,7 @@ function toVoice(r: StorytellerRecord, settings: Record<string, PersonSetting>):
     portrait: s.showPhoto === false ? null : r.portrait,
     photoFocus: s.photoFocus ?? null,
     // A young person whose story is told by someone else is never given words of their own.
-    quote: r.narratedBy ? null : quote ? { text: quote.text, context: quote.context } : null,
+    quote: r.narratedBy ? null : quote ? { text: quote.text, context: quote.context ?? '' } : null,
     young: /young|youth/i.test(r.role) || /young person/i.test(r.notes ?? ''),
     placeMoved: Boolean(s.place),
     photoHidden: s.showPhoto === false,
