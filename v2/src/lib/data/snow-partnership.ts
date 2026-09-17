@@ -44,6 +44,7 @@
  *    funder-moments: unknown slug, wrong tier or a quote that is not approved renders nothing.
  */
 
+import { ORGANISATION } from './organisation';
 import { CANONICAL_ASSETS } from './asset-canonical';
 import { PAID_INVOICES, PAID_INVOICE_BEDS } from './paid-trade';
 import { BED, RAISE } from './model-placemat';
@@ -272,7 +273,7 @@ export const TOGETHER: readonly TogetherMoment[] = [
   {
     when: '2026-05-19', label: 'May 2026', kind: 'money',
     title: 'The FY26 agreement',
-    detail: 'Georgina sends the successful grant letter and the letter agreement herself, cc Sally: "We are so pleased to support Goods on Country / A Curious Tractor." The tenth invoice, INV-0321, is paid three days later.',
+    detail: '"We are so pleased to support Goods on Country / A Curious Tractor." The tenth invoice, INV-0321, is paid three days later.',
     who: 'Georgina Byron AM',
     source: 'Mailbox, 19 May 2026; Xero, INV-0321 paid 22 May 2026',
   },
@@ -287,9 +288,9 @@ export const TOGETHER: readonly TogetherMoment[] = [
   },
   {
     when: '2026-07-08', label: 'Jul 2026', kind: 'country',
-    title: 'Sally goes back to Tennant Creek',
-    detail: 'Her own trip. The partnership has reached the point where the funder visits Country without us organising it.',
-    who: 'Sally Grimsley-Ballard',
+    title: 'Sally and Maree head back to Tennant Creek',
+    detail: 'Their own trip, to support the Wilya Janta house warming.',
+    who: 'Sally Grimsley-Ballard and Maree Meredith',
     place: 'Tennant Creek, Warumungu Country',
     image: { src: '/images/media-pack/sally-georgina-tennant-creek-jul-2025.jpg', alt: 'Georgina Byron AM and Sally Grimsley-Ballard with community Elders in Tennant Creek' },
     source: 'Mailbox, 25 to 26 June 2026',
@@ -340,7 +341,6 @@ export const BECAUSE_OF: readonly BecauseOf[] = [
   { id: 'voices', value: 38, unit: 'voices', headline: 'Consent-cleared voices', status: 'verified', detail: 'People who have agreed, by name, to their words being used outside the organisation. A default-deny allowlist: if a name is not on it, nothing of theirs renders.' },
   { id: 'trade', value: 320, unit: 'beds', headline: 'Beds bought and paid for', status: 'verified', detail: 'Four buyers, real invoices. The unit price has moved from $370 to $800 across them, which is a price model finding its floor.' },
   { id: 'plastic', value: PLASTIC_KG_PER_BED, unit: 'kg per bed', headline: 'Plastic kept out of the dump', status: 'modelled', detail: 'A design and specification figure. Nothing has been across a weighbridge. It matters here because it lowers the landed cost of a bed and keeps the feedstock local.' },
-  { id: 'fte', value: 2, unit: 'FTE', headline: 'Paid roles', status: 'verified', detail: 'Two and we say two. Employment hours beyond that are modelled and community employment share is an estimate, so neither is presented as a count.' },
   { id: 'owned', value: 0, unit: 'sites', headline: 'Community-owned production sites', status: 'future', detail: 'Zero and this is the number we print against ourselves. Ownership is a pathway. The containerised plant is built to move to community operation and then ownership and Oonchiumpa now hold a four-year federal offer for the Alice Springs facility, dated 12 August 2026 and not yet executed.' },
 ];
 
@@ -392,7 +392,7 @@ export const ALIGNMENT: readonly Alignment[] = [
     id: 'capacity',
     snowSays: 'Invest in educational training and resources, building greater capacity, knowledge and ownership of RHD within communities. Education enables communities to set self-determined priorities.',
     snowSource: 'RHD Statement of Intent, principle four',
-    goodsHas: 'Training sits inside the price of a bed by design, alongside customer connections, contracts, logistics and product development. Real instances: thirty young people on the Palm Island build, Ebony and Jahvan Oui hosted at the Sydney factory, Katrina Bloomfield doing train-the-trainer. There is no curriculum, no completion count and no accreditation. This is the weakest of the strong areas and the most fixable.',
+    goodsHas: 'Training sits inside the price of a bed by design, alongside customer connections, contracts, logistics and product development. Real instances: thirty young people on the Palm Island build, Eb and Jahvan Oui hosted at the Sydney factory, Katrina Bloomfield doing train-the-trainer. There is no curriculum, no completion count and no accreditation. This is the weakest of the strong areas and the most fixable.',
     strength: 'partial',
   },
   {
@@ -475,9 +475,9 @@ export const THE_NEXT_TEN = {
   body:
     'Philanthropy carried the whole of the first eleven months and it still carries most of what this work costs. The buying is what has to take its place, until the beds pay for the making and the making is not ours to hold.',
   holder:
-    'What holds it while that happens is the charity, and the charity is a board of Indigenous directors with the community organisations themselves behind it. That is the difference between an enterprise that is transferred and one that is only talked about being transferred.',
+    'What holds it while that happens is the charity, and the charity is a board of Indigenous directors with the community organisations themselves behind it. A transfer needs somewhere to transfer to, and the board and the members are that.',
   forward:
-    'What changes the shape is communities adding their own facilities. Each one makes beds locally, sells them locally and keeps what it makes, so the line that matters is not our capacity but theirs.',
+    'What changes the shape is communities adding their own facilities. Each one makes beds locally, sells them locally and keeps what it makes, so the line that matters is their capacity, and it is drawn at the end of this report.',
 } as const;
 
 /**
@@ -935,6 +935,116 @@ export const WALLS: readonly WallSet[] = [
       { file: 'family-dogs-new-bed.jpg', alt: 'Family and dogs on a new bed' },
       { file: 'kids-unroll-topper.jpg', alt: 'Kids unrolling a topper' },
     ],
+  },
+];
+
+/**
+ * THE BOARD AND THE MEMBERS, as the way the whole thing is held.
+ *
+ * Ben, 18 September 2026: the model turns into a way to support Indigenous communities and
+ * organisations through the board and a charity with members. A member has access to
+ * compounding support (marketing, storytelling, reporting, case studies, shared story) and
+ * that support grows the members, which opens the next product, the next machine, and A
+ * Curious Tractor as a shared research and development service, until there is a large group
+ * of on-Country production using its own plastic and paying its own people.
+ *
+ * Membership is PROPOSED. The board line, the membership lines and the state come from
+ * organisation.ts, so the guard that keeps every surface saying "proposed" holds here too.
+ * The fridge is in the product plan (products.ts: the same facility can press machine and
+ * fridge components with different moulds) and nowhere else, so it is "after it", never a date.
+ */
+export const MEMBERS_MODEL = {
+  label: 'The board and the members',
+  heading: 'A charity with Indigenous directors, the community organisations proposed as its members, and a company behind it doing the research.',
+  board:
+    'Goods on Country Ltd is the charity. Three Indigenous directors hold the purpose, the assets and the decisions. The charity exists for the community organisations: the ones holding the beds, running the build days and, from the first facility onwards, doing the making.',
+  members: [ORGANISATION.membership.line, ORGANISATION.membership.why].join(' '),
+  gives: {
+    title: 'What a member brings',
+    items: [
+      'The making, on Country. A facility run where it stands, pressing the community\u2019s own plastic into beds.',
+      'The trade. It sells the beds, keeps the whole $750 and decides what comes next.',
+      'The jobs. Build days and production runs are paid local work.',
+      'The decisions. How beds are used, who is paid and what is made next.',
+    ],
+  },
+  gets: {
+    title: 'What a member gets',
+    items: [
+      'Research and development from A Curious Tractor: the bed, the washing machine, the fridge after it, and every improvement to the press and the moulds.',
+      'The story, told with consent. The Empathy Ledger, the films and the case studies, from people who have cleared their words for use outside the organisation. That is what brings the next buyer and the next funder.',
+      'Reporting a funder can check. Every bed in a register, and a page like this one.',
+      'The market. Goods on Country carries the brand, the buyers and the funder relationships, so a member sells into a market it did not have to build.',
+    ],
+  },
+  compounding:
+    'Each member adds to all four areas at once: beds off floors, plastic out of the tip, paid work, and an enterprise that keeps what it earns. Each one also adds to the shared story, and the shared story is what brings the next member.',
+} as const;
+
+/**
+ * THE BUYERS, AND WHO THEY PAY.
+ *
+ * Ben, 18 September 2026: the work identifying buyers and the people who will keep buying is
+ * part of the same idea. The customers exist, two came back, and the public ones can buy
+ * without a tender. Every one of those rules tests the organisation that sells, which is why
+ * the community organisation is the seller and the buyer pays it, never Goods.
+ *
+ * Ben, later the same day: mainly statistics, and the value that shows the scale. Counts come
+ * from PAID_INVOICES, the lanes from procurement-model.ts JURISDICTIONS, and the remote housing
+ * money is typed here with its source, so a threshold or a count changes in one place.
+ */
+export const BUYERS_MODEL = {
+  label: 'The buyers',
+  heading: 'The buyers already exist, and they pay the community organisation.',
+  rows: {
+    bought: 'Bought and paid for',
+    lanes: 'What a government buyer can buy from an Aboriginal organisation without a tender',
+    housing: 'What is already being spent on remote housing',
+  },
+  lanesExplainer:
+    'Each state and territory sets a dollar limit under which a government agency can buy straight from an Aboriginal business or council, with no tender. At $750 a bed, the limits are worth this many beds in a single purchase.',
+  /** Plain words for each lane, from the rules in procurement-model.ts. The bed count prints from the same module. */
+  laneNotes: {
+    nt: 'Northern Territory. Since October 2025 an agency can buy direct from a Territory business up to $50,000.',
+    qld: 'Queensland. A state agency can engage an Aboriginal Shire Council direct up to $500,000, with no quotes.',
+    sa: 'South Australia. A public authority can engage an Aboriginal business direct up to $550,000. The rule names the APY Lands.',
+    wa: 'Western Australia. The competitive rules do not apply at all when an agency buys from a Registered Aboriginal Business.',
+  } as Readonly<Record<string, string>>,
+  /**
+   * From procurement-model.ts, researched 16 September 2026: the NT note, the header on the
+   * $818M of housing-agency contracts, and the Queensland head maintenance contract.
+   */
+  housing: [
+    { value: '$4 billion', label: 'Northern Territory remote housing over ten years, 343 homes still to be tendered' },
+    { value: '1,508', label: 'bedrooms already built and empty in the Territory' },
+    { value: '$818M', label: 'through Territory housing agencies, nine furniture contracts, all of them office chairs' },
+    { value: '$1.012 billion', label: 'Queensland maintenance contract to 2028, about 35,000 properties' },
+  ],
+} as const;
+
+/**
+ * WHAT A MEMBER GROWS INTO: its own community first, then the skills, then it sells outwards.
+ *
+ * Ben, 18 September 2026: build the best products, better than what is coming into community
+ * now, build community enterprise and skill and talent, and then start to sell out of
+ * community once they have built the environment to supply their own community with the best
+ * products. Three stages, each with its state, and the third is the aim with nobody there yet.
+ */
+export const GROWS_INTO: readonly { stage: string; state: 'now' | 'started' | 'aim'; body: string }[] = [
+  {
+    stage: 'Its own community first',
+    state: 'now',
+    body: 'The best products for the place, designed there. A bed that lasts and a machine that can be repaired, where what comes in now is trucked in, breaks and goes to the tip. One Alice Springs supplier sells about three million dollars of washing machines a year into remote communities and most are in a tip within months.',
+  },
+  {
+    stage: 'The skills and the enterprise',
+    state: 'started',
+    body: 'Build days, production runs and train the trainer. Katrina Bloomfield has done it at the Queensland facility. Jahvan and Eb Oui learnt the production side at the Sydney factory. Forty beds were built at Gamardi by young people from Maningrida.',
+  },
+  {
+    stage: 'Then it sells out of community',
+    state: 'aim',
+    body: 'Once its own community has what it needs, the organisation sells to the next community, to the housing bodies and to anyone who wants the product.',
   },
 ];
 

@@ -8,11 +8,16 @@ import { getPartnerDashboard } from '@/lib/data/partner-dashboards';
 import { getStorytellerBySlug } from '@/lib/data/storyteller-registry';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import { ORGANISATION } from '@/lib/data/organisation';
+import { REMOTE_PEOPLE, REMOTE_PLACES } from '@/lib/data/remote-communities';
+import { JURISDICTIONS } from '@/lib/data/procurement-model';
+import { MadeWithCommunity } from '@/components/pitch/made-with-community';
+import { contributionsConfirmed, listeningPlaces, listeningVoices } from '@/lib/data/community-contributions';
+import { liveCommunityLocations } from '@/lib/field-notes/resolve-live-map';
 import { goodsBoard } from '@/lib/data/goods-board';
 import {
   ALIGNMENT, BECAUSE_OF, BUYER_TOTALS, BUYERS, DEMAND_GAPS, FILMS, heroFrames, MAP_PLACES,
   COMMUNITY_MODEL, MONEY_EVENTS, MONTHS_BEFORE_FIRST_SALE, NOT_FINISHED, OONCHIUMPA_NEXT,
-  OWNERSHIP_VOICES, THEMES, THE_NEXT_TEN, TRADE_BY_YEAR,
+  BUYERS_MODEL, GROWS_INTO, MEMBERS_MODEL, OWNERSHIP_VOICES, THEMES, THE_NEXT_TEN, TRADE_BY_YEAR,
   PLACE_BEATS, PRICE_LADDER,
   NORM_MONTHS, SNOW_MONEY, THE_ARC, THE_LETTER, TOGETHER, WASHER_FLEET,
   WALLS,
@@ -20,8 +25,6 @@ import {
 } from '@/lib/data/snow-partnership';
 import { snowHeroFrames, snowTaggedGroup } from '@/lib/data/snow-photos';
 import { withCaptions, withGroupCaptions, taggedPhotos } from '@/lib/data/image-captions';
-import { GrowthOverTime } from '@/components/partners/growth-over-time';
-import { ImpactModel } from '@/components/partners/impact-model';
 import { ChapterRail } from '@/components/pitch/chapter-rail';
 import { CountUp } from '@/components/pitch/count-up';
 import { TogetherTimeline } from '@/components/partners/together-timeline';
@@ -30,9 +33,12 @@ import { FilmGallery, type GalleryFilm } from '@/components/partners/film-galler
 import { StoryHero } from '@/components/partners/story-hero';
 import { PlaceFilms, type PlaceBeat } from '@/components/partners/place-films';
 import { MoneyLedger } from '@/components/partners/money-ledger';
-import { PAID_INVOICES } from '@/lib/data/paid-trade';
+import { PAID_INVOICES, PAID_INVOICE_INCL_GST_AUD } from '@/lib/data/paid-trade';
 import { ModelLoopBuild } from '@/components/pitch/model-loop-build';
-import { TenYearSlider } from '@/components/pitch/ten-year-slider';
+import { TenYearModel } from '@/components/partners/ten-year-model';
+import { MembersFlow } from '@/components/partners/members-flow';
+import { PitchMenu } from '@/components/pitch/pitch-menu';
+import { SNOW_CHAPTERS, SNOW_MENU_TILES } from '@/lib/data/snow-chapters';
 import { LOOP_ARCS, LOOP_COUNTS, LOOP_STATIONS, LOOP_STEPS } from '@/lib/data/model-walkthrough';
 import { FLOWS, LOGOS, PANELS, STATIONS } from '@/lib/data/model-placemat';
 import { renderPlacematSvg, type PanelId } from '@/lib/model/placemat-svg';
@@ -94,19 +100,8 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-const CHAPTERS = [
-  { id: 'ch-making', label: 'What we made' },
-  { id: 'ch-first', label: 'Snow went first' },
-  { id: 'ch-board', label: 'Who holds it' },
-  { id: 'ch-alice', label: 'Alice Springs' },
-  { id: 'ch-buyers', label: 'Who is buying' },
-  { id: 'ch-washers', label: 'The machines' },
-  { id: 'ch-films', label: 'In their own words' },
-  { id: 'ch-archive', label: 'The archive' },
-  { id: 'ch-together', label: 'What we have done' },
-  { id: 'ch-because', label: 'What Goods is now' },
-  { id: 'ch-themes', label: 'What this is, and what it is not' },
-] as const;
+/** The chapters live in snow-chapters.ts now, so the menu, the rail and the headers read one list. */
+const CHAPTERS = SNOW_CHAPTERS;
 
 /**
  * A chapter's number and label come from CHAPTERS by id, never from the call site. They used to
@@ -118,6 +113,8 @@ const CH = new Map<string, { number: string; label: string }>(
   CHAPTERS.map((c, i) => [c.id as string, { number: String(i + 1).padStart(2, '0'), label: c.label as string }]),
 );
 const chapterNumber = (id: string) => CH.get(id)?.number ?? '';
+/** Today's figure for an area, from the same THEMES the impact model draws, so the closing cannot drift from it. */
+const themeFigure = (id: string) => THEMES.find((t) => t.id === id)?.figure.value ?? '';
 
 /** One entry per photograph, first mention wins. Keyed on src, which is what React keys on. */
 function dedupeBySrc<T extends { src: string }>(photos: T[]): T[] {
@@ -206,12 +203,14 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
   if (slug !== 'snow') notFound();
   const partner = getPartnerDashboard(slug);
   if (!partner) notFound();
+  // For the listening map that closes the page, the same live places the pitch map reads.
+  const locations = await liveCommunityLocations();
 
   const catalyse = quote('georgina-byron', 'funder', 'we can catalyse others to do their bit');
   const backing = quote('georgina-byron', 'funder', "It's also about backing really great people");
   const withNotFor = quote('georgina-byron', 'funder', "It's not a for, it's a with");
   const healthyHomes = quote('georgina-byron', 'funder', 'Healthy homes is the start of everything');
-  const smallStart = quote('georgina-byron', 'funder', 'you start small and then you realize');
+  const smallStart = quote('georgina-byron', 'funder', 'you start small and then you realise');
   const vicki = quote('vicki-wade', 'external', 'Community leadership, community ownership');
   const karen = quote('karen-liddle', 'external', 'start your own business');
   /** Cleared 17 September. Each sits where it is about something. */
@@ -219,6 +218,8 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
   const recycled = quote('dianne-stokes', 'external', 'coming out of recycled');
   const blessings = quote('dianne-stokes', 'external', 'shared their blessings with us');
   const documenting = quote('norman-frank', 'external', 'document everything now while we can');
+  /** Kristy on self-determination, under the members box. Not one of the three the board chapter takes. */
+  const kristyLeads = quote('kristy-bloomfield', 'external', 'We know what we wanna do on our land');
   /**
    * The cleared voices who talk about the machine itself. Norman Frank has no quote about his
    * washing machine in the registry and no photograph with it, so he is not here. What is on the
@@ -395,6 +396,14 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
   return (
     <main style={{ backgroundColor: CREAM }}>
       <ChapterRail chapters={CHAPTERS.map((c) => ({ ...c, number: chapterNumber(c.id) }))} />
+      {/*
+        * Ben, 18 September: the pitch's chapter menu here too. One button top right naming the
+        * chapter you are in; it opens the contact sheet of photo tiles. Same component as /pitch.
+        */}
+      <PitchMenu
+        title="Snow and Goods"
+        chapters={CHAPTERS.map((c) => ({ id: c.id, label: c.label, number: chapterNumber(c.id), ...SNOW_MENU_TILES[c.id] }))}
+      />
 
       <StoryHero
         frames={heroWithCaptions}
@@ -594,15 +603,10 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
               <p className="mt-3 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{THE_NEXT_TEN.forward}</p>
 
               {/*
-                * The deck's own ten-year model, pushable. Ben, 17 September: show where this can
-                * go as communities add facilities locally, how many beds get made in community,
-                * and give it a slider. It recomputes from ten-year-scale.ts, the module the deck
-                * slide prints from, and it carries its own claim ceiling, which is why the line
-                * above hands over to it rather than saying there is no ten-year number.
+                * The ten-year model used to sit here with a slider. Ben, 17 September, later the
+                * same day: the last part of the report is where the ten years belong, drawn on the
+                * base that holds them up. The forward line above points there now.
                 */}
-              <div className="mt-8 border-t pt-8" style={{ borderColor: RULE }}>
-                <TenYearSlider showCeiling={false} />
-              </div>
             </div>
             
 
@@ -771,21 +775,9 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         )}
       </Chapter>
 
-      {/*
-        * Full bleed, outside the chapter column. ModelLoopBuild pins its own stage to the
-        * viewport and scales the ring to min(width, height) of its box, so a max-width column
-        * with the component's own lg:pr-48 rail clearance inside it left the ring at a fifth of
-        * its size (Ben, 17 September: "why is it so tiny?").
-        */}
-      <ModelLoopBuild
-        steps={LOOP_STEPS} stations={LOOP_STATIONS} arcs={LOOP_ARCS} counts={LOOP_COUNTS}
-        sheetSvg={placematSvg} items={placematItems} arrows={placematArrows}
-      />
-
       <Chapter
         id="ch-alice"
         title="Oonchiumpa operate it, employ young people and keep leading that place"
-        lead="The Indigenous ownership story with a date attached. It is also the thing Snow is being invited into."
       >
         <div className="rounded-lg p-6 sm:p-8" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
           <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>
@@ -1033,6 +1025,21 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         </div>
       </Chapter>
 
+      {/*
+        * THE WHOLE MODEL, as its own chapter. Ben, 18 September: the model has to be findable in
+        * the menu, so it carries an id and sits between the products and the voices, after the
+        * machines and before the films. Full bleed, outside the chapter column: ModelLoopBuild
+        * pins its own stage to the viewport and scales the ring to min(width, height) of its
+        * box, so a max-width column left the ring at a fifth of its size (Ben, 17 September:
+        * "why is it so tiny?").
+        */}
+      <div id="ch-model" className="scroll-mt-24">
+        <ModelLoopBuild
+          steps={LOOP_STEPS} stations={LOOP_STATIONS} arcs={LOOP_ARCS} counts={LOOP_COUNTS}
+          sheetSvg={placematSvg} items={placematItems} arrows={placematArrows}
+        />
+      </div>
+
       <Chapter
         id="ch-films"
         title="The films"
@@ -1066,7 +1073,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       <Chapter
         id="ch-because"
         title="What the money turned into"
-        lead="Counts where we have counts and labels where we do not. The last number on this list is zero and it is the one we print against ourselves."
+        lead="Beds in houses, machines in communities, people who said yes to their words being used, and the trade that followed. One of these is still zero."
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {BECAUSE_OF.map((b) => (
@@ -1080,16 +1087,209 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         {withNotFor && <Pull v={withNotFor} />}
       </Chapter>
 
+      {/*
+        * THE LAST DRAWING. Ben, 17 September: the final part of the report has to carry the
+        * impact over ten years and how Indigenous ownership and leadership hold it up, through
+        * the board, the members, the community enterprises and the making on Country. Four
+        * boxes with their ten-year totals and today's figure under each, the years under them,
+        * and under the years a base in four layers. Two of the layers are in place and two are
+        * dashed, and the dashed two are what the ten years need.
+        *
+        * Ben, 18 September: the two-year chapter that sat before this (the invoice step chart
+        * and the four areas on a split base) came out. This chapter carries today's figures in
+        * its boxes, so the page said the same thing twice. Both drawings are still in
+        * components/partners if it is ever wanted back.
+        */}
       <Chapter
-        id="ch-themes"
-        title="What two years of it looks like"
-        lead="Every step below is an invoice, and the buyers are an Aboriginal charitable trust, an Aboriginal community controlled health service and a homelands school company. Two of them came back."
+        id="ch-ten"
+        title="What ten years of it could look like"
+        lead="If two communities a year take a facility, run it where they stand and sell what it makes. The Goods on Country facility stays the size it is and the growth is theirs. A scale study."
       >
-        <GrowthOverTime />
+        <TenYearModel
+          today={{
+            health: `${themeFigure('health')} off the floor today`,
+            plastic: `${themeFigure('plastic')} kg today`,
+            work: `${themeFigure('employment')} young people paid today`,
+            enterprise: `${new Set(PAID_INVOICES.map((i) => i.buyer)).size} organisations buying today`,
+          }}
+        />
 
-        <div className="mt-16">
-          <ImpactModel themes={THEMES} />
+        {/*
+          * Ben, 18 September: his own frame here, between the drawing and the potential. Canon
+          * EOS 6D, 3 April 2025, 19:11, the same evening as the two Tennant Creek frames already
+          * in the repo (waterhole-group 11:10, wilya-janta-golden-hour 19:59). Not used elsewhere.
+          */}
+        <figure className="m-0 mt-14">
+          <Image
+            src="/images/community/tennant-creek/bed-on-the-lawn.jpg"
+            alt="Children around a Basket Bed being built on a lawn at Tennant Creek, late afternoon"
+            width={2000}
+            height={1333}
+            sizes="(min-width: 896px) 56rem, 100vw"
+            className="aspect-[3/2] w-full rounded-lg object-cover"
+          />
+          <figcaption className="mt-3 text-xs" style={{ color: MUTED }}>Tennant Creek, Warumungu Country, April 2025. A bed built on the lawn.</figcaption>
+        </figure>
+
+        {/*
+          * THE POTENTIAL. Ben, 18 September: directly under the ten-year drawing, the number of remote
+          * communities we have counted, then the total population. Our own count of places from the gazetteer,
+          * the ABS for the people, and what is served today beside them so the distance shows.
+          * It measures the place and never demand: remote-communities.ts refuses to derive a bed
+          * from a population and its guard checks that.
+          */}
+        <div className="mt-16 border-t pt-12" style={{ borderColor: RULE }}>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>The potential</p>
+          <div className="mt-8 grid gap-8 sm:grid-cols-3">
+            <div>
+              <p className="font-display text-[2.75rem] leading-none tabular-nums" style={{ color: CHARCOAL }}>{REMOTE_PLACES.total.toLocaleString('en-AU')}</p>
+              <p className="mt-3 text-sm font-semibold leading-snug" style={{ color: CHARCOAL }}>remote and very remote places</p>
+              <p className="mt-2 text-xs leading-relaxed" style={{ color: MUTED_DEEP }}>
+                {REMOTE_PLACES.byKind.filter((k) => k.kind !== 'other').map((k) => `${k.count.toLocaleString('en-AU')} ${k.kind}`).join(', ')}.
+                {' '}{REMOTE_PLACES.byState.map((st) => `${st.name} ${st.places.toLocaleString('en-AU')}`).join(', ')}.
+              </p>
+            </div>
+            <div>
+              <p className="font-display text-[2.75rem] leading-none tabular-nums" style={{ color: CHARCOAL }}>{REMOTE_PEOPLE.estimate.remoteAndVeryRemote.toLocaleString('en-AU')}</p>
+              <p className="mt-3 text-sm font-semibold leading-snug" style={{ color: CHARCOAL }}>Aboriginal and Torres Strait Islander people living in them</p>
+              <p className="mt-2 text-xs leading-relaxed" style={{ color: MUTED_DEEP }}>
+                ABS estimate at 30 June 2021: {REMOTE_PEOPLE.estimate.remote.toLocaleString('en-AU')} in remote Australia and {REMOTE_PEOPLE.estimate.veryRemote.toLocaleString('en-AU')} in very remote Australia, {REMOTE_PEOPLE.estimate.remoteAndVeryRemotePct.toFixed(1)} per cent of all Aboriginal and Torres Strait Islander Australians.
+              </p>
+            </div>
+            <div>
+              <p className="font-display text-[2.75rem] leading-none tabular-nums" style={{ color: RUST }}>{CANONICAL_ASSETS.communitiesServed}</p>
+              <p className="mt-3 text-sm font-semibold leading-snug" style={{ color: CHARCOAL }}>communities served today</p>
+              <p className="mt-2 text-xs leading-relaxed" style={{ color: MUTED_DEEP }}>
+                {CANONICAL_ASSETS.bedsDeployed} beds and {CANONICAL_ASSETS.washersInCommunity} machines in the register. Two facilities a year is the working assumption and it reaches 20 of the places above. The pace is set by how many organisations want in, and how many buyers keep coming back.
+              </p>
+            </div>
+          </div>
         </div>
+
+        <div className="mt-16 border-t pt-12" style={{ borderColor: RULE }}>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>{MEMBERS_MODEL.label}</p>
+          <p className="mt-4 max-w-[30ch] font-display text-[1.5rem] leading-[1.25] sm:text-[1.75rem]" style={{ color: CHARCOAL }}>
+            {MEMBERS_MODEL.heading}
+          </p>
+          <p className="mt-6 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}b8` }}>{MEMBERS_MODEL.board}</p>
+          <p className="mt-4 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}b8` }}>{MEMBERS_MODEL.members}</p>
+
+          {/* The one drawing for this section: the flow. See members-flow.tsx. */}
+          <div className="mt-12">
+            <MembersFlow />
+          </div>
+
+          <div className="mt-10 grid gap-8 sm:grid-cols-2">
+            {[MEMBERS_MODEL.gives, MEMBERS_MODEL.gets].map((col) => (
+              <div key={col.title}>
+                <p className="font-display text-lg" style={{ color: CHARCOAL }}>{col.title}</p>
+                <ul className="m-0 mt-4 list-none p-0">
+                  {col.items.map((item) => (
+                    <li key={item} className="border-t py-3 text-[0.9375rem] leading-[1.65]" style={{ borderColor: RULE, color: `${CHARCOAL}b8` }}>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 rounded-lg p-6 sm:p-8" style={{ backgroundColor: RUST_WASH, borderLeft: `4px solid ${RUST}` }}>
+            <p className="m-0 max-w-[40ch] font-display text-[1.375rem] leading-[1.4] sm:text-[1.625rem]" style={{ color: CHARCOAL }}>
+              {MEMBERS_MODEL.compounding}
+            </p>
+          </div>
+          {kristyLeads && (
+            <Pull
+              v={kristyLeads}
+              note="Kristy is talking about Loves Creek and the 1994 land claim, enterprise led by Traditional Owners on their own land."
+            />
+          )}
+        </div>
+
+        {/*
+          * WHAT A MEMBER GROWS INTO. Three stages and their state; the third is the aim and
+          * says nobody is there yet, which is the ceiling on it.
+          */}
+        <div className="mt-16 border-t pt-12" style={{ borderColor: RULE }}>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>What a member grows into</p>
+          <ol className="m-0 mt-8 grid list-none gap-5 p-0 sm:grid-cols-3">
+            {GROWS_INTO.map((g, i) => (
+              <li
+                key={g.stage}
+                className="rounded-lg p-6"
+                style={{ backgroundColor: PANEL, border: g.state === 'aim' ? '1px dashed #C2B6AA' : '1px solid #E8DED4' }}
+              >
+                <div className="flex items-baseline justify-between gap-3">
+                  <span className="font-display text-sm" style={{ color: RUST }}>{String(i + 1).padStart(2, '0')}</span>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: g.state === 'aim' ? MUTED_DEEP : SAGE }}>
+                    {g.state === 'now' ? 'Happens today' : g.state === 'started' ? 'Started' : 'The aim'}
+                  </span>
+                </div>
+                <p className="mt-3 font-display text-lg leading-[1.25]" style={{ color: CHARCOAL }}>{g.stage}</p>
+                <p className="mt-2.5 text-[0.9375rem] leading-[1.7]" style={{ color: `${CHARCOAL}b8` }}>{g.body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        {/*
+          * THE BUYERS, as figures. Ben, 18 September: mainly statistics, and the value that shows
+          * the scale. Three rows: what has been bought (from the invoices), what a public buyer
+          * can buy without a tender (from procurement-model.ts), and what is already being spent
+          * on remote housing. The point is the last sentence: every rule tests the seller, so
+          * the community organisation sells.
+          */}
+        <div className="mt-16 border-t pt-12" style={{ borderColor: RULE }}>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>{BUYERS_MODEL.label}</p>
+          <p className="mt-4 max-w-[30ch] font-display text-[1.5rem] leading-[1.25] sm:text-[1.75rem]" style={{ color: CHARCOAL }}>
+            {BUYERS_MODEL.heading}
+          </p>
+          {(() => {
+            const buyers = new Set(PAID_INVOICES.map((i) => i.buyer)).size;
+            const beds = PAID_INVOICES.reduce((n, i) => n + i.beds, 0);
+            const prices = PAID_INVOICES.map((i) => i.bedUnitPriceAud);
+            const repeat = PAID_INVOICES.length - buyers;
+            const whole = (n: number) => `$${Math.round(n).toLocaleString('en-AU')}`;
+            const lanes = ['nt', 'qld', 'sa'].map((id) => JURISDICTIONS.find((j) => j.id === id)).filter((j) => j && j.directPurchase);
+            const Stat = ({ v, l, rust = false }: { v: string; l: string; rust?: boolean }) => (
+              <div>
+                <p className="font-display text-[2rem] leading-none tabular-nums" style={{ color: rust ? RUST : CHARCOAL }}>{v}</p>
+                <p className="mt-2 text-xs leading-relaxed" style={{ color: MUTED_DEEP }}>{l}</p>
+              </div>
+            );
+            return (
+              <>
+                <p className="mt-10 text-[10px] font-semibold uppercase tracking-[0.14em]" style={{ color: MUTED }}>{BUYERS_MODEL.rows.bought}</p>
+                <div className="mt-4 grid grid-cols-2 gap-6 sm:grid-cols-5">
+                  <Stat v={String(buyers)} l="organisations" />
+                  <Stat v={String(beds)} l="beds" />
+                  <Stat v={whole(PAID_INVOICE_INCL_GST_AUD)} l="paid, including GST" />
+                  <Stat v={String(PAID_INVOICES.length)} l={`invoices, ${repeat === 1 ? 'one buyer came back' : `${repeat} came back`}`} />
+                  <Stat v={`$${Math.min(...prices)} to $${Math.max(...prices)}`} l="a bed, first invoice to latest" />
+                </div>
+
+                <p className="mt-10 text-[10px] font-semibold uppercase tracking-[0.14em]" style={{ color: MUTED }}>{BUYERS_MODEL.rows.lanes}</p>
+                <p className="mt-3 max-w-[62ch] text-[0.9375rem] leading-[1.7]" style={{ color: `${CHARCOAL}b8` }}>{BUYERS_MODEL.lanesExplainer}</p>
+                <div className="mt-6 grid grid-cols-2 gap-6 sm:grid-cols-4">
+                  {lanes.map((j) => j && j.directPurchase && (
+                    <Stat key={j.id} v={`${j.directPurchase.beds} beds`} l={BUYERS_MODEL.laneNotes[j.id] ?? j.name} />
+                  ))}
+                  <Stat v="No cap" l={BUYERS_MODEL.laneNotes.wa} />
+                </div>
+
+                <p className="mt-10 text-[10px] font-semibold uppercase tracking-[0.14em]" style={{ color: MUTED }}>{BUYERS_MODEL.rows.housing}</p>
+                <div className="mt-4 grid grid-cols-2 gap-6 sm:grid-cols-4">
+                  {BUYERS_MODEL.housing.map((h) => (
+                    <Stat key={h.value} v={h.value} l={h.label} rust={h.value === '$818M'} />
+                  ))}
+                </div>
+
+              </>
+            );
+          })()}
+        </div>
+
 
       </Chapter>
 
@@ -1131,6 +1331,18 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           </div>
         </div>
       )}
+
+      {/*
+        * THE LAST THING ON THE PAGE. Ben, 18 September: under Norm, the listening map from the
+        * pitch, because the best way to end is with voices from the community. Places glow where
+        * people spoke; tap one and it is their words, what that community asked for, and whose
+        * call it is. Same component, same data, same consent gate as /pitch: it renders in
+        * production only while data/community-contributions.json is confirmed.
+        */}
+      {(contributionsConfirmed() || process.env.NODE_ENV !== 'production') && (() => {
+        const voices = listeningVoices();
+        return <MadeWithCommunity outline={outline} places={listeningPlaces(locations, voices)} voices={voices} draft={!contributionsConfirmed()} />;
+      })()}
 
       <footer className="px-5 pb-20 sm:px-8">
         <div className="mx-auto max-w-4xl border-t pt-8" style={{ borderColor: RULE }}>
