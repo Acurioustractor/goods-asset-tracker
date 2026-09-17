@@ -176,7 +176,7 @@ export const curatedQuotes: Record<string, CuratedQuote[]> = {
       context: 'Why Snow backs founders',
     },
     {
-      text: 'So you start small and then you realize that you\'re onto a good thing.',
+      text: 'So you start small and then you realise that you\'re onto a good thing.',
       context: 'How the support grew',
     },
     {

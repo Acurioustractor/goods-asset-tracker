@@ -761,7 +761,7 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         status: 'approved',
       },
       {
-        text: "We made 20 odd beds in aged care ... utilizing the young people of the aged care service ... They were so willing to learn about how these beds came together.",
+        text: "We made 20 odd beds in aged care ... utilising the young people of the aged care service ... They were so willing to learn about how these beds came together.",
         context: "Maningrida delivery: young people building beds for Elders at the aged-care service.",
         status: 'approved',
       },
@@ -1418,7 +1418,7 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         status: 'approved',
       },
       {
-        text: "So you start small and then you realize that you're onto a good thing.",
+        text: "So you start small and then you realise that you're onto a good thing.",
         context: 'How the Snow support grew from the first small grant into ten invoices over three years',
         status: 'approved',
       },

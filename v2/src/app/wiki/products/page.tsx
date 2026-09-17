@@ -202,7 +202,7 @@ export default function ProductsPage() {
                   Washing Machine
                 </h3>
                 <p className="text-neutral-600">
-                  Best for: Communities, organizations. Register interest for
+                  Best for: Communities, organisations. Register interest for
                   prototype testing.
                 </p>
               </div>
@@ -227,7 +227,7 @@ export default function ProductsPage() {
             </h2>
             <p className="text-neutral-300 mb-6 max-w-2xl mx-auto">
               Not sure which product is right for your community or
-              organization? Get in touch and we&apos;ll help you find the best
+              organisation? Get in touch and we&apos;ll help you find the best
               solution.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
