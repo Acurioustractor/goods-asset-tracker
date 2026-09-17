@@ -294,3 +294,7 @@ tools/.gsheet-targets.json
 # Model renders from v2/scripts/render-*.mjs: regenerate, do not commit (whole-model.svg embeds every photograph).
 design/brand/goods-diagrams/models/v2/*.png
 design/brand/goods-diagrams/models/v2/*.svg
+
+# Run artifacts from scripts/repair-media-links.mjs — an operational record of one run,
+# not source. The repair is reproducible from the script itself.
+v2/scripts/.media-links-rollback.json

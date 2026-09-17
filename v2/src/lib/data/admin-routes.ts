@@ -23,6 +23,19 @@ export interface AdminRoute {
   name: string;
   status: RouteStatus;
   note?: string;
+  /**
+   * OFF THE RAIL, STILL IN THE REGISTRY.
+   *
+   * Ben swept the directory on 17 September 2026 and named nineteen entries to remove or merge.
+   * The registry still has to list every page on disk — that is what the guard checks, and a
+   * route nobody has declared is the failure mode it exists to catch. So a swept route stays
+   * declared and stops being a sidebar child: reachable by URL and by cmd-K, absent from the
+   * list you read every day.
+   *
+   * `rail: false` is therefore not "retired". It means the page is a tool you go to on purpose,
+   * not a door you walk past. Deleting a page is a separate decision, made by deleting the page.
+   */
+  rail?: false;
 }
 
 export interface RouteGroup {
@@ -44,13 +57,14 @@ export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
     group: 'Beds',
     routes: [
       { href: '/admin/assets', name: 'The register', status: 'hub', note: 'the source of truth, every bed' },
+      { href: '/admin/products', name: 'Products & Plant', status: 'absorbed', note: 'what we make: the four wikis, each with its register count' },
       { href: '/admin/production', name: 'Production', status: 'absorbed', note: 'shifts, inventory, journal' },
       { href: '/admin/facility', name: 'The facility', status: 'absorbed', note: 'production overview, 8 steps' },
       { href: '/admin/scans', name: 'Scans', status: 'absorbed' },
       { href: '/admin/bed-signals', name: 'Bed signals', status: 'absorbed' },
-      { href: '/admin/bed-preflight', name: 'Trip preflight', status: 'utility' },
-      { href: '/admin/install-bulk', name: 'Bulk install', status: 'utility' },
-      { href: '/admin/install-checklist', name: 'Install checklist', status: 'utility' },
+      { href: '/admin/bed-preflight', name: 'Trip preflight', status: 'utility', rail: false },
+      { href: '/admin/install-bulk', name: 'Bulk install', status: 'utility', rail: false },
+      { href: '/admin/install-checklist', name: 'Install checklist', status: 'utility', rail: false },
     ],
   },
   {
@@ -76,19 +90,19 @@ export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
     group: 'Stories',
     routes: [
       { href: '/admin/voices', name: 'The voice registry', status: 'hub', note: 'who has spoken, and on what terms' },
-      { href: '/admin/consent', name: 'Consent gate', status: 'absorbed', note: 'default-deny worklist' },
-      { href: '/admin/voice-impact', name: 'Voice impact model', status: 'absorbed', note: 'voices and quotes, themes to domains' },
-      { href: '/admin/quote-cards', name: 'Quote cards', status: 'absorbed' },
-      { href: '/admin/field-notes', name: 'Field notes', status: 'absorbed', note: 'trip write-ups' },
-      { href: '/admin/field-notes/library', name: 'Field notes library', status: 'absorbed' },
-      { href: '/admin/el-stories/new', name: 'New Empathy Ledger story', status: 'absorbed' },
-      { href: '/admin/el-storytellers/new', name: 'New Empathy Ledger storyteller', status: 'absorbed' },
-      { href: '/admin/media-library', name: 'Media library', status: 'absorbed', note: 'photos, videos, media_links' },
-      { href: '/admin/media-gaps', name: 'Media gaps', status: 'absorbed' },
-      { href: '/admin/dashboard-images', name: 'Dashboard images', status: 'absorbed' },
-      { href: '/admin/library', name: 'Content library', status: 'absorbed' },
-      { href: '/admin/canon', name: 'Canon board', status: 'absorbed' },
-      { href: '/admin/system-visuals', name: 'Visuals', status: 'absorbed', note: 'diagrams + held assets' },
+      { href: '/admin/consent', name: 'Consent gate', status: 'absorbed', note: 'default-deny worklist', rail: false },
+      { href: '/admin/voice-impact', name: 'Voice impact model', status: 'absorbed', note: 'voices and quotes, themes to domains', rail: false },
+      { href: '/admin/quote-cards', name: 'Quote cards', status: 'absorbed', rail: false },
+      { href: '/admin/field-notes', name: 'Field notes', status: 'absorbed', note: 'trip write-ups', rail: false },
+      { href: '/admin/field-notes/library', name: 'Field notes library', status: 'absorbed', rail: false },
+      { href: '/admin/el-stories/new', name: 'New Empathy Ledger story', status: 'absorbed', rail: false },
+      { href: '/admin/el-storytellers/new', name: 'New Empathy Ledger storyteller', status: 'absorbed', rail: false },
+      { href: '/admin/media-library', name: 'Media', status: 'absorbed', note: 'one wall: photos and videos together, multi-select and tag' },
+      { href: '/admin/media-gaps', name: 'Media gaps', status: 'absorbed', rail: false },
+      { href: '/admin/dashboard-images', name: 'Dashboard images', status: 'absorbed', rail: false },
+      { href: '/admin/library', name: 'Content library', status: 'absorbed', rail: false },
+      { href: '/admin/canon', name: 'Canon board', status: 'absorbed', rail: false },
+      { href: '/admin/system-visuals', name: 'Visuals', status: 'absorbed', note: 'diagrams + held assets', rail: false },
     ],
   },
   {
@@ -98,6 +112,7 @@ export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
       { href: '/admin/orders/launch-checklist', name: 'Order launch checklist', status: 'absorbed' },
       { href: '/admin/requests', name: 'Requests', status: 'absorbed', note: 'register-interest and bulk enquiries' },
       { href: '/admin/procurement', name: 'Procurement desk', status: 'absorbed', note: 'who can buy a bed and how, per jurisdiction' },
+      { href: '/admin/grantscope', name: 'Grantscope', status: 'absorbed', note: '26,785 Goods-scored opportunities + the ABN join into 609k entities' },
     ],
   },
   {
@@ -109,8 +124,8 @@ export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
       { href: '/admin/funders/new', name: 'New funder', status: 'absorbed' },
       { href: '/admin/reports', name: 'Funder reports', status: 'absorbed' },
       { href: '/admin/reports/impact', name: 'Impact reports', status: 'absorbed' },
-      { href: '/admin/pitch-cockpit', name: 'Pitch cockpit', status: 'absorbed', note: 'deck state + playout' },
-      { href: '/admin/deck', name: 'Deck preview', status: 'absorbed' },
+      { href: '/admin/pitch-cockpit', name: 'Pitch cockpit', status: 'absorbed', note: 'deck state + playout', rail: false },
+      { href: '/admin/deck', name: 'Deck preview', status: 'absorbed', rail: false },
     ],
   },
   {
@@ -118,7 +133,7 @@ export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
     routes: [
       { href: '/admin/cost-model', name: 'The cost model', status: 'hub', note: 'v6, honest numbers' },
       { href: '/admin/xero-reconciliation', name: 'Xero reconciliation', status: 'utility' },
-      { href: '/admin/trip-receipts', name: 'Trip receipts', status: 'utility' },
+      { href: '/admin/trip-receipts', name: 'Trip receipts', status: 'utility', rail: false },
     ],
   },
   {

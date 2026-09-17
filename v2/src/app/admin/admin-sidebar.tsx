@@ -77,7 +77,7 @@ type NavGroup = { group: string; items: NavItem[] };
 function childrenOf(href: string) {
   const group = ADMIN_ROUTE_DIRECTORY.find((g) => g.routes.some((r) => r.href === href));
   if (!group) return [];
-  return group.routes.filter((r) => r.href !== href);
+  return group.routes.filter((r) => r.href !== href && r.rail !== false);
 }
 
 const navigation: NavGroup[] = [
