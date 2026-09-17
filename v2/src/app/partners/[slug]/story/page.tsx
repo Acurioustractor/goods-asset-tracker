@@ -19,6 +19,7 @@ import {
   WASHER_NEXT, WASHER_PLACES, WASHER_TELEMETRY,
 } from '@/lib/data/snow-partnership';
 import { snowHeroFrames, snowTaggedGroup } from '@/lib/data/snow-photos';
+import { withCaptions, withGroupCaptions } from '@/lib/data/image-captions';
 import { ChapterRail } from '@/components/pitch/chapter-rail';
 import { CountUp } from '@/components/pitch/count-up';
 import { TogetherTimeline } from '@/components/partners/together-timeline';
@@ -256,13 +257,17 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
 
   // The curated walls, plus anything Ben has tagged use:snow in the Media Room, which is the
   // one-step way to put a new photograph on this page without touching code.
-  const wallGroups = [
+  // The curated walls, plus anything tagged use:snow in the Media Room, and then every
+  // photograph's Notes field laid over the top, so a wrong label is fixed in the admin rather
+  // than in this file.
+  const wallGroups = await withGroupCaptions([
     ...WALLS.map((w) => ({
       label: w.label,
       photos: w.files.map((f) => ({ src: w.dir + f.file, alt: f.alt, caption: f.caption })),
     })),
     ...(snowTaggedGroup() ? [snowTaggedGroup()!] : []),
-  ];
+  ]);
+  const heroWithCaptions = await withCaptions(snowHeroFrames());
   const norman = quote('norman-frank', 'external', "we've got our own ways");
 
   // The arc, as places. Each beat carries its own aerial and its own voice, resolved here so
@@ -304,7 +309,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       <ChapterRail chapters={CHAPTERS.map((c) => ({ ...c, number: chapterNumber(c.id) }))} />
 
       <StoryHero
-        frames={snowHeroFrames()}
+        frames={heroWithCaptions}
         film={{
           src: '/video/maningrida/gamardi-drone.mp4',
           poster: '/video/maningrida/gamardi-drone-poster.jpg',
