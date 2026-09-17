@@ -177,8 +177,9 @@ export const aboriginalTrusts: OutreachTarget[] = [
     id: 'groote-trust', name: 'Groote Eylandt Aboriginal Trust', category: 'aboriginal_trust', status: 'prospect', priority: 'critical',
     communities: ['groote'],
     states: ['NT'], amountSignal: 'High annual giving', instrument: 'grant',
-    nextAction: 'Use Groote demand signal (500 mattresses + 300 washers) for place-based production ask.',
-    grantRelevance: 'Direct community trust. Largest single demand signal in pipeline.',
+    nextAction: 'Re-establish real Groote demand before pitching — the old 500/300 figure is withdrawn as fabricated (Ben, 15 Sep 2026).',
+    grantRelevance: 'Direct community trust, real relationship, no evidenced demand yet.',
+    evidenceTier: 'needs_call',
   },
   {
     id: 'central-aus-trust', name: 'Central Australian Aboriginal Charitable Trust', category: 'aboriginal_trust', status: 'prospect', priority: 'high',

@@ -475,15 +475,17 @@ export interface DemandRecord {
   status: 'approved' | 'requested' | 'ongoing' | 'exploring';
 }
 
+// Ben, 15 Sep 2026: the "who has asked" bed figures previously here (Utopia 150, Maningrida 65,
+// Palm Island 40, Tennant Creek 20+3, Groote 500/300, NPY ongoing) are WITHDRAWN as fabricated
+// demand (memory goods-money-rulings-2026-09-15). This array was still live on public funder
+// pages (funders/[slug]/page.tsx, funders/[slug]/communities/page.tsx) until 17 Sep 2026 —
+// replaced with only real, invoice-evidenced trade. Do not add a modelled/asked figure back in.
 export const documentedDemand: DemandRecord[] = [
-  { id: 'dianne-20', requester: 'Dianne Stokes', request: '20 beds (offered to self-fund)', estimatedValue: 20000, status: 'requested' },
-  { id: 'norman-3', requester: 'Norman Frank', request: '3 beds in maroon', estimatedValue: 3000, status: 'requested' },
-  { id: 'utopia-kids', requester: 'Utopia Homelands', request: 'Beds for every child', estimatedValue: 150000, status: 'requested' },
-  { id: 'homeland-65', requester: 'Homeland Schools Company', request: '65 beds for kids, Maningrida', estimatedValue: 65000, status: 'requested' },
-  { id: 'groote', requester: 'Groote Archipelago (WHSAC)', request: '500 mattresses + 300 washing machines', estimatedValue: 1700000, status: 'exploring' },
-  { id: 'centrecorp', requester: 'Centrecorp Foundation', request: '107 beds APPROVED (Jan 30, 2026): INV-0291 PAID', estimatedValue: 85712, status: 'approved' },
-  { id: 'npy-ongoing', requester: 'NPY Women\'s Council', request: '"Always looking for beds"', estimatedValue: 0, status: 'ongoing' },
-  { id: 'picc-40', requester: 'PICC (Palm Island)', request: '40 beds discussed', estimatedValue: 36000, status: 'requested' },
+  { id: 'centrecorp', requester: 'Centrecorp Foundation', request: '107 beds paid (INV-0291, 30 Jan 2026), delivered; further 107-bed repeat quoted ($80,250)', estimatedValue: 123332, status: 'approved' },
+  { id: 'homeland-school-company', requester: 'Homeland School Company', request: '40 Stretch Beds + 2 washers paid (INV-0303, 18 May 2026)', estimatedValue: 44000, status: 'approved' },
+  { id: 'malala-health', requester: "Mala'la Health Service Aboriginal Corporation", request: '13 Basket Beds paid (INV-0283, 21 Oct 2025)', estimatedValue: 5434, status: 'approved' },
+  { id: 'julalikari-council', requester: 'Julalikari Council Aboriginal Corporation', request: '6 washers paid across two orders (INV-0282, INV-0335)', estimatedValue: 10300, status: 'approved' },
+  { id: 'snow-100', requester: 'Snow Foundation', request: '100 beds paid, grant deployment (INV-0321, May 2026)', estimatedValue: 60000, status: 'approved' },
 ];
 
 export function getDemandTotal() {
@@ -632,7 +634,8 @@ export const communityVoices: CommunityVoice[] = [
   {
     id: 'simone', name: 'Simone Grimmond', community: 'Groote Archipelago', state: 'NT',
     quotes: ['We are on an island — literally. Therefore anything we purchase is so much more expensive due to freight.'],
-    context: 'Scale of need: 500 mattresses, 300 washing machines from single community.',
+    // "500 mattresses, 300 washing machines" figure withdrawn 15 Sep 2026 as fabricated demand.
+    context: 'Freight cost is the barrier she named. Real demand not yet re-established.',
   },
 ];
 
