@@ -12,7 +12,7 @@ import { goodsBoard } from '@/lib/data/goods-board';
 import {
   ALIGNMENT, BECAUSE_OF, BUYER_TOTALS, BUYERS, DEMAND_GAPS, FILMS, heroFrames, MAP_PLACES,
   COMMUNITY_MODEL, MONEY_EVENTS, MONTHS_BEFORE_FIRST_SALE, NOT_FINISHED, OONCHIUMPA_NEXT,
-  OWNERSHIP_VOICES, PROGRESS_BRIDGE, THEMES, THE_NEXT_TEN, TRADE_BY_YEAR,
+  OWNERSHIP_VOICES, THEMES, THE_NEXT_TEN, TRADE_BY_YEAR,
   PLACE_BEATS, PRICE_LADDER,
   NORM_MONTHS, SNOW_MONEY, THE_ARC, THE_LETTER, TOGETHER, WASHER_FLEET,
   WALLS,
@@ -627,31 +627,11 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             </div>
 
 
-            {/*
-              * THE HINGE INTO CHAPTER THREE. Ben, 17 September: think about progress, then the
-              * way we are finding more buyers, and let that lead into the charity, its Indigenous
-              * governance and what that governance is for.
-              */}
-            <div className="mt-12 rounded-lg p-6 sm:p-8" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4', borderLeft: `4px solid ${RUST}` }}>
-              <p className="font-display text-xl leading-snug sm:text-2xl" style={{ color: CHARCOAL }}>{PROGRESS_BRIDGE.heading}</p>
-              <p className="mt-4 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{PROGRESS_BRIDGE.progress}</p>
-              <p className="mt-3 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{PROGRESS_BRIDGE.buyers}</p>
-              <p className="mt-3 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{PROGRESS_BRIDGE.price}</p>
-              <p className="mt-6 max-w-[62ch] border-t pt-5 text-base leading-[1.75]" style={{ borderColor: RULE, color: `${CHARCOAL}cc` }}>
-                {PROGRESS_BRIDGE.charity}
-              </p>
-              <p className="mt-3 text-sm" style={{ color: MUTED }}>{PROGRESS_BRIDGE.forward}</p>
-            </div>
-
             {/* catalyse now opens the report in the hero, so the money chapter does not repeat it. */}
             <div className="mt-12 grid gap-8 sm:grid-cols-2">
               {backing && <Pull v={backing} flush />}
               {blessings && (
-                <Pull
-                  v={blessings}
-                  flush
-                  note="Dianne is talking about Ben and Nic, on the day the washing machine she named arrived."
-                />
+                <Pull v={blessings} flush />
               )}
             </div>
           </div>
@@ -661,7 +641,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       <Chapter
         id="ch-board"
         title={ORGANISATION.boardLine}
-        lead="Snow said in November 2025 that all future grants would require First Nations leadership and that every partner would be reviewed. This is our answer and it was underway before the question."
+        lead="Snow said in November 2025 that all future grants would require First Nations leadership and that every partner would be reviewed. These are the three directors."
       >
         <div className="grid gap-5 sm:grid-cols-3">
           {goodsBoard.map((d) => (
