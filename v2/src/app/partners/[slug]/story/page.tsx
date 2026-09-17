@@ -300,8 +300,8 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
     out.forEach((p) => spent.add(p.src));
     return out;
   };
-  // The top of the page: starred first, and they are already sorted best-first.
-  const snowTopPhotos = take(8, (p) => p.starred);
+  // The top of the page: the starred ones, then anything else captioned, best first.
+  const snowTopPhotos = [...take(12, (p) => p.starred), ...take(6, (p) => !!p.caption)];
   // Each stop on the road takes the photographs carrying its own place.
   const snowByBeat = new Map(
     PLACE_BEATS.map((b) => [b.id, take(12, (p) => p.place === b.id)] as const),
@@ -339,9 +339,16 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
     // seed file the line above reads. Grouped by place, and only what nothing else took.
     ...galleryGroups.filter((g) => !wallLabels.has(g.label)),
   ]);
+  /*
+   * THE STRIP AT THE TOP LEADS WITH WHAT WAS TAGGED FOR SNOW.
+   *
+   * It used to open with the hard-coded wall and append the tagged photographs after it, so the
+   * first thing Snow saw was whatever was written into the file months ago rather than the
+   * photographs chosen for them. Tagged first, curated after, nothing twice.
+   */
   const heroWithCaptions = await withCaptions([
-    ...snowHeroFrames(),
     ...snowTopPhotos.map((p) => ({ src: p.src, alt: p.alt, caption: p.caption ?? p.alt })),
+    ...snowHeroFrames(),
   ]);
   const norman = quote('norman-frank', 'external', "we've got our own ways");
 
