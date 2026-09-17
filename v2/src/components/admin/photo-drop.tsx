@@ -92,31 +92,43 @@ export function PhotoDrop() {
         return;
       }
 
-      // 3. The image URL out of the HTML payload. Google puts the picture here and the PAGE
-      //    link in text/uri-list, so this has to be read before that one.
+      /*
+       * 3. THE IMAGE URL, DUG OUT OF THE HTML PAYLOAD.
+       *
+       * Chrome offered text/plain, text/uri-list, text/html and no Files at all on a Google
+       * Photos drag, so the picture is in the HTML and nowhere else. A tight <img src="..."
+       * match was too narrow: Google writes srcset, unquoted attributes and lazy-loading
+       * attributes, and the first URL in the blob is often the page rather than the picture.
+       * So pull EVERY url out of the payload and prefer the image hosts.
+       */
       const html = dt.getData('text/html');
-      const fromImg = html.match(/<img[^>]+src=["']([^"']+)["']/i)?.[1];
-      if (fromImg && /^https?:\/\//.test(fromImg) && !/^https?:\/\/photos\.google\.com\//i.test(fromImg)) {
-        sendUrl(fromImg);
+      const urls = Array.from(html.matchAll(/https?:\/\/[^\s"'<>\\)]+/gi)).map((m) => m[0]);
+      const isPage = (u: string) => /^https?:\/\/photos\.google\.com\//i.test(u);
+      const imageHost = urls.find(
+        (u) => /(googleusercontent|ggpht|gstatic)\.com/i.test(u) && !isPage(u),
+      );
+      const anyImage = urls.find((u) => /\.(jpe?g|png|webp|gif)(\?|$)/i.test(u) && !isPage(u));
+      const candidate = imageHost ?? anyImage ?? urls.find((u) => !isPage(u));
+      if (candidate) {
+        sendUrl(candidate);
         return;
       }
 
       // 4. Anything else that is a plain image link.
       const uri = (dt.getData('text/uri-list') || dt.getData('text/plain') || '').trim().split('\n')[0];
-      if (uri && /^https?:\/\//.test(uri) && !/^https?:\/\/photos\.google\.com\//i.test(uri)) {
+      if (uri && /^https?:\/\//.test(uri) && !isPage(uri)) {
         sendUrl(uri);
         return;
       }
 
-      // Nothing usable: say what the browser actually offered rather than guess again.
+      // Nothing usable. Report what was on the drag so the next attempt is evidence.
       const types = Array.from(dt.types ?? []);
       setResults((prev) =>
         [
           {
             ok: false,
-            error:
-              'Nothing droppable in that. Open the photo first so it is on screen full size, then drag the picture itself.',
-            debug: types.length ? `browser offered: ${types.join(', ')}` : 'browser offered nothing',
+            error: 'No picture in that drag, only a page link.',
+            debug: `types: ${types.join(', ') || 'none'} | urls found: ${urls.length ? urls.slice(0, 2).join(' ') : 'none'}`,
           },
           ...prev,
         ].slice(0, 12),
