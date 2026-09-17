@@ -144,12 +144,12 @@ function VoicesOverview() {
                   return (
                     <tr key={s.slug} className={isHold ? 'bg-red-50/60' : noTranscript && s.tier === 'external' ? 'bg-amber-50/50' : undefined}>
                       <td className="px-4 py-2.5 font-semibold">{s.name}</td>
-                      <td className="px-4 py-2.5 text-muted-foreground">{s.community || '—'}</td>
+                      <td className="px-4 py-2.5 text-muted-foreground">{s.community || 'not recorded'}</td>
                       <td className={`px-4 py-2.5 font-semibold ${TIER_TONE[s.tier]}`}>{s.tier}</td>
                       <td className="px-4 py-2.5 text-muted-foreground">
                         {isHold ? 'held' : provenanceLabel(prov)}
                       </td>
-                      <td className="px-4 py-2.5 text-right tabular-nums">{isHold ? '—' : usable}</td>
+                      <td className="px-4 py-2.5 text-right tabular-nums">{isHold ? 'held' : usable}</td>
                     </tr>
                   );
                 })}
