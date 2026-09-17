@@ -14,7 +14,7 @@ import {
   COMMUNITY_MODEL, MONEY_EVENTS, MONTHS_BEFORE_FIRST_SALE, NOT_FINISHED, OONCHIUMPA_NEXT,
   OWNERSHIP_VOICES, PROGRESS_BRIDGE, THEMES, THE_NEXT_TEN, TRADE_BY_YEAR,
   PLACE_BEATS, PRICE_LADDER,
-  SNOW_MONEY, THE_ARC, THE_LETTER, TOGETHER, WASHER_FLEET,
+  NORM_MONTHS, SNOW_MONEY, THE_ARC, THE_LETTER, TOGETHER, WASHER_FLEET,
   WALLS, WHY_FLEXIBLE,
   WASHER_NEXT, WASHER_PLACES, WASHER_TELEMETRY,
 } from '@/lib/data/snow-partnership';
@@ -800,28 +800,74 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           ))}
         </div>
 
-        <div className="mt-8 rounded-lg p-6 sm:p-8" style={{ backgroundColor: PANEL, border: `1px solid ${RULE}` }}>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>
-            Norm&rsquo;s house, Tennant Creek
-          </p>
-          <div className="mt-4 grid gap-6 sm:grid-cols-4">
-            {[
-              { v: '952', k: 'washes' },
-              { v: '2,613', k: 'kilowatt hours' },
-              { v: '2.7', k: 'kWh a wash' },
-              { v: '10 months', k: 'reporting, without a break' },
-            ].map((s) => (
-              <div key={s.k}>
-                <p className="font-display text-3xl leading-none" style={{ color: CHARCOAL }}>{s.v}</p>
-                <p className="mt-2 text-xs" style={{ color: MUTED }}>{s.k}</p>
+        {/* Norm's machine, given the room it earns. The bars are real months, not a shape. */}
+        <div className="mt-8 overflow-hidden rounded-lg" style={{ backgroundColor: PANEL, border: `1px solid ${RULE}` }}>
+          <div className="grid lg:grid-cols-[minmax(0,1fr)_16rem]">
+            <div className="p-6 sm:p-8">
+              <div className="flex items-center gap-4">
+                <Image
+                  src="/images/people/norman-frank.jpg" alt="Norman Frank" width={200} height={200}
+                  className="h-14 w-14 shrink-0 rounded-full object-cover"
+                />
+                <div>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>
+                    Norm&rsquo;s house, Tennant Creek
+                  </p>
+                  <p className="text-xs" style={{ color: MUTED }}>
+                    Norman Frank, Warumungu Elder. The machine is in his house.
+                  </p>
+                </div>
               </div>
-            ))}
+              <p className="mt-5 flex items-baseline gap-3">
+                <span className="font-display text-6xl leading-none" style={{ color: CHARCOAL }}>952</span>
+                <span className="text-sm" style={{ color: MUTED }}>washes, and 48 short of a thousand</span>
+              </p>
+
+              <div className="mt-8 flex h-40 items-end gap-1.5 sm:gap-2.5">
+                {NORM_MONTHS.map((m, i) => {
+                  const top = Math.max(...NORM_MONTHS.map((x) => x.washes));
+                  const part = i === NORM_MONTHS.length - 1;
+                  return (
+                    <div key={m.month} className="flex min-w-0 flex-1 flex-col items-center justify-end">
+                      <span className="mb-1.5 text-[10px] tabular-nums" style={{ color: MUTED }}>{m.washes}</span>
+                      <span
+                        className="w-full rounded-t"
+                        style={{
+                          height: `${Math.max(4, (m.washes / top) * 116)}px`,
+                          backgroundColor: RUST,
+                          opacity: part ? 0.45 : 1,
+                        }}
+                      />
+                      <span className="mt-1.5 text-[10px]" style={{ color: MUTED }}>{m.label}</span>
+                    </div>
+                  );
+                })}
+              </div>
+              <p className="mt-4 text-xs" style={{ color: MUTED }}>
+                Washes a month. September is part of a month, to the sixteenth.
+              </p>
+            </div>
+
+            <div className="border-t p-6 sm:p-8 lg:border-l lg:border-t-0" style={{ borderColor: RULE, backgroundColor: SUNK }}>
+              <div className="space-y-5">
+                {[
+                  { v: '2,613', k: 'kilowatt hours' },
+                  { v: '2.7', k: 'kWh a wash' },
+                  { v: '11', k: 'months without a gap' },
+                  { v: '3 a day', k: 'in one house' },
+                ].map((s) => (
+                  <div key={s.k}>
+                    <p className="font-display text-2xl leading-none" style={{ color: CHARCOAL }}>{s.v}</p>
+                    <p className="mt-1 text-xs" style={{ color: MUTED }}>{s.k}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-6 border-t pt-4 text-xs leading-relaxed" style={{ borderColor: RULE, color: `${CHARCOAL}b8` }}>
+                Still reporting on 16 September. Nobody models three washes a day in one house. This machine
+                measured it.
+              </p>
+            </div>
           </div>
-          <p className="mt-5 max-w-[58ch] text-[0.9375rem] leading-[1.7]" style={{ color: `${CHARCOAL}cc` }}>
-            One house has done more washes than the whole rest of the fleet. It is the machine everything else
-            gets measured against, and it is the reason we know a washing machine in a remote house gets used
-            three times a day rather than three times a week.
-          </p>
         </div>
 
         <dl className="mt-8 grid gap-6 sm:grid-cols-3">

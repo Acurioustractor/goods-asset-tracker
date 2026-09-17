@@ -1331,6 +1331,33 @@ export interface FleetRow {
   note?: string;
 }
 
+/**
+ * NORM'S MACHINE, MONTH BY MONTH.
+ *
+ * Ben, 17 September 2026: make Norm's house special, with a graph, and it is close to a
+ * thousand. It is: 952 washes and climbing at about ninety five a month, so it passes a thousand
+ * inside a fortnight.
+ *
+ * The shape is the point. Eleven months without a gap, ninety odd washes every month, which is
+ * three a day in one house. Nobody models that; this machine measured it.
+ *
+ * Read 16 September 2026 from daily_machine_rollups, controller e00fce68...4f25 merged with the
+ * "Norms House" rename. September is part month, to the sixteenth.
+ */
+export const NORM_MONTHS: readonly { month: string; label: string; washes: number }[] = [
+  { month: '2025-11', label: 'Nov', washes: 33 },
+  { month: '2025-12', label: 'Dec', washes: 99 },
+  { month: '2026-01', label: 'Jan', washes: 104 },
+  { month: '2026-02', label: 'Feb', washes: 50 },
+  { month: '2026-03', label: 'Mar', washes: 93 },
+  { month: '2026-04', label: 'Apr', washes: 93 },
+  { month: '2026-05', label: 'May', washes: 93 },
+  { month: '2026-06', label: 'Jun', washes: 96 },
+  { month: '2026-07', label: 'Jul', washes: 94 },
+  { month: '2026-08', label: 'Aug', washes: 149 },
+  { month: '2026-09', label: 'Sep', washes: 48 },
+];
+
 export const WASHER_FLEET: readonly FleetRow[] = [
   { assetId: 'GB0-113', supplied: '2025-07-02', where: "Norm's house, Tennant Creek", cycles: 952, kwh: 2_613, from: '2025-11-17', to: '2026-09-16', state: 'reporting', note: 'The machine the rest of the fleet is measured against. More washes on it than every other machine put together.' },
   { assetId: 'GB0-WM-ORPHAN-c4b9', supplied: null, where: "Dianne's daughter's house, Tennant Creek", cycles: 550, kwh: 422, from: '2025-08-27', to: '2026-03-29', state: 'silent', note: 'Identified by Ben, 17 September 2026. Stopped in March. The register row is still an orphan until somebody updates it.' },
@@ -1338,7 +1365,12 @@ export const WASHER_FLEET: readonly FleetRow[] = [
   { assetId: 'GB0-154-2', supplied: '2025-12-13', where: "Nicole's house, Tennant Creek", cycles: 344, kwh: 262, from: '2025-09-15', to: '2026-05-09', state: 'silent', note: 'Its controller was reporting from September 2025, three months before the register says the machine was supplied. One of the two dates is wrong and we have not worked out which. It stopped in May either way.' },
   { assetId: 'GB0-125', supplied: '2025-07-02', where: 'Barkly Arts, Tennant Creek', cycles: 48, kwh: 132, from: '2025-09-28', to: '2026-09-07', state: 'reporting', note: 'Reporting, and barely used. Worth a visit for that reason.' },
   { assetId: 'GB0-WM-ORPHAN-689f', supplied: null, where: 'Billow, Palm Island', cycles: 38, kwh: 10, from: '2025-09-15', to: '2025-09-30', state: 'silent', note: 'Identified by Ben, 17 September 2026. Two weeks of washes in September 2025 and nothing since. The register still has it in Tennant Creek.' },
-  { assetId: 'GB0-132', supplied: '2025-07-02', where: 'Tennant Creek', cycles: 2, kwh: 1, from: '2025-09-19', to: '2026-03-01', state: 'silent', note: 'Two washes recorded in six months, which almost certainly means the controller and not the machine.' },
+  { assetId: 'GB0-132', supplied: '2025-07-02', where: 'Tennant Creek', cycles: 2, kwh: 1, from: '2025-09-19', to: '2026-03-01', state: 'silent', note: 'Two washes in six months, which almost certainly means the controller and not the machine. Its energy signature matches Palm Island, not Tennant Creek, so the register may have this one in the wrong place too.' },
+  // Three controllers that registered on 1 March 2026 and have never recorded a wash. They are
+  // on the list because a fleet page that only shows the working machines is a brochure.
+  { assetId: 'GB0-WM-DSS', supplied: null, where: "Dianne Stokes' son's house, Tennant Creek", cycles: 0, kwh: 0, from: '2026-03-01', to: '2026-03-01', state: 'silent', note: 'Controller fitted, never recorded a wash.' },
+  { assetId: 'GB0-WM-RD', supplied: null, where: 'Red Dust, Darwin', cycles: 0, kwh: 0, from: '2026-03-01', to: '2026-03-01', state: 'silent', note: 'Controller fitted, never recorded a wash.' },
+  { assetId: 'GB0-WM-8D1', supplied: null, where: 'Tennant Creek', cycles: 0, kwh: 0, from: '2026-03-01', to: '2026-03-01', state: 'silent', note: 'Controller fitted, never recorded a wash. Retired on the register.' },
 ];
 
 

@@ -31,6 +31,7 @@ const MUTED = '#A2958A';
 const RULE = '#E8DED4';
 const RULE_SOFT = '#F0E7DC';
 const SUNK = '#F6F0E6';
+const SAGE_INK = '#5E7A4C';
 
 export interface FleetRowView {
   assetId: string | null;
@@ -77,6 +78,7 @@ export function FleetTimeline({ rows, readAt }: { rows: readonly FleetRowView[];
     }
   }
 
+  const silentDays = (r: FleetRowView) => Math.max(0, Math.round((day(readAt) - day(r.to)) / 86400000));
   const current = held === null ? null : ordered[held];
 
   return (
@@ -130,10 +132,8 @@ export function FleetTimeline({ rows, readAt }: { rows: readonly FleetRowView[];
               tabIndex={0}
             >
               <div className="min-w-0">
-                <p className="font-display text-sm" style={{ color: r.assetId ? INK : MUTED }}>{r.assetId ?? 'unmatched'}</p>
-                <p className="text-[10px] uppercase tracking-wide" style={{ color: r.state === 'reporting' ? RUST_INK : MUTED }}>
-                  {STATE_LABEL[r.state]}
-                </p>
+                <p className="text-[13px] font-semibold leading-tight" style={{ color: INK }}>{r.where}</p>
+                <p className="text-[10px]" style={{ color: MUTED }}>{r.assetId}</p>
               </div>
 
               <div className="relative h-7">
@@ -149,6 +149,17 @@ export function FleetTimeline({ rows, readAt }: { rows: readonly FleetRowView[];
                     opacity: r.state === 'silent' ? 0.5 : 1,
                   }}
                 />
+                {silentDays(r) > 21 && (
+                  <span
+                    className="absolute top-1/2 block h-2.5 -translate-y-1/2 rounded-full"
+                    style={{
+                      left: `${pct(r.to)}%`,
+                      right: 0,
+                      backgroundImage: `repeating-linear-gradient(135deg, ${RULE_SOFT} 0 4px, transparent 4px 8px)`,
+                      border: `1px solid ${RULE_SOFT}`,
+                    }}
+                  />
+                )}
                 {r.state === 'reporting' && (
                   <span
                     className="absolute top-1/2 block h-3 w-3 -translate-y-1/2 rounded-full"
@@ -162,6 +173,9 @@ export function FleetTimeline({ rows, readAt }: { rows: readonly FleetRowView[];
                   {r.cycles.toLocaleString('en-AU')}
                   <span className="ml-1.5 text-[10px] uppercase tracking-wide" style={{ color: MUTED }}>washes</span>
                 </p>
+                <p className="text-[10px]" style={{ color: silentDays(r) > 21 ? RUST_INK : SAGE_INK }}>
+                  {silentDays(r) === 0 ? 'reporting today' : `quiet ${silentDays(r)} days`}
+                </p>
                 <span className="mt-1 block h-1.5 rounded-full sm:ml-auto" style={{ width: `${Math.max(3, (r.cycles / topCycles) * 100)}%`, backgroundColor: r.state === 'investigating' ? '#B9A894' : RUST }} />
               </div>
             </li>
@@ -173,7 +187,7 @@ export function FleetTimeline({ rows, readAt }: { rows: readonly FleetRowView[];
         <p className="min-h-[2.5rem] text-xs leading-relaxed" style={{ color: current ? INK : MUTED }}>
           {current
             ? `${current.assetId} · ${current.where} · ${readable(current.from)} to ${readable(current.to)} · ${current.cycles.toLocaleString('en-AU')} washes, ${current.kwh.toLocaleString('en-AU')} kWh.${current.note ? ` ${current.note}` : ''}`
-            : `Point at a row to hold it. Bars run from a machine's first report to its last; a dot on the end means it was still reporting on ${readable(readAt)}.`}
+            : `Solid is when a machine was reporting. Hatched is how long it has been quiet. Point at a row to hold it.`}
         </p>
       </div>
     </div>
