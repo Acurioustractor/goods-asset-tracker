@@ -158,10 +158,20 @@ export function PhotoDrop() {
        * So pull EVERY url out of the payload and prefer the image hosts.
        */
       const html = dt.getData('text/html');
-      const urls = Array.from(html.matchAll(/https?:\/\/[^\s"'<>\\)]+/gi)).map((m) => m[0]);
+      const urls = Array.from(html.matchAll(/https?:\/\/[^\s"'<>\\)]+/gi))
+        .map((m) => m[0])
+        // The payload is HTML, so a url arrives carrying the entity that ended its attribute.
+        // Left on, &quot; travelled all the way to the server as part of the address.
+        .map((u) => u.split(/&(?:quot|#34|#39|apos|gt|lt);/)[0].replace(/&amp;/g, '&'));
       const isPage = (u: string) => /^https?:\/\/photos\.google\.com\//i.test(u);
+      /*
+       * Google Photos serves its pictures from photos.fife.usercontent.google.com, which does
+       * NOT contain "googleusercontent", and the address ends =w403-h268-no rather than .jpg.
+       * So a host list and an extension test both said no to a perfectly good picture, and the
+       * only thing left to report was the page link. Match the host family, not the spelling.
+       */
       const imageHost = urls.find(
-        (u) => /(googleusercontent|ggpht|gstatic)\.com/i.test(u) && !isPage(u),
+        (u) => /\.(googleusercontent|ggpht|gstatic)\.com|usercontent\.google\.com|\/\/lh\d+\.google/i.test(u) && !isPage(u),
       );
       const anyImage = urls.find((u) => /\.(jpe?g|png|webp|gif)(\?|$)/i.test(u) && !isPage(u));
       const candidate = imageHost ?? anyImage;

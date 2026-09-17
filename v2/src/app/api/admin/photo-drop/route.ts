@@ -64,7 +64,16 @@ export async function POST(req: Request) {
       // A googleusercontent URL carries its rendition in a =w1234-h5678 suffix; swapping it for
       // =s0 asks for the original. A photos.google.com link is a PAGE, not an image, and will
       // come back as HTML, which is what the check below is for.
-      const url = body.url.replace(/=[swh]\d+(-[a-z0-9-]+)*$/i, '=s0');
+      /*
+       * ASK FOR THE ORIGINAL, NOT THE THUMBNAIL ON THE SCREEN.
+       *
+       * A drag hands over the address of what the page was showing, and Google sizes that for
+       * the grid: =w403-h268-no is a 403 pixel wide preview with no EXIF worth having. Swapping
+       * the size for =d asks for the file as taken, which is the one carrying DateTimeOriginal.
+       * The size sits before the query string, so the old anchored match never fired.
+       */
+      const sized = (u: string, suffix: string) => u.replace(/=[a-z]{1,2}\d+(-[a-z0-9-]+)*(?=$|\?)/i, `=${suffix}`);
+      const url = body.url;
       if (/^https?:\/\/photos\.google\.com\//i.test(url)) {
         return NextResponse.json(
           {
@@ -75,7 +84,18 @@ export async function POST(req: Request) {
           { status: 400 },
         );
       }
-      const res = await fetch(url, { headers: { 'User-Agent': 'goods-media-room' } });
+      // Original first, full size second, and what was dragged last, so an unusual address
+      // still lands rather than failing on a guess we made about it.
+      const tries = [...new Set([sized(url, 'd'), sized(url, 's0'), url])];
+      let res: Response | null = null;
+      for (const attempt of tries) {
+        const r = await fetch(attempt, { headers: { 'User-Agent': 'goods-media-room' } });
+        res = r;
+        if (r.ok && (r.headers.get('content-type') ?? '').startsWith('image/')) break;
+      }
+      if (!res) {
+        return NextResponse.json({ ok: false, error: 'nothing to fetch' }, { status: 400 });
+      }
       if (!res.ok) {
         return NextResponse.json({ ok: false, error: `fetch failed: HTTP ${res.status}` }, { status: 400 });
       }
