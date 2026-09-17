@@ -70,7 +70,9 @@ export const DECK_PLAN: DeckSlide[] = [
   {
     n: 5, id: 'proof', name: 'Already shipped, and every one is trackable',
     why: 'Canon proof before the model, so the model is read as a description of something real. Every figure labelled.',
-    talkTrack: '540 beds: 177 Stretch and 363 Basket. 22 washing machines. 11 communities. 3,540kg of plastic, which is Stretch only at 20kg each because Basket Beds count zero. $713,827 of Goods revenue FY26 to date on a Goods-only carve-out, which is a workpaper prepared with the accountant, not a signed document. Newest run: 40 Stretch Beds and 2 washers to Maningrida, legs pressed at our own plant, invoiced on INV-0303. And 200 to 350 bed requests we have not filled.',
+    // Ben, 15 Sep 2026: the "200 to 350 bed requests" NPY figure is withdrawn as fabricated
+    // demand (memory goods-money-rulings-2026-09-15). Removed, not replaced with another guess.
+    talkTrack: '540 beds: 177 Stretch and 363 Basket. 22 washing machines. 11 communities. 3,540kg of plastic, which is Stretch only at 20kg each because Basket Beds count zero. $713,827 of Goods revenue FY26 to date on a Goods-only carve-out, which is a workpaper prepared with the accountant, not a signed document. Newest run: 40 Stretch Beds and 2 washers to Maningrida, legs pressed at our own plant, invoiced on INV-0303.',
     voices: ['Annie Morrison'], visual: 'stats',
     visualNotes: 'Map: design/deck-photos/map-deployed.png (chrome-free export from /export/map/deployed, washers sum to 22).',
   },
