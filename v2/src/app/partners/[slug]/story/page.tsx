@@ -1083,7 +1083,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       <Chapter
         id="ch-themes"
         title="What two years of it looks like"
-        lead="Every step is an invoice. An Aboriginal charitable trust, an Aboriginal community controlled health service and a homelands school company, and two of them came back."
+        lead="Every step below is an invoice, and the buyers are an Aboriginal charitable trust, an Aboriginal community controlled health service and a homelands school company. Two of them came back."
       >
         <GrowthOverTime />
 

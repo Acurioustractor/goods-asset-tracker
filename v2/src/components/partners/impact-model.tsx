@@ -1,20 +1,21 @@
 /**
- * ONE MODEL FOR THE WHOLE ARGUMENT.
+ * FOUR THINGS STANDING ON ONE.
  *
- * Ben, 17 September 2026: this whole section should be one model, simple and powerful, so you
- * can see the impact.
+ * Ben, 17 September 2026: show the four areas, and then how Indigenous ownership and leadership
+ * supports it all.
  *
- * It was two chapters. Five theme cards each carrying a paragraph of prose and a shown-and-not-
- * shown pair, then a separate ownership chapter with its own drawing. Reading it took five
- * minutes and the shape of the argument was buried in the words.
+ * Earlier versions put all five side by side, which was wrong about the relationship. Health,
+ * the plastic, paid work and enterprise are not peers of Indigenous ownership; they rest on it.
+ * A board of Indigenous directors is why there is a purpose to hold and a decision to make, and
+ * a community organisation keeping the whole price is why the trade is worth having. So the four
+ * sit on a base, and the base is the fifth.
  *
- * The shape is simply this: four things are measured and the fifth is zero. So the five sit on
- * one line, each holding its own number, and the fifth ring is drawn open because nothing has
- * closed it yet. The limit stays under each number, because a limit printed somewhere else
- * reads as a disclaimer, and because the open ring is the honest part of the ask.
+ * The base is drawn in two halves because only one of them is done. Leadership is solid: three
+ * Indigenous directors, a charity, an ABN. Ownership of the making is dashed, because no site is
+ * owned where it stands. Nothing about that is softened by where it sits on the page: it holds
+ * the other four up and it is the half that is still open.
  *
- * Drawn from the Goods kit: one terracotta line weight, paper behind it, dashed only where a
- * thing has not happened. No icons and no second colour doing decorative work.
+ * Kit rules: one terracotta line weight, paper behind, dashed only for what has not happened.
  */
 
 import type { Theme } from '@/lib/data/snow-partnership';
@@ -23,15 +24,24 @@ const LINE = '#A8643F';
 const INK = '#2E2E2E';
 const MUTED = '#6A5E54';
 const FAINT = '#A2958A';
+const WASH = '#F6E4DE';
 
 export function ImpactModel({ themes }: { themes: readonly Theme[] }) {
-  if (themes.length === 0) return null;
+  const above = themes.filter((t) => t.id !== 'ownership');
+  const base = themes.find((t) => t.id === 'ownership');
+  if (above.length === 0 || !base) return null;
+
   const W = 1000;
-  const H = 188;
-  const r = 52;
-  const gap = (W - 2 * 80) / (themes.length - 1);
-  const cx = themes.map((_, i) => 80 + i * gap);
-  const cy = 86;
+  const H = 360;
+  const M = 40;
+  const gap = 18;
+  const colW = (W - M * 2 - gap * (above.length - 1)) / above.length;
+  const colTop = 16;
+  const colH = 150;
+  const baseTop = 232;
+  const baseH = 68;
+  // Leadership is done and ownership is not, so the base is split where the truth splits it.
+  const solidW = (W - M * 2) * 0.55;
 
   return (
     <figure className="m-0">
@@ -39,53 +49,58 @@ export function ImpactModel({ themes }: { themes: readonly Theme[] }) {
         viewBox={`0 0 ${W} ${H}`}
         className="w-full"
         role="img"
-        aria-label={themes.map((t) => `${t.title}: ${t.figure.value} ${t.figure.unit}`).join('. ')}
+        aria-label={`${above.map((t) => `${t.title}, ${t.figure.value} ${t.figure.unit}`).join('. ')}. All four rest on Indigenous ownership and leadership, which is ${base.figure.value} ${base.figure.unit}.`}
       >
-        {themes.slice(0, -1).map((t, i) => {
-          // The last leg is dashed: nothing has travelled it. An open ring is what "not yet" looks
-          // like when you refuse to draw it as a plan.
-          const last = i === themes.length - 2;
-          return (
-            <line
-              key={t.id}
-              x1={cx[i] + r}
-              y1={cy}
-              x2={cx[i + 1] - r}
-              y2={cy}
-              stroke={LINE}
-              strokeWidth="2"
-              strokeDasharray={last ? '7 7' : undefined}
-            />
-          );
-        })}
-        {themes.map((t, i) => {
-          const open = t.figure.value === '0';
+        {above.map((t, i) => {
+          const x = M + i * (colW + gap);
           return (
             <g key={t.id}>
-              <circle
-                cx={cx[i]}
-                cy={cy}
-                r={r}
-                fill="none"
-                stroke={LINE}
-                strokeWidth="2"
-                strokeDasharray={open ? '7 7' : undefined}
-              />
-              <text x={cx[i]} y={cy + 9} textAnchor="middle" fontSize="27" fill={INK}>
+              <rect x={x} y={colTop} width={colW} height={colH} rx="6" fill="none" stroke={LINE} strokeWidth="2" />
+              <text x={x + colW / 2} y={colTop + 62} textAnchor="middle" fontSize="34" fill={INK}>
                 {t.figure.value}
               </text>
-              <text x={cx[i]} y={cy + r + 26} textAnchor="middle" fontSize="15" fill={INK}>
-                {t.title}
-              </text>
-              <text x={cx[i]} y={cy + r + 44} textAnchor="middle" fontSize="12" fill={FAINT}>
+              <text x={x + colW / 2} y={colTop + 88} textAnchor="middle" fontSize="12" fill={FAINT}>
                 {t.figure.unit}
               </text>
+              <text x={x + colW / 2} y={colTop + 122} textAnchor="middle" fontSize="16" fill={INK}>
+                {t.title}
+              </text>
+              {/* Each one standing on the base, so the drawing has to be read downwards. */}
+              <line x1={x + colW / 2} y1={colTop + colH} x2={x + colW / 2} y2={baseTop} stroke={LINE} strokeWidth="2" />
             </g>
           );
         })}
+
+        <rect x={M} y={baseTop} width={solidW} height={baseH} fill={WASH} stroke={LINE} strokeWidth="2" />
+        <rect
+          x={M + solidW}
+          y={baseTop}
+          width={W - M * 2 - solidW}
+          height={baseH}
+          fill="none"
+          stroke={LINE}
+          strokeWidth="2"
+          strokeDasharray="7 7"
+        />
+        <text x={M + solidW / 2} y={baseTop + 30} textAnchor="middle" fontSize="17" fill={INK}>
+          Indigenous leadership
+        </text>
+        <text x={M + solidW / 2} y={baseTop + 52} textAnchor="middle" fontSize="12" fill={MUTED}>
+          three Indigenous directors hold the purpose, the assets and the decisions
+        </text>
+        <text x={M + solidW + (W - M * 2 - solidW) / 2} y={baseTop + 30} textAnchor="middle" fontSize="17" fill={INK}>
+          Indigenous ownership
+        </text>
+        <text x={M + solidW + (W - M * 2 - solidW) / 2} y={baseTop + 52} textAnchor="middle" fontSize="12" fill={MUTED}>
+          {base.figure.value} {base.figure.unit}
+        </text>
+        <text x={W / 2} y={baseTop + baseH + 30} textAnchor="middle" fontSize="12" fill={FAINT}>
+          Everything above rests on this. Half of it is done.
+        </text>
       </svg>
-      <figcaption className="mt-8 grid gap-6 sm:grid-cols-5">
-        {themes.map((t) => (
+
+      <figcaption className="mt-10 grid gap-6 sm:grid-cols-4">
+        {above.map((t) => (
           <p key={t.id} className="m-0 text-[0.875rem] leading-[1.65]" style={{ color: MUTED }}>
             <span className="mr-1.5 text-[10px] font-semibold uppercase tracking-[0.14em]" style={{ color: LINE }}>
               Not shown
@@ -94,6 +109,12 @@ export function ImpactModel({ themes }: { themes: readonly Theme[] }) {
           </p>
         ))}
       </figcaption>
+      <p className="mt-6 max-w-[62ch] text-[0.875rem] leading-[1.65]" style={{ color: MUTED }}>
+        <span className="mr-1.5 text-[10px] font-semibold uppercase tracking-[0.14em]" style={{ color: LINE }}>
+          Not shown
+        </span>
+        {base.limit}
+      </p>
     </figure>
   );
 }
