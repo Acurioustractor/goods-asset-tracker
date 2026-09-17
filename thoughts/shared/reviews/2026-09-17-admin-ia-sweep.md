@@ -1,5 +1,8 @@
 # The admin has a spine. Nothing is attached to it.
 
+> **What happened next is in `thoughts/shared/handoffs/admin-rebuild/current.md`.** All four spines
+> are compulsory now, the routes went 85 to 46, and every surface is smoke-tested.
+
 **17 September 2026.** Ben, looking at the sidebar: "the most uncomfortable thing is all the
 routes all through the Goods admin, and how we can align this way better and have an overall
 dashboard function, a shared date system, and a better way to align the different data in a
