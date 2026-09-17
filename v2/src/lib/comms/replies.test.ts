@@ -41,7 +41,12 @@ describe('acknowledgeOrReply', () => {
   });
 
   it('falls back to the generic acknowledgement for a subject we have not written', async () => {
-    const outcome = await acknowledgeOrReply({ contactId: 'abc', subject: 'General Inquiry' });
+    // LGANT is a real contact-form subject with no branch of its own, so it is the honest example
+    // of the fallback. General Inquiry used to be one and now has branch seven.
+    const outcome = await acknowledgeOrReply({
+      contactId: 'abc',
+      subject: 'LGANT 2026: place put forward',
+    });
     expect(outcome).toBe('acknowledged');
     expect(addTags).toHaveBeenCalledWith('abc', ['project-goods']);
     expect(sendTransactionalReply).not.toHaveBeenCalled();

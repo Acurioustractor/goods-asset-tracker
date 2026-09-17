@@ -26,6 +26,8 @@ import { buildBulkOrderReply } from './bulk-order-reply';
 import { buildMediaPackReply } from './media-pack-reply';
 import { buildCapitalReply } from './capital-reply';
 import { buildCommunityReply } from './community-reply';
+import { buildPartnerReply } from './partner-reply';
+import { buildGeneralReply } from './general-reply';
 import type { BuiltEmail } from './facts';
 import type { PathwayAudience } from '@/lib/ghl/audience-pathways';
 
@@ -121,6 +123,20 @@ export const MESSAGE_CATALOGUE: CatalogueEntry[] = [
     example: buildCommunityReply({}),
   },
   {
+    id: 'partner',
+    label: 'The broad partnership button',
+    audience: 'community',
+    trigger: 'Contact form or the partner form, Partnership Inquiry',
+    example: buildPartnerReply({}),
+  },
+  {
+    id: 'general',
+    label: 'Everything else',
+    audience: 'supporter',
+    trigger: 'Contact form, General Inquiry, and any subject with no branch of its own',
+    example: buildGeneralReply({}),
+  },
+  {
     id: 'media-pack',
     label: 'A journalist asked for the pack',
     audience: 'media',
@@ -137,4 +153,6 @@ export const BUILDER_NAMES = [
   'buildMediaPackReply',
   'buildCapitalReply',
   'buildCommunityReply',
+  'buildPartnerReply',
+  'buildGeneralReply',
 ] as const;

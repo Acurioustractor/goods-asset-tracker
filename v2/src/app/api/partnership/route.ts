@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/server';
 import { ghl } from '@/lib/ghl';
 import { guardContactSubmission } from '@/lib/contact-delivery/anti-abuse';
+import { acknowledgeOrReply } from '@/lib/comms/replies';
 import { recordContactSubmission, sendSubmissionToInbox, updateContactSubmission } from '@/lib/contact-delivery';
 
 interface PartnershipFormData {
@@ -133,7 +134,14 @@ export async function POST(request: NextRequest) {
         { source: 'Washing Machine Interest' },
       );
       if (ghlResult.success && ghlResult.contact?.id) {
-        await ghl.addTags(ghlResult.contact.id, ['act-inquiry', 'project-goods']);
+        await ghl.addTags(ghlResult.contact.id, ['act-inquiry']);
+        // No written branch for a washing machine yet, so this falls through to the published
+        // generic acknowledgement. acknowledgeOrReply stamps the tag that fires it.
+        await acknowledgeOrReply({
+          contactId: ghlResult.contact.id,
+          subject: 'Washing Machine Interest',
+          context: { name: body.contactName, organisation: body.organizationName, phone: body.contactPhone },
+        });
         // Registering interest in a washer is a buyer signal, so it opens a card
         // on GOODS - Buyers the same way a bulk order does. goods-washer-interest
         // already maps to role:buyer in canonical-tags.
@@ -171,7 +179,21 @@ export async function POST(request: NextRequest) {
         timeline: body.timeline,
       });
       if (ghlResult.success && ghlResult.contact?.id) {
-        await ghl.addTags(ghlResult.contact.id, ['act-inquiry', 'project-goods']);
+        await ghl.addTags(ghlResult.contact.id, ['act-inquiry']);
+        // The same subject that decides the board decides the reply, so the card and the email
+        // cannot disagree about what this person is. A capital path gets the facility reply, the
+        // broad partnership button gets the one that names the four things the word means and
+        // asks which is closest.
+        await acknowledgeOrReply({
+          contactId: ghlResult.contact.id,
+          subject: body.partnerSegment ? 'Facility Funding Inquiry' : 'Partnership Inquiry',
+          context: {
+            name: body.contactName,
+            organisation: body.organizationName,
+            message: body.message,
+            phone: body.contactPhone,
+          },
+        });
         // A partnership inquiry tagged correctly and opened no card, so it was
         // findable only by searching. It now lands where the contact form's
         // Partnership subject lands: GOODS - Community at Invitation, the

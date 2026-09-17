@@ -23,6 +23,8 @@ import { buildBulkOrderReply } from './bulk-order-reply';
 import { buildMediaPackReply } from './media-pack-reply';
 import { buildCapitalReply } from './capital-reply';
 import { buildCommunityReply } from './community-reply';
+import { buildPartnerReply } from './partner-reply';
+import { buildGeneralReply } from './general-reply';
 
 export type { BuiltEmail } from './facts';
 import type { BuiltEmail } from './facts';
@@ -40,15 +42,18 @@ export interface ReplyContext {
 }
 
 /**
- * Contact-form subject to the reply we have written for it. A subject that is not here falls
- * through to the generic acknowledgement on purpose, and that is the rollout plan rather than a
- * gap: support and bulk order first, watch a week, then the rest.
+ * Contact-form subject to the reply we have written for it. All seven branches are here as of
+ * 17 September, so the published generic acknowledgement no longer fires for anything the contact
+ * form sends. A subject added later with no entry falls through to it, which is the right
+ * fallback: the generic letter is worse than a written branch and much better than silence.
  */
 export const REPLY_BUILDERS: Record<string, (ctx: ReplyContext) => BuiltEmail> = {
   'Bulk Order Inquiry': buildBulkOrderReply,
   'Media Pack Request': buildMediaPackReply,
   'Facility Funding Inquiry': buildCapitalReply,
   'Community Interest': buildCommunityReply,
+  'Partnership Inquiry': buildPartnerReply,
+  'General Inquiry': buildGeneralReply,
 };
 
 export type ReplyOutcome = 'replied' | 'acknowledged' | 'failed';

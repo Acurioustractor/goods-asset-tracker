@@ -467,17 +467,22 @@ export const AUDIENCE_PATHWAYS: AudiencePathway[] = [
         door: 'Sell beds in your community, at /sell-beds',
         handler: 'api/contact/route.ts',
         subject: 'Partnership Inquiry',
-        tags: ['role:partner', 'act-inquiry', 'project-goods'],
+        tags: ['role:partner', 'act-inquiry'],
         state: 'live',
+        note:
+          'Gets the partnership reply, which names the four things the word means here and asks ' +
+          'which is closest, rather than guessing and answering a question they did not ask.',
       },
       {
         door: 'Partnership or capital enquiry, from the partner form',
         handler: 'api/partnership/route.ts',
-        tags: ['role:partner', 'act-inquiry', 'project-goods'],
+        tags: ['role:partner', 'act-inquiry'],
         state: 'live',
         note:
           'The capital path branches away to GOODS - Funding, because somebody asking about a ' +
-          'ticket size is a funder. Everything else lands on the relationship board.',
+          'ticket size is a funder. Everything else lands on the relationship board. The same ' +
+          'subject decides the board and the reply, so the card and the email cannot disagree ' +
+          'about what this person is.',
       },
       {
         door: 'Put up an idea, at /community/ideas/new',
