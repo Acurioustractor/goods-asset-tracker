@@ -61,8 +61,10 @@ function withGoodsProject(customFields: Record<string, string>): Record<string, 
 
 // Workflow IDs (configure in GHL dashboard).
 //
-// SCALING MODEL (May 2026, decided 2026-05-22):
-// - newOrder stays as a dedicated retail-orders workflow (separate from the router).
+// SCALING MODEL (May 2026, decided 2026-05-22), with one part of it retired on 17 September:
+// - newOrder was a dedicated retail-orders workflow. It is gone. The GHL API cannot publish a
+//   workflow, so it sat as a draft for seven months while people bought beds, and the order
+//   confirmation is now built and sent from the webhook instead.
 // - Every other Goods event (sponsorship, support, claim, partnership, message,
 //   request, plus all event-source signups like Parliament House, Canberra Airport,
 //   future pop-ups) routes through ONE Smart Router workflow that branches on
@@ -72,7 +74,6 @@ function withGoodsProject(customFields: Record<string, string>): Record<string, 
 //   deploy.** This is the "code does identify-and-tag, GHL decides what to send"
 //   pattern. See wiki/outputs/2026-05-18-ghl-workflow-alignment.md.
 const WORKFLOWS = {
-  newOrder: process.env.GHL_WORKFLOW_NEW_ORDER || '',
   smartRouter: process.env.GHL_WORKFLOW_SMART_ROUTER || '',
 };
 
@@ -1406,15 +1407,15 @@ export const ghl = {
       source: data.isSponsorship ? 'Goods Sponsorship' : 'Goods Order',
     });
 
-    // Retail orders fire a dedicated workflow; sponsorships go via the Smart
-    // Router (branches on goods-sponsor). See the scaling-model note in WORKFLOWS.
-    if (result.success && result.contact?.id) {
-      if (data.isSponsorship) {
-        await fireSmartRouter(result.contact.id);
-      } else if (WORKFLOWS.newOrder) {
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        await triggerWorkflow(WORKFLOWS.newOrder, result.contact.id);
-      }
+    // Sponsorships go via the Smart Router (branches on goods-sponsor).
+    //
+    // A retail order used to fire a dedicated New Order Notification workflow from here, after a
+    // two second wait for GHL to catch up. That workflow was a draft from February to September,
+    // so the wait was real and the email was not: somebody paid and heard nothing. The webhook
+    // now builds and sends the confirmation itself (lib/comms/order-confirmation), Ben deleted
+    // the workflow on 17 September, and the call went with it.
+    if (result.success && result.contact?.id && data.isSponsorship) {
+      await fireSmartRouter(result.contact.id);
     }
 
     return result;
