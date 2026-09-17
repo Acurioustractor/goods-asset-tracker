@@ -26,17 +26,14 @@ import { createServiceClient } from '@/lib/supabase/server';
  * Matched on name, because the ids change when a workflow is rebuilt and the name is what
  * somebody sees in the dashboard.
  */
+// New Order Notification was here until 17 September. Ben deleted it, the confirmation is sent
+// from the webhook, and a watched workflow that is meant to be gone would read as a red line
+// forever.
 export const WATCHED_WORKFLOWS: { name: string; does: string; ifDraft: string }[] = [
   {
     name: 'Goods Inquiry → Acknowledge',
     does: 'Replies to everybody who fills in a form, one minute after the tag lands.',
     ifDraft: 'Every enquiry through every door goes unanswered.',
-  },
-  {
-    name: 'New Order Notification',
-    does: 'Was meant to confirm an order.',
-    ifDraft:
-      'Nothing, any more. The confirmation is sent from the webhook now, so this one can stay off or be deleted.',
   },
   {
     name: 'Goods media form submission',
