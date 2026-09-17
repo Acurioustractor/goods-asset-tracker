@@ -6,7 +6,6 @@
 // Consent: RED media is never rendered here. Elder/gated voices show with care
 // on this admin-only surface.
 
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { unstable_cache } from 'next/cache';
 import { createServiceClient } from '@/lib/supabase/server';
@@ -29,12 +28,7 @@ const cachedElAlign = unstable_cache(
   { revalidate: 300 },
 );
 
-export const metadata: Metadata = {
-  title: 'Community stories · Goods admin',
-  robots: { index: false, follow: false },
-};
 
-export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 interface StorytellerRow { id: string; community_id: string | null; display_name: string; is_elder: boolean; portrait: { url: string } | null }
@@ -129,7 +123,7 @@ async function load(): Promise<{ bundles: CommunityBundle[]; ready: boolean; elL
   }
 }
 
-export default async function CommunityStoriesPage() {
+export async function CommunityLensTab() {
   const { bundles, ready, elLit } = await load();
   const withContent = bundles.filter((c) => c.storytellers.length + c.quotes.length + c.media.length > 0).length;
 

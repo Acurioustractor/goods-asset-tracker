@@ -7,7 +7,6 @@
 //
 // Enforcement partner: `npm run check:storytellers`.
 
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { readdirSync, statSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
@@ -19,12 +18,7 @@ import {
 import { getCuratedQuotes } from '@/lib/data/curated-quotes';
 import { transcriptQuoteOverrides, anonymousFieldEvidence } from '@/lib/data/community-narrative';
 
-export const metadata: Metadata = {
-  title: 'Registry · Goods admin',
-  robots: { index: false, follow: false },
-};
 
-export const dynamic = 'force-dynamic';
 
 // ── Filesystem photo index ───────────────────────────────────────────────────
 
@@ -114,7 +108,7 @@ function normaliseText(t: string): string {
 
 // ── Page ─────────────────────────────────────────────────────────────────────
 
-export default function StorytellerRegistryPage() {
+export function RegistryTab() {
   const allImages = collectImages();
   const publicDir = join(process.cwd(), 'public');
 

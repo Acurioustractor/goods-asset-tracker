@@ -10,7 +10,6 @@
 // by registry name; no transcript text exists there or here). Canonical metrics
 // imported from asset-canonical.ts, never hardcoded.
 
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import {
@@ -27,10 +26,6 @@ import {
 } from '@/lib/data/transcript-provenance';
 import AtlasClient, { type AtlasRecord } from './atlas-client';
 
-export const metadata: Metadata = {
-  title: 'Storyteller Atlas · Goods admin',
-  robots: { index: false, follow: false },
-};
 
 const DISPLAY_FONT = { fontFamily: 'var(--font-display, Georgia, serif)' } as const;
 
@@ -125,7 +120,7 @@ const TURN_THEMES: TurnTheme[] = [
   },
 ];
 
-export default function StoryAtlasPage() {
+export function StoryAtlasTab() {
   const records: AtlasRecord[] = STORYTELLER_REGISTRY.map((rec) => ({
     ...rec,
     place: placeFor(rec),

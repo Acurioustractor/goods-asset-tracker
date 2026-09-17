@@ -1,16 +1,10 @@
 import Link from 'next/link';
-import type { Metadata } from 'next';
 
 const EL_URL = process.env.EMPATHY_LEDGER_SUPABASE_URL || '';
 const EL_KEY = process.env.EMPATHY_LEDGER_SUPABASE_KEY || '';
 const EL_PROJECT_ID = process.env.EMPATHY_LEDGER_PROJECT_ID || '6bd47c8a-e676-456f-aa25-ddcbb5a31047';
 
-export const metadata: Metadata = {
-  title: 'Stories (EL) · Goods admin',
-  robots: { index: false, follow: false },
-};
 
-export const dynamic = 'force-dynamic';
 
 interface ElStoryRow {
   id: string;
@@ -41,7 +35,7 @@ async function fetchGoodsStories(): Promise<ElStoryRow[]> {
   return res.json();
 }
 
-export default async function ElStoriesIndex() {
+export async function ElStoriesTab() {
   const stories = await fetchGoodsStories();
   const publicCount = stories.filter((s) => s.is_public).length;
   const pendingReview = stories.filter((s) => s.requires_elder_review && !s.elder_reviewed).length;

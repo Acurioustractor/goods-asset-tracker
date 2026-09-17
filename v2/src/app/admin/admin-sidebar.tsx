@@ -87,6 +87,7 @@ const navigation: NavGroup[] = [
     items: [
       { name: 'A community',        href: '/admin/communities',    icon: MapPin },
       { name: 'A person',           href: '/admin/people',         icon: Users },
+      { name: 'The voices',         href: '/admin/voices',         icon: Quote },
       { name: 'The money',          href: '/admin/cost-model',     icon: CircleDollarSign },
       { name: 'The media',          href: '/admin/media-library',  icon: ImageIcon },
       { name: 'Everything',         href: '/admin',                icon: MapIcon },

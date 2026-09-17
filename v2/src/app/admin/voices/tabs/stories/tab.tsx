@@ -3,7 +3,6 @@ import { getCuratedQuotes } from '@/lib/data/curated-quotes';
 import { StoriesDashboard } from './stories-dashboard';
 import type { SyndicationStoryteller } from '@/lib/empathy-ledger/types';
 
-export const dynamic = 'force-dynamic';
 
 // Storyteller rows that represent system accounts / team rollups, not real
 // community storytellers. Filtered out of public + admin grids alike.
@@ -25,7 +24,7 @@ function isRealStoryteller(st: SyndicationStoryteller): boolean {
   return true;
 }
 
-export default async function StoriesPage() {
+export async function CuratedStoriesTab() {
   const [rawStorytellers, projectStories, galleries, uncategorizedPhotos] = await Promise.all([
     empathyLedger.getProjectStorytellers({ limit: 50 }).catch(() => []),
     empathyLedger.getProjectStories({ limit: 50 }).catch(() => []),

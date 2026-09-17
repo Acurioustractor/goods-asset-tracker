@@ -54,14 +54,7 @@ export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
   {
     group: 'Story and voices',
     routes: [
-      { href: '/admin/story-atlas', name: 'Story atlas', status: 'absorbed', note: 'via Voices tabs' },
-      { href: '/admin/storytellers', name: 'Registry', status: 'absorbed', note: 'consent authority table' },
-      { href: '/admin/quotes', name: 'Quotes', status: 'absorbed' },
       { href: '/admin/quote-cards', name: 'Quote cards', status: 'absorbed', note: 'via Pitch hub' },
-      { href: '/admin/el-stories', name: 'EL stories', status: 'absorbed' },
-      { href: '/admin/el-storytellers', name: 'EL storytellers', status: 'absorbed' },
-      { href: '/admin/community-stories', name: 'Community lens', status: 'absorbed' },
-      { href: '/admin/stories', name: 'Curated stories', status: 'absorbed' },
       { href: '/admin/field-notes', name: 'Field notes', status: 'active', note: 'trip write-ups' },
     ],
   },

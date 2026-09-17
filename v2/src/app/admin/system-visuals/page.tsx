@@ -694,7 +694,7 @@ export default async function SystemVisualsPage() {
         <section id="section-storytellers" className="scroll-mt-4 rounded-xl border border-border bg-white p-4">
           <div className="flex flex-wrap items-baseline justify-between gap-2">
             <h2 className="font-display text-base font-semibold">Storyteller portraits</h2>
-            <Link href="/admin/storytellers" className="text-xs text-accent underline hover:text-foreground">
+            <Link href="/admin/voices?tab=registry" className="text-xs text-accent underline hover:text-foreground">
               Open Registry to edit →
             </Link>
           </div>
@@ -718,7 +718,7 @@ export default async function SystemVisualsPage() {
         <section id="section-communities" className="scroll-mt-4 rounded-xl border border-border bg-white p-4">
           <div className="flex flex-wrap items-baseline justify-between gap-2">
             <h2 className="font-display text-base font-semibold">Community images</h2>
-            <Link href="/admin/community-stories" className="text-xs text-accent underline hover:text-foreground">
+            <Link href="/admin/voices?tab=community" className="text-xs text-accent underline hover:text-foreground">
               Open Community stories →
             </Link>
           </div>

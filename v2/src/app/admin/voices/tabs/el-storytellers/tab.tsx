@@ -3,12 +3,7 @@ import Link from 'next/link';
 import { empathyLedger } from '@/lib/empathy-ledger';
 import StorytellersClient from './storytellers-client';
 
-export const metadata: Metadata = {
-  title: 'Storytellers (EL) · Goods admin',
-  robots: { index: false, follow: false },
-};
 
-export const dynamic = 'force-dynamic';
 
 // EL is one Next app serving both /api and /admin, so the API base is also the
 // app base. Deep-link straight to the EL storyteller edit screen.
@@ -17,7 +12,7 @@ export const dynamic = 'force-dynamic';
 // the old empathy-ledger.vercel.app (v1) is DEAD.
 const EL_APP_URL = process.env.EMPATHY_LEDGER_APP_URL || 'https://empathyledger.com';
 
-export default async function ElStorytellersIndex() {
+export async function ElStorytellersTab() {
   // Storytellers = EL people with at least one Goods-project story (not the whole
   // EL directory). See empathyLedger.getGoodsStorytellerProfiles.
   const profiles = await empathyLedger.getGoodsStorytellerProfiles();

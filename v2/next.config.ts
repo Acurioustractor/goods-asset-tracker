@@ -129,6 +129,16 @@ const nextConfig: NextConfig = {
       // #188 — marked retire 2026-07-20 in route-review.ts and never executed: a live admin page
       // reading Supabase products while products.ts is canon.
       { source: '/admin/products', destination: '/admin', permanent: false },
+      // Seven story surfaces became tabs of /admin/voices on 17 September 2026. The hub had
+      // listed them as tabs since July and admin-routes.ts called every one 'absorbed'; they
+      // were tabs in everything except the address bar.
+      { source: '/admin/story-atlas', destination: '/admin/voices?tab=atlas', permanent: false },
+      { source: '/admin/storytellers', destination: '/admin/voices?tab=registry', permanent: false },
+      { source: '/admin/quotes', destination: '/admin/voices?tab=quotes', permanent: false },
+      { source: '/admin/el-stories', destination: '/admin/voices?tab=el-stories', permanent: false },
+      { source: '/admin/el-storytellers', destination: '/admin/voices?tab=el-storytellers', permanent: false },
+      { source: '/admin/stories', destination: '/admin/voices?tab=curated', permanent: false },
+      { source: '/admin/community-stories', destination: '/admin/voices?tab=community', permanent: false },
       // Eleven admin routes that were a whole page file each to do one line of this. Deleted
       // 2026-09-17 (Ben: fewer routes). Every old URL still lands where it used to.
       { source: '/admin/photo-review', destination: '/admin/media-library', permanent: false },

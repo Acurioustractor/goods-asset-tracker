@@ -2,17 +2,11 @@
 // + curated), joined to storyteller and community. Read-only v1 (curation edit is
 // a fast-follow). Consent tier is shown on every quote; this is an admin surface.
 
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { createServiceClient } from '@/lib/supabase/server';
 import QuotesClient, { type QuoteRow } from './quotes-client';
 
-export const metadata: Metadata = {
-  title: 'Quotes · Goods admin',
-  robots: { index: false, follow: false },
-};
 
-export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 async function fetchQuotes(): Promise<{ rows: QuoteRow[]; ready: boolean }> {
@@ -31,7 +25,7 @@ async function fetchQuotes(): Promise<{ rows: QuoteRow[]; ready: boolean }> {
   }
 }
 
-export default async function QuotesPage() {
+export async function QuotesTab() {
   const { rows, ready } = await fetchQuotes();
   const withPerson = rows.filter((r) => r.storyteller).length;
   const elders = rows.filter((r) => r.storyteller?.is_elder).length;

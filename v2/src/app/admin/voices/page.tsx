@@ -2,6 +2,13 @@ import Link from 'next/link';
 import { STORYTELLER_REGISTRY, type VoiceTier } from '@/lib/data/storyteller-registry';
 import { getProvenance, provenanceLabel, PROVENANCE_ASOF } from '@/lib/data/transcript-provenance';
 import { DOMAIN_QUOTE_COVERAGE, VOICE_GAPS } from '@/lib/data/investor-wiki';
+import { StoryAtlasTab } from './tabs/story-atlas/tab';
+import { RegistryTab } from './tabs/storytellers/tab';
+import { QuotesTab } from './tabs/quotes/tab';
+import { ElStoriesTab } from './tabs/el-stories/tab';
+import { ElStorytellersTab } from './tabs/el-storytellers/tab';
+import { CuratedStoriesTab } from './tabs/stories/tab';
+import { CommunityLensTab } from './tabs/community-stories/tab';
 
 export const dynamic = 'force-dynamic';
 
@@ -14,19 +21,72 @@ const TIER_TONE: Record<VoiceTier, string> = {
   internal: 'text-muted-foreground',
 };
 
-const TABS: { label: string; href: string; current?: boolean }[] = [
-  { label: 'Overview', href: '/admin/voices', current: true },
-  { label: 'Voice Impact Model', href: '/admin/voice-impact' },
-  { label: 'Atlas', href: '/admin/story-atlas' },
-  { label: 'Registry', href: '/admin/storytellers' },
-  { label: 'Quotes', href: '/admin/quotes' },
-  { label: 'EL stories', href: '/admin/el-stories' },
-  { label: 'EL storytellers', href: '/admin/el-storytellers' },
-  { label: 'Curated', href: '/admin/stories' },
-  { label: 'Community lens', href: '/admin/community-stories' },
-];
+/**
+ * ONE HUB, NOT NINE ROUTES.
+ *
+ * Ben, 17 September 2026, looking at a sidebar that listed eight story surfaces as eight
+ * destinations: "Voices hub, Registry, Story atlas, Quotes, Stories (EL), Storytellers (EL),
+ * Community stories and Field notes were eight lines for one thing."
+ *
+ * The information architecture already said so. This file has carried a TABS array pointing at
+ * seven other routes since July, and admin-routes.ts declared every one of them `absorbed`,
+ * meaning "folded into a hub; still works, linked from that hub's tabs". They were tabs in
+ * everything except the address bar, and each one was a page file with its own metadata.
+ *
+ * They are tabs now. Each body moved to ./tabs/<name>/tab.tsx keeping its own client component
+ * beside it, so the relative imports never moved and no data fetching changed. Seven routes
+ * became one, and every old URL still lands on the right tab through next.config.ts.
+ *
+ * The create forms stay as their own routes, because a form needs a URL you can return to:
+ * /admin/el-stories/new, /admin/el-stories/[id]/edit and /admin/el-storytellers/new.
+ */
+const TABS = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'atlas', label: 'Atlas' },
+  { id: 'registry', label: 'Registry' },
+  { id: 'quotes', label: 'Quotes' },
+  { id: 'el-stories', label: 'EL stories' },
+  { id: 'el-storytellers', label: 'EL storytellers' },
+  { id: 'curated', label: 'Curated' },
+  { id: 'community', label: 'Community lens' },
+] as const;
 
-export default function VoicesHub() {
+type TabId = (typeof TABS)[number]['id'];
+
+export default async function VoicesPage({ searchParams }: { searchParams: Promise<{ tab?: string }> }) {
+  const { tab } = await searchParams;
+  const current: TabId = (TABS.find((t) => t.id === tab)?.id ?? 'overview') as TabId;
+
+  return (
+    <div className="space-y-6">
+      <nav className="flex flex-wrap gap-1 border-b pb-2">
+        {TABS.map((t) => (
+          <Link
+            key={t.id}
+            href={t.id === 'overview' ? '/admin/voices' : `/admin/voices?tab=${t.id}`}
+            className={`rounded-lg px-3 py-1.5 text-sm ${current === t.id ? 'bg-muted font-semibold' : 'text-muted-foreground hover:text-foreground'}`}
+          >
+            {t.label}
+          </Link>
+        ))}
+        <Link href="/admin/voice-impact" className="rounded-lg px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground">
+          Voice Impact Model
+        </Link>
+      </nav>
+
+      {current === 'overview' && <VoicesOverview />}
+      {current === 'atlas' && <StoryAtlasTab />}
+      {current === 'registry' && <RegistryTab />}
+      {current === 'quotes' && <QuotesTab />}
+      {current === 'el-stories' && <ElStoriesTab />}
+      {current === 'el-storytellers' && <ElStorytellersTab />}
+      {current === 'curated' && <CuratedStoriesTab />}
+      {current === 'community' && <CommunityLensTab />}
+    </div>
+  );
+}
+
+function VoicesOverview() {
   const rows = STORYTELLER_REGISTRY.map((s) => {
     const prov = getProvenance(s.name);
     const usable = s.quotes.filter((q) => q.status !== 'hold').length;
@@ -61,23 +121,6 @@ export default function VoicesHub() {
         </Link>
       </header>
 
-      {/* Tab row — each tab is a working surface; non-Overview tabs open the existing route */}
-      <div className="flex gap-1 border-b overflow-x-auto pb-px" role="tablist" aria-label="Voices surfaces">
-        {TABS.map((t) => (
-          <Link
-            key={t.label}
-            href={t.href}
-            className={`whitespace-nowrap rounded-t-lg px-3.5 py-2 text-sm ${
-              t.current
-                ? 'bg-orange-50 text-orange-900 font-semibold border border-b-0'
-                : 'text-muted-foreground hover:text-foreground'
-            }`}
-            aria-current={t.current ? 'page' : undefined}
-          >
-            {t.label}
-          </Link>
-        ))}
-      </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 items-start">
         {/* Storyteller table */}
