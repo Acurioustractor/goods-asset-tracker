@@ -7,7 +7,9 @@ import { ChecklistSteps, type Step } from './checklist-steps';
 
 const GROOTE_STEPS: Step[] = [
   { action: 'Connect with Simone Grimmond at WHSAC', owner: 'Nic', when: 'This week', urgent: true },
-  { action: 'Build proposal: 500 beds + 300 washers + freight comparison', owner: 'Nic/Ben', when: 'Next week', urgent: true },
+  // Ben, 15 Sep 2026: the old "500 beds + 300 washers" figure is withdrawn as fabricated
+  // demand (memory goods-money-rulings-2026-09-15). Real demand not yet re-established.
+  { action: 'Establish real WHSAC demand (do not reuse the withdrawn 500-bed/300-washer figure)', owner: 'Nic/Ben', when: 'Next week', urgent: true },
   { action: 'Site visit to Groote — logistics, community needs', owner: 'Nic', when: 'April', urgent: false },
   { action: 'Identify funding pathway — self-fund or grant co-fund?', owner: 'Nic', when: 'April', urgent: false },
   { action: 'Connect to Townsville plant via REAL Fund', owner: 'Nic', when: 'May', urgent: false },

@@ -28,7 +28,9 @@ export const expansionTargets: ExpansionTarget[] = [
   { community: 'Gunbalanya (Oenpelli)', state: 'NT', pop: 1200, priority: 6, reason: '$26.5M tender: 24 new homes plus 18 upgrades.', housingBody: 'Bawinanga Aboriginal Corp' },
   { community: 'Doomadgee', state: 'QLD', pop: 1400, priority: 7, reason: 'Housing plan underway.', housingBody: 'Doomadgee Aboriginal Shire Council' },
   { community: 'Borroloola', state: 'NT', pop: 900, priority: 8, reason: '31 of 38 new homes just completed. Beds needed.', housingBody: 'Roper Gulf Regional Council' },
-  { community: 'Groote Archipelago', state: 'NT', pop: 1500, priority: 9, reason: '800 beds and 300 washers requested.', housingBody: 'Anindilyakwa Housing Aboriginal Corp' },
+  // Ben, 15 Sep 2026: the earlier "800 beds and 300 washers requested" figure is withdrawn as
+  // fabricated demand (memory goods-money-rulings-2026-09-15). Real demand not yet re-established.
+  { community: 'Groote Archipelago', state: 'NT', pop: 1500, priority: 9, reason: 'Island freight cost is the named barrier; real demand not yet re-established.', housingBody: 'Anindilyakwa Housing Aboriginal Corp' },
   { community: 'Ngukurr', state: 'NT', pop: 1100, priority: 10, reason: 'Part of housing class action communities.', housingBody: 'Roper Gulf Regional Council' },
   { community: 'Ramingining', state: 'NT', pop: 870, priority: 11, reason: 'New homes under OFOH.', housingBody: 'East Arnhem Regional Council' },
   { community: 'Kowanyama', state: 'QLD', pop: 1100, priority: 12, reason: '4 new homes plus housing plan.', housingBody: 'Kowanyama Aboriginal Shire Council' },
