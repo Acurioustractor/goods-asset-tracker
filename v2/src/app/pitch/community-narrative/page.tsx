@@ -443,7 +443,7 @@ export default function CommunityNarrativePage() {
           <SectionHeader
             eyebrow="Complete cleared corpus"
             title="All Goods storytellers and transcript quotes in one view."
-            body="This section uses the 32 consent-cleared voices for external use. Practitioner voices are included but must be labelled as practitioners, not community recipients."
+            body={`This section uses the ${storytellerReview.length} consent-cleared voices in the review set for external use. Practitioner voices are included, each one labelled as a practitioner.`}
           />
           <div className="space-y-5">
             {storytellerRows.map((row) => (
