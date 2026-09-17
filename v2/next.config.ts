@@ -126,9 +126,12 @@ const nextConfig: NextConfig = {
       // rather than the live URL moving.
       { source: '/shop/stretch-bed', destination: '/shop/stretch-bed-single', permanent: false },
 
-      // #188 — marked retire 2026-07-20 in route-review.ts and never executed: a live admin page
-      // reading Supabase products while products.ts is canon.
-      { source: '/admin/products', destination: '/admin', permanent: false },
+      // #188 retired /admin/products on 2026-07-20 because it read Supabase products while
+      // products.ts is canon. Ben brought it back on 17 September 2026 ("this one back and make
+      // it rad") and the objection no longer holds: the rebuilt page reads PRODUCT_WIKIS, which
+      // is built on products.ts, and touches the register only to count assets per product.
+      // The redirect is deleted rather than commented out, because a redirect that still exists
+      // is a page that cannot be reached however good it is.
       // The raise was four routes about the same money, all declared absorbed since July.
       // Tabs of /admin/deals from 17 September 2026.
       { source: '/admin/funders', destination: '/admin/deals?tab=funders', permanent: false },
