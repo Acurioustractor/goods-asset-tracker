@@ -14,6 +14,8 @@
  * hold, in reply to something they did. It carries no unsubscribe and joins no list.
  */
 
+import { COMMS, buildEmail, type BuiltEmail } from './facts';
+
 export interface SupportReplyInput {
   /** The asset they reported, e.g. GB0-156-40. */
   assetId: string;
@@ -25,52 +27,34 @@ export interface SupportReplyInput {
   name?: string;
 }
 
-export interface BuiltEmail {
-  subject: string;
-  html: string;
-  text: string;
-}
-
-const PHONE = '0422 883 943';
-
-function esc(s: string): string {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
-
-function toHtml(paragraphs: string[]): string {
-  return paragraphs
-    .map((p) => `<p style="margin:0 0 16px;line-height:1.55">${esc(p).replace(/\n/g, '<br/>')}</p>`)
-    .join('');
-}
-
 function isUrgent(priority: string): boolean {
   return /^(high|urgent)$/i.test(priority.trim());
 }
 
 export function buildSupportReply(input: SupportReplyInput): BuiltEmail {
   const urgent = isUrgent(input.priority);
-  const ring = `If it is not safe to use right now, ring Ben on ${PHONE} and do not wait for the email.`;
   const whatWeHave = input.product
     ? `We have ${input.assetId} on the register as a ${input.product.toLowerCase()}${
         input.community ? ` at ${input.community}` : ''
       }.`
     : `We have ${input.assetId} on the record.`;
-  const next =
-    'Here is what happens next. We check it against its record, work out whether it needs a part, a repair or a replacement, and come back to you within two business days with which one it is and when.';
+  const next = `Here is what happens next. We check it against its record, work out whether it needs a part, a repair or a replacement, and come back to you within ${COMMS.replyWindow} with which one it is and when.`;
 
   const paragraphs = urgent
     ? [
         'Thanks for telling us.',
-        `You marked this urgent, so ring Ben on ${PHONE} rather than waiting on email.`,
+        `You marked this urgent, so ring Ben on ${COMMS.phone} rather than waiting on email.`,
         whatWeHave,
         next,
-        'Ben\nGoods on Country',
+        COMMS.signOff,
       ]
-    : ['Thanks for telling us.', whatWeHave, next, ring, 'Ben\nGoods on Country'];
+    : [
+        'Thanks for telling us.',
+        whatWeHave,
+        next,
+        `If it is not safe to use right now, ring Ben on ${COMMS.phone} and do not wait for the email.`,
+        COMMS.signOff,
+      ];
 
-  return {
-    subject: `${input.assetId}, and what happens now`,
-    html: toHtml(paragraphs),
-    text: paragraphs.join('\n\n'),
-  };
+  return buildEmail(`${input.assetId}, and what happens now`, paragraphs);
 }

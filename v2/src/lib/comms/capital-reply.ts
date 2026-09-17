@@ -17,29 +17,14 @@
  * both and a funder who can only do one should not have to guess which one we want.
  */
 
-import type { BuiltEmail, ReplyContext } from './replies';
-
-function esc(s: string): string {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
-
-function toHtml(paragraphs: string[]): string {
-  return paragraphs
-    .map((p) => `<p style="margin:0 0 16px;line-height:1.55">${esc(p).replace(/\n/g, '<br/>')}</p>`)
-    .join('');
-}
+import { COMMS, buildEmail, type BuiltEmail } from './facts';
+import type { ReplyContext } from './replies';
 
 export function buildCapitalReply(_ctx: ReplyContext): BuiltEmail {
-  const paragraphs = [
+  return buildEmail('Backing a facility', [
     'Thanks for writing.',
     'A facility is a plant in a community that presses beds from recycled plastic, employs local people, and moves toward that community owning it. Capital comes in as a grant or as something recoverable, and both are real conversations here.',
-    'Within two business days I will send you the numbers: what a facility costs to stand up, what it produces, and what the community ends up holding. If you would rather talk it through than read it, say so and we will find a time this week.',
-    'Ben\nGoods on Country',
-  ];
-
-  return {
-    subject: 'Backing a facility',
-    html: toHtml(paragraphs),
-    text: paragraphs.join('\n\n'),
-  };
+    `Within ${COMMS.replyWindow} I will send you the numbers: what a facility costs to stand up, what it produces, and what the community ends up holding. If you would rather talk it through than read it, say so and we will find a time this week.`,
+    COMMS.signOff,
+  ]);
 }

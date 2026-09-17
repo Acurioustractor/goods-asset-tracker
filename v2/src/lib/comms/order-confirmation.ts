@@ -19,6 +19,8 @@
  * Do not add a promise here that nobody has agreed to keep.
  */
 
+import { COMMS, buildEmail, type BuiltEmail } from './facts';
+
 export interface OrderConfirmationInput {
   name?: string;
   orderNumber: string;
@@ -30,13 +32,7 @@ export interface OrderConfirmationInput {
   itemCount?: number;
 }
 
-export interface BuiltEmail {
-  subject: string;
-  html: string;
-  text: string;
-}
-
-const PHONE = '0422 883 943';
+export type { BuiltEmail };
 
 function money(cents: number): string {
   const dollars = cents / 100;
@@ -48,42 +44,29 @@ function firstName(name?: string): string {
   return first || 'there';
 }
 
-function esc(s: string): string {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
-
-function paragraphsToHtml(paragraphs: string[]): string {
-  return paragraphs
-    .map((p) => `<p style="margin:0 0 16px;line-height:1.55">${esc(p).replace(/\n/g, '<br/>')}</p>`)
-    .join('');
+function bedCount(input: OrderConfirmationInput): string {
+  return input.itemCount && input.itemCount > 1 ? `${input.itemCount} Stretch Beds` : 'One Stretch Bed';
 }
 
 /** The bed a person bought for themselves. */
 function purchase(input: OrderConfirmationInput): BuiltEmail {
-  const beds = input.itemCount && input.itemCount > 1 ? `${input.itemCount} Stretch Beds` : 'One Stretch Bed';
-  const paragraphs = [
+  return buildEmail(`Your Stretch Bed, order ${input.orderNumber}`, [
     `Thanks ${firstName(input.name)}. Your order came through and we have it.`,
-    `${beds}, ${money(input.totalCents)}, order ${input.orderNumber}.`,
-    'Your bed is made from recycled HDPE, about 20 kilos of plastic per bed that would otherwise be buried. The canvas is what holds it up: the poles thread through the sleeves and pull tight into the legs, so the bed does not stand without it.',
+    `${bedCount(input)}, ${money(input.totalCents)}, order ${input.orderNumber}.`,
+    `Your bed is made from recycled HDPE, about ${COMMS.plasticKgPerBed} kilos of plastic per bed that would otherwise be buried. The canvas is what holds it up: the poles thread through the sleeves and pull tight into the legs, so the bed does not stand without it.`,
     'When it is packed and on the truck I will email you the tracking.',
     'There is a QR code on the bed. Scan it when it arrives and you can see where it was made, and tell us how it is going.',
-    `If you need it by a date, or anything changes, reply to this email or ring me on ${PHONE}.`,
-    'Ben\nGoods on Country',
-  ];
-  return {
-    subject: `Your Stretch Bed, order ${input.orderNumber}`,
-    html: paragraphsToHtml(paragraphs),
-    text: paragraphs.join('\n\n'),
-  };
+    `If you need it by a date, or anything changes, reply to this email or ring me on ${COMMS.phone}.`,
+    COMMS.signOff,
+  ]);
 }
 
 /** The bed somebody paid for so that a community gets it. */
 function sponsorship(input: OrderConfirmationInput): BuiltEmail {
   const place = input.sponsoredCommunity?.trim();
-  const beds = input.itemCount && input.itemCount > 1 ? `${input.itemCount} Stretch Beds` : 'One Stretch Bed';
   const paragraphs = [
     `Thanks ${firstName(input.name)}. The bed is paid for and it has somewhere to go.`,
-    `${beds}, ${money(input.totalCents)}, order ${input.orderNumber}, allocated from the next production run${
+    `${bedCount(input)}, ${money(input.totalCents)}, order ${input.orderNumber}, allocated from the next production run${
       place ? ` to ${place}` : ''
     }.`,
   ];
@@ -95,18 +78,15 @@ function sponsorship(input: OrderConfirmationInput): BuiltEmail {
     place
       ? `When it reaches ${place} I will email you the QR link, so you can see the bed itself and where it ended up.`
       : 'When it reaches its community I will email you the QR link, so you can see the bed itself and where it ended up.',
+    `Reply here or ring me on ${COMMS.phone} if you want to know where it is up to.`,
+    COMMS.signOff,
   );
-  paragraphs.push(
-    `Reply here or ring me on ${PHONE} if you want to know where it is up to.`,
-    'Ben\nGoods on Country',
-  );
-  return {
-    subject: place
+  return buildEmail(
+    place
       ? `The bed you sponsored for ${place}, order ${input.orderNumber}`
       : `The bed you sponsored, order ${input.orderNumber}`,
-    html: paragraphsToHtml(paragraphs),
-    text: paragraphs.join('\n\n'),
-  };
+    paragraphs,
+  );
 }
 
 export function buildOrderConfirmation(input: OrderConfirmationInput): BuiltEmail {

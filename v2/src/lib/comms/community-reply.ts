@@ -20,33 +20,18 @@
  * owed.
  */
 
-import type { BuiltEmail, ReplyContext } from './replies';
-
-function esc(s: string): string {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
-
-function toHtml(paragraphs: string[]): string {
-  return paragraphs
-    .map((p) => `<p style="margin:0 0 16px;line-height:1.55">${esc(p).replace(/\n/g, '<br/>')}</p>`)
-    .join('');
-}
+import { COMMS, buildEmail, type BuiltEmail } from './facts';
+import type { ReplyContext } from './replies';
 
 export function buildCommunityReply(ctx: ReplyContext): BuiltEmail {
   const haveNumber = Boolean(ctx.phone && ctx.phone.trim().length >= 6);
 
-  const paragraphs = [
+  return buildEmail('Thanks for putting your community forward', [
     'Thanks for getting in touch.',
     'Nothing gets made for a community until that community has decided it wants it, who gets paid and what gets made next. So the first step is a conversation, and it happens on the phone rather than over email.',
     haveNumber
-      ? 'I will ring you within two business days. If there is someone else who should be on that call, reply with their name and I will make sure they are.'
-      : 'Reply with a number and a good time and I will ring you within two business days. If there is someone else who should be on that call, send their name too and I will make sure they are.',
-    'Ben\nGoods on Country',
-  ];
-
-  return {
-    subject: 'Thanks for putting your community forward',
-    html: toHtml(paragraphs),
-    text: paragraphs.join('\n\n'),
-  };
+      ? `I will ring you within ${COMMS.replyWindow}. If there is someone else who should be on that call, reply with their name and I will make sure they are.`
+      : `Reply with a number and a good time and I will ring you within ${COMMS.replyWindow}. If there is someone else who should be on that call, send their name too and I will make sure they are.`,
+    COMMS.signOff,
+  ]);
 }

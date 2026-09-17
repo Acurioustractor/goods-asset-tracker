@@ -11,6 +11,7 @@ import {
 import { findAudienceSegment, findSmartList } from '@/lib/ghl/smart-lists';
 import { PUBLIC_FORMS, type GoodsHears, type TheyGet } from '@/lib/forms/public-forms';
 import { readWorkflowHealth, readInboundHealth } from '@/lib/ghl/send-health';
+import { MESSAGE_CATALOGUE } from '@/lib/comms/catalogue';
 import {
   campaignsFor,
   readyToSwitchOn,
@@ -115,6 +116,7 @@ export default async function AdminCampaignPage() {
             { label: 'Lanes', value: String(AUDIENCE_PATHWAYS.length) },
             { label: 'Running end to end', value: `${live} of ${AUDIENCE_PATHWAYS.length}` },
             { label: 'Steps with a gap', value: String(gaps.length) },
+            { label: 'Messages', value: String(MESSAGE_CATALOGUE.length) },
             { label: 'Ready to switch on', value: String(ready.length) },
             { label: 'Waiting on consent', value: String(consentBlocked.length) },
           ].map((stat) => (
@@ -201,6 +203,38 @@ export default async function AdminCampaignPage() {
               {inbound.byKind.map((k) => `${k.count} ${k.kind}`).join(' · ')}
             </p>
           )}
+        </div>
+      </section>
+
+      <section className="mt-10 rounded-xl border bg-white p-5">
+        <h2 className="font-serif text-xl">Every message Goods sends a person</h2>
+        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600">
+          All {MESSAGE_CATALOGUE.length} of them, rendered from a real example, so the whole voice
+          can be read in one place. They compose from one set of facts: the phone number, the
+          response window and who invoices are written once and shared, and a guard checks every
+          message still agrees with the rest.
+        </p>
+        <div className="mt-5 grid gap-4 lg:grid-cols-2">
+          {MESSAGE_CATALOGUE.map((message) => (
+            <article key={message.id} className="rounded-lg border bg-slate-50/60 p-4">
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <h3 className="text-sm font-semibold text-slate-900">{message.label}</h3>
+                <a
+                  className="text-[10px] uppercase tracking-wider text-slate-500 underline-offset-2 hover:underline"
+                  href={`#${message.audience}`}
+                >
+                  {message.audience}
+                </a>
+              </div>
+              <p className="mt-1 text-[11px] text-slate-500">Fires on: {message.trigger}</p>
+              <p className="mt-3 border-l-2 border-slate-300 pl-3 text-sm font-medium text-slate-800">
+                {message.example.subject}
+              </p>
+              <p className="mt-2 whitespace-pre-wrap border-l-2 border-slate-200 pl-3 text-xs leading-relaxed text-slate-600">
+                {message.example.text}
+              </p>
+            </article>
+          ))}
         </div>
       </section>
 

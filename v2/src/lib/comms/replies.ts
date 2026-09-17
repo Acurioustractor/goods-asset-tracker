@@ -24,11 +24,8 @@ import { buildMediaPackReply } from './media-pack-reply';
 import { buildCapitalReply } from './capital-reply';
 import { buildCommunityReply } from './community-reply';
 
-export interface BuiltEmail {
-  subject: string;
-  html: string;
-  text: string;
-}
+export type { BuiltEmail } from './facts';
+import type { BuiltEmail } from './facts';
 
 /** What a builder is given. Everything the contact form knows. */
 export interface ReplyContext {
