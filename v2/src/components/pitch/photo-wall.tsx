@@ -244,8 +244,14 @@ export function PhotoWall({ groups, title, sub }: { groups: WallGroup[]; title: 
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={thumb(p.src, bucket(w))} alt="" loading="lazy" decoding="async" className="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.04]" />
                       <span className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10" aria-hidden="true" />
-                      <span className="pointer-events-none absolute bottom-2 left-2 rounded-full bg-black/40 px-2 py-0.5 text-[11px] font-medium tracking-wide text-white backdrop-blur-sm" aria-hidden="true">
-                        {p.group}
+                      {/*
+                        * The badge used to print the GROUP on every tile, so forty photographs in
+                        * a set all claimed the same place and most of them were wrong about it
+                        * (Ben, 17 September). A photo's own alt is the only per-photo description
+                        * we hold, so it says that, and falls back to the group when there is none.
+                        */}
+                      <span className="pointer-events-none absolute bottom-2 left-2 line-clamp-1 max-w-[calc(100%-1rem)] rounded-full bg-black/45 px-2 py-0.5 text-[11px] font-medium tracking-wide text-white backdrop-blur-sm" aria-hidden="true">
+                        {p.alt || p.group}
                       </span>
                     </button>
                   );

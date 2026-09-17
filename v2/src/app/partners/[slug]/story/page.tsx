@@ -18,7 +18,7 @@ import {
   WALLS, WHY_FLEXIBLE,
   WASHER_NEXT, WASHER_PLACES, WASHER_TELEMETRY,
 } from '@/lib/data/snow-partnership';
-import { snowHeroFrames } from '@/lib/data/snow-photos';
+import { snowHeroFrames, snowTaggedGroup } from '@/lib/data/snow-photos';
 import { ChapterRail } from '@/components/pitch/chapter-rail';
 import { CountUp } from '@/components/pitch/count-up';
 import { TogetherTimeline } from '@/components/partners/together-timeline';
@@ -254,10 +254,15 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
     };
   });
 
-  const wallGroups = WALLS.map((w) => ({
-    label: w.label,
-    photos: w.files.map((f) => ({ src: w.dir + f.file, alt: f.alt, caption: f.caption })),
-  }));
+  // The curated walls, plus anything Ben has tagged use:snow in the Media Room, which is the
+  // one-step way to put a new photograph on this page without touching code.
+  const wallGroups = [
+    ...WALLS.map((w) => ({
+      label: w.label,
+      photos: w.files.map((f) => ({ src: w.dir + f.file, alt: f.alt, caption: f.caption })),
+    })),
+    ...(snowTaggedGroup() ? [snowTaggedGroup()!] : []),
+  ];
   const norman = quote('norman-frank', 'external', "we've got our own ways");
 
   // The arc, as places. Each beat carries its own aerial and its own voice, resolved here so

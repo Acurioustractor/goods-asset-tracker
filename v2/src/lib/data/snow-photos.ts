@@ -98,3 +98,29 @@ export function snowHeroFrames(): SnowFrame[] {
 
   return [...kept, ...added];
 }
+
+/**
+ * ANY PHOTOGRAPH BEN TAGS FOR SNOW, AS ITS OWN SET IN THE ARCHIVE.
+ *
+ * Ben, 17 September 2026: give me a way to add and tag more Snow photos easily. This is it, and
+ * it is one step. Open a photograph at /admin/media-library, type `use:snow` in the tag box,
+ * save. It appears in the hero strip and in this set on the report, with the caption its tags
+ * can give it. `use:snow-hide` takes one away again.
+ */
+export function snowTaggedGroup(): { label: string; note?: string; photos: { src: string; alt: string; caption?: string }[] } | null {
+  let images: LocalImage[] = [];
+  try {
+    images = getLocalImages();
+  } catch {
+    return null;
+  }
+  const inWalls = new Set(heroFrames().map((f) => f.src));
+  const photos = images
+    .filter((i) => i.tags.includes(SNOW_PICK_TAG) && !i.tags.includes(SNOW_HIDE_TAG) && !inWalls.has(i.url))
+    .map((i) => {
+      const caption = captionFor(i);
+      const alt = altFromFilename(i.filename) || caption?.replace(/\.$/, '') || 'Goods on Country';
+      return { src: i.url, alt, caption: caption ?? undefined };
+    });
+  return photos.length ? { label: 'Tagged for Snow', photos } : null;
+}
