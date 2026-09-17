@@ -142,6 +142,14 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     verdict: 'keep',
   },
   {
+    route: '/admin/funding-board',
+    audience: 'internal',
+    access: 'admin',
+    leadsWithNow: null,
+    whyUnread: 'admin surface, client-rendered behind the admin gate',
+    verdict: 'keep',
+  },
+  {
     route: '/admin/campaign',
     audience: 'internal',
     access: 'admin',
