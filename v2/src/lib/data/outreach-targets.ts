@@ -168,8 +168,18 @@ export const impactFinance: OutreachTarget[] = [
 export const aboriginalTrusts: OutreachTarget[] = [
   {
     id: 'centrecorp-foundation', name: 'Centrecorp Foundation', category: 'aboriginal_trust', status: 'active', priority: 'critical',
-    states: ['NT'], communities: ['utopia'], amountSignal: '107 beds paid ($123,332), delivered; further 107-bed repeat order quoted ($80,250, in discussion)', instrument: 'buyer',
-    nextAction: 'Close the repeat 107-bed order. Only genuine repeat institutional buyer to date.',
+    // SETTLED AGAINST XERO, 17 September 2026, after 107 / 109 / 167 had all been in print at once.
+    // Two PAID invoices, and they were never in conflict — they answer different questions:
+    //   INV-0259, 11 Aug 2025, paid 4 Sep 2025 — 60 x Goods Basket Bed v1.3 @ $370 + 2 workshops @ $6,000
+    //   INV-0291, 26 Nov 2025, paid 3 Feb 2026 — 107 x Goods Weave Bed v2.3 (Utopia) @ $560 + 3 workshops @ $6,000
+    // 167 is every bed. 107 is the second invoice alone, which is what this line used to print.
+    // 109 is in the legacy 22 May trip deck and in NO invoice; it is not a figure, it is a memory.
+    // The 107 are Stretch Beds under the Centrecorp paper-trail naming exception (see CLAUDE.md);
+    // the 60 are Basket Beds, a different and now discontinued product. Never say "167 Stretch Beds".
+    states: ['NT'], communities: ['utopia'],
+    amountSignal: '167 beds paid across two invoices ($123,332 inc GST): 107 Stretch (INV-0291, Utopia) + 60 Basket (INV-0259). Five bed-building workshops, $30,000 of the total.',
+    instrument: 'buyer',
+    nextAction: 'Only genuine repeat institutional buyer to date, and a third of what they paid was facilitation, not beds.',
     grantRelevance: 'Aboriginal investment arm. Already connected to Utopia/Centrebuild pathway.',
     evidenceTier: 'real_contactable', contactStatus: 'open',
   },
