@@ -804,20 +804,26 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         <div className="mt-8 overflow-hidden rounded-lg" style={{ backgroundColor: PANEL, border: `1px solid ${RULE}` }}>
           <div className="grid lg:grid-cols-[minmax(0,1fr)_16rem]">
             <div className="p-6 sm:p-8">
-              <div className="flex items-center gap-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>
+                Norm&rsquo;s house, Tennant Creek
+              </p>
+              {/*
+                * Ben supplied this on 17 September. Norman Frank with the machine, 28 June 2025,
+                * the day before Snow bought one. The name is pressed into the recycled plastic on
+                * the front of it, which is the whole argument in one photograph.
+                */}
+              <figure className="m-0 mt-4">
                 <Image
-                  src="/images/people/norman-frank.jpg" alt="Norman Frank" width={200} height={200}
-                  className="h-14 w-14 shrink-0 rounded-full object-cover"
+                  src="/images/community/tennant-creek/norman-frank-pakkimjalki-kari.jpg"
+                  alt="Norman Frank beside Pakkimjalki Kari, the washing machine, its recycled plastic enclosure carrying the name"
+                  width={2000} height={1333}
+                  sizes="(min-width: 1024px) 34rem, 100vw"
+                  className="w-full rounded-lg object-cover"
                 />
-                <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>
-                    Norm&rsquo;s house, Tennant Creek
-                  </p>
-                  <p className="text-xs" style={{ color: MUTED }}>
-                    Norman Frank, Warumungu Elder. The machine is in his house.
-                  </p>
-                </div>
-              </div>
+                <figcaption className="mt-2 text-xs" style={{ color: MUTED }}>
+                  Norman Frank with Pakkimjalki Kari, 28 June 2025. The name is pressed into the plastic.
+                </figcaption>
+              </figure>
               <p className="mt-5 flex items-baseline gap-3">
                 <span className="font-display text-6xl leading-none" style={{ color: CHARCOAL }}>952</span>
                 <span className="text-sm" style={{ color: MUTED }}>washes, and 48 short of a thousand</span>
