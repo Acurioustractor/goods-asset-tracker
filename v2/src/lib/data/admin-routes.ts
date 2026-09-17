@@ -104,6 +104,7 @@ export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
     group: 'Funding',
     routes: [
       { href: '/admin/deals', name: 'The raise', status: 'hub', note: 'pipeline, LOIs, match spine' },
+      { href: '/admin/desk', name: 'The Desk', status: 'active', note: 'the three questions: relationships, legal pathways, readiness to sell' },
       { href: '/admin/funding-board', name: 'Funding board', status: 'active', note: 'every buyer, funder and pathway, one table, by community/type/status' },
       { href: '/admin/funders/new', name: 'New funder', status: 'absorbed' },
       { href: '/admin/reports', name: 'Funder reports', status: 'absorbed' },
