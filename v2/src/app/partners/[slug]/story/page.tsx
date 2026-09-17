@@ -11,7 +11,8 @@ import { ORGANISATION } from '@/lib/data/organisation';
 import { goodsBoard } from '@/lib/data/goods-board';
 import {
   ALIGNMENT, BECAUSE_OF, BUYER_TOTALS, BUYERS, DEMAND_GAPS, FILMS, heroFrames, MAP_PLACES,
-  NOT_FINISHED, OONCHIUMPA_NEXT, PLACE_BEATS, PRICE_LADDER, SNOW_MONEY, THE_ARC, THE_LETTER, TOGETHER,
+  MONEY_EVENTS, MONTHS_BEFORE_FIRST_SALE, NOT_FINISHED, OONCHIUMPA_NEXT, PLACE_BEATS, PRICE_LADDER,
+  SNOW_MONEY, THE_ARC, THE_LETTER, TOGETHER,
   WALLS, WHY_FLEXIBLE,
   WASHER_NEXT, WASHER_PLACES, WASHER_TELEMETRY,
 } from '@/lib/data/snow-partnership';
@@ -24,6 +25,8 @@ import { FilmGallery, type GalleryFilm } from '@/components/partners/film-galler
 import { StoryHero } from '@/components/partners/story-hero';
 import { PlaceFilms, type PlaceBeat } from '@/components/partners/place-films';
 import { GrowingMap } from '@/components/partners/growing-map';
+import { GrowthStory } from '@/components/partners/growth-story';
+import { PAID_INVOICE_BEDS } from '@/lib/data/paid-trade';
 import { PhotoWall } from '@/components/pitch/photo-wall';
 
 /**
@@ -362,6 +365,17 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
               existed.
             </p>
             <div className="mt-8">
+              <GrowthStory
+                places={MAP_PLACES}
+                events={MONEY_EVENTS}
+                totalBeds={CANONICAL_ASSETS.bedsDeployed}
+                totalWashers={CANONICAL_ASSETS.washersInCommunity}
+                communities={CANONICAL_ASSETS.communitiesServed}
+                bedsBought={PAID_INVOICE_BEDS}
+                monthsBefore={MONTHS_BEFORE_FIRST_SALE}
+              />
+            </div>
+            <div className="mt-6">
               {outline ? <GrowingMap outline={outline} places={MAP_PLACES} /> : null}
             </div>
             {/*

@@ -44,6 +44,7 @@
  */
 
 import { CANONICAL_ASSETS } from './asset-canonical';
+import { PAID_INVOICES } from './paid-trade';
 import { BED, RAISE } from './model-placemat';
 import { QBE_CLOSES } from './qbe-form';
 import { PLASTIC_KG_PER_BED } from './products';
@@ -439,6 +440,51 @@ export const BED_HERE = {
 } as const;
 
 /**
+ * THE TWO LANES OF MONEY, ON ONE TIME AXIS.
+ *
+ * Ben, 17 September 2026: the map and its year scrubber were boring, and what was missing was
+ * impact and growth. This is the growth, drawn from dated rows rather than asserted: every
+ * payment that put a bed in a house, split by whether it was given or paid by a buyer.
+ *
+ * GIVEN comes from the dated money moments in TOGETHER, which are Snow's. BOUGHT comes from
+ * PAID_INVOICES, by the date each invoice was fully paid, not the date it was issued, because a
+ * bed is bought when the money lands.
+ *
+ * The gap between the first given dot and the first bought dot is eleven months. That gap is
+ * the whole catalytic argument and nobody has to write it down.
+ */
+export interface MoneyEventData {
+  on: string;
+  label: string;
+  detail: string;
+  kind: 'given' | 'bought';
+}
+
+export const MONEY_EVENTS: readonly MoneyEventData[] = [
+  ...TOGETHER.filter((m) => m.kind === 'money').map((m) => ({
+    on: m.when,
+    label: m.title,
+    detail: m.detail,
+    kind: 'given' as const,
+  })),
+  ...PAID_INVOICES.map((i) => ({
+    on: i.fullyPaidOn,
+    label: `${i.buyer} paid for ${i.beds} beds`,
+    detail: `${i.invoiceNumber}, ${i.beds} beds at $${i.bedUnitPriceAud} for ${i.forPlace}.`,
+    kind: 'bought' as const,
+  })),
+];
+
+/** The eleven months, computed rather than typed, so the sentence cannot go stale. */
+export const MONTHS_BEFORE_FIRST_SALE = (() => {
+  const given = MONEY_EVENTS.filter((e) => e.kind === 'given').map((e) => e.on).sort();
+  const bought = MONEY_EVENTS.filter((e) => e.kind === 'bought').map((e) => e.on).sort();
+  if (!given.length || !bought.length) return 0;
+  const m = (iso: string) => Number(iso.slice(0, 4)) * 12 + Number(iso.slice(5, 7));
+  return m(bought[0]) - m(given[0]);
+})();
+
+/**
  * THE ARC, AS THINGS WE MADE.
  *
  * Ben, 17 September 2026: chapter one should be the clear story. Basket Bed, then the washing
@@ -820,7 +866,7 @@ export const PLACE_BEATS: readonly PlaceBeatData[] = [
       { src: '/images/community/kalgoorlie/dump-site-dawn.jpg', alt: 'The dump at dawn' },
       { src: '/images/community/kalgoorlie/mattress-decayed.jpg', alt: 'A decayed mattress' },
       { src: '/images/community/kalgoorlie/camp-visit.jpg', alt: 'At the camp, Ninga Mia' },
-      { src: '/images/media-pack/nic-with-elder-on-verandah.jpg', alt: 'Nic with an Elder on the verandah' },
+      { src: '/images/community/kalgoorlie/delivery-truck.jpg', alt: 'The delivery truck at Ninga Mia' },
     ],
   },
   {
