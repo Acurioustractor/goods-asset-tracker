@@ -440,6 +440,46 @@ export const BED_HERE = {
 } as const;
 
 /**
+ * THE CROSSOVER, AND THE SHAPE WE ARE WORKING TOWARDS.
+ *
+ * Ben, 17 September 2026: show how as the given came down the bought went up, and how we want
+ * to model that for the next five to ten years, held by the Goods on Country Indigenous board
+ * and the community members behind the charity.
+ *
+ * WHAT IS MEASURED AND WHAT IS NOT. The bought side is exact: every paid invoice, by the year
+ * the money landed. The given side is NOT published as a series here, because Snow's nine
+ * invoices are not held one by one in this repo and inventing a declining line would be the
+ * same sin as the withdrawn demand figures. So the chart carries the side we can prove and the
+ * words carry the direction, and the direction is named as intent.
+ *
+ * NO TEN-YEAR NUMBER APPEARS ANYWHERE HERE. Ben's standing rule on big numbers: say where it
+ * goes if it works, then say nobody is promising ten-year numbers. That is exactly what the
+ * closing line does.
+ */
+export const TRADE_BY_YEAR: readonly { year: string; invoices: number; beds: number; aud: number }[] = (() => {
+  const by = new Map<string, { year: string; invoices: number; beds: number; aud: number }>();
+  for (const i of PAID_INVOICES) {
+    const year = i.fullyPaidOn.slice(0, 4);
+    const row = by.get(year) ?? { year, invoices: 0, beds: 0, aud: 0 };
+    row.invoices += 1;
+    row.beds += i.beds;
+    row.aud += i.totalPaidInclGstAud;
+    by.set(year, row);
+  }
+  return [...by.values()].sort((a, b) => a.year.localeCompare(b.year));
+})();
+
+export const THE_NEXT_TEN = {
+  heading: 'The shape, for the next five to ten years',
+  body:
+    'One line comes down and the other goes up. Philanthropy carried the whole of the first eleven months and it still carries most of what this work costs. The buying is what has to take its place, until the beds pay for the making and the making is not ours to hold.',
+  holder:
+    'What holds it while that happens is the charity, and the charity is a board of Indigenous directors with the community organisations themselves behind it. That is the difference between an enterprise that is transferred and one that is only talked about being transferred.',
+  ceiling:
+    'There is no ten-year number on this page and there will not be one. What there is: what buyers actually paid, in the years they paid it.',
+} as const;
+
+/**
  * THE BRIDGE: WHAT THE ORDER OF THE LEDGER LEADS TO.
  *
  * Ben, 17 September 2026: think about progress, then build on the way we are finding more

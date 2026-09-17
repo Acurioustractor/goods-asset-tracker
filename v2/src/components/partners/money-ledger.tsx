@@ -48,16 +48,25 @@ export function MoneyLedger({ events, monthsBefore }: { events: readonly MoneyEv
             </div>
           )}
           <div
-            className="grid gap-2 px-5 py-5 sm:grid-cols-[7.5rem_5.5rem_1fr_auto] sm:items-baseline sm:gap-5 sm:px-7"
-            style={{ borderTop: i === 0 ? undefined : `1px solid ${RULE}` }}
+            className="grid gap-2 px-5 py-5 sm:grid-cols-[7.5rem_6.5rem_1fr_auto] sm:items-baseline sm:gap-5 sm:px-7"
+            style={{
+              borderTop: i === 0 ? undefined : `1px solid ${RULE}`,
+              backgroundColor: r.kind === 'given' ? '#FBF3EE' : '#FFFFFF',
+              borderLeft: `5px solid ${r.kind === 'given' ? RUST : '#E3D5CB'}`,
+            }}
           >
             <p className="text-xs tabular-nums" style={{ color: MUTED }}>{stamp(r.on)}</p>
-            <p className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: r.kind === 'given' ? RUST : `${INK}99` }}>
+            <p>
               <span
-                className="block h-2.5 w-2.5 shrink-0 rounded-full"
-                style={{ backgroundColor: r.kind === 'given' ? RUST : 'transparent', border: `2px solid ${RUST}` }}
-              />
-              {r.kind}
+                className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.14em]"
+                style={
+                  r.kind === 'given'
+                    ? { backgroundColor: RUST, color: '#FDF8F3' }
+                    : { backgroundColor: 'transparent', color: `${INK}b3`, border: `1.5px solid #D8C9BC` }
+                }
+              >
+                {r.kind}
+              </span>
             </p>
             <div className="min-w-0">
               <p className="font-display text-base leading-snug" style={{ color: INK }}>{r.label}</p>

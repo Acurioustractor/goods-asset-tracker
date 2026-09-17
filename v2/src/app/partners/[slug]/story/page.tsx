@@ -12,7 +12,7 @@ import { goodsBoard } from '@/lib/data/goods-board';
 import {
   ALIGNMENT, BECAUSE_OF, BUYER_TOTALS, BUYERS, DEMAND_GAPS, FILMS, heroFrames, MAP_PLACES,
   COMMUNITY_MODEL, MONEY_EVENTS, MONTHS_BEFORE_FIRST_SALE, NOT_FINISHED, OONCHIUMPA_NEXT,
-  PROGRESS_BRIDGE,
+  PROGRESS_BRIDGE, THE_NEXT_TEN, TRADE_BY_YEAR,
   PLACE_BEATS, PRICE_LADDER,
   SNOW_MONEY, THE_ARC, THE_LETTER, TOGETHER,
   WALLS, WHY_FLEXIBLE,
@@ -27,6 +27,11 @@ import { FilmGallery, type GalleryFilm } from '@/components/partners/film-galler
 import { StoryHero } from '@/components/partners/story-hero';
 import { PlaceFilms, type PlaceBeat } from '@/components/partners/place-films';
 import { MoneyLedger } from '@/components/partners/money-ledger';
+import { ModelLoopBuild } from '@/components/pitch/model-loop-build';
+import { LOOP_ARCS, LOOP_COUNTS, LOOP_STATIONS, LOOP_STEPS } from '@/lib/data/model-walkthrough';
+import { FLOWS, LOGOS, PANELS, STATIONS } from '@/lib/data/model-placemat';
+import { renderPlacematSvg, type PanelId } from '@/lib/model/placemat-svg';
+import { HARVEST_CONTAINER_DRAWING } from '@/lib/model/harvest-container-drawing';
 import { PhotoWall } from '@/components/pitch/photo-wall';
 
 /**
@@ -204,6 +209,18 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
     photos: b.photos ?? [],
     showMap: b.showMap,
   }));
+
+  // The deck's own placemat, rendered here exactly as /pitch renders it. Every input is a code
+  // module, so nothing is read off disk and this works on Vercel where public/ is not bundled.
+  const photoHrefs = Object.fromEntries(PANELS.map((pn) => [pn.id, pn.photo.src])) as Partial<Record<PanelId, string>>;
+  const placematSvg = renderPlacematSvg({
+    inlineDrawing: HARVEST_CONTAINER_DRAWING,
+    photoHrefs,
+    logoHrefs: { goods: LOGOS.goods.src, qbe: LOGOS.qbe.src },
+    standalone: false,
+  });
+  const placematItems = Object.values(STATIONS).map((s) => ({ id: s.id, title: s.title, line: s.line }));
+  const placematArrows = FLOWS.map((fl) => ({ from: fl.from, to: fl.to, label: fl.label }));
 
   // The same outline the /pitch map draws, read on the server and passed in as a path string.
   const outline = await readFile(join(process.cwd(), 'public/images/maps/australia-outline.svg'), 'utf8')
@@ -387,6 +404,35 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             <div className="mt-8">
               <MoneyLedger events={MONEY_EVENTS} monthsBefore={MONTHS_BEFORE_FIRST_SALE} />
             </div>
+
+            <div className="mt-10 rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+              <p className="font-display text-xl leading-snug sm:text-2xl" style={{ color: CHARCOAL }}>{THE_NEXT_TEN.heading}</p>
+              <div className="mt-7 space-y-5">
+                {TRADE_BY_YEAR.map((y) => {
+                  const top = Math.max(...TRADE_BY_YEAR.map((z) => z.aud));
+                  return (
+                    <div key={y.year}>
+                      <div className="flex items-baseline justify-between gap-4">
+                        <span className="font-display text-lg tabular-nums" style={{ color: CHARCOAL }}>{y.year}</span>
+                        <span className="text-xs" style={{ color: MUTED }}>
+                          {y.beds} beds across {y.invoices} {y.invoices === 1 ? 'invoice' : 'invoices'}
+                        </span>
+                        <span className="ml-auto font-display text-xl tabular-nums" style={{ color: RUST }}>
+                          ${y.aud.toLocaleString('en-AU')}
+                        </span>
+                      </div>
+                      <div className="mt-2 h-3 overflow-hidden rounded-full" style={{ backgroundColor: '#F1E7DC' }}>
+                        <span className="block h-full rounded-full" style={{ width: `${(y.aud / top) * 100}%`, backgroundColor: RUST }} />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              <p className="mt-3 text-xs" style={{ color: MUTED }}>What buyers paid, by the year the money landed.</p>
+              <p className="mt-7 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{THE_NEXT_TEN.body}</p>
+              <p className="mt-3 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{THE_NEXT_TEN.holder}</p>
+              <p className="mt-5 max-w-[62ch] border-t pt-4 text-sm leading-relaxed" style={{ borderColor: RULE, color: MUTED }}>{THE_NEXT_TEN.ceiling}</p>
+            </div>
             {/*
               * The map carries six places and the register carries eleven communities, so the
               * bed count under the scrub is smaller than the canonical one. Said out loud here,
@@ -477,7 +523,21 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         {vicki && <Pull v={vicki} />}
 
         <div className="mt-14">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>The model, in the order it happens</p>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>The model, as the deck builds it</p>
+          <p className="mt-3 max-w-[58ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}b8` }}>
+            The same loop the pitch deck walks through, built one station at a time as you scroll.
+            It is the whole model on one sheet at the end.
+          </p>
+        </div>
+        <div className="mt-8">
+          <ModelLoopBuild
+            steps={LOOP_STEPS} stations={LOOP_STATIONS} arcs={LOOP_ARCS} counts={LOOP_COUNTS}
+            sheetSvg={placematSvg} items={placematItems} arrows={placematArrows}
+          />
+        </div>
+
+        <div className="mt-14">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>The same model, in plain words</p>
           <p className="mt-3 max-w-[58ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}b8` }}>
             Community-led is a word that gets used loosely, so here is ours as four things that
             either happen or do not. Three of them happen today. The fourth has never happened
