@@ -151,6 +151,12 @@ export function MediaLibraryClient({
   const [selectMode, setSelectMode] = useState(false); // click tiles to select for batch ops
   const [cursor, setCursor] = useState(0); // index into `filtered`, for keyboard cull
   const [err, setErr] = useState('');
+  /*
+   * A WRITE THAT SUCCEEDS HAS TO SAY SO. The Snow button tagged 87 photographs and looked
+   * completely dead, because a tile shows a filename and a star and never its tags, so nothing
+   * on screen moved. Silence on success is indistinguishable from a broken button.
+   */
+  const [done, setDone] = useState('');
   // Empathy Ledger loads after first paint (kept out of the blocking server render).
   const elRef = useRef<UnifiedItem[]>([]);
   const [elState, setElState] = useState<'loading' | 'done' | 'error'>('loading');
@@ -207,6 +213,11 @@ export function MediaLibraryClient({
     return () => { if (aspectFlush.current) clearTimeout(aspectFlush.current); };
   }, [aspects]);
 
+  const say = useCallback((m: string) => {
+    setDone(m);
+    window.setTimeout(() => setDone((cur) => (cur === m ? '' : cur)), 4000);
+  }, []);
+
   const updateItemTags = useCallback((id: string, tags: string[]) => {
     setItems((prev) => prev.map((it) => (it.id === id ? { ...it, tags } : it)));
     setActive((cur) => (cur && cur.id === id ? { ...cur, tags } : cur));
@@ -255,6 +266,14 @@ export function MediaLibraryClient({
         });
         const data = (await res.json()) as { ok: boolean; error?: string; registered?: number };
         if (!res.ok || !data.ok) throw new Error(data.error || `HTTP ${res.status}`);
+        const what =
+          patch.starred !== undefined ? (patch.starred ? 'Starred' : 'Unstarred')
+          : patch.rating !== undefined ? `Rated ${patch.rating}★`
+          : patch.archived !== undefined ? (patch.archived ? 'Archived' : 'Restored')
+          : patch.community_id !== undefined ? (patch.community_id ? `Community set to ${commMap.get(patch.community_id) ?? patch.community_id}` : 'Community cleared')
+          : patch.storyteller_id !== undefined ? (patch.storyteller_id ? 'Person set' : 'Person cleared')
+          : 'Saved';
+        say(`${what} · ${ids.length} ${ids.length === 1 ? 'item' : 'items'}`);
         // Newly registered rows carry ids this page has never seen, so re-read them.
         if (data.registered) router.refresh();
       } catch (e) {
@@ -262,7 +281,7 @@ export function MediaLibraryClient({
         setErr(`Save failed: ${e instanceof Error ? e.message : String(e)}`);
       }
     },
-    [items, commMap, router],
+    [items, commMap, router, say],
   );
 
   const toggleStar = useCallback((it: UnifiedItem) => mutate([it.id], { starred: !it.starred }), [mutate]);
@@ -329,12 +348,13 @@ export function MediaLibraryClient({
       if (failed) {
         setItems(snapshot); // revert all on partial failure so state stays truthful
         setErr(`Bulk tag failed on ${failed}/${targets.length} — nothing changed.`);
-      } else if (registeredAny) {
+      } else {
+        say(`Tagged ${targets.length} ${targets.length === 1 ? 'item' : 'items'} ${tag}`);
         // Some of those photographs had no row until just now; re-read so filters see them.
-        router.refresh();
+        if (registeredAny) router.refresh();
       }
     },
-    [items, selected, router],
+    [items, selected, router, say],
   );
 
   const toggleSelect = useCallback((id: string) => {
@@ -669,6 +689,15 @@ export function MediaLibraryClient({
       {err && (
         <p className="mb-4 rounded-md bg-red-50 px-3 py-2 text-xs text-red-700 dark:bg-red-950/40 dark:text-red-300">
           {err}
+        </p>
+      )}
+      {done && (
+        <p
+          className="mb-4 rounded-md px-3 py-2 text-xs font-medium"
+          style={{ backgroundColor: '#EEF1E9', color: '#5E7A4C' }}
+          aria-live="polite"
+        >
+          ✓ {done}
         </p>
       )}
       {(elMissing || elState === 'error') && (
