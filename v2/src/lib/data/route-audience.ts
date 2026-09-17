@@ -142,6 +142,16 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     verdict: 'keep',
   },
   {
+    route: '/admin/campaign',
+    audience: 'internal',
+    access: 'admin',
+    leadsWithNow: null,
+    whyUnread: 'admin surface, client-rendered behind the admin gate',
+    verdict: 'keep',
+    job: 'The eight audience pathways: where each one enters, what they get, what moves them on, who owns it.',
+    dataSources: 'lib/ghl/audience-pathways.ts, guarded against the live segments, smart lists and boards',
+  },
+  {
     route: '/admin/assets',
     audience: 'internal',
     access: 'admin',
