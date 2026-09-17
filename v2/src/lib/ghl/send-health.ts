@@ -26,19 +26,19 @@ import { createServiceClient } from '@/lib/supabase/server';
  * Matched on name, because the ids change when a workflow is rebuilt and the name is what
  * somebody sees in the dashboard.
  */
-// New Order Notification was here until 17 September. Ben deleted it, the confirmation is sent
-// from the webhook, and a watched workflow that is meant to be gone would read as a red line
-// forever.
+// Two names were here until 17 September and both are gone on purpose. New Order Notification
+// and Goods media form submission were drafts that never sent anything; the confirmation and the
+// media pack reply are built and sent from the app now. A watched workflow that is meant to be
+// gone reads as a red line forever, which is the opposite of what this panel is for.
+//
+// What belongs here is a workflow whose absence would hurt somebody. That is now the
+// acknowledgement, which answers every subject with no written branch, and the newsletter
+// welcome, which is a campaign and has to go through a workflow to carry an unsubscribe.
 export const WATCHED_WORKFLOWS: { name: string; does: string; ifDraft: string }[] = [
   {
     name: 'Goods Inquiry → Acknowledge',
     does: 'Replies to everybody who fills in a form, one minute after the tag lands.',
     ifDraft: 'Every enquiry through every door goes unanswered.',
-  },
-  {
-    name: 'Goods media form submission',
-    does: 'Was meant to send a journalist the media pack.',
-    ifDraft: 'A journalist asks for a link and gets the generic reply instead.',
   },
   {
     name: 'Newsletter Signup',
