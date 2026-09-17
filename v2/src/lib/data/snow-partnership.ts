@@ -476,7 +476,9 @@ export const THE_NEXT_TEN = {
   holder:
     'What holds it while that happens is the charity, and the charity is a board of Indigenous directors with the community organisations themselves behind it. That is the difference between an enterprise that is transferred and one that is only talked about being transferred.',
   ceiling:
-    'There is no ten-year number on this page and there will not be one. What there is: what buyers actually paid, in the years they paid it.',
+    'Everything above this line is money that cleared, in the year it cleared. Everything below it is modelled capacity, and it says so on itself: push the slider and the numbers move, because they are what the making could carry rather than what anyone has ordered.',
+  forward:
+    'What changes the shape is communities adding their own facilities. Each one makes beds locally, sells them locally and keeps what it makes, so the line that matters is not our capacity but theirs.',
 } as const;
 
 /**

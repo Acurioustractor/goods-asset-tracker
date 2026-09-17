@@ -28,6 +28,7 @@ import { StoryHero } from '@/components/partners/story-hero';
 import { PlaceFilms, type PlaceBeat } from '@/components/partners/place-films';
 import { MoneyLedger } from '@/components/partners/money-ledger';
 import { ModelLoopBuild } from '@/components/pitch/model-loop-build';
+import { TenYearSlider } from '@/components/pitch/ten-year-slider';
 import { LOOP_ARCS, LOOP_COUNTS, LOOP_STATIONS, LOOP_STEPS } from '@/lib/data/model-walkthrough';
 import { FLOWS, LOGOS, PANELS, STATIONS } from '@/lib/data/model-placemat';
 import { renderPlacematSvg, type PanelId } from '@/lib/model/placemat-svg';
@@ -431,7 +432,19 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
               <p className="mt-3 text-xs" style={{ color: MUTED }}>What buyers paid, by the year the money landed.</p>
               <p className="mt-7 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{THE_NEXT_TEN.body}</p>
               <p className="mt-3 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{THE_NEXT_TEN.holder}</p>
+              <p className="mt-3 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{THE_NEXT_TEN.forward}</p>
               <p className="mt-5 max-w-[62ch] border-t pt-4 text-sm leading-relaxed" style={{ borderColor: RULE, color: MUTED }}>{THE_NEXT_TEN.ceiling}</p>
+
+              {/*
+                * The deck's own ten-year model, pushable. Ben, 17 September: show where this can
+                * go as communities add facilities locally, how many beds get made in community,
+                * and give it a slider. It recomputes from ten-year-scale.ts, the module the deck
+                * slide prints from, and it carries its own claim ceiling, which is why the line
+                * above hands over to it rather than saying there is no ten-year number.
+                */}
+              <div className="mt-8 border-t pt-8" style={{ borderColor: RULE }}>
+                <TenYearSlider />
+              </div>
             </div>
             {/*
               * The map carries six places and the register carries eleven communities, so the
@@ -523,21 +536,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         {vicki && <Pull v={vicki} />}
 
         <div className="mt-14">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>The model, as the deck builds it</p>
-          <p className="mt-3 max-w-[58ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}b8` }}>
-            The same loop the pitch deck walks through, built one station at a time as you scroll.
-            It is the whole model on one sheet at the end.
-          </p>
-        </div>
-        <div className="mt-8">
-          <ModelLoopBuild
-            steps={LOOP_STEPS} stations={LOOP_STATIONS} arcs={LOOP_ARCS} counts={LOOP_COUNTS}
-            sheetSvg={placematSvg} items={placematItems} arrows={placematArrows}
-          />
-        </div>
-
-        <div className="mt-14">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>The same model, in plain words</p>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>The model, in plain words</p>
           <p className="mt-3 max-w-[58ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}b8` }}>
             Community-led is a word that gets used loosely, so here is ours as four things that
             either happen or do not. Three of them happen today. The fourth has never happened
@@ -591,6 +590,27 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
 
         {norman && <Pull v={norman} />}
       </Chapter>
+
+      {/*
+        * Full bleed, outside the chapter column. ModelLoopBuild pins its own stage to the
+        * viewport and scales the ring to min(width, height) of its box, so a max-width column
+        * with the component's own lg:pr-48 rail clearance inside it left the ring at a fifth of
+        * its size (Ben, 17 September: "why is it so tiny?").
+        */}
+      <div className="px-5 pt-16 sm:px-8">
+        <div className="mx-auto max-w-4xl">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>The same model, as the deck builds it</p>
+          <p className="mt-3 max-w-[58ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}b8` }}>
+            One station at a time as you scroll, and the whole thing on one sheet at the end. It is
+            the same loop the pitch deck walks through, so what Snow sees here and what a room sees
+            in the deck are the same drawing.
+          </p>
+        </div>
+      </div>
+      <ModelLoopBuild
+        steps={LOOP_STEPS} stations={LOOP_STATIONS} arcs={LOOP_ARCS} counts={LOOP_COUNTS}
+        sheetSvg={placematSvg} items={placematItems} arrows={placematArrows}
+      />
 
       <Chapter
         id="ch-alice"
