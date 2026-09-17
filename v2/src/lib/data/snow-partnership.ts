@@ -23,13 +23,14 @@
  *
  * 4. HEALTH STAKES FIRST. Sally Grimsley-Ballard, 20 May 2026, reviewing our own landing page:
  *    "A cold audience needs that chain explained immediately and plainly, before the product,
- *    before the manufacturing story." Chapter 1 is the chain. The product comes after it.
+ *    before the manufacturing story." Never cite a chapter by number: the numbers are derived
+ *    from the CHAPTERS list and move when Ben reorders. Name the thing.
  *
  * 5. NO HEALTH OUTCOME IS CLAIMED. The scabies to RHD pathway is the why. claims-ledger.ts
  *    carries the anti-claim and two metrics were deleted from the impact model when the only
  *    honest version of them would have implied a prevented case. To an RHD
  *    funder asking for "evidence-based and culturally safe programs", refusing the claim is
- *    the argument, so chapter 7 says it out loud instead of hiding it.
+ *    the argument, so the page says it out loud instead of hiding it.
  *
  * 6. WE DO NOT SPEAK FOR SNOW. A full sweep of the mailbox found no Snow person has ever put
  *    the loan or impact-investment pathway in writing. Every Snow intention on this page is a

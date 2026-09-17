@@ -44,11 +44,14 @@ import { PhotoWall } from '@/components/pitch/photo-wall';
  * how the two organisations keep working at rheumatic heart disease through Indigenous
  * leadership.
  *
- * CHAPTER ONE IS THE HEALTH CHAIN and the product comes after it. That is Sally
- * Grimsley-Ballard's own
- * instruction from 20 May 2026, reviewing our Canberra page: "A cold audience needs that chain
- * explained immediately and plainly, before the product, before the manufacturing story." The
- * sentence in chapter one is close to the one she wrote for us.
+ * DO NOT REFER TO A CHAPTER BY ITS NUMBER IN READER COPY. The numbers come from the CHAPTERS
+ * list and move whenever Ben reorders, which he did on 17 September; a sentence that said
+ * "chapter six" was left pointing at the films. Name the thing instead.
+ *
+ * Sally Grimsley-Ballard's instruction of 20 May 2026 still governs the opening: "A cold
+ * audience needs that chain explained immediately and plainly, before the product, before the
+ * manufacturing story." The rheumatic heart disease explainer itself was cut on Ben's 16
+ * September note, because Snow wrote the strategy and does not need it read back to them.
  *
  * Every Snow intention on this page is a dated quote or it is absent. Every community and
  * funder voice resolves from the registry by slug, default-deny, so a wrong tier or an
@@ -175,10 +178,26 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
   const smallStart = quote('georgina-byron', 'funder', 'you start small and then you realize');
   const vicki = quote('vicki-wade', 'external', 'Community leadership, community ownership');
   const karen = quote('karen-liddle', 'external', 'start your own business');
-  /** One rung per invoice, cheapest first, each labelled with who actually paid it. */
+  /**
+   * One rung per invoice, cheapest first. Ben, 17 September, looking at Centrecorp's 107 beds at
+   * $560: "thought this was more per bed?" He was right and the page was underselling itself.
+   * $560 is the BED LINE on INV-0291; that invoice also carried $18,000 of facilitation, so the
+   * beds worked out at $728 each. The earlier invoices billed facilitation as its own line and
+   * the $750 price has it inside (Ben, 15 September), so the bed line alone is not comparable
+   * across the five. What a buyer actually paid for beds is, and that is what the rungs are.
+   *
+   * Homeland's invoice also carried two washing machines at $4,500, which are not beds, so the
+   * machines come out before the division.
+   */
   const priceRungs = PAID_INVOICES
-    .map((i) => ({ invoice: i.invoiceNumber, price: i.bedUnitPriceAud, beds: i.beds, who: i.buyer.split(' ')[0].replace(/'s$/, '') }))
-    .sort((a, b) => a.price - b.price);
+    .map((i) => ({
+      invoice: i.invoiceNumber,
+      line: i.bedUnitPriceAud,
+      perBed: Math.round((i.totalNetAud - i.otherNetAud) / i.beds),
+      beds: i.beds,
+      who: i.buyer.split(' ')[0].replace(/'s$/, ''),
+    }))
+    .sort((a, b) => a.perBed - b.perBed);
   /**
    * The three under the board. Default-deny, first three that resolve, so an unlisted person is
    * simply absent rather than a hole or a name without words.
@@ -683,12 +702,12 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       >
         <div className="rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
           <div className="flex flex-wrap items-baseline justify-between gap-4">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>What a bed has sold for, in order</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>What a buyer paid, per bed, in order</p>
             <p className="text-sm" style={{ color: MUTED }}>
               <span className="font-display text-2xl leading-none" style={{ color: RUST }}>
-                +{Math.round(((priceRungs[priceRungs.length - 1].price - priceRungs[0].price) / priceRungs[0].price) * 100)}%
+                +{Math.round(((priceRungs[priceRungs.length - 1].perBed - priceRungs[0].perBed) / priceRungs[0].perBed) * 100)}%
               </span>{' '}
-              from the first bed to the last
+              from the cheapest bed to the dearest
             </p>
           </div>
           {/* Each rung is an invoice, labelled with who paid it, so the rise is a list of people
@@ -698,21 +717,23 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
               const last = i === priceRungs.length - 1;
               return (
                 <li key={r.invoice} className="flex h-full flex-col justify-end">
-                  <p className="mb-2 text-center font-display text-base leading-none sm:text-xl" style={{ color: last ? RUST : CHARCOAL }}>${r.price}</p>
+                  <p className="mb-2 text-center font-display text-base leading-none sm:text-xl" style={{ color: last ? RUST : CHARCOAL }}>${r.perBed}</p>
                   <div
                     className="w-full rounded-t-md"
-                    style={{ height: `${Math.round((r.price / 800) * 132)}px`, backgroundColor: last ? RUST : '#DCD2C6' }}
+                    style={{ height: `${Math.round((r.perBed / 920) * 132)}px`, backgroundColor: last ? RUST : '#DCD2C6' }}
                   />
                   <p className="mt-2 text-center text-[10px] leading-tight" style={{ color: MUTED }}>{r.who}</p>
                   <p className="text-center text-[10px] leading-tight" style={{ color: MUTED }}>{r.beds} beds</p>
+                  <p className="text-center text-[10px] leading-tight" style={{ color: '#C2B6AA' }}>bed line ${r.line}</p>
                 </li>
               );
             })}
           </ol>
           <p className="mt-6 max-w-[62ch] text-[0.9375rem] leading-[1.7]" style={{ color: `${CHARCOAL}cc` }}>
-            The price has more than doubled across four buyers and they kept buying. Centrecorp came back at a
-            higher price for nearly twice the volume. That is the only demand signal in this document that means
-            anything, because somebody paid it.
+            These are what the beds actually cost each buyer, which is not the same as the bed line on the
+            invoice: the earlier orders billed the facilitation separately and the $750 price has it inside.
+            Centrecorp came back at $728 a bed for nearly twice the volume they first bought at $570. That is the
+            only demand signal in this document that means anything, because somebody paid it.
           </p>
         </div>
 
@@ -728,7 +749,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
                   <p className="font-display text-xl leading-none" style={{ color: CHARCOAL }}>{b.beds}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: '#A99C8F' }}>Paid per bed</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: '#A99C8F' }}>Bed line</p>
                   <p className="font-display text-xl leading-none" style={{ color: CHARCOAL }}>
                     {b.firstPrice === b.latestPrice ? `$${b.latestPrice}` : `$${b.firstPrice} then $${b.latestPrice}`}
                   </p>
@@ -970,7 +991,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>What we would do together</p>
           <ul className="mt-3 space-y-3 text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
             <li>Keep the beds travelling with the heart screening, where the Trek has already shown it works.</li>
-            <li>Build the training that chapter six says we do not yet have, so capacity is a count and not an intention.</li>
+            <li>Build the training the paid work card says we do not yet have, so capacity is a count rather than an intention.</li>
             <li>Carry the first transfer of a production site into community hands and report on it whether or not it goes smoothly.</li>
             <li>Keep the story in the hands of the people telling it. Thirty-eight people have agreed by name and nobody else appears.</li>
           </ul>
