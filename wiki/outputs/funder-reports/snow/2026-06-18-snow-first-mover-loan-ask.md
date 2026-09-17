@@ -1,5 +1,29 @@
 # Snow first-mover ask: a matched, recoverable commitment
 
+> ## DO NOT SEND THIS AS IT STANDS. Flagged 2026-09-16.
+>
+> Three things in this draft were true on 18 June and are not true now.
+>
+> 1. **"QBE will match external capital we raise, at least one to one"** was retired by
+>    **ruling V, 1 August 2026**. The Social Impact Hub calls the money *catalytic*, never
+>    matching. What the terms actually bind is the grant: it must be at least matched by
+>    signed external commitments, which is a coverage test on whatever QBE decides to give.
+>    Raising money creates no obligation on QBE at all. Sending this would put a retired claim
+>    in front of the largest funder Goods has.
+> 2. **"$400,000"** is the top of a typical $150K to $400K range, from a pool of up to $1.1M
+>    shared across ten enterprises. 2025 paid $1.02M across ten, averaging about $102,000.
+> 3. **"committed by late August to count toward our September Stage 2 application"** has
+>    passed. The program closes in late September 2026, exact date unconfirmed.
+>
+> Also stale: the anchor-figure note reasons from **~$493,130**, which the 16 September
+> invoice check reduced to **$457,929.79 inc-GST** for Goods (`INV-0092` is a (Con)nected
+> line, not Goods). And the dashboard password quoted below should be checked before it is
+> given to anyone.
+>
+> What is still good here: the *structure* of the ask, the first-mover logic, and the
+> honesty gates at the bottom. Rebuild the QBE paragraph from `ask-surface.ts` before reuse.
+
+
 *Draft for Ben, 2026-06-18. The single highest-leverage conversion in the QBE raise: ask our warmest, longest backer to be the first mover in the match. Builds on the Bhanvi impact-investment scoping pathway already opened. Day-shift, human-sent. Brand-clean (no em dashes, no charity framing, agency-first). Set the recipient and the anchor figure before sending (see the internal note).*
 
 ---

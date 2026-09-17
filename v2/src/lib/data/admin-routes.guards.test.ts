@@ -2,7 +2,7 @@
  * The route directory calls itself "the complete admin route directory", but
  * until now nothing failed when a new admin page shipped unregistered — six
  * routes drifted in within a week of the 2026-07-19 review (/admin/pipeline,
- * /admin/ask, the three /admin/maps views, /admin/route-review). Same disease
+ * /admin/ask, the three /admin/maps views, /admin/route-review; all since deleted or merged). Same disease
  * the register judge cures for counts: a registry that only a human sweep
  * keeps honest isn't a registry.
  *

@@ -360,8 +360,8 @@ export default function PeopleClient({ people, counts }: { people: Person[]; cou
 
               <div className="mt-5 flex flex-wrap gap-3 border-t border-border pt-4 text-xs">
                 <a href="/admin/deals" className="text-muted-foreground hover:text-primary hover:underline">Deals board ↗</a>
-                <a href="/admin/funders" className="text-muted-foreground hover:text-primary hover:underline">Funder reports ↗</a>
-                <a href="/admin/loi-tracker" className="text-muted-foreground hover:text-primary hover:underline">LOI tracker ↗</a>
+                <a href="/admin/deals?tab=funders" className="text-muted-foreground hover:text-primary hover:underline">Funder reports ↗</a>
+                <a href="/admin/deals?tab=loi" className="text-muted-foreground hover:text-primary hover:underline">LOI tracker ↗</a>
                 <span className="ml-auto text-muted-foreground">from {open.sources.join(', ')}</span>
               </div>
             </div>

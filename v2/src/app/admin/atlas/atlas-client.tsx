@@ -508,7 +508,7 @@ export default function AtlasClient({ communities, canon }: { communities: Atlas
                 <Link href="/admin/voice-impact" className="flex-1 rounded-lg border border-goods-sand px-2 py-1.5 text-goods-sub hover:bg-goods-cream-muted">
                   Voice impact
                 </Link>
-                <Link href="/admin/community-stories" className="flex-1 rounded-lg border border-goods-sand px-2 py-1.5 text-goods-sub hover:bg-goods-cream-muted">
+                <Link href="/admin/voices?tab=community" className="flex-1 rounded-lg border border-goods-sand px-2 py-1.5 text-goods-sub hover:bg-goods-cream-muted">
                   Stories
                 </Link>
               </div>

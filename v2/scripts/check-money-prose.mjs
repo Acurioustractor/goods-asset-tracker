@@ -66,6 +66,7 @@ const ALLOWED_COMPONENT_PREFIXES = [
   'money-pointer.tsx',
   'strategy/', // internal working surface; formats ledger cents, not investor prose
   'pitch/money-lanes-view.tsx', // chapter 15 of /pitch and /pitch/qbe, the funder money surface; figures come from money-lanes.ts
+  'partners/procurement-dashboard.tsx', // /admin/procurement, behind the admin gate. The dollars are government direct-purchase thresholds quoted from the rules, never our own prices or asks.
 ];
 
 const MONEY = /\$\s?\d/;

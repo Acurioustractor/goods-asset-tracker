@@ -58,7 +58,7 @@ export function AddFunderForm({ communities }: { communities: string[] }) {
         community: community || undefined,
       });
       if (res.ok) {
-        router.push('/admin/funders');
+        router.push('/admin/deals?tab=funders');
       } else {
         setErr(res.error || 'Unknown error');
       }

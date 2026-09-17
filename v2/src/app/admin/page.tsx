@@ -3,7 +3,9 @@ import { createServiceClient } from '@/lib/supabase/server';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import { canonValue } from '@/lib/data/canon';
 import { NEEDS_BEN } from '@/lib/data/investor-wiki';
-import type { RouteStatus } from '@/lib/data/admin-routes';
+import { FUNDING_LINES } from '@/lib/data/grants';
+import { ageInDays, formatAsAt } from '@/lib/data/as-at';
+import { ADMIN_ROUTE_DIRECTORY, ROUTE_STATUS_LABEL, type RouteStatus } from '@/lib/data/admin-routes';
 import MapCard, { type MapCommunity } from './map-card';
 import { ChevronRight, ArrowRight } from 'lucide-react';
 
@@ -79,6 +81,8 @@ export default async function MapHome() {
 
   return (
     <div className="max-w-[1600px] mx-auto space-y-4">
+      <WhatIsDue />
+
       {/* Header + canon strip */}
       <header className="flex items-end justify-between gap-6 flex-wrap">
         <div>
@@ -179,7 +183,119 @@ export default async function MapHome() {
           </div>
         </div>
       </div>
+
+      <RouteDirectory />
     </div>
+  );
+}
+
+/**
+ * WHAT IS DUE, and what each one is still waiting on.
+ *
+ * Ben, 17 September 2026: "a simple and powerful system with a list of important actions we can
+ * do", then "review the pitch, the QBE raise and recent work to work out what is actually
+ * helpful here."
+ *
+ * What is actually helpful, on 17 September, is that QBE and the Brian M. Davis application both
+ * close on the 25th, which is eight days, and the Tim Fairfax line closes on 9 October. Those
+ * dates and the outstanding items were already in grants.ts, read by nothing on this page. A
+ * navigation list of verbs does not help with a deadline; the deadline does.
+ *
+ * `needs` is the list of things that have to exist before a line can go, written by whoever last
+ * worked it. That IS the list of important actions, and it belongs to this week.
+ *
+ * Lines with no real deadline stay off this strip. `due` holds prose like "Open, rolling" and
+ * "Not ours to submit", so `dueDate` is the sortable field beside it, and it is absent on purpose
+ * for anything that cannot be counted down.
+ */
+function WhatIsDue() {
+  const now = new Date();
+  const live = FUNDING_LINES
+    .filter((l) => l.dueDate && (ageInDays(l.dueDate, now) ?? 0) <= 0)
+    .sort((a, b) => (a.dueDate ?? '').localeCompare(b.dueDate ?? ''));
+
+  if (live.length === 0) return null;
+
+  return (
+    <section className="rounded-2xl border bg-card p-4" style={{ borderColor: 'var(--goods-terracotta)' }}>
+      <div className="flex flex-wrap items-baseline justify-between gap-3">
+        <h2 className="font-display text-lg" style={{ fontFamily: 'Georgia, serif' }}>Due</h2>
+        <p className="text-xs text-muted-foreground">From grants.ts. A line with no real deadline is not here.</p>
+      </div>
+      <ul className="mt-3 grid gap-3 md:grid-cols-3">
+        {live.map((l) => {
+          const days = Math.abs(ageInDays(l.dueDate!, now) ?? 0);
+          return (
+            <li key={l.id} className="rounded-xl bg-muted/50 p-3">
+              <div className="flex items-baseline justify-between gap-2">
+                <span className="font-display text-2xl leading-none" style={{ color: days <= 10 ? 'var(--goods-terracotta)' : undefined }}>
+                  {days} {days === 1 ? 'day' : 'days'}
+                </span>
+                <span className="text-[11px] text-muted-foreground">{formatAsAt(l.dueDate)}</span>
+              </div>
+              <p className="mt-1.5 text-sm font-semibold leading-snug">{l.funder}</p>
+              <p className="text-[11px] text-muted-foreground">{l.amount} · {l.job}</p>
+              {l.needs.length > 0 && (
+                <ul className="mt-2 space-y-1">
+                  {l.needs.slice(0, 4).map((n) => (
+                    <li key={n} className="flex gap-1.5 text-[11px] leading-snug text-muted-foreground">
+                      <span aria-hidden>·</span><span>{n}</span>
+                    </li>
+                  ))}
+                  {l.needs.length > 4 && <li className="text-[11px] text-muted-foreground">+ {l.needs.length - 4} more</li>}
+                </ul>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  );
+}
+
+/**
+ * Every route, with what it is for.
+ *
+ * The sidebar shows 24 destinations. This is the other 61, and it is where the sidebar's
+ * "All routes" link lands. ROUTE_TONE sat in this file unused, which means the section existed
+ * once and was lost; scripts/check-admin-routes.mjs now fails the build if the directory and the
+ * real routes ever disagree, so it cannot quietly rot again.
+ *
+ * UNREACHABLE is the status worth looking for. It means the route works and nothing links to it.
+ */
+function RouteDirectory() {
+  const orphans = ADMIN_ROUTE_DIRECTORY.flatMap((g) => g.routes).filter((r) => r.status === 'orphan');
+  const total = ADMIN_ROUTE_DIRECTORY.reduce((n, g) => n + g.routes.length, 0);
+
+  return (
+    <section id="routes" className="mt-10 scroll-mt-24 border-t pt-8">
+      <div className="flex flex-wrap items-baseline justify-between gap-3">
+        <h2 className="font-display text-xl">All {total} admin routes</h2>
+        <p className="text-xs text-muted-foreground">
+          {orphans.length > 0 && <span className="font-semibold text-goods-terracotta">{orphans.length} unreachable. </span>}
+          The sidebar shows the work. Everything else lives inside the hub that owns it.
+        </p>
+      </div>
+
+      <div className="mt-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {ADMIN_ROUTE_DIRECTORY.map((group) => (
+          <div key={group.group}>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">{group.group}</p>
+            <ul className="mt-2 space-y-1.5">
+              {group.routes.map((r) => (
+                <li key={r.href} className="text-sm leading-snug">
+                  <Link href={r.href} className="font-medium hover:underline">{r.name}</Link>
+                  <span className={`ml-2 rounded px-1.5 py-0.5 align-middle text-[9px] font-semibold uppercase tracking-wide ${ROUTE_TONE[r.status]}`}>
+                    {ROUTE_STATUS_LABEL[r.status]}
+                  </span>
+                  {r.note && <span className="block text-[11px] text-muted-foreground">{r.note}</span>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -190,4 +306,6 @@ const ROUTE_TONE: Record<RouteStatus, string> = {
   utility: 'bg-muted text-foreground',
   stale: 'bg-muted text-muted-foreground',
   'one-off': 'bg-muted text-muted-foreground',
+  // Unreachable is the one that should catch your eye, because it is the one nobody decided on.
+  orphan: 'bg-goods-terracotta/15 text-goods-terracotta',
 };

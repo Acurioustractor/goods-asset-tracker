@@ -33,7 +33,17 @@ export interface FundingLine {
   job: string;
   status: FundingStatus;
   buys: string;
+  /**
+   * The deadline as a person says it, including the hour and the timezone.
+   *
+   * A date is a date and a label is a label (lib/data/as-at.ts). This field is the label: it
+   * holds "Open, rolling", "Not ours to submit" and "No date. Unsent." as often as it holds a
+   * day, so nothing can sort or count down on it. `dueDate` beside it is the sortable one, and
+   * it is absent for every line that has no actual deadline.
+   */
   due: string;
+  /** YYYY-MM-DD, present only when there is a real deadline. Drives the countdown on /admin. */
+  dueDate?: string;
   state: string;
   owner: string;
   /** What has to exist before it can go. */
@@ -56,6 +66,7 @@ export const FUNDING_LINES: readonly FundingLine[] = [
     status: 'proposed',
     buys: 'Two proposed community production facilities, A$150,000 each as a planning allowance. Palm Island and Maningrida first; Tennant Creek, Mount Isa and others as options (ruling AD).',
     due: 'Friday 25 September 2026, 12pm AEST',
+    dueDate: '2026-09-25',
     state: 'Preparing the application. Nine answers written and checker-clean; reconciliation to the 12 September route and entity decisions, attachments and the four declarations outstanding.',
     owner: 'Ben',
     needs: ['Butterfly’s constitution (Q12, Q22)', 'Site letter, quote basis and cash milestone schedule per plant (Q19)', 'Current management cashflow and opening balances (Q20, Q21)', 'Kristy Bloomfield’s related-party minute (Q8, Q22)', 'Funder bundle refreshed (Q14, Q15)', 'The deck and attachments re-exported after the route change (Q23)'],
@@ -73,6 +84,7 @@ export const FUNDING_LINES: readonly FundingLine[] = [
     status: 'invited',
     buys: '133 beds at $750, A$99,750, one budget line. The work around every bed and the freight sit inside the price (Ben, 15 September). The 80 beds plus A$40,000 facilitation split is withdrawn.',
     due: '25 September 2026',
+    dueDate: '2026-09-25',
     state: 'Drafted against their form. The child safety process is still a draft; do not submit until it is finished. The budget is rewritten as one line: 80 beds with facilitation inside.',
     owner: 'Ben',
     needs: ['Child safety process, finished', 'The budget names QBE as the other funding body', 'Budget rewritten as one line: 80 beds with facilitation inside'],
@@ -90,6 +102,7 @@ export const FUNDING_LINES: readonly FundingLine[] = [
     status: 'invited',
     buys: 'Each A$100,000 payment buys 133 beds at $750 (Ben, 15 September). The form is General Operating Support; what it supports is the A$288 those beds hand the organisation.',
     due: '9 October 2026, 5pm',
+    dueDate: '2026-10-09',
     state: '14 required attachments, we hold 3. It tests governance, not the model, and requires an AI-use declaration.',
     owner: 'Ben',
     needs: ['Butterfly’s constitution (their 4.1, required)', 'The eleven attachments not yet held'],

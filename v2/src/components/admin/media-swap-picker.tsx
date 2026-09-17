@@ -424,7 +424,7 @@ function MediaSwapModal({
             {scope === 'filtered' ? (
               <>Try the <b>⊞ all trip media</b> toggle, or </>
             ) : null}
-            upload at <a href="/admin/upload" target="_blank">/admin/upload</a>.
+            upload through <a href="/admin/media-library" target="_blank">the media room</a>.
           </p>
         ) : (
           <div className="ts-swap-grid">

@@ -92,7 +92,7 @@ The answer became Goods: durable, repairable, community-designed "health hardwar
       },
       {
         title: 'Health Hardware',
-        description: 'A washing machine isn\'t convenience. It\'s cardiac prevention. Clean bedding breaks the scabies cycle.',
+        description: 'A washing machine is health hardware. Washable bedding keeps the conditions the scabies pathway depends on out of the house.',
       },
       {
         title: 'Community Ownership',

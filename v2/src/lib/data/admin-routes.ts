@@ -1,18 +1,22 @@
 /**
- * The complete admin route directory — every route under /admin, grouped and
+ * The complete admin route directory · every route under /admin, grouped and
  * dispositioned. Mirrors wiki/investor/09-admin-ia.md (all routes reviewed
  * 2026-07-19; directory surfaced on /admin 2026-07-20).
  *
  * status:
- *   hub       — a wing/hub destination on the sidebar
- *   active    — working surface, reachable via a hub tab or More drawer
- *   absorbed  — folded into a hub; still works, linked from that hub's tabs
- *   utility   — workflow tool used on trips/installs
- *   stale     — no edits in 3+ months; direct URL only
- *   one-off   — built for a single past job; never re-linked
+ *   hub       · a wing/hub destination on the sidebar
+ *   active    · working surface, reachable via a hub tab or More drawer
+ *   absorbed  · folded into a hub; still works, linked from that hub's tabs
+ *   utility   · workflow tool used on trips/installs
+ *   stale     · no edits in 3+ months; direct URL only
+ *   one-off   · built for a single past job; never re-linked
+ *   orphan    · works, and nothing links to it. Added 2026-09-17 when the guard found five,
+ *               and empty by the end of the same day because all five were deleted. A route
+ *               nobody can reach is a decision nobody made, so it gets its own word, and the
+ *               word is there so the next one is caught on the day it appears.
  */
 
-export type RouteStatus = 'hub' | 'active' | 'absorbed' | 'utility' | 'stale' | 'one-off';
+export type RouteStatus = 'hub' | 'active' | 'absorbed' | 'utility' | 'stale' | 'one-off' | 'orphan';
 
 export interface AdminRoute {
   href: string;
@@ -50,40 +54,23 @@ export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
   {
     group: 'Story and voices',
     routes: [
-      { href: '/admin/story-atlas', name: 'Story atlas', status: 'absorbed', note: 'via Voices tabs' },
-      { href: '/admin/storytellers', name: 'Registry', status: 'absorbed', note: 'consent authority table' },
-      { href: '/admin/quotes', name: 'Quotes', status: 'absorbed' },
       { href: '/admin/quote-cards', name: 'Quote cards', status: 'absorbed', note: 'via Pitch hub' },
-      { href: '/admin/el-stories', name: 'EL stories', status: 'absorbed' },
-      { href: '/admin/el-storytellers', name: 'EL storytellers', status: 'absorbed' },
-      { href: '/admin/community-stories', name: 'Community lens', status: 'absorbed' },
-      { href: '/admin/stories', name: 'Curated stories', status: 'absorbed' },
       { href: '/admin/field-notes', name: 'Field notes', status: 'active', note: 'trip write-ups' },
     ],
   },
   {
     group: 'Pitch and content',
     routes: [
-      { href: '/admin/deck-builder', name: 'Deck builder', status: 'absorbed', note: 'via Pitch hub' },
       { href: '/admin/deck', name: 'Deck preview', status: 'absorbed' },
       { href: '/admin/canon', name: 'Canon board', status: 'absorbed', note: 'via Visuals' },
-      { href: '/admin/site-content', name: 'Site content', status: 'absorbed' },
       { href: '/admin/media-gaps', name: 'Media gaps', status: 'absorbed' },
       { href: '/admin/dashboard-images', name: 'Dashboard images', status: 'active' },
-      { href: '/admin/photo-align', name: 'Photo align', status: 'active', note: 'EL photo alignment' },
       { href: '/admin/library', name: 'Content library', status: 'active' },
-      { href: '/admin/photos', name: 'Photos (legacy)', status: 'stale', note: 'redirects to Media library' },
-      { href: '/admin/photo-review', name: 'Photo review (legacy)', status: 'stale', note: 'redirects' },
-      { href: '/admin/photos-browser', name: 'Photos browser (legacy)', status: 'stale', note: 'redirects' },
     ],
   },
   {
     group: 'Money and funders',
     routes: [
-      { href: '/admin/funders', name: 'Funders', status: 'absorbed', note: 'via Raise' },
-      { href: '/admin/loi-tracker', name: 'LOI tracker', status: 'absorbed', note: 'the match register' },
-      { href: '/admin/pipeline', name: 'Deal pipeline board', status: 'absorbed', note: 'via Raise' },
-      { href: '/admin/ask', name: 'The Ask', status: 'absorbed', note: 'via Raise' },
       { href: '/admin/reports', name: 'Funder reports', status: 'active' },
       { href: '/admin/reports/impact', name: 'Impact reports', status: 'active' },
       { href: '/admin/orders', name: 'Orders', status: 'active' },
@@ -101,33 +88,33 @@ export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
       { href: '/admin/install-bulk', name: 'Bulk install', status: 'utility' },
       { href: '/admin/install-checklist', name: 'Install checklist', status: 'utility' },
       { href: '/admin/bed-signals', name: 'Bed signals', status: 'active' },
-      { href: '/admin/maps/deployed', name: 'Map: deployed', status: 'active', note: 'register on the map' },
-      { href: '/admin/maps/need', name: 'Map: need', status: 'active' },
-      { href: '/admin/maps/ask', name: 'Map: ask', status: 'active' },
       { href: '/admin/scans', name: 'Scans', status: 'active' },
       { href: '/admin/fleet', name: 'Fleet', status: 'active', note: 'quarterly' },
       { href: '/admin/operating-systems', name: 'Operating systems', status: 'active' },
-      { href: '/admin/roadmap', name: 'Roadmap', status: 'active' },
     ],
   },
   {
     group: 'Comms and legacy',
     routes: [
       { href: '/admin/reach-out', name: 'Reach out', status: 'active', note: 'as-needed' },
-      { href: '/admin/messages', name: 'Messages', status: 'stale' },
-      { href: '/admin/announcements', name: 'Announcements', status: 'stale' },
-      { href: '/admin/compassion', name: 'Compassion', status: 'stale' },
-      { href: '/admin/brand', name: 'Brand', status: 'stale' },
-      { href: '/admin/team', name: 'Team', status: 'stale' },
-      { href: '/admin/alice-fill', name: 'Alice fill wizard', status: 'one-off', note: '2026-05-21 trip catch-up' },
-      { href: '/admin/route-review', name: 'Route review', status: 'one-off', note: '2026-07 IA review artifact; produced this directory' },
       // Moved off /pitch/* on 2026-08-02 (route sweep, map #177 ticket #183). They were internal
       // working surfaces on a funder-facing path prefix, relying on noindex, which was never a
       // gate: a noindexed page is fully readable by anyone holding the URL.
-      { href: '/admin/investor-lab', name: 'Investor narrative lab', status: 'stale', note: 'was /pitch/investor-lab' },
-      { href: '/admin/pitch-workshop', name: 'Pitch workshop', status: 'stale', note: 'was /pitch/workshop' },
-      { href: '/admin/miro-board', name: 'Miro board', status: 'stale', note: 'was /pitch/miro-board' },
-      { href: '/admin/deck-photo-review', name: 'Deck photo review', status: 'stale', note: 'was /pitch/photo-review; /admin/photo-review is a different, older redirect stub' },
+    ],
+  },
+  {
+    // Everything built after the 19 July review, declared 17 September 2026 when the drift guard
+    // went in. Until then the directory had no idea any of these existed.
+    group: 'Built since the review',
+    routes: [
+      { href: '/admin/procurement', name: 'Procurement desk', status: 'active', note: 'who can buy a bed and how; linked from Cockpit 2026-09-17' },
+      { href: '/admin/orders/launch-checklist', name: 'Order launch checklist', status: 'absorbed', note: 'reached from Orders' },
+      { href: '/admin/field-notes/library', name: 'Field notes library', status: 'absorbed', note: 'reached from Field notes' },
+      { href: '/admin/el-stories/new', name: 'New EL story', status: 'absorbed', note: 'create form under EL stories' },
+      { href: '/admin/el-storytellers/new', name: 'New EL storyteller', status: 'absorbed', note: 'create form under EL storytellers' },
+      { href: '/admin/funders/new', name: 'New funder', status: 'absorbed', note: 'create form under Funders' },
+      { href: '/admin/login', name: 'Admin login', status: 'utility', note: 'auth plumbing, never a destination' },
+      { href: '/admin/unauthorized', name: 'Unauthorized', status: 'utility', note: 'auth plumbing, never a destination' },
     ],
   },
 ];
@@ -139,4 +126,5 @@ export const ROUTE_STATUS_LABEL: Record<RouteStatus, string> = {
   utility: 'FIELD TOOL',
   stale: 'STALE',
   'one-off': 'ONE-OFF',
+  orphan: 'UNREACHABLE',
 };

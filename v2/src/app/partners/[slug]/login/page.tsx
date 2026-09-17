@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, use, Suspense } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 interface LoginPageProps {
   params: Promise<{ slug: string }>;
@@ -12,6 +12,7 @@ function LoginForm({ slug }: { slug: string }) {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const search = useSearchParams();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -25,7 +26,11 @@ function LoginForm({ slug }: { slug: string }) {
     });
 
     if (res.ok) {
-      router.push(`/partners/${slug}/dashboard`);
+      // Only ever inside this partner's own area: an attacker-supplied `next` must not be
+      // able to bounce a logged-in partner anywhere else.
+      const wanted = search.get('next');
+      const safe = wanted && wanted.startsWith(`/partners/${slug}/`) ? wanted : `/partners/${slug}/dashboard`;
+      router.push(safe);
       router.refresh();
     } else {
       setError(true);

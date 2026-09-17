@@ -320,7 +320,7 @@ export default function ThroughputPage() {
         <Link href="/wiki/manufacturing/facility-manual" className="bg-green-50 text-green-700 px-4 py-2 rounded-lg hover:bg-green-100 transition-colors text-sm">
           Facility Manual
         </Link>
-        <Link href="/admin/economics" className="bg-green-50 text-green-700 px-4 py-2 rounded-lg hover:bg-green-100 transition-colors text-sm">
+        <Link href="/admin/cost-model" className="bg-green-50 text-green-700 px-4 py-2 rounded-lg hover:bg-green-100 transition-colors text-sm">
           Economics Dashboard
         </Link>
         <Link href="/production" className="bg-green-50 text-green-700 px-4 py-2 rounded-lg hover:bg-green-100 transition-colors text-sm">

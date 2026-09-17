@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
+import { ADMIN_ROUTE_DIRECTORY } from '@/lib/data/admin-routes';
 import {
   Map as MapIcon,
   MapPin,
@@ -25,9 +26,9 @@ import {
   LogOut,
   Search,
   MoreHorizontal,
-  ChevronDown,
-  ChevronRight,
   CornerDownLeft,
+  CornerDownRight,
+  Users,
   Route,
 } from 'lucide-react';
 
@@ -41,124 +42,152 @@ type NavGroup = { group: string; items: NavItem[] };
 // Everything else stays reachable through the More drawer and ⌘K until each
 // front absorbs it as a tab. Sweep + keep/fold/retire table:
 // wiki/outputs/2026-07-20-admin-see-do-public-sweep.md
+/**
+ * THE ADMIN IS A LIST OF THINGS YOU CAN DO. Everything else is findable, and nothing else is on
+ * the screen.
+ *
+ * Ben, 17 September 2026, twice, and the second time was the one that landed:
+ *   "we need a full rethink of the sidebar and data, it is a mess and all over the place"
+ *   "I don't want 74 things. I want a simple and powerful system with a list of important
+ *    actions we can do."
+ *
+ * The first rewrite regrouped 52 links into 24 and changed nothing that mattered, because a
+ * shorter map of pages is still a map of pages. Nobody opens an admin to visit a page. They open
+ * it to do one of about ten things.
+ *
+ * So the sidebar is ten verbs. Each one goes to the surface that does that job, and the surface
+ * is often a hub with its own tabs, which is where the other sixty routes live.
+ *
+ * FINDING A SPECIFIC THING IS ⌘K, and it searches the records themselves: every
+ * asset, community, contact, storyteller, and every place the registry knows that has no page
+ * yet. About 850 rows. Looking for GB0-156-40 or Gapuwiyak or Dianne Stokes is one keystroke and
+ * a name, and you never have to know which page lists that kind of thing.
+ *
+ * WHAT IS NOT HERE. No route directory link, no More drawer, no second copy of the same URL under
+ * two names. /admin#routes still lists all 74 with their status for the once a month that
+ * question comes up.
+ */
 const navigation: NavGroup[] = [
   {
-    group: 'Cockpit',
+    group: 'Do',
     items: [
-      { name: 'The Map',           href: '/admin',                icon: MapIcon },
-      { name: 'Communities',       href: '/admin/communities',    icon: MapPin },
-      { name: 'Pathways',          href: '/admin/pathways',       icon: Route },
-      { name: 'Media Room',        href: '/admin/media-library',  icon: ImageIcon },
-      { name: 'Money',             href: '/admin/cost-model',     icon: CircleDollarSign },
-      { name: 'Products & Plant',  href: '/admin/products',       icon: Factory },
-      { name: 'Pipeline',          href: '/admin/pipeline',       icon: KanbanSquare },
+      { name: 'Run the day',        href: '/admin/today',          icon: Sun },
+      { name: 'Record a bed',       href: '/admin/assets',         icon: ClipboardList },
+      { name: 'Plan a trip',        href: '/admin/bed-preflight',  icon: Truck },
+      { name: 'Find a buyer',       href: '/admin/procurement',    icon: HandCoins },
+      { name: 'Move the raise',     href: '/admin/deals',          icon: KanbanSquare },
+      { name: 'Answer a funder',    href: '/admin/reports',        icon: ReceiptText },
+      { name: 'Clear a voice',      href: '/admin/consent',        icon: ShieldCheck },
+      { name: 'Check the fleet',    href: '/admin/fleet',          icon: Radio },
+      { name: 'Make a bed',         href: '/admin/facility',       icon: Factory },
     ],
   },
   {
-    group: 'Funder room',
+    group: 'Look at',
     items: [
-      { name: 'Start Here',   href: '/investors',           icon: DoorOpen },
-      { name: 'The Ask',      href: '/admin/ask',           icon: HandCoins },
-      { name: 'Cost Story',   href: '/admin/cost-model',    icon: ReceiptText },
-      { name: 'Voice Impact', href: '/admin/voice-impact',  icon: Quote },
-    ],
-  },
-  {
-    group: 'Field',
-    items: [
-      { name: 'Today',    href: '/admin/today',          icon: Sun },
-      { name: 'Register', href: '/admin/assets',         icon: ClipboardList },
-      { name: 'Trips',    href: '/admin/bed-preflight',  icon: Truck },
-      { name: 'Fleet',    href: '/admin/fleet',          icon: Radio },
-      { name: 'Consent',  href: '/admin/consent',        icon: ShieldCheck },
+      { name: 'A community',        href: '/admin/communities',    icon: MapPin },
+      { name: 'A person',           href: '/admin/people',         icon: Users },
+      { name: 'The voices',         href: '/admin/voices',         icon: Quote },
+      { name: 'The money',          href: '/admin/cost-model',     icon: CircleDollarSign },
+      { name: 'The media',          href: '/admin/media-library',  icon: ImageIcon },
+      { name: 'Everything',         href: '/admin',                icon: MapIcon },
     ],
   },
 ];
 
-// More drawer + ⌘K target list — still-active routes not yet absorbed into a
-// front. Grouped loosely by the front that will eventually own each.
-const moreNavigation: NavItem[] = [
-  // → Communities
-  { name: 'Atlas (full map)',   href: '/admin/atlas',             icon: MapIcon },
-  { name: 'People',             href: '/admin/people',            icon: MapPin },
-  // → Media Room
-  { name: 'Canon board',        href: '/admin/canon',             icon: ImageIcon },
-  { name: 'Visuals',            href: '/admin/system-visuals',    icon: ImageIcon },
-  { name: 'Media gaps',         href: '/admin/media-gaps',        icon: ImageIcon },
-  { name: 'Quote cards',        href: '/admin/quote-cards',       icon: Quote },
-  { name: 'Dashboard images',   href: '/admin/dashboard-images',  icon: ImageIcon },
-  // → Voices (consent wing)
-  { name: 'Voices hub',         href: '/admin/voices',            icon: Quote },
-  { name: 'Registry',           href: '/admin/storytellers',      icon: Quote },
-  { name: 'Story atlas',        href: '/admin/story-atlas',       icon: Quote },
-  { name: 'Quotes',             href: '/admin/quotes',            icon: Quote },
-  { name: 'Stories (EL)',       href: '/admin/el-stories',        icon: Quote },
-  { name: 'Storytellers (EL)',  href: '/admin/el-storytellers',   icon: Quote },
-  { name: 'Community stories',  href: '/admin/community-stories', icon: Quote },
-  { name: 'Field notes',        href: '/admin/field-notes',       icon: Quote },
-  // → Money
-  { name: 'Xero recon',         href: '/admin/xero-reconciliation', icon: CircleDollarSign },
-  { name: 'Orders',             href: '/admin/orders',            icon: CircleDollarSign },
-  { name: 'Requests',           href: '/admin/requests',          icon: CircleDollarSign },
-  { name: 'Trip receipts',      href: '/admin/trip-receipts',     icon: ReceiptText },
-  { name: 'Funders',            href: '/admin/funders',           icon: CircleDollarSign },
-  { name: 'Funder reports',     href: '/admin/reports',           icon: ReceiptText },
-  { name: 'Impact reports',     href: '/admin/reports/impact',    icon: ReceiptText },
-  // → Pipeline
-  { name: 'Deals (Kanban)',     href: '/admin/deals',             icon: KanbanSquare },
-  { name: 'LOI tracker',        href: '/admin/loi-tracker',       icon: KanbanSquare },
-  // → Products & Plant
-  { name: 'Facility',           href: '/admin/facility',          icon: Factory },
-  { name: 'Production',         href: '/admin/production',        icon: Factory },
-  // → Field
-  { name: 'Bed signals',        href: '/admin/bed-signals',       icon: Radio },
-  { name: 'Scans',              href: '/admin/scans',             icon: Radio },
-  { name: 'Install',            href: '/admin/install-bulk',      icon: Truck },
-  { name: 'Install checklist',  href: '/admin/install-checklist', icon: ClipboardList },
-  { name: 'Operating systems',  href: '/admin/operating-systems', icon: Radio },
-  { name: 'Roadmap',            href: '/admin/roadmap',           icon: ClipboardList },
-  // Pitch + comms
-  { name: 'Pitch cockpit',      href: '/admin/pitch-cockpit',     icon: ImageIcon },
-  { name: 'Deck builder',       href: '/admin/deck-builder',      icon: ImageIcon },
-  { name: 'Site content',       href: '/admin/site-content',      icon: ReceiptText },
-  { name: 'Content library',    href: '/admin/library',           icon: ImageIcon },
-  { name: 'Reach out',          href: '/admin/reach-out',         icon: Radio },
-  // Route review board
-  { name: 'Route review',       href: '/admin/route-review',      icon: KanbanSquare },
-];
-
-// Flat list of everything ⌘K can jump to (fronts + more), de-duplicated by href.
+/**
+ * ⌘K reaches every route, and takes its list from ADMIN_ROUTE_DIRECTORY.
+ *
+ * It used to run off a hand-kept array beside the sidebar, which is how fifteen routes built
+ * since July became unreachable from anywhere. The directory is guarded by
+ * scripts/check-admin-routes.mjs, which fails the build when a route exists and is not declared,
+ * so sourcing ⌘K from it means a new route is jumpable the moment it is declared and can never
+ * fall behind again.
+ *
+ * Routes marked `stale` or `one-off` are still here. Somebody looking for the Alice fill wizard
+ * by name should find it; they just should not have to scroll past it every day.
+ */
 const ALL_ROUTES: NavItem[] = (() => {
   const seen = new Set<string>();
   const out: NavItem[] = [];
-  for (const item of [...navigation.flatMap((g) => g.items), ...moreNavigation]) {
-    if (seen.has(item.href)) continue;
+  for (const item of navigation.flatMap((g) => g.items)) {
     seen.add(item.href);
     out.push(item);
   }
+  for (const group of ADMIN_ROUTE_DIRECTORY) {
+    for (const r of group.routes) {
+      if (seen.has(r.href)) continue;
+      seen.add(r.href);
+      out.push({ name: r.name, href: r.href, icon: CornerDownRight });
+    }
+  }
   return out;
 })();
+
+/**
+ * ⌘K FINDS THINGS, and routes come second.
+ *
+ * Ben, 17 September 2026: fewer routes, and a concrete way to find something that means
+ * something and is connected to the actual data. Route names were never that. Nobody looks for
+ * "Communities". They look for Tennant Creek, or Dianne Stokes, or GB0-156-40, and searching 74
+ * page titles meant knowing which page listed the thing, going there, and searching again.
+ *
+ * /api/admin/search returns the records themselves, about 850 of them: every asset, community,
+ * contact, storyteller and every place the registry knows that has no page yet. Fetched once on
+ * first open, searched in the browser, so there is no round trip per keystroke.
+ */
+interface Found {
+  key: string;
+  label: string;
+  sub: string;
+  href: string;
+  kind: string;
+}
+
+const KIND_LABEL: Record<string, string> = {
+  community: 'place', storyteller: 'voice', person: 'person',
+  asset: 'asset', place: 'place', route: 'page',
+};
 
 function CommandPalette({ open, onClose }: { open: boolean; onClose: () => void }) {
   const router = useRouter();
   const [query, setQuery] = useState('');
   const [active, setActive] = useState(0);
+  const [records, setRecords] = useState<Found[] | null>(null);
+
+  // One fetch, the first time the palette is opened in a session.
+  useEffect(() => {
+    if (!open || records !== null) return;
+    let cancelled = false;
+    fetch('/api/admin/search')
+      .then((r) => (r.ok ? r.json() : { records: [] }))
+      .then((d: { records: { kind: string; label: string; sub: string; href: string }[] }) => {
+        if (cancelled) return;
+        setRecords(d.records.map((r, i) => ({ ...r, key: `${r.kind}-${r.href}-${i}` })));
+      })
+      .catch(() => { if (!cancelled) setRecords([]); });
+    return () => { cancelled = true; };
+  }, [open, records]);
+
+  const routeRecords: Found[] = useMemo(
+    () => ALL_ROUTES.map((r) => ({ key: `route-${r.href}`, label: r.name, sub: r.href, href: r.href, kind: 'route' })),
+    [],
+  );
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return ALL_ROUTES;
-    // subsequence fuzzy match on the name
-    return ALL_ROUTES.filter((r) => {
-      const name = r.name.toLowerCase();
-      let i = 0;
-      for (const ch of q) {
-        i = name.indexOf(ch, i);
-        if (i === -1) return false;
-        i += 1;
-      }
-      return true;
-    });
-  }, [query]);
+    if (!q) return routeRecords;
+    // Records first, because a page is what you settle for when the thing is not listed.
+    const hay = [...(records ?? []), ...routeRecords];
+    const starts: Found[] = [];
+    const contains: Found[] = [];
+    for (const r of hay) {
+      const label = r.label.toLowerCase();
+      if (label.startsWith(q)) starts.push(r);
+      else if (label.includes(q) || r.sub.toLowerCase().includes(q)) contains.push(r);
+    }
+    return [...starts, ...contains].slice(0, 40);
+  }, [query, records, routeRecords]);
 
   const go = useCallback(
     (href: string) => {
@@ -189,28 +218,32 @@ function CommandPalette({ open, onClose }: { open: boolean; onClose: () => void 
               else if (e.key === 'ArrowUp') { e.preventDefault(); setActive((a) => Math.max(a - 1, 0)); }
               else if (e.key === 'Enter' && results[active]) { e.preventDefault(); go(results[active].href); }
             }}
-            placeholder="Jump anywhere…"
+            placeholder="Find a place, a person, a bed, a page…"
             className="flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
           />
           <kbd className="text-[10px] font-semibold text-muted-foreground">esc</kbd>
         </div>
         <ul className="max-h-80 overflow-y-auto py-1">
           {results.length === 0 && (
-            <li className="px-4 py-3 text-sm text-muted-foreground">No routes match “{query}”.</li>
+            <li className="px-4 py-3 text-sm text-muted-foreground">
+              Nothing matches “{query}”{records === null ? ', and the records are still loading' : ''}.
+            </li>
           )}
           {results.map((r, i) => (
-            <li key={r.href}>
+            <li key={r.key}>
               <button
                 onMouseEnter={() => setActive(i)}
                 onClick={() => go(r.href)}
-                className={`flex w-full items-center gap-3 px-4 py-2 text-sm text-left ${
+                className={`flex w-full items-center gap-3 px-4 py-2 text-left text-sm ${
                   i === active ? 'bg-primary/10 text-primary' : 'text-foreground'
                 }`}
               >
-                <r.icon className="h-4 w-4 shrink-0 opacity-70" />
-                <span className="flex-1">{r.name}</span>
-                <span className="text-[11px] text-muted-foreground">{r.href}</span>
-                {i === active && <CornerDownLeft className="h-3.5 w-3.5 text-muted-foreground" />}
+                <span className="w-12 shrink-0 text-[9px] font-semibold uppercase tracking-wide text-muted-foreground">
+                  {KIND_LABEL[r.kind] ?? r.kind}
+                </span>
+                <span className="min-w-0 flex-1 truncate">{r.label}</span>
+                <span className="max-w-[45%] truncate text-[11px] text-muted-foreground">{r.sub}</span>
+                {i === active && <CornerDownLeft className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />}
               </button>
             </li>
           ))}
@@ -224,8 +257,6 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
-  const inMore = moreNavigation.some((m) => pathname === m.href || pathname.startsWith(m.href + '/'));
-  const [moreOpen, setMoreOpen] = useState(inMore);
 
   // ⌘K / Ctrl+K opens the palette
   useEffect(() => {
@@ -298,39 +329,10 @@ export default function AdminSidebar({ userEmail }: { userEmail: string }) {
             </li>
           ))}
 
-          {/* More drawer */}
-          <li>
-            <button
-              type="button"
-              onClick={() => setMoreOpen((v) => !v)}
-              className="flex w-full items-center justify-between px-2 text-[10.5px] font-bold leading-6 text-muted-foreground uppercase tracking-[0.14em] mb-1 hover:text-foreground transition-colors"
-            >
-              <span className="flex items-center gap-2">
-                <MoreHorizontal className="h-3.5 w-3.5" /> More
-                <span className="text-[10px] normal-case tracking-normal">({moreNavigation.length})</span>
-              </span>
-              {moreOpen ? <ChevronDown className="h-3.5 w-3.5" /> : <ChevronRight className="h-3.5 w-3.5" />}
-            </button>
-            {moreOpen && (
-              <ul role="list" className="space-y-0.5">
-                {moreNavigation.map((item) => (
-                  <li key={item.name}>
-                    <Link
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={`group flex items-center gap-x-3 rounded-lg px-2.5 py-1.5 text-sm leading-6 font-medium transition-all ${
-                        isActive(item.href)
-                          ? 'bg-primary/10 text-primary'
-                          : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-                      }`}
-                    >
-                      <item.icon className="h-4 w-4 shrink-0" aria-hidden="true" />
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
+          <li className="px-2.5 pt-3">
+            <p className="text-[10px] leading-snug text-muted-foreground">
+              Looking for a bed, a place or a person? Press ⌘K. It searches the records themselves.
+            </p>
           </li>
 
           {/* Footer */}

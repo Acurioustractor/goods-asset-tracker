@@ -120,10 +120,6 @@ const nextConfig: NextConfig = {
       // #183 — internal tooling moves behind the admin gate. noindex was never a gate: a
       // noindexed page is fully readable by anyone holding the URL, and these sat on a
       // funder-facing path prefix.
-      { source: '/pitch/investor-lab', destination: '/admin/investor-lab', permanent: false },
-      { source: '/pitch/workshop', destination: '/admin/pitch-workshop', permanent: false },
-      { source: '/pitch/miro-board', destination: '/admin/miro-board', permanent: false },
-      { source: '/pitch/photo-review', destination: '/admin/deck-photo-review', permanent: false },
 
       // #185 — products.ts says the canonical slug is stretch-bed; the live URL is
       // stretch-bed-single and sits in Stripe checkout flows, so the canonical slug redirects
@@ -133,6 +129,35 @@ const nextConfig: NextConfig = {
       // #188 — marked retire 2026-07-20 in route-review.ts and never executed: a live admin page
       // reading Supabase products while products.ts is canon.
       { source: '/admin/products', destination: '/admin', permanent: false },
+      // The raise was four routes about the same money, all declared absorbed since July.
+      // Tabs of /admin/deals from 17 September 2026.
+      { source: '/admin/funders', destination: '/admin/deals?tab=funders', permanent: false },
+      { source: '/admin/loi-tracker', destination: '/admin/deals?tab=loi', permanent: false },
+      { source: '/admin/pipeline', destination: '/admin/deals?tab=pipeline', permanent: false },
+      { source: '/admin/ask', destination: '/admin/deals?tab=ask', permanent: false },
+      // Seven story surfaces became tabs of /admin/voices on 17 September 2026. The hub had
+      // listed them as tabs since July and admin-routes.ts called every one 'absorbed'; they
+      // were tabs in everything except the address bar.
+      { source: '/admin/story-atlas', destination: '/admin/voices?tab=atlas', permanent: false },
+      { source: '/admin/storytellers', destination: '/admin/voices?tab=registry', permanent: false },
+      { source: '/admin/quotes', destination: '/admin/voices?tab=quotes', permanent: false },
+      { source: '/admin/el-stories', destination: '/admin/voices?tab=el-stories', permanent: false },
+      { source: '/admin/el-storytellers', destination: '/admin/voices?tab=el-storytellers', permanent: false },
+      { source: '/admin/stories', destination: '/admin/voices?tab=curated', permanent: false },
+      { source: '/admin/community-stories', destination: '/admin/voices?tab=community', permanent: false },
+      // Eleven admin routes that were a whole page file each to do one line of this. Deleted
+      // 2026-09-17 (Ben: fewer routes). Every old URL still lands where it used to.
+      { source: '/admin/photo-review', destination: '/admin/media-library', permanent: false },
+      { source: '/admin/messages', destination: '/admin/reach-out', permanent: false },
+      { source: '/admin/photos-browser', destination: '/admin/media-library', permanent: false },
+      { source: '/admin/brand', destination: '/admin', permanent: false },
+      { source: '/admin/announcements', destination: '/admin/reach-out', permanent: false },
+      { source: '/admin/team', destination: '/admin/people', permanent: false },
+      { source: '/admin/alice-fill', destination: '/admin/assets', permanent: false },
+      { source: '/admin/compassion', destination: '/admin/media-library', permanent: false },
+      { source: '/admin/photo-align', destination: '/admin/media-library', permanent: false },
+      { source: '/admin/photos', destination: '/admin/media-library', permanent: false },
+      { source: '/admin/model/svg', destination: '/admin/model', permanent: false },
 
       // The '/brand' -> '/press#brand-system' redirect was REMOVED 2026-07-25. It predated the
       // dedicated /brand page (src/app/brand/page.tsx, the brand kit and guide downloads) and

@@ -6,6 +6,7 @@
  */
 
 import { describe, it, expect } from 'vitest';
+import { resolvePlace } from './place-registry';
 import {
   communityRecord,
   allCommunityIds,
@@ -207,5 +208,49 @@ describe('absence is reported as absence', () => {
     const a = communityRecord('utopia', { asOf: AS_OF });
     const b = communityRecord('utopia', { asOf: AS_OF });
     expect(a).toEqual(b);
+  });
+});
+
+/**
+ * Added 17 September 2026. The module's own comment records the Utopia id mismatch, which made
+ * communityRecord return null for the community it was written to fix. The same bug was found
+ * again that day in the other direction: canon keys Mt Isa as `mount-isa` and the live communities
+ * table calls it `mt-isa`, so the admin drill page got null for a community with beds in it.
+ *
+ * Both sides fold through the place registry now. These guards are what stop the third one.
+ */
+describe('every canon community resolves, whatever it is spelled', () => {
+  const LIVE_IDS = [
+    'alice-springs', 'ampilatwatja', 'angurugu', 'aurukun', 'borroloola', 'canberra', 'ceduna',
+    'cherbourg', 'darwin', 'doomadgee', 'galiwinku', 'groote-archipelago', 'gunbalanya',
+    'kalgoorlie', 'katherine', 'kowanyama', 'kununurra', 'lajamanu', 'maningrida', 'mt-isa',
+    'mutitjulu', 'ngukurr', 'palm-island', 'port-augusta', 'ramingining', 'tennant-creek',
+    'torres-strait', 'umbakumba', 'utopia', 'wadeye', 'woorabinda', 'yarrabah', 'yuendumu',
+  ];
+
+  it('every canon community id is a place the registry knows', () => {
+    for (const id of allCommunityIds()) {
+      expect(resolvePlace(id)?.id, `canon id "${id}" resolves to nothing`).toBeTruthy();
+    }
+  });
+
+  it('a canon community is reachable by the id the live table uses', () => {
+    for (const id of allCommunityIds()) {
+      const live = resolvePlace(id)?.id;
+      if (!live || !LIVE_IDS.includes(live)) continue;
+      expect(communityRecord(live), `communityRecord("${live}") is null and canon holds "${id}"`).not.toBeNull();
+    }
+  });
+
+  it('Mt Isa, the one that was broken, resolves from both spellings to the same record', () => {
+    const a = communityRecord('mt-isa');
+    const b = communityRecord('mount-isa');
+    expect(a).not.toBeNull();
+    expect(b).not.toBeNull();
+    expect(a?.assets?.value.beds).toBe(b?.assets?.value.beds);
+  });
+
+  it('Utopia, the one the module was written for, still resolves from both', () => {
+    expect(communityRecord('utopia')?.assets?.value.beds).toBe(communityRecord('utopia-homelands')?.assets?.value.beds);
   });
 });

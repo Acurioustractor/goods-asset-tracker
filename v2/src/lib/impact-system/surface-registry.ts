@@ -129,7 +129,7 @@ export const IMPACT_SURFACES: ImpactSurfaceDefinition[] = [
   },
   {
     id: 'story-atlas-admin',
-    routeOrArtifact: '/admin/story-atlas',
+    routeOrArtifact: '/admin/voices?tab=atlas',
     audience: ['operations'],
     purpose: 'Narrative coverage and evidence-gap map.',
     dataSources: ['storyteller registry', 'story road', 'canonical metrics'],

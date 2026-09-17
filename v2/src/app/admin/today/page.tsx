@@ -267,7 +267,7 @@ export default async function OpsToday() {
     return {
       headline: 'All systems clean',
       detail: 'Pick a funder to brief or open the cost model',
-      href: '/admin/funders',
+      href: '/admin/deals?tab=funders',
       tone: 'blue',
     };
   })();

@@ -79,7 +79,7 @@ export function CreateStoryForm({
             ? `Story published. View at ${res.publicUrl}`
             : `Story created as draft (consent pending). EL story id: ${res.id?.slice(0, 8)}…`,
         });
-        setTimeout(() => router.push('/admin/el-stories'), 2500);
+        setTimeout(() => router.push('/admin/voices?tab=el-stories'), 2500);
       } else {
         setResult({ ok: false, message: res.error || 'Unknown error' });
       }

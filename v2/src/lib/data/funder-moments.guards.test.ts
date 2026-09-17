@@ -13,11 +13,20 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { FUNDER_MOMENTS, grantLineFor } from '@/lib/data/funder-moments';
 import { GRANTS_RECEIVED } from '@/lib/data/grants-received';
 import { getStorytellerBySlug } from '@/lib/data/storyteller-registry';
+import { PARTNER_DASHBOARDS } from '@/lib/data/partner-dashboards';
+import { snowConfig } from '@/lib/funders/configs/snow';
+import { ALIGNMENT, BECAUSE_OF, NOT_FINISHED, TOGETHER } from '@/lib/data/snow-partnership';
+
+/**
+ * The graduation story, in the words it actually reaches for. Ben, 2026-09-16.
+ * Shared by both tests below so the ruling has one definition, not one per file.
+ */
+const GRADUATION = /stands? on (its|their) own|no longer needs?|graduat|proven now|we have outgrown/i;
 import { storyStops } from '@/lib/data/story-road';
 
 describe('funder moments', () => {
@@ -94,9 +103,42 @@ describe('funder moments', () => {
   it('does not claim philanthropy is finished', () => {
     // Ben, 2026-09-16: catalytic capital and backing the founder, never a graduation story.
     // Snow's most recent invoice is May 2026 and there is an open raise on the same page.
-    const banned = /stands? on (its|their) own|no longer needs?|graduat|proven now|we have outgrown/i;
     for (const m of FUNDER_MOMENTS) {
-      expect(banned.test(m.line), `${m.label}'s line retires the funder in the sentence that thanks them`).toBe(false);
+      expect(GRADUATION.test(m.line), `${m.label}'s line retires the funder in the sentence that thanks them`).toBe(false);
+    }
+  });
+
+  /**
+   * The guard above only ever read funder-moments.ts, and on 2026-09-16 the graduation story
+   * it bans was sitting untouched two files away, on the gated page Snow themselves read:
+   * partner-dashboards.ts said "The idea is proven now" and "built to stand on its own".
+   * A rule that checks one file is not a rule, so the ruling is now applied to every surface
+   * that speaks to a funder.
+   */
+  it('no funder-facing surface carries a graduation story', () => {
+    const surfaces: { where: string; text: string }[] = [];
+
+    for (const d of PARTNER_DASHBOARDS) {
+      if (!d.nextChapter) continue;
+      surfaces.push({ where: `${d.slug} nextChapter.intro`, text: d.nextChapter.intro });
+      surfaces.push({ where: `${d.slug} nextChapter.invitation.body`, text: d.nextChapter.invitation.body });
+      for (const a of d.nextChapter.arc) surfaces.push({ where: `${d.slug} arc "${a.stage}"`, text: a.meaning });
+      surfaces.push({ where: `${d.slug} thankYou`, text: JSON.stringify(d.funderImpact ?? {}) });
+    }
+
+    for (const cfg of [snowConfig]) {
+      surfaces.push({ where: `${cfg.slug} funder report`, text: JSON.stringify(cfg) });
+    }
+
+    // The Snow partnership report, added 2026-09-16. It is the longest piece of prose written
+    // to a funder anywhere in the repo, which makes it the likeliest place for the story to
+    // creep back in.
+    surfaces.push({ where: 'snow partnership report data', text: JSON.stringify({ ALIGNMENT, BECAUSE_OF, NOT_FINISHED, TOGETHER }) });
+    surfaces.push({ where: 'snow partnership report page', text: readFileSync(join(process.cwd(), 'src/app/partners/[slug]/story/page.tsx'), 'utf8') });
+
+    for (const s of surfaces) {
+      const hit = s.text.match(GRADUATION);
+      expect(hit?.[0], `${s.where} retires philanthropy: "${hit?.[0] ?? ''}"`).toBeUndefined();
     }
   });
 });

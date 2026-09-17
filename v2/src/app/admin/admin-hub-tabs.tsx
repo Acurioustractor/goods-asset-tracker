@@ -20,7 +20,7 @@ export function AdminHubTabs({ tabs }: { tabs: HubTab[] }) {
       aria-label="Section tabs"
     >
       {tabs.map((t) => {
-        // Exact match, or a nested child (e.g. /admin/products/story under /admin/products),
+        // Exact match, or a nested child (e.g. /admin/voices?tab=registry under /admin/voices),
         // but never let the shortest href swallow every sibling.
         const active =
           pathname === t.href ||
