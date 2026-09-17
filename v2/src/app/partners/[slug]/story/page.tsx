@@ -20,6 +20,7 @@ import {
 } from '@/lib/data/snow-partnership';
 import { snowHeroFrames, snowTaggedGroup } from '@/lib/data/snow-photos';
 import { withCaptions, withGroupCaptions, taggedPhotos } from '@/lib/data/image-captions';
+import { OwnershipPath } from '@/components/partners/ownership-path';
 import { ChapterRail } from '@/components/pitch/chapter-rail';
 import { CountUp } from '@/components/pitch/count-up';
 import { TogetherTimeline } from '@/components/partners/together-timeline';
@@ -104,7 +105,7 @@ const CHAPTERS = [
   { id: 'ch-together', label: 'What we have done' },
   { id: 'ch-because', label: 'What Goods is now' },
   { id: 'ch-themes', label: 'What this is, and what it is not' },
-  { id: 'ch-next', label: 'What we are asking' },
+  { id: 'ch-ownership', label: 'Indigenous ownership' },
 ] as const;
 
 /**
@@ -667,31 +668,6 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             say here than have you find later.
           </p>
         </div>
-        {ownershipVoices.length > 0 && (
-          <div className="mt-12 grid gap-6 sm:grid-cols-3">
-            {ownershipVoices.map((v) => (
-              <figure key={`${v.person.name}-${v.quote.text.slice(0, 24)}`} className="m-0 rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
-                {v.person.portrait && (
-                  <Image src={v.person.portrait} alt={v.person.name} width={160} height={160} className="h-14 w-14 rounded-full object-cover" />
-                )}
-                <blockquote className="mt-4 font-display text-lg leading-[1.35]" style={{ color: CHARCOAL }}>
-                  &ldquo;{v.quote.text}&rdquo;
-                </blockquote>
-                <figcaption className="mt-3 text-[11px] uppercase tracking-[0.12em]" style={{ color: SAGE }}>
-                  {v.person.name}{v.person.role ? `, ${v.person.role}` : ''}
-                </figcaption>
-                {/*
-                  * The context, because not every one of these was said about beds. Jeremy's was
-                  * recorded on Country with young people at Kununurra, under Basecamps, and a
-                  * funder reading it deserves to know that rather than assume it is about Goods.
-                  */}
-                {v.quote.context && (
-                  <p className="mt-2 text-xs leading-relaxed" style={{ color: MUTED }}>{v.quote.context}</p>
-                )}
-              </figure>
-            ))}
-          </div>
-        )}
 
         <div className="mt-14">
           <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>The model, in plain words</p>
@@ -1066,11 +1042,11 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       <Chapter
         id="ch-themes"
         title="Five things this is, and the limit on each one"
-        lead="Health, the plastic, paid work, enterprise and Indigenous ownership. Each card carries what we can show and what we cannot, in the same card, because a limit printed somewhere else reads as a disclaimer."
+        lead="Health, the plastic, paid work and enterprise. Each card carries what we can show and what we cannot, in the same card, because a limit printed somewhere else reads as a disclaimer."
       >
         {recycled && <Pull v={recycled} />}
         <div className="mt-10 grid gap-5 sm:grid-cols-2">
-          {THEMES.map((th) => (
+          {THEMES.filter((th) => th.id !== 'ownership').map((th) => (
             <div key={th.id} className="flex flex-col rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
               <p className="font-display text-xl leading-[1.2]" style={{ color: CHARCOAL }}>{th.title}</p>
               <p className="mt-3 text-[0.9375rem] leading-[1.7]" style={{ color: `${CHARCOAL}cc` }}>{th.body}</p>
@@ -1085,6 +1061,75 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             </div>
           ))}
         </div>
+      </Chapter>
+
+      {/*
+        * THE SECTION THIS WHOLE REPORT IS FOR. Ben, 17 September: this is the most important part
+        * of the page, so show what happens when you back Indigenous communities and let them lead.
+        * It was one card in a grid of five. The pathway is drawn now, because "ownership is a
+        * pathway" in a sentence reads as either a promise or an excuse, and drawn it reads as
+        * neither: two rings closed, one open, and the open one is what the money is for.
+        */}
+      <Chapter
+        id="ch-ownership"
+        title="Indigenous ownership"
+        lead="The making is built to move. A community organisation already sells the beds and keeps the price. What has not happened is a production site owned where it stands."
+      >
+        <OwnershipPath />
+
+        <div className="mt-14 grid gap-10 sm:grid-cols-[1.1fr_1fr]">
+          <div>
+            <p className="max-w-[54ch] text-[1.0625rem] leading-[1.8]" style={{ color: `${CHARCOAL}cc` }}>
+              Goods on Country Ltd is a DGR1 charity and its directors are Indigenous. The board
+              holds the purpose, the assets and the decisions, and the plant is containerised so
+              that it can be operated in community and then owned there, on the Supply Nation 51
+              per cent path.
+            </p>
+            <p className="mt-5 max-w-[54ch] text-[1.0625rem] leading-[1.8]" style={{ color: `${CHARCOAL}cc` }}>
+              None of the first three rings would exist if the first money had come with a
+              deliverable attached. A product we stopped selling, a design we gave away and a price
+              that moved twice are what untied money buys. The third ring needs the same thing
+              again, held for longer.
+            </p>
+          </div>
+          <div className="rounded-lg p-6" style={{ backgroundColor: SUNK, border: `1px solid ${RULE}` }}>
+            <p className="font-display text-5xl leading-none" style={{ color: RUST }}>0</p>
+            <p className="mt-3 text-sm font-semibold" style={{ color: CHARCOAL }}>
+              Community-owned production sites
+            </p>
+            <p className="mt-3 text-[0.9375rem] leading-[1.7]" style={{ color: `${CHARCOAL}b8` }}>
+              Ownership is a pathway and the number for it today is nothing. Oonchiumpa hold a
+              four-year federal offer for the Alice Springs facility, dated 12 August 2026 and not
+              executed.
+            </p>
+          </div>
+        </div>
+
+        {ownershipVoices.length > 0 && (
+          <div className="mt-12 grid gap-6 sm:grid-cols-3">
+            {ownershipVoices.map((v) => (
+              <figure key={`${v.person.name}-${v.quote.text.slice(0, 24)}`} className="m-0 rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
+                {v.person.portrait && (
+                  <Image src={v.person.portrait} alt={v.person.name} width={160} height={160} className="h-14 w-14 rounded-full object-cover" />
+                )}
+                <blockquote className="mt-4 font-display text-lg leading-[1.35]" style={{ color: CHARCOAL }}>
+                  &ldquo;{v.quote.text}&rdquo;
+                </blockquote>
+                <figcaption className="mt-3 text-[11px] uppercase tracking-[0.12em]" style={{ color: SAGE }}>
+                  {v.person.name}{v.person.role ? `, ${v.person.role}` : ''}
+                </figcaption>
+                {/*
+                  * The context, because not every one of these was said about beds. Jeremy's was
+                  * recorded on Country with young people at Kununurra, under Basecamps, and a
+                  * funder reading it deserves to know that rather than assume it is about Goods.
+                  */}
+                {v.quote.context && (
+                  <p className="mt-2 text-xs leading-relaxed" style={{ color: MUTED }}>{v.quote.context}</p>
+                )}
+              </figure>
+            ))}
+          </div>
+        )}
       </Chapter>
 
 {/*
