@@ -86,7 +86,6 @@ export default function WhoWeArePage() {
                   <p className="mt-4 text-[15px] leading-relaxed text-[#4a4741]">{d.bio}</p>
                   <p className="mt-3 text-[15px] leading-relaxed text-[#4a4741]">{d.goods}</p>
                   <p className="mt-auto pt-5 text-xs text-[#7a7363]">
-                    Photograph: {d.photoCredit} ·{' '}
                     <a href={d.source} target="_blank" rel="noreferrer" className="underline underline-offset-2">
                       {d.sourceLabel}
                     </a>

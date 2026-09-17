@@ -944,8 +944,6 @@ export const OONCHIUMPA_NEXT = {
   ],
   status:
     'The decision came. On 12 August 2026 the department wrote to Oonchiumpa offering $1,695,000 excluding GST over four years to 30 June 2030, with Lhere Artepe support letters already signed. The letter says plainly that it is not a grant agreement: nothing is executed and no money has moved. The money would be Oonchiumpa\u2019s to hold and spend and we disclose it in our own applications without ever counting it as ours.',
-  connection:
-    'Kristy Bloomfield directs Oonchiumpa and is a director of Goods on Country. Sally met Kristy and Tanya Turner through an introduction we made in Sydney in October 2025.',
 } as const;
 
 /**

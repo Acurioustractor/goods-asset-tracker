@@ -162,7 +162,6 @@ export default function StoryPage() {
                 {d.role} · {d.country}
               </p>
               <p className="mt-3 text-[15px] leading-snug text-[#4a4741]">{d.goods}</p>
-              <p className="mt-2 text-[12px] text-[#7a7363]">Photograph: {d.photoCredit}</p>
             </li>
           ))}
         </ul>

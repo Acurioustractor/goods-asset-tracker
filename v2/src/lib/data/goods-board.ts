@@ -12,9 +12,8 @@ export interface GoodsDirector {
   location: string;
   country: string;
   photo: string;
-  photoCredit: string;
   bio: string;
-  goods: string;
+  goods?: string;
   background: string;
   source: string;
   sourceLabel: string;
@@ -27,7 +26,6 @@ export const goodsBoard: readonly GoodsDirector[] = [
     location: 'Mparntwe / Alice Springs, Northern Territory',
     country: 'Arrernte Country',
     photo: '/images/people/kristy-bloomfield.jpg',
-    photoCredit: 'Goods on Country portrait library',
     bio: 'Kristy is a director of Oonchiumpa, an Aboriginal community-controlled organisation in Alice Springs. Her work brings Traditional Owner authority, cultural knowledge and young people’s futures into the decisions made on Arrernte Country.',
     goods: 'Alongside her board role, Kristy leads the Oonchiumpa relationship: designing products in community and developing the Alice Springs production and youth training pathway.',
     background: 'Cultural leadership, community-led design, youth pathways and On-Country enterprise.',
@@ -40,9 +38,7 @@ export const goodsBoard: readonly GoodsDirector[] = [
     location: 'Hope Vale / Cape York, Queensland',
     country: 'Dhirrtharr Warra woman from Hope Vale',
     photo: '/images/people/audrey-deemal-official.jpg',
-    photoCredit: 'Cape York Partnership',
     bio: 'Audrey joined Cape York Partnership in 2011, leading the Hope Vale Opportunity Hub before managing Opportunity Products and Cape Operations. Her published profile lists her as an advisor with Cape York Solutions, chair of Ngak Min Health and a non-executive director of Bama Services. She was a 2023 Westpac Social Change Fellow.',
-    goods: 'Director of Goods on Country’s legal entity, sharing responsibility for its purpose, assets and decisions. A separate operational portfolio has not been recorded.',
     background: 'Community leadership, health governance, operational management and social enterprise.',
     source: 'https://capeyorkpartnership.org.au/person/audrey-deemal/',
     sourceLabel: 'Cape York Partnership profile',
@@ -53,9 +49,7 @@ export const goodsBoard: readonly GoodsDirector[] = [
     location: 'Works across Australia; current base to confirm',
     country: 'Kuku-Yalanji and Gumbaynggirr',
     photo: '/images/people/jeremy-donovan-official.jpg',
-    photoCredit: 'Jeremy Donovan, official website',
     bio: 'Jeremy is a keynote speaker, artist and musician. His work connects Aboriginal culture with leadership, reconciliation and conversations between communities and organisations. He shares his experience through speaking, visual art and didgeridoo performance in Australia and internationally.',
-    goods: 'Director of Goods on Country’s legal entity, sharing responsibility for its purpose, assets and decisions. A separate operational portfolio has not been recorded.',
     background: 'Cultural leadership, communication, reconciliation, music and visual arts.',
     source: 'https://jeremydonovan.com/',
     sourceLabel: 'Jeremy’s official profile',

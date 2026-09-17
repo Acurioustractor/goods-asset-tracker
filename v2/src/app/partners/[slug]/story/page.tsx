@@ -656,7 +656,6 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
               <p className="mt-1 text-xs uppercase tracking-wide" style={{ color: SAGE }}>{d.country}</p>
               <p className="mt-3 text-xs leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>{d.bio}</p>
               <p className="mt-3 text-xs leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>{d.goods}</p>
-              <p className="mt-3 text-[10px] uppercase tracking-wide" style={{ color: MUTED }}>{d.photoCredit}</p>
               </div>
             </div>
           ))}
@@ -790,8 +789,6 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
               </li>
             ))}
           </ol>
-          <p className="mt-6 text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>{OONCHIUMPA_NEXT.status}</p>
-          <p className="mt-3 text-sm leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>{OONCHIUMPA_NEXT.connection}</p>
         </div>
         {karen && <Pull v={karen} />}
       </Chapter>
@@ -1022,7 +1019,6 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       <Chapter
         id="ch-films"
         title="The films"
-        lead="Three. Each plays where it sits and only one at a time."
       >
         <FilmGallery films={films} />
       </Chapter>
@@ -1058,18 +1054,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {BECAUSE_OF.map((b) => (
             <div key={b.id} className="rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
-              {/* MeasureLabel has no `future` and inventing one here would put a word on a
-                  chip that the rest of the site does not use. A future row gets its own chip. */}
-              {b.status === 'future' ? (
-                <>
-                  <p className="font-display text-4xl leading-none" style={{ color: CHARCOAL }}>{b.value}</p>
-                  <span className="mt-2 inline-block rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide" style={{ backgroundColor: RULE_SOFT, color: MUTED_DEEP }}>
-                    not yet
-                  </span>
-                </>
-              ) : (
-                <CountUp value={b.value} unit={b.unit} label={b.status} />
-              )}
+              <CountUp value={b.value} unit={b.unit} />
               <p className="mt-2 text-sm font-semibold leading-snug" style={{ color: CHARCOAL }}>{b.headline}</p>
               <p className="mt-2 text-xs leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>{b.detail}</p>
             </div>
@@ -1102,84 +1087,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         </div>
       </Chapter>
 
-      <Chapter
-        id="ch-next"
-        title="A letter this month and 133 beds behind it"
-        lead="Two asks. The first one is not money and it has a date on it. The second is the same ask we have put to our other bed funders, so nobody is being asked for something shaped specially for them."
-      >
-        <div className="rounded-lg p-6 sm:p-8" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4', borderLeft: `4px solid ${RUST}` }}>
-          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>First and it is not money</p>
-          <p className="mt-2 font-display text-2xl leading-snug sm:text-3xl" style={{ color: CHARCOAL }}>
-            A letter of intent, by {THE_LETTER.by}
-          </p>
-          <p className="mt-4 text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-            Goods on Country is one of ten enterprises in {THE_LETTER.programme}. That application closes{' '}
-            {THE_LETTER.closes} and it asks QBE for ${THE_LETTER.qbeAskAud.toLocaleString('en-AU')} for{' '}
-            {THE_LETTER.qbeFor.toLowerCase()}. {THE_LETTER.cohort}
-          </p>
-          <p className="mt-3 text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-            What the programme counts from a funder is engagement and it counts several shapes of it.{' '}
-            {THE_LETTER.forms}
-          </p>
-          <figure className="m-0 mt-5 border-l-2 pl-4" style={{ borderColor: SAGE }}>
-            <blockquote className="font-display text-lg leading-snug" style={{ color: CHARCOAL }}>
-              &ldquo;{THE_LETTER.sihQuote}&rdquo;
-            </blockquote>
-            <figcaption className="mt-2 text-xs" style={{ color: SAGE }}>{THE_LETTER.sihSource}</figcaption>
-          </figure>
-          <p className="mt-5 text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>{THE_LETTER.enough}</p>
-          <p className="mt-3 text-sm leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>
-            {THE_LETTER.verify}{' '}
-            <Link href={THE_LETTER.sihLetterHref} className="underline" style={{ color: RUST }}>
-              The Hub&rsquo;s letter is here.
-            </Link>
-          </p>
-        </div>
-
-        <div className="mt-6 rounded-lg p-6 sm:p-8" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
-          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>Then, the ask itself</p>
-          <p className="mt-2 font-display text-3xl sm:text-4xl" style={{ color: CHARCOAL }}>$99,750</p>
-          <p className="mt-2 text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-            133 Stretch Beds at $750 each, for a community organisation to sell or give out. The money reaches the
-            community organisation, not us: customers pay them directly and after costs they decide whether it
-            becomes more beds, paid local work, or making their own.
-          </p>
-          <div className="mt-7 grid gap-5 sm:grid-cols-3">
-            {[
-              { k: 'Where it goes', v: 'To a community organisation, as stock they own.' },
-              { k: 'Who decides next', v: 'They do. More beds, paid work, or their own making.' },
-              { k: 'What we keep', v: 'What is left after making, freight and facilitation, which carries the organisation.' },
-            ].map((x) => (
-              <div key={x.k}>
-                <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>{x.k}</p>
-                <p className="mt-1.5 text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>{x.v}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-6 rounded-lg p-6 sm:p-8" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
-          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>The longer conversation</p>
-          <p className="mt-2 text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-            Beyond this, we would like to talk with you about whether some of what comes after could be recoverable
-            capital: money that returns to Snow over time and goes back to work. That is a conversation we are
-            opening. There is no proposal on the table. The amount, the conditions it would carry and the impact it would
-            be held to are all things to work out together and it sits alongside the partnership we already have.
-          </p>
-        </div>
-
-        <div className="mt-6 rounded-lg p-6 sm:p-8" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
-          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>What we would do together</p>
-          <ul className="mt-3 space-y-3 text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-            <li>Keep the beds travelling with the heart screening, where the Trek has already shown it works.</li>
-            <li>Build the training the paid work card says we do not yet have, so capacity is a number we can count.</li>
-            <li>Carry the first transfer of a production site into community hands and report on it whether or not it goes smoothly.</li>
-            <li>Keep the story in the hands of the people telling it. Thirty-nine people have agreed by name and nobody else appears.</li>
-          </ul>
-        </div>
-      </Chapter>
-
-      {/*
+{/*
         * THE LAST WORD IS NORM'S. Ben chose it on 17 September: a Warumungu Elder on why any of
         * this gets written down, which is the argument for the consent register, the asset
         * register and this report itself, made by one of the people the registers are about. It
@@ -1213,11 +1121,6 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
 
       <footer className="px-5 pb-20 sm:px-8">
         <div className="mx-auto max-w-4xl border-t pt-8" style={{ borderColor: RULE }}>
-          <p className="text-xs leading-relaxed" style={{ color: MUTED }}>
-            Every figure here traces to the live books, the register or the consent record and every Snow quote
-            carries a date. Where a number is modelled or a target, it says so on the number
-            itself. Prepared by {ORGANISATION.legalName} for the Snow Foundation.
-          </p>
         </div>
       </footer>
     </main>
