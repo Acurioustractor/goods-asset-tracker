@@ -8,10 +8,19 @@
  * route-audience.ts has a drift guard and it caught a missing entry the day before this was
  * written. This is the same guard for the same class of problem.
  *
- * Three things it checks:
+ * Four things it checks:
  *   1. Every non-dynamic route under app/admin has an entry in the directory.
  *   2. Every href in the directory is a route that exists.
  *   3. Every /admin href in the sidebar is a route that exists, and is declared.
+ *   4. Every static /admin link ANYWHERE in src resolves: to a real route, to a dynamic segment,
+ *      or to a redirect in next.config.ts.
+ *
+ * Check four was added 17 September 2026 after Ben asked whether the day's route cuts still lined
+ * up with the live pitch and QBE work. Three links in shipping code pointed at routes deleted that
+ * morning, and two more had been dead for months and had nothing to do with the cuts:
+ * /admin/economics, linked from the public manufacturing wiki, and /admin/upload, left behind when
+ * Empathy Ledger became the canonical upload surface. Deleting a route is easy to guard. A link
+ * that rots quietly where nobody looks is the one that needed a check.
  *
  * It also prints the count of routes marked `orphan`, which works and is linked from nothing.
  * That number is meant to go down, and seeing it is the first step.
@@ -55,6 +64,36 @@ for (const href of new Set(sidebar)) {
   if (!real.has(href)) problems.push(`the sidebar links ${href} and no such route exists`);
   else if (!declared.has(href)) problems.push(`the sidebar links ${href} and the directory does not declare it`);
 }
+
+// ── 4. every static /admin link in src resolves ──────────────────────────────────────────────
+const walkSrc = (dir) => {
+  const out = [];
+  for (const e of readdirSync(dir, { withFileTypes: true })) {
+    const full = join(dir, e.name);
+    if (e.isDirectory()) out.push(...walkSrc(full));
+    else if (/\.tsx?$/.test(e.name)) out.push(full);
+  }
+  return out;
+};
+
+const redirectSrc = readFileSync(join(root, 'next.config.ts'), 'utf8');
+const redirected = new Set([...redirectSrc.matchAll(/source: '(\/admin[^']*)'/g)].map((m) => m[1]));
+// A route with a dynamic segment is real even though its path is not literal.
+const dynamicPrefixes = walk(join(root, 'src/app/admin')).filter((r) => r.includes('['))
+  .map((r) => `/admin${r}`.split('[')[0].replace(/\/$/, ''));
+
+const linkRe = /(?:href|routeOrArtifact|destination)[:=] ?["'](\/admin[^"'`]*)["']/g;
+const deadLinks = new Map();
+for (const file of walkSrc(join(root, 'src'))) {
+  const text = readFileSync(file, 'utf8');
+  for (const m of text.matchAll(linkRe)) {
+    const href = m[1].split(/[?#]/)[0].replace(/\/$/, '') || '/admin';
+    if (real.has(href) || redirected.has(href)) continue;
+    if (dynamicPrefixes.some((p) => href.startsWith(p) && href !== p)) continue;
+    if (!deadLinks.has(href)) deadLinks.set(href, file.replace(`${root}/`, ''));
+  }
+}
+for (const [href, file] of deadLinks) problems.push(`${file} links ${href}, which is not a route and not a redirect`);
 
 const byStatus = {};
 for (const [, v] of declared) byStatus[v.status] = (byStatus[v.status] ?? 0) + 1;

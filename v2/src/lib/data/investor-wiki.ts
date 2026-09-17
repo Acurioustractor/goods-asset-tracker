@@ -83,7 +83,7 @@ export const WIKI_AREAS: WikiArea[] = [
     description: 'Project history · people, places and the work',
     metric: 'Maningrida story unlocked (Shayne)',
     status: 'draft',
-    href: '/admin/site-content',
+    href: '/admin/library',
     doc: 'wiki/investor/06-full-stories.md',
   },
   {
