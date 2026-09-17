@@ -40,7 +40,9 @@
     "check:content-gate": "node scripts/check-content-gate.mjs",
     "audit:audiences": "node scripts/ghl-audience-audit.mjs",
     "check:people": "node --env-file=.env.local scripts/check-people-identity.mjs",
-    "check:consent-crossref": "node --env-file=.env.local scripts/check-consent-crossref.mjs"
+    "check:consent-crossref": "node --env-file=.env.local scripts/check-consent-crossref.mjs",
+    "push:outcomes": "node --env-file=.env.local scripts/push-outcome-values.mjs",
+    "check:content-gate": "node scripts/check-content-gate.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.74.0",
