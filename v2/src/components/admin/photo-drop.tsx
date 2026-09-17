@@ -219,13 +219,23 @@ export function PhotoDrop() {
 
       {results.length > 0 && (
         <ul className="mt-3 space-y-2">
-          {results.map((r, i) =>
+          {[...results].sort((a, b) => Number(b.ok) - Number(a.ok)).map((r, i) =>
             r.ok ? (
               <DroppedCard key={`${r.url}-${i}`} item={r} />
             ) : (
-              <li key={`err-${i}`} className="rounded-lg border border-border px-3 py-2 text-xs">
-                <span className="text-amber-700">{r.error}</span>
-                {r.debug && <span className="ml-2 font-mono text-[10px] text-muted-foreground">{r.debug}</span>}
+              <li key={`err-${i}`} className="flex items-start gap-2 rounded-lg border border-border px-3 py-2 text-xs">
+                <span className="flex-1 text-amber-700">
+                  {r.error}
+                  {r.debug && <span className="ml-2 font-mono text-[10px] text-muted-foreground">{r.debug}</span>}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setResults((prev) => prev.filter((_, j) => j !== i))}
+                  className="shrink-0 text-muted-foreground hover:text-foreground"
+                  aria-label="Dismiss"
+                >
+                  ×
+                </button>
               </li>
             ),
           )}
@@ -247,9 +257,12 @@ export function PhotoDrop() {
  * tagged in the grid are the same thing in the same place.
  */
 function DroppedCard({ item }: { item: Dropped }) {
+  const applied = item.appliedTags ?? [];
   const [caption, setCaption] = useState('');
-  const [community, setCommunity] = useState(item.community ?? '');
-  const [extra, setExtra] = useState('');
+  const [community, setCommunity] = useState(
+    item.community ?? applied.find((x) => x.startsWith('community:'))?.slice('community:'.length) ?? '',
+  );
+  const [extra, setExtra] = useState(applied.filter((x) => !x.startsWith('community:')).join(' '));
   const [state, setState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
   const [error, setError] = useState('');
 
@@ -259,10 +272,19 @@ function DroppedCard({ item }: { item: Dropped }) {
       setError('Not registered, so there is nothing to tag yet.');
       return;
     }
+    if (!caption.trim() && !community.trim() && !extra.trim()) {
+      setState('error');
+      setError('Nothing typed yet. Write what is in the picture, then save.');
+      return;
+    }
     setState('saving');
+    // Union with whatever the photograph already carries, so an empty box never deletes a tag.
     const tags = [
-      ...(community.trim() ? [`community:${community.trim()}`] : []),
-      ...extra.split(/[,\s]+/).filter(Boolean),
+      ...new Set([
+        ...applied,
+        ...(community.trim() ? [`community:${community.trim()}`] : []),
+        ...extra.split(/[,\s]+/).filter(Boolean),
+      ]),
     ];
     try {
       const res = await fetch('/api/admin/content-item', {
@@ -281,7 +303,7 @@ function DroppedCard({ item }: { item: Dropped }) {
       setState('error');
       setError(e instanceof Error ? e.message : String(e));
     }
-  }, [caption, community, extra, item.contentId]);
+  }, [applied, caption, community, extra, item.contentId]);
 
   return (
     <li
