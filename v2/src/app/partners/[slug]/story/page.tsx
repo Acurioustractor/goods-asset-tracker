@@ -6,6 +6,7 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { getPartnerDashboard } from '@/lib/data/partner-dashboards';
 import { getStorytellerBySlug } from '@/lib/data/storyteller-registry';
+import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
 import { ORGANISATION } from '@/lib/data/organisation';
 import { goodsBoard } from '@/lib/data/goods-board';
 import {
@@ -363,6 +364,18 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             <div className="mt-8">
               {outline ? <GrowingMap outline={outline} places={MAP_PLACES} /> : null}
             </div>
+            {/*
+              * The map carries six places and the register carries eleven communities, so the
+              * bed count under the scrub is smaller than the canonical one. Said out loud here,
+              * because a funder who adds the dots up deserves to find the answer rather than a
+              * discrepancy.
+              */}
+            <p className="mt-3 text-xs leading-relaxed" style={{ color: MUTED }}>
+              Six places, which are the ones where the register holds a bed count against a
+              community and a date. Across all eleven communities the register holds{' '}
+              {CANONICAL_ASSETS.bedsDeployed} beds and {CANONICAL_ASSETS.washersInCommunity} machines.
+              The sage ring marks a place with machines in it.
+            </p>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
               <div className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>

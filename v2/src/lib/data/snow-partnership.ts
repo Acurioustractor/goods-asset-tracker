@@ -815,13 +815,12 @@ export const PLACE_BEATS: readonly PlaceBeatData[] = [
     film: { src: '/video/kalgoorlie/ninga-mia-drone.mp4', poster: '/video/kalgoorlie/ninga-mia-drone-poster.jpg', alt: 'Ninga Mia, Kalgoorlie, from the air' },
     voices: [
       { slug: 'gloria-turner', contains: "I can't wash my mattress" },
-      { slug: 'tracy-mccartney', contains: "I don't call this work" },
     ],
     photos: [
       { src: '/images/community/kalgoorlie/dump-site-dawn.jpg', alt: 'The dump at dawn' },
       { src: '/images/community/kalgoorlie/mattress-decayed.jpg', alt: 'A decayed mattress' },
-      { src: '/images/community/kalgoorlie/on-the-floor-dirty-mat.jpg', alt: 'A mat on the floor' },
-      { src: '/images/community/kalgoorlie/up-off-the-ground.jpg', alt: 'Up off the ground' },
+      { src: '/images/community/kalgoorlie/camp-visit.jpg', alt: 'At the camp, Ninga Mia' },
+      { src: '/images/media-pack/nic-with-elder-on-verandah.jpg', alt: 'Nic with an Elder on the verandah' },
     ],
   },
   {
@@ -881,6 +880,12 @@ export interface MapPlaceData {
   lng: number;
   since: string;
   beds: number;
+  /**
+   * Machines in community at that place. Ben, 17 September: the scrub should show the
+   * infrastructure changing, not only the beds. Held to WASHER_PLACES and to canon by the
+   * guard, so the two lists cannot drift apart.
+   */
+  washers: number;
   note: string;
 }
 
@@ -892,12 +897,12 @@ export interface MapPlaceData {
  * funder's money arrived and it is the one the map is answering.
  */
 export const MAP_PLACES: readonly MapPlaceData[] = [
-  { id: 'tennant-creek', name: 'Tennant Creek', lat: -19.648, lng: 134.192, since: '2024-10', beds: 160, note: 'Where Snow came six weeks after the first invoice. Dianne Stokes asked for twenty more beds within a fortnight of receiving one.' },
-  { id: 'palm-island', name: 'Palm Island', lat: -18.744, lng: 146.581, since: '2024-12', beds: 85, note: 'Eighty-five beds built over a weekend on Bwgcolman, then the Backing the Future youth pilot with thirty young people on the build.' },
-  { id: 'maningrida', name: 'Maningrida', lat: -12.053, lng: 134.226, since: '2025-08', beds: 40, note: 'Forty beds pressed in our own facility before they were built on Country. Eight washing machines in community.' },
-  { id: 'katherine', name: 'Katherine', lat: -14.465, lng: 132.264, since: '2025-08', beds: 30, note: 'Beds travelling with the Deadly Heart Trek, alongside heart screening for over eight hundred children.' },
-  { id: 'utopia', name: 'Utopia Homelands', lat: -22.235, lng: 134.741, since: '2026-05', beds: 147, note: 'Eighty-seven beds over two days with Oonchiumpa and the Utopia Council, a bed under thirty-six households.' },
-  { id: 'alice-springs', name: 'Mparntwe / Alice Springs', lat: -23.698, lng: 133.881, since: '2026-06', beds: 20, note: 'Where Oonchiumpa would operate the second facility. A four-year federal offer to Oonchiumpa is on the table, dated 12 August 2026 and not yet executed.' },
+  { id: 'tennant-creek', name: 'Tennant Creek', lat: -19.648, lng: 134.192, since: '2024-10', beds: 160, washers: 9, note: 'Where Snow came six weeks after the first invoice. Dianne Stokes asked for twenty more beds within a fortnight of receiving one.' },
+  { id: 'palm-island', name: 'Palm Island', lat: -18.744, lng: 146.581, since: '2024-12', beds: 85, washers: 5, note: 'Eighty-five beds built over a weekend on Bwgcolman, then the Backing the Future youth pilot with thirty young people on the build.' },
+  { id: 'maningrida', name: 'Maningrida', lat: -12.053, lng: 134.226, since: '2025-08', beds: 40, washers: 8, note: 'Forty beds pressed in our own facility before they were built on Country. Eight washing machines in community.' },
+  { id: 'katherine', name: 'Katherine', lat: -14.465, lng: 132.264, since: '2025-08', beds: 30, washers: 0, note: 'Beds travelling with the Deadly Heart Trek, alongside heart screening for over eight hundred children.' },
+  { id: 'utopia', name: 'Utopia Homelands', lat: -22.235, lng: 134.741, since: '2026-05', beds: 147, washers: 0, note: 'Eighty-seven beds over two days with Oonchiumpa and the Utopia Council, a bed under thirty-six households.' },
+  { id: 'alice-springs', name: 'Mparntwe / Alice Springs', lat: -23.698, lng: 133.881, since: '2026-06', beds: 20, washers: 1, note: 'Where Oonchiumpa would operate the second facility. A four-year federal offer to Oonchiumpa is on the table, dated 12 August 2026 and not yet executed.' },
 ];
 
 // ---------------------------------------------------------------------------

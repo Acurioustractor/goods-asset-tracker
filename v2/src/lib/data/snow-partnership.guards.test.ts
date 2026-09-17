@@ -93,6 +93,15 @@ describe('snow partnership report', () => {
     }
   });
 
+  it('the map machines tie to canon and to the per-place washer list', () => {
+    // Two lists now carry machines per place: WASHER_PLACES in the machines chapter and
+    // MAP_PLACES under the scrub. They must agree with each other and with canon, or the page
+    // shows a funder two different fleets.
+    const onMap = MAP_PLACES.reduce((n, p) => n + p.washers, 0);
+    expect(onMap).toBe(CANONICAL_ASSETS.washersInCommunity);
+    expect(onMap).toBe(WASHER_PLACES.reduce((n, w) => n + w.inCommunity, 0));
+  });
+
   it('the washer count matches canon and the telemetry is internally consistent', () => {
     const summed = WASHER_PLACES.reduce((n, w) => n + w.inCommunity, 0);
     expect(summed, 'the per-place washers do not add to the canonical figure').toBe(CANONICAL_ASSETS.washersInCommunity);
