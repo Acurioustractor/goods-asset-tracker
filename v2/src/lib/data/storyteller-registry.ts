@@ -256,6 +256,16 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         context: 'Self-determination',
         status: 'approved',
       },
+      {
+        // Cleared by Ben 2026-09-17 from the EL transcript of 6 April 2025, which is a WILYA
+        // JANTA interview: he is talking about his own housing organisation, not about Goods,
+        // and anything of his carries that context. Lightly cleaned the way the two above were,
+        // because the auto-transcription mishears names throughout ("Nan Creek" for Tennant
+        // Creek, "Willy Gunter" for Wilya Janta). His words themselves are untouched.
+        text: 'It\'ll be passed on from my kids to their kids, to their kids after them. So that\'s why it\'s really good to document everything now while we can.',
+        context: 'On why any of it gets written down, 6 April 2025',
+        status: 'approved',
+      },
     ],
     portrait: '/images/people/norman-frank.jpg',
     notes: 'Called requesting 3 beds in maroon after his daughter tried one. Boards: Anyinginyi Health, Julalikari Council, Central Land Council.',

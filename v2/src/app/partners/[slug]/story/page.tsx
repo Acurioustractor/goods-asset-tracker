@@ -201,6 +201,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
   const proud = quote('dianne-stokes', 'external', 'It makes me feel proud');
   const recycled = quote('dianne-stokes', 'external', 'coming out of recycled');
   const blessings = quote('dianne-stokes', 'external', 'shared their blessings with us');
+  const documenting = quote('norman-frank', 'external', 'document everything now while we can');
   /**
    * The cleared voices who talk about the machine itself. Norman Frank has no quote about his
    * washing machine in the registry and no photograph with it, so he is not here. What is on the
@@ -1123,10 +1124,42 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             <li>Keep the beds travelling with the heart screening, where the Trek has already shown it works.</li>
             <li>Build the training the paid work card says we do not yet have, so capacity is a count rather than an intention.</li>
             <li>Carry the first transfer of a production site into community hands and report on it whether or not it goes smoothly.</li>
-            <li>Keep the story in the hands of the people telling it. Thirty-eight people have agreed by name and nobody else appears.</li>
+            <li>Keep the story in the hands of the people telling it. Thirty-nine people have agreed by name and nobody else appears.</li>
           </ul>
         </div>
       </Chapter>
+
+      {/*
+        * THE LAST WORD IS NORM'S. Ben chose it on 17 September: a Warumungu Elder on why any of
+        * this gets written down, which is the argument for the consent register, the asset
+        * register and this report itself, made by one of the people the registers are about. It
+        * sits outside the ask chapter because it is not part of the ask.
+        */}
+      {documenting && (
+        <div className="px-5 pb-4 sm:px-8">
+          <div className="mx-auto max-w-4xl border-t pt-12" style={{ borderColor: RULE }}>
+            <figure className="m-0 flex max-w-[52ch] items-start gap-5">
+              {documenting.person.portrait && (
+                <Image
+                  src={documenting.person.portrait} alt={documenting.person.name} width={200} height={200}
+                  className="h-16 w-16 shrink-0 rounded-full object-cover sm:h-20 sm:w-20"
+                />
+              )}
+              <div>
+                <blockquote className="font-display text-xl leading-[1.35] sm:text-2xl" style={{ color: CHARCOAL }}>
+                  &ldquo;{documenting.quote.text}&rdquo;
+                </blockquote>
+                <figcaption className="mt-3 text-[11px] uppercase tracking-[0.14em]" style={{ color: SAGE }}>
+                  {documenting.person.name}, {documenting.person.role}
+                </figcaption>
+                <p className="mt-2 text-xs leading-relaxed" style={{ color: MUTED }}>
+                  Recorded 6 April 2025, talking about Wilya Janta, the Warumungu housing organisation he founded.
+                </p>
+              </div>
+            </figure>
+          </div>
+        </div>
+      )}
 
       <footer className="px-5 pb-20 sm:px-8">
         <div className="mx-auto max-w-4xl border-t pt-8" style={{ borderColor: RULE }}>
