@@ -34,7 +34,7 @@ async function elGet<T>(table: string, qs: string): Promise<T[]> {
 }
 function chunk<T>(a: T[], n: number): T[][] { const o: T[][] = []; for (let i = 0; i < a.length; i += n) o.push(a.slice(i, i + n)); return o; }
 
-interface MediaRow { id: string; cdn_url: string | null; thumbnail_url: string | null; title: string | null; media_type: string | null; file_type: string | null; is_sacred_no_publish: boolean | null; removed_by_storyteller_at: string | null; tenant_id: string | null; source_url: string | null; }
+interface MediaRow { id: string; cdn_url: string | null; thumbnail_url: string | null; title: string | null; media_type: string | null; file_type: string | null; is_sacred_no_publish: boolean | null; removed_by_storyteller_at: string | null; tenant_id: string | null; source_url: string | null; storage_path: string | null; }
 interface PersonRow { id: string; display_name: string | null; public_avatar_url: string | null; is_elder: boolean | null; is_active: boolean | null; }
 interface JunctionRow { media_asset_id: string; storyteller_id: string; }
 
@@ -71,7 +71,7 @@ export async function getAlignData(): Promise<{ photos: AlignPhoto[]; persons: A
   const assoc = gids.length ? await elGet<{ gallery_id: string; media_asset_id: string }>('gallery_media_associations', `gallery_id=in.(${gids.join(',')})&select=gallery_id,media_asset_id`) : [];
   const galleryOf = new Map<string, string>(); assoc.forEach((a) => galleryOf.set(a.media_asset_id, galTitle.get(a.gallery_id) || ''));
 
-  const SEL = 'id,cdn_url,thumbnail_url,title,media_type,file_type,is_sacred_no_publish,removed_by_storyteller_at,tenant_id,source_url';
+  const SEL = 'id,cdn_url,thumbnail_url,title,media_type,file_type,is_sacred_no_publish,removed_by_storyteller_at,tenant_id,source_url,storage_path';
   // EL tags Goods media THREE inconsistent ways: project_id (96), project_code='goods'
   // (195), and gallery-only. Union all three (dedupe by id) so "all photos" is truly all.
   const [byId, byCode] = await Promise.all([
@@ -119,7 +119,22 @@ export async function getAlignData(): Promise<{ photos: AlignPhoto[]; persons: A
   // render them for alignment, WITHOUT any public exposure. Public consumers still
   // get nothing (visibility stays private); this is an admin display path only.
   const storageBase = URL_.replace(/\/$/, '');
-  const authedUrl = (m: MediaRow) => (m.source_url ? `${storageBase}/storage/v1/object/${m.source_url}` : '');
+  /*
+   * THE MAY 2026 ALICE SPRINGS BUILD, 121 PHOTOGRAPHS THAT SHOWED AS "NO PREVIEW".
+   *
+   * source_url carries its own bucket ("story-media/<path>"), and the code only knew that
+   * column. These rows leave cdn_url, thumbnail_url and source_url all null and put the object
+   * in storage_path instead, with no bucket on the front, so every tile resolved to an empty
+   * string. Their bytes are in story-images; the el-image proxy tries the other public buckets
+   * if a path ever lands somewhere else.
+   */
+  const DEFAULT_BUCKET = 'story-images';
+  const authedUrl = (m: MediaRow) =>
+    m.source_url
+      ? `${storageBase}/storage/v1/object/${m.source_url}`
+      : m.storage_path
+        ? `${storageBase}/storage/v1/object/${DEFAULT_BUCKET}/${m.storage_path}`
+        : '';
   const photos: AlignPhoto[] = media.map((m) => {
     const authed = authedUrl(m);
     return {
