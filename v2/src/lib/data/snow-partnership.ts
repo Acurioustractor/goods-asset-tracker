@@ -43,6 +43,7 @@
  *    funder-moments: unknown slug, wrong tier or a quote that is not approved renders nothing.
  */
 
+import { CANONICAL_ASSETS } from './asset-canonical';
 import { BED, RAISE } from './model-placemat';
 import { QBE_CLOSES } from './qbe-form';
 import { PLASTIC_KG_PER_BED } from './products';
@@ -436,6 +437,92 @@ export const BED_HERE = {
   makeAud: BED.makeAud,
   contributionAud: BED.contributionAud,
 } as const;
+
+/**
+ * THE ARC, AS THINGS WE MADE.
+ *
+ * Ben, 17 September 2026: chapter one should be the clear story. Basket Bed, then the washing
+ * machine, then the Stretch Bed, then the production facility, then the R&D on the next
+ * machine, and it should say that none of it happens without flexible money.
+ *
+ * THE ARGUMENT, AND WHY IT IS HONEST. Two of these five were discontinued or given away. The
+ * Basket Bed was our first product and its plans are now free to download. The price of a bed
+ * moved twice as the work around it came inside the price. A grant tied to a deliverable
+ * punishes all three of those moves; untied money pays for them. That is the case for how Snow
+ * gave, and it is made of things that happened rather than adjectives.
+ *
+ * "Catalytic" is Georgina's word and she says it herself in the opening. Our own word for it
+ * here is flexible, because the voice guard bans the other one as our framing and it is right
+ * to.
+ *
+ * Counts come from CANONICAL_ASSETS so the arc cannot drift from the register.
+ */
+export interface ArcStage {
+  id: string;
+  what: string;
+  when: string;
+  /** The chip. `now` is live, `given-away` is retired on purpose, `next` is not built. */
+  state: 'given-away' | 'in-community' | 'now' | 'commissioning' | 'next';
+  stateLabel: string;
+  body: string;
+  /** The one number that proves it, where the register holds one. */
+  figure?: { value: string; label: string };
+}
+
+export const THE_ARC: readonly ArcStage[] = [
+  {
+    id: 'basket-bed',
+    what: 'The Basket Bed',
+    when: 'The first prototype, through 2024',
+    state: 'given-away',
+    stateLabel: 'Open source now',
+    body: 'Collapsible baskets, zip ties and a topper. It got people off the floor while we learned what a bed has to survive out here. Eighty-five of them were built on Palm Island over a weekend in December 2024. We have stopped selling it and the plans are free to download, which is the right end for a design that has been overtaken.',
+    figure: { value: String(CANONICAL_ASSETS.basketBedsDeployed), label: 'in homes' },
+  },
+  {
+    id: 'washing-machine',
+    what: 'Pakkimjalki Kari',
+    when: 'Named in Tennant Creek, bought by Snow in June 2025',
+    state: 'in-community',
+    stateLabel: 'Prototype, in community',
+    body: 'Elder Dianne Stokes named the machine in Warumungu. A Speed Queen base, chosen because it can be repaired, in an enclosure we make. One Alice Springs supplier sells about three million dollars of machines a year into remote communities and most are in a tip within months, so the whole design question is repair. Snow bought one on 29 June 2025. It is still a prototype and it is not for sale.',
+    figure: { value: String(CANONICAL_ASSETS.washersInCommunity), label: 'in community' },
+  },
+  {
+    id: 'stretch-bed',
+    what: 'The Stretch Bed',
+    when: 'First paid order September 2025',
+    state: 'now',
+    stateLabel: 'The one we sell',
+    body: 'Two galvanised poles threaded through the canvas and into crossed legs pressed from recycled plastic. The canvas is structural, so the bed does not stand without it, and twenty kilograms of plastic stays out of a tip for every one. Centrecorp bought the first sixty at $370 and came back for a hundred and seven. The price is $750 now because freight and the paid local work came inside it rather than beside it.',
+    figure: { value: String(CANONICAL_ASSETS.stretchBedsDeployed), label: 'in homes' },
+  },
+  {
+    id: 'facility',
+    what: 'The production facility',
+    when: 'Maningrida run, August 2025',
+    state: 'commissioning',
+    stateLabel: 'About 85 percent commissioned',
+    body: 'Forty beds for Maningrida went through our own shredder, heat press and router, were shipped flat packed, and were built at Gamardi by young people from the community. Production moving on Country is not a plan we are describing. It has happened once and we know what it cost. The containerised plant is built to move to community operation and then ownership.',
+    figure: { value: '40', label: 'beds pressed in house' },
+  },
+  {
+    id: 'next-machine',
+    what: 'The next machine',
+    when: 'In development now',
+    state: 'next',
+    stateLabel: 'Not built yet',
+    body: 'The controllers already report cycles and power. The next version reports fault codes and water use, so a service trip happens because a machine asked for it. The enclosure, the controller and the plumbing are ours to make simpler and cheaper to fix. The comparison nobody has costed properly is the commercial remote laundry it stands against.',
+  },
+];
+
+/**
+ * The sentence the arc is for. It is the only place on this page we describe how Snow gave
+ * rather than what they gave, and it is deliberately made of the two awkward facts: a product
+ * we stopped selling, and a price that went up.
+ */
+export const WHY_FLEXIBLE =
+  'None of that was a deliverable in a grant agreement. A product we stopped selling, a design we gave away, a price that moved twice, and a machine still in prototype after two years: money tied to an output punishes every one of those, and money given on trust pays for them. That is what Snow bought, and it is why there is a fourth and fifth thing on this list at all.';
 
 /**
  * THE ASK WITH A DATE ON IT, and it is not the money.

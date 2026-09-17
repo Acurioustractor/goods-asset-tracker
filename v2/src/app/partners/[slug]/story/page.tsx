@@ -10,9 +10,11 @@ import { ORGANISATION } from '@/lib/data/organisation';
 import { goodsBoard } from '@/lib/data/goods-board';
 import {
   ALIGNMENT, BECAUSE_OF, BUYER_TOTALS, BUYERS, DEMAND_GAPS, FILMS, heroFrames, MAP_PLACES,
-  NOT_FINISHED, OONCHIUMPA_NEXT, PLACE_BEATS, PRICE_LADDER, SNOW_MONEY, THE_LETTER, TOGETHER, WALLS,
+  NOT_FINISHED, OONCHIUMPA_NEXT, PLACE_BEATS, PRICE_LADDER, SNOW_MONEY, THE_ARC, THE_LETTER, TOGETHER,
+  WALLS, WHY_FLEXIBLE,
   WASHER_NEXT, WASHER_PLACES, WASHER_TELEMETRY,
 } from '@/lib/data/snow-partnership';
+import { snowHeroFrames } from '@/lib/data/snow-photos';
 import { ChapterRail } from '@/components/pitch/chapter-rail';
 import { CountUp } from '@/components/pitch/count-up';
 import { TogetherTimeline } from '@/components/partners/together-timeline';
@@ -57,7 +59,7 @@ export const metadata: Metadata = {
 };
 
 const CHAPTERS = [
-  { id: 'ch-making', number: '01', label: 'What we are doing' },
+  { id: 'ch-making', number: '01', label: 'What we made' },
   { id: 'ch-first', number: '02', label: 'Snow went first' },
   { id: 'ch-alice', number: '03', label: 'Alice Springs' },
   { id: 'ch-buyers', number: '04', label: 'Who is buying' },
@@ -99,6 +101,15 @@ function Pull({ v }: { v: NonNullable<ReturnType<typeof quote>> }) {
       </div>
     </figure>
   );
+}
+
+/** The arc's state chips. Sage is in community, rust is live, grey is retired or not yet. */
+function chipStyle(state: (typeof THE_ARC)[number]['state']): React.CSSProperties {
+  if (state === 'in-community') return { backgroundColor: '#EEF1E9', color: '#556945' };
+  if (state === 'now') return { backgroundColor: '#F6E4DE', color: '#9A4023' };
+  if (state === 'commissioning') return { backgroundColor: '#F7EDE4', color: '#8A5A34' };
+  if (state === 'next') return { border: '1px dashed #C2B6AA', color: '#6A5E54' };
+  return { backgroundColor: '#EEE9E3', color: '#6A5E54' };
 }
 
 function Chapter({ id, number, label, title, lead, children }: {
@@ -179,7 +190,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       <ChapterRail chapters={CHAPTERS} />
 
       <StoryHero
-        frames={heroFrames()}
+        frames={snowHeroFrames()}
         film={{
           src: '/video/maningrida/gamardi-drone.mp4',
           poster: '/video/maningrida/gamardi-drone-poster.jpg',
@@ -209,10 +220,22 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         <h1 className="mt-8 max-w-3xl font-display text-4xl leading-[1.05] sm:text-6xl lg:text-7xl">
           You went first, and then you stayed.
         </h1>
-        <p className="mt-6 max-w-xl text-lg leading-relaxed text-goods-cream/85">
-          Two years of work, told as what we did together. It is written for the people who have been on Country
-          with us, so it carries the numbers, the parts that are not finished, and the things we will not claim.
+        <p className="mt-6 max-w-[46ch] text-lg leading-[1.65] text-goods-cream/85">
+          Money that came early, untied, and on trust. Snow backed this before there was a product, a charity, a
+          board or a customer, and that is why there is anything here to report. Two years on, this is what it
+          bought, told as what we did together. It carries the numbers, the parts that are not finished, and the
+          things we will not claim.
         </p>
+        {catalyse && (
+          <figure className="m-0 mt-8 max-w-[46ch] border-l pl-5" style={{ borderColor: 'rgba(253,248,243,0.28)' }}>
+            <blockquote className="font-display text-xl leading-[1.4] text-goods-cream sm:text-2xl">
+              &ldquo;{catalyse.quote.text}&rdquo;
+            </blockquote>
+            <figcaption className="mt-3 text-[11px] uppercase tracking-[0.14em] text-goods-cream/60">
+              {catalyse.person.name}{catalyse.person.role ? `, ${catalyse.person.role}` : ''}
+            </figcaption>
+          </figure>
+        )}
         <dl className="mt-8 flex flex-wrap gap-8">
           {[
             { k: 'Invoices', v: String(SNOW_MONEY.goodsInvoices) },
@@ -233,36 +256,40 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </StoryHero>
 
       <Chapter
-        id="ch-making" number="01" label="What we are doing"
-        title="Beds made on Country, and paid work in the making of them"
-        lead="You know the disease better than we do, so this opens where we can actually tell you something: the plant, the work in it, and who ends up owning it."
+        id="ch-making" number="01" label="What we made"
+        title="A basket, a machine, a bed, a plant, and the next machine"
+        lead="Five things in the order they were made, because the order is the argument. Each one taught the next, and two of them we have stopped selling."
       >
-        <div className="grid gap-5 sm:grid-cols-3">
-          <div className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderTop: `2px solid ${RUST}` }}>
-            <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>Proven</p>
-            <p className="mt-3 font-display text-lg leading-[1.25]" style={{ color: CHARCOAL }}>Forty beds pressed in our own facility</p>
-            <p className="mt-2.5 text-[0.9375rem] leading-[1.65]" style={{ color: `${CHARCOAL}b8` }}>
-              The Maningrida run went through our own shredder, heat press and router. Production moving on Country
-              has already happened. Nothing here is a projection.
-            </p>
-          </div>
-          <div className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderTop: `2px solid ${SAGE}` }}>
-            <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: SAGE }}>Where the money lands</p>
-            <p className="mt-3 font-display text-lg leading-[1.25]" style={{ color: CHARCOAL }}>Customers pay the community organisation</p>
-            <p className="mt-2.5 text-[0.9375rem] leading-[1.65]" style={{ color: `${CHARCOAL}b8` }}>
-              Not us, then them. Them. After costs they decide what happens next: more beds, more paid work, or
-              making something of their own.
-            </p>
-          </div>
-          <div className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderTop: '2px solid #B8AEA4' }}>
-            <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: '#6A5E54' }}>Not yet</p>
-            <p className="mt-3 font-display text-lg leading-[1.25]" style={{ color: CHARCOAL }}>Nobody owns a site</p>
-            <p className="mt-2.5 text-[0.9375rem] leading-[1.65]" style={{ color: `${CHARCOAL}b8` }}>
-              Zero community-owned production sites. Chapter three is the one that would change that number,
-              and Oonchiumpa now hold a four-year federal offer that is not yet executed.
-            </p>
-          </div>
-        </div>
+        <ol className="m-0 list-none p-0">
+          {THE_ARC.map((s) => (
+            <li key={s.id} className="border-t py-8 first:border-t-0 first:pt-0 sm:py-10" style={{ borderColor: RULE }}>
+              <div className="grid gap-4 sm:grid-cols-[14rem_1fr] sm:gap-10">
+                <div>
+                  <p className="font-display text-xl leading-[1.2]" style={{ color: CHARCOAL }}>{s.what}</p>
+                  <p className="mt-2 text-[13px] leading-snug" style={{ color: MUTED }}>{s.when}</p>
+                  <p
+                    className="mt-3 inline-block rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em]"
+                    style={chipStyle(s.state)}
+                  >
+                    {s.stateLabel}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-[0.9375rem] leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{s.body}</p>
+                  {s.figure && (
+                    <p className="mt-4 flex items-baseline gap-2.5">
+                      <span className="font-display text-3xl leading-none" style={{ color: RUST }}>{s.figure.value}</span>
+                      <span className="text-[11px] uppercase tracking-[0.14em]" style={{ color: MUTED }}>{s.figure.label}</span>
+                    </p>
+                  )}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ol>
+        <p className="mt-10 max-w-[64ch] border-l-2 pl-5 text-base leading-[1.75]" style={{ borderColor: RUST, color: `${CHARCOAL}cc` }}>
+          {WHY_FLEXIBLE}
+        </p>
         {mykel && <Pull v={mykel} />}
       </Chapter>
 
@@ -315,7 +342,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             </div>
             <p className="mt-4 text-xs leading-relaxed" style={{ color: '#A99C8F' }}>{SNOW_MONEY.basisNote}</p>
 
-            {catalyse && <Pull v={catalyse} />}
+            {/* catalyse now opens the report in the hero, so the money chapter does not repeat it. */}
             {backing && <Pull v={backing} />}
           </div>
         </div>
