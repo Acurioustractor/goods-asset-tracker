@@ -41,7 +41,8 @@ export interface RegistryQuote {
   /** Verbatim canonical text. Do not paraphrase on any surface. */
   text: string;
   /** Short context label. */
-  context: string;
+  /** Where and when it was said. Optional: some quotes need no gloss. */
+  context?: string;
   /** primary = the line to reach for first · approved = fine to use · hold = do not use pending a decision · retired = decided against, never reinstate */
   status: 'primary' | 'approved' | 'hold' | 'retired';
   note?: string;
@@ -282,7 +283,7 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         // Country with young people Kununurra", 13 July 2026, standard sensitivity. That is a
         // Basecamps recording, not a Goods one, which is why the context says so: his words are
         // about Country as the thing that gave him everything, not about beds.
-        text: 'I realized that my culture and country was what was giving me the keys to the world.',
+        text: 'I realised that my culture and country was what was giving me the keys to the world.',
         context: 'On Country with young people at Kununurra, 13 July 2026',
         status: 'approved',
       },
@@ -721,7 +722,6 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
       },
       {
         text: "We wanna be able to create generational wealth, economic development on our own land. We see too many times that a lot of other businesses are thriving. Why can't we thrive as Aboriginal people on our land as well?",
-        context: "Oonchiumpa's economic vision \u2014 the demand side of the Goods community-ownership pathway (on-country manufacturing moving to community ownership).",
         status: 'approved',
       },
     ],
@@ -1355,7 +1355,6 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
       },
       {
         text: 'Community leadership, community ownership, our mob is smart. We got a lot of real deadly people out there in communities that know what the community want and how they can get the resources from that community to make a difference.',
-        context: 'Community ownership, in her words',
         status: 'approved',
       },
     ],
