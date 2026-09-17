@@ -102,7 +102,7 @@ export default async function MediaLibraryPage() {
         <AdminHubTabs tabs={MEDIA_ROOM_TABS} />
       </div>
       <PhotoDrop communities={communities} people={people} />
-      <MediaLibraryClient items={items} curationReady={curationReady} communities={communities} />
+      <MediaLibraryClient items={items} curationReady={curationReady} communities={communities} people={people} />
     </div>
   );
 }

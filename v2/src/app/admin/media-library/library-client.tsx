@@ -93,16 +93,29 @@ function isHeld(item: UnifiedItem): boolean {
 }
 
 /** A patch sent to /api/admin/content-item and applied optimistically to state. */
-type CurationPatch = { starred?: boolean; rating?: number; archived?: boolean; community_id?: string | null };
+type CurationPatch = {
+  starred?: boolean;
+  rating?: number;
+  archived?: boolean;
+  community_id?: string | null;
+  storyteller_id?: string | null;
+};
 
 export function MediaLibraryClient({
   items: initialItems,
   curationReady,
   communities = [],
+  people = [],
 }: {
   items: UnifiedItem[];
   curationReady: boolean;
   communities?: { id: string; name: string }[];
+  /**
+   * People from the v2 storytellers table, which is what content_items.storyteller_id points at.
+   * NOT the EL roster: the two use different ids (Xavier exists in one and not the other), so
+   * picking from the roster would have written a foreign key that does not resolve.
+   */
+  people?: { id: string; name: string }[];
 }) {
   const router = useRouter();
   const commMap = useMemo(() => new Map(communities.map((c) => [c.id, c.name])), [communities]);
@@ -255,6 +268,19 @@ export function MediaLibraryClient({
   const toggleStar = useCallback((it: UnifiedItem) => mutate([it.id], { starred: !it.starred }), [mutate]);
   const toggleArchive = useCallback((it: UnifiedItem) => mutate([it.id], { archived: !it.archived }), [mutate]);
   const setRating = useCallback((it: UnifiedItem, r: number) => mutate([it.id], { rating: r }), [mutate]);
+  /*
+   * Community and person were only settable from the bulk bar, which exists only once something
+   * is selected. Open one photograph and there was no way to say where it was or who is in it,
+   * which read as "tagging does not work". They belong on the item as well as on a selection.
+   */
+  const assignCommunity = useCallback(
+    (it: UnifiedItem, id: string | null) => mutate([it.id], { community_id: id }),
+    [mutate],
+  );
+  const assignPerson = useCallback(
+    (it: UnifiedItem, id: string | null) => mutate([it.id], { storyteller_id: id }),
+    [mutate],
+  );
   const bulkSet = useCallback(
     (patch: CurationPatch) => {
       const ids = Array.from(selected);
@@ -1055,12 +1081,15 @@ export function MediaLibraryClient({
           curationReady={curationReady}
           roster={roster}
           communities={communities}
+          people={people}
           onClose={() => setActive(null)}
           onSaveTags={updateItemTags}
           onSaveNotes={updateItemNotes}
           onToggleStar={toggleStar}
           onToggleArchive={toggleArchive}
           onSetRating={setRating}
+          onSetCommunity={assignCommunity}
+          onSetPerson={assignPerson}
           onMutatePeople={mutatePeople}
           onFilterTag={(t) => { setArea(t); setActive(null); }}
         />
@@ -1333,12 +1362,15 @@ function PreviewModal({
   curationReady,
   roster,
   communities,
+  people,
   onClose,
   onSaveTags,
   onSaveNotes,
   onToggleStar,
   onToggleArchive,
   onSetRating,
+  onSetCommunity,
+  onSetPerson,
   onMutatePeople,
   onFilterTag,
 }: {
@@ -1346,7 +1378,10 @@ function PreviewModal({
   curationReady: boolean;
   roster: RosterPerson[];
   communities: { id: string; name: string }[];
+  people: { id: string; name: string }[];
   onClose: () => void;
+  onSetCommunity: (item: UnifiedItem, id: string | null) => void;
+  onSetPerson: (item: UnifiedItem, id: string | null) => void;
   onSaveTags: (id: string, tags: string[]) => void;
   onSaveNotes: (id: string, notes: string | null) => void;
   onToggleStar: (it: UnifiedItem) => void;
@@ -1409,11 +1444,6 @@ function PreviewModal({
   }, []);
 
   const saveTags = useCallback(async () => {
-    if (!item.contentId) {
-      setSaveState('error');
-      setSaveError('Not indexed yet — run npm run content:index to tag this item.');
-      return;
-    }
     setSaveState('saving');
     setSaveError('');
     try {
@@ -1422,7 +1452,12 @@ function PreviewModal({
       const res = await fetch('/api/admin/content-item', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: item.contentId, tags: draftTags }),
+        body: JSON.stringify(
+          item.contentId
+            ? { id: item.contentId, tags: draftTags }
+            : // No row yet: the write registers it rather than sending anyone to a terminal.
+              { create: [{ ref: refOf(item), url: item.full, mediaType: item.mediaType }], tags: draftTags },
+        ),
       });
       const data = (await res.json()) as { ok: boolean; error?: string };
       if (!res.ok || !data.ok) {
@@ -1436,16 +1471,11 @@ function PreviewModal({
       setSaveState('error');
       setSaveError(e instanceof Error ? e.message : String(e));
     }
-  }, [item.contentId, item.id, draftTags, onSaveTags]);
+  }, [item, draftTags, onSaveTags]);
 
   // Notes save: optimistic (grid badge + state update immediately), reverts on
   // API failure. Same {ids:[...]} body shape as the other curation writes.
   const saveNotes = useCallback(async () => {
-    if (!item.contentId) {
-      setNotesState('error');
-      setNotesError('Not indexed yet. Run npm run content:index first.');
-      return;
-    }
     const prev = item.notes ?? null;
     const next = draftNotes.trim() === '' ? null : draftNotes;
     setNotesState('saving');
@@ -1456,7 +1486,11 @@ function PreviewModal({
       const res = await fetch('/api/admin/content-item', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ids: [item.contentId], notes: next ?? '' }),
+        body: JSON.stringify(
+          item.contentId
+            ? { ids: [item.contentId], notes: next ?? '' }
+            : { create: [{ ref: refOf(item), url: item.full, mediaType: item.mediaType }], notes: next ?? '' },
+        ),
       });
       const data = (await res.json()) as { ok: boolean; error?: string };
       if (!res.ok || !data.ok) throw new Error(data.error || `HTTP ${res.status}`);
@@ -1468,7 +1502,7 @@ function PreviewModal({
       setNotesError(msg);
       if (/column|schema cache|42703/i.test(msg)) setNotesColPending(true);
     }
-  }, [item.contentId, item.id, item.notes, draftNotes, onSaveNotes]);
+  }, [item, draftNotes, onSaveNotes]);
 
   const copy = useCallback(async (text: string) => {
     try {
@@ -1778,6 +1812,32 @@ function PreviewModal({
                     {ns}:
                   </button>
                 ))}
+              </div>
+
+              {/* Where it is and who is in it. Both save on change; no second button to forget. */}
+              <div className="mb-2 flex gap-1.5">
+                <select
+                  value={communities.find((c) => c.name === item.community)?.id ?? ''}
+                  onChange={(e) => onSetCommunity(item, e.target.value || null)}
+                  aria-label="Community"
+                  className="flex-1 rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-ring"
+                >
+                  <option value="">Community…</option>
+                  {communities.map((c) => (
+                    <option key={c.id} value={c.id}>{c.name}</option>
+                  ))}
+                </select>
+                <select
+                  value={people.find((p) => p.name === item.person)?.id ?? ''}
+                  onChange={(e) => onSetPerson(item, e.target.value || null)}
+                  aria-label="Person"
+                  className="flex-1 rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-ring"
+                >
+                  <option value="">Person…</option>
+                  {people.map((p) => (
+                    <option key={p.id} value={p.id}>{p.name}</option>
+                  ))}
+                </select>
               </div>
 
               <button
