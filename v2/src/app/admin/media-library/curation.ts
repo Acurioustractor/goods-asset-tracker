@@ -345,7 +345,18 @@ export async function buildElItems(): Promise<{ items: UnifiedItem[]; elMissing:
       ),
     );
 
-  const items = [...hubItems, ...extraItems];
+  /*
+   * ONE TILE PER EMPATHY LEDGER ID. extraItems only excludes ids already in hubImageIds, but
+   * hubItems carries videos as well as images, so an align photo sharing an id with an EL video
+   * arrived twice and React complained about the duplicate key. Hub first, because its row
+   * carries the working URL, the consent read and the people.
+   */
+  const seen = new Set<string>();
+  const items = [...hubItems, ...extraItems].filter((it) => {
+    if (seen.has(it.id)) return false;
+    seen.add(it.id);
+    return true;
+  });
   const elMissing = !EL_API_KEY && align.photos.length === 0;
   return { items, elMissing, roster: align.persons };
 }
