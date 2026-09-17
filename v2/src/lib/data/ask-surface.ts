@@ -23,12 +23,25 @@ export const ASK_RATIO = {
   // the old line lived in four places at once and that is how it survived being retired.
   headline: NORTH_STAR.headline,
   subline: NORTH_STAR.line,
+  // The per-bed pair and the break-even are the v6 side of a conflict the cost model now prints:
+  // the 15 September year model says $288 a bed after absorbed freight and facilitation, and 874
+  // beds. Say the figure with its model or not at all.
   second:
-    'The mechanics: $65 of every bed stays today, $324 when we press our own legs. At ~338 beds a year the business stands without any of us, and the handover is a gift, not a burden.',
+    'The mechanics: $65 of every bed stays today, $324 when we press our own legs, and $288 of ' +
+    'that reaches the organisation once it has absorbed freight and facilitation. Break-even is ' +
+    '338 beds a year on the v6 running cost and 874 on the 15 September one; the handover is a ' +
+    'gift, not a burden.',
   // RULING G/H (Ben 2026-07-25): the figure stays, the adjective goes. There is no signed
   // accountant document; the carve-out is prepared with the accountant, so it is a workpaper.
   // Dropping the 'verified' label is the point: a green chip in front of a funder was the leak.
-  verification: 'Revenue $713,827: Goods-only carve-out, workpaper (not accountant-signed).',
+  //
+  // HELD 17 September 2026. The carve-out behind $713,827 was $590,091, of which $276,132
+  // (46.8%) is philanthropy invoiced as sales; real FY26 Goods trading income is $313,960
+  // ex GST. The figure comes off all five applications until Standard Ledger rules, so what
+  // goes in front of a funder is the paid trade, which is bought beds and nothing else.
+  verification:
+    'Paid bed trade: 320 beds to four buyers, $247,770 ex GST (revenue basis), $273,966 inc GST ' +
+    '(bank basis). The $713,827 revenue carve-out is held pending Standard Ledger.',
   verificationLabel: 'workpaper' as Solidity,
 };
 

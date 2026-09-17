@@ -127,8 +127,9 @@ describe('the stack', () => {
     expect(bedsFunded(lineById('alive'))).toBe(100);
     expect(POOL_BEDS_IF_ALL_LAND).toBeLessThan(PROGRAM.beds);
     expect(POOL_SHORTFALL_BEDS).toBe(PROGRAM.beds - POOL_BEDS_IF_ALL_LAND);
-    // 200 (QBE pool share) + 133 + 133 + 133 + 66 + 100. Dusseldorp's $50,000 rounds down to 66 beds.
-    expect(POOL_BEDS_IF_ALL_LAND).toBe(765);
+    // 133 + 133 + 133 + 66 + 100, and no QBE beds: since 15 September QBE buys plant, not a
+    // pool, so the 200 it used to carry left the bed count. Dusseldorp's $50,000 rounds down to 66 beds.
+    expect(POOL_BEDS_IF_ALL_LAND).toBe(565);
   });
 
   it('puts no community name next to a pool line', () => {
@@ -143,26 +144,25 @@ describe('the stack', () => {
 });
 
 describe('the QBE ask', () => {
-  it('has three tiers whose beds follow from the price, with $250,000 as the ask', () => {
-    expect(QBE_ASK.recommended.aud).toBe(250_000);
-    expect(QBE_ASK.full.aud).toBe(400_000);
+  it('is a facilities ask of $300,000, with no beds inside it', () => {
+    // Ben, 15 September 2026, confirmed 17 September: the ask is plant, not a pool of beds.
+    expect(QBE_ASK.recommended.aud).toBe(300_000);
+    expect(QBE_ASK.recommended.facilities).toBe(2);
     expect(QBE_ASK.smaller.aud).toBe(150_000);
-    for (const t of [QBE_ASK.recommended, QBE_ASK.full, QBE_ASK.smaller]) {
-      expect(t.poolAud + t.proofsAud).toBe(t.aud);
-      expect(t.beds).toBe(t.poolAud / BED_PRICE_AUD);
-      expect(Number.isInteger(t.beds)).toBe(true);
-      expect(t.proofsAud).toBeGreaterThanOrEqual(75_000);
+    expect(QBE_ASK.smaller.facilities).toBe(1);
+    for (const t of [QBE_ASK.recommended, QBE_ASK.smaller]) {
+      expect(t.aud).toBe(t.facilities * 150_000);
+      expect(t).not.toHaveProperty('beds');
     }
-    expect(QBE_ASK.recommended.beds).toBe(200);
-    expect(QBE_ASK.full.beds).toBe(400);
-    expect(QBE_ASK.smaller.beds).toBe(100);
-    expect(QBE_ASK.full.buys).toMatch(/ceiling, not the plan/);
+    // No beds inside the QBE ask at all: that is the point of the 15 September ruling.
+    expect(QBE_ASK.retiredPoolTiers).toMatch(/do not quote alongside it/);
+    expect(QBE_ASK.recommended.buys).toMatch(/production facilities/);
   });
 
   it('carries the recommended ask as the QBE line in the stack', () => {
     const qbe = lineById('qbe');
     expect(qbe.amountAud).toBe(QBE_ASK.recommended.aud);
-    expect(qbe.split?.poolAud).toBe(QBE_ASK.recommended.poolAud);
+    expect(qbe.split).toBeUndefined(); // plant is not split into pool and proofs
   });
 
   it('never describes QBE as doubling, triggering or guaranteeing anything', () => {
