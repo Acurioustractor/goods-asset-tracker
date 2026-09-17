@@ -2,7 +2,13 @@ import { createServiceClient } from '@/lib/supabase/server';
 import { sendEmail } from '@/lib/email/send';
 import { ghl } from '@/lib/ghl';
 
-export type ContactSubmissionKind = 'contact' | 'partnership' | 'newsletter';
+/**
+ * `feedback` joined the list on 17 September. Until then the feedback widget wrote its content to
+ * a GitHub issue and nowhere else, so a GitHub outage or a missing token lost the message and told
+ * the person the feedback system was broken. The row is written first now, and the issue is
+ * attempted after, so the content survives either way.
+ */
+export type ContactSubmissionKind = 'contact' | 'partnership' | 'newsletter' | 'feedback';
 
 export type ContactSubmission = {
   kind: ContactSubmissionKind;

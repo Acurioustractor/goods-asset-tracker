@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ghl } from '@/lib/ghl';
 import { guardContactSubmission } from '@/lib/contact-delivery/anti-abuse';
+import { recordContactSubmission, updateContactSubmission } from '@/lib/contact-delivery';
 
 export async function POST(request: NextRequest) {
   try {
@@ -57,7 +58,28 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // The receipt goes first. Until this existed, a subscriber whose GHL write failed was gone:
+    // no row, no retry, and the person saw an error and walked away. The retry cron already knew
+    // how to replay a newsletter row (it branches on kind), it just never had one to replay.
+    const submission = {
+      kind: 'newsletter' as const,
+      email: email || '',
+      name,
+      subject: `Newsletter signup${tag ? `: ${tag}` : ''}`,
+      payload: { phone, tag, consent: 'Yes' } as Record<string, unknown>,
+    };
+    const submissionId = await recordContactSubmission(submission);
+
     const ghlResult = await ghl.addToNewsletter({ email, phone, name, tag, newsletterConsent });
+
+    // inboxStatus disabled, not pending: a subscriber is not waiting on a reply and the team does
+    // not need an email per signup, so the cron must not try to send one.
+    await updateContactSubmission(submissionId, {
+      ghlStatus: ghlResult.success && !ghlResult.simulated ? 'delivered' : 'failed',
+      inboxStatus: 'disabled',
+      error: ghlResult.error,
+      delivered: Boolean(ghlResult.success && !ghlResult.simulated),
+    });
 
     console.log('[Newsletter Signup]', {
       channel: email && phone ? 'email+phone' : email ? 'email' : 'phone',

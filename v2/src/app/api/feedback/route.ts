@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ghl } from '@/lib/ghl';
 import { guardContactSubmission } from '@/lib/contact-delivery/anti-abuse';
+import { recordContactSubmission, updateContactSubmission } from '@/lib/contact-delivery';
 
 interface FeedbackPayload {
   /** Honeypot. Never rendered to a person. */
@@ -109,15 +110,33 @@ export async function POST(request: NextRequest) {
     const page = body.page || '/';
     const email = body.email || 'Anonymous';
 
+    // The receipt goes first, before GitHub, because the content is the thing that matters and a
+    // missing token used to lose it. The person is told their feedback landed once this row
+    // exists, which is true: somebody can read it whatever GitHub does next.
+    const submission = {
+      kind: 'feedback' as const,
+      email: body.email || '',
+      name: undefined,
+      subject: `Website Feedback: ${page}`,
+      payload: { page, message: body.message } as Record<string, unknown>,
+    };
+    const submissionId = await recordContactSubmission(submission);
+
     const token = process.env.GITHUB_FEEDBACK_TOKEN;
     const repo = process.env.GITHUB_REPO;
 
     if (!token || !repo) {
+      // Recorded, and visible as a failed row on /admin/campaign rather than as an error in
+      // somebody's face. Telling a person their feedback was lost when it was not is worse than
+      // the outage.
       console.error('[Feedback] Missing GITHUB_FEEDBACK_TOKEN or GITHUB_REPO env vars');
-      return NextResponse.json(
-        { error: 'Feedback system is not configured' },
-        { status: 500 }
-      );
+      await updateContactSubmission(submissionId, {
+        ghlStatus: 'failed',
+        inboxStatus: 'disabled',
+        error: 'GitHub not configured, feedback stored in contact_submissions only',
+      });
+      await syncFeedbackToGhl(page, email, body.message);
+      return NextResponse.json({ success: true });
     }
 
     // Create GitHub Issue
@@ -149,10 +168,13 @@ ${body.message}
     if (!response.ok) {
       const errorData = await response.text();
       console.error('[Feedback] GitHub API error:', response.status, errorData);
-      return NextResponse.json(
-        { error: 'Failed to submit feedback' },
-        { status: 500 }
-      );
+      await updateContactSubmission(submissionId, {
+        ghlStatus: 'failed',
+        inboxStatus: 'disabled',
+        error: `GitHub ${response.status}: ${errorData.slice(0, 300)}`,
+      });
+      await syncFeedbackToGhl(page, email, body.message);
+      return NextResponse.json({ success: true });
     }
 
     // Send Telegram notification (awaited so it completes before serverless function exits)
@@ -161,6 +183,12 @@ ${body.message}
     // Mirror to GHL so the customer record carries the feedback alongside their other touches.
     // Only fires when the submitter left an email — anonymous feedback stays in GitHub + Telegram only.
     await syncFeedbackToGhl(page, email, body.message);
+
+    await updateContactSubmission(submissionId, {
+      ghlStatus: 'delivered',
+      inboxStatus: 'disabled',
+      delivered: true,
+    });
 
     console.log('[Feedback]', { page, email, messageLength: body.message.length });
 
