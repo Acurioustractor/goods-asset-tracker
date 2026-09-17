@@ -171,8 +171,24 @@ export function toCanonicalTags(
  * This is the single place comms:goods-newsletter is ever minted.
  */
 export function grantNewsletterComms(newsletterConsent: 'Yes' | string | undefined): string[] {
-  return newsletterConsent === 'Yes' ? ['comms:goods-newsletter'] : [];
+  return newsletterConsent === 'Yes' ? [NEWSLETTER_COMMS_TAG] : [];
 }
+
+/**
+ * The `comms:` tag the newsletter consent gate mints, and the whole of the list below.
+ *
+ * MINTED_COMMS_TAGS is every send-trigger this codebase can produce. It is one tag. A campaign
+ * that wants to reach funders, buyers or suppliers as a group has no tag to fire on, because an
+ * identity tag never triggers a send (the golden rule above). That is a consent decision, not a
+ * build task: either those people opt in through a consent-capturing path that mints a new
+ * `comms:` tag here, or a person sends to them one at a time.
+ *
+ * The campaign guard reads this list, so a broadcast campaign cannot be marked live against a tag
+ * nothing mints.
+ */
+export const NEWSLETTER_COMMS_TAG = 'comms:goods-newsletter';
+
+export const MINTED_COMMS_TAGS: readonly string[] = [NEWSLETTER_COMMS_TAG];
 
 /** Env-driven custom-field id for the consent flag, mirroring the act.place contract. */
 export const NEWSLETTER_CONSENT_FIELD_ID = process.env.GHL_FIELD_NEWSLETTER_CONSENT || '';

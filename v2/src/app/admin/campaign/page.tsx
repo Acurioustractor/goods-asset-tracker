@@ -9,6 +9,13 @@ import {
   type StepState,
 } from '@/lib/ghl/audience-pathways';
 import { findAudienceSegment, findSmartList } from '@/lib/ghl/smart-lists';
+import {
+  campaignsFor,
+  readyToSwitchOn,
+  blockedOnConsent,
+  type CampaignKind,
+  type CampaignStatus,
+} from '@/lib/ghl/campaigns';
 
 export const metadata = {
   title: 'Campaign lanes — Goods admin',
@@ -36,6 +43,28 @@ const classLabel: Record<MessageClass, string> = {
   none: 'They get nothing',
 };
 
+const campaignStatusStyle: Record<CampaignStatus, string> = {
+  live: 'border-emerald-200 bg-emerald-50 text-emerald-800',
+  'built-off': 'border-amber-200 bg-amber-50 text-amber-900',
+  drafted: 'border-sky-200 bg-sky-50 text-sky-800',
+  'not-built': 'border-rose-200 bg-rose-50 text-rose-800',
+};
+
+const campaignStatusLabel: Record<CampaignStatus, string> = {
+  live: 'Sending',
+  'built-off': 'Built, switched off',
+  drafted: 'Written, not built',
+  'not-built': 'Not built',
+};
+
+const kindLabel: Record<CampaignKind, string> = {
+  reply: 'Reply owed',
+  service: 'Service',
+  broadcast: 'Broadcast',
+  outreach: 'Person to person',
+  inward: 'Nags Goods, not them',
+};
+
 const readinessStyle: Record<PathwayReadiness, string> = {
   live: 'bg-emerald-600',
   partial: 'bg-amber-500',
@@ -45,6 +74,8 @@ const readinessStyle: Record<PathwayReadiness, string> = {
 export default function AdminCampaignPage() {
   const gaps = pathwayGaps();
   const live = AUDIENCE_PATHWAYS.filter((p) => p.readiness === 'live').length;
+  const ready = readyToSwitchOn();
+  const consentBlocked = blockedOnConsent();
 
   return (
     <div className="mx-auto max-w-6xl pb-24">
@@ -65,7 +96,8 @@ export default function AdminCampaignPage() {
             { label: 'Lanes', value: String(AUDIENCE_PATHWAYS.length) },
             { label: 'Running end to end', value: `${live} of ${AUDIENCE_PATHWAYS.length}` },
             { label: 'Steps with a gap', value: String(gaps.length) },
-            { label: 'Lanes with no owner', value: '0' },
+            { label: 'Ready to switch on', value: String(ready.length) },
+            { label: 'Waiting on consent', value: String(consentBlocked.length) },
           ].map((stat) => (
             <div key={stat.label}>
               <dt className="text-xs uppercase tracking-wider text-slate-500">{stat.label}</dt>
@@ -227,6 +259,39 @@ export default function AdminCampaignPage() {
                     ))}
                   </ol>
                 </div>
+              </div>
+
+              <div className="mt-6">
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                  The campaigns on this lane
+                </h3>
+                <ul className="mt-3 grid gap-3 md:grid-cols-2">
+                  {campaignsFor(pathway.audience).map((campaign) => (
+                    <li key={campaign.id} className="rounded-lg border bg-white p-4">
+                      <div className="flex flex-wrap items-start justify-between gap-2">
+                        <p className="text-sm font-semibold text-slate-900">{campaign.name}</p>
+                        <span
+                          className={`shrink-0 rounded-full border px-2 py-0.5 text-[10px] font-medium ${campaignStatusStyle[campaign.status]}`}
+                        >
+                          {campaignStatusLabel[campaign.status]}
+                        </span>
+                      </div>
+                      <p className="mt-1 text-[10px] uppercase tracking-wider text-slate-400">
+                        {kindLabel[campaign.kind]} · {campaign.channel} · {OWNERS[campaign.owner].name} ·{' '}
+                        {campaign.cadence}
+                      </p>
+                      <p className="mt-2 text-xs leading-relaxed text-slate-500">
+                        <span className="font-medium text-slate-600">Fires on:</span> {campaign.trigger}
+                      </p>
+                      <p className="mt-2 text-sm leading-relaxed text-slate-700">{campaign.brief}</p>
+                      {campaign.blockedOn && (
+                        <p className="mt-3 border-l-2 border-amber-300 pl-3 text-xs leading-relaxed text-slate-600">
+                          {campaign.blockedOn}
+                        </p>
+                      )}
+                    </li>
+                  ))}
+                </ul>
               </div>
 
               <p className="mt-5 rounded-lg border border-slate-900/10 bg-slate-900 p-4 text-sm leading-relaxed text-white">
