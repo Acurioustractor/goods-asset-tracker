@@ -13,13 +13,39 @@
  * with a `target`. If a new conflict appears, quote the range and say so. The
  * retired $600/bed figure gets redirected, not repeated.
  *
- * THREE `conflict` ROWS ARE OPEN (17 September 2026). Ben's 15 September money rulings
- * built a second model — running $251,224, $288 a bed after absorbed freight and
- * facilitation, break-even 874 — and it lives on an unmerged branch while this page still
- * shows v6. Both are defensible arithmetic over different scopes; they are not both usable
- * in front of a funder. The conflict is printed rather than silently resolved, because
- * picking one is Ben's call and the applications already use the ruled figures.
+ * ONE MODEL, RESOLVED 17 September 2026. For a few hours this file printed four `conflict`
+ * rows, because Ben's 15 September rulings had built a second model on a branch nobody had
+ * merged while this page still showed cost model v6. Both were defensible arithmetic over
+ * different scopes, which is exactly what made them dangerous side by side: v6 counted only
+ * the production share of the organisation, so break-even came out at a third of the real
+ * number.
+ *
+ * The ruled model now lives on main in `the-year-and-the-raise.ts` and this file reads from
+ * it. The v6 figures are named as retired where somebody might still quote them. Nothing here
+ * types a figure that the model can derive.
  */
+
+import {
+  BED_MAKE_AUD,
+  BED_FREIGHT_AUD,
+  FACILITATION_PER_BED_AUD,
+  CONTRIBUTION_AUD,
+  RUNNING_AUD,
+} from './the-year-and-the-raise';
+
+const aud = (n: number) => Math.round(n).toLocaleString('en-AU');
+
+/** Break-even is the running cost over what one bed hands the organisation. One model, one answer. */
+const BREAK_EVEN_BEDS = Math.ceil(RUNNING_AUD / CONTRIBUTION_AUD);
+
+/**
+ * The kit path measured on the same basis. $65 is what is left before the organisation absorbs
+ * freight and facilitation, and those are $200 a bed, so buying legs finished does not cover them
+ * at all. That is the whole argument for in-sourcing, stated in the model's own arithmetic rather
+ * than against a different running cost.
+ */
+const KIT_PATH_LEFT_AUD = 65;
+const KIT_PATH_ABSORBED_AUD = BED_FREIGHT_AUD + FACILITATION_PER_BED_AUD;
 
 export type Solidity =
   | 'verified' // invoice or signed doc
@@ -56,15 +82,16 @@ export interface CostChapter {
 }
 
 /** The 30-second version, in order. Say this before showing any table. */
-/** Named once so the three conflicted rows cite the same thing. */
-const CONFLICT_SRC =
-  'CONFLICT: cost model v6 (this page) v the 15 September year model, unmerged on feat/ai-tells-gate-and-goods-model';
-
 export const COST_STORY_SPINE = [
   'A bed sells for $750. Made the current way (legs bought as a finished kit), the next bed costs about $685 and only ~$65 stays with Goods.',
   'The one hard fact under the whole model: we pay 8.6× the raw-material cost to buy legs finished. The plastic itself is $40–55.',
-  'Press the legs ourselves and the next bed costs about $426 — ~$324 stays. Five times more than today. The Maningrida Stretch run (40 beds, INV-0303) was pressed at the Goods on Country facility in Queensland — the capability is proven. What we have not yet done is press at production rate with measured per-bed costs. That honesty is the pitch, not a weakness.',
-  'Running the business costs about $109.5K a year before any bed is made. At $324/bed that is ~338 beds a year to break even; at $65/bed it is ~1,679 — which is exactly why we in-source.',
+  `Press the legs ourselves and the bed costs $${aud(BED_MAKE_AUD)} to make, and $${aud(CONTRIBUTION_AUD)} reaches the organisation `
+    + 'after it absorbs freight and facilitation. The Maningrida Stretch run (40 beds, INV-0303) was pressed at the Goods on Country '
+    + 'facility in Queensland, so the capability is proven. What we have not yet done is press at production rate with measured '
+    + 'per-bed costs, and the make cost stays provisional until the bought leg-panel yield is known. That honesty is the pitch, not a weakness.',
+  `Running the organisation costs $${aud(RUNNING_AUD)} a year before any bed is made. At $${aud(CONTRIBUTION_AUD)} a bed that is `
+    + `${BREAK_EVEN_BEDS.toLocaleString('en-AU')} beds a year to break even. Buying the legs finished never breaks even at any volume, `
+    + 'which is exactly why we in-source.',
   'The equipment costs $112–222K gross. $110,046 is already invested and sits beside that figure as evidence of skin in the game, never netted off it. We do not spend it until ~300+ beds/yr are committed.',
   'Plastic is a paid input today (~$55/bed), not free. Free community feedstock is the end state of the ladder, not the current state.',
   'The proof: 540 beds in 11 communities, 177 of them the Stretch Bed this model costs, and a paid bed trade of 320 beds to four buyers worth $247,770 ex GST. '
@@ -93,12 +120,12 @@ export const COST_CHAPTERS: CostChapter[] = [
       },
       {
         label: 'Left over per bed — if we press our own legs',
-        value: '~$324, or $288 after freight and facilitation',
-        solidity: 'conflict',
+        value: `$${aud(CONTRIBUTION_AUD)}`,
+        solidity: 'modelled',
         means:
-          'Press the legs ourselves and about $324 of every bed stays before delivery. Ben, 15 September 2026: ' +
-          'the organisation absorbs freight at $100 and facilitation at $100 a bed out of that share, so $288 ' +
-          'is what actually reaches it. Nothing is ever added to the $750.',
+          `Press the legs ourselves and the bed costs $${aud(BED_MAKE_AUD)} to make. The organisation ` +
+          `absorbs freight at $${BED_FREIGHT_AUD} and facilitation at $${aud(FACILITATION_PER_BED_AUD)} out ` +
+          `of its share, so $${aud(CONTRIBUTION_AUD)} of every bed reaches it. Nothing is ever added to the $750.`,
         source: '03 · Cost Model & Build Paths',
       },
     ],
@@ -148,16 +175,15 @@ export const COST_CHAPTERS: CostChapter[] = [
       },
       {
         label: 'Long-haul freight (Sydney → remote)',
-        value: '~$150, ruled at $100',
-        solidity: 'conflict',
+        value: `$${BED_FREIGHT_AUD} a bed, absorbed`,
+        solidity: 'modelled',
         means:
-          'Moving the Defy kit from Sydney to remote communities — what takes the next bed to ~$685. Ben, ' +
-          '15 September 2026: freight is $100 a bed all up, absorbed by the organisation out of its share ' +
-          'rather than added to the price.',
+          'Ben, 15 September 2026: freight is $100 a bed all up, absorbed by the organisation out of its share ' +
+          'rather than added to the price a community pays.',
         watchOut:
-          'Variable by destination, and exactly what the retired $600/bed figure left out. Whichever figure ' +
-          'wins, it is never added to the $750 a community pays.',
-        source: CONFLICT_SRC,
+          'Variable by destination, and exactly what the retired $600/bed figure left out. The earlier ~$150 ' +
+          'modelled estimate is retired. It is never added to the $750.',
+        source: 'Ben ruling 15 September 2026 (the-year-and-the-raise.ts)',
       },
       {
         label: 'Saving per bed if we press legs ourselves',
@@ -212,38 +238,45 @@ export const COST_CHAPTERS: CostChapter[] = [
     lede: 'About $109.5K a year keeps the lights on before any bed is made. The margin per bed decides how many beds cover it — that is the whole investment case.',
     facts: [
       {
-        label: 'Fixed running costs per year',
-        value: '~$109,500 or $251,224',
-        solidity: 'conflict',
+        label: 'Running the organisation for a year',
+        value: `$${aud(RUNNING_AUD)}`,
+        solidity: 'workpaper',
         means:
-          'v6 counts only the production share: facility $27K + founder production time $16.8K + admin $14.7K ' +
-          '+ field travel $51K. Ben\u2019s 15 September cut counts the whole organisation: founders $151,200, ' +
-          'getting to communities $51,000, accounting and audit $3,674 (Butterfly\u2019s FY26 actual), ' +
-          'rent on the Goods on Country facility in Queensland $27,000, marketing $10,000, maintenance $8,350.',
+          'The whole organisation before a single bed is made: founders $151,200, getting to communities ' +
+          '$51,000, accounting and audit $3,674 (Butterfly\u2019s FY26 actual), rent on the Goods on Country ' +
+          'facility in Queensland $27,000, marketing $10,000, maintenance $8,350.',
         watchOut:
-          'PICK ONE BEFORE ANY FUNDER SEES BOTH. They are not the same measure: v6 excludes the founder days ' +
-          'spent fundraising, the 15 September model includes the whole founder cost. The ruled figure is ' +
-          '$251,224 and it is the one the applications use.',
-        source: CONFLICT_SRC,
+          'RETIRED, and do not quote it: the old $109,500 counted only the production share and excluded the ' +
+          'founder days spent fundraising, which made break-even look like a third of what it is. Whether the ' +
+          'founders line includes superannuation is still unconfirmed.',
+        source: 'Ben provision 9 September 2026, cut 15 September (the-year-and-the-raise.ts)',
       },
       {
         label: 'Break-even — today’s method',
-        value: '~1,679 beds/yr',
+        value: 'never',
         solidity: 'modelled',
-        means: 'At $65 left per bed we’d need ~1,679 beds a year to cover fixed costs. Not viable — that’s the point.',
-        source: '03 · Cost Model & Build Paths',
+        means:
+          `Buying the legs finished leaves about $${KIT_PATH_LEFT_AUD} a bed before the organisation absorbs ` +
+          `$${aud(KIT_PATH_ABSORBED_AUD)} of freight and facilitation. It does not cover them at any volume, ` +
+          `so there is no bed count that breaks even on the kit path. That is the argument for in-sourcing, ` +
+          `and it is the model's own arithmetic rather than a comparison across two models.`,
+        watchOut:
+          'The retired ~1,679 came from dividing the old production-only running cost by the same $65. Do not ' +
+          'quote it, and do not restate this line as a loss per bed on beds already sold: it is the forward ' +
+          'model at a full year of organisation cost.',
+        source: 'Derived from the-year-and-the-raise.ts and the v6 bill of materials',
       },
       {
         label: 'Break-even — pressing in-house',
-        value: '~338 or 874 beds/yr',
-        solidity: 'conflict',
+        value: `${BREAK_EVEN_BEDS.toLocaleString('en-AU')} beds/yr`,
+        solidity: 'modelled',
         means:
-          '338 is $109,500 over $324 a bed. 874 is the ruled arithmetic: $251,224 over the $288 a bed hands ' +
-          'the organisation once it has absorbed $100 freight and $100 facilitation.',
+          `The running cost over what one bed hands the organisation: $${aud(RUNNING_AUD)} over ` +
+          `$${aud(CONTRIBUTION_AUD)}. Derived, never typed, so it moves when either number does.`,
         watchOut:
-          'The two differ by a factor of 2.6, and the second is the one in the year model behind the ask. ' +
-          'Never print a break-even without saying which running cost it divides.',
-        source: CONFLICT_SRC,
+          'RETIRED, and do not quote it: ~338 divided the old production-only running cost by a per-bed figure ' +
+          'taken before freight and facilitation. Two different scopes, one number, and it flattered us.',
+        source: 'Derived from the-year-and-the-raise.ts (Ben rulings 15 September 2026)',
       },
       {
         label: 'Beds made per year right now',
