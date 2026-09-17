@@ -27,7 +27,6 @@ import { FilmGallery, type GalleryFilm } from '@/components/partners/film-galler
 import { StoryHero } from '@/components/partners/story-hero';
 import { PlaceFilms, type PlaceBeat } from '@/components/partners/place-films';
 import { MoneyLedger } from '@/components/partners/money-ledger';
-import { FleetTimeline } from '@/components/partners/fleet-timeline';
 import { PAID_INVOICES } from '@/lib/data/paid-trade';
 import { ModelLoopBuild } from '@/components/pitch/model-loop-build';
 import { TenYearSlider } from '@/components/pitch/ten-year-slider';
@@ -889,14 +888,31 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           ))}
         </dl>
 
-        <div className="mt-8">
-          <FleetTimeline rows={WASHER_FLEET} readAt={WASHER_TELEMETRY.readAt} />
+        {/* Machines that have recorded washes. Simple. */}
+        <div className="mt-8 overflow-hidden rounded-lg" style={{ border: `1px solid ${RULE}`, backgroundColor: PANEL }}>
+          {WASHER_FLEET.filter((r) => r.cycles >= 10).map((r, i) => {
+            const quiet = Math.round((Date.parse(WASHER_TELEMETRY.readAt) - Date.parse(r.to)) / 86400000);
+            const top = Math.max(...WASHER_FLEET.map((x) => x.cycles));
+            return (
+              <div
+                key={r.assetId}
+                className="grid items-center gap-2 px-5 py-4 sm:grid-cols-[1fr_8rem_6rem] sm:gap-6 sm:px-7"
+                style={{ borderTop: i === 0 ? undefined : `1px solid ${RULE_SOFT}` }}
+              >
+                <p className="text-sm font-semibold" style={{ color: CHARCOAL }}>{r.where}</p>
+                <div className="flex items-center gap-3">
+                  <span className="font-display text-xl tabular-nums" style={{ color: CHARCOAL }}>{r.cycles}</span>
+                  <span className="h-1.5 flex-1 rounded-full" style={{ backgroundColor: RULE_SOFT }}>
+                    <span className="block h-full rounded-full" style={{ width: `${(r.cycles / top) * 100}%`, backgroundColor: RUST }} />
+                  </span>
+                </div>
+                <p className="text-xs sm:text-right" style={{ color: quiet > 21 ? MUTED : SAGE_INK }}>
+                  {quiet === 0 ? 'today' : `quiet ${quiet}d`}
+                </p>
+              </div>
+            );
+          })}
         </div>
-        <p className="mt-3 text-xs leading-relaxed" style={{ color: MUTED }}>
-          Seven have ever reported a wash. Norm&rsquo;s house has done more than all the rest together. Read{' '}
-          {WASHER_TELEMETRY.readAt} from the rollups the admin fleet screen uses. Three of these machines are still
-          filed against the wrong place on the register.
-        </p>
 
         {proud && (
           <figure className="m-0 mt-10 flex max-w-[46ch] items-start gap-4">
