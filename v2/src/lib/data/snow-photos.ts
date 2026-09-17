@@ -1,15 +1,15 @@
 /**
- * WHICH PHOTOGRAPHS THE SNOW REPORT SHOWS, and how Ben changes the set without touching code.
+ * WHICH PHOTOGRAPHS THE SNOW REPORT SHOWS and how Ben changes the set without touching code.
  *
  * Ben, 17 September 2026, looking at the hero strip: "photos are great but I need a way to
  * easily select the Snow ones and add more as needed."
  *
  * HOW IT WORKS. The base set is WALLS in snow-partnership.ts: the curated archive, each frame
  * with a hand-written caption. On top of that, any image under public/images tagged `use:snow`
- * in the Media Room joins the strip, and any frame tagged `use:snow-hide` leaves it. Both tags
+ * in the Media Room joins the strip and any frame tagged `use:snow-hide` leaves it. Both tags
  * are typed into the free-text tag box at /admin/media-library, which writes them to
  * data/local-image-tags.json, the same store the rest of the site reads. No new admin screen,
- * no deploy edit, and the tags are committed to git like every other curation decision.
+ * no deploy edit and the tags are committed to git like every other curation decision.
  *
  * WHY A HIDE TAG AND NOT JUST A PICK LIST. If the set were "only what is tagged", the first
  * image Ben tagged would collapse a forty-frame wall to one. Additive plus an explicit subtract

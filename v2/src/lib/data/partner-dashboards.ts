@@ -71,7 +71,7 @@ export interface GalleryItem {
 
 /**
  * The funder's own footprint in the work. Forward-facing, not a gratitude
- * wall: what the backing built, and what that base now makes possible.
+ * wall: what the backing built and what that base now makes possible.
  * Every dollar figure must have a provenance source noted in `total.note`.
  */
 export interface FunderImpact {
@@ -89,7 +89,7 @@ export interface FunderImpact {
    *
    * Resolved from storyteller-registry.ts at render time, NEVER typed here. Same shape and
    * same reason as `voice` in funder-moments.ts: a quote typed into a component drifts away
-   * from the consent record that governs it, and on 2026-09-16 exactly that drift was found
+   * from the consent record that governs it and on 2026-09-16 exactly that drift was found
    * on this person (two tier `hold` community quotes were publishable through her funder
    * record for eight weeks). Matching is on a fragment of the quote TEXT, so an editorial
    * tweak can never silently swap which words publish. Default-deny: unknown slug, wrong
@@ -100,7 +100,7 @@ export interface FunderImpact {
 
 /**
  * A community-partnership feature (e.g. Oonchiumpa). One named partnership,
- * what has actually happened so far, and where it goes next. Facts must trace
+ * what has actually happened so far and where it goes next. Facts must trace
  * to the public partner page or the trip stories, never invented.
  */
 export interface CommunityPartnership {
@@ -137,7 +137,7 @@ export interface FeaturedVoice {
 
 /**
  * The capital chapter: the move from grant funding to blended, partly-repayable
- * finance, and the specific invitation to this funder. Forward-only and graded
+ * finance and the specific invitation to this funder. Forward-only and graded
  * not-yet. Copy must stay inside the QBE Public Copy Risk rails: the match is
  * contingent and not secured until awarded; pipeline is not committed capital;
  * the impact-investment conversation is an exploration, not a deal.
@@ -157,7 +157,7 @@ export interface PartnerDashboard {
   slug: string;
   password: string;
   partnerName: string;
-  /** Who this skin is for. Drives framing on the hero, the path, and the CTA. */
+  /** Who this skin is for. Drives framing on the hero, the path and the CTA. */
   audience: 'partner' | 'supporter' | 'funder';
   heroLine: string;
   intro: string;
@@ -209,15 +209,15 @@ const snow: PartnerDashboard = {
   password: 'snow2026',
   partnerName: 'The Snow Foundation',
   audience: 'funder',
-  heroLine: 'Where this is heading, and what it takes to get there',
+  heroLine: 'Where this is heading and what it takes to get there',
   intro:
-    'Three years ago, Snow backed an idea that was more promise than proof. That backing is in the houses now. We are building a recycled-plastic production economy on Country, designed to transfer into community ownership, with beds and washing machines already in homes across eleven communities. This page is a record of what it built, and a map of where it goes next.',
+    'Three years ago, Snow backed an idea that was more promise than proof. That backing is in the houses now. We are building a recycled-plastic production economy on Country, designed to transfer into community ownership, with beds and washing machines already in homes across eleven communities. This page is a record of what it built and a map of where it goes next.',
   thesisLine:
     'A bed off the floor and clean bedding sit inside the documented prevention chain for rheumatic heart disease. That is what Snow has been backing.',
   goalStatement:
-    'The goal is not more beds shipped in from somewhere else. It is a production economy that runs on Country, employs local people, and becomes community owned. A bed delivered is the output. Who owns the means of making the next one is the outcome.',
+    'The goal is not more beds shipped in from somewhere else. It is a production economy that runs on Country, employs local people and becomes community owned. A bed delivered is the output. Who owns the means of making the next one is the outcome.',
   dataSovereigntyLine:
-    'Community holds the authority over these stories. We hold the count, and show our working.',
+    'Community holds the authority over these stories. We hold the count and show our working.',
   heroImage: {
     src: '/images/media-pack/snow-tennant-creek-april-2025.jpg',
     alt: 'Snow Foundation and Goods on Country together in Tennant Creek, April 2025',
@@ -228,7 +228,7 @@ const snow: PartnerDashboard = {
   funderImpact: {
     thankYou: {
       message:
-        'Three years ago, Snow backed an idea that was more promise than proof. That early trust is in the houses now. This page is a record of what it built, and a map of where it takes us next.',
+        'Three years ago, Snow backed an idea that was more promise than proof. That early trust is in the houses now. This page is a record of what it built and a map of where it takes us next.',
       image: {
         src: '/images/media-pack/snow-tennant-creek-april-2025.jpg',
         alt: 'Snow Foundation and Goods on Country together in Tennant Creek, April 2025',
@@ -251,7 +251,7 @@ const snow: PartnerDashboard = {
       ],
     },
     moments: [
-      { date: '2023', title: 'Snow backs Goods before the proof is in the houses', detail: 'Anchor support when this was still a bold idea. Founder wages, early R&D, and the first prototypes.', image: { src: '/images/media-pack/goods-early-2023-community.jpg', alt: 'Early community visit, 2023, sleeping conditions in remote community before the bed' } },
+      { date: '2023', title: 'Snow backs Goods before the proof is in the houses', detail: 'Anchor support when this was still a bold idea. Founder wages, early R&D and the first prototypes.', image: { src: '/images/media-pack/goods-early-2023-community.jpg', alt: 'Early community visit, 2023, sleeping conditions in remote community before the bed' } },
       // Name order corrected 2026-09-16, confirmed by Ben from a face crop: Georgina wears
       // the Wilya Janta shirt (left), Sally the Deadly Heart Trek shirt (right). The caption
       // read the other way round on the one page Snow themselves look at. The FILE is still
@@ -261,7 +261,7 @@ const snow: PartnerDashboard = {
       { date: 'Aug 2025', title: 'Beds alongside the Deadly Heart Trek, Katherine', detail: 'Deliveries ran beside the Trek\'s heart-screening visit, 8 August 2025.', image: { src: '/images/media-pack/deadly-heart-trek-aug-2025.jpg', alt: 'Deadly Heart Trek team group photo, August 2025' } },
       { date: 'May 2026', title: 'Goods displayed at Canberra Airport', detail: 'A Stretch Bed and "Good. Design." installation at Canberra Airport, raising awareness of RHD and the health-hardware link.', image: { src: '/images/media-pack/canberra-airport-display-may-2025.jpg', alt: 'Goods "Good. Design." display at Canberra Airport, May 2026' } },
       { date: 'Jan 2026', title: 'First washing machine given to Dianne Stokes', detail: 'In Tennant Creek. She named it Pakkimjalki Kari in Warumungu.', image: { src: '/images/product/washing-machine-name.jpg', alt: 'Pakkimjalki Kari name plate at sunset, Tennant Creek' } },
-      { date: 'Mar 2026', title: 'Goods bed on stage at Parliament House, Canberra', detail: 'Snow Foundation, NACCHO, and the Rheumatic Heart Disease Alliance event. The Stretch Bed on stage as health hardware for RHD prevention.', image: { src: '/images/media-pack/parliament-house-event-mar-2025.jpg', alt: 'Panel discussion at Parliament House, Canberra, March 2026, Snow Foundation, NACCHO and the RHD Alliance' } },
+      { date: 'Mar 2026', title: 'Goods bed on stage at Parliament House, Canberra', detail: 'Snow Foundation, NACCHO and the Rheumatic Heart Disease Alliance event. The Stretch Bed on stage as health hardware for RHD prevention.', image: { src: '/images/media-pack/parliament-house-event-mar-2025.jpg', alt: 'Panel discussion at Parliament House, Canberra, March 2026, Snow Foundation, NACCHO and the RHD Alliance' } },
     ],
     // Georgina Byron AM, tier `funder`, all four `approved` in the registry. Chosen for the
     // catalytic frame in her own words rather than ours (Ben, 2026-09-16: quote it, do not
@@ -277,32 +277,32 @@ const snow: PartnerDashboard = {
   },
   nextChapter: {
     intro:
-      "Snow's backing came as grants, and the tenth invoice was paid in May 2026, so this is a live partnership. "
-      + 'What that money bought was the chance to find out whether a bed could be made on Country and owned in community, and that work is still running. '
-      + 'The next stretch needs a production economy that earns its keep and an asset base the community comes to own, and the capital that funds it can take a different shape from the capital that started it.',
+      "Snow's backing came as grants and the tenth invoice was paid in May 2026, so this is a live partnership. "
+      + 'What that money bought was the chance to find out whether a bed could be made on Country and owned in community and that work is still running. '
+      + 'The next stretch needs a production economy that earns its keep and an asset base the community comes to own and the capital that funds it can take a different shape from the capital that started it.',
     arc: [
       {
         stage: 'Grant backed',
         meaning:
-          'Where this started, and still running. Snow and a small group of trusting funders carried the early risk, and Snow grant money is current: the most recent invoice was paid in May 2026.',
+          'Where this started and still running. Snow and a small group of trusting funders carried the early risk and Snow grant money is current: the most recent invoice was paid in May 2026.',
         state: 'done',
       },
       {
         stage: 'Blended raise',
         meaning:
-          'Where we are now. A mix of repayable finance, a matched grant through QBE, and philanthropic partners. Repayable finance is prioritised over grants, by design.',
+          'Where we are now. A mix of repayable finance, a matched grant through QBE and philanthropic partners. Repayable finance is prioritised over grants, by design.',
         state: 'now',
       },
       {
         stage: 'Self sustaining, community owned',
         meaning:
-          'Where it is heading. Production that earns, an asset base the community owns, and capital that returns so it can be put to work again.',
+          'Where it is heading. Production that earns, an asset base the community owns and capital that returns so it can be put to work again.',
         state: 'ahead',
       },
     ],
     invitation: {
       eyebrow: 'An invitation to Snow',
-      title: 'The next 133 beds, and a longer conversation',
+      title: 'The next 133 beds and a longer conversation',
       // REWRITTEN 2026-09-16, twice over.
       //
       // First, the ask. Ben's ruling the same day: the bed grant is what is asked for now and
@@ -310,17 +310,17 @@ const snow: PartnerDashboard = {
       // same breath. $99,750 is 133 beds at $750, the same ask as Brian M. Davis and Tim
       // Fairfax.
       //
-      // Second, and this is the one that had to change: the old wording opened "Snow has
+      // Second and this is the one that had to change: the old wording opened "Snow has
       // opened a conversation about coming into this next chapter as more than a grant
       // maker". A full sweep of the mailbox found NO Snow person has ever written that. The
       // three sources are all our own words (Nic's January proposal, Nic's February note to
       // QBE, Ben's June email). Putting an intention in a funder's mouth, on the page that
       // funder opens, is not a thing to leave standing. It is our proposal now, which is what
       // it always was.
-      body: 'What we are asking for next is $99,750: 133 beds at $750, for a community organisation to sell or give out, the same ask we have put to our other bed funders. Beyond that, we would like to talk with Snow about whether some of what comes after could be structured as recoverable capital, money that returns to Snow over time and can be put back to work. That is a conversation we are opening, not a proposal on the table, and the amount, the conditions it would carry and the impact it would be held to are all things to work out together. It sits alongside the partnership we already have.',
+      body: 'What we are asking for next is $99,750: 133 beds at $750, for a community organisation to sell or give out, the same ask we have put to our other bed funders. Beyond that, we would like to talk with Snow about whether some of what comes after could be structured as recoverable capital, money that returns to Snow over time and can be put back to work. That is a conversation we are opening, not a proposal on the table and the amount, the conditions it would carry and the impact it would be held to are all things to work out together. It sits alongside the partnership we already have.',
     },
     qbeNote:
-      'Goods was selected into QBE Catalysing Impact 2026, a blended finance accelerator run by the Social Impact Hub. Stage 2 can match up to $400,000, but only against capital we raise alongside it, and repayable finance is prioritised over grants. The match is contingent, and it is not secured until it is awarded.',
+      'Goods was selected into QBE Catalysing Impact 2026, a blended finance accelerator run by the Social Impact Hub. Stage 2 can match up to $400,000, but only against capital we raise alongside it and repayable finance is prioritised over grants. The match is contingent and it is not secured until it is awarded.',
   },
   statusLine:
     'Commissioning the first containerised plant (about 85 percent); the Alice Springs facility submission with Oonchiumpa is in review.',
@@ -374,7 +374,7 @@ const snow: PartnerDashboard = {
   ],
   history: [
     { date: '2023', title: 'Snow becomes an anchor backer', detail: 'Support before the proof was in the houses.' },
-    { date: '2024', title: 'Grant 2024/OC0014', detail: 'Multi-year support across beds, the production facility, and the team.' },
+    { date: '2024', title: 'Grant 2024/OC0014', detail: 'Multi-year support across beds, the production facility and the team.' },
     { date: 'Apr 2025', title: 'Snow visits Tennant Creek with us', detail: 'Sally Grimsley-Ballard on Country on 2 April 2025, seeing the work first-hand.' },
     { date: 'Aug 2025', title: 'Deadly Heart Trek, Katherine', detail: 'Out on the Katherine visit, 8 August 2025.' },
     { date: 'Jan 2026', title: 'First washing machine given to Dianne Stokes', detail: 'In Tennant Creek. She named it Pakkimjalki Kari in Warumungu.' },
@@ -432,7 +432,7 @@ const snow: PartnerDashboard = {
   communityPartnership: {
     name: 'Oonchiumpa Consultancy and Services',
     intro:
-      'Oonchiumpa is a 100 percent Aboriginal-owned consultancy in Alice Springs, owned and run by the Bloomfield and Liddle families, chaired by Karen Liddle and led by Kristy Bloomfield. Two years working together: cultural advice (paid at university research rates), youth programs, and the delivery network into the homelands.',
+      'Oonchiumpa is a 100 percent Aboriginal-owned consultancy in Alice Springs, owned and run by the Bloomfield and Liddle families, chaired by Karen Liddle and led by Kristy Bloomfield. Two years working together: cultural advice (paid at university research rates), youth programs and the delivery network into the homelands.',
     beats: [
       {
         title: 'Young people built the beds',

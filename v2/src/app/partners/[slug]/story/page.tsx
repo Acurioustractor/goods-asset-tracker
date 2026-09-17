@@ -33,7 +33,7 @@ import { PhotoWall } from '@/components/pitch/photo-wall';
  * how the two organisations keep working at rheumatic heart disease through Indigenous
  * leadership.
  *
- * CHAPTER ONE IS THE HEALTH CHAIN, and the product comes after it. That is Sally
+ * CHAPTER ONE IS THE HEALTH CHAIN and the product comes after it. That is Sally
  * Grimsley-Ballard's own
  * instruction from 20 May 2026, reviewing our Canberra page: "A cold audience needs that chain
  * explained immediately and plainly, before the product, before the manufacturing story." The
@@ -54,7 +54,7 @@ const MUTED = '#A2958A';
 
 export const metadata: Metadata = {
   title: { absolute: 'Snow and Goods | Goods on Country' },
-  description: 'What we have built together since 2024, and what comes next.',
+  description: 'What we have built together since 2024 and what comes next.',
   robots: { index: false, follow: false },
 };
 
@@ -151,6 +151,8 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
   const vicki = quote('vicki-wade', 'external', 'Community leadership, community ownership');
   const karen = quote('karen-liddle', 'external', 'start your own business');
   const mykel = quote('mykel', 'external', 'rocking up every day');
+  /** The same cleared film the gallery carries, put where the line is said. */
+  const mykelFilm = FILMS.find((f) => f.voice?.slug === 'mykel') ?? null;
 
   // Films carry their voice resolved here, so the client component never decides what may
   // be published. A film whose voice does not clear simply arrives without one.
@@ -170,15 +172,19 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
 
   // The arc, as places. Each beat carries its own aerial and its own voice, resolved here so
   // the client component never decides what may be published.
-  const beats: PlaceBeat[] = PLACE_BEATS.map((b) => {
-    const v = b.voice ? quote(b.voice.slug, 'external', b.voice.contains) : null;
-    return {
-      id: b.id, place: b.place, when: b.when, title: b.title, body: b.body, film: b.film,
-      voice: v
-        ? { name: v.person.name, role: v.person.role, community: v.person.community, text: v.quote.text, portrait: v.person.portrait }
-        : null,
-    };
-  });
+  const beats: PlaceBeat[] = PLACE_BEATS.map((b) => ({
+    id: b.id, place: b.place, when: b.when, title: b.title, body: b.body, film: b.film,
+    // Default-deny per voice: one that does not resolve at the external tier drops out and the
+    // rest of the stop still runs. Nothing is typed in here, so a consent change takes effect.
+    voices: (b.voices ?? [])
+      .map((x) => quote(x.slug, 'external', x.contains))
+      .filter((v): v is NonNullable<typeof v> => v !== null)
+      .map((v) => ({
+        name: v.person.name, role: v.person.role, community: v.person.community,
+        text: v.quote.text, portrait: v.person.portrait,
+      })),
+    photos: b.photos ?? [],
+  }));
 
   // The same outline the /pitch map draws, read on the server and passed in as a path string.
   const outline = await readFile(join(process.cwd(), 'public/images/maps/australia-outline.svg'), 'utf8')
@@ -218,22 +224,29 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           />
         </div>
         <h1 className="mt-8 max-w-3xl font-display text-4xl leading-[1.05] sm:text-6xl lg:text-7xl">
-          You went first, and then you stayed.
+          You went first and then you stayed.
         </h1>
         <p className="mt-6 max-w-[46ch] text-lg leading-[1.65] text-goods-cream/85">
-          Money that came early, untied, and on trust. Snow backed this before there was a product, a charity, a
-          board or a customer, and that is why there is anything here to report. Two years on, this is what it
-          bought, told as what we did together. It carries the numbers, the parts that are not finished, and the
-          things we will not claim.
+          Money that came early, untied and on trust. Snow backed this before there was a product, a charity, a
+          board or a customer. That is why there is anything here to report. Two years on, this is what it bought,
+          told as what we did together.
         </p>
         {catalyse && (
-          <figure className="m-0 mt-8 max-w-[46ch] border-l pl-5" style={{ borderColor: 'rgba(253,248,243,0.28)' }}>
-            <blockquote className="font-display text-xl leading-[1.4] text-goods-cream sm:text-2xl">
-              &ldquo;{catalyse.quote.text}&rdquo;
-            </blockquote>
-            <figcaption className="mt-3 text-[11px] uppercase tracking-[0.14em] text-goods-cream/60">
-              {catalyse.person.name}{catalyse.person.role ? `, ${catalyse.person.role}` : ''}
-            </figcaption>
+          <figure className="m-0 mt-8 flex max-w-[52ch] items-start gap-5">
+            {catalyse.person.portrait && (
+              <Image
+                src={catalyse.person.portrait} alt={catalyse.person.name} width={200} height={200}
+                className="h-16 w-16 shrink-0 rounded-full object-cover ring-1 ring-goods-cream/30 sm:h-20 sm:w-20"
+              />
+            )}
+            <div>
+              <blockquote className="font-display text-xl leading-[1.4] text-goods-cream sm:text-2xl">
+                &ldquo;{catalyse.quote.text}&rdquo;
+              </blockquote>
+              <figcaption className="mt-3 text-[11px] uppercase tracking-[0.14em] text-goods-cream/60">
+                {catalyse.person.name}{catalyse.person.role ? `, ${catalyse.person.role}` : ''}
+              </figcaption>
+            </div>
           </figure>
         )}
         <dl className="mt-8 flex flex-wrap gap-8">
@@ -249,7 +262,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           ))}
         </dl>
         <p className="mt-8 text-xs text-goods-cream/55">
-          Password protected and not indexed. Prepared {new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}.
+          Password protected. Prepared {new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}.
           {' '}
           <Link href={`/partners/${slug}/dashboard`} className="underline text-goods-cream/80">The live dashboard is here.</Link>
         </p>
@@ -257,8 +270,8 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
 
       <Chapter
         id="ch-making" number="01" label="What we made"
-        title="A basket, a machine, a bed, a plant, and the next machine"
-        lead="Five things in the order they were made, because the order is the argument. Each one taught the next, and two of them we have stopped selling."
+        title="A basket, a machine, a bed, a plant and the next machine"
+        lead="Five things in the order they were made, because the order is the argument. Each one taught the next and two of them we have stopped selling."
       >
         <ol className="m-0 list-none p-0">
           {THE_ARC.map((s) => (
@@ -267,12 +280,21 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
                 <div>
                   <p className="font-display text-xl leading-[1.2]" style={{ color: CHARCOAL }}>{s.what}</p>
                   <p className="mt-2 text-[13px] leading-snug" style={{ color: MUTED }}>{s.when}</p>
-                  <p
-                    className="mt-3 inline-block rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em]"
-                    style={chipStyle(s.state)}
-                  >
-                    {s.stateLabel}
-                  </p>
+                  {s.stateLabel && (
+                    <p
+                      className="mt-3 inline-block rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em]"
+                      style={chipStyle(s.state)}
+                    >
+                      {s.stateLabel}
+                    </p>
+                  )}
+                  {s.photo && (
+                    <Image
+                      src={s.photo.src} alt={s.photo.alt} width={640} height={480}
+                      className="mt-5 aspect-[4/3] w-full rounded-lg object-cover"
+                      sizes="(min-width: 640px) 14rem, 100vw"
+                    />
+                  )}
                 </div>
                 <div>
                   <p className="text-[0.9375rem] leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{s.body}</p>
@@ -291,18 +313,40 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           {WHY_FLEXIBLE}
         </p>
         {mykel && <Pull v={mykel} />}
+        {mykelFilm && (
+          <figure className="m-0 mt-6 max-w-xl sm:ml-[6.25rem]">
+            <video
+              controls preload="metadata" playsInline poster={mykelFilm.poster}
+              className="w-full rounded-lg" style={{ backgroundColor: CHARCOAL }}
+            >
+              <source src={mykelFilm.src} type="video/mp4" />
+            </video>
+            <figcaption className="mt-2.5 text-xs" style={{ color: MUTED }}>{mykelFilm.title}</figcaption>
+          </figure>
+        )}
       </Chapter>
 
       <div id="ch-first" className="scroll-mt-24">
-        <div className="px-5 pt-16 sm:px-8 sm:pt-24">
-          <div className="mx-auto max-w-4xl">
-            <p className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: RUST }}>02 &middot; Snow went first</p>
-            <h2 className="mt-3 font-display text-3xl leading-tight sm:text-4xl" style={{ color: CHARCOAL }}>
-              Four places, and the order they came in
+        <div className="px-5 sm:px-8">
+          {/*
+            * This header is hand-rolled rather than a <Chapter> because the films underneath it
+            * are full bleed and pin themselves. It matches the Chapter treatment by hand, and it
+            * carries real bottom padding: with none, the first film butted straight into the last
+            * line of the lead and the two read as one broken thing (Ben, 17 September).
+            */}
+          <div className="mx-auto max-w-4xl border-t pb-16 pt-12 sm:pb-24 sm:pt-16" style={{ borderColor: RULE }}>
+            <header className="flex items-baseline gap-4">
+              <span className="font-display text-base leading-none" style={{ color: RUST }}>02</span>
+              <span className="h-px flex-1" style={{ backgroundColor: RULE }} />
+              <span className="text-[10px] font-semibold uppercase tracking-[0.2em]" style={{ color: MUTED }}>Snow went first</span>
+            </header>
+            <h2 className="mt-7 max-w-3xl font-display text-[2rem] leading-[1.14] sm:text-[2.6rem]" style={{ color: CHARCOAL }}>
+              Four places and the order they came in
             </h2>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed sm:text-lg" style={{ color: `${CHARCOAL}cc` }}>
-              The argument is the order. Every place below arrived after somebody was willing to go first, and the
-              people who live in them say what the work is for better than we can.
+            <p className="mt-5 max-w-[58ch] text-[1.0625rem] leading-[1.75] sm:text-lg" style={{ color: `${CHARCOAL}b8` }}>
+              Kalgoorlie is where the mattresses end up. Tennant Creek is where your money landed first. Maningrida
+              is where the making moved onto Country. The people who live in these places say what the work is for
+              better than we can, so below they say it.
             </p>
           </div>
         </div>
@@ -350,7 +394,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
 
       <Chapter
         id="ch-alice" number="03" label="Alice Springs"
-        title="Oonchiumpa operate it, employ young people, and keep leading that place"
+        title="Oonchiumpa operate it, employ young people and keep leading that place"
         lead="The Indigenous ownership story with a date attached. It is also the thing Snow is being invited into."
       >
         <div className="rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
@@ -380,8 +424,8 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
 
       <Chapter
         id="ch-buyers" number="04" label="Who is buying"
-        title="Four buyers, five invoices, 320 beds, and the price went up"
-        lead="This is the thing Sally asked for most, and it is the deliverable the QBE volunteer team is working on. Everything here is an invoice that was issued and paid. Nothing here is a forecast."
+        title="Four buyers, five invoices, 320 beds and the price went up"
+        lead="This is the thing Sally asked for most and it is the deliverable the QBE volunteer team is working on. Everything here is an invoice that was issued and paid. Nothing here is a forecast."
       >
         <div className="rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
           <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>What a bed has sold for, in order</p>
@@ -397,7 +441,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             ))}
           </div>
           <p className="mt-5 max-w-2xl text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-            The unit price has more than doubled across four buyers, and they kept buying. Centrecorp came back at a
+            The unit price has more than doubled across four buyers and they kept buying. Centrecorp came back at a
             higher price for nearly twice the volume. That is the only demand signal in this document that means
             anything, because somebody paid it.
           </p>
@@ -443,7 +487,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
 
       <Chapter
         id="ch-washers" number="05" label="The machines"
-        title="How the fleet got to twenty three, and what it reports"
+        title="How the fleet got to twenty three and what it reports"
         lead="Snow bought one of these outright. They are the only part of the work that tells us how it is going without anyone having to visit."
       >
         <div className="grid gap-4 sm:grid-cols-4">
@@ -505,7 +549,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       <Chapter
         id="ch-films" number="06" label="In their own words"
         title="The films"
-        lead="Five, including one Snow have not been shown. Each plays where it sits, and only one at a time."
+        lead="Five, including one Snow have not been shown. Each plays where it sits and only one at a time."
       >
         <FilmGallery films={films} />
       </Chapter>
@@ -515,7 +559,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           <p className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: RUST }}>07 &middot; The archive</p>
           <h2 className="mt-3 font-display text-3xl leading-tight sm:text-4xl" style={{ color: CHARCOAL }}>The photographs</h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed sm:text-lg" style={{ color: `${CHARCOAL}cc` }}>
-            Five sets. The first one is the thinnest, and it is the one about us and you.
+            Five sets. The first one is the thinnest and it is the one about us and you.
           </p>
         </div>
         <div className="mt-8">
@@ -529,7 +573,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
 
       <Chapter
         id="ch-together" number="08" label="What we have done"
-        title="Two years, and the money is the smallest part of it"
+        title="Two years and the money is the smallest part of it"
         lead="Trips, rooms, introductions and the times Snow told this story in its own voice. Filter the money out and see what is left."
       >
         <TogetherTimeline moments={TOGETHER} />
@@ -539,12 +583,12 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       <Chapter
         id="ch-because" number="09" label="What Goods is now"
         title="What the money turned into"
-        lead="Counts where we have counts, and labels where we do not. The last number on this list is zero, and it is the one we print against ourselves."
+        lead="Counts where we have counts and labels where we do not. The last number on this list is zero and it is the one we print against ourselves."
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {BECAUSE_OF.map((b) => (
             <div key={b.id} className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
-              {/* MeasureLabel has no `future`, and inventing one here would put a word on a
+              {/* MeasureLabel has no `future` and inventing one here would put a word on a
                   chip that the rest of the site does not use. A future row gets its own chip. */}
               {b.status === 'future' ? (
                 <>
@@ -567,7 +611,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       <Chapter
         id="ch-board" number="10" label="Who holds it"
         title={ORGANISATION.boardLine}
-        lead="Snow said in November 2025 that all future grants would require First Nations leadership, and that every partner would be reviewed. This is our answer, and it was underway before the question."
+        lead="Snow said in November 2025 that all future grants would require First Nations leadership and that every partner would be reviewed. This is our answer and it was underway before the question."
       >
         <div className="grid gap-5 sm:grid-cols-3">
           {goodsBoard.map((d) => (
@@ -593,7 +637,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       <Chapter
         id="ch-align" number="11" label="Your strategy, our evidence"
         title="Read your own words back, with the gaps marked"
-        lead="Six things Snow has published about what it funds, and what Goods can actually put against each one. Two of these are weak and one is a thing we are not asking you to fund."
+        lead="Six things Snow has published about what it funds and what Goods can actually put against each one. Two of these are weak and one is a thing we are not asking you to fund."
       >
         <AlignmentTable rows={ALIGNMENT} />
       </Chapter>
@@ -615,21 +659,21 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
 
       <Chapter
         id="ch-next" number="13" label="What we are asking"
-        title="A letter this month, and 133 beds behind it"
+        title="A letter this month and 133 beds behind it"
         lead="Two asks. The first one is not money and it has a date on it. The second is the same ask we have put to our other bed funders, so nobody is being asked for something shaped specially for them."
       >
         <div className="rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderLeft: `4px solid ${RUST}` }}>
-          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>First, and it is not money</p>
+          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>First and it is not money</p>
           <p className="mt-2 font-display text-2xl leading-snug sm:text-3xl" style={{ color: CHARCOAL }}>
             A letter of intent, by {THE_LETTER.by}
           </p>
           <p className="mt-4 text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
             Goods on Country is one of ten enterprises in {THE_LETTER.programme}. That application closes{' '}
-            {THE_LETTER.closes}, and it asks QBE for ${THE_LETTER.qbeAskAud.toLocaleString('en-AU')} for{' '}
+            {THE_LETTER.closes} and it asks QBE for ${THE_LETTER.qbeAskAud.toLocaleString('en-AU')} for{' '}
             {THE_LETTER.qbeFor.toLowerCase()}. {THE_LETTER.cohort}
           </p>
           <p className="mt-3 text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-            What the programme counts from a funder is engagement, and it counts several shapes of it.{' '}
+            What the programme counts from a funder is engagement and it counts several shapes of it.{' '}
             {THE_LETTER.forms}
           </p>
           <figure className="m-0 mt-5 border-l-2 pl-4" style={{ borderColor: SAGE }}>
@@ -652,7 +696,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           <p className="mt-2 font-display text-3xl sm:text-4xl" style={{ color: CHARCOAL }}>$99,750</p>
           <p className="mt-2 text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
             133 Stretch Beds at $750 each, for a community organisation to sell or give out. The money reaches the
-            community organisation, not us: customers pay them directly, and after costs they decide whether it
+            community organisation, not us: customers pay them directly and after costs they decide whether it
             becomes more beds, paid local work, or making their own.
           </p>
           <div className="mt-7 grid gap-5 sm:grid-cols-3">
@@ -675,7 +719,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             Beyond this, we would like to talk with you about whether some of what comes after could be recoverable
             capital: money that returns to Snow over time and goes back to work. That is a conversation we are
             opening. There is no proposal on the table. The amount, the conditions it would carry and the impact it would
-            be held to are all things to work out together, and it sits alongside the partnership we already have.
+            be held to are all things to work out together and it sits alongside the partnership we already have.
           </p>
         </div>
 
@@ -684,8 +728,8 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           <ul className="mt-3 space-y-3 text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
             <li>Keep the beds travelling with the heart screening, where the Trek has already shown it works.</li>
             <li>Build the training that chapter six says we do not yet have, so capacity is a count and not an intention.</li>
-            <li>Carry the first transfer of a production site into community hands, and report on it whether or not it goes smoothly.</li>
-            <li>Keep the story in the hands of the people telling it. Thirty-eight people have agreed by name, and nobody else appears.</li>
+            <li>Carry the first transfer of a production site into community hands and report on it whether or not it goes smoothly.</li>
+            <li>Keep the story in the hands of the people telling it. Thirty-eight people have agreed by name and nobody else appears.</li>
           </ul>
         </div>
       </Chapter>
@@ -693,7 +737,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       <footer className="px-5 pb-20 sm:px-8">
         <div className="mx-auto max-w-4xl border-t pt-8" style={{ borderColor: '#E8DED4' }}>
           <p className="text-xs leading-relaxed" style={{ color: '#A99C8F' }}>
-            Every figure here traces to the live books, the register or the consent record, and every Snow quote
+            Every figure here traces to the live books, the register or the consent record and every Snow quote
             carries a date. Where a number is modelled or a target, it says so on the number
             itself. Prepared by {ORGANISATION.legalName} for the Snow Foundation.
           </p>

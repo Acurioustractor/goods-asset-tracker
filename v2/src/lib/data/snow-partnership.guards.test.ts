@@ -13,7 +13,8 @@ import { readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import {
   ALIGNMENT, BECAUSE_OF, BUYER_TOTALS, BUYERS, FILMS, MAP_PLACES, NOT_FINISHED, PLACE_BEATS,
-  PRICE_LADDER, SNOW_MONEY, TOGETHER, TOGETHER_KINDS, WALLS, WASHER_PLACES, WASHER_TELEMETRY,
+  PRICE_LADDER, SNOW_MONEY, THE_ARC, TOGETHER, TOGETHER_KINDS, WALLS, WASHER_PLACES,
+  WASHER_TELEMETRY,
 } from '@/lib/data/snow-partnership';
 import { PAID_INVOICES, PAID_INVOICE_BEDS } from '@/lib/data/paid-trade';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
@@ -196,6 +197,19 @@ describe('snow partnership report', () => {
     }
   });
 
+  it('the arc is in the order it happened and every photograph of it exists', () => {
+    // Ben, 17 September: the order IS the argument, so a reordered arc is a broken argument.
+    expect(THE_ARC.map((s) => s.id)).toEqual([
+      'basket-bed', 'washing-machine', 'stretch-bed', 'facility', 'next-machine',
+    ]);
+    for (const s of THE_ARC) {
+      if (!s.photo) continue;
+      expect(existsSync(join(process.cwd(), 'public', s.photo.src)), `missing: ${s.photo.src}`).toBe(true);
+    }
+    // The thing that does not exist yet must not borrow a photograph of the thing that does.
+    expect(THE_ARC.find((s) => s.id === 'next-machine')!.photo, 'the unbuilt machine has a photo').toBeUndefined();
+  });
+
   it('a place beat names the place its own footage was shot in', () => {
     // The bug this exists for: the first cut ran one aerial behind four beats, so the words
     // said Tennant Creek while the credit said Maningrida. A beat's film path and its `place`
@@ -216,10 +230,36 @@ describe('snow partnership report', () => {
     }
   });
 
+  it('a place beat only quotes people the registry places there', () => {
+    // The bug this exists for: the Maningrida beat carried Gary, whose registry community is
+    // Mount Isa, so an Arnhem Land aerial ran under a Queensland voice. Match on the first part
+    // of the person's community, because a beat names a site and the registry names a town.
+    for (const b of PLACE_BEATS) {
+      for (const ref of b.voices ?? []) {
+        const person = getStorytellerBySlug(ref.slug);
+        expect(person, `unknown slug: ${ref.slug}`).toBeTruthy();
+        const town = (person!.community ?? '').split(/[,(/]/)[0].trim().toLowerCase();
+        expect(town, `${person!.name} has no community, so no beat can claim them`).not.toBe('');
+        expect(
+          b.place.toLowerCase().includes(town),
+          `beat "${b.id}" (${b.place}) quotes ${person!.name}, whose community is ${person!.community}`,
+        ).toBe(true);
+      }
+    }
+  });
+
+  it('every photograph on a place beat exists', () => {
+    for (const b of PLACE_BEATS) {
+      for (const ph of b.photos ?? []) {
+        expect(existsSync(join(process.cwd(), 'public', ph.src)), `missing: ${ph.src}`).toBe(true);
+      }
+    }
+  });
+
   it('every voice in the films and the arc is cleared and approved', () => {
     const refs = [
       ...FILMS.flatMap((f) => (f.voice ? [f.voice] : [])),
-      ...PLACE_BEATS.flatMap((b) => (b.voice ? [b.voice] : [])),
+      ...PLACE_BEATS.flatMap((b) => b.voices ?? []),
     ];
     expect(refs.length, 'no registry-resolved voices left on the page').toBeGreaterThan(3);
     for (const r of refs) {

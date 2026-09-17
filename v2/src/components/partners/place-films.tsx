@@ -25,7 +25,9 @@ export interface PlaceBeat {
   title: string;
   body: string;
   film: { src: string; poster: string; alt: string };
-  voice: { name: string; role: string; community: string; text: string; portrait: string | null } | null;
+  /** Everyone who speaks on this stop. First one leads, the rest sit under it smaller. */
+  voices: readonly { name: string; role: string; community: string; text: string; portrait: string | null }[];
+  photos: readonly { src: string; alt: string }[];
 }
 
 export function PlaceFilms({ beats }: { beats: readonly PlaceBeat[] }) {
@@ -102,18 +104,36 @@ export function PlaceFilms({ beats }: { beats: readonly PlaceBeat[] }) {
                 <p className="text-[11px] font-semibold uppercase tracking-widest text-goods-cream/70">{b.when}</p>
                 <p className="mt-3 font-display text-3xl leading-tight sm:text-4xl md:text-5xl">{b.title}</p>
                 <p className="mt-5 text-base leading-relaxed text-goods-cream/85 sm:text-lg">{b.body}</p>
-                {b.voice && (
-                  <figure className="m-0 mt-8 flex items-start gap-4">
-                    {b.voice.portrait && (
-                      <Image src={b.voice.portrait} alt={b.voice.name} width={160} height={160} className="h-16 w-16 shrink-0 rounded-full object-cover ring-2 ring-goods-cream/60 sm:h-20 sm:w-20" />
+                {b.voices.map((v, vi) => (
+                  <figure key={v.name} className={`m-0 flex items-start gap-4 ${vi === 0 ? 'mt-8' : 'mt-6'}`}>
+                    {v.portrait && (
+                      <Image
+                        src={v.portrait} alt={v.name} width={160} height={160}
+                        className={`shrink-0 rounded-full object-cover ring-2 ring-goods-cream/60 ${vi === 0 ? 'h-16 w-16 sm:h-20 sm:w-20' : 'h-11 w-11 sm:h-12 sm:w-12'}`}
+                      />
                     )}
                     <div>
-                      <blockquote className="font-display text-xl leading-snug text-goods-cream md:text-2xl">&ldquo;{b.voice.text}&rdquo;</blockquote>
-                      <figcaption className="mt-3 text-sm text-goods-cream/80">
-                        {[b.voice.name, b.voice.role, b.voice.community].filter(Boolean).join(' \u00b7 ')}
+                      <blockquote className={`font-display leading-snug text-goods-cream ${vi === 0 ? 'text-xl md:text-2xl' : 'text-base md:text-lg'}`}>
+                        &ldquo;{v.text}&rdquo;
+                      </blockquote>
+                      <figcaption className={`text-goods-cream/80 ${vi === 0 ? 'mt-3 text-sm' : 'mt-2 text-xs'}`}>
+                        {[v.name, v.role, v.community].filter(Boolean).join(' \u00b7 ')}
                       </figcaption>
                     </div>
                   </figure>
+                ))}
+                {b.photos.length > 0 && (
+                  <ul className="m-0 mt-8 flex list-none gap-3 p-0">
+                    {b.photos.map((ph) => (
+                      <li key={ph.src} className="min-w-0 flex-1">
+                        <Image
+                          src={ph.src} alt={ph.alt} width={480} height={360}
+                          sizes="(min-width: 768px) 10rem, 25vw"
+                          className="aspect-[4/3] w-full rounded-md object-cover ring-1 ring-goods-cream/25"
+                        />
+                      </li>
+                    ))}
+                  </ul>
                 )}
               </div>
             </div>
