@@ -121,7 +121,7 @@ export function StoryHero({
           ))}
         </div>
         <p className="mx-auto mt-3 min-h-[2.25rem] max-w-6xl px-4 text-xs leading-relaxed" style={{ color: '#6A5E54' }}>
-          {held ?? `${frames.length} frames from two years. Point at one to see where it is from.`}
+          {held ?? ''}
         </p>
       </div>
     </header>
