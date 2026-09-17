@@ -21,12 +21,18 @@
  * writes names the canon fact and its source, so a reader in Empathy Ledger can check the figure
  * without access to this repo.
  *
+ * With --create it also creates the outcomes in PROPOSED_OUTCOMES: verified Goods figures that
+ * Empathy Ledger has no row for at all. Same two rules apply, and each new row carries the canon
+ * fact id, its source and its asAt in measurement_method, so the figure can be checked from inside
+ * Empathy Ledger without this repo.
+ *
  * NEVER use the Supabase MCP for either project.
  */
 import { createClient } from '@supabase/supabase-js';
 import { readFileSync } from 'node:fs';
 
 const APPLY = process.argv.includes('--apply');
+const CREATE = process.argv.includes('--create');
 
 // The .ts module is the source of truth. This mirrors its literals with a regex, because a plain
 // node script cannot load TypeScript, and a guard test asserts the two agree.
@@ -55,6 +61,12 @@ if (feeds.length === 0) {
 
 const el = createClient(process.env.EMPATHY_LEDGER_SUPABASE_URL, process.env.EMPATHY_LEDGER_SUPABASE_KEY);
 const projectId = process.env.EMPATHY_LEDGER_PROJECT_ID;
+// Read from the existing Goods-scoped outcomes on 17 September 2026, so a created row lands in
+// the same organisation and tenant as the four that are already there.
+const ORG_ID = 'c312323e-02d4-493c-8b5f-9f9b15e2b46a';
+const TENANT_ID = 'a1adca53-4c80-44b3-a859-e9e12b40e1a8';
+// service_area is NOT NULL. All four existing Goods outcomes use this one.
+const SERVICE_AREA = 'Circular economy';
 
 const { data: outcomes, error } = await el
   .from('outcomes')
@@ -82,8 +94,77 @@ for (const f of feeds) {
   writes.push({ id: f.id, value, method: f.method });
 }
 
+// ── PROPOSED_OUTCOMES: figures Empathy Ledger has no outcome for ──────────────────────────────
+const proposed = [...src.matchAll(/\{ canonId: '([^']+)', indicator: '((?:[^'\\]|\\.)*)', level: '([^']+)', unit: '([^']+)' \}/g)]
+  .map((m) => ({ canonId: m[1], indicator: m[2].replace(/\\'/g, "'"), level: m[3], unit: m[4] }));
+
+// Mirrors CANON in src/lib/data/canon.ts for the green facts this script may write.
+const canonSrc = readFileSync(new URL('../src/lib/data/canon.ts', import.meta.url), 'utf8');
+function canonRow(id) {
+  const block = new RegExp(`id: '${id}', label: '((?:[^'\\\\]|\\\\.)*)', value: ([^,]+), unit: '([^']*)'([\\s\\S]*?)\\n  \\},`).exec(canonSrc);
+  if (!block) return null;
+  const rest = block[4];
+  const grade = /dataClass: '([a-z]+)'/.exec(rest);
+  const asAt = /asAt: '([^']+)'/.exec(rest);
+  const source = /source: '((?:[^'\\]|\\.)*)'/.exec(rest);
+  const claim = /claimLabel: '([a-z-]+)'/.exec(rest);
+  return {
+    id, label: block[1].replace(/\\'/g, "'"),
+    raw: block[2].trim(), unit: block[3],
+    dataClass: grade ? grade[1] : null,
+    asAt: asAt ? asAt[1] : null,
+    source: source ? source[1].replace(/\\'/g, "'") : '',
+    claimLabel: claim ? claim[1] : null,
+  };
+}
+
+// The asset figures are computed from CANONICAL_ASSETS, so read them from there.
+const assetSrc = readFileSync(new URL('../src/lib/data/asset-canonical.ts', import.meta.url), 'utf8');
+const assetNum = (key) => {
+  const m = new RegExp(`${key}:\\s*([0-9_]+)`).exec(assetSrc);
+  return m ? Number(m[1].replace(/_/g, '')) : null;
+};
+const CANON_VALUE = {
+  'beds-deployed': assetNum('bedsDeployed'),
+  'stretch-beds-deployed': assetNum('stretchBedsDeployed'),
+  'washers-in-community': assetNum('washersInCommunity'),
+  'communities-served': assetNum('communitiesServed'),
+  'plastic-kg': assetNum('plasticKg'),
+};
+
+const existingTitles = new Set(outcomes.map((o) => (o.title ?? '').toLowerCase()));
+const creates = [];
+if (proposed.length) {
+  console.log(`\nProposed outcomes Empathy Ledger has no row for: ${proposed.length}`);
+  for (const p of proposed) {
+    const fact = canonRow(p.canonId);
+    if (!fact) { console.log(`  SKIP     ${p.indicator}: canon fact ${p.canonId} not parsed`); continue; }
+    if (fact.dataClass !== 'green') { console.log(`  BLOCKED  ${p.indicator}: canon fact is ${fact.dataClass}`); continue; }
+    const value = CANON_VALUE[p.canonId];
+    if (value === null || value === undefined) { console.log(`  SKIP     ${p.indicator}: no value resolved`); continue; }
+    if (existingTitles.has(p.indicator.toLowerCase())) { console.log(`  EXISTS   ${p.indicator}`); continue; }
+    console.log(`  CREATE   ${p.indicator}: ${value} ${p.unit}  [${fact.claimLabel}, ${fact.dataClass}, asAt ${fact.asAt}]`);
+    creates.push({
+      title: p.indicator,
+      indicator_name: p.indicator,
+      claim_label: fact.claimLabel === 'internal-only' ? 'internal_only' : fact.claimLabel,
+      outcome_level: p.level,
+      outcome_type: 'community',
+      current_value: value,
+      unit: p.unit,
+      measurement_date: fact.asAt,
+      data_quality: 'good',
+      measurement_method: `Goods canon.ts fact "${fact.id}" (${fact.label}), value ${value} ${p.unit}, confirmed against its source on ${fact.asAt}. Source: ${fact.source} Guarded by check-asset-drift.mjs, which fails the Goods build when the live register stops agreeing with this figure.`,
+      project_id: projectId,
+      organization_id: ORG_ID,
+      tenant_id: TENANT_ID,
+      service_area: SERVICE_AREA,
+    });
+  }
+}
+
 if (!APPLY) {
-  console.log(`\nDry run. ${writes.length} would be written. Pass --apply.`);
+  console.log(`\nDry run. ${writes.length} value${writes.length === 1 ? '' : 's'} would be written${CREATE ? `, ${creates.length} outcome${creates.length === 1 ? '' : 's'} created` : ''}. Pass --apply${CREATE ? '' : ' --create'}.`);
   process.exit(0);
 }
 
@@ -101,4 +182,11 @@ for (const w of writes) {
   if (uErr) console.error(`  failed on ${w.id}: ${uErr.message}`);
   else done += 1;
 }
-console.log(`\nWrote ${done} of ${writes.length}. No claim_label, no target_value and nothing about a storyteller was touched.`);
+console.log(`\nWrote ${done} of ${writes.length} value${writes.length === 1 ? '' : 's'}. No claim_label, no target_value and nothing about a storyteller was touched.`);
+
+if (CREATE && creates.length) {
+  const { data: made, error: cErr2 } = await el.from('outcomes').insert(creates).select('id,title,current_value,unit');
+  if (cErr2) { console.error('create failed:', cErr2.message); process.exit(1); }
+  console.log(`Created ${made.length} outcome${made.length === 1 ? '' : 's'}:`);
+  for (const m of made) console.log(`  ${m.title}: ${m.current_value} ${m.unit ?? ''}`);
+}
