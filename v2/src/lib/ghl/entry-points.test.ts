@@ -86,6 +86,20 @@ describe('every public entry point reaches a human', () => {
         ).toBe(ep.inbox);
       });
 
+      it('stamps the delivery result, so the retry cron does not re-send forever', () => {
+        // Found by an end-to-end test on 17 Sep: the support route recorded a
+        // receipt and sent the email but never wrote the outcome back. A row
+        // left `pending` is re-delivered by api/cron/contact-delivery every ten
+        // minutes, so recording a send without recording its result mails the
+        // same thing over and over. Nothing errors; the inbox just fills up.
+        if (!ep.inbox) return;
+        expect(
+          src.includes('updateContactSubmission'),
+          `${ep.route} calls sendSubmissionToInbox but never updateContactSubmission, ` +
+            'so its rows stay pending and the retry cron re-sends them every ten minutes',
+        ).toBe(true);
+      });
+
       it('writes a durable receipt before any integration call', () => {
         // The outbox row is what a failed GHL or email call is retried from.
         // A route without one loses the message when an integration is down.

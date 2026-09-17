@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/server';
 import { ghl } from '@/lib/ghl';
-import { recordContactSubmission, sendSubmissionToInbox } from '@/lib/contact-delivery';
+import {
+  recordContactSubmission,
+  sendSubmissionToInbox,
+  updateContactSubmission,
+} from '@/lib/contact-delivery';
 import { guardContactSubmission } from '@/lib/contact-delivery/anti-abuse';
 
 /**
@@ -239,7 +243,16 @@ export async function POST(request: NextRequest) {
         } as Record<string, unknown>,
       };
       const id = await recordContactSubmission(submission);
-      await sendSubmissionToInbox(submission);
+      const inbox = await sendSubmissionToInbox(submission);
+      // Stamp the outcome. A row left `pending` is re-delivered by the
+      // contact-delivery cron every ten minutes, so recording the send and not
+      // recording the result sends the same email over and over.
+      await updateContactSubmission(id, {
+        inboxStatus: inbox.success ? 'delivered' : 'failed',
+        ghlStatus: ghlResult.success && ghlResult.contact?.id ? 'delivered' : 'failed',
+        error: inbox.error,
+        delivered: inbox.success,
+      });
       if (!id) console.warn('[Support] No receipt id recorded');
     } catch (error) {
       console.error('[Support] Could not deliver to the team inbox:', error);

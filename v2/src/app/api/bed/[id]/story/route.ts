@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { guardContactSubmission } from '@/lib/contact-delivery/anti-abuse';
-import { recordContactSubmission, sendSubmissionToInbox } from '@/lib/contact-delivery';
+import {
+  recordContactSubmission,
+  sendSubmissionToInbox,
+  updateContactSubmission,
+} from '@/lib/contact-delivery';
 import { createServiceClient } from '@/lib/supabase/server';
 import { ghl, tagForAsset } from '@/lib/ghl';
 
@@ -308,8 +312,14 @@ export async function POST(
           audioUrl,
         } as Record<string, unknown>,
       };
-      await recordContactSubmission(submission);
-      await sendSubmissionToInbox(submission);
+      const receiptId = await recordContactSubmission(submission);
+      const inbox = await sendSubmissionToInbox(submission);
+      // Stamp it, or the contact-delivery cron re-sends this every ten minutes.
+      await updateContactSubmission(receiptId, {
+        inboxStatus: inbox.success ? 'delivered' : 'failed',
+        error: inbox.error,
+        delivered: inbox.success,
+      });
     } catch (err) {
       console.error('[bed/story] Could not deliver to the team inbox:', err);
     }

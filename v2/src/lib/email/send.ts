@@ -8,7 +8,11 @@
 const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
 const EMAIL_ENABLED = !!RESEND_API_KEY;
 const FROM_ADDRESS = process.env.EMAIL_FROM || 'Goods on Country <hello@goodsoncountry.com>';
-const REPLY_TO = process.env.EMAIL_REPLY_TO || 'ben@goodsoncountry.com';
+// hi@act.place is the fallback because it is a mailbox that EXISTS.
+// goodsoncountry.com has no MX record, so the old default (ben@goodsoncountry.com)
+// bounced anything a recipient replied to. A reply-to nobody reads is worse than
+// no reply-to at all, because the sender thinks they have answered you.
+const REPLY_TO = process.env.EMAIL_REPLY_TO || 'hi@act.place';
 
 interface SendEmailOptions {
   to: string;
