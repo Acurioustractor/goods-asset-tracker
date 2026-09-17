@@ -19,7 +19,7 @@
     "check:artifacts": "node scripts/check-artifact-drift.mjs",
     "check:qbe-readiness": "node scripts/check-qbe-readiness.mjs",
     "check:story-coverage": "node scripts/check-story-coverage.mjs",
-    "check:drift": "npm run check:community-copy && npm run check:qbe-guardrails && npm run check:canon && npm run check:artifacts && npm run check:qbe-readiness && npm run check:story-coverage && npm run check:asset-drift && npm run check:place-registry && npm run check:people && npm run check:consent-crossref && npm run check:register && npm run check:community-seam && npm run check:audience && npm run check:admin-routes && npm run check:retired-figures && npm run check:money-prose && npm run check:voice",
+    "check:drift": "npm run check:community-copy && npm run check:qbe-guardrails && npm run check:canon && npm run check:artifacts && npm run check:qbe-readiness && npm run check:story-coverage && npm run check:asset-drift && npm run check:place-registry && npm run check:people && npm run check:consent-crossref && npm run check:outcome-sync && npm run check:register && npm run check:community-seam && npm run check:audience && npm run check:admin-routes && npm run check:retired-figures && npm run check:money-prose && npm run check:voice",
     "check:drift:ci": "npm run check:community-copy && npm run check:qbe-guardrails && npm run check:canon && npm run check:artifacts && npm run check:qbe-readiness && npm run check:story-coverage && npm run check:audience && npm run check:admin-routes && npm run check:retired-figures && npm run check:money-prose && npm run check:voice",
     "funding:sweep": "node scripts/funding-sweep.mjs",
     "audit:model": "node --env-file=.env.local scripts/audit-data-model.mjs",
@@ -42,6 +42,7 @@
     "check:people": "node --env-file=.env.local scripts/check-people-identity.mjs",
     "check:consent-crossref": "node --env-file=.env.local scripts/check-consent-crossref.mjs",
     "push:outcomes": "node --env-file=.env.local scripts/push-outcome-values.mjs",
+    "check:outcome-sync": "node --env-file=.env.local scripts/push-outcome-values.mjs --create --check",
     "check:content-gate": "node scripts/check-content-gate.mjs"
   },
   "dependencies": {

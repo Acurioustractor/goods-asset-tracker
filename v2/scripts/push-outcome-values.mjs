@@ -21,6 +21,12 @@
  * writes names the canon fact and its source, so a reader in Empathy Ledger can check the figure
  * without access to this repo.
  *
+ * With --check it writes nothing and exits non-zero when an outcome it feeds has fallen behind
+ * canon. That is the mode check:drift runs, because a snapshot pushed once decays: canon moves
+ * when the register moves, and an impact model quoting last quarter's number is worse than one
+ * quoting none. Reads and writes stay separate modes of the same file so the two can never parse
+ * canon differently.
+ *
  * With --create it also creates the outcomes in PROPOSED_OUTCOMES: verified Goods figures that
  * Empathy Ledger has no row for at all. Same two rules apply, and each new row carries the canon
  * fact id, its source and its asAt in measurement_method, so the figure can be checked from inside
@@ -33,6 +39,8 @@ import { readFileSync } from 'node:fs';
 
 const APPLY = process.argv.includes('--apply');
 const CREATE = process.argv.includes('--create');
+/** Read-only. Exits non-zero when Empathy Ledger disagrees with canon. Wired into check:drift. */
+const CHECK = process.argv.includes('--check');
 
 // The .ts module is the source of truth. This mirrors its literals with a regex, because a plain
 // node script cannot load TypeScript, and a guard test asserts the two agree.
@@ -132,7 +140,9 @@ const CANON_VALUE = {
   'plastic-kg': assetNum('plasticKg'),
 };
 
-const existingTitles = new Set(outcomes.map((o) => (o.title ?? '').toLowerCase()));
+const byTitle = new Map(outcomes.map((o) => [(o.title ?? '').toLowerCase(), o]));
+const existingTitles = new Set(byTitle.keys());
+const stale = [];
 const creates = [];
 if (proposed.length) {
   console.log(`\nProposed outcomes Empathy Ledger has no row for: ${proposed.length}`);
@@ -142,7 +152,16 @@ if (proposed.length) {
     if (fact.dataClass !== 'green') { console.log(`  BLOCKED  ${p.indicator}: canon fact is ${fact.dataClass}`); continue; }
     const value = CANON_VALUE[p.canonId];
     if (value === null || value === undefined) { console.log(`  SKIP     ${p.indicator}: no value resolved`); continue; }
-    if (existingTitles.has(p.indicator.toLowerCase())) { console.log(`  EXISTS   ${p.indicator}`); continue; }
+    if (existingTitles.has(p.indicator.toLowerCase())) {
+      const row = byTitle.get(p.indicator.toLowerCase());
+      if (Number(row.current_value) !== Number(value)) {
+        console.log(`  BEHIND   ${p.indicator}: Empathy Ledger has ${row.current_value}, canon says ${value}`);
+        stale.push({ id: row.id, title: p.indicator, from: row.current_value, value, asAt: fact.asAt, unit: p.unit, fact });
+      } else {
+        console.log(`  CURRENT  ${p.indicator}: ${value} ${p.unit}`);
+      }
+      continue;
+    }
     console.log(`  CREATE   ${p.indicator}: ${value} ${p.unit}  [${fact.claimLabel}, ${fact.dataClass}, asAt ${fact.asAt}]`);
     creates.push({
       title: p.indicator,
@@ -163,8 +182,19 @@ if (proposed.length) {
   }
 }
 
+if (CHECK) {
+  if (stale.length) {
+    console.error(`\n${stale.length} outcome${stale.length === 1 ? ' has' : 's have'} fallen behind canon:`);
+    for (const s2 of stale) console.error(`  - ${s2.title}: Empathy Ledger ${s2.from}, canon ${s2.value} (confirmed ${s2.asAt})`);
+    console.error('\nRun: npm run push:outcomes -- --create --apply');
+    process.exit(1);
+  }
+  console.log('\nEvery fed outcome matches canon.');
+  process.exit(0);
+}
+
 if (!APPLY) {
-  console.log(`\nDry run. ${writes.length} value${writes.length === 1 ? '' : 's'} would be written${CREATE ? `, ${creates.length} outcome${creates.length === 1 ? '' : 's'} created` : ''}. Pass --apply${CREATE ? '' : ' --create'}.`);
+  console.log(`\nDry run. ${writes.length} value${writes.length === 1 ? '' : 's'} would be written${CREATE ? `, ${creates.length} outcome${creates.length === 1 ? '' : 's'} created` : ''}${stale.length ? `, ${stale.length} refreshed` : ''}. Pass --apply${CREATE ? '' : ' --create'}.`);
   process.exit(0);
 }
 
@@ -183,6 +213,20 @@ for (const w of writes) {
   else done += 1;
 }
 console.log(`\nWrote ${done} of ${writes.length} value${writes.length === 1 ? '' : 's'}. No claim_label, no target_value and nothing about a storyteller was touched.`);
+
+for (const s2 of stale) {
+  const { error: sErr } = await el
+    .from('outcomes')
+    .update({
+      current_value: s2.value,
+      measurement_date: s2.asAt,
+      data_quality: 'good',
+      measurement_method: `Goods canon.ts fact "${s2.fact.id}" (${s2.fact.label}), value ${s2.value} ${s2.unit}, confirmed against its source on ${s2.asAt}. Source: ${s2.fact.source} Guarded by check-asset-drift.mjs, which fails the Goods build when the live register stops agreeing with this figure.`,
+    })
+    .eq('id', s2.id);
+  if (sErr) console.error(`  refresh failed on ${s2.title}: ${sErr.message}`);
+  else console.log(`  refreshed ${s2.title}: ${s2.from} -> ${s2.value}`);
+}
 
 if (CREATE && creates.length) {
   const { data: made, error: cErr2 } = await el.from('outcomes').insert(creates).select('id,title,current_value,unit');
