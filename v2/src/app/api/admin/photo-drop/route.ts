@@ -22,7 +22,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { requireAdmin } from '@/lib/auth/admin';
 import { createHash } from 'node:crypto';
-import { readExif, tripFor, photoFilename, areaForTrip } from '@/lib/media/exif';
+import { readExif, tripFor, photoFilename, areaForTrip } from '@/lib/photo-exif';
 import { createServiceClient } from '@/lib/supabase/server';
 
 export const runtime = 'nodejs';
