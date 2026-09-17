@@ -27,6 +27,7 @@ import { FilmGallery, type GalleryFilm } from '@/components/partners/film-galler
 import { StoryHero } from '@/components/partners/story-hero';
 import { PlaceFilms, type PlaceBeat } from '@/components/partners/place-films';
 import { MoneyLedger } from '@/components/partners/money-ledger';
+import { FleetTimeline } from '@/components/partners/fleet-timeline';
 import { PAID_INVOICES } from '@/lib/data/paid-trade';
 import { ModelLoopBuild } from '@/components/pitch/model-loop-build';
 import { TenYearSlider } from '@/components/pitch/ten-year-slider';
@@ -894,39 +895,15 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           * The silent and unmatched rows are the reason to print it; a table of only the working
           * machines would say less than the summary above it.
           */}
-        <div className="mt-8 overflow-hidden rounded-lg" style={{ border: '1px solid #E8DED4', backgroundColor: PANEL }}>
-          <div className="hidden grid-cols-[7rem_1fr_5rem_5rem_9rem] gap-4 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.12em] sm:grid" style={{ backgroundColor: SUNK, color: MUTED }}>
-            <span>Asset</span><span>Where</span><span className="text-right">Cycles</span><span className="text-right">kWh</span><span className="text-right">Reporting</span>
-          </div>
-          {WASHER_FLEET.map((r, i) => (
-            <div
-              key={`${r.assetId ?? 'unmatched'}-${r.from}`}
-              className="grid gap-1 px-5 py-4 sm:grid-cols-[7rem_1fr_5rem_5rem_9rem] sm:items-baseline sm:gap-4"
-              style={{ borderTop: i === 0 ? undefined : '1px solid #F0E7DC' }}
-            >
-              <span className="font-display text-sm" style={{ color: r.assetId ? CHARCOAL : MUTED }}>{r.assetId ?? 'unmatched'}</span>
-              <span className="text-[0.8125rem] leading-snug" style={{ color: `${CHARCOAL}b8` }}>
-                {r.where}
-                {r.note && <span className="block text-[11px]" style={{ color: MUTED }}>{r.note}</span>}
-              </span>
-              <span className="font-display text-base tabular-nums sm:text-right" style={{ color: CHARCOAL }}>
-                {r.cycles.toLocaleString('en-AU')}
-                <span className="ml-1.5 text-[10px] uppercase tracking-wide sm:hidden" style={{ color: MUTED }}>cycles</span>
-              </span>
-              <span className="font-display text-base tabular-nums sm:text-right" style={{ color: `${CHARCOAL}99` }}>
-                {r.kwh.toLocaleString('en-AU')}
-                <span className="ml-1.5 text-[10px] uppercase tracking-wide sm:hidden" style={{ color: MUTED }}>kWh</span>
-              </span>
-              <span className="text-[11px] sm:text-right" style={{ color: r.state === 'reporting' ? SAGE_INK : MUTED }}>
-                {r.state === 'reporting' ? `still reporting, ${r.to}` : `last seen ${r.to}`}
-              </span>
-            </div>
-          ))}
+        <div className="mt-8">
+          <FleetTimeline rows={WASHER_FLEET} readAt={WASHER_TELEMETRY.readAt} />
         </div>
         <p className="mt-3 text-xs leading-relaxed" style={{ color: MUTED }}>
           Read {WASHER_TELEMETRY.readAt} from the same rollups the admin fleet screen uses, reconciled to the
-          register through the controller aliases reviewed on 14 May 2026. Twenty three machines are in community,
-          ten have a controller, seven have ever reported and three were reporting on the day of this read.
+          register through the controller aliases reviewed on 14 May 2026. Twenty three machines are in community
+          and ten have a controller fitted. Seven have ever reported a wash, and the three that have not are
+          counted in the ten and are not rows above. Every controller resolves to a register row: the three
+          GB0-WM-ORPHAN rows are the ones where we know the controller and not yet the house.
         </p>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2">

@@ -118,7 +118,12 @@ describe('snow partnership report', () => {
     // Two readings of the same day on one page. If the rows and the headline ever disagree, a
     // funder who adds the column up finds the gap before we do.
     expect(WASHER_FLEET.reduce((n, r) => n + r.cycles, 0)).toBe(WASHER_TELEMETRY.totalCycles);
-    expect(WASHER_FLEET.some((r) => r.state === 'unmatched'), 'the unmatched controllers were dropped, which makes the fleet look tidier than it is').toBe(true);
+    expect(
+      WASHER_FLEET.some((r) => r.state === 'investigating'),
+      'the under-investigation machines were dropped, which makes the fleet look tidier than it is',
+    ).toBe(true);
+    // Every row resolves to a register id now. A null assetId means the reconciliation regressed.
+    for (const r of WASHER_FLEET) expect(r.assetId, `${r.where} has no register row`).toBeTruthy();
     for (const r of WASHER_FLEET) {
       expect(r.from <= r.to, `${r.assetId ?? r.where} reports backwards`).toBe(true);
       expect(r.to <= WASHER_TELEMETRY.readAt, `${r.assetId ?? r.where} reports after the read date`).toBe(true);

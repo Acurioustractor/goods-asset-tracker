@@ -1250,14 +1250,14 @@ export const WASHER_PLACES: readonly WasherPlace[] = [
 export const WASHER_TELEMETRY = {
   readAt: '2026-09-16',
   reporting: 10,
-  totalCycles: 2_330,
-  totalKwh: 3_546,
+  totalCycles: 2_331,
+  totalKwh: 3_547,
   source: 'daily_machine_rollups, reconciled against the asset register through the reviewed controller aliases in src/lib/fleet/identity.ts',
   flagship: {
     assetId: 'GB0-113',
     where: "Norm's house, Tennant Creek",
-    cycles: 951,
-    kwh: 2_611,
+    cycles: 952,
+    kwh: 2_613,
     from: '17 November 2025',
     to: '16 September 2026',
   },
@@ -1286,9 +1286,17 @@ export const WASHER_TELEMETRY = {
  * WHAT THE TABLE ADMITS, and it is the reason to print it. Twenty three machines are in
  * community. Ten have a controller. Seven have ever reported. Three were still reporting on the
  * day of this read, and one of those three is doing most of the work: Norm's house has more
- * cycles on it than the rest of the fleet put together. Four controllers cannot be matched to a
- * register row at all and are shown as unmatched rather than quietly dropped, because dropping
- * them would make the fleet look tidier than it is.
+ * cycles on it than the rest of the fleet put together. EVERY controller resolves to a register row. Three of them
+ * resolve to rows created for them, GB0-WM-ORPHAN-*, which the register carries as under
+ * investigation: the controller is known and the house is not yet. Ben, 17 September: "work out
+ * the unmatched ones, we already did this." He was right, the reconciliation existed and this
+ * table had not read it. Two more controllers report under house names rather than ids and merge
+ * into machines already here: Norms House into GB0-113 and Nicoles House into GB0-154-2.
+ *
+ * RECOMPUTED 17 September 2026 from daily_machine_rollups with those aliases applied, which
+ * moved the flagship from 951 washes to 952 and the fleet from 2,330 to 2,331. Three further
+ * machines have controllers fitted and have never reported a cycle, so they are counted in the
+ * ten instrumented and are not rows here.
  */
 export interface FleetRow {
   assetId: string | null;
@@ -1297,19 +1305,18 @@ export interface FleetRow {
   kwh: number;
   from: string;
   to: string;
-  state: 'reporting' | 'silent' | 'unmatched';
+  state: 'reporting' | 'silent' | 'investigating';
   note?: string;
 }
 
 export const WASHER_FLEET: readonly FleetRow[] = [
-  { assetId: 'GB0-113', where: "Norm's house, Tennant Creek", cycles: 951, kwh: 2_611, from: '2025-11-17', to: '2026-09-16', state: 'reporting', note: 'The machine the rest of the fleet is measured against.' },
-  { assetId: 'GB0-154-2', where: 'Tennant Creek', cycles: 341, kwh: 261, from: '2025-09-15', to: '2026-05-09', state: 'silent', note: 'Stopped reporting in May and has not been seen since.' },
-  { assetId: 'GB0-125', where: 'Tennant Creek', cycles: 48, kwh: 132, from: '2025-09-28', to: '2026-09-07', state: 'reporting', note: 'Reporting, and barely used. Worth a visit for that reason.' },
-  { assetId: 'GB0-132', where: 'Tennant Creek', cycles: 2, kwh: 1, from: '2025-09-19', to: '2026-03-01', state: 'silent' },
-  { assetId: null, where: 'Controller not matched to a register row', cycles: 550, kwh: 422, from: '2025-08-27', to: '2026-03-29', state: 'unmatched', note: 'Did 550 cycles, then stopped in March 2026. Under investigation on the register.' },
-  { assetId: null, where: 'Controller not matched to a register row', cycles: 397, kwh: 107, from: '2025-09-15', to: '2026-06-08', state: 'unmatched' },
-  { assetId: null, where: 'Controller not matched to a register row', cycles: 38, kwh: 10, from: '2025-09-15', to: '2025-09-30', state: 'unmatched' },
-  { assetId: null, where: 'Controller not matched to a register row', cycles: 3, kwh: 1, from: '2026-03-01', to: '2026-03-09', state: 'unmatched' },
+  { assetId: 'GB0-113', where: "Norm's house, Tennant Creek", cycles: 952, kwh: 2_613, from: '2025-11-17', to: '2026-09-16', state: 'reporting', note: 'The machine the rest of the fleet is measured against. More washes on it than every other machine put together.' },
+  { assetId: 'GB0-WM-ORPHAN-c4b9', where: 'Tennant Creek', cycles: 550, kwh: 422, from: '2025-08-27', to: '2026-03-29', state: 'investigating', note: 'Did 550 washes, then stopped in March 2026. The register carries it as under investigation because we know the controller and not yet the house.' },
+  { assetId: 'GB0-WM-ORPHAN-fe6c', where: 'Tennant Creek', cycles: 397, kwh: 107, from: '2025-09-15', to: '2026-06-08', state: 'investigating', note: 'Reported for nine months and stopped in June. Under investigation on the register.' },
+  { assetId: 'GB0-154-2', where: "Nicole's house, Tennant Creek", cycles: 344, kwh: 262, from: '2025-09-15', to: '2026-05-09', state: 'silent', note: 'Stopped reporting in May and has not been seen since.' },
+  { assetId: 'GB0-125', where: 'Barkly Arts, Tennant Creek', cycles: 48, kwh: 132, from: '2025-09-28', to: '2026-09-07', state: 'reporting', note: 'Reporting, and barely used. Worth a visit for that reason.' },
+  { assetId: 'GB0-WM-ORPHAN-689f', where: 'Tennant Creek', cycles: 38, kwh: 10, from: '2025-09-15', to: '2025-09-30', state: 'investigating', note: 'Two weeks of reports in September 2025 and nothing since. Under investigation.' },
+  { assetId: 'GB0-132', where: 'Tennant Creek', cycles: 2, kwh: 1, from: '2025-09-19', to: '2026-03-01', state: 'silent', note: 'Two washes recorded in six months, which almost certainly means the controller and not the machine.' },
 ];
 
 /**
