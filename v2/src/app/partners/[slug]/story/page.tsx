@@ -20,7 +20,7 @@ import {
 } from '@/lib/data/snow-partnership';
 import { snowHeroFrames, snowTaggedGroup } from '@/lib/data/snow-photos';
 import { withCaptions, withGroupCaptions, taggedPhotos } from '@/lib/data/image-captions';
-import { OwnershipPath } from '@/components/partners/ownership-path';
+import { ImpactModel } from '@/components/partners/impact-model';
 import { ChapterRail } from '@/components/pitch/chapter-rail';
 import { CountUp } from '@/components/pitch/count-up';
 import { TogetherTimeline } from '@/components/partners/together-timeline';
@@ -105,7 +105,6 @@ const CHAPTERS = [
   { id: 'ch-together', label: 'What we have done' },
   { id: 'ch-because', label: 'What Goods is now' },
   { id: 'ch-themes', label: 'What this is, and what it is not' },
-  { id: 'ch-ownership', label: 'Indigenous ownership' },
 ] as const;
 
 /**
@@ -1041,66 +1040,34 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
 
       <Chapter
         id="ch-themes"
-        title="Five things this is, and the limit on each one"
-        lead="Health, the plastic, paid work and enterprise. Each card carries what we can show and what we cannot, in the same card, because a limit printed somewhere else reads as a disclaimer."
+        title="Four things we can count, and one we cannot"
+        lead="Health, the plastic, paid work, enterprise and Indigenous ownership. The number under each one is what we can show. The line under that is what we cannot."
       >
-        {recycled && <Pull v={recycled} />}
-        <div className="mt-10 grid gap-5 sm:grid-cols-2">
-          {THEMES.filter((th) => th.id !== 'ownership').map((th) => (
-            <div key={th.id} className="flex flex-col rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
-              <p className="font-display text-xl leading-[1.2]" style={{ color: CHARCOAL }}>{th.title}</p>
-              <p className="mt-3 text-[0.9375rem] leading-[1.7]" style={{ color: `${CHARCOAL}cc` }}>{th.body}</p>
-              <p className="mt-5 rounded-md px-4 py-3 text-[0.9375rem] leading-[1.6]" style={{ backgroundColor: SAGE_WASH, color: SAGE_INK }}>
-                <span className="mr-2 text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: SAGE_INK }}>Shown</span>
-                {th.proof}
-              </p>
-              <p className="mt-3 rounded-md border px-4 py-3 text-[0.9375rem] leading-[1.6]" style={{ borderColor: RULE_DASH, color: `${CHARCOAL}b3` }}>
-                <span className="mr-2 text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: RUST }}>Not shown</span>
-                {th.limit}
-              </p>
-            </div>
-          ))}
-        </div>
-      </Chapter>
+        <ImpactModel themes={THEMES} />
 
-      {/*
-        * THE SECTION THIS WHOLE REPORT IS FOR. Ben, 17 September: this is the most important part
-        * of the page, so show what happens when you back Indigenous communities and let them lead.
-        * It was one card in a grid of five. The pathway is drawn now, because "ownership is a
-        * pathway" in a sentence reads as either a promise or an excuse, and drawn it reads as
-        * neither: two rings closed, one open, and the open one is what the money is for.
-        */}
-      <Chapter
-        id="ch-ownership"
-        title="Indigenous ownership"
-        lead="The making is built to move. A community organisation already sells the beds and keeps the price. What has not happened is a production site owned where it stands."
-      >
-        <OwnershipPath />
+        {recycled && <Pull v={recycled} />}
 
         <div className="mt-14 grid gap-10 sm:grid-cols-[1.1fr_1fr]">
           <div>
             <p className="max-w-[54ch] text-[1.0625rem] leading-[1.8]" style={{ color: `${CHARCOAL}cc` }}>
-              Goods on Country Ltd is a DGR1 charity and its directors are Indigenous. The board
-              holds the purpose, the assets and the decisions, and the plant is containerised so
-              that it can be operated in community and then owned there, on the Supply Nation 51
-              per cent path.
+              The open ring is the one that matters. Goods on Country Ltd is a DGR1 charity and its
+              directors are Indigenous, and the plant is containerised so that it can be operated in
+              community and then owned there, on the Supply Nation 51 per cent path. A community
+              organisation already sells the beds and keeps the whole price. What has not happened is
+              a production site owned where it stands.
             </p>
             <p className="mt-5 max-w-[54ch] text-[1.0625rem] leading-[1.8]" style={{ color: `${CHARCOAL}cc` }}>
-              None of the first three rings would exist if the first money had come with a
-              deliverable attached. A product we stopped selling, a design we gave away and a price
-              that moved twice are what untied money buys. The third ring needs the same thing
-              again, held for longer.
+              None of the closed rings would exist if the first money had carried a deliverable. A
+              product we stopped selling, a design we gave away and a price that moved twice are what
+              untied money buys. Closing the last one needs the same thing again, held for longer.
             </p>
           </div>
           <div className="rounded-lg p-6" style={{ backgroundColor: SUNK, border: `1px solid ${RULE}` }}>
-            <p className="font-display text-5xl leading-none" style={{ color: RUST }}>0</p>
-            <p className="mt-3 text-sm font-semibold" style={{ color: CHARCOAL }}>
-              Community-owned production sites
-            </p>
+            <p className="text-sm font-semibold" style={{ color: CHARCOAL }}>Where the last ring stands</p>
             <p className="mt-3 text-[0.9375rem] leading-[1.7]" style={{ color: `${CHARCOAL}b8` }}>
-              Ownership is a pathway and the number for it today is nothing. Oonchiumpa hold a
-              four-year federal offer for the Alice Springs facility, dated 12 August 2026 and not
-              executed.
+              Oonchiumpa hold a four-year federal offer for the Alice Springs facility, dated 12
+              August 2026 and not executed. Forty beds for Maningrida were built at Gamardi by young
+              people from the community, and the pressing was still ours.
             </p>
           </div>
         </div>
@@ -1132,6 +1099,13 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         )}
       </Chapter>
 
+{/*
+        * THE SECTION THIS WHOLE REPORT IS FOR. Ben, 17 September: this is the most important part
+        * of the page, so show what happens when you back Indigenous communities and let them lead.
+        * It was one card in a grid of five. The pathway is drawn now, because "ownership is a
+        * pathway" in a sentence reads as either a promise or an excuse, and drawn it reads as
+        * neither: two rings closed, one open, and the open one is what the money is for.
+        */}
 {/*
         * THE LAST WORD IS NORM'S. Ben chose it on 17 September: a Warumungu Elder on why any of
         * this gets written down, which is the argument for the consent register, the asset

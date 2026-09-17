@@ -703,11 +703,19 @@ export interface Theme {
   proof: string;
   /** The limit, in the same card as the claim. */
   limit: string;
+  /**
+   * The one number that carries this theme, so the model can be read before the prose is. Each
+   * traces to the register or the books: 540 beds and 23 machines from the asset register, 3,540
+   * kilograms from the 177 Stretch Beds at 20kg of HDPE each, 30 from the Palm Island build,
+   * 320 from the five paid invoices, and zero because no site is owned where it stands.
+   */
+  figure: { value: string; unit: string };
 }
 
 export const THEMES: readonly Theme[] = [
   {
     id: 'health',
+    figure: { value: '540', unit: 'beds off the floor' },
     title: 'Health',
     body: 'Scabies runs to rheumatic heart disease, and scabies runs through bedding that cannot be washed, on a floor that cannot be cleaned. That pathway is why the bed is the shape it is and why the washing machine came after it.',
     proof: `${CANONICAL_ASSETS.bedsDeployed} beds off the floor across ${CANONICAL_ASSETS.communitiesServed} communities, with ${CANONICAL_ASSETS.washersInCommunity} machines to wash the bedding.`,
@@ -715,6 +723,7 @@ export const THEMES: readonly Theme[] = [
   },
   {
     id: 'plastic',
+    figure: { value: '3,540', unit: 'kilograms out of the tip' },
     title: 'The plastic',
     body: `Every bed is pressed from ${PLASTIC_KG_PER_BED} kilograms of recycled plastic that would otherwise be freighted to a tip. It sits here as economics rather than as an environmental case: it is what a community pays to have rubbish taken away and furniture brought in, twice over.`,
     proof: `${CANONICAL_ASSETS.plasticKg.toLocaleString('en-AU')} kilograms kept out of landfill and turned into the legs of a bed.`,
@@ -722,6 +731,7 @@ export const THEMES: readonly Theme[] = [
   },
   {
     id: 'employment',
+    figure: { value: '30', unit: 'young people paid' },
     title: 'Paid work',
     body: 'A bed is assembled where it is delivered, by people who live there and are paid for it. The training is part of what the bed costs, so a build day is paid work, not a workshop.',
     proof: 'Thirty young people on the Palm Island build. Forty beds assembled at Gamardi by young workers from Maningrida. Katrina Bloomfield has done train the trainer at the Queensland facility.',
@@ -729,6 +739,7 @@ export const THEMES: readonly Theme[] = [
   },
   {
     id: 'enterprise',
+    figure: { value: '320', unit: 'beds bought and paid for' },
     title: 'Enterprise',
     body: 'A community organisation holds the beds, sells them and keeps the whole price. After costs it decides what happens next. That is the difference between a program delivered to a place and a business run from it.',
     proof: `${PAID_INVOICE_BEDS} beds bought and paid for by four organisations across five invoices, at $370 rising to $740, with the facilitation on top of it.`,
@@ -736,6 +747,7 @@ export const THEMES: readonly Theme[] = [
   },
   {
     id: 'ownership',
+    figure: { value: '0', unit: 'sites owned in community' },
     title: 'Indigenous ownership',
     body: 'Goods on Country Ltd is a DGR1 charity and its directors are Indigenous. The making is built to move: a containerised plant that can be operated in community and then owned there, on the Supply Nation 51 per cent path.',
     proof: 'A board of three Indigenous directors, a public ABN, and a charity that holds the purpose, the assets and the decisions.',
