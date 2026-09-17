@@ -20,6 +20,7 @@ import {
 } from '@/lib/data/snow-partnership';
 import { snowHeroFrames, snowTaggedGroup } from '@/lib/data/snow-photos';
 import { withCaptions, withGroupCaptions, taggedPhotos } from '@/lib/data/image-captions';
+import { GrowthOverTime } from '@/components/partners/growth-over-time';
 import { ImpactModel } from '@/components/partners/impact-model';
 import { ChapterRail } from '@/components/pitch/chapter-rail';
 import { CountUp } from '@/components/pitch/count-up';
@@ -1040,36 +1041,13 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
 
       <Chapter
         id="ch-themes"
-        title="Four things we can count, and one we cannot"
-        lead="Health, the plastic, paid work, enterprise and Indigenous ownership. The number under each one is what we can show. The line under that is what we cannot."
+        title="What two years of it looks like"
+        lead="Every step is an invoice. An Aboriginal charitable trust, an Aboriginal community controlled health service and a homelands school company, and two of them came back."
       >
-        <ImpactModel themes={THEMES} />
+        <GrowthOverTime />
 
-        {recycled && <Pull v={recycled} />}
-
-        <div className="mt-14 grid gap-10 sm:grid-cols-[1.1fr_1fr]">
-          <div>
-            <p className="max-w-[54ch] text-[1.0625rem] leading-[1.8]" style={{ color: `${CHARCOAL}cc` }}>
-              The open ring is the one that matters. Goods on Country Ltd is a DGR1 charity and its
-              directors are Indigenous, and the plant is containerised so that it can be operated in
-              community and then owned there, on the Supply Nation 51 per cent path. A community
-              organisation already sells the beds and keeps the whole price. What has not happened is
-              a production site owned where it stands.
-            </p>
-            <p className="mt-5 max-w-[54ch] text-[1.0625rem] leading-[1.8]" style={{ color: `${CHARCOAL}cc` }}>
-              None of the closed rings would exist if the first money had carried a deliverable. A
-              product we stopped selling, a design we gave away and a price that moved twice are what
-              untied money buys. Closing the last one needs the same thing again, held for longer.
-            </p>
-          </div>
-          <div className="rounded-lg p-6" style={{ backgroundColor: SUNK, border: `1px solid ${RULE}` }}>
-            <p className="text-sm font-semibold" style={{ color: CHARCOAL }}>Where the last ring stands</p>
-            <p className="mt-3 text-[0.9375rem] leading-[1.7]" style={{ color: `${CHARCOAL}b8` }}>
-              Oonchiumpa hold a four-year federal offer for the Alice Springs facility, dated 12
-              August 2026 and not executed. Forty beds for Maningrida were built at Gamardi by young
-              people from the community, and the pressing was still ours.
-            </p>
-          </div>
+        <div className="mt-16">
+          <ImpactModel themes={THEMES} />
         </div>
 
         {ownershipVoices.length > 0 && (
