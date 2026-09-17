@@ -35,6 +35,12 @@ function safeArea(input: string | null): string {
   return a && !a.includes('..') ? a : 'unplaced';
 }
 
+interface ExistingRow {
+  id: string;
+  url: string | null;
+  tags: string[] | null;
+}
+
 export async function POST(req: Request) {
   const guard = await requireAdmin();
   if (guard) return guard;
@@ -157,6 +163,51 @@ export async function POST(req: Request) {
   const name = photoFilename(originalName, exif.date);
   const rel = `/images/${area}/${name}`;
 
+  /*
+   * IF WE ALREADY HAVE THIS PHOTOGRAPH, DO NOT MAKE A SECOND COPY OF IT.
+   *
+   * Two originals dragged out of Google Photos turned out to be byte-identical to photographs
+   * already held through Empathy Ledger. The checksum caught it and tagged the row that existed,
+   * which is right, but the file had already been written, so the repo gained a 450KB duplicate
+   * that nothing points at. Look first, write second.
+   */
+  const checksum = createHash('md5').update(bytes).digest('hex');
+  let existing: ExistingRow | null = null;
+  try {
+    const { data } = await createServiceClient()
+      .from('content_items')
+      .select('id,url,tags')
+      .eq('checksum', checksum)
+      .maybeSingle();
+    existing = (data as ExistingRow | null) ?? null;
+  } catch {
+    /* a lookup we cannot do is not a reason to refuse the photograph */
+  }
+
+  if (existing) {
+    const tags = [...new Set([...(existing.tags ?? []), ...(trip ? [`community:${trip.community}`] : []), ...sessionTags])];
+    try {
+      await createServiceClient().from('content_items').update({ tags }).eq('id', existing.id);
+    } catch {
+      /* the row is there either way; the card can still write the tags */
+    }
+    return NextResponse.json({
+      ok: true,
+      url: existing.url ?? rel,
+      indexed: true,
+      contentId: existing.id,
+      community: trip?.community ?? null,
+      appliedTags: tags,
+      bytes: bytes.byteLength,
+      exif,
+      trip: trip ? { community: trip.community, what: trip.what } : null,
+      viaUrl,
+      duplicate: true,
+      note: 'Already in the library, so nothing was copied. Your tags went onto the photograph that was already there.',
+      next: 'In the library. Write the Notes, which is the caption every page reads.',
+    });
+  }
+
   try {
     const dir = join(process.cwd(), 'public', 'images', ...area.split('/'));
     await mkdir(dir, { recursive: true });
@@ -186,16 +237,7 @@ export async function POST(req: Request) {
   let indexError: string | null = null;
   try {
     const supabase = createServiceClient();
-    const checksum = createHash('md5').update(bytes).digest('hex');
-    const { data: already } = await supabase
-      .from('content_items')
-      .select('id')
-      .eq('checksum', checksum)
-      .maybeSingle();
-    if (already) {
-      indexed = true;
-      contentId = already.id as string;
-    } else {
+    {
       const { data, error } = await supabase
         .from('content_items')
         .insert({
