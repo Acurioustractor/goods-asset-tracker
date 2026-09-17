@@ -123,6 +123,7 @@ export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
     group: 'Reaching people',
     routes: [
       { href: '/admin/reach-out', name: 'Reach out', status: 'active', note: 'as-needed' },
+      { href: '/admin/campaign', name: 'Campaign lanes', status: 'active', note: 'the eight audience pathways: door, what they get, what moves them on, who owns it' },
     ],
   },
   {

@@ -22,6 +22,7 @@ import {
   LANE_COMMUNITY,
 } from './canonical-tags';
 import { routeForSubject } from './inquiry-routing';
+import { isSuppressed } from './smart-lists';
 
 // Configuration from environment
 const GHL_API_KEY = process.env.GHL_API_KEY || '';
@@ -1223,6 +1224,100 @@ export const ghl = {
     } catch (error) {
       console.error('[GHL] addInboundEmail error:', error instanceof Error ? error.message : error);
       return { success: false };
+    }
+  },
+
+  /**
+   * Every workflow in the account, with its published/draft state.
+   *
+   * The GHL API can read workflows and nothing else: no create, no update, no publish. So this
+   * is the whole of what the app can know about them, and it is worth knowing, because a draft
+   * workflow is indistinguishable from a working one until somebody notices the silence. New
+   * Order Notification was a draft from February to September while people paid on the site.
+   */
+  async listWorkflows(): Promise<{ id: string; name: string; status: string }[] | null> {
+    if (!GHL_ENABLED) return null;
+    try {
+      // locationId is REQUIRED as a query parameter here, and leaving it off returns 403 with
+      // "The token does not have access to this location", which reads like a scope problem and
+      // is not one. Cost an hour and a token rotation on 17 September before somebody tried the
+      // same call with the parameter attached.
+      const res = await ghlRequest<{ workflows?: { id: string; name: string; status: string }[] }>(
+        `/workflows/?locationId=${encodeURIComponent(GHL_LOCATION_ID)}`,
+        'GET',
+      );
+      return res.workflows || [];
+    } catch (error) {
+      // null, not an empty array. "We could not read the account" and "there are no workflows"
+      // are different sentences, and rendering the first as the second would tell somebody their
+      // acknowledgement workflow had been deleted when the real answer is a missing API scope.
+      //
+      // warn, not error. A 403 here is expected until the token carries workflows.readonly, the
+      // caller handles it and the page says so in words. console.error in a server component is
+      // promoted to a red overlay in dev, which makes a handled condition look like a crash.
+      console.warn(
+        '[GHL] Could not read workflows (needs the workflows.readonly scope):',
+        error instanceof Error ? error.message : error,
+      );
+      return null;
+    }
+  },
+
+  /**
+   * Send a transactional reply to a person, through GHL's own email channel.
+   *
+   * Why this exists rather than a workflow. GHL's public API can read workflows and nothing
+   * else: there is no create, no update and no publish, so every workflow is dashboard clicking
+   * by one person, which is why New Order Notification sat as a draft from February while people
+   * paid and heard nothing. This endpoint is the same one `sendSms` already uses. The message
+   * lands in the contact's Conversations thread and goes out from the GHL sending domain, so
+   * "GHL owns every send" still holds: GHL is sending it.
+   *
+   * TRANSACTIONAL ONLY. A reply to something the person did: they paid, they reported a fault,
+   * they asked for the pack. Never a campaign, never a list, never anything a group receives at
+   * a time of our choosing. That is what `comms:` enrolment and a real workflow are for, because
+   * a marketing send needs the unsubscribe handling this path does not have.
+   *
+   * It refuses to send to a contact on do-not-disturb or carrying a suppression tag. A workflow
+   * checks that for you and this does not, so it is checked here, before the send, every time.
+   */
+  async sendTransactionalReply(opts: {
+    contactId: string;
+    subject: string;
+    html: string;
+    text: string;
+  }): Promise<{ success: boolean; messageId?: string; skipped?: 'suppressed'; error?: string }> {
+    if (!GHL_ENABLED) {
+      console.log('[GHL] Disabled — would reply:', opts.subject);
+      return { success: true };
+    }
+    if (!opts.contactId || !cleanString(opts.subject) || !cleanString(opts.html)) {
+      return { success: false, error: 'contactId, subject and html are required' };
+    }
+
+    try {
+      const contact = await ghlRequest<{
+        contact?: { dnd?: boolean; tags?: string[]; email?: string };
+      }>(`/contacts/${opts.contactId}`, 'GET');
+      const dnd = contact.contact?.dnd === true;
+      const suppressed = isSuppressed(contact.contact?.tags);
+      if (dnd || suppressed) {
+        console.log('[GHL] Not replying, contact is suppressed:', opts.contactId);
+        return { success: false, skipped: 'suppressed' };
+      }
+
+      const res = await ghlRequest<{ messageId?: string }>('/conversations/messages', 'POST', {
+        type: 'Email',
+        contactId: opts.contactId,
+        subject: opts.subject,
+        html: opts.html,
+        message: opts.text,
+      });
+      return { success: true, messageId: res.messageId };
+    } catch (error) {
+      const errMsg = error instanceof Error ? error.message : 'Unknown error';
+      console.error('[GHL] sendTransactionalReply error:', errMsg);
+      return { success: false, error: errMsg };
     }
   },
 

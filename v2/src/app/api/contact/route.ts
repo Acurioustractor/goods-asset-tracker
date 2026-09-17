@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ghl } from '@/lib/ghl';
 import { guardContactSubmission } from '@/lib/contact-delivery/anti-abuse';
+import { acknowledgeOrReply } from '@/lib/comms/replies';
 import {
   recordContactSubmission,
   sendSubmissionToInbox,
@@ -161,13 +162,34 @@ export async function POST(request: NextRequest) {
     }
 
     // EVERY contact submission (general + media pack): apply the ACT-wide
-    // inquiry tags, then thread the message into the contact's Conversations
+    // inquiry tag, then thread the message into the contact's Conversations
     // inbox (below) as the primary record. `act-inquiry` is the single clean
     // marker the Universal Inquiry pipeline triggers on (NOT shared with
-    // feedback/imports the way base `goods-inquiry` is). `project-goods` lets
-    // that pipeline be filtered/triaged by project.
+    // feedback/imports the way base `goods-inquiry` is).
+    //
+    // `project-goods` is no longer stamped here unconditionally, because it is the trigger for
+    // the generic acknowledgement and some subjects now have their own written reply. See
+    // acknowledgeOrReply. Project segmentation does not depend on it: the canonical write already
+    // stamps `project:act-gd`.
     if (ghlResult.success && ghlResult.contact?.id) {
-      await ghl.addTags(ghlResult.contact.id, ['act-inquiry', 'project-goods']);
+      await ghl.addTags(ghlResult.contact.id, ['act-inquiry']);
+
+      // One reply, decided in one place. If we have written a branch for this subject it is sent
+      // from here and `project-goods` is NOT stamped, so the generic acknowledgement does not also
+      // arrive. If we have not, the tag goes on and the generic letter is what they get, which is
+      // better than silence. The route does not make that choice: acknowledgeOrReply does, so the
+      // two cannot both happen to one person.
+      const outcome = await acknowledgeOrReply({
+        contactId: ghlResult.contact.id,
+        subject,
+        context: {
+          name: body.name,
+          organisation: body.organisation,
+          message: body.message,
+          phone: body.phone,
+        },
+      });
+      console.log(`[Contact] ${subject}: ${outcome}`);
 
       // Put it on a board. Each door lands on its own pipeline at the first
       // stage (see lib/ghl/inquiry-routing), so an enquiry is a card somebody

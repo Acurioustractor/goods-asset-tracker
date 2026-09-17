@@ -96,12 +96,23 @@ export async function POST(
       );
     }
 
-    // Sync claim to GHL for CRM tracking
+    // Sync claim to GHL for CRM tracking, and put a human on it.
+    //
+    // The contact write alone is not enough. A claim is the one moment somebody
+    // in a community chooses to be known to Goods, and until this task existed
+    // it produced a row and a contact record that nobody was told about. The
+    // task points INWARD: the person is on lane:community and receives nothing
+    // automatic (R9). Someone rings them instead.
+    const claimant = {
+      phone: user.phone || undefined,
+      email: user.email || undefined,
+      name: user.user_metadata?.display_name || user.user_metadata?.full_name,
+    };
     try {
-      if (ghl.isEnabled() && user.phone) {
+      if (ghl.isEnabled() && claimant.phone) {
         await ghl.createRecipientContact({
-          phone: user.phone,
-          name: user.user_metadata?.display_name || user.user_metadata?.full_name,
+          phone: claimant.phone,
+          name: claimant.name,
           assetId: asset_id,
           productType: asset.product || 'unknown',
           community: asset.community || 'unknown',
@@ -110,6 +121,25 @@ export async function POST(
     } catch (ghlError) {
       // Don't fail the claim if GHL sync fails
       console.error('[Claim] GHL sync error (non-fatal):', ghlError);
+    }
+
+    try {
+      await ghl.raiseCommunityInbound({
+        name: claimant.name,
+        phone: claimant.phone,
+        email: claimant.email,
+        kind: 'Bed claimed by QR',
+        detail: [
+          `${asset.product || 'An item'} ${asset_id} was claimed`,
+          asset.community ? `Community: ${asset.community}` : null,
+          'First claim through the QR flow. Ring them and find out how it is going.',
+        ]
+          .filter(Boolean)
+          .join('\n'),
+        assetId: asset_id,
+      });
+    } catch (notifyError) {
+      console.error('[Claim] Could not raise the inbound task:', notifyError);
     }
 
     return NextResponse.json({

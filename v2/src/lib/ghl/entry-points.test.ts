@@ -33,7 +33,15 @@ interface EntryPoint {
 const ENTRY_POINTS: EntryPoint[] = [
   { route: 'contact/route.ts', acknowledges: true, inbox: true },
   { route: 'partnership/route.ts', acknowledges: true, inbox: true },
-  { route: 'support/route.ts', acknowledges: true, inbox: true },
+  {
+    route: 'support/route.ts',
+    acknowledges: false,
+    inbox: true,
+    why:
+      'It sends its own reply instead. The generic acknowledgement says somebody will get back ' +
+      'to you within a couple of business days, which is the wrong sentence for a bed that is ' +
+      'not safe to sleep on tonight. Stamping project-goods as well would send two emails.',
+  },
   {
     route: 'bed/[id]/story/route.ts',
     acknowledges: false,
@@ -67,7 +75,9 @@ describe('every public entry point reaches a human', () => {
       const src = read(ep.route);
 
       it(ep.acknowledges ? 'stamps the acknowledgement tags' : 'deliberately does not acknowledge', () => {
-        const stamps = src.includes("'project-goods'");
+        // Directly, or through acknowledgeOrReply, which stamps it for every subject that has no
+        // written branch of its own. Either way the person is answered.
+        const stamps = src.includes("'project-goods'") || src.includes('acknowledgeOrReply');
         expect(
           stamps,
           ep.acknowledges
@@ -118,4 +128,29 @@ describe('every public entry point reaches a human', () => {
       }
     }
   });
+});
+
+/**
+ * The invariant that arrived with the code-sent replies: a route may stamp the acknowledgement
+ * tag, or send its own reply, and never both. Both is two emails to one person, and the second
+ * one contradicts the first.
+ */
+describe('one reply per person', () => {
+  const ROUTES = ENTRY_POINTS.map((e) => e.route);
+
+  for (const route of ROUTES) {
+    it(`${route} does not both acknowledge and reply`, () => {
+      const src = read(route);
+      // Both, in the same route, only holds when the choice is made by acknowledgeOrReply, which
+      // does one or the other and is unit tested for exactly that. A route doing both itself is
+      // two emails to one person.
+      const stampsDirectly = src.includes("'project-goods'");
+      const repliesDirectly = src.includes('sendTransactionalReply');
+      expect(
+        stampsDirectly && repliesDirectly,
+        `${route} stamps the acknowledgement tag AND sends its own reply. If that is meant to be ` +
+          'per subject, call acknowledgeOrReply instead: it cannot do both to one person.',
+      ).toBe(false);
+    });
+  }
 });
