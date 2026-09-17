@@ -152,6 +152,9 @@ export const STATUS_LABEL: Record<AreaStatus, string> = {
  */
 export const DOMAIN_QUOTE_COVERAGE: { domain: string; quotes: number }[] = [
   // Voice Impact Model deep pass 2026-07-20 (192 coded quotes across 29 voices).
+  // Counted from voice-impact-data.json on 17 September 2026: 29 voices, 41 transcripts,
+  // 192 topQuotes rows, 13 distinct themes. The QBE application says 191, which is one short;
+  // its other two figures in that sentence, 29 and 13, both match exactly.
   { domain: 'Self-determination', quotes: 66 },
   { domain: 'Rest & health', quotes: 62 },
   { domain: 'Dignity & safety', quotes: 43 },
