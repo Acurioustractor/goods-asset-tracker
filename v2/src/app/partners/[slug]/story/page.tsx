@@ -129,9 +129,9 @@ function quote(slug: string, tier: 'funder' | 'external', contains: string) {
   return q ? { person, quote: q } : null;
 }
 
-function Pull({ v, note }: { v: NonNullable<ReturnType<typeof quote>>; note?: string }) {
+function Pull({ v, note, flush = false }: { v: NonNullable<ReturnType<typeof quote>>; note?: string; flush?: boolean }) {
   return (
-    <figure className="m-0 mt-12 flex max-w-[52ch] items-start gap-5">
+    <figure className={`m-0 flex max-w-[52ch] items-start gap-5 ${flush ? '' : 'mt-12'}`}>
       {v.person.portrait && (
         <Image src={v.person.portrait} alt={v.person.name} width={160} height={160} className="h-16 w-16 shrink-0 rounded-full object-cover sm:h-20 sm:w-20" />
       )}
@@ -166,9 +166,8 @@ function Chapter({ id, title, lead, children }: {
   return (
     <section id={id} className="scroll-mt-24 px-5 sm:px-8">
       <div className="mx-auto max-w-4xl border-t py-12 sm:py-16" style={{ borderColor: RULE }}>
-        <header className="flex items-baseline gap-4">
+        <header className="flex items-baseline justify-between gap-4">
           <span className="font-display text-base leading-none" style={{ color: RUST }}>{number}</span>
-          <span className="h-px flex-1" style={{ backgroundColor: RULE }} />
           <span className="text-[10px] font-semibold uppercase tracking-[0.2em]" style={{ color: MUTED }}>{label}</span>
         </header>
         <h2 className="mt-7 max-w-3xl font-display text-[2rem] leading-[1.14] sm:text-[2.6rem]" style={{ color: CHARCOAL }}>{title}</h2>
@@ -441,10 +440,9 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             * line of the lead and the two read as one broken thing (Ben, 17 September).
             */}
           <div className="mx-auto max-w-4xl border-t pb-16 pt-12 sm:pb-24 sm:pt-16" style={{ borderColor: RULE }}>
-            <header className="flex items-baseline gap-4">
+            <header className="flex items-baseline justify-between gap-4">
               <span className="font-display text-base leading-none" style={{ color: RUST }}>{chapterNumber('ch-first')}</span>
-              <span className="h-px flex-1" style={{ backgroundColor: RULE }} />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.2em]" style={{ color: MUTED }}>{chapterLabel('ch-first')}</span>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.2em]" style={{ color: MUTED }}>{chapterLabel('ch-first')}</span>
             </header>
             <h2 className="mt-7 max-w-3xl font-display text-[2rem] leading-[1.14] sm:text-[2.6rem]" style={{ color: CHARCOAL }}>
               Four places and the order they came in
@@ -502,7 +500,6 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
               <p className="mt-7 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{THE_NEXT_TEN.body}</p>
               <p className="mt-3 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{THE_NEXT_TEN.holder}</p>
               <p className="mt-3 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{THE_NEXT_TEN.forward}</p>
-              <p className="mt-5 max-w-[62ch] border-t pt-4 text-sm leading-relaxed" style={{ borderColor: RULE, color: MUTED }}>{THE_NEXT_TEN.ceiling}</p>
 
               {/*
                 * The deck's own ten-year model, pushable. Ben, 17 September: show where this can
@@ -512,21 +509,10 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
                 * above hands over to it rather than saying there is no ten-year number.
                 */}
               <div className="mt-8 border-t pt-8" style={{ borderColor: RULE }}>
-                <TenYearSlider />
+                <TenYearSlider showCeiling={false} />
               </div>
             </div>
-            {/*
-              * The map carries six places and the register carries eleven communities, so the
-              * bed count under the scrub is smaller than the canonical one. Said out loud here,
-              * because a funder who adds the dots up deserves to find the answer rather than a
-              * discrepancy.
-              */}
-            <p className="mt-3 text-xs leading-relaxed" style={{ color: MUTED }}>
-              Six places, which are the ones where the register holds a bed count against a
-              community and a date. Across all eleven communities the register holds{' '}
-              {CANONICAL_ASSETS.bedsDeployed} beds and {CANONICAL_ASSETS.washersInCommunity} machines.
-              The sage ring marks a place with machines in it.
-            </p>
+            
 
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
               <div className="rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
@@ -567,13 +553,16 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             </div>
 
             {/* catalyse now opens the report in the hero, so the money chapter does not repeat it. */}
-            {backing && <Pull v={backing} />}
-            {blessings && (
-              <Pull
-                v={blessings}
-                note="Dianne is talking about Ben and Nic, on the day the washing machine she named arrived."
-              />
-            )}
+            <div className="mt-12 grid gap-8 sm:grid-cols-2">
+              {backing && <Pull v={backing} flush />}
+              {blessings && (
+                <Pull
+                  v={blessings}
+                  flush
+                  note="Dianne is talking about Ben and Nic, on the day the washing machine she named arrived."
+                />
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -701,16 +690,6 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         * with the component's own lg:pr-48 rail clearance inside it left the ring at a fifth of
         * its size (Ben, 17 September: "why is it so tiny?").
         */}
-      <div className="px-5 pt-16 sm:px-8">
-        <div className="mx-auto max-w-4xl">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>The same model, as the deck builds it</p>
-          <p className="mt-3 max-w-[58ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}b8` }}>
-            One station at a time as you scroll, and the whole thing on one sheet at the end. It is
-            the same loop the pitch deck walks through, so what Snow sees here and what a room sees
-            in the deck are the same drawing.
-          </p>
-        </div>
-      </div>
       <ModelLoopBuild
         steps={LOOP_STEPS} stations={LOOP_STATIONS} arcs={LOOP_ARCS} counts={LOOP_COUNTS}
         sheetSvg={placematSvg} items={placematItems} arrows={placematArrows}
@@ -780,12 +759,6 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
               );
             })}
           </ol>
-          <p className="mt-6 max-w-[62ch] text-[0.9375rem] leading-[1.7]" style={{ color: `${CHARCOAL}cc` }}>
-            These are what the beds actually cost each buyer, which is not the same as the bed line on the
-            invoice: the earlier orders billed the facilitation separately and the $750 price has it inside.
-            Centrecorp came back at $728 a bed for nearly twice the volume they first bought at $570. That is the
-            only demand signal in this document that means anything, because somebody paid it.
-          </p>
         </div>
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -811,25 +784,12 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           ))}
         </div>
 
-        <div className="mt-6 rounded-lg p-5" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
-          <p className="text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-            <strong>{BUYER_TOTALS.beds} beds, {BUYER_TOTALS.buyers} buyers, {BUYER_TOTALS.invoices} invoices.</strong>{' '}
-            {money(BUYER_TOTALS.netOfGstAud)} net of GST, {money(BUYER_TOTALS.inclGstAud)} including it. {BUYER_TOTALS.basis}
-          </p>
-        </div>
-
-        <div className="mt-6 rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4', borderLeft: `3px solid ${SAGE}` }}>
-          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: SAGE }}>What we do not know about demand</p>
-          <ul className="mt-3 space-y-3 text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-            {DEMAND_GAPS.map((g) => <li key={g}>{g}</li>)}
-          </ul>
-        </div>
       </Chapter>
 
       <Chapter
         id="ch-washers"
-        title="Twenty three machines. Ten of them can talk."
-        lead="Snow bought one outright. They are the only part of this work that says how it is going without anyone flying in to look."
+        title="Ten machines are sending us readings"
+        lead="Snow bought one of them outright."
       >
         <div className="grid gap-4 sm:grid-cols-4">
           {WASHER_PLACES.map((w) => (
@@ -838,6 +798,30 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
               <p className="mt-2 text-sm font-semibold leading-snug" style={{ color: CHARCOAL }}>{w.place}</p>
             </div>
           ))}
+        </div>
+
+        <div className="mt-8 rounded-lg p-6 sm:p-8" style={{ backgroundColor: PANEL, border: `1px solid ${RULE}` }}>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>
+            Norm&rsquo;s house, Tennant Creek
+          </p>
+          <div className="mt-4 grid gap-6 sm:grid-cols-4">
+            {[
+              { v: '952', k: 'washes' },
+              { v: '2,613', k: 'kilowatt hours' },
+              { v: '2.7', k: 'kWh a wash' },
+              { v: '10 months', k: 'reporting, without a break' },
+            ].map((s) => (
+              <div key={s.k}>
+                <p className="font-display text-3xl leading-none" style={{ color: CHARCOAL }}>{s.v}</p>
+                <p className="mt-2 text-xs" style={{ color: MUTED }}>{s.k}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-5 max-w-[58ch] text-[0.9375rem] leading-[1.7]" style={{ color: `${CHARCOAL}cc` }}>
+            One house has done more washes than the whole rest of the fleet. It is the machine everything else
+            gets measured against, and it is the reason we know a washing machine in a remote house gets used
+            three times a day rather than three times a week.
+          </p>
         </div>
 
         <dl className="mt-8 grid gap-6 sm:grid-cols-3">
@@ -913,15 +897,12 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         <div className="mx-auto max-w-4xl">
           <p className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: RUST }}>07 &middot; The archive</p>
           <h2 className="mt-3 font-display text-3xl leading-tight sm:text-4xl" style={{ color: CHARCOAL }}>The photographs</h2>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed sm:text-lg" style={{ color: `${CHARCOAL}cc` }}>
-            Five sets. The first one is the thinnest and it is the one about us and you.
-          </p>
         </div>
         <div className="mt-8">
           <PhotoWall
             groups={wallGroups}
             title="Two years, in frames"
-            sub="Everything here is already published. Where a set is short, it is short because that is what the archive holds."
+            sub=""
           />
         </div>
       </div>

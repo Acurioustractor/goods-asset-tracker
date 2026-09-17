@@ -10,7 +10,7 @@
 import { useId, useState } from 'react';
 import { ASSUMPTIONS, CLAIM_CEILING, tenYearRows, tenYearTotals } from '@/lib/data/ten-year-scale';
 
-export function TenYearSlider({ dark = false }: { dark?: boolean }) {
+export function TenYearSlider({ dark = false, showCeiling = true }: { dark?: boolean; showCeiling?: boolean }) {
   const [aYear, setAYear] = useState<number>(ASSUMPTIONS.facilitiesAddedAYear.value);
   const id = useId();
   const rows = tenYearRows({ facilitiesAddedAYear: aYear });
@@ -96,7 +96,7 @@ export function TenYearSlider({ dark = false }: { dark?: boolean }) {
           </table>
         </div>
       </details>
-      <p className={`mt-6 max-w-3xl text-sm leading-relaxed ${soft}`}>{CLAIM_CEILING}</p>
+      {showCeiling && <p className={`mt-6 max-w-3xl text-sm leading-relaxed ${soft}`}>{CLAIM_CEILING}</p>}
     </div>
   );
 }
