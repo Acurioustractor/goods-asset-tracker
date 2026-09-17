@@ -1,7 +1,16 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { themeName } from '@/lib/data/themes';
+
+/**
+ * The string a photograph is indexed under. Local files are keyed by their path and Empathy
+ * Ledger items by their media id; the grid prefixes both so the two can never collide.
+ */
+function refOf(it: { id: string; full: string }): string {
+  return it.id.replace(/^(el|website):/, '') || it.full;
+}
 
 export interface UnifiedItem {
   id: string;
@@ -95,6 +104,7 @@ export function MediaLibraryClient({
   curationReady: boolean;
   communities?: { id: string; name: string }[];
 }) {
+  const router = useRouter();
   const commMap = useMemo(() => new Map(communities.map((c) => [c.id, c.name])), [communities]);
   // Local copy so saved tags + curation state update the grid without a reload.
   const [items, setItems] = useState<UnifiedItem[]>(initialItems);
@@ -199,8 +209,16 @@ export function MediaLibraryClient({
     async (ids: string[], patch: CurationPatch) => {
       const targets = items.filter((it) => ids.includes(it.id));
       const contentIds = targets.map((it) => it.contentId).filter((x): x is string => !!x);
-      if (contentIds.length === 0) {
-        setErr('These items are not indexed yet — run npm run content:index first.');
+      /*
+       * A photograph with no row used to be skipped here in silence, so a selection of forty
+       * could half-apply and still look like it worked. Send the unindexed ones to be
+       * registered instead: the write itself puts them in the library.
+       */
+      const create = targets
+        .filter((it) => !it.contentId)
+        .map((it) => ({ ref: refOf(it), url: it.full, mediaType: it.mediaType }));
+      if (contentIds.length === 0 && create.length === 0) {
+        setErr('Nothing in that selection can be written to.');
         return;
       }
       setErr('');
@@ -214,22 +232,24 @@ export function MediaLibraryClient({
           ? { community: patch.community_id ? commMap.get(patch.community_id) : undefined }
           : {}),
       });
-      setItems((prev) => prev.map((it) => (ids.includes(it.id) && it.contentId ? apply(it) : it)));
-      setActive((cur) => (cur && ids.includes(cur.id) && cur.contentId ? apply(cur) : cur));
+      setItems((prev) => prev.map((it) => (ids.includes(it.id) ? apply(it) : it)));
+      setActive((cur) => (cur && ids.includes(cur.id) ? apply(cur) : cur));
       try {
         const res = await fetch('/api/admin/content-item', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ids: contentIds, ...patch }),
+          body: JSON.stringify({ ids: contentIds, create, ...patch }),
         });
-        const data = (await res.json()) as { ok: boolean; error?: string };
+        const data = (await res.json()) as { ok: boolean; error?: string; registered?: number };
         if (!res.ok || !data.ok) throw new Error(data.error || `HTTP ${res.status}`);
+        // Newly registered rows carry ids this page has never seen, so re-read them.
+        if (data.registered) router.refresh();
       } catch (e) {
         setItems(snapshot); // revert
         setErr(`Save failed: ${e instanceof Error ? e.message : String(e)}`);
       }
     },
-    [items, commMap],
+    [items, commMap, router],
   );
 
   const toggleStar = useCallback((it: UnifiedItem) => mutate([it.id], { starred: !it.starred }), [mutate]);
@@ -250,29 +270,32 @@ export function MediaLibraryClient({
     async (raw: string) => {
       const tag = raw.trim();
       if (!tag) return;
-      const targets = items.filter(
-        (it) => selected.has(it.id) && it.contentId && !it.tags.includes(tag),
-      );
+      const targets = items.filter((it) => selected.has(it.id) && !it.tags.includes(tag));
       if (targets.length === 0) return;
       setErr('');
       const snapshot = items;
       setItems((prev) =>
         prev.map((it) =>
-          selected.has(it.id) && it.contentId && !it.tags.includes(tag)
-            ? { ...it, tags: [...it.tags, tag] }
-            : it,
+          selected.has(it.id) && !it.tags.includes(tag) ? { ...it, tags: [...it.tags, tag] } : it,
         ),
       );
+      // An item with no row registers itself on the way through, so nothing is skipped quietly.
+      let registeredAny = false;
       const results = await Promise.allSettled(
         targets.map((it) =>
           fetch('/api/admin/content-item', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id: it.contentId, tags: [...it.tags, tag] }),
+            body: JSON.stringify(
+              it.contentId
+                ? { id: it.contentId, tags: [...it.tags, tag] }
+                : { create: [{ ref: refOf(it), url: it.full, mediaType: it.mediaType }], tags: [...it.tags, tag] },
+            ),
           })
             .then((r) => r.json())
-            .then((d: { ok: boolean; error?: string }) => {
+            .then((d: { ok: boolean; error?: string; registered?: number }) => {
               if (!d.ok) throw new Error(d.error || 'save failed');
+              if (d.registered) registeredAny = true;
             }),
         ),
       );
@@ -280,9 +303,12 @@ export function MediaLibraryClient({
       if (failed) {
         setItems(snapshot); // revert all on partial failure so state stays truthful
         setErr(`Bulk tag failed on ${failed}/${targets.length} — nothing changed.`);
+      } else if (registeredAny) {
+        // Some of those photographs had no row until just now; re-read so filters see them.
+        router.refresh();
       }
     },
-    [items, selected],
+    [items, selected, router],
   );
 
   const toggleSelect = useCallback((id: string) => {
