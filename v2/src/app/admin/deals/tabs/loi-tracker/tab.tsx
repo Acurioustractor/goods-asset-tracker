@@ -105,11 +105,7 @@ export async function LoiTrackerTab() {
         <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
           Progress toward the QBE match, read <strong>live from GHL</strong> — the source of truth for
           relationships and pipeline stages. Pulls the three Goods pipelines (Demand Register → Buyer
-          Pipeline → Supporter Journey) and maps their stages onto the LOI ladder. Sits beside{' '}
-          <Link href="/admin/deals" className="text-sky-700 underline">
-            /admin/deals
-          </Link>
-          .
+          Pipeline → Supporter Journey) and maps their stages onto the LOI ladder. It is the LOI tab of this board.
         </p>
       </header>
 

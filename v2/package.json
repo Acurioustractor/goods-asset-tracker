@@ -43,6 +43,7 @@
     "check:consent-crossref": "node --env-file=.env.local scripts/check-consent-crossref.mjs",
     "push:outcomes": "node --env-file=.env.local scripts/push-outcome-values.mjs",
     "check:outcome-sync": "node --env-file=.env.local scripts/push-outcome-values.mjs --create --check",
+    "smoke:admin": "node --env-file=.env.local scripts/smoke-admin.mjs",
     "check:content-gate": "node scripts/check-content-gate.mjs"
   },
   "dependencies": {
