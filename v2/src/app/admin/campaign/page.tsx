@@ -10,6 +10,7 @@ import {
 } from '@/lib/ghl/audience-pathways';
 import { findAudienceSegment, findSmartList } from '@/lib/ghl/smart-lists';
 import { PUBLIC_FORMS, type GoodsHears, type TheyGet } from '@/lib/forms/public-forms';
+import { readWorkflowHealth, readInboundHealth } from '@/lib/ghl/send-health';
 import {
   campaignsFor,
   readyToSwitchOn,
@@ -85,7 +86,10 @@ const readinessStyle: Record<PathwayReadiness, string> = {
   'not-started': 'bg-rose-500',
 };
 
-export default function AdminCampaignPage() {
+export const dynamic = 'force-dynamic';
+
+export default async function AdminCampaignPage() {
+  const [workflows, inbound] = await Promise.all([readWorkflowHealth(), readInboundHealth()]);
   const gaps = pathwayGaps();
   const live = AUDIENCE_PATHWAYS.filter((p) => p.readiness === 'live').length;
   const ready = readyToSwitchOn();
@@ -120,6 +124,84 @@ export default function AdminCampaignPage() {
           ))}
         </dl>
       </header>
+
+      <section className="mt-10 grid gap-5 lg:grid-cols-2">
+        <div className="rounded-xl border bg-white p-5">
+          <h2 className="font-serif text-xl">What GHL is doing right now</h2>
+          <p className="mt-2 text-sm leading-relaxed text-slate-600">
+            Read live from the account each time this page loads. A workflow in draft looks exactly
+            like a working one from everywhere except this list.
+          </p>
+          <ul className="mt-4 space-y-3">
+            {workflows.map((w) => (
+              <li key={w.name} className="flex items-start justify-between gap-3 border-b pb-3 last:border-0">
+                <div>
+                  <p className="text-sm font-medium text-slate-900">{w.name}</p>
+                  <p className="mt-0.5 text-xs leading-relaxed text-slate-500">{w.does}</p>
+                  {w.status !== 'published' && (
+                    <p className="mt-1 text-xs leading-relaxed text-rose-700">{w.ifDraft}</p>
+                  )}
+                </div>
+                <span
+                  className={`shrink-0 rounded-full border px-2 py-0.5 text-[10px] font-medium ${
+                    w.status === 'published'
+                      ? 'border-emerald-200 bg-emerald-50 text-emerald-800'
+                      : w.status === 'missing'
+                        ? 'border-slate-200 bg-slate-50 text-slate-600'
+                        : 'border-rose-200 bg-rose-50 text-rose-800'
+                  }`}
+                >
+                  {w.status}
+                </span>
+              </li>
+            ))}
+            {workflows.length === 0 && (
+              <li className="text-sm text-slate-500">
+                No answer from GHL. Either the key is missing here or the account is unreachable,
+                and either way this page cannot tell you what is switched on.
+              </li>
+            )}
+          </ul>
+        </div>
+
+        <div className="rounded-xl border bg-white p-5">
+          <h2 className="font-serif text-xl">What reached a human</h2>
+          <p className="mt-2 text-sm leading-relaxed text-slate-600">
+            Every submission in the last {inbound.windowDays} days, and whether both halves landed:
+            the CRM write and the email to the team. This table is the only place the two meet.
+          </p>
+          <dl className="mt-4 flex gap-8">
+            <div>
+              <dt className="text-xs uppercase tracking-wider text-slate-500">Came in</dt>
+              <dd className="mt-1 font-serif text-3xl">{inbound.total}</dd>
+            </div>
+            <div>
+              <dt className="text-xs uppercase tracking-wider text-slate-500">Clean</dt>
+              <dd className="mt-1 font-serif text-3xl text-emerald-700">{inbound.clean}</dd>
+            </div>
+            <div>
+              <dt className="text-xs uppercase tracking-wider text-slate-500">Still retrying</dt>
+              <dd
+                className={`mt-1 font-serif text-3xl ${inbound.unresolved > 0 ? 'text-rose-700' : 'text-slate-400'}`}
+              >
+                {inbound.unresolved}
+              </dd>
+            </div>
+          </dl>
+          {inbound.oldestUnresolved && (
+            <p className="mt-3 border-l-2 border-rose-300 pl-3 text-xs leading-relaxed text-slate-600">
+              Oldest unresolved: {inbound.oldestUnresolved.kind}, &ldquo;{inbound.oldestUnresolved.subject}
+              &rdquo;, from {inbound.oldestUnresolved.created_at.slice(0, 10)}. The cron picks it up
+              every ten minutes and will keep doing that until it succeeds or somebody stops it.
+            </p>
+          )}
+          {inbound.byKind.length > 0 && (
+            <p className="mt-3 text-xs text-slate-500">
+              {inbound.byKind.map((k) => `${k.count} ${k.kind}`).join(' · ')}
+            </p>
+          )}
+        </div>
+      </section>
 
       <section className="mt-10 rounded-xl border bg-white p-5">
         <h2 className="font-serif text-xl">Every door the public can knock on</h2>

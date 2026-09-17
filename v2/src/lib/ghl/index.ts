@@ -1228,6 +1228,28 @@ export const ghl = {
   },
 
   /**
+   * Every workflow in the account, with its published/draft state.
+   *
+   * The GHL API can read workflows and nothing else: no create, no update, no publish. So this
+   * is the whole of what the app can know about them, and it is worth knowing, because a draft
+   * workflow is indistinguishable from a working one until somebody notices the silence. New
+   * Order Notification was a draft from February to September while people paid on the site.
+   */
+  async listWorkflows(): Promise<{ id: string; name: string; status: string }[]> {
+    if (!GHL_ENABLED) return [];
+    try {
+      const res = await ghlRequest<{ workflows?: { id: string; name: string; status: string }[] }>(
+        '/workflows/',
+        'GET',
+      );
+      return res.workflows || [];
+    } catch (error) {
+      console.error('[GHL] listWorkflows error:', error instanceof Error ? error.message : error);
+      return [];
+    }
+  },
+
+  /**
    * Send a transactional reply to a person, through GHL's own email channel.
    *
    * Why this exists rather than a workflow. GHL's public API can read workflows and nothing
