@@ -182,14 +182,21 @@ export const EXTERNAL_CLAIMS: Claim[] = [
 
   // ── Interest — demand signals, never revenue ──
   {
+    // WITHDRAWN 15 September 2026 (Ben). The range here was not logged, it was made up, and it
+    // was printing on /register, a public page. Locked and digit-free for the same reason the
+    // revenue claim is: assertLedgerSafe protects the locked class from growing a figure back.
+    // The only demand record Goods has is the paid trade, and a paid bed is a sale, not a
+    // request, so it does not belong in this claim either.
     id: 'bed-requests',
     headline: 'Bed requests logged',
-    statement: '200–350 bed requests logged across communities and partners.',
-    figure: '200–350',
-    status: 'interest',
-    ceiling: 'Interest, not committed revenue. No request is counted as a sale.',
+    statement:
+      'Goods does not publish a demand figure. Conversations with communities and partners are ' +
+      'not counted, estimated or totalled, and the only record of demand is beds people have ' +
+      'bought and paid for.',
+    status: 'locked',
+    ceiling: 'No request is counted as a sale, and no total of requests is published at all.',
     evidence: [{ label: 'Impact evidence', href: '/impact' }],
-    asOf: '2026-07-10',
+    asOf: '2026-09-15',
   },
   {
     id: 'buyer-offers',
@@ -256,7 +263,7 @@ export const ANTI_CLAIMS: { statement: string; why: string }[] = [
   },
   {
     statement: 'We do not count demand as revenue.',
-    why: '200–350 logged bed requests are interest. Revenue is a signed purchase, and only signed purchases are reported as revenue.',
+    why: 'Logged bed requests are interest, and since 15 September 2026 no total of them is published. Revenue is a signed purchase, and only signed purchases are reported as revenue.',
   },
   {
     // RULING G/H 2026-07-25: this anti-claim was FALSE as written ("We do not publish an
