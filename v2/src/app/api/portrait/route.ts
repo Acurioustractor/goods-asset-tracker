@@ -63,6 +63,82 @@ function imageResponse(body: ArrayBuffer, contentType: string, cached: boolean) 
   });
 }
 
+/**
+ * EL's OWN MEDIA API IS NOT THE WAY IN ANY MORE.
+ *
+ * Every storyteller portrait in EL is recorded as /api/media/<uuid>/file, and on 17 September
+ * 2026 that endpoint answered {"error":"Not available"} with a 403 for 23 of the 26 Goods
+ * portraits, with or without an API key. The files were never gone: media_assets still had every
+ * row, and the storage paths had been moved under `relocated/`, which is the shape of a migration
+ * that took the API's view of the file with it.
+ *
+ * So resolve the id in the database instead of asking the API. media_assets gives the bucket and
+ * the path, and the service key reads the private story-media bucket directly. Same image, one
+ * hop fewer, and it does not depend on an EL web route staying up.
+ */
+const EL_URL = (process.env.EMPATHY_LEDGER_SUPABASE_URL || '').replace(/\/$/, '');
+const MEDIA_ID = /\/api\/media\/([0-9a-fA-F-]{36})\/file/;
+
+async function fetchViaMediaAssets(mediaId: string): Promise<Response | null> {
+  if (!EL_URL || !EL_KEY) return null;
+  const headers = { apikey: EL_KEY, Authorization: `Bearer ${EL_KEY}` };
+  try {
+    const lookup = await fetch(
+      `${EL_URL}/rest/v1/media_assets?id=eq.${mediaId}&select=storage_bucket,storage_path`,
+      { headers, signal: AbortSignal.timeout(8000) },
+    );
+    if (!lookup.ok) return null;
+    const rows = (await lookup.json()) as { storage_bucket?: string; storage_path?: string }[];
+    const row = rows?.[0];
+    if (!row?.storage_bucket || !row?.storage_path) return null;
+    const objectUrl = `${EL_URL}/storage/v1/object/${row.storage_bucket}/${row.storage_path
+      .split('/')
+      .map(encodeURIComponent)
+      .join('/')}`;
+    const res = await fetch(objectUrl, { headers, signal: AbortSignal.timeout(8000) });
+    return res.ok ? res : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * A STORAGE URL THAT 400s, REPAIRED BY FILENAME — AND ONLY WHEN THE FILENAME IS UNAMBIGUOUS.
+ *
+ * Ana - Bega's portrait is recorded in EL as a public-bucket URL that no longer resolves, while
+ * the file itself sits at relocated/profile-images/storytellers/ana___bega.jpg. The basename
+ * survived the move, so it is enough to find the file again.
+ *
+ * It is enough ONLY when exactly one row matches. Two files called the same thing would make this
+ * a coin toss, and the losing side of that toss is a photograph of the wrong person under
+ * somebody's name, on a page about consent. So more than one match returns nothing and the avatar
+ * falls back to initials, which is the honest answer.
+ */
+async function fetchByFilename(objectUrl: URL): Promise<Response | null> {
+  if (!EL_URL || !EL_KEY) return null;
+  const basename = decodeURIComponent(objectUrl.pathname.split('/').pop() || '');
+  if (!basename || !/\.(jpe?g|png|webp|gif|avif)$/i.test(basename)) return null;
+  const headers = { apikey: EL_KEY, Authorization: `Bearer ${EL_KEY}` };
+  try {
+    const lookup = await fetch(
+      `${EL_URL}/rest/v1/media_assets?storage_path=ilike.*${encodeURIComponent(basename)}&select=storage_bucket,storage_path&limit=2`,
+      { headers, signal: AbortSignal.timeout(8000) },
+    );
+    if (!lookup.ok) return null;
+    const rows = (await lookup.json()) as { storage_bucket?: string; storage_path?: string }[];
+    if (rows.length !== 1) return null; // ambiguous, or nothing. Initials are better than a guess.
+    const row = rows[0];
+    if (!row.storage_bucket || !row.storage_path) return null;
+    const res = await fetch(
+      `${EL_URL}/storage/v1/object/${row.storage_bucket}/${row.storage_path.split('/').map(encodeURIComponent).join('/')}`,
+      { headers, signal: AbortSignal.timeout(8000) },
+    );
+    return res.ok ? res : null;
+  } catch {
+    return null;
+  }
+}
+
 export async function GET(request: NextRequest) {
   const src = request.nextUrl.searchParams.get('src');
   if (!src) return new NextResponse('src required', { status: 400 });
@@ -81,6 +157,18 @@ export async function GET(request: NextRequest) {
   if (cached) return imageResponse(cached.body, cached.contentType, true);
 
   try {
+    // An EL media id resolves through the database, not through EL's media API.
+    const mediaId = src.match(MEDIA_ID)?.[1];
+    if (mediaId) {
+      const viaDb = await fetchViaMediaAssets(mediaId);
+      const dbType = viaDb?.headers.get('content-type') || '';
+      if (viaDb && dbType.startsWith('image/')) {
+        const body = await viaDb.arrayBuffer();
+        cacheSet(src, { body, contentType: dbType, expires: Date.now() + CACHE_TTL_MS });
+        return imageResponse(body, dbType, false);
+      }
+    }
+
     // Supabase storage (public or signed) accepts the service key; the
     // empathyledger.com proxy ignores it. Follow redirects (default).
     const upstream = await fetch(url.toString(), {
@@ -88,9 +176,17 @@ export async function GET(request: NextRequest) {
       // 8s: portrait fetch shouldn't hang a page
       signal: AbortSignal.timeout(8000),
     });
-    const ct = upstream.headers.get('content-type') || '';
+    let ct = upstream.headers.get('content-type') || '';
     if (!upstream.ok || !ct.startsWith('image/')) {
-      return new NextResponse('not an image', { status: 404 });
+      // A moved file keeps its name. One unambiguous match, or initials.
+      const repaired = url.hostname.endsWith('supabase.co') ? await fetchByFilename(url) : null;
+      const repairedType = repaired?.headers.get('content-type') || '';
+      if (!repaired || !repairedType.startsWith('image/')) {
+        return new NextResponse('not an image', { status: 404 });
+      }
+      const repairedBody = await repaired.arrayBuffer();
+      cacheSet(src, { body: repairedBody, contentType: repairedType, expires: Date.now() + CACHE_TTL_MS });
+      return imageResponse(repairedBody, repairedType, false);
     }
     const body = await upstream.arrayBuffer();
     cacheSet(src, { body, contentType: ct, expires: Date.now() + CACHE_TTL_MS });
