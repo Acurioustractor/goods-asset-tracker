@@ -15,7 +15,7 @@
  * machine the repo is on and the files get committed like every other curation decision.
  */
 
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface Dropped {
   ok: boolean;
@@ -28,11 +28,36 @@ interface Dropped {
   indexed?: boolean;
   contentId?: string | null;
   community?: string | null;
+  appliedTags?: string[];
   /** What the browser actually put on the drag, when nothing usable came through. */
   debug?: string;
 }
 
+const SESSION_KEY = 'goods.mediaroom.sessionTags';
+
 export function PhotoDrop() {
+  /*
+   * THE SESSION TAG SET. Type it once and every photograph dropped afterwards carries it,
+   * through a reload and into tomorrow, until it is changed. Working on Snow all afternoon means
+   * typing use:snow once rather than forty times.
+   */
+  const [sessionTags, setSessionTags] = useState('');
+  useEffect(() => {
+    try {
+      setSessionTags(window.localStorage.getItem(SESSION_KEY) ?? '');
+    } catch {
+      /* private window, no memory, no harm */
+    }
+  }, []);
+  const rememberSession = useCallback((v: string) => {
+    setSessionTags(v);
+    try {
+      window.localStorage.setItem(SESSION_KEY, v);
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
   const [over, setOver] = useState(false);
   const [busy, setBusy] = useState(0);
   const [results, setResults] = useState<Dropped[]>([]);
@@ -41,7 +66,10 @@ export function PhotoDrop() {
   const send = useCallback(async (init: RequestInit) => {
     setBusy((n) => n + 1);
     try {
-      const res = await fetch('/api/admin/photo-drop', init);
+      const qs = sessionTags.trim()
+        ? `?tags=${encodeURIComponent(sessionTags.split(/[,\s]+/).filter(Boolean).join(','))}`
+        : '';
+      const res = await fetch(`/api/admin/photo-drop${qs}`, init);
       const data = (await res.json()) as Dropped;
       setResults((prev) => [data, ...prev].slice(0, 12));
     } catch (e) {
@@ -49,7 +77,7 @@ export function PhotoDrop() {
     } finally {
       setBusy((n) => n - 1);
     }
-  }, []);
+  }, [sessionTags]);
 
   const sendFile = useCallback(
     (file: File) => {
@@ -142,6 +170,20 @@ export function PhotoDrop() {
 
   return (
     <div className="mb-6">
+      <label className="mb-2 flex items-center gap-2 text-xs">
+        <span className="shrink-0 text-muted-foreground">Tag everything I drop with</span>
+        <input
+          value={sessionTags}
+          onChange={(e) => rememberSession(e.target.value)}
+          placeholder="use:snow"
+          className="flex-1 rounded-lg border border-input bg-background px-2.5 py-1.5 font-mono text-xs focus:outline-none focus:ring-2 focus:ring-ring"
+        />
+        {sessionTags.trim() && (
+          <button type="button" onClick={() => rememberSession('')} className="text-muted-foreground underline">
+            clear
+          </button>
+        )}
+      </label>
       <div
         onDragOver={(e) => {
           e.preventDefault();
@@ -241,7 +283,16 @@ function DroppedCard({ item }: { item: Dropped }) {
   }, [caption, community, extra, item.contentId]);
 
   return (
-    <li className="rounded-lg border border-border p-3">
+    <li
+      className="rounded-lg border p-3 transition-colors"
+      style={
+        state === 'saved'
+          ? { borderColor: '#5E7A4C', backgroundColor: '#EEF1E9' }
+          : state === 'error'
+            ? { borderColor: '#C45C3E' }
+            : undefined
+      }
+    >
       <div className="flex gap-3">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={item.url} alt="" className="h-24 w-24 shrink-0 rounded object-cover" />
@@ -250,6 +301,7 @@ function DroppedCard({ item }: { item: Dropped }) {
             {item.exif?.date ? `Taken ${item.exif.date}` : 'No date in the file'}
             {item.trip ? ` · ${item.trip.what}` : ''}
             {item.exif?.model ? ` · ${[item.exif.make, item.exif.model].filter(Boolean).join(' ')}` : ''}
+            {item.appliedTags?.length ? ` · already tagged ${item.appliedTags.join(' ')}` : ''}
           </p>
           <input
             value={caption}
@@ -276,10 +328,25 @@ function DroppedCard({ item }: { item: Dropped }) {
               disabled={state === 'saving'}
               className="rounded-lg bg-foreground px-3 py-1.5 text-xs font-semibold text-background hover:opacity-90 disabled:opacity-50"
             >
-              {state === 'saving' ? 'Saving…' : state === 'saved' ? 'Saved' : 'Save'}
+              {state === 'saving' ? 'Saving…' : state === 'saved' ? 'Saved ✓' : 'Save'}
             </button>
           </div>
-          {state === 'error' && <p className="text-[11px] text-amber-700">{error}</p>}
+          {state === 'saved' && (
+            <p className="text-[11px] font-semibold" style={{ color: '#5E7A4C' }}>
+              Saved. The caption is live on every page that shows this photograph.
+            </p>
+          )}
+          {state === 'error' && (
+            <p className="rounded px-2 py-1 text-[11px] font-semibold" style={{ backgroundColor: '#F6E4DE', color: '#9A4023' }}>
+              Did not save: {error}
+            </p>
+          )}
+          {!item.contentId && state === 'idle' && (
+            <p className="text-[11px] text-amber-700">
+              This one landed before the page was reloaded, so there is nothing to save against. Hard reload and
+              drop it again.
+            </p>
+          )}
         </div>
       </div>
     </li>

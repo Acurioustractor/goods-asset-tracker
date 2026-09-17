@@ -107,7 +107,19 @@ export async function POST(req: Request) {
 
   const exif = readExif(bytes);
   const trip = tripFor(exif.date);
-  const areaParam = new URL(req.url).searchParams.get('area');
+  const params = new URL(req.url).searchParams;
+  const areaParam = params.get('area');
+  /*
+   * THE SESSION TAGS. Ben, 17 September: every photo I drag in this session should be tagged
+   * snow automatically, and take other metadata as needed. So the drop zone carries a standing
+   * tag set and every photograph that lands gets it without anyone pressing anything. It is the
+   * difference between tagging forty photographs and tagging a session once.
+   */
+  const sessionTags = (params.get('tags') ?? '')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .slice(0, 12);
   const area = safeArea(areaParam ?? (trip ? areaForTrip(trip) : null));
   const name = photoFilename(originalName, exif.date);
   const rel = `/images/${area}/${name}`;
@@ -153,7 +165,7 @@ export async function POST(req: Request) {
           media_type: 'image',
           checksum,
           area: area.split('/')[0],
-          tags: trip ? [`community:${trip.community}`] : [],
+          tags: [...new Set([...(trip ? [`community:${trip.community}`] : []), ...sessionTags])],
           consent_tier: 'gated',
         })
         .select('id')
@@ -171,6 +183,7 @@ export async function POST(req: Request) {
     indexed,
     contentId,
     community: trip?.community ?? null,
+    appliedTags: [...new Set([...(trip ? [`community:${trip.community}`] : []), ...sessionTags])],
     bytes: bytes.byteLength,
     exif,
     trip: trip ? { community: trip.community, what: trip.what } : null,
