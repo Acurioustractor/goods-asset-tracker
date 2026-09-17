@@ -22,6 +22,7 @@ import {
   LANE_COMMUNITY,
 } from './canonical-tags';
 import { routeForSubject } from './inquiry-routing';
+import { isSuppressed } from './smart-lists';
 
 // Configuration from environment
 const GHL_API_KEY = process.env.GHL_API_KEY || '';
@@ -1223,6 +1224,64 @@ export const ghl = {
     } catch (error) {
       console.error('[GHL] addInboundEmail error:', error instanceof Error ? error.message : error);
       return { success: false };
+    }
+  },
+
+  /**
+   * Send a transactional reply to a person, through GHL's own email channel.
+   *
+   * Why this exists rather than a workflow. GHL's public API can read workflows and nothing
+   * else: there is no create, no update and no publish, so every workflow is dashboard clicking
+   * by one person, which is why New Order Notification sat as a draft from February while people
+   * paid and heard nothing. This endpoint is the same one `sendSms` already uses. The message
+   * lands in the contact's Conversations thread and goes out from the GHL sending domain, so
+   * "GHL owns every send" still holds: GHL is sending it.
+   *
+   * TRANSACTIONAL ONLY. A reply to something the person did: they paid, they reported a fault,
+   * they asked for the pack. Never a campaign, never a list, never anything a group receives at
+   * a time of our choosing. That is what `comms:` enrolment and a real workflow are for, because
+   * a marketing send needs the unsubscribe handling this path does not have.
+   *
+   * It refuses to send to a contact on do-not-disturb or carrying a suppression tag. A workflow
+   * checks that for you and this does not, so it is checked here, before the send, every time.
+   */
+  async sendTransactionalReply(opts: {
+    contactId: string;
+    subject: string;
+    html: string;
+    text: string;
+  }): Promise<{ success: boolean; messageId?: string; skipped?: 'suppressed'; error?: string }> {
+    if (!GHL_ENABLED) {
+      console.log('[GHL] Disabled — would reply:', opts.subject);
+      return { success: true };
+    }
+    if (!opts.contactId || !cleanString(opts.subject) || !cleanString(opts.html)) {
+      return { success: false, error: 'contactId, subject and html are required' };
+    }
+
+    try {
+      const contact = await ghlRequest<{
+        contact?: { dnd?: boolean; tags?: string[]; email?: string };
+      }>(`/contacts/${opts.contactId}`, 'GET');
+      const dnd = contact.contact?.dnd === true;
+      const suppressed = isSuppressed(contact.contact?.tags);
+      if (dnd || suppressed) {
+        console.log('[GHL] Not replying, contact is suppressed:', opts.contactId);
+        return { success: false, skipped: 'suppressed' };
+      }
+
+      const res = await ghlRequest<{ messageId?: string }>('/conversations/messages', 'POST', {
+        type: 'Email',
+        contactId: opts.contactId,
+        subject: opts.subject,
+        html: opts.html,
+        message: opts.text,
+      });
+      return { success: true, messageId: res.messageId };
+    } catch (error) {
+      const errMsg = error instanceof Error ? error.message : 'Unknown error';
+      console.error('[GHL] sendTransactionalReply error:', errMsg);
+      return { success: false, error: errMsg };
     }
   },
 

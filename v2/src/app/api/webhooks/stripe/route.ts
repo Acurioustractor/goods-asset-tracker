@@ -3,6 +3,7 @@ import Stripe from 'stripe';
 import { constructWebhookEvent, getStripe, type StripeMode } from '@/lib/stripe';
 import { createServiceClient } from '@/lib/supabase/server';
 import { ghl } from '@/lib/ghl';
+import { buildOrderConfirmation } from '@/lib/comms/order-confirmation';
 
 function modeFor(obj: { livemode?: boolean }): StripeMode {
   return obj.livemode ? 'live' : 'test';
@@ -277,6 +278,41 @@ async function handleCheckoutSessionCompleted(
     console.log(`[GHL] ✓ Contact created/updated for order ${order.order_number}, contact ID: ${ghlResult.contact?.id}`);
   } else {
     console.error(`[GHL] ✗ Contact creation failed for order ${order.order_number}: ${ghlResult.error}`);
+  }
+
+  // Tell the person. The success page says "Confirmation sent to <email>" and until this existed
+  // nothing sent one: the New Order Notification workflow has been a draft since February, and
+  // the GHL API cannot publish a workflow. This goes out through GHL's email channel, so the send
+  // still belongs to GHL and it lands in the same Conversations thread as everything else.
+  if (ghlResult.contact?.id) {
+    try {
+      const email = buildOrderConfirmation({
+        name: ghlContactData.name,
+        orderNumber: order.order_number,
+        totalCents,
+        isSponsorship,
+        sponsoredCommunity: sponsoredCommunity || undefined,
+        sponsorMessage: sponsorMessage || undefined,
+        itemCount: orderItems.reduce((n, item) => n + (item.quantity || 1), 0) || undefined,
+      });
+      const reply = await ghl.sendTransactionalReply({
+        contactId: ghlResult.contact.id,
+        subject: email.subject,
+        html: email.html,
+        text: email.text,
+      });
+      if (reply.skipped === 'suppressed') {
+        console.warn(`[Order] ${order.order_number}: buyer is on do-not-contact, no confirmation sent`);
+      } else if (!reply.success) {
+        console.error(`[Order] ${order.order_number}: confirmation failed: ${reply.error}`);
+      } else {
+        console.log(`[Order] ${order.order_number}: confirmation sent`);
+      }
+    } catch (error) {
+      // Never fail the webhook over an email. Stripe retries a failed webhook and the order is
+      // already written, so a throw here would double-process a paid order.
+      console.error('[Order] Could not send the confirmation:', error);
+    }
   }
 
   console.log(`Successfully processed checkout session ${session.id}`);

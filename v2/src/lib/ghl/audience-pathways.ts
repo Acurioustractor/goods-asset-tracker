@@ -188,10 +188,11 @@ export const AUDIENCE_PATHWAYS: AudiencePathway[] = [
         door: 'Buy one Stretch Bed online, at /shop/stretch-bed-single',
         handler: 'api/webhooks/stripe/route.ts',
         tags: ['role:buyer', 'interest:beds'],
-        state: 'built-off',
+        state: 'live',
         note:
-          'createOrderContact triggers WORKFLOWS.newOrder and the New Order Notification workflow ' +
-          'is switched off in GHL, so somebody pays and hears nothing.',
+          'The confirmation is built and sent from the webhook through GHL Conversations. It used ' +
+          'to rely on the New Order Notification workflow, which has been a draft since February, ' +
+          'so somebody paid, read "Confirmation sent to you" on the success page, and heard nothing.',
       },
       {
         door: 'Registers interest in a washing machine',
@@ -238,7 +239,7 @@ export const AUDIENCE_PATHWAYS: AudiencePathway[] = [
         id: 'buyer-ordered',
         name: 'Ordered',
         where: 'GOODS - Buyers, invoiced by A Curious Tractor Pty Ltd',
-        theyGet: 'An invoice, and a production slot.',
+        theyGet: 'A confirmation naming the order, what the bed is made of and who to ring. A sponsor gets where it is going and their own words read back.',
         messageClass: 'answer',
         advance: 'Payment, then the beds are made.',
         state: 'manual',

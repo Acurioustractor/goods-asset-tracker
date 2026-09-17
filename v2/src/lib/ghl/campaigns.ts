@@ -105,15 +105,13 @@ export const CAMPAIGNS: Campaign[] = [
     kind: 'reply',
     recipient: 'the person',
     channel: 'ghl-email',
-    trigger: 'Stripe payment, then WORKFLOWS.newOrder from lib/ghl/index.ts',
+    trigger: 'Stripe payment, then the confirmation is built and sent from the webhook',
     consentBasis: 'They bought something. This is about their order.',
     cadence: 'Once per order.',
     owner: 'ben',
-    status: 'built-off',
+    status: 'live',
     brief:
-      'What they bought, when it ships, who to ring, and the QR that comes on the bed. The code already fires the workflow.',
-    blockedOn:
-      'New Order Notification is switched off in GHL. Somebody pays online today and hears nothing at all. This is the shortest distance between here and a person not being ignored.',
+      'What they bought, what the bed is made of, that tracking follows when it ships, and the QR on the bed. A sponsor gets a different one: where the bed is going, their dedication read back, and the QR link when it lands. Sent from code through GHL Conversations rather than a workflow, because the GHL API cannot publish a workflow and New Order Notification sat as a draft from February while people paid. The copy is in lib/comms/order-confirmation.ts and guarded.',
   },
   {
     id: 'buyer-reorder',
