@@ -64,10 +64,10 @@ describe('the SVG sheet', () => {
 
 describe('the raise', () => {
   it('adds up: QBE plus three lots of 133 beds plus the SEFA loan is the total', () => {
-    expect(RAISE.bedsAud).toBe(100_000 + 99_750 + 100_000);
+    expect(RAISE.bedsAud).toBe(99_750 * 3);
     expect(RAISE.loanAud).toBe(150_000);
     expect(RAISE.qbeAud + RAISE.bedsAud + RAISE.loanAud).toBe(RAISE.totalAud);
-    expect(RAISE.totalAud).toBe(749_750);
+    expect(RAISE.totalAud).toBe(749_250);
   });
   it('is asked, not signed', () => {
     expect(RAISE.signedAud).toBe(0);
@@ -81,11 +81,13 @@ describe('the raise', () => {
   it('prints as Australian dollars, one figure, no range', () => {
     expect(aud(300_000)).toBe('A$300,000');
     expect(audRange(200_000, 300_000)).toBe('A$200,000 to 300,000');
-    expect(dollars(599_750)).toBe('$599,750');
+    expect(dollars(599_250)).toBe('$599,250');
     expect(SHEET.raiseHeading).toBe('Asked $750,000');
-    // The sheet rounds; the applications do not. Hold the rounding to $250.
-    expect(Math.abs(RAISE.totalShownAud - RAISE.totalAud)).toBeLessThanOrEqual(250);
-    expect(Math.abs(RAISE.bedsShownAud - RAISE.bedsAud)).toBeLessThanOrEqual(250);
+    // The sheet rounds; the applications do not. Hold the rounding to $750, which is one bed.
+    // It was $250 while two of the three bed lots were a round $100,000. Ben settled them at
+    // 133 beds each on 17 September, so the sheet now rounds up by exactly one bed.
+    expect(Math.abs(RAISE.totalShownAud - RAISE.totalAud)).toBeLessThanOrEqual(750);
+    expect(Math.abs(RAISE.bedsShownAud - RAISE.bedsAud)).toBeLessThanOrEqual(750);
     expect(RAISE.qbeAud + RAISE.bedsShownAud + RAISE.loanAud).toBe(RAISE.totalShownAud);
     for (const s of strings) expect(s).not.toMatch(/500,000 to 600,000|200,000 to 300,000/);
   });

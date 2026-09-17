@@ -31,16 +31,21 @@ export const RAISE = {
   qbeAud: 300_000,
   qbeFor: 'Two community production facilities',
   /** Three grants, each 133 beds at $750: Tim Fairfax year one, Brian M. Davis, Snow. Ben, 15 September 2026. */
-  bedsAud: 299_750,
+  bedsAud: 299_250,
   bedsFor: 'Paid by philanthropy. 400 beds, 100 to each of four community organisations, theirs to sell or give out.',
   /** SEFA's loan for the first-year running cost, inside the ask. Ben, 15 September 2026 (evening ruling). */
   loanAud: 150_000,
   loanFor: 'First-year running cost, repaid from beds sold.',
-  totalAud: 749_750,
+  totalAud: 749_250,
   /**
    * What the placemat prints. Ben, 15 September 2026: round the sheet to $300,000 of beds. The
-   * applications keep the exact figures ($99,750 a grant, $749,750 in all); the sheet rounds by
-   * $250 and the guard below holds it to that.
+   * applications keep the exact figures ($99,750 a grant, $749,250 in all); the sheet rounds by
+   * $750 and the guard below holds it to that.
+   *
+   * SETTLED 17 September 2026, Ben: all three bed grants are the same lot, 133 beds at $750.
+   * The old $299,750 was $100,000 + $99,750 + $100,000, which is 399.67 beds and divides by
+   * nothing. Tim Fairfax's $100,000 a year is Katie Norman's own offer and stays their number;
+   * what we ASK for is a lot of beds.
    */
   bedsShownAud: 300_000,
   totalShownAud: 750_000,
@@ -71,7 +76,7 @@ export function aud(n: number): string {
   return `A$${n.toLocaleString('en-AU')}`;
 }
 
-/** The placemat prints plain dollars: `$599,750`. Ben, 15 September 2026: no A on the dollars. */
+/** The placemat prints plain dollars: `$599,250`. Ben, 15 September 2026: no A on the dollars. */
 export function dollars(n: number): string {
   return `$${n.toLocaleString('en-AU')}`;
 }

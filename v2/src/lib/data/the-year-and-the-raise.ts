@@ -198,7 +198,7 @@ export const ASKS: readonly Ask[] = [
   },
   {
     funder: 'Tim Fairfax Family Foundation',
-    amountAud: 100_000,
+    amountAud: GRANT_LOT_AUD,
     job: 'beds',
     stage: 'invited',
     source: `Katie Norman, 31 August 2026: a three-year grant of $300,000 in three equal payments under General Operating Support. Ben, 15 September 2026: year one buys ${BEDS_A_GRANT} beds at $${BED_PRICE_AUD}; the organisation's share is the contribution those beds hand back. The form's operating framing is a flag, not a job.`,
@@ -212,10 +212,10 @@ export const ASKS: readonly Ask[] = [
   },
   {
     funder: 'Snow Foundation',
-    amountAud: 100_000,
+    amountAud: GRANT_LOT_AUD,
     job: 'beds',
     stage: 'not-sent',
-    source: 'Ben wrote $100,000 on 10 September and ruled it counts as beds, 133 at $750. The ask has not been sent.',
+    source: 'Ben wrote $100,000 on 10 September and ruled it counts as beds, 133 at $750. Ben, 17 September 2026: the ask is the bed lot, $99,750, which is what the letter body has always said. The ask has not been sent.',
   },
   {
     funder: 'SEFA, Backing the Bold',
