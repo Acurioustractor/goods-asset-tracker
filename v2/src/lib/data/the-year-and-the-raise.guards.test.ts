@@ -214,11 +214,14 @@ describe('the double count', () => {
 });
 
 describe('the raise', () => {
-  it('four grants total $599,750 and the loan inside the ask is $150,000', () => {
-    expect(year.GRANTS_ASKED_AUD).toBe(300_000 + 100_000 + GRANT_LOT_AUD + 100_000);
-    expect(year.GRANTS_ASKED_AUD).toBe(599_750);
+  it('four grants total $599,250 and the loan inside the ask is $150,000', () => {
+    // Ben, 17 September 2026: the three bed grants are one lot each, so this is QBE plus
+    // three times GRANT_LOT_AUD. It was QBE + $100,000 + the lot + $100,000, which asked two
+    // funders for $250 more than 133 beds cost.
+    expect(year.GRANTS_ASKED_AUD).toBe(300_000 + GRANT_LOT_AUD * 3);
+    expect(year.GRANTS_ASKED_AUD).toBe(599_250);
     expect(year.LOAN_ASKED_AUD).toBe(150_000);
-    expect(ASKED_AUD).toBe(749_750);
+    expect(ASKED_AUD).toBe(749_250);
     expect(ASKS).toHaveLength(5);
     expect(ASKS.filter((a) => a.instrument === 'loan')).toHaveLength(1);
   });

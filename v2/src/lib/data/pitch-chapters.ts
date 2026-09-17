@@ -276,14 +276,14 @@ export const VOICES_BY_CHAPTER = {
 
 /**
  * S16, QBE door only. The year's ask line by line, keyed to the funding lines in grants.ts for
- * the funder's name and status. Adds to RAISE.totalAud ($749,750) and the bed lots to
+ * the funder's name and status. Adds to RAISE.totalAud ($749,250) and the bed lots to
  * RAISE.bedsAud; pitch-chapters.raise.test.ts holds both. Tim Fairfax counts year one only.
  */
 export const RAISE_BREAKDOWN = [
   { line: 'qbe', buys: 'Two community production facilities', aud: RAISE.qbeAud },
-  { line: 'tff', buys: '133 beds, year one of three', aud: 100_000 },
+  { line: 'tff', buys: '133 beds, year one of three', aud: 99_750 },
   { line: 'bmd', buys: '133 beds', aud: 99_750 },
-  { line: 'snow', buys: '133 beds', aud: 100_000 },
+  { line: 'snow', buys: '133 beds', aud: 99_750 },
   { line: 'sefa', buys: 'First-year running cost, repaid from beds sold', aud: RAISE.loanAud },
 ] as const;
 

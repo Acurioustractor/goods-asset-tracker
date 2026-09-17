@@ -83,6 +83,24 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
     tier: 'external',
     turns: '3, 5 → scale',
     quotes: [
+      // Three cleared by Ben 2026-09-17 from the EL transcript of 1 April 2026, "Pakkimjalki
+      // Kari: Beds, Washing Machines, and the Blessings We Share". Verbatim. That transcript is
+      // standard sensitivity, not sacred, and its consent snapshot is clean.
+      {
+        text: 'It makes me feel proud.',
+        context: 'Asked how it feels to have a washing machine named in Warumungu, 1 April 2026',
+        status: 'approved',
+      },
+      {
+        text: "That's something Central Australia need, just something so simple, especially coming out of recycled, and is turning into something so unique for our mob in the bush or on the communities.",
+        context: 'On the bed, and on what recycled plastic is for, 1 April 2026',
+        status: 'approved',
+      },
+      {
+        text: 'But those two young fellows that are doing something. They offered us and shared their blessings with us. So I shared my blessings to them.',
+        context: 'On Ben and Nic, and why she helped, 1 April 2026',
+        status: 'approved',
+      },
       {
         // Ben, 15 Sep 2026: print only the first sentence; the rest of the transcript stays in the note.
         text: 'It means something that really makes me happy.',
@@ -317,6 +335,14 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
         text: 'Our strengths is our culture, our country, you know, and our language.',
         context: 'Culture as strength',
         status: 'primary',
+      },
+      {
+        // Cleared by Ben 2026-09-17 from the EL transcript of 7 July 2025. Verbatim, including
+        // the repeated "it's": this is why the machine has to be simple and repairable, said by
+        // a Warumungu man rather than by us.
+        text: "I think you make something more simple. And for day to day then it's just, it's easier to fix, I would say for a washing machine, I really like that project.",
+        context: 'Why the machine has to be simple and repairable, 7 July 2025',
+        status: 'approved',
       },
       {
         text: 'We challenge a lot of that and try to make a difference. Make it easier for our people to live in their homes.',
@@ -569,7 +595,7 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
   {
     slug: 'karen-liddle',
     name: 'Karen Liddle',
-    role: 'Oonchiumpa co-founder',
+    role: 'Oonchiumpa board member',
     community: 'Utopia (Oonchiumpa)',
     tier: 'external',
     turns: '4 → 5',
