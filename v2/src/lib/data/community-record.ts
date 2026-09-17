@@ -59,6 +59,7 @@
  * own pace. `modules` is a menu, and the record reports which ones they asked for.
  */
 
+import { resolvePlace } from './place-registry';
 import { COMMUNITY_BED_CANON } from './community-canonical';
 import { WASHERS_IN_COMMUNITY_BY_COMMUNITY } from './asset-canonical';
 import { PLASTIC_KG_PER_BED } from './products';
@@ -127,6 +128,25 @@ export const PATHWAY_TO_COMMUNITY: Record<string, string> = {
 export const COMMUNITY_ID_FOR_SLUG: Record<string, string> = {
   'utopia-homelands': 'utopia',
 };
+
+/**
+ * Fold any spelling of a place to one key, through the place registry.
+ *
+ * The comment above describes the Utopia bug: /communities/[slug] said `utopia-homelands`, the
+ * register said `utopia`, and communityRecord returned null for the one community the module was
+ * written to fix. On 17 September 2026 the same bug was found again, in the other direction.
+ * COMMUNITY_BED_CANON keys Mt Isa as `mount-isa` and the Supabase communities table calls it
+ * `mt-isa`, so the admin drill page got null for a community with beds in it.
+ *
+ * A second hand-kept alias map would have fixed Mt Isa and waited for the third one. The place
+ * registry already holds every spelling of every place and is guarded by check-place-registry.mjs,
+ * so both sides of the lookup fold through it and a new spelling works everywhere at once.
+ * COMMUNITY_ID_FOR_SLUG stays as an override for anything the registry has never seen.
+ */
+function placeKeyFor(id: string): string {
+  const mapped = COMMUNITY_ID_FOR_SLUG[id] ?? id;
+  return resolvePlace(mapped)?.id ?? mapped;
+}
 
 export function communityIdForPathway(pathwayId: string): string {
   return PATHWAY_TO_COMMUNITY[pathwayId] ?? pathwayId;
@@ -200,9 +220,10 @@ export function communityRecord(
   // non-deterministic at build time by reaching for today's date to satisfy a signature.
   opts: { asOf?: string } = {},
 ): CommunityRecord | null {
-  communityId = COMMUNITY_ID_FOR_SLUG[communityId] ?? communityId;
-  const canon = COMMUNITY_BED_CANON.find((c) => c.id === communityId);
-  const pathway = pathwayForCommunity(communityId);
+  const key = placeKeyFor(communityId);
+  const canon = COMMUNITY_BED_CANON.find((c) => placeKeyFor(c.id) === key);
+  const pathway = pathwayForCommunity(communityId) ?? COMMUNITY_PATHWAYS.find((p) => placeKeyFor(communityIdForPathway(p.id)) === key);
+  communityId = canon?.id ?? communityId;
   if (!canon && !pathway) return null;
 
   const name = canon?.registerName ?? pathway?.name ?? communityId;

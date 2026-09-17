@@ -10,6 +10,7 @@ import { getCommunityVoices, getCommunityStories } from '@/lib/data/community-st
 import CommunityPresent, { type PresentSlide } from './community-present';
 import { getMediaLinksFor, getPeopleInMediaFor } from '@/lib/data/media-links';
 import { StorytellerAvatar } from '@/components/storyteller-avatar';
+import { CommunityCanonRecord } from '@/components/admin/community-canon-record';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -410,6 +411,9 @@ export default async function CommunityDetailPage({
         <Kpi label="Open Demand" value={fmt(rollup.open_demand_qty)} sub={fmtMoney(rollup.open_demand_value_cents)} />
         <Kpi label="Demand Gap" value={fmt(gap)} sub={gap > 0 ? 'beds short of demand' : 'fulfilled or no demand'} highlight={gap > 20} />
       </section>
+
+      {/* The canon record: what the system holds, and what may be said about each part */}
+      <CommunityCanonRecord communityId={id} liveBeds={rollup.deployed_beds} />
 
       {/* Next phase — how we support this community */}
       <section id="support" className="scroll-mt-24 rounded-2xl border bg-card p-5">
