@@ -160,14 +160,13 @@ export const CAMPAIGNS: Campaign[] = [
     kind: 'reply',
     recipient: 'the person',
     channel: 'ghl-email',
-    trigger: 'Contact tag added project-goods, branch 3: interest:capital',
+    trigger: 'A Facility Funding Inquiry through the contact form, sent from the route itself',
     consentBasis: 'They wrote to us.',
     cadence: 'Once, within a minute.',
     owner: 'ben',
-    status: 'drafted',
+    status: 'live',
     brief:
-      'What a facility is and is not, what their money would buy, and the one question back: who else should be on the call. Written in the 17 September branch note.',
-    blockedOn: 'Branch 3 not built in GHL. Third in the rollout order, after support and bulk order.',
+      'What a facility is: a plant in a community that presses beds, employs local people and moves toward that community owning it. Names both kinds of capital, grant and recoverable, so a funder who can only do one does not have to guess. Commits to the numbers within two business days rather than to a meeting.',
   },
   {
     id: 'funder-unsubscribe-alarm',
@@ -182,8 +181,9 @@ export const CAMPAIGNS: Campaign[] = [
     owner: 'ben',
     status: 'not-built',
     brief:
-      'Raise a task on Ben the moment a funder opts out, with the email that preceded it. The generic acknowledgement carries an unsubscribe link, so a funder who clicks it stops receiving Goods email entirely and the only trace is a suppression flag nobody opens.',
-    blockedOn: 'Nothing watches the suppression state. One workflow, one task, no email to anybody outside.',
+      'Raise a task on Ben the moment a funder opts out, with the email that preceded it. The only trace today is a suppression flag nobody opens.',
+    blockedOn:
+      'Nothing watches the suppression state. Smaller than it was: a capital enquiry now gets a transactional reply with no unsubscribe footer, so the acknowledgement can no longer cost a funder their whole email relationship. Any funder who arrives through another subject still gets the generic letter and its footer.',
   },
   {
     id: 'funder-stewardship',

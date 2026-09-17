@@ -12,6 +12,7 @@ vi.mock('@/lib/ghl', () => ({
 
 const { acknowledgeOrReply, REPLY_BUILDERS, subjectsWithOwnReply } = await import('./replies');
 const { buildMediaPackReply } = await import('./media-pack-reply');
+const { buildCapitalReply } = await import('./capital-reply');
 
 /**
  * One person, one reply. The whole point of putting this decision in a function rather than in
@@ -118,5 +119,35 @@ describe('the media pack reply', () => {
   it('makes the link clickable without breaking the escaping', () => {
     expect(email.html).toContain('href="https://www.goodsoncountry.com/press"');
     expect(email.html).not.toContain('<script');
+  });
+});
+
+describe('the capital reply', () => {
+  const email = buildCapitalReply({});
+
+  it('says what a facility is before asking anybody to fund one', () => {
+    expect(email.text).toContain('presses beds from recycled plastic');
+    expect(email.text).toContain('employs local people');
+  });
+
+  it('keeps ownership a pathway, never a finished claim', () => {
+    expect(email.text).toContain('moves toward that community owning it');
+    expect(email.text.toLowerCase()).not.toContain('community owned facility');
+    expect(email.text.toLowerCase()).not.toContain('owned by the community');
+  });
+
+  it('names both kinds of capital, so a funder who can only do one does not guess', () => {
+    expect(email.text).toContain('grant');
+    expect(email.text).toContain('recoverable');
+  });
+
+  it('commits to the numbers rather than to a meeting', () => {
+    expect(email.text).toContain('what a facility costs to stand up');
+    expect(email.text).toContain('two business days');
+  });
+
+  it('carries no unsubscribe, which is the whole reason it is not a workflow', () => {
+    expect(email.text.toLowerCase()).not.toContain('unsubscribe');
+    expect(email.html.toLowerCase()).not.toContain('unsubscribe');
   });
 });

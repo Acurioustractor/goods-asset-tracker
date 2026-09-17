@@ -21,6 +21,7 @@
 import { ghl } from '@/lib/ghl';
 import { buildBulkOrderReply } from './bulk-order-reply';
 import { buildMediaPackReply } from './media-pack-reply';
+import { buildCapitalReply } from './capital-reply';
 
 export interface BuiltEmail {
   subject: string;
@@ -43,6 +44,7 @@ export interface ReplyContext {
 export const REPLY_BUILDERS: Record<string, (ctx: ReplyContext) => BuiltEmail> = {
   'Bulk Order Inquiry': buildBulkOrderReply,
   'Media Pack Request': buildMediaPackReply,
+  'Facility Funding Inquiry': buildCapitalReply,
 };
 
 export type ReplyOutcome = 'replied' | 'acknowledged' | 'failed';

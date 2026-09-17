@@ -367,8 +367,12 @@ export const AUDIENCE_PATHWAYS: AudiencePathway[] = [
         door: 'Fund a facility, from /pitch',
         handler: 'api/contact/route.ts',
         subject: 'Facility Funding Inquiry',
-        tags: ['role:funder', 'interest:capital', 'act-inquiry', 'project-goods', 'project:act-gd'],
+        tags: ['role:funder', 'interest:capital', 'act-inquiry', 'project:act-gd'],
         state: 'live',
+        note:
+          'Gets its own reply now, which is also what took the unsubscribe footer off this lane. ' +
+          'A funder who arrives through any other subject still gets the generic letter and can ' +
+          'still opt out of Goods email entirely by clicking it.',
       },
       {
         door: 'We apply: QBE, Brian M. Davis, TFFF, SEFA, Snow',
@@ -383,12 +387,12 @@ export const AUDIENCE_PATHWAYS: AudiencePathway[] = [
         id: 'funder-identified',
         name: 'Identified',
         where: 'GOODS - Funding, stage Identified',
-        theyGet: 'The acknowledgement, then a person.',
+        theyGet: 'A reply that says what a facility is, then the numbers within two business days.',
         messageClass: 'answer',
         advance: 'A conversation, then an ask with evidence behind it.',
-        state: 'built-off',
+        state: 'live',
         gap:
-          'The generic acknowledgement carries an unsubscribe link. A funder who clicks it stops receiving Goods email entirely, and nothing warns anybody that it happened.',
+          'A funder who arrives through a subject other than Facility Funding still gets the generic letter, which carries an unsubscribe link. Clicking it stops all Goods email and nothing warns anybody.',
       },
       {
         id: 'funder-asked',
