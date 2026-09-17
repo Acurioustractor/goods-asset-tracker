@@ -25,6 +25,8 @@ interface Dropped {
   exif?: { date?: string; make?: string; model?: string; lens?: string };
   trip?: { community: string; what: string } | null;
   viaUrl?: boolean;
+  /** What the browser actually put on the drag, when nothing usable came through. */
+  debug?: string;
 }
 
 export function PhotoDrop() {
@@ -84,7 +86,25 @@ export function PhotoDrop() {
       const uri = (e.dataTransfer.getData('text/uri-list') || e.dataTransfer.getData('text/plain') || '')
         .trim()
         .split('\n')[0];
-      if (uri && /^https?:\/\//.test(uri)) sendUrl(uri);
+      if (uri && /^https?:\/\//.test(uri) && !/^https?:\/\/photos\.google\.com\//i.test(uri)) {
+        sendUrl(uri);
+        return;
+      }
+      /*
+       * Nothing usable. Rather than guess again at what Google puts on a drag, say what the
+       * browser actually offered. Ben hit two dead ends in a row here and the only way to stop
+       * that is to instrument it.
+       */
+      const types = Array.from(e.dataTransfer.types ?? []);
+      setResults((prev) => [
+        {
+          ok: false,
+          error:
+            'No picture in that drag. Google gave only a page link, which needs a login. Download the photo and drag the file: you keep the date that way, and it files itself by trip.',
+          debug: types.length ? `the browser offered: ${types.join(', ')}` : 'the browser offered nothing',
+        },
+        ...prev,
+      ].slice(0, 12));
     },
     [sendFile, sendUrl],
   );
@@ -141,7 +161,10 @@ export function PhotoDrop() {
                   )}
                 </>
               ) : (
-                <span className="text-amber-700">{r.error}</span>
+                <>
+                  <span className="text-amber-700">{r.error}</span>
+                  {r.debug && <span className="ml-2 font-mono text-[10px] text-muted-foreground">{r.debug}</span>}
+                </>
               )}
             </li>
           ))}
