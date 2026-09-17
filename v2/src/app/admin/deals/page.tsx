@@ -7,6 +7,7 @@ import { FundersTab } from './tabs/funders/tab';
 import { LoiTrackerTab } from './tabs/loi-tracker/tab';
 import { PipelineTab } from './tabs/pipeline/tab';
 import { AskTab } from './tabs/ask/tab';
+import { StackTab } from './tabs/stack/tab';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,8 +16,8 @@ export const dynamic = 'force-dynamic';
  *
  * Ben, 17 September 2026: fewer routes. Four surfaces about the same money were four URLs, and
  * admin-routes.ts had already declared every one of them `absorbed`, meaning folded into this
- * hub. The board, who the funders are, what has been asked, and what is signed are four views of
- * one question and they belong behind one address.
+ * hub. The board, the stack, who the funders are, what has been asked and what is signed are five
+ * views of one question and they belong behind one address.
  *
  * Same move as /admin/voices earlier today. Each body lives in tabs/<name>/tab.tsx with its own
  * client component beside it, so nothing about the data changed. The funder create form and the
@@ -24,6 +25,7 @@ export const dynamic = 'force-dynamic';
  */
 const TABS = [
   { id: 'board', label: 'Board' },
+  { id: 'stack', label: 'The stack' },
   { id: 'ask', label: 'The ask' },
   { id: 'funders', label: 'Funders' },
   { id: 'loi', label: 'LOI tracker' },
@@ -39,7 +41,7 @@ export default async function DealsPage({ searchParams }: { searchParams: Promis
       <div>
         <h1 className="text-2xl font-bold font-display text-foreground">The raise</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Sales, funding, partnerships and procurement. One board, and the four views behind it.
+          Sales, funding, partnerships and procurement. One board, and the five views behind it.
         </p>
       </div>
 
@@ -56,6 +58,7 @@ export default async function DealsPage({ searchParams }: { searchParams: Promis
       </nav>
 
       {current === 'board' && <DealsBoard />}
+      {current === 'stack' && <StackTab />}
       {current === 'ask' && <AskTab />}
       {current === 'funders' && <FundersTab />}
       {current === 'loi' && <LoiTrackerTab />}

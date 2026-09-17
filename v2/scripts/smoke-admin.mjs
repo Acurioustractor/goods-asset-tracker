@@ -71,7 +71,7 @@ const EXTRA = [
   ...['atlas', 'registry', 'quotes', 'el-stories', 'el-storytellers', 'curated', 'community'].map((t) => `/admin/voices?tab=${t}`),
   ...['ask', 'funders', 'loi', 'pipeline'].map((t) => `/admin/deals?tab=${t}`),
   '/admin/procurement?view=places', '/admin/procurement?view=when', '/admin/procurement?view=rules',
-  '/admin/procurement?state=NT&known=1', '/admin#routes',
+  '/admin/procurement?state=NT&known=1',
 ];
 
 const targets = [];
