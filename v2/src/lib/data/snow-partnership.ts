@@ -651,7 +651,7 @@ export const THE_ARC: readonly ArcStage[] = [
     when: 'First paid order September 2025',
     state: 'now',
     stateLabel: 'The one we sell',
-    body: 'Two galvanised poles threaded through the canvas and into crossed legs pressed from recycled plastic. The canvas is structural, so the bed does not stand without it and twenty kilograms of plastic stays out of a tip for every one. Centrecorp bought a hundred and seven at $560 in November 2025, having bought Basket Beds first. The price is $750 now because freight and the paid local work are counted in it.',
+    body: 'Two galvanised poles threaded through the canvas and into crossed legs pressed from recycled plastic. The canvas is structural, so the bed does not stand without it and twenty kilograms of plastic stays out of a tip for every one. Centrecorp bought a hundred and seven at $750 in November 2025, having bought Basket Beds first.',
     figure: { value: String(CANONICAL_ASSETS.stretchBedsDeployed), label: 'in homes' },
     photo: { src: '/images/community/alice-springs/stretch-bed-two-generations.jpg', alt: 'Two generations on a Stretch Bed' },
   },
