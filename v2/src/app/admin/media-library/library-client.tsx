@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Lock } from 'lucide-react';
 import { themeName } from '@/lib/data/themes';
 
 export interface UnifiedItem {
@@ -83,6 +84,28 @@ function isHeld(item: UnifiedItem): boolean {
   return item.consent === 'flagged' || item.consent === 'elder-pending' || item.tags.includes('consent:held');
 }
 
+/**
+ * WHY A TILE IS BLANK, in the tile.
+ *
+ * `safeImageUrl` returns null for every object under the Empathy Ledger storage bucket, so a
+ * consent-held photo arrives here with no source and used to render the same grey "No preview"
+ * card as a genuinely broken image. Ben, 17 September 2026, looking at a screen of them: "fix all
+ * thes thumnial too why none?" — and the honest answer was that most of them are not broken at
+ * all. They are the consent gate doing its job, drawn as a fault.
+ *
+ * A gate that looks like breakage is a gate people route around. So a withheld item says so, in
+ * its own colour, with the reason. It stays unviewable either way; the difference is whether the
+ * admin reads it as "this system is broken" or "this photo is not mine to look at yet".
+ *
+ * Returns the reason to print, or null when the blank really is a failure.
+ */
+function withheldReason(item: UnifiedItem): string | null {
+  if (item.source !== 'el') return null;
+  if (item.consent === 'elder-pending') return 'Awaiting Elder review';
+  if (item.consent === 'flagged' || item.tags.includes('consent:held')) return 'Not cleared to show';
+  return null;
+}
+
 /** A patch sent to /api/admin/content-item and applied optimistically to state. */
 type CurationPatch = { starred?: boolean; rating?: number; archived?: boolean; community_id?: string | null };
 
@@ -105,8 +128,20 @@ export function MediaLibraryClient({
   const [personFilter, setPersonFilter] = useState<string>('__all');
   const [needsPeople, setNeedsPeople] = useState(false);
   const [roster, setRoster] = useState<RosterPerson[]>([]);
-  // Primary mode: Photos vs Videos. Opens on Photos.
-  const [kind, setKind] = useState<'image' | 'video'>('image');
+  /**
+   * ONE WALL. Photos and videos hang together and the page opens on everything.
+   *
+   * This was a mode, not a filter: the page opened on Photos and the only way to see a video was
+   * to leave the photos behind. Ben, 17 September 2026, asking for "one wall, videos and photos,
+   * simply that we can multi-select and tag". A mode makes that impossible — you cannot select a
+   * clip and the three stills from the same afternoon when the clip is on the other screen, and
+   * a shoot is the unit people actually work in, not a file type.
+   *
+   * So `all` is the default and Photos/Videos narrow it. Everything downstream — justified rows,
+   * multi-select, bulk tagging — already worked on a mixed list; nothing but this default was
+   * keeping them apart.
+   */
+  const [kind, setKind] = useState<'all' | 'image' | 'video'>('all');
   // Advanced filters (source / subject / community / person / theme) collapse
   // behind one toggle so the top stays clean.
   const [showFilters, setShowFilters] = useState(false);
@@ -634,29 +669,26 @@ export function MediaLibraryClient({
         ))}
       </datalist>
 
-      {/* ── Primary control: Photos | Videos, search, filters toggle ── */}
+      {/* ── Primary control: Everything | Photos | Videos, search, filters toggle ── */}
       <div className="mb-3 flex flex-wrap items-center gap-3">
         <div className="inline-flex rounded-xl border border-border bg-muted/40 p-1">
-          <button
-            type="button"
-            onClick={() => setKind('image')}
-            className={
-              'inline-flex items-center gap-1.5 rounded-lg px-4 py-1.5 text-sm font-semibold transition ' +
-              (kind === 'image' ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground')
-            }
-          >
-            Photos <span className={kind === 'image' ? 'text-muted-foreground' : 'opacity-70'}>{kindCounts.image}</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => setKind('video')}
-            className={
-              'inline-flex items-center gap-1.5 rounded-lg px-4 py-1.5 text-sm font-semibold transition ' +
-              (kind === 'video' ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground')
-            }
-          >
-            Videos <span className={kind === 'video' ? 'text-muted-foreground' : 'opacity-70'}>{kindCounts.video}</span>
-          </button>
+          {([
+            ['all', 'Everything', kindCounts.image + kindCounts.video],
+            ['image', 'Photos', kindCounts.image],
+            ['video', 'Videos', kindCounts.video],
+          ] as const).map(([k, label, count]) => (
+            <button
+              key={k}
+              type="button"
+              onClick={() => setKind(k)}
+              className={
+                'inline-flex items-center gap-1.5 rounded-lg px-4 py-1.5 text-sm font-semibold transition ' +
+                (kind === k ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground')
+              }
+            >
+              {label} <span className={kind === k ? 'text-muted-foreground' : 'opacity-70'}>{count}</span>
+            </button>
+          ))}
         </div>
 
         <input
@@ -870,6 +902,7 @@ export function MediaLibraryClient({
             const isVideo = it.mediaType === 'video';
             const rawThumb = isVideo ? it.poster : it.src;
             const thumb = rawThumb && !brokenThumbs.has(it.id) ? rawThumb : undefined;
+            const withheld = thumb ? null : withheldReason(it);
             return (
               <div
                 key={it.id}
@@ -909,6 +942,12 @@ export function MediaLibraryClient({
                     onError={() => setBrokenThumbs((s) => { const n = new Set(s); n.add(it.id); return n; })}
                     className="absolute inset-0 h-full w-full object-contain transition-opacity group-hover:opacity-95"
                   />
+                ) : withheld ? (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-1.5 bg-amber-50 px-3 text-center text-amber-900">
+                    <Lock className="h-4 w-4" aria-hidden />
+                    <span className="text-[10px] font-bold uppercase tracking-wider">Held</span>
+                    <span className="text-[9px] leading-tight opacity-80">{withheld}</span>
+                  </div>
                 ) : (
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 bg-muted text-muted-foreground">
                     <span className="text-2xl">{isVideo ? '🎬' : '🖼'}</span>
