@@ -11,6 +11,7 @@ vi.mock('@/lib/ghl', () => ({
 }));
 
 const { acknowledgeOrReply, REPLY_BUILDERS, subjectsWithOwnReply } = await import('./replies');
+const { buildMediaPackReply } = await import('./media-pack-reply');
 
 /**
  * One person, one reply. The whole point of putting this decision in a function rather than in
@@ -91,5 +92,31 @@ describe('the branch registry', () => {
       expect(email.text).not.toContain('—');
       expect(email.text.toLowerCase()).not.toContain('unsubscribe');
     }
+  });
+});
+
+describe('the media pack reply', () => {
+  const email = buildMediaPackReply({});
+
+  it('sends the link rather than promising one', () => {
+    expect(email.text).toContain('https://www.goodsoncountry.com/press');
+    expect(
+      email.text.toLowerCase(),
+      'A journalist asked for a link. Two business days is the wrong answer.',
+    ).not.toContain('two business days');
+  });
+
+  it('says which photographs are cleared, and which are not', () => {
+    expect(email.text).toContain('consented to those specific images');
+    expect(email.text).toContain('rather than pulling images off the rest of the site');
+  });
+
+  it('puts talking to community behind their own decision', () => {
+    expect(email.text).toContain('That is their call');
+  });
+
+  it('makes the link clickable without breaking the escaping', () => {
+    expect(email.html).toContain('href="https://www.goodsoncountry.com/press"');
+    expect(email.html).not.toContain('<script');
   });
 });

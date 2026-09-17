@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { PUBLIC_FORMS } from './public-forms';
+import { subjectsWithOwnReply } from '@/lib/comms/replies';
 import { AUDIENCE_PATHWAYS } from '@/lib/ghl/audience-pathways';
 
 /**
@@ -139,12 +140,20 @@ describe('the promise matches the code', () => {
   });
 
   it('only claims its own reply when the route actually sends one', () => {
+    const branched = subjectsWithOwnReply();
     for (const form of PUBLIC_FORMS) {
       if (form.theyGet !== 'its own reply') continue;
       const src = read(form.handler);
+      // Either the route sends it itself, or it goes through acknowledgeOrReply and this form
+      // posts a subject that has a written branch. A form claiming its own reply on a shared
+      // route with no branch for its subject would be describing an email nobody wrote.
+      const sendsDirectly = src.includes('sendTransactionalReply');
+      const sendsByBranch =
+        src.includes('acknowledgeOrReply') && !!form.subject && branched.includes(form.subject);
       expect(
-        src.includes('sendTransactionalReply'),
-        `${form.name} says it sends its own reply and ${form.handler} never sends one`,
+        sendsDirectly || sendsByBranch,
+        `${form.name} says it sends its own reply and ${form.handler} never sends one` +
+          (form.subject ? ` for ${form.subject}` : ''),
       ).toBe(true);
       expect(
         src.includes("'project-goods'"),

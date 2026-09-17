@@ -45,6 +45,11 @@ export interface PublicForm {
   handler: string;
   /** The lane it belongs to, so a form cannot exist outside the pathways. */
   audience: PathwayAudience;
+  /**
+   * The contact-form subject this form always posts, when it posts exactly one. It is what lets
+   * the guard check a form against its actual branch rather than against the whole route.
+   */
+  subject?: string;
   theyGet: TheyGet;
   goodsHears: GoodsHears;
   /** Required whenever either answer is 'nothing'. */
@@ -87,11 +92,14 @@ export const PUBLIC_FORMS: PublicForm[] = [
     name: 'Media pack request',
     handler: 'api/contact/route.ts',
     audience: 'media',
-    theyGet: 'acknowledgement',
+    subject: 'Media Pack Request',
+    theyGet: 'its own reply',
     goodsHears: 'inbox email',
     why:
-      'The generic acknowledgement is what a journalist gets today. The media workflow that would ' +
-      'send them the pack is still a draft in GHL, so the link they asked for arrives from a human.',
+      'Sends the pack itself, with the line about which photographs are cleared. No two day ' +
+      'promise: what they asked for is in the email. The GHL media workflow stays a draft and ' +
+      'can be deleted, and it would never have fired for a journalist already in the account ' +
+      'because it triggers on Contact Created.',
   },
   {
     file: 'components/partnership-form.tsx',

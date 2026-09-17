@@ -324,15 +324,13 @@ export const CAMPAIGNS: Campaign[] = [
     kind: 'reply',
     recipient: 'the person',
     channel: 'ghl-email',
-    trigger: 'Contact tag added project-goods, branch 5: role:media',
+    trigger: 'A Media Pack Request through the /press form, sent from the route itself',
     consentBasis: 'They asked for it.',
     cadence: 'Once, immediately.',
     owner: 'ben',
-    status: 'built-off',
+    status: 'live',
     brief:
-      'Breaks the two-day pattern the other way: what they asked for is a link, so the link goes straight back. goodsoncountry.com/press, the phone number, and an offer of a person in a place to talk to.',
-    blockedOn:
-      'The Goods media form submission workflow exists and sends the journalist nothing. It also triggers on Contact Created, so a journalist already in the account never fires it. Fix it or rename it, but do not leave it looking like it works.',
+      'Sends the pack rather than promising it: goodsoncountry.com/press, in the first two lines. Then the line that matters, which photographs are cleared and why not to pull images off the rest of the site. Talking to somebody in community is offered as their decision, not ours. No two day promise, because what they asked for is in the email.',
   },
   {
     id: 'media-pitch',
