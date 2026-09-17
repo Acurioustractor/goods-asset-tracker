@@ -254,12 +254,14 @@ function WhatIsDue() {
 }
 
 /**
- * Every route, with what it is for.
+ * Every route, and the door it lives behind.
  *
- * The sidebar shows 24 destinations. This is the other 61, and it is where the sidebar's
- * "All routes" link lands. ROUTE_TONE sat in this file unused, which means the section existed
- * once and was lost; scripts/check-admin-routes.mjs now fails the build if the directory and the
- * real routes ever disagree, so it cannot quietly rot again.
+ * Grouped by the nine sidebar nouns, so the answer to "where does this live" is the first word
+ * you read. SIDEBAR is a door; INSIDE is a tab within one; TOOL is a phone-first job you open
+ * from a checklist, not a destination.
+ *
+ * scripts/check-admin-routes.mjs fails the build if this directory and the real routes ever
+ * disagree, so it cannot quietly rot.
  *
  * UNREACHABLE is the status worth looking for. It means the route works and nothing links to it.
  */
@@ -270,10 +272,10 @@ function RouteDirectory() {
   return (
     <section id="routes" className="mt-10 scroll-mt-24 border-t pt-8">
       <div className="flex flex-wrap items-baseline justify-between gap-3">
-        <h2 className="font-display text-xl">All {total} admin routes</h2>
+        <h2 className="font-display text-xl">Every route, and the door it lives behind</h2>
         <p className="text-xs text-muted-foreground">
           {orphans.length > 0 && <span className="font-semibold text-goods-terracotta">{orphans.length} unreachable. </span>}
-          The sidebar shows the work. Everything else lives inside the hub that owns it.
+          Nine doors on the sidebar. {total} routes, and every one of them lives behind a door.
         </p>
       </div>
 
