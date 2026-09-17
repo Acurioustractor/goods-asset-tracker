@@ -46,6 +46,34 @@ async function fetchNotes(): Promise<Map<string, string>> {
   }
 }
 
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+/**
+ * THE WORDS A PHOTOGRAPH GETS WHEN NOBODY HAS WRITTEN IT A CAPTION YET.
+ *
+ * A filename is only worth reading out loud when a person typed it. A photograph dragged in from
+ * Google Photos is called ap1gczpi7zvhs3tvca5-keoi-9h9xlkriqq, and printing that as the alt text
+ * puts a hash on a funder's page. So machine noise is dropped, and what is left is the date, which
+ * the file carries and which is always true.
+ */
+export function altFromUrl(url: string): string {
+  const stem = (url.split('/').pop() ?? '').replace(/\.[a-z]+$/i, '');
+  const date = stem.match(/^(\d{4})-(\d{2})-(\d{2})-?/);
+  const when = date ? `${Number(date[3])} ${MONTHS[Number(date[2]) - 1]} ${date[1]}` : '';
+  const tokens = stem
+    .slice(date?.[0].length ?? 0)
+    .split(/[-_]+/)
+    .filter(Boolean)
+    // A bare number is a year or a counter. It neither proves nor disproves a human name.
+    .filter((w) => !/^\d+$/.test(w));
+  // ONE junk token condemns the whole name. Half a hash is still a hash, and "keoi attteh" read
+  // no better on the page than the string it was cut from.
+  const readable = tokens.length > 0 && tokens.every((w) => w.length >= 3 && /[aeiou]/i.test(w) && !/\d/.test(w));
+  if (!readable) return when ? `Goods on Country, ${when}` : 'Goods on Country';
+  const said = tokens.join(' ');
+  return `${said[0].toUpperCase()}${said.slice(1)}`;
+}
+
 export interface Captionable {
   src: string;
   alt: string;
@@ -102,14 +130,7 @@ export async function taggedPhotos(tag: string): Promise<{ src: string; alt: str
       .filter((r) => r.url && !r.tags?.includes(`${tag}-hide`))
       .map((r) => {
         const note = r.notes?.trim();
-        const fromName = (r.url ?? '')
-          .split('/')
-          .pop()
-          ?.replace(/\.[a-z]+$/i, '')
-          .replace(/[-_]+/g, ' ')
-          .replace(/^\d{4} \d{2} \d{2} /, '') ?? '';
-        const alt = note || (fromName ? fromName[0].toUpperCase() + fromName.slice(1) : 'Goods on Country');
-        return { src: r.url as string, alt, caption: note ?? undefined };
+        return { src: r.url as string, alt: note || altFromUrl(r.url ?? ''), caption: note ?? undefined };
       });
   } catch {
     return [];
