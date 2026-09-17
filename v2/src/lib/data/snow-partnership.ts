@@ -668,7 +668,7 @@ export const THE_ARC: readonly ArcStage[] = [
     when: 'Named in Tennant Creek, bought by Snow in June 2025',
     state: 'in-community',
     stateLabel: 'Prototype, in community',
-    body: 'Elder Dianne Stokes named the machine in Warumungu. A Speed Queen base, chosen because it can be repaired, in an enclosure we make. One Alice Springs supplier sells about three million dollars of machines a year into remote communities and most are in a tip within months, so the whole design question is repair. Snow bought one on 29 June 2025. It is still a prototype and it is not for sale.',
+    body: 'Elder Dianne Stokes named the machine in Warumungu. A Speed Queen base, chosen because it can be repaired, in an enclosure we make. One Alice Springs supplier sells about three million dollars of machines a year into remote communities and most are in a tip within months, so the whole design question is repair. Snow bought one on 29 June 2025. It is still a prototype.',
     figure: { value: String(CANONICAL_ASSETS.washersInCommunity), label: 'in community' },
     photo: { src: '/images/product/washing-machine-installed.jpg', alt: 'A machine installed in community' },
   },
