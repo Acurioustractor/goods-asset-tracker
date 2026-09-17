@@ -375,6 +375,30 @@ function cleanString(value?: string | null): string | undefined {
 /**
  * Make authenticated request to GHL API
  */
+/**
+ * The contact id GHL hands back when it refuses a create as a duplicate.
+ *
+ * "This location does not allow duplicated contacts" is a 400, and the body carries the id of the
+ * contact it matched and the field it matched on. Found on 17 September by putting one real
+ * enquiry through the live site: the address was new, the phone belonged to an existing contact,
+ * and the whole GHL side failed. No contact, no tags, no card on the board, no reply to the
+ * person, while the site told them their message had been received.
+ *
+ * It is not a rare shape. Anybody who has ever been in this account and then fills in a form with
+ * a different email address hits it, and so does everybody sharing an office number.
+ */
+function duplicateContactIdFrom(error: unknown): string | null {
+  const message = error instanceof Error ? error.message : String(error);
+  if (!/duplicated contacts/i.test(message)) return null;
+  const json = message.slice(message.indexOf('{'));
+  try {
+    const parsed = JSON.parse(json) as { meta?: { contactId?: string } };
+    return parsed.meta?.contactId || null;
+  } catch {
+    return null;
+  }
+}
+
 async function ghlRequest<T>(
   endpoint: string,
   method: 'GET' | 'POST' | 'PUT' | 'DELETE' = 'GET',
@@ -639,12 +663,25 @@ async function createOrUpdateContact(data: ContactData): Promise<GHLResponse> {
     } else {
       // Create new contact
       console.log('[GHL] Creating new contact with data:', { email, phone, companyName, name });
-      response = await ghlRequest<{ contact: { id: string } }>(
-        '/contacts/',
-        'POST',
-        contactData
-      );
-      console.log('[GHL] Contact created successfully:', response.contact.id);
+      try {
+        response = await ghlRequest<{ contact: { id: string } }>(
+          '/contacts/',
+          'POST',
+          contactData
+        );
+        console.log('[GHL] Contact created successfully:', response.contact.id);
+      } catch (error) {
+        // We searched on email and GHL matched on something else, nearly always the phone. It
+        // tells us which contact it matched, so update that one rather than dropping the enquiry.
+        const duplicateId = duplicateContactIdFrom(error);
+        if (!duplicateId) throw error;
+        console.log('[GHL] Create refused as a duplicate, updating', duplicateId, 'instead');
+        response = await ghlRequest<{ contact: { id: string } }>(
+          `/contacts/${duplicateId}`,
+          'PUT',
+          contactData
+        );
+      }
     }
 
     return { success: true, contact: response.contact };
