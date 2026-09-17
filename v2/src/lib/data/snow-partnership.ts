@@ -440,6 +440,40 @@ export const BED_HERE = {
 } as const;
 
 /**
+ * THE COMMUNITY-LED MODEL, IN THE ORDER IT HAPPENS.
+ *
+ * Ben, 17 September 2026: after the directors, talk more about the community-led model, the
+ * model with communities, and the communities we are already working with.
+ *
+ * WHAT IS CLAIMED HERE AND WHAT IS NOT. Steps one to three happen today and there are paid
+ * invoices behind them. Step four has never happened: no site is community owned, and it is
+ * marked as the thing it is. The ownership line is a pathway everywhere on this page and it
+ * does not get promoted here because it sits next to a board photograph.
+ */
+export const COMMUNITY_MODEL: readonly { step: string; title: string; body: string; state: 'now' | 'future' }[] = [
+  {
+    step: '01', state: 'now',
+    title: 'The organisation holds the stock',
+    body: 'Beds go to a community organisation we already work with. They hold them and they decide which households get one. We do not run a waiting list and we do not means test anybody.',
+  },
+  {
+    step: '02', state: 'now',
+    title: 'They sell, and they keep the whole price',
+    body: `A bed is $${BED.priceAud}. When the organisation sells one the full $${BED.priceAud} stays with them. The money does not come to us and then go to them. It never comes to us.`,
+  },
+  {
+    step: '03', state: 'now',
+    title: 'They decide what happens next',
+    body: 'After costs it is theirs to spend: more beds, paid local work, or making something of their own. The build days are paid work and the training sits inside the price of the bed rather than beside it as a line item.',
+  },
+  {
+    step: '04', state: 'future',
+    title: 'They own the making',
+    body: 'The containerised plant is built to move to community operation and then to community ownership, on the Supply Nation 51 per cent path. No site has passed this point. Zero is the honest number and it is the one we print against ourselves.',
+  },
+];
+
+/**
  * THE TWO LANES OF MONEY, ON ONE TIME AXIS.
  *
  * Ben, 17 September 2026: the map and its year scrubber were boring, and what was missing was
@@ -458,6 +492,9 @@ export interface MoneyEventData {
   label: string;
   detail: string;
   kind: 'given' | 'bought';
+  /** Inc-GST, where the row is an invoice we can name to the cent. */
+  amountAud?: number;
+  reference?: string;
 }
 
 export const MONEY_EVENTS: readonly MoneyEventData[] = [
@@ -470,8 +507,10 @@ export const MONEY_EVENTS: readonly MoneyEventData[] = [
   ...PAID_INVOICES.map((i) => ({
     on: i.fullyPaidOn,
     label: `${i.buyer} paid for ${i.beds} beds`,
-    detail: `${i.invoiceNumber}, ${i.beds} beds at $${i.bedUnitPriceAud} for ${i.forPlace}.`,
+    detail: `${i.beds} beds at $${i.bedUnitPriceAud} each, for ${i.forPlace}.`,
     kind: 'bought' as const,
+    amountAud: i.totalPaidInclGstAud,
+    reference: i.invoiceNumber,
   })),
 ];
 
@@ -664,24 +703,7 @@ export const FILMS: readonly Film[] = [
       'Forty Stretch Beds for Maningrida were pressed in house, so the claim that production can move is not a projection. Eight washing machines are in community there. Country with nobody in frame, so it carries no consent question of its own.',
     place: 'Maningrida, Arnhem Land',
   },
-  {
-    src: '/video/partners/centrecorp/utopia-good-news-full.mp4',
-    poster: '/video/partners/centrecorp/utopia-good-news-full-poster.jpg',
-    title: 'Utopia, the full run',
-    why: 'The delivery at scale and the one film here Snow have not been shown.',
-    story:
-      'Eighty-seven beds to Utopia Homelands over two days with Oonchiumpa and the Utopia Council, a bed under thirty-six households. Made for the Centrecorp relationship. They buy beds, so this film has never been put in front of Snow.',
-    place: 'Utopia Homelands',
-  },
-  {
-    src: '/video/tennant-creek/tingkkarli-drone.mp4',
-    poster: '/video/tennant-creek/tingkkarli-drone-poster.jpg',
-    title: 'Tingkkarli, Tennant Creek',
-    why: 'The place Georgina and Sally came to, filmed on the trip they were on.',
-    story:
-      'Tingkkarli, or Lake Mary Ann, five kilometres north of Tennant Creek, cut from the April 2025 trip. A publicly promoted recreation lake with nobody in frame.',
-    place: 'Tennant Creek, Warumungu Country',
-  },
+
 ];
 
 export interface WallSet {

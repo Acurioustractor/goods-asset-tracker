@@ -11,7 +11,8 @@ import { ORGANISATION } from '@/lib/data/organisation';
 import { goodsBoard } from '@/lib/data/goods-board';
 import {
   ALIGNMENT, BECAUSE_OF, BUYER_TOTALS, BUYERS, DEMAND_GAPS, FILMS, heroFrames, MAP_PLACES,
-  MONEY_EVENTS, MONTHS_BEFORE_FIRST_SALE, NOT_FINISHED, OONCHIUMPA_NEXT, PLACE_BEATS, PRICE_LADDER,
+  COMMUNITY_MODEL, MONEY_EVENTS, MONTHS_BEFORE_FIRST_SALE, NOT_FINISHED, OONCHIUMPA_NEXT,
+  PLACE_BEATS, PRICE_LADDER,
   SNOW_MONEY, THE_ARC, THE_LETTER, TOGETHER,
   WALLS, WHY_FLEXIBLE,
   WASHER_NEXT, WASHER_PLACES, WASHER_TELEMETRY,
@@ -24,8 +25,7 @@ import { AlignmentTable } from '@/components/partners/alignment-table';
 import { FilmGallery, type GalleryFilm } from '@/components/partners/film-gallery';
 import { StoryHero } from '@/components/partners/story-hero';
 import { PlaceFilms, type PlaceBeat } from '@/components/partners/place-films';
-import { GrowthStory } from '@/components/partners/growth-story';
-import { PAID_INVOICE_BEDS } from '@/lib/data/paid-trade';
+import { MoneyLedger } from '@/components/partners/money-ledger';
 import { PhotoWall } from '@/components/pitch/photo-wall';
 
 /**
@@ -62,20 +62,32 @@ export const metadata: Metadata = {
 };
 
 const CHAPTERS = [
-  { id: 'ch-making', number: '01', label: 'What we made' },
-  { id: 'ch-first', number: '02', label: 'Snow went first' },
-  { id: 'ch-alice', number: '03', label: 'Alice Springs' },
-  { id: 'ch-buyers', number: '04', label: 'Who is buying' },
-  { id: 'ch-washers', number: '05', label: 'The machines' },
-  { id: 'ch-films', number: '06', label: 'In their own words' },
-  { id: 'ch-archive', number: '07', label: 'The archive' },
-  { id: 'ch-together', number: '08', label: 'What we have done' },
-  { id: 'ch-because', number: '09', label: 'What Goods is now' },
-  { id: 'ch-board', number: '10', label: 'Who holds it' },
-  { id: 'ch-align', number: '11', label: 'Your strategy, our evidence' },
-  { id: 'ch-unfinished', number: '12', label: 'What is not finished' },
-  { id: 'ch-next', number: '13', label: 'What we are asking' },
+  { id: 'ch-making', label: 'What we made' },
+  { id: 'ch-first', label: 'Snow went first' },
+  { id: 'ch-board', label: 'Who holds it' },
+  { id: 'ch-alice', label: 'Alice Springs' },
+  { id: 'ch-buyers', label: 'Who is buying' },
+  { id: 'ch-washers', label: 'The machines' },
+  { id: 'ch-films', label: 'In their own words' },
+  { id: 'ch-archive', label: 'The archive' },
+  { id: 'ch-together', label: 'What we have done' },
+  { id: 'ch-because', label: 'What Goods is now' },
+  { id: 'ch-align', label: 'Your strategy, our evidence' },
+  { id: 'ch-unfinished', label: 'What is not finished' },
+  { id: 'ch-next', label: 'What we are asking' },
 ] as const;
+
+/**
+ * A chapter's number and label come from CHAPTERS by id, never from the call site. They used to
+ * be typed at both ends, so moving a chapter meant renumbering twelve JSX blocks by hand and
+ * the rail could disagree with the page. Ben moved "Who holds it" to three on 17 September and
+ * this is what made that a one-line change.
+ */
+const CH = new Map<string, { number: string; label: string }>(
+  CHAPTERS.map((c, i) => [c.id as string, { number: String(i + 1).padStart(2, '0'), label: c.label as string }]),
+);
+const chapterNumber = (id: string) => CH.get(id)?.number ?? '';
+const chapterLabel = (id: string) => CH.get(id)?.label ?? '';
 
 /** Default-deny, same shape as funder-moments: wrong tier or unapproved renders nothing. */
 function quote(slug: string, tier: 'funder' | 'external', contains: string) {
@@ -115,9 +127,11 @@ function chipStyle(state: (typeof THE_ARC)[number]['state']): React.CSSPropertie
   return { backgroundColor: '#EEE9E3', color: '#6A5E54' };
 }
 
-function Chapter({ id, number, label, title, lead, children }: {
-  id: string; number: string; label: string; title: string; lead?: string; children: React.ReactNode;
+function Chapter({ id, title, lead, children }: {
+  id: string; title: string; lead?: string; children: React.ReactNode;
 }) {
+  const number = chapterNumber(id);
+  const label = chapterLabel(id);
   return (
     <section id={id} className="scroll-mt-24 px-5 sm:px-8">
       <div className="mx-auto max-w-4xl border-t py-12 sm:py-16" style={{ borderColor: RULE }}>
@@ -197,7 +211,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
 
   return (
     <main style={{ backgroundColor: CREAM }}>
-      <ChapterRail chapters={CHAPTERS} />
+      <ChapterRail chapters={CHAPTERS.map((c) => ({ ...c, number: chapterNumber(c.id) }))} />
 
       <StoryHero
         frames={snowHeroFrames()}
@@ -273,7 +287,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </StoryHero>
 
       <Chapter
-        id="ch-making" number="01" label="What we made"
+        id="ch-making"
         title="A basket, a machine, a bed, a plant and the next machine"
         lead="Five things in the order they were made, because the order is the argument. Each one taught the next and two of them we have stopped selling."
       >
@@ -340,9 +354,9 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             */}
           <div className="mx-auto max-w-4xl border-t pb-16 pt-12 sm:pb-24 sm:pt-16" style={{ borderColor: RULE }}>
             <header className="flex items-baseline gap-4">
-              <span className="font-display text-base leading-none" style={{ color: RUST }}>02</span>
+              <span className="font-display text-base leading-none" style={{ color: RUST }}>{chapterNumber('ch-first')}</span>
               <span className="h-px flex-1" style={{ backgroundColor: RULE }} />
-              <span className="text-[10px] font-semibold uppercase tracking-[0.2em]" style={{ color: MUTED }}>Snow went first</span>
+              <span className="text-[10px] font-semibold uppercase tracking-[0.2em]" style={{ color: MUTED }}>{chapterLabel('ch-first')}</span>
             </header>
             <h2 className="mt-7 max-w-3xl font-display text-[2rem] leading-[1.14] sm:text-[2.6rem]" style={{ color: CHARCOAL }}>
               Four places and the order they came in
@@ -363,21 +377,13 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
 
         <div className="px-5 py-16 sm:px-8 sm:py-20">
           <div className="mx-auto max-w-4xl">
-            <p className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: RUST }}>The map, as it filled in</p>
+            <p className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: RUST }}>Every payment, in order</p>
             <p className="mt-3 max-w-2xl text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-              Watch it grow, or scrub the years yourself. Snow&rsquo;s money was there before most of these dots
-              existed.
+              Eleven payments put beds in houses. Four of them were given before anybody had bought
+              anything. Read down and the order tells you what your money was for.
             </p>
             <div className="mt-8">
-              <GrowthStory
-                places={MAP_PLACES}
-                events={MONEY_EVENTS}
-                totalBeds={CANONICAL_ASSETS.bedsDeployed}
-                totalWashers={CANONICAL_ASSETS.washersInCommunity}
-                communities={CANONICAL_ASSETS.communitiesServed}
-                bedsBought={PAID_INVOICE_BEDS}
-                monthsBefore={MONTHS_BEFORE_FIRST_SALE}
-              />
+              <MoneyLedger events={MONEY_EVENTS} monthsBefore={MONTHS_BEFORE_FIRST_SALE} />
             </div>
             {/*
               * The map carries six places and the register carries eleven communities, so the
@@ -412,7 +418,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
                 </p>
               </div>
             </div>
-            <p className="mt-4 text-xs leading-relaxed" style={{ color: '#A99C8F' }}>{SNOW_MONEY.basisNote}</p>
+
 
             {/* catalyse now opens the report in the hero, so the money chapter does not repeat it. */}
             {backing && <Pull v={backing} />}
@@ -421,7 +427,95 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </div>
 
       <Chapter
-        id="ch-alice" number="03" label="Alice Springs"
+        id="ch-board"
+        title={ORGANISATION.boardLine}
+        lead="Snow said in November 2025 that all future grants would require First Nations leadership and that every partner would be reviewed. This is our answer and it was underway before the question."
+      >
+        <div className="grid gap-5 sm:grid-cols-3">
+          {goodsBoard.map((d) => (
+            <div key={d.name} className="overflow-hidden rounded-lg" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+              <Image
+                src={d.photo} alt={d.name} width={640} height={640}
+                sizes="(min-width: 640px) 18rem, 100vw"
+                className="aspect-[5/4] w-full object-cover object-top"
+              />
+              <div className="p-6">
+              <p className="font-display text-lg leading-snug" style={{ color: CHARCOAL }}>{d.name}</p>
+              <p className="mt-1 text-xs uppercase tracking-wide" style={{ color: SAGE }}>{d.country}</p>
+              <p className="mt-3 text-xs leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>{d.bio}</p>
+              <p className="mt-3 text-xs leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>{d.goods}</p>
+              <p className="mt-3 text-[10px] uppercase tracking-wide" style={{ color: MUTED }}>{d.photoCredit}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="mt-6 rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+          <p className="text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
+            {ORGANISATION.legalName}, ABN {ORGANISATION.abn}. A registered charity with deductible gift recipient
+            status. The board handover is still in progress and no chair has been appointed, which we would rather
+            say here than have you find later.
+          </p>
+        </div>
+        {vicki && <Pull v={vicki} />}
+
+        <div className="mt-14">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>The model, in the order it happens</p>
+          <p className="mt-3 max-w-[58ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}b8` }}>
+            Community-led is a word that gets used loosely, so here is ours as four things that
+            either happen or do not. Three of them happen today. The fourth has never happened
+            anywhere and it says so.
+          </p>
+          <ol className="m-0 mt-7 grid list-none gap-5 p-0 sm:grid-cols-2">
+            {COMMUNITY_MODEL.map((s) => (
+              <li
+                key={s.step}
+                className="rounded-lg p-6"
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  border: s.state === 'future' ? '1px dashed #C2B6AA' : '1px solid #E8DED4',
+                }}
+              >
+                <div className="flex items-baseline justify-between gap-3">
+                  <span className="font-display text-sm" style={{ color: RUST }}>{s.step}</span>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: s.state === 'future' ? '#6A5E54' : SAGE }}>
+                    {s.state === 'future' ? 'Not yet, anywhere' : 'Happens today'}
+                  </span>
+                </div>
+                <p className="mt-3 font-display text-lg leading-[1.25]" style={{ color: CHARCOAL }}>{s.title}</p>
+                <p className="mt-2.5 text-[0.9375rem] leading-[1.7]" style={{ color: `${CHARCOAL}b8` }}>{s.body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <div className="mt-14">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>Who we are already working with</p>
+          <p className="mt-3 max-w-[58ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}b8` }}>
+            These are the places the register counts beds against, by name, with a community and a
+            date behind every one. Across all {CANONICAL_ASSETS.communitiesServed} communities it
+            holds {CANONICAL_ASSETS.bedsDeployed} beds and {CANONICAL_ASSETS.washersInCommunity} machines.
+          </p>
+          <ul className="m-0 mt-6 grid list-none gap-px overflow-hidden rounded-lg p-0" style={{ backgroundColor: '#E8DED4' }}>
+            {MAP_PLACES.map((pl) => (
+              <li key={pl.id} className="grid gap-2 p-5 sm:grid-cols-[13rem_1fr] sm:gap-6" style={{ backgroundColor: '#FFFFFF' }}>
+                <div>
+                  <p className="font-display text-base leading-snug" style={{ color: CHARCOAL }}>{pl.name}</p>
+                  <p className="mt-1 text-xs" style={{ color: MUTED }}>
+                    {pl.beds} beds
+                    {pl.washers > 0 ? ` · ${pl.washers} machines` : ''}
+                  </p>
+                </div>
+                <p className="text-[0.9375rem] leading-[1.65]" style={{ color: `${CHARCOAL}b8` }}>{pl.note}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {norman && <Pull v={norman} />}
+      </Chapter>
+
+      <Chapter
+        id="ch-alice"
         title="Oonchiumpa operate it, employ young people and keep leading that place"
         lead="The Indigenous ownership story with a date attached. It is also the thing Snow is being invited into."
       >
@@ -451,7 +545,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </Chapter>
 
       <Chapter
-        id="ch-buyers" number="04" label="Who is buying"
+        id="ch-buyers"
         title="Four buyers, five invoices, 320 beds and the price went up"
         lead="This is the thing Sally asked for most and it is the deliverable the QBE volunteer team is working on. Everything here is an invoice that was issued and paid. Nothing here is a forecast."
       >
@@ -514,7 +608,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </Chapter>
 
       <Chapter
-        id="ch-washers" number="05" label="The machines"
+        id="ch-washers"
         title="How the fleet got to twenty three and what it reports"
         lead="Snow bought one of these outright. They are the only part of the work that tells us how it is going without anyone having to visit."
       >
@@ -575,9 +669,9 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </Chapter>
 
       <Chapter
-        id="ch-films" number="06" label="In their own words"
+        id="ch-films"
         title="The films"
-        lead="Five, including one Snow have not been shown. Each plays where it sits and only one at a time."
+        lead="Three. Each plays where it sits and only one at a time."
       >
         <FilmGallery films={films} />
       </Chapter>
@@ -600,7 +694,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </div>
 
       <Chapter
-        id="ch-together" number="08" label="What we have done"
+        id="ch-together"
         title="Two years and the money is the smallest part of it"
         lead="Trips, rooms, introductions and the times Snow told this story in its own voice. Filter the money out and see what is left."
       >
@@ -609,7 +703,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </Chapter>
 
       <Chapter
-        id="ch-because" number="09" label="What Goods is now"
+        id="ch-because"
         title="What the money turned into"
         lead="Counts where we have counts and labels where we do not. The last number on this list is zero and it is the one we print against ourselves."
       >
@@ -637,33 +731,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </Chapter>
 
       <Chapter
-        id="ch-board" number="10" label="Who holds it"
-        title={ORGANISATION.boardLine}
-        lead="Snow said in November 2025 that all future grants would require First Nations leadership and that every partner would be reviewed. This is our answer and it was underway before the question."
-      >
-        <div className="grid gap-5 sm:grid-cols-3">
-          {goodsBoard.map((d) => (
-            <div key={d.name} className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
-              <p className="font-display text-lg leading-snug" style={{ color: CHARCOAL }}>{d.name}</p>
-              <p className="mt-1 text-xs uppercase tracking-wide" style={{ color: SAGE }}>{d.country}</p>
-              <p className="mt-3 text-xs leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>{d.bio}</p>
-              <p className="mt-3 text-xs leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>{d.goods}</p>
-            </div>
-          ))}
-        </div>
-        <div className="mt-6 rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
-          <p className="text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-            {ORGANISATION.legalName}, ABN {ORGANISATION.abn}. A registered charity with deductible gift recipient
-            status. The board handover is still in progress and no chair has been appointed, which we would rather
-            say here than have you find later.
-          </p>
-        </div>
-        {vicki && <Pull v={vicki} />}
-        {norman && <Pull v={norman} />}
-      </Chapter>
-
-      <Chapter
-        id="ch-align" number="11" label="Your strategy, our evidence"
+        id="ch-align"
         title="Read your own words back, with the gaps marked"
         lead="Six things Snow has published about what it funds and what Goods can actually put against each one. Two of these are weak and one is a thing we are not asking you to fund."
       >
@@ -671,7 +739,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </Chapter>
 
       <Chapter
-        id="ch-unfinished" number="12" label="What is not finished"
+        id="ch-unfinished"
         title="The parts we would rather you heard from us"
         lead="A funder who asks for evidence-based and culturally safe programs should be told what the evidence does not cover."
       >
@@ -686,7 +754,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </Chapter>
 
       <Chapter
-        id="ch-next" number="13" label="What we are asking"
+        id="ch-next"
         title="A letter this month and 133 beds behind it"
         lead="Two asks. The first one is not money and it has a date on it. The second is the same ask we have put to our other bed funders, so nobody is being asked for something shaped specially for them."
       >

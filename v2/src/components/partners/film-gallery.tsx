@@ -39,7 +39,7 @@ export function FilmGallery({ films }: { films: readonly GalleryFilm[] }) {
   }
 
   return (
-    <div className="grid gap-8 sm:grid-cols-2">
+    <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
       {films.map((f) => {
         const isPlaying = playing === f.src;
         return (
