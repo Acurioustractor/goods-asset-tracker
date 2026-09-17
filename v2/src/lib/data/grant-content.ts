@@ -191,7 +191,8 @@ export const communityQuotes = {
   demandSignals: [
     { quote: 'Dianne Stokes received 1 bed → returned within 2 weeks requesting 20 more, offered to self-fund.', community: 'Tennant Creek' },
     { quote: 'PICC said "we\'ll buy the production facility itself."', community: 'Palm Island' },
-    { quote: 'Groote Archipelago requested 500 mattresses + 300 washing machines from a single community.', community: 'Groote Eylandt' },
+    // "500 mattresses + 300 washing machines" figure withdrawn 15 Sep 2026 as fabricated demand.
+    { quote: 'Groote Archipelago named freight as the barrier to buying at scale; real demand not yet re-established.', community: 'Groote Eylandt' },
   ],
 };
 

@@ -15,12 +15,24 @@ export type TargetCategory =
   | 'corporate'
   | 'health_buyer'
   | 'procurement_buyer'
+  | 'paid_buyer'
   | 'distribution_partner'
   | 'community_partner'
   | 'manufacturing_partner';
 
 export type RelationshipStatus = 'active' | 'warm' | 'applied' | 'prospect' | 'research';
 export type Priority = 'critical' | 'high' | 'medium' | 'low';
+
+/**
+ * How solid the evidence behind an entry actually is. Ben, 17 Sep 2026: every prospect needs
+ * this or it silently reads as confirmed. 'real_contactable' = a named program with a live
+ * contact point. 'needs_call' = a real org, unverified fit or no confirmed fund. 'dropped' =
+ * researched and ruled out; kept here so nobody re-researches it, never shown as a live lead.
+ */
+export type EvidenceTier = 'real_contactable' | 'needs_call' | 'dropped';
+
+/** Outreach progress, distinct from RelationshipStatus (which is the funding-relationship stage). */
+export type ContactStatus = 'not_contacted' | 'contacted' | 'responded' | 'open' | 'dead';
 
 export interface OutreachTarget {
   id: string;
@@ -29,6 +41,8 @@ export interface OutreachTarget {
   status: RelationshipStatus;
   priority: Priority;
   states?: string[];
+  /** Canonical community ids this org is linked to, e.g. 'utopia', 'maningrida', 'tennant-creek', 'palm-island', 'groote'. */
+  communities?: string[];
   contactName?: string;
   contactEmail?: string;
   amountSignal?: string;
@@ -36,6 +50,8 @@ export interface OutreachTarget {
   nextAction: string;
   grantRelevance: string;
   notes?: string;
+  evidenceTier?: EvidenceTier;
+  contactStatus?: ContactStatus;
 }
 
 // ─── PHILANTHROPY — Active Funders ───────────────────────────────────────────
@@ -43,10 +59,12 @@ export interface OutreachTarget {
 export const philanthropyActive: OutreachTarget[] = [
   {
     id: 'snow', name: 'Snow Foundation', category: 'philanthropy_active', status: 'active', priority: 'critical',
-    contactName: 'Sally Grimsley-Ballard', contactEmail: 's.grimsley-ballard@snowfoundation.org.au',
-    amountSignal: '$493,130 received (Xero-verified, full 2023-2026)', instrument: 'grant',
+    communities: ['maningrida'], contactName: 'Sally Grimsley-Ballard', contactEmail: 's.grimsley-ballard@snowfoundation.org.au',
+    amountSignal: '$457,929.79 Goods-specific inc-GST (16 Sep 2026 reconciliation); also a direct buyer separately: 10+100 beds and 2 washers on paid invoices',
+    instrument: 'grant + buyer',
     nextAction: 'Convert from anchor grantmaker into co-investment validator for production-scale capital.',
     grantRelevance: 'Anchor funder — reference in every application. Sally travelled to Tennant Creek.',
+    evidenceTier: 'real_contactable',
   },
   {
     id: 'frrr', name: 'FRRR', category: 'philanthropy_active', status: 'active', priority: 'high',
@@ -149,16 +167,19 @@ export const impactFinance: OutreachTarget[] = [
 
 export const aboriginalTrusts: OutreachTarget[] = [
   {
-    id: 'centrecorp-foundation', name: 'Centrecorp Foundation', category: 'aboriginal_trust', status: 'warm', priority: 'critical',
-    states: ['NT'], amountSignal: '$123,332 paid; $420K commitment (May invoices voided, reconfirming); 107 beds Utopia', instrument: 'blended',
-    nextAction: 'Turn buyer proof into blended capital conversation for Central Australian community production.',
+    id: 'centrecorp-foundation', name: 'Centrecorp Foundation', category: 'aboriginal_trust', status: 'active', priority: 'critical',
+    states: ['NT'], communities: ['utopia'], amountSignal: '107 beds paid ($123,332), delivered; further 107-bed repeat order quoted ($80,250, in discussion)', instrument: 'buyer',
+    nextAction: 'Close the repeat 107-bed order. Only genuine repeat institutional buyer to date.',
     grantRelevance: 'Aboriginal investment arm. Already connected to Utopia/Centrebuild pathway.',
+    evidenceTier: 'real_contactable', contactStatus: 'open',
   },
   {
     id: 'groote-trust', name: 'Groote Eylandt Aboriginal Trust', category: 'aboriginal_trust', status: 'prospect', priority: 'critical',
+    communities: ['groote'],
     states: ['NT'], amountSignal: 'High annual giving', instrument: 'grant',
-    nextAction: 'Use Groote demand signal (500 mattresses + 300 washers) for place-based production ask.',
-    grantRelevance: 'Direct community trust. Largest single demand signal in pipeline.',
+    nextAction: 'Re-establish real Groote demand before pitching — the old 500/300 figure is withdrawn as fabricated (Ben, 15 Sep 2026).',
+    grantRelevance: 'Direct community trust, real relationship, no evidenced demand yet.',
+    evidenceTier: 'needs_call',
   },
   {
     id: 'central-aus-trust', name: 'Central Australian Aboriginal Charitable Trust', category: 'aboriginal_trust', status: 'prospect', priority: 'high',
@@ -264,18 +285,19 @@ export const healthBuyers: OutreachTarget[] = [
 // ─── PROCUREMENT BUYERS ──────────────────────────────────────────────────────
 
 export const procurementBuyers: OutreachTarget[] = [
+  // Ben, 17 Sep 2026: "Centrebuild Pty Ltd" used to duplicate the Centrecorp Foundation entry
+  // above (id 'centrecorp-foundation') under a different name, with a different, unreconciled
+  // bed count (109 sold vs 107 paid). Removed as a duplicate — this is the same real
+  // relationship, not a second buyer. Use 'centrecorp-foundation' for anything real.
   {
-    id: 'centrebuild', name: 'Centrebuild Pty Ltd', category: 'procurement_buyer', status: 'active', priority: 'critical',
-    states: ['NT'], amountSignal: '109 beds sold. 107-bed Utopia pathway active.',
-    nextAction: 'Lock repeat-order conversation tied to Utopia. Use as proof in every buyer conversation.',
-    grantRelevance: 'Strongest commercial signal. Proves market exists.',
-  },
-  {
-    id: 'whsac-groote', name: 'WHSAC (Groote Archipelago)', category: 'procurement_buyer', status: 'prospect', priority: 'critical',
-    states: ['NT'], contactName: 'Simone Grimmond',
-    amountSignal: '500 mattresses + 300 washing machines (~$1.7M)',
-    nextAction: 'Combine with Groote Eylandt Aboriginal Trust for place-based production ask.',
-    grantRelevance: 'Flagship demand signal. Every grant should mention this.',
+    // Ben, 15 Sep 2026: the "500 mattresses + 300 washers" figure below is WITHDRAWN as
+    // fabricated demand (see memory goods-money-rulings-2026-09-15). Never restate it. Kept as
+    // a contact record only, not a demand signal, until a real number is sourced.
+    id: 'whsac-groote', name: 'WHSAC (Groote Archipelago)', category: 'procurement_buyer', status: 'prospect', priority: 'medium',
+    states: ['NT'], communities: ['groote'], contactName: 'Simone Grimmond',
+    nextAction: 'Re-establish real demand with WHSAC directly. Do not cite the withdrawn 500/300 figure.',
+    grantRelevance: 'Groote Eylandt health service. Contact exists, demand signal does not.',
+    evidenceTier: 'needs_call',
   },
   {
     id: 'outback-stores', name: 'Outback Stores Pty Ltd', category: 'procurement_buyer', status: 'prospect', priority: 'high',
@@ -306,6 +328,208 @@ export const procurementBuyers: OutreachTarget[] = [
     states: ['QLD'], amountSignal: '50-bed staff-build interest (NAIDOC)',
     nextAction: 'Convert 50-bed NAIDOC-style build into visible corporate procurement case study.',
     grantRelevance: 'Corporate engagement proof. Staff activation model.',
+  },
+];
+
+// ─── PAID BUYERS ──────────────────────────────────────────────────────────────
+// Real Xero-invoiced bed/washer trade, traced 16-17 Sep 2026. Centrecorp and QIC also appear
+// above under their historical categories; these are the reconciled invoice-level records.
+// Do not treat this list as "320 beds, four buyers" — that figure is unsourced in this repo
+// (traces to a module that never merged). This is the real, evidenced set instead.
+
+export const paidBuyers: OutreachTarget[] = [
+  {
+    id: 'homeland-school-company', name: 'Homeland School Company', category: 'paid_buyer', status: 'active', priority: 'high',
+    communities: ['maningrida'], states: ['NT'],
+    amountSignal: '40 Stretch Beds + 2 washers, $44,000 (INV-0303, paid 18 May 2026)',
+    nextAction: 'Capture feedback in their own words; no testimonial on file yet.',
+    grantRelevance: 'Clean, paid, cross-product buyer.',
+    evidenceTier: 'real_contactable', contactStatus: 'open',
+  },
+  {
+    id: 'malala-health', name: "Mala'la Health Service Aboriginal Corporation", category: 'paid_buyer', status: 'active', priority: 'medium',
+    communities: ['maningrida'], states: ['NT'],
+    amountSignal: '13 Basket Beds, $4,940 + GST (INV-0283, paid 21 Oct 2025)',
+    nextAction: 'Note for invoicing: this contact carries "Mala\'la", not "Maningrida" — caused months of undertracing once already.',
+    grantRelevance: 'Bed-only, no washer. Real paid trade.',
+    evidenceTier: 'real_contactable',
+  },
+  {
+    id: 'julalikari-council', name: 'Julalikari Council Aboriginal Corporation', category: 'paid_buyer', status: 'active', priority: 'high',
+    communities: ['tennant-creek'], states: ['NT'],
+    amountSignal: '6 washers across two orders ($4,500 INV-0282 + $5,800 INV-0335, ~$10,300); beds delivered separately',
+    nextAction: 'Only other genuine repeat buyer besides Centrecorp — worth understanding why they came back.',
+    grantRelevance: 'Repeat buyer across two product lines.',
+    evidenceTier: 'real_contactable', contactStatus: 'open',
+  },
+  {
+    id: 'our-community-shed', name: 'Our Community Shed', category: 'paid_buyer', status: 'warm', priority: 'medium',
+    amountSignal: '30 Basket Beds ($450 incl) + 1 washer ($5,500, INV-0308)',
+    nextAction: 'One-off cross-product buyer; find out if repeatable.',
+    grantRelevance: 'Small but genuine cross-product order.',
+    evidenceTier: 'real_contactable',
+  },
+  {
+    id: 'red-dust-buyer', name: 'Red Dust (as buyer)', category: 'paid_buyer', status: 'warm', priority: 'low',
+    amountSignal: '30 Basket Beds v1, $430 (INV-0255)',
+    nextAction: 'One-off. Red Dust is also a health partner — worth a combined conversation.',
+    grantRelevance: 'Existing health partner, separate buying relationship.',
+    evidenceTier: 'real_contactable',
+  },
+  {
+    id: 'qic-rap-buyer', name: 'QIC (RAP purchase)', category: 'paid_buyer', status: 'warm', priority: 'medium',
+    states: ['QLD'],
+    amountSignal: '20 beds @ $450 through their RAP (INV-0232, Jun 2025)',
+    nextAction: 'Separate from the QIC "50-bed NAIDOC build interest" entry above — this is a real invoiced order.',
+    grantRelevance: 'Corporate RAP-driven purchase, real precedent.',
+    evidenceTier: 'real_contactable',
+  },
+  {
+    id: 'rotary-eclub-outback', name: 'Rotary eClub Outback Australia', category: 'paid_buyer', status: 'warm', priority: 'low',
+    amountSignal: '200 Basket Beds + $5K project, $82,500 (INV-0222) — AUTHORISED but 405 days overdue',
+    nextAction: 'Collections issue, not a sales proof point. Chase payment before citing as "sold".',
+    grantRelevance: 'Largest single order by volume, but unpaid.',
+    evidenceTier: 'needs_call', contactStatus: 'open',
+  },
+  {
+    id: 'regional-arts-australia', name: 'Regional Arts Australia', category: 'paid_buyer', status: 'warm', priority: 'low',
+    amountSignal: '$16,500 invoiced (INV-0302), due 30 Jun 2026, not yet paid',
+    nextAction: 'Confirm payment.',
+    grantRelevance: 'Receivable, not yet proof.',
+    evidenceTier: 'needs_call', contactStatus: 'open',
+  },
+];
+
+// ─── PHILANTHROPIC PROSPECTS — Centrecorp-shaped intermediaries, researched 17 Sep 2026 ───────
+// Two research rounds looking for orgs that buy product and gift it into community the way
+// Centrecorp does, rather than orgs bound by a procurement rule. Every entry WebSearch-verified;
+// nothing invented. 'dropped' entries are kept so nobody re-researches them.
+
+export const philanthropicProspects20260917: OutreachTarget[] = [
+  {
+    id: 'barkly-local-community-projects-fund', name: 'Barkly Local Community Projects Fund', category: 'government_grant', status: 'prospect', priority: 'critical',
+    communities: ['tennant-creek'], states: ['NT'],
+    contactEmail: 'info@barkly.nt.gov.au',
+    amountSignal: '$6M program, up to $50K/project, explicitly for Aboriginal homelands across the Barkly region (excludes Tennant Creek township itself)',
+    nextAction: 'Apply — has a live application form at barklyregionaldeal.com.au. Best-evidenced lead found.',
+    grantRelevance: 'Barkly Regional Deal funding line, real and open.',
+    evidenceTier: 'real_contactable', contactStatus: 'not_contacted',
+  },
+  {
+    id: 'ian-potter-foundation', name: 'Ian Potter Foundation', category: 'philanthropy_prospect', status: 'prospect', priority: 'critical',
+    communities: ['tennant-creek', 'maningrida'],
+    amountSignal: 'Proven category fit: $300,000 to the Wilya Janta remote housing design project (Tennant Creek) + funded the Gunbalanya commercial laundry',
+    nextAction: 'Warm approach via Wilya Janta relationship, not cold — they already fund exactly this category in towns we work in.',
+    grantRelevance: 'Strongest new philanthropic find: proven precedent, same regions.',
+    evidenceTier: 'real_contactable', contactStatus: 'not_contacted',
+  },
+  {
+    id: 'south32-gemco', name: 'South32 GEMCO', category: 'corporate', status: 'prospect', priority: 'high',
+    communities: ['groote'], states: ['NT'],
+    amountSignal: '~$900K partnership with the Machado Joseph Disease Foundation funding medical equipment/remote service delivery; joint "Future Groote Strategy" with Anindilyakwa Land Council',
+    nextAction: 'Approach via the existing Groote Eylandt Aboriginal Trust relationship — same region, a second door in.',
+    grantRelevance: 'Already funds health hardware directly, same region as an existing prospect.',
+    evidenceTier: 'real_contactable', contactStatus: 'not_contacted',
+  },
+  {
+    id: 'bunnings-community-grants', name: 'Bunnings Community Grants Program', category: 'corporate', status: 'prospect', priority: 'high',
+    amountSignal: '$1M over 5 years, grants up to $10,000, ABN-registered NFPs',
+    contactEmail: 'CommunityGrants@bunnings.com.au',
+    nextAction: 'Applications close 19 Oct 2026 (AEDT) — check our NFP/ABN eligibility structure before applying.',
+    grantRelevance: 'Live, open now, real contact — fastest-moving lead in the list.',
+    evidenceTier: 'real_contactable', contactStatus: 'not_contacted',
+  },
+  {
+    id: 'glencore-csi-fund', name: 'Glencore Corporate Social Investment Fund (Mount Isa)', category: 'corporate', status: 'prospect', priority: 'medium',
+    states: ['QLD'],
+    amountSignal: '$840K across 60 community initiatives in 2025; Indigenous Employment Program via Myuma Group (Camooweal)',
+    nextAction: 'Mount Isa is a regional hub, not one of the four core partner communities — treat as adjacent, not a direct fit yet.',
+    grantRelevance: 'Largest, most active CSI fund found; needs a hub-relevance case.',
+    evidenceTier: 'real_contactable', contactStatus: 'not_contacted',
+  },
+  {
+    id: 'cwa-branches', name: 'CWA branches (Tennant Creek, Katherine, Alice Springs)', category: 'philanthropy_prospect', status: 'prospect', priority: 'low',
+    communities: ['tennant-creek'],
+    amountSignal: 'Small local welfare-fundraising branches; Tennant Creek marked 90th anniversary 12 Sep 2026',
+    nextAction: 'A call, not an application — unlikely to fund at scale but could gift individual units.',
+    grantRelevance: 'Real, contactable, small.',
+    evidenceTier: 'needs_call', contactStatus: 'not_contacted',
+    notes: 'Tennant Creek: 1st Sat 1:30pm, CWA Hall Noble St, President Pene Curtis. Katherine: 1st Sat 10am, President Amanda Kelly. Alice Springs: 2nd Thu 6:30pm, President Yvette Valentine.',
+  },
+  {
+    id: 'rotary-tennant-katherine', name: 'Rotary Club of Tennant Creek / Katherine', category: 'philanthropy_prospect', status: 'prospect', priority: 'low',
+    communities: ['tennant-creek'],
+    amountSignal: 'Katherine: $23,598 documented in NT 2023-24 grants appendix',
+    nextAction: 'Real presence confirmed, no bed/hardware funding history verified yet — needs a direct approach.',
+    grantRelevance: 'Small but real, adjacent to Rotary eClub Outback Australia relationship already in the buyer list.',
+    evidenceTier: 'needs_call', contactStatus: 'not_contacted',
+  },
+  {
+    id: 'paul-ramsay-foundation', name: 'Paul Ramsay Foundation', category: 'philanthropy_prospect', status: 'prospect', priority: 'medium',
+    amountSignal: '$6M First Nations Targeted Grant round, up to $500K each, covers NT/Torres Strait/Tas/regional-remote SA & Qld',
+    nextAction: 'Capacity-building framing, not itemised hardware — would need reshaping to fit a bed/washer ask.',
+    grantRelevance: 'Real and large, but fit is not proven for direct product funding.',
+    evidenceTier: 'needs_call', contactStatus: 'not_contacted',
+  },
+  {
+    id: 'arac-anindilyakwa-trust', name: 'ARAC / Anindilyakwa Mining Trust', category: 'aboriginal_trust', status: 'prospect', priority: 'medium',
+    communities: ['groote'], states: ['NT'],
+    amountSignal: 'Distributes ALC mining royalties to community/economic-development orgs on Groote',
+    nextAction: 'Governance caution: 2024 ABC/ANAO reporting flagged concerns (royalties into a related mining company) — check current leadership before approach.',
+    grantRelevance: 'Real entity, real money, real risk flag.',
+    evidenceTier: 'needs_call', contactStatus: 'not_contacted',
+  },
+  {
+    id: 'gulf-aboriginal-development-corp', name: 'Gulf Aboriginal Development Corporation (GADC)', category: 'aboriginal_trust', status: 'research', priority: 'low',
+    amountSignal: 'Successor body from the old MMG Century Mine Gulf Communities Agreement (ADBT, ~$1.2M/yr at peak, now historical)',
+    nextAction: 'Unresearched — surfaced from MMG history, not yet checked for current activity.',
+    grantRelevance: 'New lead, unverified.',
+    evidenceTier: 'needs_call', contactStatus: 'not_contacted',
+  },
+  // ── Dropped, researched and ruled out — kept so nobody re-researches them ──
+  {
+    id: 'dropped-west-arnhem-fund', name: 'West Arnhem Regional Council (discretionary fund)', category: 'government_grant', status: 'research', priority: 'low',
+    communities: ['maningrida'],
+    amountSignal: 'No discretionary community-grants line found on westarnhem.nt.gov.au',
+    nextAction: 'Council itself is still a relationship worth having (covers Maningrida directly) — just not as a funding line.',
+    grantRelevance: 'Dropped as a fund; kept as a relationship contact.',
+    evidenceTier: 'dropped',
+  },
+  {
+    id: 'dropped-palm-island-benefit-fund', name: 'Palm Island Aboriginal Shire Council (benefit fund)', category: 'government_grant', status: 'research', priority: 'low',
+    communities: ['palm-island'],
+    amountSignal: 'DOGIT confirmed (land-tenure mechanism) but no discretionary cash benefit-fund program found',
+    nextAction: 'Dropped as a funding lead.',
+    grantRelevance: 'No evidence.',
+    evidenceTier: 'dropped',
+  },
+  {
+    id: 'dropped-apunipima-brokerage', name: 'Apunipima Cape York Health Council (client brokerage)', category: 'health_buyer', status: 'research', priority: 'low',
+    amountSignal: 'No client-brokerage or household-hardware fund confirmed',
+    nextAction: 'Dropped.',
+    grantRelevance: 'No evidence found.',
+    evidenceTier: 'dropped',
+  },
+  {
+    id: 'dropped-fred-hollows', name: 'Fred Hollows Foundation', category: 'philanthropy_prospect', status: 'research', priority: 'low',
+    amountSignal: 'Funded programs found are eye health/trachoma only, not household goods',
+    nextAction: 'Dropped as a direct funder. The "health hardware" framing itself (their own term) is reusable in our messaging.',
+    grantRelevance: 'No direct fit; messaging borrow only.',
+    evidenceTier: 'dropped',
+  },
+  {
+    id: 'dropped-ilsc', name: 'Indigenous Land and Sea Corporation (ILSC)', category: 'government_grant', status: 'research', priority: 'low',
+    amountSignal: '"Our Country Our Future" program is land/water acquisition only',
+    nextAction: 'Dropped.',
+    grantRelevance: 'No household-item grant stream found.',
+    evidenceTier: 'dropped',
+  },
+  {
+    id: 'dropped-newmont-mmg-gulf', name: 'Newmont / MMG (Gulf region community funds)', category: 'corporate', status: 'research', priority: 'low',
+    amountSignal: 'Newmont has no active Qld Gulf operations; MMG Century Mine closed 2015, its Gulf Communities Agreement ended',
+    nextAction: 'Dropped as live prospects.',
+    grantRelevance: 'Historical only.',
+    evidenceTier: 'dropped',
   },
 ];
 
@@ -390,6 +614,8 @@ export const allTargets: OutreachTarget[] = [
   ...capitalTargets,
   ...healthBuyers,
   ...procurementBuyers,
+  ...paidBuyers,
+  ...philanthropicProspects20260917,
   ...communityAndManufacturingPartners,
 ];
 
@@ -400,6 +626,19 @@ export function getTargetsByStatus(status: RelationshipStatus) {
 export function getTargetsByCategory(category: TargetCategory) {
   return allTargets.filter(t => t.category === category);
 }
+
+export function getTargetsByCommunity(communityId: string) {
+  return allTargets.filter(t => t.communities?.includes(communityId));
+}
+
+/** Canonical community ids used by the `communities` link field, for the community-lens filter. */
+export const COMMUNITY_LABELS: Record<string, string> = {
+  utopia: 'Utopia Homelands',
+  maningrida: 'Maningrida',
+  'tennant-creek': 'Tennant Creek',
+  'palm-island': 'Palm Island',
+  groote: 'Groote Eylandt',
+};
 
 // ─── Category display helpers ────────────────────────────────────────────────
 
@@ -413,6 +652,7 @@ export const CATEGORY_LABELS: Record<TargetCategory, string> = {
   corporate: 'Corporate',
   health_buyer: 'Health Buyer',
   procurement_buyer: 'Procurement Buyer',
+  paid_buyer: 'Paid Buyer',
   distribution_partner: 'Distribution',
   community_partner: 'Community Partner',
   manufacturing_partner: 'Manufacturing Partner',
@@ -428,6 +668,7 @@ export const CATEGORY_COLORS: Record<TargetCategory, string> = {
   corporate: 'bg-sky-100 text-sky-800',
   health_buyer: 'bg-rose-100 text-rose-800',
   procurement_buyer: 'bg-orange-100 text-orange-800',
+  paid_buyer: 'bg-lime-100 text-lime-800',
   distribution_partner: 'bg-cyan-100 text-cyan-800',
   community_partner: 'bg-emerald-100 text-emerald-800',
   manufacturing_partner: 'bg-violet-100 text-violet-800',

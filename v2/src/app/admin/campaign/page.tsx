@@ -78,6 +78,7 @@ const theyGetStyle: Record<TheyGet, string> = {
 const goodsHearsStyle: Record<GoodsHears, string> = {
   'inbox email': 'border-emerald-200 bg-emerald-50 text-emerald-800',
   'ghl task': 'border-emerald-200 bg-emerald-50 text-emerald-800',
+  'github issue': 'border-slate-200 bg-slate-50 text-slate-700',
   'ghl conversation': 'border-slate-200 bg-slate-50 text-slate-700',
   nothing: 'border-rose-200 bg-rose-50 text-rose-800',
 };

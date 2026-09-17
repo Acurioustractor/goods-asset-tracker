@@ -184,6 +184,19 @@ describe('the promise matches the code', () => {
     }
   });
 
+  it('leaves a durable receipt, whatever else it does', () => {
+    for (const form of PUBLIC_FORMS) {
+      const src = read(form.handler);
+      const durable =
+        src.includes('recordContactSubmission') || src.includes('raiseCommunityInbound');
+      expect(
+        durable,
+        `${form.name} writes nothing that survives an outage. Every message from a person needs a ` +
+          'row somebody can read when the CRM, GitHub or the mail path is down.',
+      ).toBe(true);
+    }
+  });
+
   it('only claims a task when the route raises one', () => {
     for (const form of PUBLIC_FORMS) {
       if (form.goodsHears !== 'ghl task') continue;
