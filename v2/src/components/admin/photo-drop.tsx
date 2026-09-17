@@ -164,7 +164,7 @@ export function PhotoDrop() {
         (u) => /(googleusercontent|ggpht|gstatic)\.com/i.test(u) && !isPage(u),
       );
       const anyImage = urls.find((u) => /\.(jpe?g|png|webp|gif)(\?|$)/i.test(u) && !isPage(u));
-      const candidate = imageHost ?? anyImage ?? urls.find((u) => !isPage(u));
+      const candidate = imageHost ?? anyImage;
       if (candidate) {
         sendUrl(candidate);
         return;
@@ -183,8 +183,9 @@ export function PhotoDrop() {
         [
           {
             ok: false,
-            error: 'No picture in that drag, only a page link.',
-            debug: `types: ${types.join(', ') || 'none'} | urls found: ${urls.length ? urls.slice(0, 2).join(' ') : 'none'}`,
+            error:
+              'No picture in that drag, only links. Open the photo full size in Google Photos first, then drag the picture itself. Or download it and drag the file, which keeps the date.',
+            debug: `types: ${types.join(', ') || 'none'} | urls: ${urls.length ? urls.slice(0, 3).join('  ') : 'none'}`,
           },
           ...prev,
         ].slice(0, 12),

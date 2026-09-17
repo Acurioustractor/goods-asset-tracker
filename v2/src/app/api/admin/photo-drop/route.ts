@@ -95,7 +95,7 @@ export async function POST(req: Request) {
         ok: false,
         error:
           mime === 'text/html'
-            ? 'That link gave a web page rather than a picture, which usually means Google wanted a login. Download the photo and drag the file in instead: you keep the date that way too.'
+            ? `That link gave a web page rather than a picture: ${originalName}. Open the photo full size in Google Photos and drag the picture itself, or download it and drag the file, which keeps the date.`
             : `unsupported type: ${contentType}`,
       },
       { status: 400 },
