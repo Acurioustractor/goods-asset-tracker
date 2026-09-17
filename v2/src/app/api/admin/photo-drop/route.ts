@@ -160,6 +160,18 @@ export async function POST(req: Request) {
     .filter(Boolean)
     .slice(0, 12);
   const area = safeArea(areaParam ?? (trip ? areaForTrip(trip) : null));
+  /*
+   * A CONFERENCE IS NOT A COMMUNITY. Every trip wrote `community:<slug>`, so the Philanthropy
+   * Australia conference came out tagged community:philanthropy-australia, which is not a place
+   * anyone lives, has no row in communities, and therefore cannot be picked or corrected in the
+   * Media Room. Rows that name their own events/ area get an event: tag instead, which is the
+   * namespace the rest of the library already uses.
+   */
+  const placeTag = trip
+    ? trip.area?.startsWith('events/')
+      ? `event:${trip.area.slice('events/'.length)}`
+      : `community:${trip.community}`
+    : null;
   const name = photoFilename(originalName, exif.date);
   const rel = `/images/${area}/${name}`;
 
@@ -185,7 +197,7 @@ export async function POST(req: Request) {
   }
 
   if (existing) {
-    const tags = [...new Set([...(existing.tags ?? []), ...(trip ? [`community:${trip.community}`] : []), ...sessionTags])];
+    const tags = [...new Set([...(existing.tags ?? []), ...(placeTag ? [placeTag] : []), ...sessionTags])];
     try {
       await createServiceClient().from('content_items').update({ tags }).eq('id', existing.id);
     } catch {
@@ -247,7 +259,7 @@ export async function POST(req: Request) {
           media_type: 'image',
           checksum,
           area: area.split('/')[0],
-          tags: [...new Set([...(trip ? [`community:${trip.community}`] : []), ...sessionTags])],
+          tags: [...new Set([...(placeTag ? [placeTag] : []), ...sessionTags])],
           consent_tier: 'gated',
         })
         .select('id')
@@ -267,7 +279,7 @@ export async function POST(req: Request) {
     indexed,
     contentId,
     community: trip?.community ?? null,
-    appliedTags: [...new Set([...(trip ? [`community:${trip.community}`] : []), ...sessionTags])],
+    appliedTags: [...new Set([...(placeTag ? [placeTag] : []), ...sessionTags])],
     bytes: bytes.byteLength,
     exif,
     trip: trip ? { community: trip.community, what: trip.what } : null,

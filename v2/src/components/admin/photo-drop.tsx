@@ -15,7 +15,7 @@
  * machine the repo is on and the files get committed like every other curation decision.
  */
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 interface Dropped {
   ok: boolean;
@@ -37,7 +37,12 @@ interface Dropped {
 const SESSION_KEY = 'goods.mediaroom.sessionTags';
 const QUEUE_KEY = 'goods.mediaroom.dropQueue';
 
-export function PhotoDrop() {
+export interface PickOption {
+  id: string;
+  name: string;
+}
+
+export function PhotoDrop({ communities = [], people = [] }: { communities?: PickOption[]; people?: PickOption[] }) {
   /*
    * THE SESSION TAG SET. Type it once and every photograph dropped afterwards carries it,
    * through a reload and into tomorrow, until it is changed. Working on Snow all afternoon means
@@ -296,6 +301,8 @@ export function PhotoDrop() {
               <DroppedCard
                 key={`${r.url}-${i}`}
                 item={r}
+                communities={communities}
+                people={people}
                 onDone={() => setResults((prev) => prev.filter((x) => x.url !== r.url))}
               />
             ) : (
@@ -332,13 +339,25 @@ export function PhotoDrop() {
  * It writes to the same endpoint the library uses, so a photograph tagged here and a photograph
  * tagged in the grid are the same thing in the same place.
  */
-function DroppedCard({ item, onDone }: { item: Dropped; onDone: () => void }) {
-  const applied = item.appliedTags ?? [];
+function DroppedCard({
+  item,
+  onDone,
+  communities,
+  people,
+}: {
+  item: Dropped;
+  onDone: () => void;
+  communities: PickOption[];
+  people: PickOption[];
+}) {
+  // Stable across renders so the save callback is not rebuilt on every keystroke.
+  const applied = useMemo(() => item.appliedTags ?? [], [item.appliedTags]);
   const [caption, setCaption] = useState('');
   const [community, setCommunity] = useState(
     item.community ?? applied.find((x) => x.startsWith('community:'))?.slice('community:'.length) ?? '',
   );
   const [extra, setExtra] = useState(applied.filter((x) => !x.startsWith('community:')).join(' '));
+  const [person, setPerson] = useState('');
   const [state, setState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
   const [error, setError] = useState('');
 
@@ -348,9 +367,9 @@ function DroppedCard({ item, onDone }: { item: Dropped; onDone: () => void }) {
       setError('Not registered, so there is nothing to tag yet.');
       return;
     }
-    if (!caption.trim() && !community.trim() && !extra.trim()) {
+    if (!caption.trim() && !community.trim() && !extra.trim() && !person) {
       setState('error');
-      setError('Nothing typed yet. Write what is in the picture, then save.');
+      setError('Nothing chosen yet. Say what is in the picture, or pick a community, then save.');
       return;
     }
     setState('saving');
@@ -366,7 +385,19 @@ function DroppedCard({ item, onDone }: { item: Dropped; onDone: () => void }) {
       const res = await fetch('/api/admin/content-item', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: item.contentId, tags, notes: caption.trim() || null }),
+        body: JSON.stringify({
+          id: item.contentId,
+          tags,
+          notes: caption.trim() || null,
+          /*
+           * The dropdowns write the FK as well as the tag. The Media Room's Community and
+           * Person filters read community_id and storyteller_id; the tag is what the pages
+           * read. Setting only one of the two is how a photograph ends up tagged but
+           * unfindable, which is the thing this box is meant to stop.
+           */
+          ...(community.trim() ? { community_id: community.trim() } : {}),
+          ...(person ? { storyteller_id: person } : {}),
+        }),
       });
       const data = (await res.json()) as { ok: boolean; error?: string };
       if (!res.ok || !data.ok) {
@@ -380,7 +411,7 @@ function DroppedCard({ item, onDone }: { item: Dropped; onDone: () => void }) {
       setState('error');
       setError(e instanceof Error ? e.message : String(e));
     }
-  }, [applied, caption, community, extra, item.contentId, onDone]);
+  }, [applied, caption, community, extra, person, item.contentId, onDone]);
 
   return (
     <li
@@ -417,12 +448,28 @@ function DroppedCard({ item, onDone }: { item: Dropped; onDone: () => void }) {
             className="w-full rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-ring"
           />
           <div className="flex gap-1.5">
-            <input
+            <select
               value={community}
               onChange={(e) => { setCommunity(e.target.value); setState('idle'); }}
-              placeholder="add a community…"
-              className="flex-1 rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs font-mono focus:outline-none focus:ring-2 focus:ring-ring"
-            />
+              aria-label="Community"
+              className="flex-1 rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-ring"
+            >
+              <option value="">Community…</option>
+              {communities.map((c) => (
+                <option key={c.id} value={c.id}>{c.name}</option>
+              ))}
+            </select>
+            <select
+              value={person}
+              onChange={(e) => { setPerson(e.target.value); setState('idle'); }}
+              aria-label="Person"
+              className="flex-1 rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-ring"
+            >
+              <option value="">Person…</option>
+              {people.map((p) => (
+                <option key={p.id} value={p.id}>{p.name}</option>
+              ))}
+            </select>
             <input
               value={extra}
               onChange={(e) => { setExtra(e.target.value); setState('idle'); }}

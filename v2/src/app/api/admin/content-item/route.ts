@@ -21,6 +21,8 @@ interface Body {
   tags?: string[];
   consent_tier?: 'public' | 'gated' | 'red';
   community_id?: string | null;
+  /** A person, by storytellers.id, or null to clear. Drives the Person filter. */
+  storyteller_id?: string | null;
   /** Free-text curation note (nullable text column; cap 2000 chars). */
   notes?: string | null;
   /**
@@ -72,6 +74,10 @@ export async function POST(request: NextRequest) {
   // Community tag: a uuid FK to communities.id, or null to clear.
   if ('community_id' in body) {
     patch.community_id = body.community_id ? String(body.community_id) : null;
+  }
+  // Person: a uuid FK to storytellers.id, or null to clear.
+  if ('storyteller_id' in body) {
+    patch.storyteller_id = body.storyteller_id ? String(body.storyteller_id) : null;
   }
   // Curation note: free text or null to clear. Requires the nullable `notes`
   // column (ALTER TABLE content_items ADD COLUMN IF NOT EXISTS notes text).
