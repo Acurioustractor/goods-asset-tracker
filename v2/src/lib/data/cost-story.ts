@@ -10,10 +10,15 @@
  *
  * Every figure carries an honesty label. NEVER quote a `workpaper` figure as
  * exact ("about" it), never present `modelled` as measured, and never lead
- * with a `target`. No `conflict` rows remain (plastic-per-bed resolved to 20kg
- * by Ben ruling 2026-08-24; the capex nesting question lives in COST_OPEN_ITEMS).
- * If a new conflict appears, quote the range and say so. The retired $600/bed
- * figure gets redirected, not repeated.
+ * with a `target`. If a new conflict appears, quote the range and say so. The
+ * retired $600/bed figure gets redirected, not repeated.
+ *
+ * THREE `conflict` ROWS ARE OPEN (17 September 2026). Ben's 15 September money rulings
+ * built a second model — running $251,224, $288 a bed after absorbed freight and
+ * facilitation, break-even 874 — and it lives on an unmerged branch while this page still
+ * shows v6. Both are defensible arithmetic over different scopes; they are not both usable
+ * in front of a funder. The conflict is printed rather than silently resolved, because
+ * picking one is Ben's call and the applications already use the ruled figures.
  */
 
 export type Solidity =
@@ -51,6 +56,10 @@ export interface CostChapter {
 }
 
 /** The 30-second version, in order. Say this before showing any table. */
+/** Named once so the three conflicted rows cite the same thing. */
+const CONFLICT_SRC =
+  'CONFLICT: cost model v6 (this page) v the 15 September year model, unmerged on feat/ai-tells-gate-and-goods-model';
+
 export const COST_STORY_SPINE = [
   'A bed sells for $750. Made the current way (legs bought as a finished kit), the next bed costs about $685 and only ~$65 stays with Goods.',
   'The one hard fact under the whole model: we pay 8.6× the raw-material cost to buy legs finished. The plastic itself is $40–55.',
@@ -58,7 +67,8 @@ export const COST_STORY_SPINE = [
   'Running the business costs about $109.5K a year before any bed is made. At $324/bed that is ~338 beds a year to break even; at $65/bed it is ~1,679 — which is exactly why we in-source.',
   'The equipment costs $112–222K gross. $110,046 is already invested and sits beside that figure as evidence of skin in the game, never netted off it. We do not spend it until ~300+ beds/yr are committed.',
   'Plastic is a paid input today (~$55/bed), not free. Free community feedstock is the end state of the ladder, not the current state.',
-  'The proof: 540 beds in 11 communities, $713,827 in Goods-only revenue (workpaper, not yet accountant-signed), and 1,000+ beds of named demand on the table.',
+  'The proof: 540 beds in 11 communities, 177 of them the Stretch Bed this model costs, and a paid bed trade of 320 beds to four buyers worth $247,770 ex GST. '
+    + 'The $713,827 revenue workpaper is held off the applications until Standard Ledger rules on it.',
 ] as const;
 
 export const COST_CHAPTERS: CostChapter[] = [
@@ -83,9 +93,12 @@ export const COST_CHAPTERS: CostChapter[] = [
       },
       {
         label: 'Left over per bed — if we press our own legs',
-        value: '~$324',
-        solidity: 'modelled',
-        means: 'Press the legs ourselves and about $324 of every bed stays — five times more than today.',
+        value: '~$324, or $288 after freight and facilitation',
+        solidity: 'conflict',
+        means:
+          'Press the legs ourselves and about $324 of every bed stays before delivery. Ben, 15 September 2026: ' +
+          'the organisation absorbs freight at $100 and facilitation at $100 a bed out of that share, so $288 ' +
+          'is what actually reaches it. Nothing is ever added to the $750.',
         source: '03 · Cost Model & Build Paths',
       },
     ],
@@ -135,11 +148,16 @@ export const COST_CHAPTERS: CostChapter[] = [
       },
       {
         label: 'Long-haul freight (Sydney → remote)',
-        value: '~$150',
-        solidity: 'modelled',
-        means: 'Moving the Defy kit from Sydney to remote communities — what takes the next bed to ~$685.',
-        watchOut: 'Variable by destination — and exactly what the retired $600/bed figure left out.',
-        source: '01 Bill of Materials',
+        value: '~$150, ruled at $100',
+        solidity: 'conflict',
+        means:
+          'Moving the Defy kit from Sydney to remote communities — what takes the next bed to ~$685. Ben, ' +
+          '15 September 2026: freight is $100 a bed all up, absorbed by the organisation out of its share ' +
+          'rather than added to the price.',
+        watchOut:
+          'Variable by destination, and exactly what the retired $600/bed figure left out. Whichever figure ' +
+          'wins, it is never added to the $750 a community pays.',
+        source: CONFLICT_SRC,
       },
       {
         label: 'Saving per bed if we press legs ourselves',
@@ -195,11 +213,18 @@ export const COST_CHAPTERS: CostChapter[] = [
     facts: [
       {
         label: 'Fixed running costs per year',
-        value: '~$109,500',
-        solidity: 'workpaper',
-        means: 'Facility share $27K + founder production time $16.8K + admin $14.7K + field travel $51K.',
-        watchOut: 'Accountant sign-off pending — say “about”, never an exact figure. Only 30 founder production days sit in bed economics; fundraising days are deliberately excluded.',
-        source: '04 · Verified Financials + advisor Q&A (Q1)',
+        value: '~$109,500 or $251,224',
+        solidity: 'conflict',
+        means:
+          'v6 counts only the production share: facility $27K + founder production time $16.8K + admin $14.7K ' +
+          '+ field travel $51K. Ben\u2019s 15 September cut counts the whole organisation: founders $151,200, ' +
+          'getting to communities $51,000, accounting and audit $3,674 (Butterfly\u2019s FY26 actual), ' +
+          'rent on the Goods on Country facility in Queensland $27,000, marketing $10,000, maintenance $8,350.',
+        watchOut:
+          'PICK ONE BEFORE ANY FUNDER SEES BOTH. They are not the same measure: v6 excludes the founder days ' +
+          'spent fundraising, the 15 September model includes the whole founder cost. The ruled figure is ' +
+          '$251,224 and it is the one the applications use.',
+        source: CONFLICT_SRC,
       },
       {
         label: 'Break-even — today’s method',
@@ -210,10 +235,15 @@ export const COST_CHAPTERS: CostChapter[] = [
       },
       {
         label: 'Break-even — pressing in-house',
-        value: '~338 beds/yr',
-        solidity: 'modelled',
-        means: 'At $324 left per bed, about 338 beds a year covers the fixed block. The whole investment case in one number.',
-        source: '03 · Cost Model & Build Paths',
+        value: '~338 or 874 beds/yr',
+        solidity: 'conflict',
+        means:
+          '338 is $109,500 over $324 a bed. 874 is the ruled arithmetic: $251,224 over the $288 a bed hands ' +
+          'the organisation once it has absorbed $100 freight and $100 facilitation.',
+        watchOut:
+          'The two differ by a factor of 2.6, and the second is the one in the year model behind the ask. ' +
+          'Never print a break-even without saying which running cost it divides.',
+        source: CONFLICT_SRC,
       },
       {
         label: 'Beds made per year right now',
@@ -255,11 +285,16 @@ export const COST_CHAPTERS: CostChapter[] = [
       },
       {
         label: 'QBE Stage 2 ask',
-        value: 'up to $400K · matched ≥1:1',
+        value: '$300,000 · two production facilities',
         solidity: 'target',
-        means: 'Up to $400K from QBE, at least matched by signed external capital.',
-        watchOut: 'Not secured until awarded — always say so. Stage 2 closes late September; LOIs due 31 Aug.',
-        source: 'QBE Stage 2 brief',
+        means:
+          'QBE is asked for plant, not beds: two facilities at a $150,000 allowance each. Every other funder ' +
+          'is asked for 133 beds at the published $750, which is $99,750, and nobody is asked for running cost.',
+        watchOut:
+          'The catalytic grant is NOT a dollar-for-dollar match (ruling V), and the $1.1M is ONE pool shared ' +
+          'across ten enterprises, so $400K was the top of a range and never a plan. Not secured until ' +
+          'awarded. Closes Friday 25 September, 12pm AEST; board 19 November.',
+        source: 'Ben rulings 2026-09-15 (two facilities, beds elsewhere) · ruling V · QBE Stage 2 terms',
       },
       {
         label: 'The advisors’ 7.2-year payback',
@@ -305,7 +340,7 @@ export const COST_CHAPTERS: CostChapter[] = [
   {
     slug: 'proof',
     title: 'Proof & demand',
-    lede: 'This is not a pre-revenue pitch: real beds in real communities, revenue prepared with our accountant, and named demand bigger than one year of full-facility output.',
+    lede: 'This is not a pre-revenue pitch: real beds in real communities, and beds people have paid for. The demand line is withdrawn; trade is the only record.',
     facts: [
       {
         label: 'Delivered so far',
@@ -320,17 +355,29 @@ export const COST_CHAPTERS: CostChapter[] = [
         value: 'AU$713,827',
         // RULING G/H 2026-07-25: no signed accountant document exists. Figure stays, word goes.
         solidity: 'workpaper',
-        means: 'Goods-only revenue, prepared with our accountant. The business already trades.',
-        watchOut: 'Never call this “signed”: no accountant letter exists yet, and getting one is the next action. Externally, ONLY this figure, never the $403,901 “surplus” (entity P&L is a net loss).',
-        source: 'Workpaper prepared with the accountant / 04 · Verified Financials',
+        means:
+          'Goods-only revenue on a workpaper basis. HELD since 17 September 2026: the FY26 carve-out found ' +
+          'the file behind it was $590,091 of which $276,132 (46.8%) is philanthropy invoiced as sales, and ' +
+          'real FY26 Goods trading income is $313,960 ex GST across 13 invoices to 7 buyers.',
+        watchOut:
+          'Off all five applications until Standard Ledger rules. Lead with the paid bed trade instead: 320 ' +
+          'beds, four buyers, $247,770 ex GST (revenue basis) or $273,966 inc GST (bank basis) — name the ' +
+          'basis every time. Never “signed”, and never the $403,901 “surplus”.',
+        source: 'FY26 carve-out reconciliation 2026-09-17 · Standard Ledger scope sent same day',
       },
       {
         label: 'Demand on the table',
-        value: '1,000+ beds + 300 washers',
-        solidity: 'target',
-        means: 'Centrecorp ~237, NPY 200–350, WHSAC/Groote ~500 beds + 300 washers (~$1.7M), Homeland Schools 65, PICC 141.',
-        watchOut: 'Conversations and LOIs, not signed orders — say so. LOIs due 31 Aug for Stage 2.',
-        source: 'Capital Pipeline Master DB',
+        value: 'withdrawn',
+        solidity: 'retired',
+        means:
+          'Ben, 15 September 2026: the bed figures behind this line were made up, and they are not repeated ' +
+          'here, because a withdrawn number quoted inside its own withdrawal is still a number somebody can ' +
+          'copy. The delivered Centrecorp beds were among them, and delivered beds are a track record, never ' +
+          'demand. The only demand record is the paid trade.',
+        watchOut:
+          'If a demand number is needed, use the paid trade: 320 beds to four buyers. Anything else is a ' +
+          'conversation, and a conversation is not a number.',
+        source: 'Ben ruling 2026-09-15 (withdrawal) · Ben 2026-09-11 (Centrecorp delivered)',
       },
       {
         label: 'The old $600/bed figure',
