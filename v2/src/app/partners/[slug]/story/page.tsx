@@ -178,15 +178,19 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
   const smallStart = quote('georgina-byron', 'funder', 'you start small and then you realize');
   const vicki = quote('vicki-wade', 'external', 'Community leadership, community ownership');
   const karen = quote('karen-liddle', 'external', 'start your own business');
+  /** Cleared 17 September. Each sits where it is about something. */
+  const proud = quote('dianne-stokes', 'external', 'It makes me feel proud');
+  const recycled = quote('dianne-stokes', 'external', 'coming out of recycled');
+  const blessings = quote('dianne-stokes', 'external', 'shared their blessings with us');
   /**
    * The cleared voices who talk about the machine itself. Norman Frank has no quote about his
    * washing machine in the registry and no photograph with it, so he is not here. What is on the
    * page from Norm is his house doing 951 washes.
    */
   const washerVoices = [
+    { slug: 'jimmy-frank', contains: 'easier to fix, I would say for a washing machine' },
     { slug: 'dianne-stokes', contains: 'If I need to wash my blanket' },
     { slug: 'patricia-frank', contains: 'right there at home' },
-    { slug: 'annie-morrison', contains: 'Now we got our own washing' },
   ]
     .map((v) => quote(v.slug, 'external', v.contains))
     .filter((v): v is NonNullable<typeof v> => v !== null);
@@ -543,6 +547,12 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
 
             {/* catalyse now opens the report in the hero, so the money chapter does not repeat it. */}
             {backing && <Pull v={backing} />}
+            {blessings && (
+              <Pull
+                v={blessings}
+                note="Dianne is talking about Ben and Nic, on the day the washing machine she named arrived."
+              />
+            )}
           </div>
         </div>
       </div>
@@ -837,6 +847,20 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           <p className="mt-4 text-xs" style={{ color: '#A99C8F' }}>Source: {WASHER_TELEMETRY.source}.</p>
         </div>
 
+        {proud && (
+          <figure className="m-0 mb-2 flex max-w-[46ch] items-start gap-4">
+            {proud.person.portrait && (
+              <Image src={proud.person.portrait} alt={proud.person.name} width={160} height={160} className="h-14 w-14 shrink-0 rounded-full object-cover" />
+            )}
+            <div>
+              <blockquote className="font-display text-xl leading-[1.3]" style={{ color: CHARCOAL }}>&ldquo;{proud.quote.text}&rdquo;</blockquote>
+              <figcaption className="mt-2 text-xs" style={{ color: MUTED }}>
+                {proud.person.name}, asked how it feels to have a washing machine named in Warumungu
+              </figcaption>
+            </div>
+          </figure>
+        )}
+
         {/*
           * The fleet, machine by machine. Ben, 17 September: the fun is in how we track this.
           * The silent and unmatched rows are the reason to print it; a table of only the working
@@ -975,7 +999,8 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         title="Five things this is, and the limit on each one"
         lead="Health, the plastic, paid work, enterprise and Indigenous ownership. Each card carries what we can show and what we cannot, in the same card, because a limit printed somewhere else reads as a disclaimer."
       >
-        <div className="grid gap-5 sm:grid-cols-2">
+        {recycled && <Pull v={recycled} />}
+        <div className="mt-10 grid gap-5 sm:grid-cols-2">
           {THEMES.map((th) => (
             <div key={th.id} className="flex flex-col rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
               <p className="font-display text-xl leading-[1.2]" style={{ color: CHARCOAL }}>{th.title}</p>
