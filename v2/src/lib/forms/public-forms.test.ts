@@ -137,6 +137,21 @@ describe('the promise matches the code', () => {
     }
   });
 
+  it('only claims its own reply when the route actually sends one', () => {
+    for (const form of PUBLIC_FORMS) {
+      if (form.theyGet !== 'its own reply') continue;
+      const src = read(form.handler);
+      expect(
+        src.includes('sendTransactionalReply'),
+        `${form.name} says it sends its own reply and ${form.handler} never sends one`,
+      ).toBe(true);
+      expect(
+        src.includes("'project-goods'"),
+        `${form.name} sends its own reply and also stamps project-goods, so the person gets two emails`,
+      ).toBe(false);
+    }
+  });
+
   it('only claims the inbox email when the route sends it', () => {
     for (const form of PUBLIC_FORMS) {
       if (form.goodsHears !== 'inbox email') continue;

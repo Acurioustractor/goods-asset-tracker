@@ -1247,7 +1247,14 @@ export const ghl = {
       // null, not an empty array. "We could not read the account" and "there are no workflows"
       // are different sentences, and rendering the first as the second would tell somebody their
       // acknowledgement workflow had been deleted when the real answer is a missing API scope.
-      console.error('[GHL] listWorkflows error:', error instanceof Error ? error.message : error);
+      //
+      // warn, not error. A 403 here is expected until the token carries workflows.readonly, the
+      // caller handles it and the page says so in words. console.error in a server component is
+      // promoted to a red overlay in dev, which makes a handled condition look like a crash.
+      console.warn(
+        '[GHL] Could not read workflows (needs the workflows.readonly scope):',
+        error instanceof Error ? error.message : error,
+      );
       return null;
     }
   },

@@ -485,10 +485,15 @@ export const AUDIENCE_PATHWAYS: AudiencePathway[] = [
       {
         door: 'Something is wrong with my bed, at /support',
         handler: 'api/support/route.ts',
-        tags: ['role:community', 'interest:support', 'lane:community', 'act-inquiry', 'project-goods'],
+        tags: ['role:community', 'interest:support', 'lane:community', 'act-inquiry'],
         state: 'live',
         note:
-          'Branch on interest: BEFORE role:. Support and community interest both produce role:community, so a role-first branch sends a broken bed the same letter as a community putting its hand up.',
+          'Sends its own reply, naming the asset, with the phone first when the ticket is urgent. ' +
+          'It deliberately no longer carries project-goods, so the generic acknowledgement does ' +
+          'not also fire: two emails about one broken bed, the second contradicting the first. ' +
+          'Branch on interest: BEFORE role:. Support and community interest both produce ' +
+          'role:community, so a role-first branch sends a broken bed the same letter as a ' +
+          'community putting its hand up.',
       },
       {
         door: 'Tell the story of this bed',
@@ -529,7 +534,7 @@ export const AUDIENCE_PATHWAYS: AudiencePathway[] = [
         name: 'Holding something',
         where: 'The asset register, and the promise ledger that does not exist yet',
         theyGet:
-          'Service messages about the thing they hold: the part is on the truck, here are the plans you asked for. Refusable per object.',
+          'A reply that names their bed and says what happens next, then service messages about the thing they hold: the part is on the truck, here are the plans you asked for. Refusable per object.',
         messageClass: 'service',
         advance: 'They ask for something, or a check-in finds a problem.',
         state: 'built-off',

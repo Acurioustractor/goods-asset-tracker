@@ -26,7 +26,14 @@
 
 import type { PathwayAudience } from '@/lib/ghl/audience-pathways';
 
-export type TheyGet = 'acknowledgement' | 'a human reply' | 'nothing';
+export type TheyGet =
+  /** The published GHL workflow replies, one generic message for every door. */
+  | 'acknowledgement'
+  /** This route sends its own message, written for this lane and tested. */
+  | 'its own reply'
+  /** Deliberately no automation: a person writes back. */
+  | 'a human reply'
+  | 'nothing';
 export type GoodsHears = 'inbox email' | 'ghl task' | 'ghl conversation' | 'nothing';
 
 export interface PublicForm {
@@ -101,8 +108,12 @@ export const PUBLIC_FORMS: PublicForm[] = [
     name: 'Something is wrong with my bed',
     handler: 'api/support/route.ts',
     audience: 'community',
-    theyGet: 'acknowledgement',
+    theyGet: 'its own reply',
     goodsHears: 'inbox email',
+    why:
+      'Names the asset, says what happens next, and leads with the phone when the ticket is ' +
+      'urgent. It no longer stamps project-goods, so the generic acknowledgement does not also ' +
+      'fire and tell them to wait two days.',
   },
   {
     file: 'app/bed/[id]/story-modal.tsx',

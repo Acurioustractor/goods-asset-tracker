@@ -7,6 +7,7 @@ import {
   updateContactSubmission,
 } from '@/lib/contact-delivery';
 import { guardContactSubmission } from '@/lib/contact-delivery/anti-abuse';
+import { buildSupportReply } from '@/lib/comms/support-reply';
 
 /**
  * Support Ticket API
@@ -201,16 +202,21 @@ export async function POST(request: NextRequest) {
     // conversation thread, and nobody emailed. The only trace a human saw was a
     // row in a table nobody opens.
     //
-    // `act-inquiry` + `project-goods` are what the published "Goods Inquiry →
-    // Acknowledge" workflow triggers on, so stamping them here is what gets the
-    // person a reply. The rest puts it in front of a human the same way the
-    // contact form does.
+    // It no longer stamps `project-goods`, and that is deliberate. That tag is what the
+    // published "Goods Inquiry → Acknowledge" workflow triggers on, and its one generic reply
+    // says somebody will get back to you within a couple of business days. That is the wrong
+    // sentence for a bed that is not safe to sleep on tonight. This route sends its own reply
+    // instead, below. Stamping both would send the person two emails.
+    //
+    // Segmentation does not depend on `project-goods`: the canonical write already stamps
+    // `project:act-gd`, which is the namespaced project tag the audiences resolve on.
+    const isEmail = body.userContact.includes('@');
     if (ghlResult.success && ghlResult.contact?.id) {
       try {
-        await ghl.addTags(ghlResult.contact.id, ['act-inquiry', 'project-goods']);
+        await ghl.addTags(ghlResult.contact.id, ['act-inquiry']);
         const esc = (v: string) =>
           v.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        const isEmail = body.userContact.includes('@');
+        // isEmail is computed above, outside this try, so the reply block can use it too.
         if (isEmail) {
           await ghl.addInboundEmail({
             contactId: ghlResult.contact.id,
@@ -222,6 +228,34 @@ export async function POST(request: NextRequest) {
         }
       } catch (error) {
         console.error('[Support] Could not tag or thread the ticket:', error);
+      }
+
+      // The reply. Sent from here rather than a workflow so it can name the asset, lead with the
+      // phone when the ticket is urgent, and be tested. Only when they gave us an email: a phone
+      // number gets a call from a human, which is better anyway.
+      if (isEmail) {
+        try {
+          const reply = buildSupportReply({
+            assetId: body.assetId,
+            product: assetInfo.product,
+            community: assetInfo.community,
+            priority: body.priority,
+            name: body.userName,
+          });
+          const sent = await ghl.sendTransactionalReply({
+            contactId: ghlResult.contact.id,
+            subject: reply.subject,
+            html: reply.html,
+            text: reply.text,
+          });
+          if (sent.skipped === 'suppressed') {
+            console.warn(`[Support] ${body.assetId}: contact is suppressed, no reply sent`);
+          } else if (!sent.success) {
+            console.error(`[Support] ${body.assetId}: reply failed: ${sent.error}`);
+          }
+        } catch (error) {
+          console.error('[Support] Could not send the reply:', error);
+        }
       }
     }
 

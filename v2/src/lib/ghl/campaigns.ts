@@ -232,15 +232,13 @@ export const CAMPAIGNS: Campaign[] = [
     kind: 'service',
     recipient: 'the person',
     channel: 'ghl-email',
-    trigger: 'Contact tag added project-goods, branch 1: interest:support',
+    trigger: 'A support ticket with an email address, sent from the route itself',
     consentBasis: 'They reported a fault on a thing they hold.',
     cadence: 'Once, immediately.',
     owner: 'ben',
-    status: 'drafted',
+    status: 'live',
     brief:
-      'Breaks the two-day pattern on purpose and offers the phone, 0422 883 943, because a bed that is not safe to sleep on is not a two-day problem. Asks what broke and where, so a part can be sent without a second exchange.',
-    blockedOn:
-      'Branch 1, and first in the rollout order. Until it is built, a broken bed gets the same generic letter as a general enquiry.',
+      'Names the asset and what the register says it is, then what happens next and the two business day commitment. An urgent ticket gets the phone first, 0422 883 943, because a bed that is not safe to sleep on is not a two-day problem. The route no longer stamps project-goods, so the generic acknowledgement does not also fire. Copy in lib/comms/support-reply.ts, guarded.',
   },
   {
     id: 'community-acknowledge',

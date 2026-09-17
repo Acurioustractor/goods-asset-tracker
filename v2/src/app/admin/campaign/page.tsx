@@ -68,7 +68,8 @@ const kindLabel: Record<CampaignKind, string> = {
 };
 
 const theyGetStyle: Record<TheyGet, string> = {
-  acknowledgement: 'border-emerald-200 bg-emerald-50 text-emerald-800',
+  acknowledgement: 'border-slate-200 bg-slate-50 text-slate-700',
+  'its own reply': 'border-emerald-200 bg-emerald-50 text-emerald-800',
   'a human reply': 'border-sky-200 bg-sky-50 text-sky-800',
   nothing: 'border-rose-200 bg-rose-50 text-rose-800',
 };

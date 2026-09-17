@@ -33,7 +33,15 @@ interface EntryPoint {
 const ENTRY_POINTS: EntryPoint[] = [
   { route: 'contact/route.ts', acknowledges: true, inbox: true },
   { route: 'partnership/route.ts', acknowledges: true, inbox: true },
-  { route: 'support/route.ts', acknowledges: true, inbox: true },
+  {
+    route: 'support/route.ts',
+    acknowledges: false,
+    inbox: true,
+    why:
+      'It sends its own reply instead. The generic acknowledgement says somebody will get back ' +
+      'to you within a couple of business days, which is the wrong sentence for a bed that is ' +
+      'not safe to sleep on tonight. Stamping project-goods as well would send two emails.',
+  },
   {
     route: 'bed/[id]/story/route.ts',
     acknowledges: false,
@@ -118,4 +126,26 @@ describe('every public entry point reaches a human', () => {
       }
     }
   });
+});
+
+/**
+ * The invariant that arrived with the code-sent replies: a route may stamp the acknowledgement
+ * tag, or send its own reply, and never both. Both is two emails to one person, and the second
+ * one contradicts the first.
+ */
+describe('one reply per person', () => {
+  const ROUTES = ENTRY_POINTS.map((e) => e.route);
+
+  for (const route of ROUTES) {
+    it(`${route} does not both acknowledge and reply`, () => {
+      const src = read(route);
+      const acknowledges = src.includes("'project-goods'");
+      const replies = src.includes('sendTransactionalReply');
+      expect(
+        acknowledges && replies,
+        `${route} stamps the acknowledgement tag AND sends its own reply, so the person gets two ` +
+          'emails about the same thing.',
+      ).toBe(false);
+    });
+  }
 });
