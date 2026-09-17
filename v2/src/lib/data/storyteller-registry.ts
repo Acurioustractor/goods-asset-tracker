@@ -261,6 +261,26 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
     notes: 'Called requesting 3 beds in maroon after his daughter tried one. Boards: Anyinginyi Health, Julalikari Council, Central Land Council.',
   },
   {
+    slug: 'jeremy-donovan',
+    name: 'Jeremy Donovan',
+    role: 'Director of Goods on Country, Kuku-Yalanji and Gumbaynggirr',
+    community: 'Works across Australia',
+    tier: 'external',
+    quotes: [
+      {
+        // Cleared by Ben 2026-09-17. Verbatim from the Empathy Ledger transcript "Jeremy on
+        // Country with young people Kununurra", 13 July 2026, standard sensitivity. That is a
+        // Basecamps recording, not a Goods one, which is why the context says so: his words are
+        // about Country as the thing that gave him everything, not about beds.
+        text: 'I realized that my culture and country was what was giving me the keys to the world.',
+        context: 'On Country with young people at Kununurra, 13 July 2026',
+        status: 'approved',
+      },
+    ],
+    portrait: '/images/people/jeremy-donovan-official.jpg',
+    notes: 'Director of the charity. Keynote speaker, artist and musician. Portrait credited to his official website.',
+  },
+  {
     slug: 'linda-turner',
     name: 'Linda Turner',
     role: 'Community member',

@@ -23,6 +23,10 @@ const CLEARED_VOICES_EXTERNAL: string[] = [
   'Ray Nelson',
   'Mykel',
   'Kristy Bloomfield',
+  // Cleared by Ben 2026-09-17. A Goods on Country DIRECTOR, and his words here come from a
+  // Basecamps night on Country at Kununurra rather than from Goods work, so anything of his is
+  // labelled with that context wherever it renders.
+  'Jeremy Donovan',
   'Norman Frank', // EL may append "(Jupurrurla)"; parentheticals are stripped on match
   'Linda Turner',
   'Alfred Johnson',

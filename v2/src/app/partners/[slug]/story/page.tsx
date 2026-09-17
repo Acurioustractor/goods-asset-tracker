@@ -600,6 +600,14 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
                 <figcaption className="mt-3 text-[11px] uppercase tracking-[0.12em]" style={{ color: SAGE }}>
                   {v.person.name}{v.person.role ? `, ${v.person.role}` : ''}
                 </figcaption>
+                {/*
+                  * The context, because not every one of these was said about beds. Jeremy's was
+                  * recorded on Country with young people at Kununurra, under Basecamps, and a
+                  * funder reading it deserves to know that rather than assume it is about Goods.
+                  */}
+                {v.quote.context && (
+                  <p className="mt-2 text-xs leading-relaxed" style={{ color: MUTED }}>{v.quote.context}</p>
+                )}
               </figure>
             ))}
           </div>

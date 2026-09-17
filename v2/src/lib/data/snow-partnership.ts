@@ -527,7 +527,7 @@ export const PROGRESS_BRIDGE = {
  */
 export const OWNERSHIP_VOICES: readonly { slug: string; contains: string }[] = [
   { slug: 'kristy-bloomfield', contains: 'create generational wealth, economic development on our own land' },
-  { slug: 'jeremy-donovan', contains: 'Goods on Country' },
+  { slug: 'jeremy-donovan', contains: 'giving me the keys to the world' },
   { slug: 'vicki-wade', contains: 'Community leadership, community ownership' },
   { slug: 'kristy-bloomfield', contains: 'We know what we wanna do on our land' },
 ];
