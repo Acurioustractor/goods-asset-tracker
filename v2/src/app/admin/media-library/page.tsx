@@ -8,6 +8,7 @@ import { buildLocalItems } from './curation';
 import { MediaLibraryClient } from './library-client';
 import { AddMediaDialog, type AssetOption, type RecentBedContent } from './add-media-dialog';
 import { AdminHubTabs } from '../admin-hub-tabs';
+import { PhotoDrop } from '@/components/admin/photo-drop';
 import { createServiceClient } from '@/lib/supabase/server';
 
 const MEDIA_ROOM_TABS = [
@@ -86,6 +87,7 @@ export default async function MediaLibraryPage() {
       <div className="mb-6">
         <AdminHubTabs tabs={MEDIA_ROOM_TABS} />
       </div>
+      <PhotoDrop />
       <MediaLibraryClient items={items} curationReady={curationReady} communities={communities} />
     </div>
   );
