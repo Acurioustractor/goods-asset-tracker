@@ -841,9 +841,9 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           <FleetTimeline rows={WASHER_FLEET} readAt={WASHER_TELEMETRY.readAt} />
         </div>
         <p className="mt-3 text-xs leading-relaxed" style={{ color: MUTED }}>
-          Seven have ever reported a wash. Norm&rsquo;s house has done more than all the rest together. Three sit on
-          the register as under investigation: we know the controller, not yet the house. Read{' '}
-          {WASHER_TELEMETRY.readAt} from the rollups the admin fleet screen uses.
+          Seven have ever reported a wash. Norm&rsquo;s house has done more than all the rest together. Read{' '}
+          {WASHER_TELEMETRY.readAt} from the rollups the admin fleet screen uses. Three of these machines are still
+          filed against the wrong place on the register.
         </p>
 
         {proud && (

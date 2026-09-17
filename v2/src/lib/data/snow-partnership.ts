@@ -1281,6 +1281,16 @@ export const WASHER_TELEMETRY = {
  * the summary is: a funder report that changes its own figures between two readings of it has
  * stopped being a report.
  *
+ * ALL THREE ORPHANS ARE IDENTIFIED. Ben named them on 17 September: c4b9 is Dianne's daughter's
+ * house in Tennant Creek, fe6c is Jahvan's aunty's house on Palm Island and 689f is Billow on
+ * Palm Island. Two of the three are therefore NOT in Tennant Creek, which is what their register
+ * rows still say, and the rows are still GB0-WM-ORPHAN-* until somebody updates the register.
+ * The identities are on this page and the register work is outstanding.
+ *
+ * The energy readings back the identification. Kilowatt hours a wash fall into three clean
+ * pairs: Norm's and Barkly at 2.74 and 2.75, Nicole's and Dianne's daughter at 0.76 and 0.77,
+ * and the two Palm Island machines at 0.27 and 0.26. Same place, same number.
+ *
  * WHAT THE TABLE ADMITS, and it is the reason to print it. Twenty three machines are in
  * community. Ten have a controller. Seven have ever reported. Three were still reporting on the
  * day of this read, and one of those three is doing most of the work: Norm's house has more
@@ -1323,11 +1333,11 @@ export interface FleetRow {
 
 export const WASHER_FLEET: readonly FleetRow[] = [
   { assetId: 'GB0-113', supplied: '2025-07-02', where: "Norm's house, Tennant Creek", cycles: 952, kwh: 2_613, from: '2025-11-17', to: '2026-09-16', state: 'reporting', note: 'The machine the rest of the fleet is measured against. More washes on it than every other machine put together.' },
-  { assetId: 'GB0-WM-ORPHAN-c4b9', supplied: null, where: 'Tennant Creek', cycles: 550, kwh: 422, from: '2025-08-27', to: '2026-03-29', state: 'investigating', note: 'Did 550 washes, then stopped in March 2026. The register carries it as under investigation because we know the controller and not yet the house.' },
-  { assetId: 'GB0-WM-ORPHAN-fe6c', supplied: null, where: 'Tennant Creek', cycles: 397, kwh: 107, from: '2025-09-15', to: '2026-06-08', state: 'investigating', note: 'Reported for nine months and stopped in June. Under investigation on the register.' },
+  { assetId: 'GB0-WM-ORPHAN-c4b9', supplied: null, where: "Dianne's daughter's house, Tennant Creek", cycles: 550, kwh: 422, from: '2025-08-27', to: '2026-03-29', state: 'silent', note: 'Identified by Ben, 17 September 2026. Stopped in March. The register row is still an orphan until somebody updates it.' },
+  { assetId: 'GB0-WM-ORPHAN-fe6c', supplied: null, where: "Jahvan's aunty's house, Palm Island", cycles: 397, kwh: 107, from: '2025-09-15', to: '2026-06-08', state: 'silent', note: 'Identified by Ben, 17 September 2026. Nine months of washes, then nothing since June. The register still has it in Tennant Creek.' },
   { assetId: 'GB0-154-2', supplied: '2025-12-13', where: "Nicole's house, Tennant Creek", cycles: 344, kwh: 262, from: '2025-09-15', to: '2026-05-09', state: 'silent', note: 'Its controller was reporting from September 2025, three months before the register says the machine was supplied. One of the two dates is wrong and we have not worked out which. It stopped in May either way.' },
   { assetId: 'GB0-125', supplied: '2025-07-02', where: 'Barkly Arts, Tennant Creek', cycles: 48, kwh: 132, from: '2025-09-28', to: '2026-09-07', state: 'reporting', note: 'Reporting, and barely used. Worth a visit for that reason.' },
-  { assetId: 'GB0-WM-ORPHAN-689f', supplied: null, where: 'Tennant Creek', cycles: 38, kwh: 10, from: '2025-09-15', to: '2025-09-30', state: 'investigating', note: 'Two weeks of reports in September 2025 and nothing since. Under investigation.' },
+  { assetId: 'GB0-WM-ORPHAN-689f', supplied: null, where: 'Billow, Palm Island', cycles: 38, kwh: 10, from: '2025-09-15', to: '2025-09-30', state: 'silent', note: 'Identified by Ben, 17 September 2026. Two weeks of washes in September 2025 and nothing since. The register still has it in Tennant Creek.' },
   { assetId: 'GB0-132', supplied: '2025-07-02', where: 'Tennant Creek', cycles: 2, kwh: 1, from: '2025-09-19', to: '2026-03-01', state: 'silent', note: 'Two washes recorded in six months, which almost certainly means the controller and not the machine.' },
 ];
 
