@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { guardContactSubmission } from '@/lib/contact-delivery/anti-abuse';
+import { recordContactSubmission, sendSubmissionToInbox } from '@/lib/contact-delivery';
 import { createServiceClient } from '@/lib/supabase/server';
 import { ghl, tagForAsset } from '@/lib/ghl';
 
@@ -278,6 +279,39 @@ export async function POST(
       }
     } catch (err) {
       console.error('[bed/story] GHL sync failed:', err);
+    }
+
+    // Tell a human. A story landed as a GHL note and nothing else, so it was
+    // seen only if somebody happened to open that contact.
+    //
+    // Deliberately NOT tagged act-inquiry/project-goods: that would fire the
+    // published acknowledgement, which says "someone will get back to you
+    // within a couple of business days". That is the wrong thing to say to
+    // someone who just shared a story, and these contacts are on the community
+    // line (goods-story-submitter maps to lane:community), where a reply is a
+    // person's job. This puts it in front of that person.
+    try {
+      const submission = {
+        kind: 'contact' as const,
+        email: contact.includes('@') ? contact : '',
+        name: name || 'Story submitter',
+        subject: `Bed story: ${asset.unique_id}`,
+        payload: {
+          assetId: asset.unique_id,
+          community: asset.community,
+          place: asset.place,
+          contact,
+          consentToShare,
+          consentToContact,
+          message: story || '(no story text, media only)',
+          photoUrl,
+          audioUrl,
+        } as Record<string, unknown>,
+      };
+      await recordContactSubmission(submission);
+      await sendSubmissionToInbox(submission);
+    } catch (err) {
+      console.error('[bed/story] Could not deliver to the team inbox:', err);
     }
   }
 

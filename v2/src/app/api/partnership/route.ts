@@ -134,6 +134,14 @@ export async function POST(request: NextRequest) {
       );
       if (ghlResult.success && ghlResult.contact?.id) {
         await ghl.addTags(ghlResult.contact.id, ['act-inquiry', 'project-goods']);
+        // Registering interest in a washer is a buyer signal, so it opens a card
+        // on GOODS - Buyers the same way a bulk order does. goods-washer-interest
+        // already maps to role:buyer in canonical-tags.
+        await ghl.createInquiryOpportunity({
+          contactId: ghlResult.contact.id,
+          subject: 'Bulk Order Inquiry',
+          name: body.organizationName?.trim() || body.contactName,
+        });
         const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         const html = [
           `<p><strong>Washing Machine &mdash; Register Interest</strong></p>`,
@@ -164,6 +172,16 @@ export async function POST(request: NextRequest) {
       });
       if (ghlResult.success && ghlResult.contact?.id) {
         await ghl.addTags(ghlResult.contact.id, ['act-inquiry', 'project-goods']);
+        // A partnership inquiry tagged correctly and opened no card, so it was
+        // findable only by searching. It now lands where the contact form's
+        // Partnership subject lands: GOODS - Community at Invitation, the
+        // relationship board rather than the commercial one. A capital-path
+        // inquiry goes to GOODS - Funding instead, because that is a funder.
+        await ghl.createInquiryOpportunity({
+          contactId: ghlResult.contact.id,
+          subject: body.partnerSegment ? 'Facility Funding Inquiry' : 'Partnership Inquiry',
+          name: body.organizationName?.trim() || body.contactName,
+        });
         const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         const html = [
           `<p><strong>Partnership inquiry</strong>${body.partnershipType ? ` &mdash; ${esc(body.partnershipType)}` : ''}</p>`,

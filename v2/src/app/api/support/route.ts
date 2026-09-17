@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/server';
 import { ghl } from '@/lib/ghl';
+import { recordContactSubmission, sendSubmissionToInbox } from '@/lib/contact-delivery';
 import { guardContactSubmission } from '@/lib/contact-delivery/anti-abuse';
 
 /**
@@ -190,6 +191,59 @@ export async function POST(request: NextRequest) {
       safetyRisk: body.safetyRisk,
       issueObservedAt: body.issueObservedAt,
     });
+
+    // A person with a broken bed is waiting. Until this existed the ticket wrote
+    // a Supabase row and a GHL contact and stopped: no acknowledgement, no
+    // conversation thread, and nobody emailed. The only trace a human saw was a
+    // row in a table nobody opens.
+    //
+    // `act-inquiry` + `project-goods` are what the published "Goods Inquiry →
+    // Acknowledge" workflow triggers on, so stamping them here is what gets the
+    // person a reply. The rest puts it in front of a human the same way the
+    // contact form does.
+    if (ghlResult.success && ghlResult.contact?.id) {
+      try {
+        await ghl.addTags(ghlResult.contact.id, ['act-inquiry', 'project-goods']);
+        const esc = (v: string) =>
+          v.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const isEmail = body.userContact.includes('@');
+        if (isEmail) {
+          await ghl.addInboundEmail({
+            contactId: ghlResult.contact.id,
+            fromEmail: body.userContact,
+            subject: `Support: ${body.assetId} (${body.priority})`,
+            html: `<p><strong>${esc(body.assetId)}</strong> · ${esc(body.priority)}</p><p>${esc(body.issueDescription).replace(/\n/g, '<br/>')}</p>`,
+            text: body.issueDescription,
+          });
+        }
+      } catch (error) {
+        console.error('[Support] Could not tag or thread the ticket:', error);
+      }
+    }
+
+    // Durable receipt + the team inbox, the same path the contact form uses, so
+    // a GHL outage cannot swallow a support request.
+    try {
+      const submission = {
+        kind: 'contact' as const,
+        email: body.userContact.includes('@') ? body.userContact : '',
+        name: body.userName || 'Support request',
+        subject: `Support: ${body.assetId} (${body.priority})`,
+        payload: {
+          assetId: body.assetId,
+          priority: body.priority,
+          category: body.category,
+          community: assetInfo.community,
+          contact: body.userContact,
+          message: body.issueDescription,
+        } as Record<string, unknown>,
+      };
+      const id = await recordContactSubmission(submission);
+      await sendSubmissionToInbox(submission);
+      if (!id) console.warn('[Support] No receipt id recorded');
+    } catch (error) {
+      console.error('[Support] Could not deliver to the team inbox:', error);
+    }
 
     console.log('[Support Ticket]', {
       assetId: body.assetId,
