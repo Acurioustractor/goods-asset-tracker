@@ -669,12 +669,53 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           </p>
         </div>
 
+
+        {ownershipVoices.length > 0 && (
+          <div className="mt-16">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>
+              In their words
+            </p>
+            <ul className="m-0 mt-2 list-none p-0">
+              {ownershipVoices.map((v) => (
+                <li
+                  key={`${v.person.name}-${v.quote.text.slice(0, 24)}`}
+                  className="border-t py-9 first:border-t-0"
+                  style={{ borderColor: RULE }}
+                >
+                  <figure className="m-0 grid gap-6 sm:grid-cols-[4.5rem_1fr]">
+                    {v.person.portrait ? (
+                      <Image
+                        src={v.person.portrait}
+                        alt={v.person.name}
+                        width={200}
+                        height={200}
+                        className="h-[4.5rem] w-[4.5rem] rounded-full object-cover"
+                      />
+                    ) : (
+                      <span />
+                    )}
+                    <div>
+                      <blockquote className="m-0 font-display text-[1.375rem] leading-[1.45] sm:text-[1.625rem]" style={{ color: CHARCOAL }}>
+                        &ldquo;{v.quote.text}&rdquo;
+                      </blockquote>
+                      <figcaption className="mt-4 text-[11px] uppercase tracking-[0.12em]" style={{ color: SAGE }}>
+                        {v.person.name}{v.person.role ? `, ${v.person.role}` : ''}
+                      </figcaption>
+                      {v.quote.context && (
+                        <p className="mt-2 text-xs leading-relaxed" style={{ color: MUTED }}>{v.quote.context}</p>
+                      )}
+                    </div>
+                  </figure>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         <div className="mt-14">
           <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>The model, in plain words</p>
           <p className="mt-3 max-w-[58ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}b8` }}>
-            Community-led is a word that gets used loosely, so here is ours as four things that
-            either happen or do not. Three of them happen today. The fourth has never happened
-            anywhere.
+            What community-led means here, as four things you can check.
           </p>
           <ol className="m-0 mt-7 grid list-none gap-5 p-0 sm:grid-cols-2">
             {COMMUNITY_MODEL.map((s) => (
@@ -1050,31 +1091,6 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           <ImpactModel themes={THEMES} />
         </div>
 
-        {ownershipVoices.length > 0 && (
-          <div className="mt-12 grid gap-6 sm:grid-cols-3">
-            {ownershipVoices.map((v) => (
-              <figure key={`${v.person.name}-${v.quote.text.slice(0, 24)}`} className="m-0 rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
-                {v.person.portrait && (
-                  <Image src={v.person.portrait} alt={v.person.name} width={160} height={160} className="h-14 w-14 rounded-full object-cover" />
-                )}
-                <blockquote className="mt-4 font-display text-lg leading-[1.35]" style={{ color: CHARCOAL }}>
-                  &ldquo;{v.quote.text}&rdquo;
-                </blockquote>
-                <figcaption className="mt-3 text-[11px] uppercase tracking-[0.12em]" style={{ color: SAGE }}>
-                  {v.person.name}{v.person.role ? `, ${v.person.role}` : ''}
-                </figcaption>
-                {/*
-                  * The context, because not every one of these was said about beds. Jeremy's was
-                  * recorded on Country with young people at Kununurra, under Basecamps, and a
-                  * funder reading it deserves to know that rather than assume it is about Goods.
-                  */}
-                {v.quote.context && (
-                  <p className="mt-2 text-xs leading-relaxed" style={{ color: MUTED }}>{v.quote.context}</p>
-                )}
-              </figure>
-            ))}
-          </div>
-        )}
       </Chapter>
 
 {/*
