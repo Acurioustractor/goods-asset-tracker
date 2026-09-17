@@ -151,7 +151,7 @@ describe('the board', () => {
       expect(d.role).toBe('Director');
       expect(d.photo.startsWith('/images/people/')).toBe(true);
       expect(d.source).toMatch(/^https:\/\//);
-      expect(d.goods).not.toMatch(/chair/i);
+      expect(d.goods ?? '').not.toMatch(/chair/i);
     }
   });
 });
