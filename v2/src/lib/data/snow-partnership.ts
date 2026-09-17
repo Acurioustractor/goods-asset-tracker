@@ -849,6 +849,11 @@ export interface PlaceBeatData {
   voices?: readonly { slug: string; contains: string }[];
   /** Frames from that same place, shown small under the words. Existence is guarded. */
   photos?: readonly { src: string; alt: string }[];
+  /**
+   * Draw the map of every place over this beat's footage. Ben, 17 September: the closing beat
+   * says "every dot on the map below", so the map belongs on it rather than in a box underneath.
+   */
+  showMap?: boolean;
 }
 
 export const PLACE_BEATS: readonly PlaceBeatData[] = [
@@ -910,12 +915,9 @@ export const PLACE_BEATS: readonly PlaceBeatData[] = [
     place: 'Tingkkarli, Tennant Creek, where it started. Eleven communities now.',
     when: 'Now',
     title: 'Not only here.',
-    body: 'Five hundred and forty beds across eleven communities, twenty-three washing machines and a charity held by Indigenous directors. Every dot on the map below arrived after somebody was willing to go first.',
+    body: 'Five hundred and forty beds across eleven communities, twenty-three washing machines and a charity held by Indigenous directors. Every dot on this map arrived after somebody was willing to go first.',
     film: { src: '/video/tennant-creek/tingkkarli-drone.mp4', poster: '/video/tennant-creek/tingkkarli-drone-poster.jpg', alt: 'Tingkkarli, Tennant Creek, from the air' },
-    voices: [
-      { slug: 'norman-frank', contains: "we've got our own ways" },
-      { slug: 'linda-turner', contains: 'never been asked what sort of house' },
-    ],
+    showMap: true,
   },
 ];
 

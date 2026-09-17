@@ -24,7 +24,6 @@ import { AlignmentTable } from '@/components/partners/alignment-table';
 import { FilmGallery, type GalleryFilm } from '@/components/partners/film-gallery';
 import { StoryHero } from '@/components/partners/story-hero';
 import { PlaceFilms, type PlaceBeat } from '@/components/partners/place-films';
-import { GrowingMap } from '@/components/partners/growing-map';
 import { GrowthStory } from '@/components/partners/growth-story';
 import { PAID_INVOICE_BEDS } from '@/lib/data/paid-trade';
 import { PhotoWall } from '@/components/pitch/photo-wall';
@@ -188,6 +187,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         text: v.quote.text, portrait: v.person.portrait,
       })),
     photos: b.photos ?? [],
+    showMap: b.showMap,
   }));
 
   // The same outline the /pitch map draws, read on the server and passed in as a path string.
@@ -355,7 +355,11 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           </div>
         </div>
 
-        <PlaceFilms beats={beats} />
+        <PlaceFilms
+          beats={beats}
+          mapOutline={outline}
+          mapDots={MAP_PLACES.map((p) => ({ id: p.id, name: p.name, lat: p.lat, lng: p.lng, beds: p.beds, washers: p.washers }))}
+        />
 
         <div className="px-5 py-16 sm:px-8 sm:py-20">
           <div className="mx-auto max-w-4xl">
@@ -374,9 +378,6 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
                 bedsBought={PAID_INVOICE_BEDS}
                 monthsBefore={MONTHS_BEFORE_FIRST_SALE}
               />
-            </div>
-            <div className="mt-6">
-              {outline ? <GrowingMap outline={outline} places={MAP_PLACES} /> : null}
             </div>
             {/*
               * The map carries six places and the register carries eleven communities, so the

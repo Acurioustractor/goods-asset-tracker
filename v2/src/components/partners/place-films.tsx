@@ -16,6 +16,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import { project } from '@/components/pitch/static-map';
 
 export interface PlaceBeat {
   id: string;
@@ -28,9 +29,24 @@ export interface PlaceBeat {
   /** Everyone who speaks on this stop. First one leads, the rest sit under it smaller. */
   voices: readonly { name: string; role: string; community: string; text: string; portrait: string | null }[];
   photos: readonly { src: string; alt: string }[];
+  /** Draw the map of every place over this beat. Only the closing beat asks for it. */
+  showMap?: boolean;
 }
 
-export function PlaceFilms({ beats }: { beats: readonly PlaceBeat[] }) {
+export interface MapDot {
+  id: string;
+  name: string;
+  lat: number;
+  lng: number;
+  beds: number;
+  washers: number;
+}
+
+export function PlaceFilms({ beats, mapOutline, mapDots }: {
+  beats: readonly PlaceBeat[];
+  mapOutline?: string;
+  mapDots?: readonly MapDot[];
+}) {
   const [active, setActive] = useState(0);
   const [still, setStill] = useState(true);
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -122,6 +138,28 @@ export function PlaceFilms({ beats }: { beats: readonly PlaceBeat[] }) {
                     </div>
                   </figure>
                 ))}
+                {b.showMap && mapOutline && mapDots && mapDots.length > 0 && (
+                  <figure className="m-0 mt-8 max-w-xl">
+                    <svg viewBox="0 0 620 460" className="h-auto w-full" role="img" aria-label={`${mapDots.length} places on the map`}>
+                      <g fill="rgba(253,248,243,0.07)" stroke="rgba(253,248,243,0.4)" strokeWidth={1} dangerouslySetInnerHTML={{ __html: mapOutline }} />
+                      {mapDots.map((d) => {
+                        const { x, y } = project(d.lat, d.lng);
+                        const r = d.beds >= 100 ? 9 : d.beds >= 30 ? 7 : 5.5;
+                        return (
+                          <g key={d.id}>
+                            <circle cx={x} cy={y} r={r * 2.6} fill="#C45C3E" opacity={0.28} />
+                            {d.washers > 0 && <circle cx={x} cy={y} r={r + 4} fill="none" stroke="#A9BE90" strokeWidth={2} />}
+                            <circle cx={x} cy={y} r={r} fill="#C45C3E" stroke="rgba(253,248,243,0.85)" strokeWidth={1.5} />
+                            <text x={x + r + 7} y={y + 4} fontSize={13} fill="rgba(253,248,243,0.92)">{d.name}</text>
+                          </g>
+                        );
+                      })}
+                    </svg>
+                    <figcaption className="mt-2 text-xs text-goods-cream/60">
+                      A sage ring marks a place with washing machines in it.
+                    </figcaption>
+                  </figure>
+                )}
                 {b.photos.length > 0 && (
                   <ul className="m-0 mt-8 flex list-none gap-3 p-0">
                     {b.photos.map((ph) => (
