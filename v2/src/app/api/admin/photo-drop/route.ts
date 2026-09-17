@@ -177,6 +177,13 @@ export async function POST(req: Request) {
    */
   let indexed = false;
   let contentId: string | null = null;
+  /*
+   * WHY IT DID NOT REGISTER, IN THE ANSWER. Two photographs landed on disk with no row and the
+   * card still went green, because the insert's error was dropped on the floor twice over: once
+   * by `indexed = !error`, which keeps the boolean and discards the reason, and once by a bare
+   * catch. A silent failure here looks exactly like success to the person dropping.
+   */
+  let indexError: string | null = null;
   try {
     const supabase = createServiceClient();
     const checksum = createHash('md5').update(bytes).digest('hex');
@@ -204,10 +211,12 @@ export async function POST(req: Request) {
         .select('id')
         .single();
       indexed = !error;
+      indexError = error ? `${error.code ?? ''} ${error.message}`.trim() : null;
       contentId = (data?.id as string) ?? null;
     }
-  } catch {
+  } catch (e) {
     indexed = false;
+    indexError = e instanceof Error ? e.message : String(e);
   }
 
   return NextResponse.json({
@@ -229,8 +238,9 @@ export async function POST(req: Request) {
       : viaUrl
         ? 'Dragged from a web page, so Google stripped the date out of it. Set the community yourself, or drag the downloaded file instead to keep the date.'
         : 'No date in the file, so it is in unplaced. Set the community in the Media Room.',
+    indexError,
     next: indexed
       ? 'In the library now. Write the Notes, which is the caption every page reads.'
-      : 'On disk, but not registered. Run npm run content:index to see it in the grid.',
+      : `On disk, but the library would not register it${indexError ? `: ${indexError}` : ''}. Drop it again, or run npm run content:index.`,
   });
 }

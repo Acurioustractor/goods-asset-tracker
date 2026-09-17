@@ -26,6 +26,7 @@ interface Dropped {
   trip?: { community: string; what: string } | null;
   viaUrl?: boolean;
   indexed?: boolean;
+  indexError?: string | null;
   contentId?: string | null;
   community?: string | null;
   appliedTags?: string[];
@@ -402,6 +403,13 @@ function DroppedCard({ item, onDone }: { item: Dropped; onDone: () => void }) {
             {item.exif?.model ? ` · ${[item.exif.make, item.exif.model].filter(Boolean).join(' ')}` : ''}
             {item.appliedTags?.length ? ` · already tagged ${item.appliedTags.join(' ')}` : ''}
           </p>
+          {/* A green card with no library row is the failure that looks like success. Say so. */}
+          {item.indexed === false ? (
+            <p className="rounded bg-amber-50 px-2 py-1 text-[11px] text-amber-900 dark:bg-amber-950/40 dark:text-amber-200">
+              On disk, but the library did not register it, so it has no tags and no caption yet.
+              Drop it again.{item.indexError ? ` (${item.indexError})` : ''}
+            </p>
+          ) : null}
           <input
             value={caption}
             onChange={(e) => { setCaption(e.target.value); setState('idle'); }}
