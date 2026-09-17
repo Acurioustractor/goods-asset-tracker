@@ -12,6 +12,7 @@ import { goodsBoard } from '@/lib/data/goods-board';
 import {
   ALIGNMENT, BECAUSE_OF, BUYER_TOTALS, BUYERS, DEMAND_GAPS, FILMS, heroFrames, MAP_PLACES,
   COMMUNITY_MODEL, MONEY_EVENTS, MONTHS_BEFORE_FIRST_SALE, NOT_FINISHED, OONCHIUMPA_NEXT,
+  PROGRESS_BRIDGE,
   PLACE_BEATS, PRICE_LADDER,
   SNOW_MONEY, THE_ARC, THE_LETTER, TOGETHER,
   WALLS, WHY_FLEXIBLE,
@@ -379,8 +380,9 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           <div className="mx-auto max-w-4xl">
             <p className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: RUST }}>Every payment, in order</p>
             <p className="mt-3 max-w-2xl text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-              Eleven payments put beds in houses. Four of them were given before anybody had bought
-              anything. Read down and the order tells you what your money was for.
+              Eleven payments put beds in houses. Five of them were given before anybody had bought
+              anything. Read down: the order is the progress, and it is what the rest of this report
+              is built on.
             </p>
             <div className="mt-8">
               <MoneyLedger events={MONEY_EVENTS} monthsBefore={MONTHS_BEFORE_FIRST_SALE} />
@@ -419,6 +421,22 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
               </div>
             </div>
 
+
+            {/*
+              * THE HINGE INTO CHAPTER THREE. Ben, 17 September: think about progress, then the
+              * way we are finding more buyers, and let that lead into the charity, its Indigenous
+              * governance and what that governance is for.
+              */}
+            <div className="mt-12 rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderLeft: `4px solid ${RUST}` }}>
+              <p className="font-display text-xl leading-snug sm:text-2xl" style={{ color: CHARCOAL }}>{PROGRESS_BRIDGE.heading}</p>
+              <p className="mt-4 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{PROGRESS_BRIDGE.progress}</p>
+              <p className="mt-3 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{PROGRESS_BRIDGE.buyers}</p>
+              <p className="mt-3 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{PROGRESS_BRIDGE.price}</p>
+              <p className="mt-6 max-w-[62ch] border-t pt-5 text-base leading-[1.75]" style={{ borderColor: RULE, color: `${CHARCOAL}cc` }}>
+                {PROGRESS_BRIDGE.charity}
+              </p>
+              <p className="mt-3 text-sm" style={{ color: MUTED }}>{PROGRESS_BRIDGE.forward}</p>
+            </div>
 
             {/* catalyse now opens the report in the hero, so the money chapter does not repeat it. */}
             {backing && <Pull v={backing} />}

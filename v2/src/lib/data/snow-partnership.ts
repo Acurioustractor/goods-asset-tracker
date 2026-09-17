@@ -440,6 +440,33 @@ export const BED_HERE = {
 } as const;
 
 /**
+ * THE BRIDGE: WHAT THE ORDER OF THE LEDGER LEADS TO.
+ *
+ * Ben, 17 September 2026: think about progress, then build on the way we are finding more
+ * buyers, and let that lead into the development of the charity, the Indigenous leadership and
+ * governance, and what it is for, which is community-led enterprise, capacity and ownership.
+ *
+ * So this is the hinge between chapter two and chapter three, and it is made of three facts that
+ * are all in the invoice record: the money came before the trade, the trade is now four
+ * different KINDS of buyer rather than four customers, and the price rose while they kept
+ * buying. The charity is the answer to the question those three raise, which is who ends up
+ * holding the making.
+ *
+ * Nothing here claims ownership has moved. It has not, and the model block says so twice.
+ */
+export const PROGRESS_BRIDGE = {
+  heading: 'What the order is actually telling you',
+  progress:
+    'Given first, bought after. That is the shape of the table above and it is the shape of the last two years.',
+  buyers:
+    'And the buying is not one customer repeated. It is four kinds of buyer: a philanthropic trust buying for a community, an Aboriginal community controlled health service buying bedding as health hardware out of its own budget, a school company buying for its homelands, and a national research centre buying for the communities it works with. Each one is a different door into the same market, and each is a door we can knock on again.',
+  price: `The price went ${[...new Set(PAID_INVOICES.map((i) => i.bedUnitPriceAud))].sort((a, b) => a - b).map((x) => `$${x}`).join(', ')} across those buyers and they kept buying, which is the only demand signal worth anything.`,
+  charity:
+    'That is what leads to the charity. A bed a community organisation sells and keeps the whole price of needs somewhere for the making to end up, and it cannot be us. Goods on Country Ltd is a DGR1 charity with a board of Indigenous directors, and it exists to do the part the trade cannot do on its own: hold the enterprise in community hands, build the capacity to run it, and carry the transfer of the making itself.',
+  forward: 'Who holds it, and what it is for, is the next chapter.',
+} as const;
+
+/**
  * THE COMMUNITY-LED MODEL, IN THE ORDER IT HAPPENS.
  *
  * Ben, 17 September 2026: after the directors, talk more about the community-led model, the
