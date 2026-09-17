@@ -473,7 +473,7 @@ export const TRADE_BY_YEAR: readonly { year: string; invoices: number; beds: num
 export const THE_NEXT_TEN = {
   heading: 'The shape, for the next five to ten years',
   body:
-    'One line comes down and the other goes up. Philanthropy carried the whole of the first eleven months and it still carries most of what this work costs. The buying is what has to take its place, until the beds pay for the making and the making is not ours to hold.',
+    'Philanthropy carried the whole of the first eleven months and it still carries most of what this work costs. The buying is what has to take its place, until the beds pay for the making and the making is not ours to hold.',
   holder:
     'What holds it while that happens is the charity, and the charity is a board of Indigenous directors with the community organisations themselves behind it. That is the difference between an enterprise that is transferred and one that is only talked about being transferred.',
   forward:
