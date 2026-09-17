@@ -22,6 +22,7 @@ import { ghl } from '@/lib/ghl';
 import { buildBulkOrderReply } from './bulk-order-reply';
 import { buildMediaPackReply } from './media-pack-reply';
 import { buildCapitalReply } from './capital-reply';
+import { buildCommunityReply } from './community-reply';
 
 export interface BuiltEmail {
   subject: string;
@@ -34,6 +35,11 @@ export interface ReplyContext {
   name?: string;
   organisation?: string;
   message?: string;
+  /**
+   * Optional on the form, so a builder that promises a phone call has to handle its absence.
+   * Promising to ring somebody who never gave us a number is a promise nobody can keep.
+   */
+  phone?: string;
 }
 
 /**
@@ -45,6 +51,7 @@ export const REPLY_BUILDERS: Record<string, (ctx: ReplyContext) => BuiltEmail> =
   'Bulk Order Inquiry': buildBulkOrderReply,
   'Media Pack Request': buildMediaPackReply,
   'Facility Funding Inquiry': buildCapitalReply,
+  'Community Interest': buildCommunityReply,
 };
 
 export type ReplyOutcome = 'replied' | 'acknowledged' | 'failed';

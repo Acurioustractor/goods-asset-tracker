@@ -182,7 +182,12 @@ export async function POST(request: NextRequest) {
       const outcome = await acknowledgeOrReply({
         contactId: ghlResult.contact.id,
         subject,
-        context: { name: body.name, organisation: body.organisation, message: body.message },
+        context: {
+          name: body.name,
+          organisation: body.organisation,
+          message: body.message,
+          phone: body.phone,
+        },
       });
       console.log(`[Contact] ${subject}: ${outcome}`);
 

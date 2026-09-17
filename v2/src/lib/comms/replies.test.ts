@@ -13,6 +13,7 @@ vi.mock('@/lib/ghl', () => ({
 const { acknowledgeOrReply, REPLY_BUILDERS, subjectsWithOwnReply } = await import('./replies');
 const { buildMediaPackReply } = await import('./media-pack-reply');
 const { buildCapitalReply } = await import('./capital-reply');
+const { buildCommunityReply } = await import('./community-reply');
 
 /**
  * One person, one reply. The whole point of putting this decision in a function rather than in
@@ -149,5 +150,40 @@ describe('the capital reply', () => {
   it('carries no unsubscribe, which is the whole reason it is not a workflow', () => {
     expect(email.text.toLowerCase()).not.toContain('unsubscribe');
     expect(email.html.toLowerCase()).not.toContain('unsubscribe');
+  });
+});
+
+describe('the community reply', () => {
+  const withPhone = buildCommunityReply({ phone: '0400 000 000' });
+  const withoutPhone = buildCommunityReply({});
+
+  it('puts the decision with the community before anything else', () => {
+    expect(withPhone.text).toContain('until that community has decided it wants it');
+    expect(withPhone.text).toContain('who gets paid');
+  });
+
+  it('promises a call, not an email thread', () => {
+    expect(withPhone.text).toContain('I will ring you within two business days');
+  });
+
+  it('asks for a number instead when we do not have one', () => {
+    expect(
+      withoutPhone.text,
+      'Promising to ring somebody who never gave us a number is a promise nobody can keep',
+    ).toContain('Reply with a number');
+    expect(withoutPhone.text).toContain('two business days');
+  });
+
+  it('asks who else should be on the call, either way', () => {
+    for (const email of [withPhone, withoutPhone]) {
+      expect(email.text).toContain('someone else who should be on that call');
+    }
+  });
+
+  it('never claims a facility or a decision that has not been made', () => {
+    for (const email of [withPhone, withoutPhone]) {
+      expect(email.text.toLowerCase()).not.toContain('we will build');
+      expect(email.text.toLowerCase()).not.toContain('your facility');
+    }
   });
 });

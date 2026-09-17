@@ -246,14 +246,13 @@ export const CAMPAIGNS: Campaign[] = [
     kind: 'reply',
     recipient: 'the person',
     channel: 'ghl-email',
-    trigger: 'Contact tag added project-goods, branch 4: interest:community',
+    trigger: 'A Community Interest enquiry through the contact form, sent from the route itself',
     consentBasis: 'They wrote to us.',
     cadence: 'Once.',
     owner: 'ben',
-    status: 'drafted',
+    status: 'live',
     brief:
-      'Names the person who will ring, says nothing gets made until the community decides what it wants and who is paid, and asks what is already happening there. Never promises a facility.',
-    blockedOn: 'Branch 4 not built in GHL.',
+      'Says nothing gets made until that community has decided it wants it, who gets paid and what gets made next, so the first step is a call rather than an email thread. Promises the call inside two business days when we have a number, and asks for one when we do not. Never promises a facility. The only branch whose promise is a person\u2019s time.',
   },
   {
     id: 'community-relationship-nag',

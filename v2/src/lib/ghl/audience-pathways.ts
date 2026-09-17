@@ -455,10 +455,13 @@ export const AUDIENCE_PATHWAYS: AudiencePathway[] = [
         door: 'Bring this to my community, from /pitch',
         handler: 'api/contact/route.ts',
         subject: 'Community Interest',
-        tags: ['role:community', 'interest:community', 'act-inquiry', 'project-goods'],
+        tags: ['role:community', 'interest:community', 'act-inquiry'],
         state: 'live',
         note:
-          'Deliberately NOT lane:community. Anyone can press this button, and auto-laning a council officer would both dilute the community line and silence somebody who never asked to be silenced. A human confirms the lane.',
+          'Gets its own reply, which promises a call inside two business days, or asks for a number ' +
+          'when the form did not carry one. Deliberately NOT lane:community. Anyone can press this ' +
+          'button, and auto-laning a council officer would both dilute the community line and ' +
+          'silence somebody who never asked to be silenced. A human confirms the lane.',
       },
       {
         door: 'Sell beds in your community, at /sell-beds',
@@ -528,10 +531,13 @@ export const AUDIENCE_PATHWAYS: AudiencePathway[] = [
         id: 'community-invitation',
         name: 'Invitation',
         where: 'GOODS - Community, stage Invitation',
-        theyGet: 'A reply from a named person, in the channel they used.',
+        theyGet: 'A reply that puts the decision with them, and a call inside two business days.',
         messageClass: 'answer',
         advance: 'The community says what it wants, and who is paid to do it.',
         state: 'live',
+        gap:
+          'The call is the promise, and it is Ben\u2019s to keep. Nothing in the system tracks whether ' +
+          'it happened: no task, no clock, no list of who is still waiting to be rung.',
       },
       {
         id: 'community-holding',
