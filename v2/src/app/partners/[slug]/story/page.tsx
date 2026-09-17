@@ -14,7 +14,7 @@ import {
   COMMUNITY_MODEL, MONEY_EVENTS, MONTHS_BEFORE_FIRST_SALE, NOT_FINISHED, OONCHIUMPA_NEXT,
   OWNERSHIP_VOICES, PROGRESS_BRIDGE, THEMES, THE_NEXT_TEN, TRADE_BY_YEAR,
   PLACE_BEATS, PRICE_LADDER,
-  FLEET_USE, SNOW_MONEY, THE_ARC, THE_LETTER, TOGETHER, WASHER_FLEET,
+  SNOW_MONEY, THE_ARC, THE_LETTER, TOGETHER, WASHER_FLEET,
   WALLS, WHY_FLEXIBLE,
   WASHER_NEXT, WASHER_PLACES, WASHER_TELEMETRY,
 } from '@/lib/data/snow-partnership';
@@ -828,56 +828,42 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
 
       <Chapter
         id="ch-washers"
-        title="How the fleet got to twenty three and what it reports"
-        lead="Snow bought one of these outright. They are the only part of the work that tells us how it is going without anyone having to visit."
+        title="Twenty three machines. Ten of them can talk."
+        lead="Snow bought one outright. They are the only part of this work that says how it is going without anyone flying in to look."
       >
         <div className="grid gap-4 sm:grid-cols-4">
           {WASHER_PLACES.map((w) => (
-            <div key={w.place} className="rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
+            <div key={w.place} className="rounded-lg p-5" style={{ backgroundColor: PANEL, border: `1px solid ${RULE}` }}>
               <p className="font-display text-3xl leading-none" style={{ color: CHARCOAL }}>{w.inCommunity}</p>
               <p className="mt-2 text-sm font-semibold leading-snug" style={{ color: CHARCOAL }}>{w.place}</p>
-              <p className="mt-2 text-xs leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>{w.note}</p>
             </div>
           ))}
         </div>
 
-        <div className="mt-6 rounded-lg p-6 sm:p-8" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
-          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>
-            What the machines reported, read {WASHER_TELEMETRY.readAt}
-          </p>
-          <div className="mt-4 grid gap-6 sm:grid-cols-3">
-            <div>
-              <p className="font-display text-4xl leading-none" style={{ color: CHARCOAL }}>{WASHER_TELEMETRY.totalCycles.toLocaleString('en-AU')}</p>
-              <p className="mt-2 text-xs" style={{ color: `${CHARCOAL}b8` }}>Wash cycles recorded</p>
+        <dl className="mt-8 grid gap-6 sm:grid-cols-3">
+          {[
+            { v: WASHER_TELEMETRY.totalCycles.toLocaleString('en-AU'), k: 'washes' },
+            { v: WASHER_TELEMETRY.totalKwh.toLocaleString('en-AU'), k: 'kilowatt hours' },
+            { v: `${WASHER_TELEMETRY.reporting} of ${CANONICAL_ASSETS.washersInCommunity}`, k: 'with a controller' },
+          ].map((s) => (
+            <div key={s.k}>
+              <dd className="font-display text-4xl leading-none" style={{ color: CHARCOAL }}>{s.v}</dd>
+              <dt className="mt-2 text-xs uppercase tracking-wide" style={{ color: MUTED }}>{s.k}</dt>
             </div>
-            <div>
-              <p className="font-display text-4xl leading-none" style={{ color: CHARCOAL }}>{WASHER_TELEMETRY.totalKwh.toLocaleString('en-AU')}</p>
-              <p className="mt-2 text-xs" style={{ color: `${CHARCOAL}b8` }}>Kilowatt hours drawn</p>
-            </div>
-            <div>
-              <p className="font-display text-4xl leading-none" style={{ color: CHARCOAL }}>{WASHER_TELEMETRY.reporting}</p>
-              <p className="mt-2 text-xs" style={{ color: `${CHARCOAL}b8` }}>Machines that report at all</p>
-            </div>
-          </div>
-          <div className="mt-6 rounded-lg p-5" style={{ backgroundColor: CREAM }}>
-            <p className="font-display text-xl leading-snug" style={{ color: CHARCOAL }}>
-              {WASHER_TELEMETRY.flagship.cycles} washes in one house.
-            </p>
-            <p className="mt-2.5 text-[0.9375rem] leading-[1.65]" style={{ color: `${CHARCOAL}cc` }}>
-              {WASHER_TELEMETRY.flagship.assetId}, at {WASHER_TELEMETRY.flagship.where}, has drawn{' '}
-              {WASHER_TELEMETRY.flagship.kwh.toLocaleString('en-AU')} kilowatt hours between{' '}
-              {WASHER_TELEMETRY.flagship.from} and {WASHER_TELEMETRY.flagship.to}. It was still reporting on the day
-              this was written.
-            </p>
-          </div>
-          <ul className="mt-6 space-y-3 text-sm leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>
-            {WASHER_TELEMETRY.honest.map((h) => <li key={h}>{h}</li>)}
-          </ul>
-          <p className="mt-4 text-xs" style={{ color: MUTED }}>Source: {WASHER_TELEMETRY.source}.</p>
+          ))}
+        </dl>
+
+        <div className="mt-8">
+          <FleetTimeline rows={WASHER_FLEET} readAt={WASHER_TELEMETRY.readAt} />
         </div>
+        <p className="mt-3 text-xs leading-relaxed" style={{ color: MUTED }}>
+          Seven have ever reported a wash. Norm&rsquo;s house has done more than all the rest together. Three sit on
+          the register as under investigation: we know the controller, not yet the house. Read{' '}
+          {WASHER_TELEMETRY.readAt} from the rollups the admin fleet screen uses.
+        </p>
 
         {proud && (
-          <figure className="m-0 mb-2 flex max-w-[46ch] items-start gap-4">
+          <figure className="m-0 mt-10 flex max-w-[46ch] items-start gap-4">
             {proud.person.portrait && (
               <Image src={proud.person.portrait} alt={proud.person.name} width={160} height={160} className="h-14 w-14 shrink-0 rounded-full object-cover" />
             )}
@@ -889,34 +875,6 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             </div>
           </figure>
         )}
-
-        {/*
-          * The fleet, machine by machine. Ben, 17 September: the fun is in how we track this.
-          * The silent and unmatched rows are the reason to print it; a table of only the working
-          * machines would say less than the summary above it.
-          */}
-        <div className="mt-8">
-          <FleetTimeline rows={WASHER_FLEET} readAt={WASHER_TELEMETRY.readAt} />
-        </div>
-        <p className="mt-3 text-xs leading-relaxed" style={{ color: MUTED }}>
-          Read {WASHER_TELEMETRY.readAt} from the same rollups the admin fleet screen uses, reconciled to the
-          register through the controller aliases reviewed on 14 May 2026. Twenty three machines are in community
-          and ten have a controller fitted. Seven have ever reported a wash, and the three that have not are
-          counted in the ten and are not rows above. Every controller resolves to a register row: the three
-          GB0-WM-ORPHAN rows are the ones where we know the controller and not yet the house.
-        </p>
-
-        <div className="mt-8 grid gap-4 sm:grid-cols-2">
-          {FLEET_USE.map((u) => (
-            <div key={u.title} className="rounded-lg p-5" style={{ backgroundColor: PANEL, border: u.state === 'next' ? '1px dashed #C2B6AA' : '1px solid #E8DED4' }}>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: u.state === 'next' ? MUTED_DEEP : SAGE }}>
-                {u.state === 'next' ? 'Not yet' : 'What it is already for'}
-              </p>
-              <p className="mt-2 font-display text-base leading-snug" style={{ color: CHARCOAL }}>{u.title}</p>
-              <p className="mt-2 text-[0.875rem] leading-[1.65]" style={{ color: `${CHARCOAL}b8` }}>{u.body}</p>
-            </div>
-          ))}
-        </div>
 
         {washerVoices.length > 0 && (
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
@@ -932,10 +890,10 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           </div>
         )}
 
-        <div className="mt-7 grid gap-5 sm:grid-cols-3">
+        <div className="mt-10 grid gap-5 sm:grid-cols-3">
           {WASHER_NEXT.map((n) => (
-            <div key={n.title} className="rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4', borderTop: '2px solid #B8AEA4' }}>
-              <p className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: MUTED_DEEP }}>Where it goes next</p>
+            <div key={n.title} className="rounded-lg p-6" style={{ backgroundColor: PANEL, border: `1px dashed ${RULE_DASH}` }}>
+              <p className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: MUTED_DEEP }}>Next</p>
               <p className="mt-2 font-display text-base leading-snug" style={{ color: CHARCOAL }}>{n.title}</p>
               <p className="mt-2 text-xs leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>{n.detail}</p>
             </div>

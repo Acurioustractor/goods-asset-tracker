@@ -1293,6 +1293,13 @@ export const WASHER_TELEMETRY = {
  * table had not read it. Two more controllers report under house names rather than ids and merge
  * into machines already here: Norms House into GB0-113 and Nicoles House into GB0-154-2.
  *
+ * SUPPLY DATES ADDED 17 September 2026 from the asset register, because a bar that starts at the
+ * first report starts in the wrong place. Ben: we know when most machines were delivered, get it
+ * right. Three of the four dated machines waited between two and four months between being
+ * delivered and saying anything, which is time they were in a house being used and we cannot
+ * count it. GB0-154-2 is worse than that and its row says so: the controller reported three
+ * months BEFORE the register's supply date, so one of the two is wrong.
+ *
  * RECOMPUTED 17 September 2026 from daily_machine_rollups with those aliases applied, which
  * moved the flagship from 951 washes to 952 and the fleet from 2,330 to 2,331. Three further
  * machines have controllers fitted and have never reported a cycle, so they are counted in the
@@ -1300,6 +1307,13 @@ export const WASHER_TELEMETRY = {
  */
 export interface FleetRow {
   assetId: string | null;
+  /**
+   * When the register says the machine was supplied. Null where the register has no date, which
+   * is every row still under investigation. The gap between this and the first report is the
+   * most interesting column on the chart: a machine delivered in July 2025 that says nothing
+   * until November was in a house, being used, for four months we cannot count.
+   */
+  supplied: string | null;
   where: string;
   cycles: number;
   kwh: number;
@@ -1310,25 +1324,15 @@ export interface FleetRow {
 }
 
 export const WASHER_FLEET: readonly FleetRow[] = [
-  { assetId: 'GB0-113', where: "Norm's house, Tennant Creek", cycles: 952, kwh: 2_613, from: '2025-11-17', to: '2026-09-16', state: 'reporting', note: 'The machine the rest of the fleet is measured against. More washes on it than every other machine put together.' },
-  { assetId: 'GB0-WM-ORPHAN-c4b9', where: 'Tennant Creek', cycles: 550, kwh: 422, from: '2025-08-27', to: '2026-03-29', state: 'investigating', note: 'Did 550 washes, then stopped in March 2026. The register carries it as under investigation because we know the controller and not yet the house.' },
-  { assetId: 'GB0-WM-ORPHAN-fe6c', where: 'Tennant Creek', cycles: 397, kwh: 107, from: '2025-09-15', to: '2026-06-08', state: 'investigating', note: 'Reported for nine months and stopped in June. Under investigation on the register.' },
-  { assetId: 'GB0-154-2', where: "Nicole's house, Tennant Creek", cycles: 344, kwh: 262, from: '2025-09-15', to: '2026-05-09', state: 'silent', note: 'Stopped reporting in May and has not been seen since.' },
-  { assetId: 'GB0-125', where: 'Barkly Arts, Tennant Creek', cycles: 48, kwh: 132, from: '2025-09-28', to: '2026-09-07', state: 'reporting', note: 'Reporting, and barely used. Worth a visit for that reason.' },
-  { assetId: 'GB0-WM-ORPHAN-689f', where: 'Tennant Creek', cycles: 38, kwh: 10, from: '2025-09-15', to: '2025-09-30', state: 'investigating', note: 'Two weeks of reports in September 2025 and nothing since. Under investigation.' },
-  { assetId: 'GB0-132', where: 'Tennant Creek', cycles: 2, kwh: 1, from: '2025-09-19', to: '2026-03-01', state: 'silent', note: 'Two washes recorded in six months, which almost certainly means the controller and not the machine.' },
+  { assetId: 'GB0-113', supplied: '2025-07-02', where: "Norm's house, Tennant Creek", cycles: 952, kwh: 2_613, from: '2025-11-17', to: '2026-09-16', state: 'reporting', note: 'The machine the rest of the fleet is measured against. More washes on it than every other machine put together.' },
+  { assetId: 'GB0-WM-ORPHAN-c4b9', supplied: null, where: 'Tennant Creek', cycles: 550, kwh: 422, from: '2025-08-27', to: '2026-03-29', state: 'investigating', note: 'Did 550 washes, then stopped in March 2026. The register carries it as under investigation because we know the controller and not yet the house.' },
+  { assetId: 'GB0-WM-ORPHAN-fe6c', supplied: null, where: 'Tennant Creek', cycles: 397, kwh: 107, from: '2025-09-15', to: '2026-06-08', state: 'investigating', note: 'Reported for nine months and stopped in June. Under investigation on the register.' },
+  { assetId: 'GB0-154-2', supplied: '2025-12-13', where: "Nicole's house, Tennant Creek", cycles: 344, kwh: 262, from: '2025-09-15', to: '2026-05-09', state: 'silent', note: 'Its controller was reporting from September 2025, three months before the register says the machine was supplied. One of the two dates is wrong and we have not worked out which. It stopped in May either way.' },
+  { assetId: 'GB0-125', supplied: '2025-07-02', where: 'Barkly Arts, Tennant Creek', cycles: 48, kwh: 132, from: '2025-09-28', to: '2026-09-07', state: 'reporting', note: 'Reporting, and barely used. Worth a visit for that reason.' },
+  { assetId: 'GB0-WM-ORPHAN-689f', supplied: null, where: 'Tennant Creek', cycles: 38, kwh: 10, from: '2025-09-15', to: '2025-09-30', state: 'investigating', note: 'Two weeks of reports in September 2025 and nothing since. Under investigation.' },
+  { assetId: 'GB0-132', supplied: '2025-07-02', where: 'Tennant Creek', cycles: 2, kwh: 1, from: '2025-09-19', to: '2026-03-01', state: 'silent', note: 'Two washes recorded in six months, which almost certainly means the controller and not the machine.' },
 ];
 
-/**
- * What the telemetry is for, which is the part a funder has not been told before. It is not a
- * dashboard: it is how a service trip gets decided without anyone flying in to look.
- */
-export const FLEET_USE: readonly { title: string; body: string; state: 'now' | 'next' }[] = [
-  { state: 'now', title: 'A machine that has gone quiet is a visit', body: 'Three controllers reported and then stopped. That is the only way we would know, short of somebody asking, and it is why the silent rows are on this table rather than off it.' },
-  { state: 'now', title: 'Cycles are the use, not the delivery', body: 'A bed delivered is a bed delivered. A wash is somebody choosing to use the thing, nine hundred and fifty one times in one house, and that is a different kind of evidence.' },
-  { state: 'next', title: 'Thirteen machines with nothing on them', body: 'Ten of twenty three have a controller. Fitting the rest is the cheapest thing on this page and the one that would make the fleet measurable instead of sampled.' },
-  { state: 'next', title: 'The number nobody has costed', body: 'Kilowatt hours a cycle, against what a commercial remote laundry charges for the same wash. The rows above are the beginning of that arithmetic and not the end of it.' },
-];
 
 export const WASHER_NEXT: readonly { title: string; detail: string }[] = [
   { title: 'Cheaper, smaller and still durable', detail: 'The aim for the next version, in that order. It has to compete with what a family can already buy in town, or it stays a machine that arrives only when a funder pays for it. Ben, 17 September 2026.' },
