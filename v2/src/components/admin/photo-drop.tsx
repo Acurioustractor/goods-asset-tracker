@@ -69,15 +69,22 @@ export function PhotoDrop() {
         files.forEach(sendFile);
         return;
       }
-      // A drag from a web page gives a URL list, or HTML with an <img> in it.
-      const uri = e.dataTransfer.getData('text/uri-list') || e.dataTransfer.getData('text/plain');
-      if (uri && /^https?:\/\//.test(uri.trim())) {
-        sendUrl(uri.trim().split('\n')[0]);
+      /*
+       * ORDER MATTERS AND IT COST US THE FIRST TRY. Google Photos puts the PAGE link in
+       * text/uri-list and the actual image in the text/html payload. Taking the uri-list first
+       * fetched photos.google.com and got a login page back: "unsupported type: text/html".
+       * So the <img src> wins, and the uri-list is the fallback for sites that only send that.
+       */
+      const html = e.dataTransfer.getData('text/html');
+      const fromImg = html.match(/<img[^>]+src=["']([^"']+)["']/i)?.[1];
+      if (fromImg && /^https?:\/\//.test(fromImg)) {
+        sendUrl(fromImg);
         return;
       }
-      const html = e.dataTransfer.getData('text/html');
-      const src = html.match(/<img[^>]+src="([^"]+)"/i)?.[1];
-      if (src) sendUrl(src);
+      const uri = (e.dataTransfer.getData('text/uri-list') || e.dataTransfer.getData('text/plain') || '')
+        .trim()
+        .split('\n')[0];
+      if (uri && /^https?:\/\//.test(uri)) sendUrl(uri);
     },
     [sendFile, sendUrl],
   );

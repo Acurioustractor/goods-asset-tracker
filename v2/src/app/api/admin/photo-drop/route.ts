@@ -59,8 +59,20 @@ export async function POST(req: Request) {
         return NextResponse.json({ ok: false, error: 'url must be http(s)' }, { status: 400 });
       }
       viaUrl = true;
-      // Ask Google for the original rather than a thumbnail where the URL allows it.
-      const url = body.url.replace(/=[swh]\d+(-[a-z0-9]+)*$/i, '=s0');
+      // A googleusercontent URL carries its rendition in a =w1234-h5678 suffix; swapping it for
+      // =s0 asks for the original. A photos.google.com link is a PAGE, not an image, and will
+      // come back as HTML, which is what the check below is for.
+      const url = body.url.replace(/=[swh]\d+(-[a-z0-9-]+)*$/i, '=s0');
+      if (/^https?:\/\/photos\.google\.com\//i.test(url)) {
+        return NextResponse.json(
+          {
+            ok: false,
+            error:
+              'That is a link to the Google Photos page, not to the picture. Drag the photo itself out of the grid, or download it and drag the file.',
+          },
+          { status: 400 },
+        );
+      }
       const res = await fetch(url, { headers: { 'User-Agent': 'goods-media-room' } });
       if (!res.ok) {
         return NextResponse.json({ ok: false, error: `fetch failed: HTTP ${res.status}` }, { status: 400 });
@@ -74,8 +86,18 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: e instanceof Error ? e.message : String(e) }, { status: 400 });
   }
 
-  if (!OK_TYPES.has(contentType.split(';')[0].trim())) {
-    return NextResponse.json({ ok: false, error: `unsupported type: ${contentType}` }, { status: 400 });
+  const mime = contentType.split(';')[0].trim();
+  if (!OK_TYPES.has(mime)) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error:
+          mime === 'text/html'
+            ? 'That link gave a web page rather than a picture, which usually means Google wanted a login. Download the photo and drag the file in instead: you keep the date that way too.'
+            : `unsupported type: ${contentType}`,
+      },
+      { status: 400 },
+    );
   }
   if (bytes.byteLength > MAX_BYTES) {
     return NextResponse.json({ ok: false, error: 'over 12MB; resize it first' }, { status: 400 });
