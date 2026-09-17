@@ -132,13 +132,18 @@ export default async function AdminCampaignPage() {
             Read live from the account each time this page loads. A workflow in draft looks exactly
             like a working one from everywhere except this list.
           </p>
+          {!workflows.readable && (
+            <p className="mt-3 rounded-lg border border-amber-200 bg-amber-50 p-3 text-xs leading-relaxed text-amber-900">
+              {workflows.problem}
+            </p>
+          )}
           <ul className="mt-4 space-y-3">
-            {workflows.map((w) => (
+            {workflows.rows.map((w) => (
               <li key={w.name} className="flex items-start justify-between gap-3 border-b pb-3 last:border-0">
                 <div>
                   <p className="text-sm font-medium text-slate-900">{w.name}</p>
                   <p className="mt-0.5 text-xs leading-relaxed text-slate-500">{w.does}</p>
-                  {w.status !== 'published' && (
+                  {w.status !== 'published' && w.status !== 'unknown' && (
                     <p className="mt-1 text-xs leading-relaxed text-rose-700">{w.ifDraft}</p>
                   )}
                 </div>
@@ -146,7 +151,7 @@ export default async function AdminCampaignPage() {
                   className={`shrink-0 rounded-full border px-2 py-0.5 text-[10px] font-medium ${
                     w.status === 'published'
                       ? 'border-emerald-200 bg-emerald-50 text-emerald-800'
-                      : w.status === 'missing'
+                      : w.status === 'missing' || w.status === 'unknown'
                         ? 'border-slate-200 bg-slate-50 text-slate-600'
                         : 'border-rose-200 bg-rose-50 text-rose-800'
                   }`}
@@ -155,12 +160,7 @@ export default async function AdminCampaignPage() {
                 </span>
               </li>
             ))}
-            {workflows.length === 0 && (
-              <li className="text-sm text-slate-500">
-                No answer from GHL. Either the key is missing here or the account is unreachable,
-                and either way this page cannot tell you what is switched on.
-              </li>
-            )}
+
           </ul>
         </div>
 

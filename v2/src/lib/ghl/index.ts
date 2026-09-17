@@ -1235,8 +1235,8 @@ export const ghl = {
    * workflow is indistinguishable from a working one until somebody notices the silence. New
    * Order Notification was a draft from February to September while people paid on the site.
    */
-  async listWorkflows(): Promise<{ id: string; name: string; status: string }[]> {
-    if (!GHL_ENABLED) return [];
+  async listWorkflows(): Promise<{ id: string; name: string; status: string }[] | null> {
+    if (!GHL_ENABLED) return null;
     try {
       const res = await ghlRequest<{ workflows?: { id: string; name: string; status: string }[] }>(
         '/workflows/',
@@ -1244,8 +1244,11 @@ export const ghl = {
       );
       return res.workflows || [];
     } catch (error) {
+      // null, not an empty array. "We could not read the account" and "there are no workflows"
+      // are different sentences, and rendering the first as the second would tell somebody their
+      // acknowledgement workflow had been deleted when the real answer is a missing API scope.
       console.error('[GHL] listWorkflows error:', error instanceof Error ? error.message : error);
-      return [];
+      return null;
     }
   },
 

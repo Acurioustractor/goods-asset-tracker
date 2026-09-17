@@ -59,8 +59,20 @@ export interface WorkflowHealth {
   name: string;
   does: string;
   ifDraft: string;
-  /** 'published', 'draft', or 'missing' when no workflow of that name exists any more. */
+  /**
+   * 'published', 'draft', 'missing' when no workflow of that name exists any more, or 'unknown'
+   * when the account could not be read at all. The last one is not a status of the workflow and
+   * must never be drawn as though it were.
+   */
   status: string;
+}
+
+export interface WorkflowHealthReport {
+  /** False when GHL could not be read. The rows are then all 'unknown'. */
+  readable: boolean;
+  /** Why it could not be read, in words somebody can act on. */
+  problem?: string;
+  rows: WorkflowHealth[];
 }
 
 export interface InboundHealth {
@@ -76,10 +88,23 @@ export interface InboundHealth {
   windowDays: number;
 }
 
-export async function readWorkflowHealth(): Promise<WorkflowHealth[]> {
+export async function readWorkflowHealth(): Promise<WorkflowHealthReport> {
   const live = await ghl.listWorkflows();
+  if (live === null) {
+    return {
+      readable: false,
+      problem:
+        'GHL refused the read. The API token needs the workflows.readonly scope, which is set on ' +
+        'the private integration in GHL settings. Until it has it, this panel cannot tell you ' +
+        'which workflows are switched on and you have to open the dashboard to find out.',
+      rows: WATCHED_WORKFLOWS.map((w) => ({ ...w, status: 'unknown' })),
+    };
+  }
   const byName = new Map(live.map((w) => [w.name, w.status]));
-  return WATCHED_WORKFLOWS.map((w) => ({ ...w, status: byName.get(w.name) ?? 'missing' }));
+  return {
+    readable: true,
+    rows: WATCHED_WORKFLOWS.map((w) => ({ ...w, status: byName.get(w.name) ?? 'missing' })),
+  };
 }
 
 export async function readInboundHealth(windowDays = 30): Promise<InboundHealth> {
