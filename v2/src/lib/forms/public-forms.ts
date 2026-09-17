@@ -34,7 +34,16 @@ export type TheyGet =
   /** Deliberately no automation: a person writes back. */
   | 'a human reply'
   | 'nothing';
-export type GoodsHears = 'inbox email' | 'ghl task' | 'ghl conversation' | 'nothing';
+export type GoodsHears =
+  /** The durable outbox emails hi@act.place. */
+  | 'inbox email'
+  /** A GHL task with a clock, against a named person. */
+  | 'ghl task'
+  /** The message threads into the contact's Conversations inbox. */
+  | 'ghl conversation'
+  /** A GitHub issue, which is where site feedback goes. */
+  | 'github issue'
+  | 'nothing';
 
 export interface PublicForm {
   /** The file that renders it, relative to v2/src. */
@@ -146,10 +155,11 @@ export const PUBLIC_FORMS: PublicForm[] = [
     handler: 'api/feedback/route.ts',
     audience: 'supporter',
     theyGet: 'acknowledgement',
-    goodsHears: 'ghl conversation',
+    goodsHears: 'github issue',
     why:
-      'Threads into Conversations rather than the inbox. Whether it should also email the team is ' +
-      'open, and three pieces of feedback have arrived this way.',
+      'The content goes to a GitHub issue, and threads into Conversations as well when the person ' +
+      'left an email. It used to answer 500 and lose the message when the GitHub token was ' +
+      'missing; the row is written first now, so the feedback survives either way.',
   },
   {
     file: 'components/layout/newsletter-form.tsx',
