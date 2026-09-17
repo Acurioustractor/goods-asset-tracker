@@ -62,9 +62,28 @@ const CREAM = '#FDF8F3';
 const CHARCOAL = '#2E2E2E';
 const RUST = '#C45C3E';
 const SAGE = '#8B9D77';
-/** One hairline and one muted label colour, so the page has a single quiet register. */
-const RULE = '#EBE2D8';
+/**
+ * THE PAGE'S PALETTE, AND THE ONLY PLACE A COLOUR IS CHOSEN.
+ *
+ * Ben, 17 September 2026, sweeping the page: think about the brand and whether anything can
+ * align better. It had twenty six distinct hexes on it, most of them one-offs a card away from
+ * their sibling. These are twelve, named for the job they do rather than the shade they are,
+ * and every near duplicate is collapsed onto the nearest one.
+ *
+ * SAGE MEANS PLASTIC AND MONEY AND NOTHING ELSE, per the Goods visual system, which is why the
+ * sage tokens are only used on machines, recycled material and the community share.
+ */
+const PANEL = '#FFFFFF';
+const SUNK = '#F6F0E6';
+const RULE = '#E8DED4';
+const RULE_SOFT = '#F0E7DC';
+const RULE_DASH = '#C2B6AA';
 const MUTED = '#A2958A';
+const MUTED_DEEP = '#6A5E54';
+const RUST_INK = '#9A4023';
+const RUST_WASH = '#F6E4DE';
+const SAGE_INK = '#5E7A4C';
+const SAGE_WASH = '#EEF1E9';
 
 export const metadata: Metadata = {
   title: { absolute: 'Snow and Goods | Goods on Country' },
@@ -131,11 +150,11 @@ function Pull({ v, note }: { v: NonNullable<ReturnType<typeof quote>>; note?: st
 
 /** The arc's state chips. Sage is in community, rust is live, grey is retired or not yet. */
 function chipStyle(state: (typeof THE_ARC)[number]['state']): React.CSSProperties {
-  if (state === 'in-community') return { backgroundColor: '#EEF1E9', color: '#556945' };
-  if (state === 'now') return { backgroundColor: '#F6E4DE', color: '#9A4023' };
-  if (state === 'commissioning') return { backgroundColor: '#F7EDE4', color: '#8A5A34' };
-  if (state === 'next') return { border: '1px dashed #C2B6AA', color: '#6A5E54' };
-  return { backgroundColor: '#EEE9E3', color: '#6A5E54' };
+  if (state === 'in-community') return { backgroundColor: SAGE_WASH, color: SAGE_INK };
+  if (state === 'now') return { backgroundColor: RUST_WASH, color: RUST_INK };
+  if (state === 'commissioning') return { backgroundColor: RUST_WASH, color: RUST_INK };
+  if (state === 'next') return { border: '1px dashed #C2B6AA', color: MUTED_DEEP };
+  return { backgroundColor: RULE_SOFT, color: MUTED_DEEP };
 }
 
 function Chapter({ id, title, lead, children }: {
@@ -454,7 +473,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
               <MoneyLedger events={MONEY_EVENTS} monthsBefore={MONTHS_BEFORE_FIRST_SALE} />
             </div>
 
-            <div className="mt-10 rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+            <div className="mt-10 rounded-lg p-6 sm:p-8" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
               <p className="font-display text-xl leading-snug sm:text-2xl" style={{ color: CHARCOAL }}>{THE_NEXT_TEN.heading}</p>
               <div className="mt-7 space-y-5">
                 {TRADE_BY_YEAR.map((y) => {
@@ -470,7 +489,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
                           ${y.aud.toLocaleString('en-AU')}
                         </span>
                       </div>
-                      <div className="mt-2 h-3 overflow-hidden rounded-full" style={{ backgroundColor: '#F1E7DC' }}>
+                      <div className="mt-2 h-3 overflow-hidden rounded-full" style={{ backgroundColor: RULE_SOFT }}>
                         <span className="block h-full rounded-full" style={{ width: `${(y.aud / top) * 100}%`, backgroundColor: RUST }} />
                       </div>
                     </div>
@@ -508,19 +527,19 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             </p>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
-              <div className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+              <div className="rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
                 <p className="font-display text-2xl" style={{ color: CHARCOAL }}>{money(SNOW_MONEY.goodsOnlyIncGstAud)}</p>
                 <p className="mt-1 text-xs leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>
                   Given to Goods across {SNOW_MONEY.goodsInvoices} invoices, including GST. Nothing outstanding.
                 </p>
               </div>
-              <div className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+              <div className="rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
                 <p className="font-display text-2xl" style={{ color: CHARCOAL }}>{SNOW_MONEY.shareOfAllPhilanthropyPct}%</p>
                 <p className="mt-1 text-xs leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>
                   Of every philanthropic dollar Goods has ever received.
                 </p>
               </div>
-              <div className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+              <div className="rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
                 <p className="font-display text-2xl" style={{ color: CHARCOAL }}>May 2026</p>
                 <p className="mt-1 text-xs leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>
                   The most recent invoice. This partnership is still running.
@@ -534,7 +553,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
               * way we are finding more buyers, and let that lead into the charity, its Indigenous
               * governance and what that governance is for.
               */}
-            <div className="mt-12 rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderLeft: `4px solid ${RUST}` }}>
+            <div className="mt-12 rounded-lg p-6 sm:p-8" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4', borderLeft: `4px solid ${RUST}` }}>
               <p className="font-display text-xl leading-snug sm:text-2xl" style={{ color: CHARCOAL }}>{PROGRESS_BRIDGE.heading}</p>
               <p className="mt-4 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{PROGRESS_BRIDGE.progress}</p>
               <p className="mt-3 max-w-[62ch] text-base leading-[1.75]" style={{ color: `${CHARCOAL}cc` }}>{PROGRESS_BRIDGE.buyers}</p>
@@ -564,7 +583,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       >
         <div className="grid gap-5 sm:grid-cols-3">
           {goodsBoard.map((d) => (
-            <div key={d.name} className="overflow-hidden rounded-lg" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+            <div key={d.name} className="overflow-hidden rounded-lg" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
               <Image
                 src={d.photo} alt={d.name} width={640} height={640}
                 sizes="(min-width: 640px) 18rem, 100vw"
@@ -580,7 +599,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             </div>
           ))}
         </div>
-        <div className="mt-6 rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+        <div className="mt-6 rounded-lg p-5" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
           <p className="text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
             {ORGANISATION.legalName}, ABN {ORGANISATION.abn}. A registered charity with deductible gift recipient
             status. The board handover is still in progress and no chair has been appointed, which we would rather
@@ -590,7 +609,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         {ownershipVoices.length > 0 && (
           <div className="mt-12 grid gap-6 sm:grid-cols-3">
             {ownershipVoices.map((v) => (
-              <figure key={`${v.person.name}-${v.quote.text.slice(0, 24)}`} className="m-0 rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+              <figure key={`${v.person.name}-${v.quote.text.slice(0, 24)}`} className="m-0 rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
                 {v.person.portrait && (
                   <Image src={v.person.portrait} alt={v.person.name} width={160} height={160} className="h-14 w-14 rounded-full object-cover" />
                 )}
@@ -626,13 +645,13 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
                 key={s.step}
                 className="rounded-lg p-6"
                 style={{
-                  backgroundColor: '#FFFFFF',
+                  backgroundColor: PANEL,
                   border: s.state === 'future' ? '1px dashed #C2B6AA' : '1px solid #E8DED4',
                 }}
               >
                 <div className="flex items-baseline justify-between gap-3">
                   <span className="font-display text-sm" style={{ color: RUST }}>{s.step}</span>
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: s.state === 'future' ? '#6A5E54' : SAGE }}>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: s.state === 'future' ? MUTED_DEEP : SAGE }}>
                     {s.state === 'future' ? 'Not yet, anywhere' : 'Happens today'}
                   </span>
                 </div>
@@ -650,9 +669,9 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             date behind every one. Across all {CANONICAL_ASSETS.communitiesServed} communities it
             holds {CANONICAL_ASSETS.bedsDeployed} beds and {CANONICAL_ASSETS.washersInCommunity} machines.
           </p>
-          <ul className="m-0 mt-6 grid list-none gap-px overflow-hidden rounded-lg p-0" style={{ backgroundColor: '#E8DED4' }}>
+          <ul className="m-0 mt-6 grid list-none gap-px overflow-hidden rounded-lg p-0" style={{ backgroundColor: RULE }}>
             {MAP_PLACES.map((pl) => (
-              <li key={pl.id} className="grid gap-2 p-5 sm:grid-cols-[13rem_1fr] sm:gap-6" style={{ backgroundColor: '#FFFFFF' }}>
+              <li key={pl.id} className="grid gap-2 p-5 sm:grid-cols-[13rem_1fr] sm:gap-6" style={{ backgroundColor: PANEL }}>
                 <div>
                   <p className="font-display text-base leading-snug" style={{ color: CHARCOAL }}>{pl.name}</p>
                   <p className="mt-1 text-xs" style={{ color: MUTED }}>
@@ -700,17 +719,17 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         title="Oonchiumpa operate it, employ young people and keep leading that place"
         lead="The Indigenous ownership story with a date attached. It is also the thing Snow is being invited into."
       >
-        <div className="rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+        <div className="rounded-lg p-6 sm:p-8" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
           <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>
             {OONCHIUMPA_NEXT.partner} &middot; {OONCHIUMPA_NEXT.place}
           </p>
           <p className="mt-2 font-display text-xl leading-snug sm:text-2xl" style={{ color: CHARCOAL }}>{OONCHIUMPA_NEXT.what}</p>
           <ol className="mt-6 grid gap-3 sm:grid-cols-4">
             {OONCHIUMPA_NEXT.steps.map((st, i) => (
-              <li key={st.title} className="rounded-lg p-4" style={{ backgroundColor: CREAM, borderTop: `3px solid ${st.state === 'future' ? '#B8AEA4' : RUST}` }}>
+              <li key={st.title} className="rounded-lg p-4" style={{ backgroundColor: CREAM, borderTop: `3px solid ${st.state === 'future' ? RULE_DASH : RUST}` }}>
                 <div className="flex items-baseline justify-between gap-2">
-                  <span className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: '#A99C8F' }}>{String(i + 1).padStart(2, '0')}</span>
-                  <span className="rounded-full px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wide" style={{ backgroundColor: st.state === 'future' ? '#EEE9E3' : '#F6E4DE', color: st.state === 'future' ? '#6A5E54' : '#9A4023' }}>
+                  <span className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: MUTED }}>{String(i + 1).padStart(2, '0')}</span>
+                  <span className="rounded-full px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wide" style={{ backgroundColor: st.state === 'future' ? RULE_SOFT : RUST_WASH, color: st.state === 'future' ? MUTED_DEEP : RUST_INK }}>
                     {st.state === 'future' ? 'not yet' : 'proposed'}
                   </span>
                 </div>
@@ -730,7 +749,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         title="Four buyers, five invoices, 320 beds and the price went up"
         lead="This is the thing Sally asked for most and it is the deliverable the QBE volunteer team is working on. Everything here is an invoice that was issued and paid. Nothing here is a forecast."
       >
-        <div className="rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+        <div className="rounded-lg p-6 sm:p-8" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
           <div className="flex flex-wrap items-baseline justify-between gap-4">
             <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>What a buyer paid, per bed, in order</p>
             <p className="text-sm" style={{ color: MUTED }}>
@@ -742,19 +761,19 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           </div>
           {/* Each rung is an invoice, labelled with who paid it, so the rise is a list of people
               rather than a chart of a trend. */}
-          <ol className="m-0 mt-7 grid list-none grid-cols-5 items-end gap-2 p-0 sm:gap-4" style={{ minHeight: 190 }}>
+          <ol className="m-0 mt-7 grid list-none grid-cols-5 items-end gap-1.5 p-0 sm:gap-4" style={{ minHeight: 170 }}>
             {priceRungs.map((r, i) => {
               const last = i === priceRungs.length - 1;
               return (
                 <li key={r.invoice} className="flex h-full flex-col justify-end">
-                  <p className="mb-2 text-center font-display text-base leading-none sm:text-xl" style={{ color: last ? RUST : CHARCOAL }}>${r.perBed}</p>
+                  <p className="mb-2 text-center font-display text-[13px] leading-none sm:text-xl" style={{ color: last ? RUST : CHARCOAL }}>${r.perBed}</p>
                   <div
                     className="w-full rounded-t-md"
-                    style={{ height: `${Math.round((r.perBed / 920) * 132)}px`, backgroundColor: last ? RUST : '#DCD2C6' }}
+                    style={{ height: `${Math.round((r.perBed / 920) * 132)}px`, backgroundColor: last ? RUST : RULE_DASH }}
                   />
-                  <p className="mt-2 text-center text-[10px] leading-tight" style={{ color: MUTED }}>{r.who}</p>
-                  <p className="text-center text-[10px] leading-tight" style={{ color: MUTED }}>{r.beds} beds</p>
-                  <p className="text-center text-[10px] leading-tight" style={{ color: '#C2B6AA' }}>bed line ${r.line}</p>
+                  <p className="mt-2 text-center text-[9px] leading-tight sm:text-[10px]" style={{ color: MUTED }}>{r.who}</p>
+                  <p className="text-center text-[9px] leading-tight sm:text-[10px]" style={{ color: MUTED }}>{r.beds} beds</p>
+                  <p className="hidden text-center text-[10px] leading-tight sm:block" style={{ color: RULE_DASH }}>bed line ${r.line}</p>
                 </li>
               );
             })}
@@ -769,17 +788,17 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           {BUYERS.map((b) => (
-            <div key={b.id} className="flex flex-col rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderTop: `2px solid ${RUST}` }}>
-              <p className="inline-block self-start rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em]" style={{ backgroundColor: '#F6E4DE', color: '#9A4023' }}>{b.route}</p>
+            <div key={b.id} className="flex flex-col rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4', borderTop: `2px solid ${RUST}` }}>
+              <p className="inline-block self-start rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em]" style={{ backgroundColor: RUST_WASH, color: RUST_INK }}>{b.route}</p>
               <p className="mt-4 font-display text-xl leading-[1.2]" style={{ color: CHARCOAL }}>{b.buyer}</p>
-              <p className="mt-1 text-xs" style={{ color: '#A99C8F' }}>{b.forPlace} &middot; {b.invoices}</p>
+              <p className="mt-1 text-xs" style={{ color: MUTED }}>{b.forPlace} &middot; {b.invoices}</p>
               <div className="mt-3 flex gap-6">
                 <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: '#A99C8F' }}>Beds</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: MUTED }}>Beds</p>
                   <p className="font-display text-xl leading-none" style={{ color: CHARCOAL }}>{b.beds}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: '#A99C8F' }}>Bed line</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: MUTED }}>Bed line</p>
                   <p className="font-display text-xl leading-none" style={{ color: CHARCOAL }}>
                     {b.firstPrice === b.latestPrice ? `$${b.latestPrice}` : `$${b.firstPrice} then $${b.latestPrice}`}
                   </p>
@@ -790,14 +809,14 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           ))}
         </div>
 
-        <div className="mt-6 rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+        <div className="mt-6 rounded-lg p-5" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
           <p className="text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
             <strong>{BUYER_TOTALS.beds} beds, {BUYER_TOTALS.buyers} buyers, {BUYER_TOTALS.invoices} invoices.</strong>{' '}
             {money(BUYER_TOTALS.netOfGstAud)} net of GST, {money(BUYER_TOTALS.inclGstAud)} including it. {BUYER_TOTALS.basis}
           </p>
         </div>
 
-        <div className="mt-6 rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderLeft: `3px solid ${SAGE}` }}>
+        <div className="mt-6 rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4', borderLeft: `3px solid ${SAGE}` }}>
           <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: SAGE }}>What we do not know about demand</p>
           <ul className="mt-3 space-y-3 text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
             {DEMAND_GAPS.map((g) => <li key={g}>{g}</li>)}
@@ -812,7 +831,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       >
         <div className="grid gap-4 sm:grid-cols-4">
           {WASHER_PLACES.map((w) => (
-            <div key={w.place} className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+            <div key={w.place} className="rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
               <p className="font-display text-3xl leading-none" style={{ color: CHARCOAL }}>{w.inCommunity}</p>
               <p className="mt-2 text-sm font-semibold leading-snug" style={{ color: CHARCOAL }}>{w.place}</p>
               <p className="mt-2 text-xs leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>{w.note}</p>
@@ -820,7 +839,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           ))}
         </div>
 
-        <div className="mt-6 rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+        <div className="mt-6 rounded-lg p-6 sm:p-8" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
           <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>
             What the machines reported, read {WASHER_TELEMETRY.readAt}
           </p>
@@ -852,7 +871,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           <ul className="mt-6 space-y-3 text-sm leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>
             {WASHER_TELEMETRY.honest.map((h) => <li key={h}>{h}</li>)}
           </ul>
-          <p className="mt-4 text-xs" style={{ color: '#A99C8F' }}>Source: {WASHER_TELEMETRY.source}.</p>
+          <p className="mt-4 text-xs" style={{ color: MUTED }}>Source: {WASHER_TELEMETRY.source}.</p>
         </div>
 
         {proud && (
@@ -874,8 +893,8 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           * The silent and unmatched rows are the reason to print it; a table of only the working
           * machines would say less than the summary above it.
           */}
-        <div className="mt-8 overflow-hidden rounded-lg" style={{ border: '1px solid #E8DED4', backgroundColor: '#FFFFFF' }}>
-          <div className="hidden grid-cols-[7rem_1fr_5rem_5rem_9rem] gap-4 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.12em] sm:grid" style={{ backgroundColor: '#F6F0E6', color: MUTED }}>
+        <div className="mt-8 overflow-hidden rounded-lg" style={{ border: '1px solid #E8DED4', backgroundColor: PANEL }}>
+          <div className="hidden grid-cols-[7rem_1fr_5rem_5rem_9rem] gap-4 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.12em] sm:grid" style={{ backgroundColor: SUNK, color: MUTED }}>
             <span>Asset</span><span>Where</span><span className="text-right">Cycles</span><span className="text-right">kWh</span><span className="text-right">Reporting</span>
           </div>
           {WASHER_FLEET.map((r, i) => (
@@ -889,9 +908,15 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
                 {r.where}
                 {r.note && <span className="block text-[11px]" style={{ color: MUTED }}>{r.note}</span>}
               </span>
-              <span className="font-display text-base tabular-nums sm:text-right" style={{ color: CHARCOAL }}>{r.cycles.toLocaleString('en-AU')}</span>
-              <span className="font-display text-base tabular-nums sm:text-right" style={{ color: `${CHARCOAL}99` }}>{r.kwh.toLocaleString('en-AU')}</span>
-              <span className="text-[11px] sm:text-right" style={{ color: r.state === 'reporting' ? '#5E7A4C' : MUTED }}>
+              <span className="font-display text-base tabular-nums sm:text-right" style={{ color: CHARCOAL }}>
+                {r.cycles.toLocaleString('en-AU')}
+                <span className="ml-1.5 text-[10px] uppercase tracking-wide sm:hidden" style={{ color: MUTED }}>cycles</span>
+              </span>
+              <span className="font-display text-base tabular-nums sm:text-right" style={{ color: `${CHARCOAL}99` }}>
+                {r.kwh.toLocaleString('en-AU')}
+                <span className="ml-1.5 text-[10px] uppercase tracking-wide sm:hidden" style={{ color: MUTED }}>kWh</span>
+              </span>
+              <span className="text-[11px] sm:text-right" style={{ color: r.state === 'reporting' ? SAGE_INK : MUTED }}>
                 {r.state === 'reporting' ? `still reporting, ${r.to}` : `last seen ${r.to}`}
               </span>
             </div>
@@ -905,8 +930,8 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {FLEET_USE.map((u) => (
-            <div key={u.title} className="rounded-lg p-5" style={{ backgroundColor: '#FFFFFF', border: u.state === 'next' ? '1px dashed #C2B6AA' : '1px solid #E8DED4' }}>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: u.state === 'next' ? '#6A5E54' : SAGE }}>
+            <div key={u.title} className="rounded-lg p-5" style={{ backgroundColor: PANEL, border: u.state === 'next' ? '1px dashed #C2B6AA' : '1px solid #E8DED4' }}>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: u.state === 'next' ? MUTED_DEEP : SAGE }}>
                 {u.state === 'next' ? 'Not yet' : 'What it is already for'}
               </p>
               <p className="mt-2 font-display text-base leading-snug" style={{ color: CHARCOAL }}>{u.title}</p>
@@ -931,8 +956,8 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
 
         <div className="mt-7 grid gap-5 sm:grid-cols-3">
           {WASHER_NEXT.map((n) => (
-            <div key={n.title} className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderTop: '2px solid #B8AEA4' }}>
-              <p className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: '#6A5E54' }}>Where it goes next</p>
+            <div key={n.title} className="rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4', borderTop: '2px solid #B8AEA4' }}>
+              <p className="text-[10px] font-semibold uppercase tracking-wide" style={{ color: MUTED_DEEP }}>Where it goes next</p>
               <p className="mt-2 font-display text-base leading-snug" style={{ color: CHARCOAL }}>{n.title}</p>
               <p className="mt-2 text-xs leading-relaxed" style={{ color: `${CHARCOAL}b8` }}>{n.detail}</p>
             </div>
@@ -981,13 +1006,13 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {BECAUSE_OF.map((b) => (
-            <div key={b.id} className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+            <div key={b.id} className="rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
               {/* MeasureLabel has no `future` and inventing one here would put a word on a
                   chip that the rest of the site does not use. A future row gets its own chip. */}
               {b.status === 'future' ? (
                 <>
                   <p className="font-display text-4xl leading-none" style={{ color: CHARCOAL }}>{b.value}</p>
-                  <span className="mt-2 inline-block rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide" style={{ backgroundColor: '#EEE9E3', color: '#6A5E54' }}>
+                  <span className="mt-2 inline-block rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide" style={{ backgroundColor: RULE_SOFT, color: MUTED_DEEP }}>
                     not yet
                   </span>
                 </>
@@ -1010,14 +1035,14 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         {recycled && <Pull v={recycled} />}
         <div className="mt-10 grid gap-5 sm:grid-cols-2">
           {THEMES.map((th) => (
-            <div key={th.id} className="flex flex-col rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+            <div key={th.id} className="flex flex-col rounded-lg p-6" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
               <p className="font-display text-xl leading-[1.2]" style={{ color: CHARCOAL }}>{th.title}</p>
               <p className="mt-3 text-[0.9375rem] leading-[1.7]" style={{ color: `${CHARCOAL}cc` }}>{th.body}</p>
-              <p className="mt-5 rounded-md px-4 py-3 text-[0.9375rem] leading-[1.6]" style={{ backgroundColor: '#EEF1E9', color: '#3F4E33' }}>
-                <span className="mr-2 text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: '#6F8257' }}>Shown</span>
+              <p className="mt-5 rounded-md px-4 py-3 text-[0.9375rem] leading-[1.6]" style={{ backgroundColor: SAGE_WASH, color: SAGE_INK }}>
+                <span className="mr-2 text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: SAGE_INK }}>Shown</span>
                 {th.proof}
               </p>
-              <p className="mt-3 rounded-md border px-4 py-3 text-[0.9375rem] leading-[1.6]" style={{ borderColor: '#E3D5CB', color: `${CHARCOAL}b3` }}>
+              <p className="mt-3 rounded-md border px-4 py-3 text-[0.9375rem] leading-[1.6]" style={{ borderColor: RULE_DASH, color: `${CHARCOAL}b3` }}>
                 <span className="mr-2 text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: RUST }}>Not shown</span>
                 {th.limit}
               </p>
@@ -1031,7 +1056,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         title="A letter this month and 133 beds behind it"
         lead="Two asks. The first one is not money and it has a date on it. The second is the same ask we have put to our other bed funders, so nobody is being asked for something shaped specially for them."
       >
-        <div className="rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderLeft: `4px solid ${RUST}` }}>
+        <div className="rounded-lg p-6 sm:p-8" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4', borderLeft: `4px solid ${RUST}` }}>
           <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>First and it is not money</p>
           <p className="mt-2 font-display text-2xl leading-snug sm:text-3xl" style={{ color: CHARCOAL }}>
             A letter of intent, by {THE_LETTER.by}
@@ -1060,7 +1085,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           </p>
         </div>
 
-        <div className="mt-6 rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+        <div className="mt-6 rounded-lg p-6 sm:p-8" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
           <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>Then, the ask itself</p>
           <p className="mt-2 font-display text-3xl sm:text-4xl" style={{ color: CHARCOAL }}>$99,750</p>
           <p className="mt-2 text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
@@ -1082,7 +1107,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           </div>
         </div>
 
-        <div className="mt-6 rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+        <div className="mt-6 rounded-lg p-6 sm:p-8" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
           <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>The longer conversation</p>
           <p className="mt-2 text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
             Beyond this, we would like to talk with you about whether some of what comes after could be recoverable
@@ -1092,7 +1117,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           </p>
         </div>
 
-        <div className="mt-6 rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+        <div className="mt-6 rounded-lg p-6 sm:p-8" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
           <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>What we would do together</p>
           <ul className="mt-3 space-y-3 text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
             <li>Keep the beds travelling with the heart screening, where the Trek has already shown it works.</li>
@@ -1104,8 +1129,8 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </Chapter>
 
       <footer className="px-5 pb-20 sm:px-8">
-        <div className="mx-auto max-w-4xl border-t pt-8" style={{ borderColor: '#E8DED4' }}>
-          <p className="text-xs leading-relaxed" style={{ color: '#A99C8F' }}>
+        <div className="mx-auto max-w-4xl border-t pt-8" style={{ borderColor: RULE }}>
+          <p className="text-xs leading-relaxed" style={{ color: MUTED }}>
             Every figure here traces to the live books, the register or the consent record and every Snow quote
             carries a date. Where a number is modelled or a target, it says so on the number
             itself. Prepared by {ORGANISATION.legalName} for the Snow Foundation.

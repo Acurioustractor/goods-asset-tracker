@@ -161,9 +161,9 @@ export function PlaceFilms({ beats, mapOutline, mapDots }: {
                   </figure>
                 )}
                 {b.photos.length > 0 && (
-                  <ul className="m-0 mt-8 flex list-none gap-3 p-0">
+                  <ul className="m-0 mt-8 grid list-none grid-cols-2 gap-3 p-0 sm:flex">
                     {b.photos.map((ph) => (
-                      <li key={ph.src} className="min-w-0 flex-1">
+                      <li key={ph.src} className="min-w-0 sm:flex-1">
                         <Image
                           src={ph.src} alt={ph.alt} width={480} height={360}
                           sizes="(min-width: 768px) 10rem, 25vw"
