@@ -569,7 +569,7 @@ export const STORYTELLER_REGISTRY: StorytellerRecord[] = [
   {
     slug: 'karen-liddle',
     name: 'Karen Liddle',
-    role: 'Oonchiumpa co-founder',
+    role: 'Oonchiumpa board member',
     community: 'Utopia (Oonchiumpa)',
     tier: 'external',
     turns: '4 → 5',

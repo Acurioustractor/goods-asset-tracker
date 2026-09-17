@@ -44,7 +44,7 @@
  */
 
 import { CANONICAL_ASSETS } from './asset-canonical';
-import { PAID_INVOICES } from './paid-trade';
+import { PAID_INVOICES, PAID_INVOICE_BEDS } from './paid-trade';
 import { BED, RAISE } from './model-placemat';
 import { QBE_CLOSES } from './qbe-form';
 import { PLASTIC_KG_PER_BED } from './products';
@@ -509,6 +509,29 @@ export const PROGRESS_BRIDGE = {
 } as const;
 
 /**
+ * THE THREE VOICES UNDER THE BOARD, on Indigenous ownership and what community already knows.
+ *
+ * Ben, 17 September 2026: we have heaps of quotes from Kristy about Indigenous ownership and
+ * intelligence, and from Jeremy in Empathy Ledger. Put them here as a group of three including
+ * Vicki.
+ *
+ * JEREMY IS LISTED AND WILL NOT RENDER YET, and that is the gate working rather than an error.
+ * He is a director of Goods on Country, but he is not in the storyteller registry, and the
+ * resolver on this page is default-deny: a slug that does not resolve at the external tier
+ * renders nothing at all. The moment he is added to the consent register with an approved
+ * quote, the third card appears here with no code change. Adding him is a change to the consent
+ * record and it is Ben's to make, not this file's.
+ *
+ * The page takes the first three that resolve, so the group is always three and never a gap.
+ */
+export const OWNERSHIP_VOICES: readonly { slug: string; contains: string }[] = [
+  { slug: 'kristy-bloomfield', contains: 'create generational wealth, economic development on our own land' },
+  { slug: 'jeremy-donovan', contains: 'Goods on Country' },
+  { slug: 'vicki-wade', contains: 'Community leadership, community ownership' },
+  { slug: 'kristy-bloomfield', contains: 'We know what we wanna do on our land' },
+];
+
+/**
  * THE COMMUNITY-LED MODEL, IN THE ORDER IT HAPPENS.
  *
  * Ben, 17 September 2026: after the directors, talk more about the community-led model, the
@@ -688,6 +711,75 @@ export const WHY_FLEXIBLE =
   'None of that was a deliverable in a grant agreement. A product we stopped selling, a design we gave away, a price that moved twice and a machine still in prototype after two years: money tied to an output punishes every one of those and money given on trust pays for them. That is what Snow bought and it is why there is a fourth and fifth thing on this list at all.';
 
 /**
+ * THE FIVE THINGS THIS WORK IS, AND WHAT EACH ONE CAN AND CANNOT SHOW.
+ *
+ * Ben, 17 September 2026: cut the Snow-strategy table and the separate not-finished list, and
+ * find a better way to line up health, recycling, employment, enterprise and Indigenous
+ * ownership with the support ask.
+ *
+ * WHY THIS IS BETTER THAN THE TWO IT REPLACES. The strategy table read Snow's own words back at
+ * them and graded ourselves against them, which is what a grant application does. The
+ * not-finished list quarantined the honesty in one box near the end, where it reads as a
+ * disclaimer. Here every theme carries its own limit in the same card as its evidence, so the
+ * limit is part of the claim rather than an apology after it.
+ *
+ * THE RULES EACH CARD IS HELD TO:
+ *  - HEALTH claims nothing clinical. Scabies to rheumatic heart disease is the why, and the
+ *    limit line says outright that no prevented case can be shown.
+ *  - THE PLASTIC is local economics and freight, never an environmental pitch. Snow's published
+ *    exclusions name environmental causes, so the card says we are not asking them to fund it.
+ *  - OWNERSHIP is a pathway. Zero sites. It is last on purpose and it carries the worst number
+ *    on the page.
+ */
+export interface Theme {
+  id: string;
+  title: string;
+  body: string;
+  /** The measured thing. Each traces to the register, the books or the consent registry. */
+  proof: string;
+  /** The limit, in the same card as the claim. */
+  limit: string;
+}
+
+export const THEMES: readonly Theme[] = [
+  {
+    id: 'health',
+    title: 'Health',
+    body: 'Scabies runs to rheumatic heart disease, and scabies runs through bedding that cannot be washed, on a floor that cannot be cleaned. That pathway is why the bed is the shape it is and why the washing machine came after it.',
+    proof: `${CANONICAL_ASSETS.bedsDeployed} beds off the floor across ${CANONICAL_ASSETS.communitiesServed} communities, with ${CANONICAL_ASSETS.washersInCommunity} machines to wash the bedding.`,
+    limit: 'We cannot show a prevented case of rheumatic heart disease and we will not imply one. That needs a clinical partner and a method, and it is the largest thing missing from this report.',
+  },
+  {
+    id: 'plastic',
+    title: 'The plastic',
+    body: `Every bed is pressed from ${PLASTIC_KG_PER_BED} kilograms of recycled plastic that would otherwise be freighted to a tip. It sits here as economics rather than as an environmental case: it is what a community pays to have rubbish taken away and furniture brought in, twice over.`,
+    proof: `${CANONICAL_ASSETS.plasticKg.toLocaleString('en-AU')} kilograms kept out of landfill and turned into the legs of a bed.`,
+    limit: 'Snow does not fund environmental causes and we are not asking you to. The plastic is here because it is how a bed is affordable in a place where freight is the largest line.',
+  },
+  {
+    id: 'employment',
+    title: 'Paid work',
+    body: 'A bed is assembled where it is delivered, by people who live there and are paid for it. The training goes inside the price of the bed rather than beside it as a line item, so a build day is work rather than a workshop.',
+    proof: 'Thirty young people on the Palm Island build. Forty beds assembled at Gamardi by young workers from Maningrida. Katrina Bloomfield has done train the trainer at the Queensland facility.',
+    limit: 'These are instances and not a curriculum. There is no completion count and no accredited pathway, and capacity is the weakest of these five.',
+  },
+  {
+    id: 'enterprise',
+    title: 'Enterprise',
+    body: 'A community organisation holds the beds, sells them and keeps the whole price. After costs it decides what happens next. That is the difference between a program delivered to a place and a business run from it.',
+    proof: `${PAID_INVOICE_BEDS} beds bought and paid for by four organisations across five invoices, at $370 rising to $800.`,
+    limit: 'The trade is two years old and five invoices deep. It does not yet cover what the organisation costs to run, which is why philanthropy is still most of the money.',
+  },
+  {
+    id: 'ownership',
+    title: 'Indigenous ownership',
+    body: 'Goods on Country Ltd is a DGR1 charity and its directors are Indigenous. The making is built to move: a containerised plant that can be operated in community and then owned there, on the Supply Nation 51 per cent path.',
+    proof: 'A board of three Indigenous directors, a public ABN, and a charity that holds the purpose, the assets and the decisions.',
+    limit: 'Zero community-owned production sites. Ownership is a pathway and the honest number for it today is nothing. It is last here because it is the one still to be earned.',
+  },
+];
+
+/**
  * THE ASK WITH A DATE ON IT and it is not the money.
  *
  * The Catalysing Impact application closes at noon on 25 September 2026 and asks for evidence
@@ -749,7 +841,7 @@ export const FILMS: readonly Film[] = [
     title: 'Karen Liddle, on starting Oonchiumpa',
     why: 'The clearest statement of Indigenous enterprise in the whole archive and it is hers.',
     story:
-      'Karen co-founded Oonchiumpa, an Aboriginal community-controlled organisation in Alice Springs. She describes starting a business as something you tell the women around you to go and do. Oonchiumpa is now the partner in the Alice Springs facility submission and Kristy Bloomfield, who directs it, sits on the Goods on Country board.',
+      'Karen is Kristy Bloomfield\u2019s mother and she sits on the Oonchiumpa board. She backed the younger women to start it, and she describes starting a business as something you tell the women around you to go and do. Oonchiumpa is the partner in the Alice Springs facility and Kristy, who directs it, sits on the Goods on Country board.',
     voice: { slug: 'karen-liddle', contains: 'start your own business' },
     place: 'Mparntwe / Alice Springs, Arrernte Country',
   },

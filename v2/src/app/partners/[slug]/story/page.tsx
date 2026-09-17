@@ -12,7 +12,7 @@ import { goodsBoard } from '@/lib/data/goods-board';
 import {
   ALIGNMENT, BECAUSE_OF, BUYER_TOTALS, BUYERS, DEMAND_GAPS, FILMS, heroFrames, MAP_PLACES,
   COMMUNITY_MODEL, MONEY_EVENTS, MONTHS_BEFORE_FIRST_SALE, NOT_FINISHED, OONCHIUMPA_NEXT,
-  PROGRESS_BRIDGE, THE_NEXT_TEN, TRADE_BY_YEAR,
+  OWNERSHIP_VOICES, PROGRESS_BRIDGE, THEMES, THE_NEXT_TEN, TRADE_BY_YEAR,
   PLACE_BEATS, PRICE_LADDER,
   SNOW_MONEY, THE_ARC, THE_LETTER, TOGETHER,
   WALLS, WHY_FLEXIBLE,
@@ -27,6 +27,7 @@ import { FilmGallery, type GalleryFilm } from '@/components/partners/film-galler
 import { StoryHero } from '@/components/partners/story-hero';
 import { PlaceFilms, type PlaceBeat } from '@/components/partners/place-films';
 import { MoneyLedger } from '@/components/partners/money-ledger';
+import { PAID_INVOICES } from '@/lib/data/paid-trade';
 import { ModelLoopBuild } from '@/components/pitch/model-loop-build';
 import { TenYearSlider } from '@/components/pitch/ten-year-slider';
 import { LOOP_ARCS, LOOP_COUNTS, LOOP_STATIONS, LOOP_STEPS } from '@/lib/data/model-walkthrough';
@@ -79,8 +80,7 @@ const CHAPTERS = [
   { id: 'ch-archive', label: 'The archive' },
   { id: 'ch-together', label: 'What we have done' },
   { id: 'ch-because', label: 'What Goods is now' },
-  { id: 'ch-align', label: 'Your strategy, our evidence' },
-  { id: 'ch-unfinished', label: 'What is not finished' },
+  { id: 'ch-themes', label: 'What this is, and what it is not' },
   { id: 'ch-next', label: 'What we are asking' },
 ] as const;
 
@@ -106,7 +106,7 @@ function quote(slug: string, tier: 'funder' | 'external', contains: string) {
   return q ? { person, quote: q } : null;
 }
 
-function Pull({ v }: { v: NonNullable<ReturnType<typeof quote>> }) {
+function Pull({ v, note }: { v: NonNullable<ReturnType<typeof quote>>; note?: string }) {
   return (
     <figure className="m-0 mt-12 flex max-w-[52ch] items-start gap-5">
       {v.person.portrait && (
@@ -120,6 +120,7 @@ function Pull({ v }: { v: NonNullable<ReturnType<typeof quote>> }) {
           {v.person.name}
           {v.person.role ? `, ${v.person.role}` : ''}
         </figcaption>
+        {note && <p className="mt-2 text-xs leading-relaxed" style={{ color: MUTED }}>{note}</p>}
       </div>
     </figure>
   );
@@ -174,6 +175,18 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
   const smallStart = quote('georgina-byron', 'funder', 'you start small and then you realize');
   const vicki = quote('vicki-wade', 'external', 'Community leadership, community ownership');
   const karen = quote('karen-liddle', 'external', 'start your own business');
+  /** One rung per invoice, cheapest first, each labelled with who actually paid it. */
+  const priceRungs = PAID_INVOICES
+    .map((i) => ({ invoice: i.invoiceNumber, price: i.bedUnitPriceAud, beds: i.beds, who: i.buyer.split(' ')[0].replace(/'s$/, '') }))
+    .sort((a, b) => a.price - b.price);
+  /**
+   * The three under the board. Default-deny, first three that resolve, so an unlisted person is
+   * simply absent rather than a hole or a name without words.
+   */
+  const ownershipVoices = OWNERSHIP_VOICES
+    .map((v) => quote(v.slug, 'external', v.contains))
+    .filter((v): v is NonNullable<typeof v> => v !== null)
+    .slice(0, 3);
   const mykel = quote('mykel', 'external', 'rocking up every day');
   /** The same cleared film the gallery carries, put where the line is said. */
   const mykelFilm = FILMS.find((f) => f.voice?.slug === 'mykel') ?? null;
@@ -533,7 +546,23 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
             say here than have you find later.
           </p>
         </div>
-        {vicki && <Pull v={vicki} />}
+        {ownershipVoices.length > 0 && (
+          <div className="mt-12 grid gap-6 sm:grid-cols-3">
+            {ownershipVoices.map((v) => (
+              <figure key={`${v.person.name}-${v.quote.text.slice(0, 24)}`} className="m-0 rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+                {v.person.portrait && (
+                  <Image src={v.person.portrait} alt={v.person.name} width={160} height={160} className="h-14 w-14 rounded-full object-cover" />
+                )}
+                <blockquote className="mt-4 font-display text-lg leading-[1.35]" style={{ color: CHARCOAL }}>
+                  &ldquo;{v.quote.text}&rdquo;
+                </blockquote>
+                <figcaption className="mt-3 text-[11px] uppercase tracking-[0.12em]" style={{ color: SAGE }}>
+                  {v.person.name}{v.person.role ? `, ${v.person.role}` : ''}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        )}
 
         <div className="mt-14">
           <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>The model, in plain words</p>
@@ -588,7 +617,12 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
           </ul>
         </div>
 
-        {norman && <Pull v={norman} />}
+        {norman && (
+          <Pull
+            v={norman}
+            note="Norman is talking about Wilya Janta, the Warumungu housing organisation he founded in Tennant Creek, not about Goods."
+          />
+        )}
       </Chapter>
 
       {/*
@@ -648,20 +682,35 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         lead="This is the thing Sally asked for most and it is the deliverable the QBE volunteer team is working on. Everything here is an invoice that was issued and paid. Nothing here is a forecast."
       >
         <div className="rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
-          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>What a bed has sold for, in order</p>
-          <div className="mt-5 flex flex-wrap items-end gap-2 sm:gap-3">
-            {PRICE_LADDER.map((p, i) => (
-              <div key={p} className="flex flex-col items-center">
-                <div
-                  className="w-14 rounded-t sm:w-20"
-                  style={{ height: `${Math.round((p / 800) * 120)}px`, backgroundColor: i === PRICE_LADDER.length - 1 ? RUST : '#D8CFC4' }}
-                />
-                <span className="mt-2 text-xs font-semibold" style={{ color: CHARCOAL }}>${p}</span>
-              </div>
-            ))}
+          <div className="flex flex-wrap items-baseline justify-between gap-4">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: RUST }}>What a bed has sold for, in order</p>
+            <p className="text-sm" style={{ color: MUTED }}>
+              <span className="font-display text-2xl leading-none" style={{ color: RUST }}>
+                +{Math.round(((priceRungs[priceRungs.length - 1].price - priceRungs[0].price) / priceRungs[0].price) * 100)}%
+              </span>{' '}
+              from the first bed to the last
+            </p>
           </div>
-          <p className="mt-5 max-w-2xl text-sm leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
-            The unit price has more than doubled across four buyers and they kept buying. Centrecorp came back at a
+          {/* Each rung is an invoice, labelled with who paid it, so the rise is a list of people
+              rather than a chart of a trend. */}
+          <ol className="m-0 mt-7 grid list-none grid-cols-5 items-end gap-2 p-0 sm:gap-4" style={{ minHeight: 190 }}>
+            {priceRungs.map((r, i) => {
+              const last = i === priceRungs.length - 1;
+              return (
+                <li key={r.invoice} className="flex h-full flex-col justify-end">
+                  <p className="mb-2 text-center font-display text-base leading-none sm:text-xl" style={{ color: last ? RUST : CHARCOAL }}>${r.price}</p>
+                  <div
+                    className="w-full rounded-t-md"
+                    style={{ height: `${Math.round((r.price / 800) * 132)}px`, backgroundColor: last ? RUST : '#DCD2C6' }}
+                  />
+                  <p className="mt-2 text-center text-[10px] leading-tight" style={{ color: MUTED }}>{r.who}</p>
+                  <p className="text-center text-[10px] leading-tight" style={{ color: MUTED }}>{r.beds} beds</p>
+                </li>
+              );
+            })}
+          </ol>
+          <p className="mt-6 max-w-[62ch] text-[0.9375rem] leading-[1.7]" style={{ color: `${CHARCOAL}cc` }}>
+            The price has more than doubled across four buyers and they kept buying. Centrecorp came back at a
             higher price for nearly twice the volume. That is the only demand signal in this document that means
             anything, because somebody paid it.
           </p>
@@ -669,9 +718,9 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           {BUYERS.map((b) => (
-            <div key={b.id} className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderTop: `2px solid ${RUST}` }}>
-              <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>{b.route}</p>
-              <p className="mt-3 font-display text-lg leading-[1.25]" style={{ color: CHARCOAL }}>{b.buyer}</p>
+            <div key={b.id} className="flex flex-col rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderTop: `2px solid ${RUST}` }}>
+              <p className="inline-block self-start rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em]" style={{ backgroundColor: '#F6E4DE', color: '#9A4023' }}>{b.route}</p>
+              <p className="mt-4 font-display text-xl leading-[1.2]" style={{ color: CHARCOAL }}>{b.buyer}</p>
               <p className="mt-1 text-xs" style={{ color: '#A99C8F' }}>{b.forPlace} &middot; {b.invoices}</p>
               <div className="mt-3 flex gap-6">
                 <div>
@@ -829,23 +878,23 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       </Chapter>
 
       <Chapter
-        id="ch-align"
-        title="Read your own words back, with the gaps marked"
-        lead="Six things Snow has published about what it funds and what Goods can actually put against each one. Two of these are weak and one is a thing we are not asking you to fund."
-      >
-        <AlignmentTable rows={ALIGNMENT} />
-      </Chapter>
-
-      <Chapter
-        id="ch-unfinished"
-        title="The parts we would rather you heard from us"
-        lead="A funder who asks for evidence-based and culturally safe programs should be told what the evidence does not cover."
+        id="ch-themes"
+        title="Five things this is, and the limit on each one"
+        lead="Health, the plastic, paid work, enterprise and Indigenous ownership. Each card carries what we can show and what we cannot, in the same card, because a limit printed somewhere else reads as a disclaimer."
       >
         <div className="grid gap-5 sm:grid-cols-2">
-          {NOT_FINISHED.map((n) => (
-            <div key={n.title} className="rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: `1px solid #E8DED4`, borderLeft: `3px solid ${RUST}` }}>
-              <p className="font-display text-base leading-snug" style={{ color: CHARCOAL }}>{n.title}</p>
-              <p className="mt-2.5 text-[0.9375rem] leading-[1.65]" style={{ color: `${CHARCOAL}b8` }}>{n.detail}</p>
+          {THEMES.map((th) => (
+            <div key={th.id} className="flex flex-col rounded-lg p-6" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+              <p className="font-display text-xl leading-[1.2]" style={{ color: CHARCOAL }}>{th.title}</p>
+              <p className="mt-3 text-[0.9375rem] leading-[1.7]" style={{ color: `${CHARCOAL}cc` }}>{th.body}</p>
+              <p className="mt-5 rounded-md px-4 py-3 text-[0.9375rem] leading-[1.6]" style={{ backgroundColor: '#EEF1E9', color: '#3F4E33' }}>
+                <span className="mr-2 text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: '#6F8257' }}>Shown</span>
+                {th.proof}
+              </p>
+              <p className="mt-3 rounded-md border px-4 py-3 text-[0.9375rem] leading-[1.6]" style={{ borderColor: '#E3D5CB', color: `${CHARCOAL}b3` }}>
+                <span className="mr-2 text-[10px] font-semibold uppercase tracking-[0.12em]" style={{ color: RUST }}>Not shown</span>
+                {th.limit}
+              </p>
             </div>
           ))}
         </div>

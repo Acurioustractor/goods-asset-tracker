@@ -13,7 +13,7 @@ import { readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import {
   ALIGNMENT, BECAUSE_OF, BUYER_TOTALS, BUYERS, FILMS, MAP_PLACES, NOT_FINISHED, PLACE_BEATS,
-  PRICE_LADDER, SNOW_MONEY, THE_ARC, TOGETHER, TOGETHER_KINDS, WALLS, WASHER_PLACES,
+  PRICE_LADDER, SNOW_MONEY, THE_ARC, THEMES, TOGETHER, TOGETHER_KINDS, WALLS, WASHER_PLACES,
   WASHER_TELEMETRY,
 } from '@/lib/data/snow-partnership';
 import { PAID_INVOICES, PAID_INVOICE_BEDS } from '@/lib/data/paid-trade';
@@ -174,20 +174,27 @@ describe('snow partnership report', () => {
   });
 
   it('does not pitch the thing Snow excludes', () => {
-    // Snow's published exclusions name "Environmental causes". Recycling is here as local
-    // economics, and the alignment row says so; it must never become a reason to fund.
-    const env = ALIGNMENT.find((a) => a.id === 'environment');
-    expect(env, 'the environment row was removed; Snow still excludes it').toBeTruthy();
-    expect(env!.strength).toBe('not-yet');
+    // Snow's published exclusions name "Environmental causes", so the plastic is on this page as
+    // local economics and it has to say out loud that we are not asking them to fund it. The
+    // alignment table this used to test was cut on 17 September; the rule outlived it.
+    const plastic = THEMES.find((x) => x.id === 'plastic');
+    expect(plastic, 'the plastic theme was removed; Snow still excludes environmental causes').toBeTruthy();
+    expect(/not asking you to/i.test(plastic!.limit), 'the plastic card no longer disclaims the environmental ask').toBe(true);
   });
 
-  it('keeps the honest rows', () => {
-    // A page of only strong rows is a pitch. The weak ones are why the strong ones are
-    // believable, so at least one of each must survive an edit.
-    expect(ALIGNMENT.some((a) => a.strength === 'partial')).toBe(true);
-    expect(ALIGNMENT.some((a) => a.strength === 'strong')).toBe(true);
-    expect(NOT_FINISHED.length).toBeGreaterThanOrEqual(3);
-    expect(BECAUSE_OF.some((b) => b.status === 'future' && b.value === 0), 'the zero community-owned sites row is the one we print against ourselves').toBe(true);
+  it('every theme carries its own limit, and ownership still prints zero', () => {
+    // A page of only strong claims is a pitch. The limits used to live in one box near the end,
+    // which read as a disclaimer; they are in the cards now, so the guard follows them there.
+    expect(THEMES.length).toBeGreaterThanOrEqual(5);
+    for (const th of THEMES) {
+      expect(th.proof.length, `${th.id} has no evidence line`).toBeGreaterThan(20);
+      expect(th.limit.length, `${th.id} has no limit line`).toBeGreaterThan(40);
+    }
+    const health = THEMES.find((x) => x.id === 'health')!;
+    expect(/cannot show a prevented case/i.test(health.limit), 'the health card stopped refusing the clinical claim').toBe(true);
+    const owned = THEMES.find((x) => x.id === 'ownership')!;
+    expect(/zero community-owned/i.test(owned.limit), 'the zero sites number is the one we print against ourselves').toBe(true);
+    expect(BECAUSE_OF.some((b) => b.status === 'future' && b.value === 0)).toBe(true);
   });
 
   it('claims no health outcome', () => {
