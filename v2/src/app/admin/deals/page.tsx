@@ -9,6 +9,7 @@ import { PipelineTab } from './tabs/pipeline/tab';
 import { AskTab } from './tabs/ask/tab';
 import { StackTab } from './tabs/stack/tab';
 import { ReadinessTab } from './tabs/readiness/tab';
+import { UnitTab } from './tabs/unit/tab';
 
 export const dynamic = 'force-dynamic';
 
@@ -27,6 +28,7 @@ export const dynamic = 'force-dynamic';
 const TABS = [
   { id: 'board', label: 'Board' },
   { id: 'stack', label: 'The stack' },
+  { id: 'unit', label: 'The unit' },
   { id: 'ask', label: 'The ask' },
   { id: 'readiness', label: 'Readiness' },
   { id: 'funders', label: 'Funders' },
@@ -61,6 +63,7 @@ export default async function DealsPage({ searchParams }: { searchParams: Promis
 
       {current === 'board' && <DealsBoard />}
       {current === 'stack' && <StackTab />}
+      {current === 'unit' && <UnitTab />}
       {current === 'ask' && <AskTab />}
       {current === 'readiness' && <ReadinessTab />}
       {current === 'funders' && <FundersTab />}

@@ -69,7 +69,7 @@ const routes = walk(join(root, 'src/app/admin')).map((r) => `/admin${r}`);
 // The two hubs carry their surfaces as tabs, so a tab is a surface and gets tested like one.
 const EXTRA = [
   ...['atlas', 'registry', 'quotes', 'el-stories', 'el-storytellers', 'curated', 'community'].map((t) => `/admin/voices?tab=${t}`),
-  ...['ask', 'funders', 'loi', 'pipeline'].map((t) => `/admin/deals?tab=${t}`),
+  ...['stack', 'unit', 'ask', 'readiness', 'funders', 'loi', 'pipeline'].map((t) => `/admin/deals?tab=${t}`),
   '/admin/procurement?view=places', '/admin/procurement?view=when', '/admin/procurement?view=rules',
   '/admin/procurement?state=NT&known=1',
 ];
