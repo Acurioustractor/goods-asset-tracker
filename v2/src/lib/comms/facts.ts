@@ -29,6 +29,18 @@ export const COMMS = {
   phone: '0422 883 943',
   /** Where replies land. Ben reads it. */
   replyTo: 'hi@act.place',
+  /**
+   * What a person sees in the From line.
+   *
+   * The GHL sub-account is shared with Harvest, JusticeHub and CONTAINED, so its location name is
+   * "A Curious Tractor" and it has to stay that way. Until this existed, every Goods reply arrived
+   * from "A Curious Tractor" and signed off "Goods on Country": two names on one email, and the
+   * one in the inbox list was the one nobody outside ACT has heard of. Set per message instead, so
+   * Goods mail says Goods without touching the other three projects.
+   *
+   * The address is unchanged and already verified. Only the display name differs.
+   */
+  emailFrom: 'Goods on Country <hi@act.place>',
   /** How every message ends. One voice, one name. */
   signOff: 'Ben\nGoods on Country',
   /** The commitment. Said the same way everywhere, so it cannot be two days here and 48 hours there. */
