@@ -285,12 +285,10 @@ export const healthBuyers: OutreachTarget[] = [
 // ─── PROCUREMENT BUYERS ──────────────────────────────────────────────────────
 
 export const procurementBuyers: OutreachTarget[] = [
-  {
-    id: 'centrebuild', name: 'Centrebuild Pty Ltd', category: 'procurement_buyer', status: 'active', priority: 'critical',
-    states: ['NT'], amountSignal: '109 beds sold. 107-bed Utopia pathway active.',
-    nextAction: 'Lock repeat-order conversation tied to Utopia. Use as proof in every buyer conversation.',
-    grantRelevance: 'Strongest commercial signal. Proves market exists.',
-  },
+  // Ben, 17 Sep 2026: "Centrebuild Pty Ltd" used to duplicate the Centrecorp Foundation entry
+  // above (id 'centrecorp-foundation') under a different name, with a different, unreconciled
+  // bed count (109 sold vs 107 paid). Removed as a duplicate — this is the same real
+  // relationship, not a second buyer. Use 'centrecorp-foundation' for anything real.
   {
     // Ben, 15 Sep 2026: the "500 mattresses + 300 washers" figure below is WITHDRAWN as
     // fabricated demand (see memory goods-money-rulings-2026-09-15). Never restate it. Kept as
