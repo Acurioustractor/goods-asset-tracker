@@ -129,10 +129,11 @@ describe('the promise matches the code', () => {
   it('only promises an acknowledgement when the route stamps the tag that fires it', () => {
     for (const form of PUBLIC_FORMS) {
       if (form.theyGet !== 'acknowledgement') continue;
+      const src = read(form.handler);
       expect(
-        read(form.handler).includes("'project-goods'"),
-        `${form.name} promises an acknowledgement and ${form.handler} does not stamp project-goods, ` +
-          'which is the tag the published workflow triggers on. The person would get nothing.',
+        src.includes("'project-goods'") || src.includes('acknowledgeOrReply'),
+        `${form.name} promises an acknowledgement and ${form.handler} neither stamps project-goods ` +
+          'nor calls acknowledgeOrReply, so the person would get nothing.',
       ).toBe(true);
     }
   });
@@ -149,6 +150,18 @@ describe('the promise matches the code', () => {
         src.includes("'project-goods'"),
         `${form.name} sends its own reply and also stamps project-goods, so the person gets two emails`,
       ).toBe(false);
+    }
+  });
+
+  it('records where a subject-specific reply has replaced the generic one', () => {
+    const contactForms = PUBLIC_FORMS.filter((f) => f.handler === 'api/contact/route.ts');
+    for (const form of contactForms) {
+      if (form.theyGet !== 'acknowledgement') continue;
+      expect(
+        form.why,
+        `${form.name} posts subjects that now have their own reply, so its record has to say which ` +
+          'ones, or this table quietly describes the old behaviour.',
+      ).toBeTruthy();
     }
   });
 

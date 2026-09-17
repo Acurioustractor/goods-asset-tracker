@@ -59,6 +59,8 @@ export const PUBLIC_FORMS: PublicForm[] = [
     audience: 'buyer',
     theyGet: 'acknowledgement',
     goodsHears: 'inbox email',
+    why:
+      'Every subject falls through to the generic acknowledgement except Bulk Order Inquiry, which gets its own reply asking for the three numbers that unblock a quote. The other five branches are written and not switched on yet: support and bulk order go first, then a week of real enquiries, then the rest.',
   },
   {
     file: 'components/contact/contact-goods-button.tsx',
@@ -67,6 +69,8 @@ export const PUBLIC_FORMS: PublicForm[] = [
     audience: 'buyer',
     theyGet: 'acknowledgement',
     goodsHears: 'inbox email',
+    why:
+      'Every subject falls through to the generic acknowledgement except Bulk Order Inquiry, which gets its own reply asking for the three numbers that unblock a quote. The other five branches are written and not switched on yet: support and bulk order go first, then a week of real enquiries, then the rest.',
   },
   {
     file: 'components/contact/enquiry-form.tsx',
@@ -75,6 +79,8 @@ export const PUBLIC_FORMS: PublicForm[] = [
     audience: 'buyer',
     theyGet: 'acknowledgement',
     goodsHears: 'inbox email',
+    why:
+      'Every subject falls through to the generic acknowledgement except Bulk Order Inquiry, which gets its own reply asking for the three numbers that unblock a quote. The other five branches are written and not switched on yet: support and bulk order go first, then a week of real enquiries, then the rest.',
   },
   {
     file: 'app/press/_components/press-contact-form.tsx',

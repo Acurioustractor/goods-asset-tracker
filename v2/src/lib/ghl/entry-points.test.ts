@@ -75,7 +75,9 @@ describe('every public entry point reaches a human', () => {
       const src = read(ep.route);
 
       it(ep.acknowledges ? 'stamps the acknowledgement tags' : 'deliberately does not acknowledge', () => {
-        const stamps = src.includes("'project-goods'");
+        // Directly, or through acknowledgeOrReply, which stamps it for every subject that has no
+        // written branch of its own. Either way the person is answered.
+        const stamps = src.includes("'project-goods'") || src.includes('acknowledgeOrReply');
         expect(
           stamps,
           ep.acknowledges
@@ -139,12 +141,15 @@ describe('one reply per person', () => {
   for (const route of ROUTES) {
     it(`${route} does not both acknowledge and reply`, () => {
       const src = read(route);
-      const acknowledges = src.includes("'project-goods'");
-      const replies = src.includes('sendTransactionalReply');
+      // Both, in the same route, only holds when the choice is made by acknowledgeOrReply, which
+      // does one or the other and is unit tested for exactly that. A route doing both itself is
+      // two emails to one person.
+      const stampsDirectly = src.includes("'project-goods'");
+      const repliesDirectly = src.includes('sendTransactionalReply');
       expect(
-        acknowledges && replies,
-        `${route} stamps the acknowledgement tag AND sends its own reply, so the person gets two ` +
-          'emails about the same thing.',
+        stampsDirectly && repliesDirectly,
+        `${route} stamps the acknowledgement tag AND sends its own reply. If that is meant to be ` +
+          'per subject, call acknowledgeOrReply instead: it cannot do both to one person.',
       ).toBe(false);
     });
   }

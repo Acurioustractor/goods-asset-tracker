@@ -216,13 +216,13 @@ export const AUDIENCE_PATHWAYS: AudiencePathway[] = [
         id: 'buyer-enquiry',
         name: 'Enquiry landed',
         where: 'GOODS - Buyers, stage Outreach Queued',
-        theyGet: 'The published acknowledgement, within minutes.',
+        theyGet: 'A reply that asks for the three things a quote needs, within a minute of the form.',
         messageClass: 'answer',
         advance:
-          'A human answers the four things a buyer actually asks: price per bed, lead time, freight to their place, and who invoices.',
-        state: 'built-off',
+          'They send how many, which community and when, and a human quotes the beds and the freight as one figure.',
+        state: 'live',
         gap:
-          'One generic acknowledgement goes to everybody. The buyer branch is written (notes, 17 September) and not switched on, so a procurement officer with a budget gets the same letter as a person asking a general question.',
+          'Bulk Order Inquiry has its own reply now. Five of the seven branches still fall through to the generic letter: capital, community, media, partner and general.',
       },
       {
         id: 'buyer-quoted',

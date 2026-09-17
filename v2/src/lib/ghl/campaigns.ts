@@ -87,15 +87,13 @@ export const CAMPAIGNS: Campaign[] = [
     kind: 'reply',
     recipient: 'the person',
     channel: 'ghl-email',
-    trigger: 'Contact tag added project-goods, branch 2 of Goods Inquiry to Acknowledge: interest:bulk-order',
+    trigger: 'A Bulk Order Inquiry through the contact form, sent from the route itself',
     consentBasis: 'They wrote to us. A reply is owed.',
     cadence: 'Once, within a minute of the form.',
     owner: 'ben',
-    status: 'drafted',
+    status: 'live',
     brief:
-      'Answers the four things a buyer asks before they can act: price per bed, lead time, freight to their place, and who invoices. Then asks for the three numbers that unblock a quote: how many beds, which community, and when they need them. Signed by Ben, replies to hi@act.place, two business days.',
-    blockedOn:
-      'Written in the 17 September branch note and not built in GHL. Roll it out with the support branch first and watch a week of real enquiries before adding the other five.',
+      'Asks for the three numbers that unblock a quote: how many, which community, and when they need them there. Says freight is quoted with the beds as one figure, because freight to a remote community moves the price more than anything else. Names who invoices, A Curious Tractor Pty Ltd, and points at the charity for anyone who needs to pay a DGR. Chosen by acknowledgeOrReply, so the generic letter cannot also fire.',
   },
   {
     id: 'buyer-order-confirmation',
