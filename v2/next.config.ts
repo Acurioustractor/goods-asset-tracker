@@ -49,9 +49,14 @@ const nextConfig: NextConfig = {
         pathname: '/storage/v1/object/public/**',
       },
       {
+        // Empathy Ledger storage. Media Room rows carry bucket paths without the /public/
+        // segment (/storage/v1/object/media/... and /story-images/...), and the buckets serve
+        // both forms. Restricting this to /public/** made the optimiser answer 400 for every
+        // one of them on the live Snow report (18 September 2026) while dev, which skips the
+        // optimiser, showed them fine.
         protocol: 'https',
         hostname: 'yvnuayzslukamizrlhwb.supabase.co',
-        pathname: '/storage/v1/object/public/**',
+        pathname: '/storage/v1/object/**',
       },
       {
         protocol: 'https',

@@ -2,8 +2,6 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { readFile } from 'node:fs/promises';
-import { join } from 'node:path';
 import { getPartnerDashboard } from '@/lib/data/partner-dashboards';
 import { getStorytellerBySlug } from '@/lib/data/storyteller-registry';
 import { CANONICAL_ASSETS } from '@/lib/data/asset-canonical';
@@ -37,6 +35,7 @@ import { PAID_INVOICES, PAID_INVOICE_INCL_GST_AUD } from '@/lib/data/paid-trade'
 import { ModelLoopBuild } from '@/components/pitch/model-loop-build';
 import { TenYearModel } from '@/components/partners/ten-year-model';
 import { MembersFlow } from '@/components/partners/members-flow';
+import { AUSTRALIA_OUTLINE } from '@/lib/data/australia-outline';
 import { PitchMenu } from '@/components/pitch/pitch-menu';
 import { SNOW_CHAPTERS, SNOW_MENU_TILES } from '@/lib/data/snow-chapters';
 import { LOOP_ARCS, LOOP_COUNTS, LOOP_STATIONS, LOOP_STEPS } from '@/lib/data/model-walkthrough';
@@ -388,10 +387,10 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
   const placematItems = Object.values(STATIONS).map((s) => ({ id: s.id, title: s.title, line: s.line }));
   const placematArrows = FLOWS.map((fl) => ({ from: fl.from, to: fl.to, label: fl.label }));
 
-  // The same outline the /pitch map draws, read on the server and passed in as a path string.
-  const outline = await readFile(join(process.cwd(), 'public/images/maps/australia-outline.svg'), 'utf8')
-    .then((x) => x.replace(/<\/?svg[^>]*>/g, '').trim())
-    .catch(() => '');
+  // The same outline the /pitch map draws, from the code module. It used to be read off disk from
+  // public/, which the Vercel function does not have, so the live map drew its dots on nothing
+  // (18 September 2026).
+  const outline = AUSTRALIA_OUTLINE;
 
   return (
     <main style={{ backgroundColor: CREAM }}>
