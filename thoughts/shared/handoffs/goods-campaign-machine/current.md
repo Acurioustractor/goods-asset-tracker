@@ -1,5 +1,5 @@
 ---
-date: 2026-09-17T16:10:00+10:00
+date: 2026-09-17T18:05:00+10:00
 session_name: goods-campaign-machine
 branch: main
 status: active
@@ -9,145 +9,96 @@ status: active
 
 ## Ledger
 <!-- This section is extracted by SessionStart hook for quick resume -->
-**Updated:** 2026-09-17T16:10:00+10:00
-**Goal:** Turn Goods into a campaign machine: right message to right person through GHL, with pathways per audience, and a repeatable way to run the newsletter and ongoing comms for every group.
-**Branch:** none. Everything is on `main` and live. Four PRs merged today: #283 delivery stamp,
-#284 the lanes and the messages, #289 the duplicate-contact fix, #290 and #291 the cleanup.
+**Updated:** 2026-09-17T18:05:00+10:00
+**Goal:** Turn Goods into a campaign machine: right message to right person through GHL, with
+pathways per audience, and a repeatable way to run the newsletter and ongoing comms for every group.
+**Branch:** none. Everything below is merged to `main` and live on goodsoncountry.com.
 Working tree for this stream is `../goods-campaign-wt`.
-**Test:** `cd v2 && npx vitest run && npm run build`
+**Test:** `cd v2 && npx vitest run && npm run build && npm run check:drift:ci`
 
 ### Now
-[->] **One job left, and it is Ben's: publish ONE newsletter welcome workflow in GHL.**
-`Newsletter Signup` or `ACT Core — Newsletter Signup`, whichever fires on `comms:goods-newsletter`
-or `goods-newsletter`. The copy is written and rendered at `/admin/campaign`, marked as a workflow
-job. Publishing both sends a subscriber two emails. After that, the next block of work is the
-campaign per lane, which is blocked on a consent decision, not on code: see Decisions.
+[->] **ONE job left and it is Ben's, in GHL, not in code: publish the newsletter welcome.**
+Automation → Workflows. Two drafts, `Newsletter Signup` and `ACT Core — Newsletter Signup`.
+Publish ONE, trigger it on **`comms:goods-newsletter`** (164 contacts; the flat `goods-newsletter`
+has only 8). Copy is rendered at `/admin/campaign` under "Somebody just subscribed". A tag-added
+trigger fires on the event, so the existing 164 do NOT receive it, which matches Ben's hold.
+Optional second job: the funder opt-out alarm (trigger on DND or unsubscribe, filter `role:funder`,
+action a task on Ben, no email).
 
-### This Session (messages block, 17 Sep afternoon)
-- [x] **Thirteen messages written, sent from code through GHL Conversations, live on main.**
-      All seven of Ben's branches plus the order confirmation (two variants), the support reply
-      (two), the washing machine reply and the newsletter welcome. Nothing arriving through the
-      contact form or the partner form gets the published generic letter any more, except LGANT.
-- [x] **The GHL API cannot create, update or publish a workflow.** The whole workflows domain is
-      read-only. That is why four workflows sat as drafts for months, and why transactional
-      replies are sent from code instead: `ghl.sendTransactionalReply` posts to
-      `/conversations/messages` with `type: Email`, the same endpoint `sendSms` already used.
-- [x] **One set of facts, one catalogue, one alignment guard.** The phone number had been written
-      out four times, the response window four times, the HTML escaper five times. Messages now
-      compose from `lib/comms/facts.ts` and the guard walks all thirteen: same sign off, one phone
-      number, one response window, no unknown entity, no unsubscribe on anything transactional.
-- [x] **PROVED LIVE, once, end to end.** A real bulk order through goodsoncountry.com: contact with
-      the right tags and no `project-goods`, card on GOODS - Buyers, reply **delivered** from
-      `hi@act.place`. Test contact and opportunity deleted afterwards, board back to baseline.
-- [x] **That test found a production defect on its first attempt** (#289). A new email plus a phone
-      that already existed made GHL refuse the create, and the whole GHL side failed silently: no
-      contact, no card, no reply, while the site said the message was received.
-- [x] **Ben deleted New Order Notification and Goods media form submission** in GHL. The dead call
-      and its two second wait came out of the order webhook (#290), and the health panel stopped
-      watching them (#291).
-- [x] **`/admin/campaign`** shows live workflow status, the inbound record, all thirteen messages,
-      the fifteen public forms and the eight lanes.
-
-### This Session (pathways block, 17 Sep afternoon)
-- [x] **The eight lanes typed**: buyer, procurement, funder, community, recycler, supplier, media,
-      supporter. Each carries its doors, its steps, what the person gets at each one, what moves
-      them on, and a named owner. PR #284.
-- [x] **Ben ruled the owners**: himself on seven lanes, Nic on supply.
-- [x] **18 guards** so it cannot drift: every segment and SMS list owned by exactly one lane, every
-      door points at a handler that exists on disk, board ids must be real Goods boards, every
-      routed subject lands on a lane, tags must be namespaced, no lane may be ownerless, any step
-      that is not live must say why. R9 enforced: a community-line lane cannot carry a broadcast
-      step or a `comms:` tag, and must owe an answer with a clock.
-- [x] **PR #283 MERGED and live** (main `c0fefb7`): the delivery-status stamp, the reply-to fix, and
-      the guard that any route calling `sendSubmissionToInbox` also calls `updateContactSubmission`.
-- [x] Rebased onto the admin rebuild (#282) mid-flight. Two of its new guards caught the new route:
-      `ADMIN_ROUTE_DIRECTORY` and `route-audience.ts`. Both declared.
-
-### This Session (morning)
-- [x] **Nine PRs merged and verified live.** #276 admin auth, #272 plan + community inbound task, #273 audiences repointed, #274 three doors on /pitch, #278 six endpoints guarded, #279 board routing, #280 real phone + guard, #281 entry-point gaps. Tests **798 → 914**.
-- [x] **The acknowledgement workflow is PUBLISHED** (Ben did it in GHL). One generic reply to everybody, triggered on `project-goods`.
-- [x] **Proved the whole chain live**, 7 real submissions through goodsoncountry.com: contact → canonical tags → conversation thread → card on the right board → acknowledgement to the person → notification to `hi@act.place`.
-- [x] **GHL Internal Notification step added** by Ben, so the team email now comes from GHL as well as Resend (running both for ~a week on purpose).
-- [x] **Test data deleted** with Ben's explicit verb: 7 contacts, 6 cards. GOODS - Buyers back to 19 opps / $181,721.
-- [x] Seven branch messages written, each with a real next step: `thoughts/shared/notes/2026-09-17-inquiry-acknowledgements.md`
+### This Session (17 September, the whole day)
+- [x] **Nine PRs merged and verified live.** #283 delivery stamp · #284 the eight lanes and the
+      messages · #289 duplicate contact · #290 the dead order workflow call · #291 the watch list ·
+      #292 ledger · #293 the three open ends · #295 door tags · #296 receipts. Tests **914 → 1246**.
+- [x] **Eight audience pathways typed** in `lib/ghl/audience-pathways.ts` with 18 guards: buyer,
+      procurement, funder, community, recycler, supplier, media, supporter. Owners ruled by Ben.
+- [x] **Seventeen campaigns** in `lib/ghl/campaigns.ts`, and **thirteen messages** in `lib/comms/`,
+      all sent from code through GHL Conversations. Every CTA now gets its own written reply except
+      LGANT, which keeps the generic letter on purpose.
+- [x] **The alignment layer.** One `facts.ts`, one catalogue, one guard that reads all thirteen
+      together: same sign off, one phone number, one response window, no unknown entity, no
+      unsubscribe on anything transactional.
+- [x] **Every public form swept.** 42 files, 15 public. Two wrote into silence: `/community/ideas`
+      and the bed QR claim. Both raise a task now. A derived guard walks the filesystem, so a new
+      form that answers nobody cannot ship.
+- [x] **Proved live once, end to end**, and that test found a production defect on its first
+      attempt: a duplicate phone made GHL refuse the create and the whole CRM side failed silently.
+- [x] **Every door leaves a durable receipt.** Newsletter and feedback wrote nothing that survives
+      an outage; feedback answered 500 and lost the message when GitHub was unreachable.
+- [x] **GHL cleanup with Ben:** New Order Notification and Goods media form submission deleted, the
+      dead call and its two second wait removed, the test data cleared, the Wash Test row from
+      1 June removed. GOODS - Buyers back to 18 opportunities, $181,721.
 
 ### Next
-- [ ] **Campaign per lane**, built on `audience-pathways.ts`: attach a campaign to each
-      `steps[].advance` trigger, starting with the lanes whose leads already exist (funder
-      stewardship, buyer re-order).
-- [ ] **Newsletter + ongoing comms system** for every group. The 164 `comms:goods-newsletter` consenters are still ON HOLD by Ben's ruling ("wait until there is something worth sending").
-- [ ] **`api/claim/[asset_id]` raises no task.** It creates the recipient contact and stops, while
-      `api/user/requests` and `api/user/messages` both raise one with a 24 hour clock. Somebody
-      scans a bed QR and no human is told. Same three lines, and it is the last community inbound
-      that is silent.
-- [ ] **The acknowledgement carries an unsubscribe link.** A funder who clicks it stops receiving
-      Goods email entirely and nothing records it.
-- [ ] Roll out the 7 branches: support + bulk order FIRST, watch a week, then the rest.
-- [ ] Publish **New Order Notification** in GHL (built, switched off, a buyer pays and hears nothing).
-- [ ] Fix or rename **Goods media form submission** (sends the journalist nothing; triggers on Contact Created so a known journalist never fires it).
+- [ ] **The campaign per lane.** Blocked on a consent decision, not on code. See Open Questions.
+- [ ] **The newsletter and ongoing comms system** for every group, after the welcome is published.
+- [ ] Walk one community through the QR claim on a bed they already have, and watch where it breaks.
+- [ ] The funder stewardship cadence: 99 funders, no list, nothing between Committed and the next ask.
 
 ### Decisions
-- **Transactional replies are sent from code, campaigns go through a GHL workflow.** Not a
-  technology preference. A workflow cannot be published through the API, so anything sent that way
-  waits on one person clicking; and a campaign needs the unsubscribe handling only GHL has. The
-  split is by who must be able to change it and who needs the numbers.
-- **A route may stamp the acknowledgement tag OR send its own reply, never both.** Enforced, and
-  the choice is made in `acknowledgeOrReply` so a route cannot do both to one person.
-- **The support route no longer stamps `project-goods`.** Two emails about one broken bed, the
-  generic one contradicting the specific one. Segmentation is unaffected: `project:act-gd` is what
-  the audiences resolve on.
-- **Owners, Ben 17 September**: Ben on buyer, procurement, funder, community, recycler, media and
-  supporter. Nic on supplier.
-- **The pathways go in CODE, not a document.** A markdown map of the lanes would have been stale
-  within a week; the guards are the point.
+- **Transactional replies are sent from code; campaigns go through a GHL workflow.** The GHL API
+  can read workflows and nothing else: no create, no update, no publish. Anything sent by workflow
+  waits on one person clicking, which is why four sat as drafts for months. A campaign still needs
+  the unsubscribe handling only GHL has.
+- **A route may stamp the acknowledgement tag OR send its own reply, never both**, and the choice
+  is made inside `acknowledgeOrReply` so it cannot happen to one person twice.
+- **The support route no longer stamps `project-goods`**, and nor do the other branched subjects.
+  `project:act-gd` is what the audiences resolve on, so segmentation is unaffected.
+- **Owners, Ben 17 September:** Ben on seven lanes, Nic on supplier.
 - **`/admin/campaign` is the audience lanes. `/admin/pathways` is the per-community ladder.**
-  Different objects: one is a lane and its promises, the other is a place and its next phase.
-- **Ben signs, replies to `hi@act.place`, two business days, media pack = /press, phone 0422 883 943.**
-- **Branch on `interest:` BEFORE `role:`**: support and community-interest BOTH produce `role:community`, so role-first gives a broken bed the same letter as a community putting its hand up.
-- **Communities are not a funnel, but they are not silent either.** R9 = "out of the machine, not out of communication". Three classes: answers (owed), service (allowed), broadcast (off by default). Automation points INWARD, nagging Goods not the community.
-- **GHL owns every send.** Resend's `pipeline-followup` cron removed. `sms-dispatch` STAYS (already GHL Conversations) and `contact-delivery` STAYS (writes to our own inbox).
-- **Pipeline ids hardcoded in `lib/ghl/inquiry-routing.ts`, not env-driven** — three env vars had drifted to the same value for months without anyone noticing.
-- **The 164 newsletter consenters WAIT** until there is something worth sending.
-- Test data deletion needed Ben's explicit verb and got it.
 
 ### Open Questions
-- **THE CAMPAIGN BLOCK IS BLOCKED ON A CONSENT DECISION, NOT ON CODE.** `comms:goods-newsletter` is
-  the only send-trigger tag this codebase mints, so there is no way to reach the 99 funders, the 84
-  buyers or the 36 suppliers as a group. Either they opt in through a path that mints a new
-  `comms:` tag, or a person sends by hand. For four buyers and thirty-six suppliers, by hand is the
-  right answer and the file says so.
-- **The replies go out from "A Curious Tractor <hi@act.place>" and sign off "Ben, Goods on
-  Country".** Two names on one email. It is the location From name in GHL settings, not code.
-- **The funder opt-out alarm is not built.** A funder can still switch off all Goods email by
-  clicking unsubscribe on a generic reply, and nothing tells anybody. One workflow, one task, no
-  email leaves the building.
-- **Tracking and the sponsor QR link are promises a person now has to keep.** The order
-  confirmation says both, because the success page already did. Nothing sends either.
-- One `contact_submissions` row from 10 September has `ghl_status=failed` and has been retrying the
-  GHL write every ten minutes for a week. It does NOT re-email (the retry short-circuits when
-  `inbox_status` is delivered), so it is noise rather than the loop Ben was hit by, but nothing
-  gives up or tells anybody.
-- The pathways record what is true today. Nothing in them has been walked with a real person on any
-  lane except buyer and community, so the `advance` triggers are reasoned, not observed.
-- UNCONFIRMED: does anything still send through **SendGrid** on act.place? Records exist (`s1/s2._domainkey`, `em4341`, `url6009`, account `54476132`), no live code found in any ACT repo, but `www.act.place` is **Webflow** and Webflow forms commonly use SendGrid. Do NOT delete the DNS until the account is checked: `url6009` is the click-tracking domain and removing it breaks links in already-sent email.
-- UNCONFIRMED: whether the two GHL notifications (GHL + Resend) should stay permanently or Resend gets retired after the trial week.
-- OPEN: the acknowledgement carries an **unsubscribe link**. If a funder clicks it they stop receiving Goods email entirely.
-- OPEN: `api/admin/campaign/send-email` still sends outside GHL and bypasses suppression.
+- **THE CAMPAIGN BLOCK IS BLOCKED ON A CONSENT DECISION.** `comms:goods-newsletter` is the only
+  send-trigger tag this codebase mints. 99 funders, 84 buyers and 36 suppliers carry role tags that
+  can never trigger a send. Either they opt in through a path that mints a new `comms:` tag, or a
+  person writes to them one at a time. For four real buyers and 36 suppliers, by hand is the right
+  answer. For 99 funders a quarterly note probably earns an enrolment. Ben's call.
+- UNCONFIRMED: **the Goods From name on a real send.** Replies now set
+  `emailFrom: 'Goods on Country <hi@act.place>'` per message, because the sub-account is shared
+  with Harvest, JusticeHub and CONTAINED and its location name must stay "A Curious Tractor". If
+  GHL refuses the display name the send retries without it, so the worst case is the old behaviour.
+  The next real enquiry settles it.
+- UNCONFIRMED: **the order promise task**, which raises "send tracking when it ships" on every paid
+  order. Nobody has bought a bed since it deployed.
+- OPEN: **tracking and the sponsor QR link are promises a person keeps.** Nothing sends either, the
+  checkout page has promised both since February, and the task is what makes them keepable.
+- Feedback's primary destination is a **GitHub issue**, not GHL. Worth knowing before reading that
+  route.
 
 ### Workflow State
 pattern: sequential
-phase: 4
+phase: 6
 total_phases: 6
 retries: 0
 max_retries: 3
 
 #### Resolved
-- goal: "campaign machine: pathways per audience, campaign per pathway, newsletter + ongoing comms for all groups"
+- goal: "campaign machine: pathways per audience, campaign per pathway, newsletter + ongoing comms"
 - resource_allocation: aggressive
 
 #### Unknowns
-- sendgrid_still_in_use: UNKNOWN
-- resend_retire_date: UNKNOWN
+- per_lane_comms_enrolment: UNKNOWN, Ben's decision
+- goods_from_name_accepted: UNKNOWN until the next real send
+- order_promise_task_fires: UNKNOWN until the next bed sale
 
 #### Last Failure
 (none)
