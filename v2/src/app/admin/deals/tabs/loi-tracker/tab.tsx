@@ -11,7 +11,6 @@ import {
 } from '@/lib/data/loi-pipeline';
 import { supplierQuotes } from '@/lib/data/supplier-quotes';
 
-export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 const STREAM_BADGE: Record<string, string> = {
@@ -27,7 +26,7 @@ function fmtMoney(n: number): string {
   return `$${n.toLocaleString()}`;
 }
 
-export default async function LoiTrackerPage() {
+export async function LoiTrackerTab() {
   const { ok, opportunities } = await fetchOpportunitiesForPipelines(
     GOODS_PIPELINES.map((p) => p.id),
   );

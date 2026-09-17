@@ -71,10 +71,6 @@ export const ADMIN_ROUTE_DIRECTORY: RouteGroup[] = [
   {
     group: 'Money and funders',
     routes: [
-      { href: '/admin/funders', name: 'Funders', status: 'absorbed', note: 'via Raise' },
-      { href: '/admin/loi-tracker', name: 'LOI tracker', status: 'absorbed', note: 'the match register' },
-      { href: '/admin/pipeline', name: 'Deal pipeline board', status: 'absorbed', note: 'via Raise' },
-      { href: '/admin/ask', name: 'The Ask', status: 'absorbed', note: 'via Raise' },
       { href: '/admin/reports', name: 'Funder reports', status: 'active' },
       { href: '/admin/reports/impact', name: 'Impact reports', status: 'active' },
       { href: '/admin/orders', name: 'Orders', status: 'active' },

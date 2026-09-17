@@ -3,10 +3,9 @@ import { listFunders } from '@/lib/funders/registry';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
-export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-export default async function FundersPage() {
+export async function FundersTab() {
   const funders = await listFunders();
 
   return (

@@ -1,12 +1,11 @@
 import Link from 'next/link';
-import { getPipelineOverview, type DealType, type PipelineStage } from '../deals/actions';
+import { getPipelineOverview, type DealType, type PipelineStage } from '../../../deals/actions';
 import { fetchOpportunitiesForPipelines, type GoodsOpportunity } from '@/lib/ghl';
 import { GOODS_PIPELINES, STAGE_TO_RUNG, LOI_RUNGS, MATCH_TARGET, type LoiRung } from '@/lib/data/loi-pipeline';
 import { supplierQuotes } from '@/lib/data/supplier-quotes';
 import type { PipeRow, PipeCategory } from './pipeline-client';
 import PipelineTable from './pipeline-client';
 
-export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 const CAT_BY_TYPE: Record<DealType, PipeCategory> = {
@@ -41,7 +40,7 @@ function fmtMoney(n: number): string {
   return `$${n.toLocaleString()}`;
 }
 
-export default async function PipelinePage() {
+export async function PipelineTab() {
   // Internal pipeline (always available) + GHL funder opportunities (may be offline)
   const [overview, ghl] = await Promise.all([
     getPipelineOverview(),

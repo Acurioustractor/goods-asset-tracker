@@ -17,7 +17,7 @@ export default async function NewFunderPage() {
     <div className="space-y-6 pb-16">
       <header>
         <p className="text-xs">
-          <Link href="/admin/funders" className="text-primary hover:underline">← back to funders</Link>
+          <Link href="/admin/deals?tab=funders" className="text-primary hover:underline">← back to funders</Link>
         </p>
         <h1 className="font-display mt-2 text-2xl font-bold tracking-tight">Add a funder / supporter</h1>
         <p className="mt-1 text-sm text-muted-foreground">

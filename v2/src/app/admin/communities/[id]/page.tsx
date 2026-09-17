@@ -462,7 +462,7 @@ export default async function CommunityDetailPage({
               <div className="font-display text-xl font-bold tabular-nums text-emerald-700" style={{ fontFamily: 'Georgia, serif' }}>{fmtMoney(raisedCents)}</div>
               <div className="text-[11px] text-muted-foreground">raised toward it (pipeline + won)</div>
             </div>
-            <Link href="/admin/pipeline" className="ml-auto text-sm font-semibold text-primary hover:underline">Open the pipeline →</Link>
+            <Link href="/admin/deals?tab=pipeline" className="ml-auto text-sm font-semibold text-primary hover:underline">Open the pipeline →</Link>
           </div>
         )}
       </section>

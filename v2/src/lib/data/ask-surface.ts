@@ -279,7 +279,7 @@ export const GROWTH_STAGES: GrowthStage[] = [
 export const ASK_DOORS = [
   { label: 'The full cost story (7 chapters)', href: '/admin/cost-model' },
   { label: 'Investor room (gated)', href: '/investors' },
-  { label: 'The pipeline', href: '/admin/pipeline' },
+  { label: 'The pipeline', href: '/admin/deals?tab=pipeline' },
 ];
 
 export const ASK_FRAME = {

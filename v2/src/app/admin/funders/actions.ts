@@ -94,7 +94,7 @@ export async function addFunder(form: AddFunderForm): Promise<{ ok: boolean; slu
   await mkdir(dirname(path), { recursive: true });
   await writeFile(path, JSON.stringify(existing, null, 2), 'utf-8');
 
-  revalidatePath('/admin/funders');
+  revalidatePath('/admin/deals');
   revalidatePath('/admin/reports');
   return { ok: true, slug };
 }

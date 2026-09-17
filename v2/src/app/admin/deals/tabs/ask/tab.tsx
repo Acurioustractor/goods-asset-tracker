@@ -26,11 +26,6 @@ import {
 } from '@/lib/data/ask-surface';
 import Link from 'next/link';
 
-export const metadata = {
-  title: 'The Ask — Goods on Country',
-  description:
-    'What we are asking for, why it adds up, where each dollar legally sits, what we spend on product versus people, and how the model grows.',
-};
 
 const TAG_STYLE: Record<string, string> = {
   verified: 'bg-accent/15 text-accent-foreground border-accent/40',
@@ -49,7 +44,7 @@ function Tag({ s }: { s: Solidity }) {
   );
 }
 
-export default function AskSurfacePage() {
+export function AskTab() {
   return (
     <div className="mx-auto max-w-4xl space-y-14 pb-16">
       {/* Frame */}

@@ -134,14 +134,6 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     verdict: 'keep',
   },
   {
-    route: '/admin/ask',
-    audience: 'internal',
-    access: 'admin',
-    leadsWithNow: null,
-    whyUnread: 'admin surface, client-rendered behind the admin gate',
-    verdict: 'keep',
-  },
-  {
     route: '/admin/procurement',
     audience: 'internal',
     access: 'admin',
@@ -334,14 +326,6 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     verdict: 'keep',
   },
   {
-    route: '/admin/funders',
-    audience: 'internal',
-    access: 'admin',
-    leadsWithNow: null,
-    whyUnread: 'admin surface, client-rendered behind the admin gate',
-    verdict: 'keep',
-  },
-  {
     route: '/admin/funders/[slug]/video-brief',
     audience: 'internal',
     access: 'admin',
@@ -389,14 +373,6 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     whyUnread: 'admin surface, client-rendered behind the admin gate',
     verdict: 'plumbing',
     why: 'a per-surface password gate',
-  },
-  {
-    route: '/admin/loi-tracker',
-    audience: 'internal',
-    access: 'admin',
-    leadsWithNow: null,
-    whyUnread: 'admin surface, client-rendered behind the admin gate',
-    verdict: 'keep',
   },
   {
     route: '/admin/media-gaps',
@@ -464,14 +440,6 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
   },
   {
     route: '/admin/people',
-    audience: 'internal',
-    access: 'admin',
-    leadsWithNow: null,
-    whyUnread: 'admin surface, client-rendered behind the admin gate',
-    verdict: 'keep',
-  },
-  {
-    route: '/admin/pipeline',
     audience: 'internal',
     access: 'admin',
     leadsWithNow: null,

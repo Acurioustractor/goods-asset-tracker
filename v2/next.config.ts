@@ -129,6 +129,12 @@ const nextConfig: NextConfig = {
       // #188 — marked retire 2026-07-20 in route-review.ts and never executed: a live admin page
       // reading Supabase products while products.ts is canon.
       { source: '/admin/products', destination: '/admin', permanent: false },
+      // The raise was four routes about the same money, all declared absorbed since July.
+      // Tabs of /admin/deals from 17 September 2026.
+      { source: '/admin/funders', destination: '/admin/deals?tab=funders', permanent: false },
+      { source: '/admin/loi-tracker', destination: '/admin/deals?tab=loi', permanent: false },
+      { source: '/admin/pipeline', destination: '/admin/deals?tab=pipeline', permanent: false },
+      { source: '/admin/ask', destination: '/admin/deals?tab=ask', permanent: false },
       // Seven story surfaces became tabs of /admin/voices on 17 September 2026. The hub had
       // listed them as tabs since July and admin-routes.ts called every one 'absorbed'; they
       // were tabs in everything except the address bar.
