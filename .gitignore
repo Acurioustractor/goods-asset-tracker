@@ -120,6 +120,13 @@ supabase/*.sql
 .vercel/
 autoresearch-macos/
 media/
+# Application media handlers are source, not local assets. The exif reader that the photo
+# drop imports lived here untracked for a day because of the rule above (Vercel build failed
+# on 18 September 2026: "Can't resolve '@/lib/media/exif'"). Main carries the same negation.
+!v2/src/lib/media/
+!v2/src/lib/media/**
+!v2/src/app/api/production/media/
+!v2/src/app/api/production/media/**
 idiot_index_model.py
 v2/check_requests.js
 v2/test_queries.ts
