@@ -44,9 +44,10 @@ export function PhotoDrop() {
   const [sessionTags, setSessionTags] = useState('');
   useEffect(() => {
     try {
-      setSessionTags(window.localStorage.getItem(SESSION_KEY) ?? '');
+      const stored = window.localStorage.getItem(SESSION_KEY);
+      setSessionTags(stored === null ? 'use:snow' : stored);
     } catch {
-      /* private window, no memory, no harm */
+      setSessionTags('use:snow');
     }
   }, []);
   const rememberSession = useCallback((v: string) => {
@@ -175,7 +176,7 @@ export function PhotoDrop() {
         <input
           value={sessionTags}
           onChange={(e) => rememberSession(e.target.value)}
-          placeholder="use:snow"
+          placeholder="nothing, until you type a tag here"
           className="flex-1 rounded-lg border border-input bg-background px-2.5 py-1.5 font-mono text-xs focus:outline-none focus:ring-2 focus:ring-ring"
         />
         {sessionTags.trim() && (
@@ -313,13 +314,13 @@ function DroppedCard({ item }: { item: Dropped }) {
             <input
               value={community}
               onChange={(e) => { setCommunity(e.target.value); setState('idle'); }}
-              placeholder="community, e.g. tennant-creek"
+              placeholder="add a community…"
               className="flex-1 rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs font-mono focus:outline-none focus:ring-2 focus:ring-ring"
             />
             <input
               value={extra}
               onChange={(e) => { setExtra(e.target.value); setState('idle'); }}
-              placeholder="use:snow  people:norman-frank"
+              placeholder="add more tags…"
               className="flex-1 rounded-lg border border-input bg-background px-2.5 py-1.5 text-xs font-mono focus:outline-none focus:ring-2 focus:ring-ring"
             />
             <button
