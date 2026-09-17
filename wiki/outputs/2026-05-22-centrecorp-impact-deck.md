@@ -1,4 +1,12 @@
 <!--
+  HISTORICAL SNAPSHOT — 21-22 May 2026 trip, frozen. Superseded by /admin/funding-board
+  for current Centrecorp figures (17 Sep 2026: 107 beds paid, INV-0291, $123,332).
+
+  This deck's "109 beds committed" is NOT reconciled against that 107 figure — flagged
+  17 Sep 2026, unresolved. Read this deck for the real, GPS-tracked delivery-logistics
+  detail (who got what, where, when) on the 21-22 May trip specifically; do not read it
+  for a current Centrecorp relationship total.
+
   Centrecorp impact deck — 21-22 May 2026 Utopia Homelands + Alice Springs trip.
 
   Format: one slide per H2. Pastes cleanly into Notion (each H2 becomes a top-
@@ -10,8 +18,8 @@
     [VIDEO: short description]     <- drop file path or embed when ready
     [QUOTE: who / what / where]    <- drop transcribed quote when ready
 
-  All numbers below are live from production (verified 2026-05-22). Update
-  only if the trip data changes.
+  All numbers below are live from production AS OF 2026-05-22 only. Do not treat as
+  current without checking /admin/funding-board first.
 -->
 
 # Goods on Country × Centrecorp
