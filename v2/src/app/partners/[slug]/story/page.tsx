@@ -118,6 +118,12 @@ const CH = new Map<string, { number: string; label: string }>(
 );
 const chapterNumber = (id: string) => CH.get(id)?.number ?? '';
 
+/** One entry per photograph, first mention wins. Keyed on src, which is what React keys on. */
+function dedupeBySrc<T extends { src: string }>(photos: T[]): T[] {
+  const seen = new Set<string>();
+  return photos.filter((p) => (seen.has(p.src) ? false : (seen.add(p.src), true)));
+}
+
 /** A community slug, written the way it is said. Anything unlisted title-cases cleanly. */
 const PLACE_NAMES: Record<string, string> = {
   'mt-isa': 'Mount Isa',
@@ -278,7 +284,17 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
    * left over is the gallery. Nothing appears twice.
    */
   const beatPlaces = new Set(PLACE_BEATS.map((b) => b.id));
-  const spent = new Set<string>();
+  /*
+   * Start from everything the page already places by hand. Half these photographs were tagged
+   * use:snow AND hard-coded into a wall or a road stop, so merging the two lists put the
+   * Kalgoorlie delivery truck on the same stop twice.
+   */
+  const spent = new Set<string>([
+    ...snowHeroFrames().map((f) => f.src),
+    ...WALLS.flatMap((w) => w.files.map((f) => w.dir + f.file)),
+    ...PLACE_BEATS.flatMap((b) => (b.photos ?? []).map((ph) => ph.src)),
+    ...(snowTaggedGroup()?.photos ?? []).map((ph) => ph.src),
+  ]);
   const take = (n: number, pick: (p: (typeof taggedForSnow)[number]) => boolean) => {
     const out = taggedForSnow.filter((p) => !spent.has(p.src) && pick(p)).slice(0, n);
     out.forEach((p) => spent.add(p.src));
@@ -303,18 +319,25 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       photos: leftovers.filter((p) => (p.place ?? '') === place),
     }))
     .filter((g) => g.photos.length > 0);
+  // A place that already has a wall joins it rather than opening a second section with the
+  // same heading, which is both a duplicate React key and two "Maningrida" blocks to scroll past.
+  const galleryFor = (label: string) => galleryGroups.find((g) => g.label === label)?.photos ?? [];
+  const wallLabels = new Set(WALLS.map((w) => w.label));
   // The curated walls, plus anything tagged use:snow in the Media Room, and then every
   // photograph's Notes field laid over the top, so a wrong label is fixed in the admin rather
   // than in this file.
   const wallGroups = await withGroupCaptions([
     ...WALLS.map((w) => ({
       label: w.label,
-      photos: w.files.map((f) => ({ src: w.dir + f.file, alt: f.alt, caption: f.caption })),
+      photos: [
+        ...w.files.map((f) => ({ src: w.dir + f.file, alt: f.alt, caption: f.caption })),
+        ...galleryFor(w.label).map((p) => ({ src: p.src, alt: p.alt, caption: p.caption })),
+      ],
     })),
     ...(snowTaggedGroup() ? [snowTaggedGroup()!] : []),
     // Tagged use:snow in the Media Room, which writes to the database rather than to the
-    // seed file the line above reads. Grouped by place, and only what the road did not take.
-    ...galleryGroups,
+    // seed file the line above reads. Grouped by place, and only what nothing else took.
+    ...galleryGroups.filter((g) => !wallLabels.has(g.label)),
   ]);
   const heroWithCaptions = await withCaptions([
     ...snowHeroFrames(),
@@ -336,10 +359,11 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         text: v.quote.text, portrait: v.person.portrait,
       })),
     // The hand-placed photographs first, then anything tagged for this place in the Media Room.
-    photos: [
+    // Deduped on src: the same photograph reaching a stop twice is a duplicate React key.
+    photos: dedupeBySrc([
       ...(b.photos ?? []),
       ...(snowByBeat.get(b.id) ?? []).map((p) => ({ src: p.src, alt: p.alt, caption: p.caption })),
-    ],
+    ]),
     showMap: b.showMap,
   }));
 
