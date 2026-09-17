@@ -40,6 +40,7 @@ export async function POST(req: Request) {
   if (guard) return guard;
 
   let bytes: Buffer;
+  let attemptTrail: string[] = [];
   let originalName = 'photo.jpg';
   let contentType = 'image/jpeg';
   let viaUrl = false;
@@ -85,17 +86,29 @@ export async function POST(req: Request) {
         );
       }
       // Original first, full size second, and what was dragged last, so an unusual address
-      // still lands rather than failing on a guess we made about it.
-      const tries = [...new Set([sized(url, 'd'), sized(url, 's0'), url])];
+      // still lands rather than failing on a guess we made about it. Google serves a sign-in
+      // page to a user agent it does not recognise, so do not announce ourselves as a script.
+      const UA =
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36';
+      const tries = [...new Set([sized(url, 'd'), sized(url, 's0'), sized(url, 'w2400'), url])];
       let res: Response | null = null;
+      // What each attempt actually returned, so a failure names the reason instead of a guess.
+      const trail: string[] = [];
       for (const attempt of tries) {
-        const r = await fetch(attempt, { headers: { 'User-Agent': 'goods-media-room' } });
-        res = r;
-        if (r.ok && (r.headers.get('content-type') ?? '').startsWith('image/')) break;
+        try {
+          const r = await fetch(attempt, { headers: { 'User-Agent': UA, Accept: 'image/*,*/*' } });
+          const ct = (r.headers.get('content-type') ?? '?').split(';')[0];
+          trail.push(`${attempt.match(/=[^?]*/)?.[0] ?? 'as dragged'} ${r.status} ${ct}`);
+          res = r;
+          if (r.ok && ct.startsWith('image/')) break;
+        } catch (e) {
+          trail.push(`${attempt.match(/=[^?]*/)?.[0] ?? 'as dragged'} threw ${e instanceof Error ? e.message : e}`);
+        }
       }
       if (!res) {
-        return NextResponse.json({ ok: false, error: 'nothing to fetch' }, { status: 400 });
+        return NextResponse.json({ ok: false, error: `nothing to fetch: ${trail.join(' | ')}` }, { status: 400 });
       }
+      attemptTrail = trail;
       if (!res.ok) {
         return NextResponse.json({ ok: false, error: `fetch failed: HTTP ${res.status}` }, { status: 400 });
       }
@@ -115,7 +128,7 @@ export async function POST(req: Request) {
         ok: false,
         error:
           mime === 'text/html'
-            ? `That link gave a web page rather than a picture: ${originalName}. Open the photo full size in Google Photos and drag the picture itself, or download it and drag the file, which keeps the date.`
+            ? `Google would not hand over that picture. What it said: ${attemptTrail.join(' | ')}`
             : `unsupported type: ${contentType}`,
       },
       { status: 400 },

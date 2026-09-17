@@ -113,9 +113,45 @@ export function PhotoDrop() {
     [send],
   );
 
+  /*
+   * FETCH THE PICTURE IN THE BROWSER, WHERE THE GOOGLE SESSION IS.
+   *
+   * Our server is not signed in to Google and never can be, so when Google decides an address
+   * needs the session it hands the server a sign-in page and the drop fails. This tab IS signed
+   * in. So try here first, with cookies, and post the bytes up as an ordinary file.
+   *
+   * It also fixes the quieter problem: a drag hands over the address of the thumbnail Google
+   * painted in the grid, =w403-h268, and every photograph imported this way so far has been a
+   * 56KB postage stamp. These ask for the file as taken, biggest first.
+   */
+  const fetchHere = useCallback(async (url: string): Promise<File | null> => {
+    const sized = (s: string) => url.replace(/=[a-z]{1,2}\d*(-[a-z0-9-]+)*(?=$|\?)/i, `=${s}`);
+    const shapes = [...new Set([sized('d'), sized('s0'), sized('w2400'), url])];
+    for (const u of shapes) {
+      for (const credentials of ['include', 'omit'] as const) {
+        try {
+          const r = await fetch(u, { credentials, referrerPolicy: 'no-referrer' });
+          if (!r.ok) continue;
+          const blob = await r.blob();
+          if (!blob.type.startsWith('image/') || blob.size < 2048) continue;
+          const stem = decodeURIComponent(new URL(u).pathname.split('/').pop() || 'photo');
+          const name = /\.(jpe?g|png|webp)$/i.test(stem) ? stem : `${stem}.jpg`;
+          return new File([blob], name, { type: blob.type });
+        } catch {
+          /* cross-origin rules or a dead shape. Try the next one. */
+        }
+      }
+    }
+    return null;
+  }, []);
+
   const sendUrl = useCallback(
-    (url: string) => send({ method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ url }) }),
-    [send],
+    async (url: string) => {
+      const here = await fetchHere(url);
+      if (here) return sendFile(here);
+      return send({ method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ url }) });
+    },
+    [send, sendFile, fetchHere],
   );
 
   const onDrop = useCallback(
