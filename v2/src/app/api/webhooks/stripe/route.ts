@@ -308,6 +308,16 @@ async function handleCheckoutSessionCompleted(
       } else {
         console.log(`[Order] ${order.order_number}: confirmation sent`);
       }
+
+      // The confirmation promises tracking when it ships, and for a sponsorship the QR link when
+      // the bed lands. Nothing sends either, and the checkout page has promised both since
+      // February. Put them in front of a person with a clock rather than quietly dropping them.
+      await ghl.raiseOrderPromiseTask({
+        contactId: ghlResult.contact.id,
+        orderNumber: order.order_number,
+        isSponsorship,
+        sponsoredCommunity: sponsoredCommunity || undefined,
+      });
     } catch (error) {
       // Never fail the webhook over an email. Stripe retries a failed webhook and the order is
       // already written, so a throw here would double-process a paid order.

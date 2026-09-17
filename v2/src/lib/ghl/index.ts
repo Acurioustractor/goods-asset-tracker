@@ -23,6 +23,7 @@ import {
 } from './canonical-tags';
 import { routeForSubject } from './inquiry-routing';
 import { isSuppressed } from './smart-lists';
+import { COMMS } from '@/lib/comms/facts';
 
 // Configuration from environment
 const GHL_API_KEY = process.env.GHL_API_KEY || '';
@@ -1266,6 +1267,36 @@ export const ghl = {
   },
 
   /**
+   * Raise a task on a paid order, because the confirmation makes two promises nothing keeps.
+   *
+   * The checkout success page has said "we'll ship your order and send tracking information" and,
+   * for a sponsorship, "we'll email you the QR-code link once the bed reaches its home" since
+   * February. Nothing sends either. The order confirmation repeats them, because taking them out
+   * would be a downgrade and the page says them anyway.
+   *
+   * So the promise gets an owner and a clock instead of a downgrade. This points INWARD: it puts
+   * the job in front of a person here and sends the buyer nothing.
+   */
+  async raiseOrderPromiseTask(opts: {
+    contactId: string;
+    orderNumber: string;
+    isSponsorship: boolean;
+    sponsoredCommunity?: string;
+  }): Promise<boolean> {
+    const what = opts.isSponsorship
+      ? `Email the QR link for ${opts.orderNumber} when the bed reaches ${
+          opts.sponsoredCommunity || 'its community'
+        }`
+      : `Send tracking for ${opts.orderNumber} when it ships`;
+    const why = opts.isSponsorship
+      ? 'The confirmation and the checkout page both promised the sponsor the QR link when the bed lands. Nothing sends it automatically.'
+      : 'The confirmation and the checkout page both promised tracking when it ships. Nothing sends it automatically.';
+    // Two weeks, not a day. A bed is made before it ships, and a task that is overdue the moment
+    // it is created is a task people learn to ignore.
+    return createContactTask(opts.contactId, what, why, 24 * 14);
+  },
+
+  /**
    * Every workflow in the account, with its published/draft state.
    *
    * The GHL API can read workflows and nothing else: no create, no update, no publish. So this
@@ -1344,14 +1375,31 @@ export const ghl = {
         return { success: false, skipped: 'suppressed' };
       }
 
-      const res = await ghlRequest<{ messageId?: string }>('/conversations/messages', 'POST', {
+      const payload = {
         type: 'Email',
         contactId: opts.contactId,
         subject: opts.subject,
         html: opts.html,
         message: opts.text,
-      });
-      return { success: true, messageId: res.messageId };
+      };
+
+      try {
+        const res = await ghlRequest<{ messageId?: string }>('/conversations/messages', 'POST', {
+          ...payload,
+          emailFrom: COMMS.emailFrom,
+        });
+        return { success: true, messageId: res.messageId };
+      } catch (error) {
+        // A rejected From name must not cost somebody their reply. GHL can refuse an emailFrom it
+        // does not recognise, and the alternative to a Goods display name is not silence, it is
+        // the account default. Try again without it and let the message through.
+        console.warn(
+          '[GHL] Send refused with a Goods From name, retrying as the account default:',
+          error instanceof Error ? error.message : error,
+        );
+        const res = await ghlRequest<{ messageId?: string }>('/conversations/messages', 'POST', payload);
+        return { success: true, messageId: res.messageId };
+      }
     } catch (error) {
       const errMsg = error instanceof Error ? error.message : 'Unknown error';
       console.error('[GHL] sendTransactionalReply error:', errMsg);

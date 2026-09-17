@@ -49,6 +49,10 @@ export default function ContactPage() {
       subject: subjectMap[inquiryType] || 'General Inquiry',
       message: formData.get('message') as string,
       _companyWebsite: (formData.get('_companyWebsite') as string) || undefined,
+      // Default off, ticked by hand, and the ONLY way an enquiry becomes a newsletter enrolment.
+      // api/contact has carried the branch for this since June and nothing rendered the box, so
+      // the consent path has been dormant and the list could only grow from the footer form.
+      subscribe: formData.get('subscribe') === 'on',
     };
 
     try {
@@ -233,6 +237,21 @@ export default function ContactPage() {
                         className="border-goods-sand focus:border-goods-terracotta focus:ring-goods-terracotta"
                       />
                     </div>
+
+                    <label className="flex items-start gap-2 text-sm text-goods-charcoal/70">
+                      <input
+                        name="subscribe"
+                        type="checkbox"
+                        className="mt-1 h-4 w-4 shrink-0 rounded border-goods-sand accent-goods-terracotta"
+                      />
+                      <span>
+                        Yes, email me occasional Goods updates. Not often, and you can unsubscribe
+                        any time.{' '}
+                        <a href="/privacy" className="underline underline-offset-2">
+                          Privacy
+                        </a>
+                      </span>
+                    </label>
 
                     {/* Error Message */}
                     {error && (
