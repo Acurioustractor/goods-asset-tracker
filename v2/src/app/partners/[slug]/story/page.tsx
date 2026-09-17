@@ -19,7 +19,7 @@ import {
   WASHER_NEXT, WASHER_PLACES, WASHER_TELEMETRY,
 } from '@/lib/data/snow-partnership';
 import { snowHeroFrames, snowTaggedGroup } from '@/lib/data/snow-photos';
-import { withCaptions, withGroupCaptions } from '@/lib/data/image-captions';
+import { withCaptions, withGroupCaptions, taggedPhotos } from '@/lib/data/image-captions';
 import { ChapterRail } from '@/components/pitch/chapter-rail';
 import { CountUp } from '@/components/pitch/count-up';
 import { TogetherTimeline } from '@/components/partners/together-timeline';
@@ -257,6 +257,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
 
   // The curated walls, plus anything Ben has tagged use:snow in the Media Room, which is the
   // one-step way to put a new photograph on this page without touching code.
+  const taggedForSnow = await taggedPhotos('use:snow');
   // The curated walls, plus anything tagged use:snow in the Media Room, and then every
   // photograph's Notes field laid over the top, so a wrong label is fixed in the admin rather
   // than in this file.
@@ -266,8 +267,16 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       photos: w.files.map((f) => ({ src: w.dir + f.file, alt: f.alt, caption: f.caption })),
     })),
     ...(snowTaggedGroup() ? [snowTaggedGroup()!] : []),
+    // Tagged use:snow in the Media Room, which writes to the database rather than to the
+    // seed file the line above reads. Both, so an old tag and a new one both show.
+    ...(taggedForSnow.length ? [{ label: 'Tagged for Snow', photos: taggedForSnow }] : []),
   ]);
-  const heroWithCaptions = await withCaptions(snowHeroFrames());
+  const heroWithCaptions = await withCaptions([
+    ...snowHeroFrames(),
+    ...taggedForSnow
+      .filter((p) => p.caption)
+      .map((p) => ({ src: p.src, alt: p.alt, caption: p.caption as string })),
+  ]);
   const norman = quote('norman-frank', 'external', "we've got our own ways");
 
   // The arc, as places. Each beat carries its own aerial and its own voice, resolved here so

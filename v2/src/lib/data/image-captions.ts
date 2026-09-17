@@ -79,3 +79,39 @@ export async function withGroupCaptions<T extends Captionable>(
     }),
   }));
 }
+
+/**
+ * PHOTOGRAPHS CARRYING A TAG, FROM THE DATABASE RATHER THAN THE SEED FILE.
+ *
+ * The gap this closes: the Media Room writes tags to content_items, but the Snow picks were
+ * reading them from local-image-tags.json, which has been seed-only since tags moved to the
+ * database. So Ben tagged a photograph use:snow, watched it save, and it did not appear on the
+ * page. It does now.
+ */
+export async function taggedPhotos(tag: string): Promise<{ src: string; alt: string; caption?: string }[]> {
+  try {
+    const supabase = createServiceClient();
+    const { data, error } = await supabase
+      .from('content_items')
+      .select('url,notes,tags')
+      .eq('media_type', 'image')
+      .is('archived_at', null)
+      .contains('tags', [tag]);
+    if (error) return [];
+    return ((data ?? []) as { url: string | null; notes: string | null; tags: string[] | null }[])
+      .filter((r) => r.url && !r.tags?.includes(`${tag}-hide`))
+      .map((r) => {
+        const note = r.notes?.trim();
+        const fromName = (r.url ?? '')
+          .split('/')
+          .pop()
+          ?.replace(/\.[a-z]+$/i, '')
+          .replace(/[-_]+/g, ' ')
+          .replace(/^\d{4} \d{2} \d{2} /, '') ?? '';
+        const alt = note || (fromName ? fromName[0].toUpperCase() + fromName.slice(1) : 'Goods on Country');
+        return { src: r.url as string, alt, caption: note ?? undefined };
+      });
+  } catch {
+    return [];
+  }
+}
