@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { ghl } from '@/lib/ghl';
 
 const VALID_CATEGORIES = ['product', 'service', 'community', 'other'];
 
@@ -113,6 +114,33 @@ export async function POST(request: Request) {
     if (error) {
       console.error('Error creating idea:', error);
       return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    // Put a named human on it. This route wrote the row and told nobody, and the
+    // only stated process was a line in the operations guide saying to review
+    // ideas weekly. Somebody signed in, typed an idea and waited. The task points
+    // INWARD and the person receives nothing: an idea comes from a signed-in
+    // profile, which on this site means the community line, and that line is
+    // never sent to automatically (R9). Failure must not fail the submission,
+    // which is already stored.
+    try {
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('display_name, phone, email')
+        .eq('id', user.id)
+        .single();
+
+      await ghl.raiseCommunityInbound({
+        name: profile?.display_name || undefined,
+        phone: profile?.phone || undefined,
+        email: profile?.email || undefined,
+        kind: 'Community idea',
+        detail: [title.trim(), description?.trim(), category ? `Category: ${category}` : null]
+          .filter(Boolean)
+          .join('\n\n'),
+      });
+    } catch (notifyError) {
+      console.error('[Ideas] Could not raise the inbound task:', notifyError);
     }
 
     return NextResponse.json({ idea, success: true });

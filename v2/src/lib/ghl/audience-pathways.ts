@@ -195,10 +195,13 @@ export const AUDIENCE_PATHWAYS: AudiencePathway[] = [
       },
       {
         door: 'Registers interest in a washing machine',
-        handler: 'api/contact/route.ts',
+        handler: 'api/partnership/route.ts',
         tags: ['role:buyer', 'interest:washer'],
         state: 'live',
-        note: 'Pakkimjalki Kari is prototype stage. Register interest only, never for sale.',
+        note:
+          'Posts to the partnership route, not the contact route, and the washer-interest branch ' +
+          'there opens a card on GOODS - Buyers. Pakkimjalki Kari is prototype stage: register ' +
+          'interest only, never for sale.',
       },
       {
         door: 'Rings 0422 883 943',
@@ -458,6 +461,25 @@ export const AUDIENCE_PATHWAYS: AudiencePathway[] = [
         subject: 'Partnership Inquiry',
         tags: ['role:partner', 'act-inquiry', 'project-goods'],
         state: 'live',
+      },
+      {
+        door: 'Partnership or capital enquiry, from the partner form',
+        handler: 'api/partnership/route.ts',
+        tags: ['role:partner', 'act-inquiry', 'project-goods'],
+        state: 'live',
+        note:
+          'The capital path branches away to GOODS - Funding, because somebody asking about a ' +
+          'ticket size is a funder. Everything else lands on the relationship board.',
+      },
+      {
+        door: 'Put up an idea, at /community/ideas/new',
+        handler: 'api/community/ideas/route.ts',
+        tags: ['role:community', 'lane:community'],
+        state: 'live',
+        note:
+          'Found silent on 17 September: it wrote the row and told nobody, and the only process ' +
+          'was a line in the operations guide saying to review ideas weekly. It raises a task now. ' +
+          'Nobody has used it yet: 0 rows.',
       },
       {
         door: 'Something is wrong with my bed, at /support',
@@ -723,6 +745,15 @@ export const AUDIENCE_PATHWAYS: AudiencePathway[] = [
     board: null,
     communityLine: false,
     entries: [
+      {
+        door: 'Site feedback, from the widget',
+        handler: 'api/feedback/route.ts',
+        tags: ['role:supporter', 'interest:feedback', 'act-inquiry', 'project-goods'],
+        state: 'live',
+        note:
+          'Threads into Conversations rather than the team inbox, and stamps the acknowledgement ' +
+          'tag, so the person does get a reply. Three have arrived.',
+      },
       {
         door: 'Newsletter sign up',
         handler: 'api/newsletter/route.ts',

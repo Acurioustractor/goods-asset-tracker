@@ -9,6 +9,7 @@ import {
   type StepState,
 } from '@/lib/ghl/audience-pathways';
 import { findAudienceSegment, findSmartList } from '@/lib/ghl/smart-lists';
+import { PUBLIC_FORMS, type GoodsHears, type TheyGet } from '@/lib/forms/public-forms';
 import {
   campaignsFor,
   readyToSwitchOn,
@@ -65,6 +66,19 @@ const kindLabel: Record<CampaignKind, string> = {
   inward: 'Nags Goods, not them',
 };
 
+const theyGetStyle: Record<TheyGet, string> = {
+  acknowledgement: 'border-emerald-200 bg-emerald-50 text-emerald-800',
+  'a human reply': 'border-sky-200 bg-sky-50 text-sky-800',
+  nothing: 'border-rose-200 bg-rose-50 text-rose-800',
+};
+
+const goodsHearsStyle: Record<GoodsHears, string> = {
+  'inbox email': 'border-emerald-200 bg-emerald-50 text-emerald-800',
+  'ghl task': 'border-emerald-200 bg-emerald-50 text-emerald-800',
+  'ghl conversation': 'border-slate-200 bg-slate-50 text-slate-700',
+  nothing: 'border-rose-200 bg-rose-50 text-rose-800',
+};
+
 const readinessStyle: Record<PathwayReadiness, string> = {
   live: 'bg-emerald-600',
   partial: 'bg-amber-500',
@@ -106,6 +120,56 @@ export default function AdminCampaignPage() {
           ))}
         </dl>
       </header>
+
+      <section className="mt-10 rounded-xl border bg-white p-5">
+        <h2 className="font-serif text-xl">Every door the public can knock on</h2>
+        <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600">
+          {PUBLIC_FORMS.length} forms, found by walking the app rather than by keeping a list. For
+          each one: what the person gets back, and how a human here finds out. A form that answers
+          nothing to both cannot ship.
+        </p>
+        <div className="mt-4 overflow-x-auto">
+          <table className="w-full min-w-[640px] text-left text-sm">
+            <thead>
+              <tr className="border-b text-[11px] uppercase tracking-wider text-slate-500">
+                <th className="pb-2 pr-4 font-medium">Form</th>
+                <th className="pb-2 pr-4 font-medium">Lane</th>
+                <th className="pb-2 pr-4 font-medium">They get</th>
+                <th className="pb-2 font-medium">Goods hears</th>
+              </tr>
+            </thead>
+            <tbody>
+              {PUBLIC_FORMS.map((form) => (
+                <tr key={form.file} className="border-b last:border-0 align-top">
+                  <td className="py-2.5 pr-4">
+                    <span className="text-slate-900">{form.name}</span>
+                    <span className="block font-mono text-[10px] text-slate-400">{form.handler}</span>
+                  </td>
+                  <td className="py-2.5 pr-4 text-slate-600">
+                    <a className="underline-offset-2 hover:underline" href={`#${form.audience}`}>
+                      {form.audience}
+                    </a>
+                  </td>
+                  <td className="py-2.5 pr-4">
+                    <span
+                      className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${theyGetStyle[form.theyGet]}`}
+                    >
+                      {form.theyGet}
+                    </span>
+                  </td>
+                  <td className="py-2.5">
+                    <span
+                      className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${goodsHearsStyle[form.goodsHears]}`}
+                    >
+                      {form.goodsHears}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
 
       <div className="mt-10 space-y-12">
         {AUDIENCE_PATHWAYS.map((pathway) => {
