@@ -208,7 +208,6 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
    */
   const washerVoices = [
     { slug: 'jimmy-frank', contains: 'easier to fix, I would say for a washing machine' },
-    { slug: 'dianne-stokes', contains: 'If I need to wash my blanket' },
     { slug: 'patricia-frank', contains: 'right there at home' },
   ]
     .map((v) => quote(v.slug, 'external', v.contains))
@@ -727,7 +726,6 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
       <Chapter
         id="ch-buyers"
         title="Four buyers, five invoices, 320 beds and the price went up"
-        lead="This is the thing Sally asked for most and it is the deliverable the QBE volunteer team is working on. Everything here is an invoice that was issued and paid. Nothing here is a forecast."
       >
         <div className="rounded-lg p-6 sm:p-8" style={{ backgroundColor: PANEL, border: '1px solid #E8DED4' }}>
           <div className="flex flex-wrap items-baseline justify-between gap-4">
@@ -787,8 +785,7 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
 
       <Chapter
         id="ch-washers"
-        title="Ten machines are sending us readings"
-        lead="Snow bought one of them outright."
+        title="Six machines are sending us readings"
       >
         <div className="grid gap-4 sm:grid-cols-4">
           {WASHER_PLACES.map((w) => (
@@ -891,12 +888,11 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
         {/* Machines that have recorded washes. Simple. */}
         <div className="mt-8 overflow-hidden rounded-lg" style={{ border: `1px solid ${RULE}`, backgroundColor: PANEL }}>
           {WASHER_FLEET.filter((r) => r.cycles >= 10).map((r, i) => {
-            const quiet = Math.round((Date.parse(WASHER_TELEMETRY.readAt) - Date.parse(r.to)) / 86400000);
             const top = Math.max(...WASHER_FLEET.map((x) => x.cycles));
             return (
               <div
                 key={r.assetId}
-                className="grid items-center gap-2 px-5 py-4 sm:grid-cols-[1fr_8rem_6rem] sm:gap-6 sm:px-7"
+                className="grid items-center gap-2 px-5 py-4 sm:grid-cols-[1fr_9rem] sm:gap-6 sm:px-7"
                 style={{ borderTop: i === 0 ? undefined : `1px solid ${RULE_SOFT}` }}
               >
                 <p className="text-sm font-semibold" style={{ color: CHARCOAL }}>{r.where}</p>
@@ -906,30 +902,27 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
                     <span className="block h-full rounded-full" style={{ width: `${(r.cycles / top) * 100}%`, backgroundColor: RUST }} />
                   </span>
                 </div>
-                <p className="text-xs sm:text-right" style={{ color: quiet > 21 ? MUTED : SAGE_INK }}>
-                  {quiet === 0 ? 'today' : `quiet ${quiet}d`}
-                </p>
               </div>
             );
           })}
         </div>
 
         {proud && (
-          <figure className="m-0 mt-10 flex max-w-[46ch] items-start gap-4">
+          <figure className="m-0 mx-auto mt-12 flex max-w-[44ch] flex-col items-center text-center">
             {proud.person.portrait && (
-              <Image src={proud.person.portrait} alt={proud.person.name} width={160} height={160} className="h-14 w-14 shrink-0 rounded-full object-cover" />
+              <Image src={proud.person.portrait} alt={proud.person.name} width={200} height={200} className="h-20 w-20 rounded-full object-cover" />
             )}
-            <div>
-              <blockquote className="font-display text-xl leading-[1.3]" style={{ color: CHARCOAL }}>&ldquo;{proud.quote.text}&rdquo;</blockquote>
-              <figcaption className="mt-2 text-xs" style={{ color: MUTED }}>
-                {proud.person.name}, asked how it feels to have a washing machine named in Warumungu
-              </figcaption>
-            </div>
+            <blockquote className="mt-5 font-display text-2xl leading-[1.3] sm:text-3xl" style={{ color: CHARCOAL }}>
+              &ldquo;{proud.quote.text}&rdquo;
+            </blockquote>
+            <figcaption className="mt-3 text-xs" style={{ color: MUTED }}>
+              {proud.person.name}, asked how it feels to have a washing machine named in Warumungu
+            </figcaption>
           </figure>
         )}
 
         {washerVoices.length > 0 && (
-          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
             {washerVoices.map((v) => (
               <figure key={v.person.name} className="m-0">
                 {v.person.portrait && (

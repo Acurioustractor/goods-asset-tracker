@@ -860,7 +860,8 @@ export const FILMS: readonly Film[] = [
     title: 'Gamardi, Maningrida',
     why: 'Where the beds were pressed in our own facility, which is the proof the factory path works.',
     story:
-      'Forty Stretch Beds for Maningrida were pressed in house, so the claim that production can move is not a projection. Eight washing machines are in community there. Country with nobody in frame, so it carries no consent question of its own.',
+      'Forty Stretch Beds for Maningrida were pressed in house, so the claim that production can move is not a projection. Eight washing machines are in community there.',
+    voice: { slug: 'eric-pascoe', contains: 'like funeral or ceremony' },
     place: 'Maningrida, Arnhem Land',
   },
 
@@ -1360,11 +1361,11 @@ export const NORM_MONTHS: readonly { month: string; label: string; washes: numbe
 
 export const WASHER_FLEET: readonly FleetRow[] = [
   { assetId: 'GB0-113', supplied: '2025-07-02', where: "Norm's house, Tennant Creek", cycles: 952, kwh: 2_613, from: '2025-11-17', to: '2026-09-16', state: 'reporting', note: 'The machine the rest of the fleet is measured against. More washes on it than every other machine put together.' },
-  { assetId: 'GB0-WM-ORPHAN-c4b9', supplied: null, where: "Dianne's daughter's house, Tennant Creek", cycles: 550, kwh: 422, from: '2025-08-27', to: '2026-03-29', state: 'silent', note: 'Identified by Ben, 17 September 2026. Stopped in March. The register row is still an orphan until somebody updates it.' },
-  { assetId: 'GB0-WM-ORPHAN-fe6c', supplied: null, where: "Jahvan's aunty's house, Palm Island", cycles: 397, kwh: 107, from: '2025-09-15', to: '2026-06-08', state: 'silent', note: 'Identified by Ben, 17 September 2026. Nine months of washes, then nothing since June. The register still has it in Tennant Creek.' },
+  { assetId: 'GB0-WM-ORPHAN-c4b9', supplied: null, where: "Dianne's daughter's house, Tennant Creek", cycles: 550, kwh: 422, from: '2025-08-27', to: '2026-03-29', state: 'silent', note: 'Identified by Stopped in March. The register row is still an orphan until somebody updates it.' },
+  { assetId: 'GB0-WM-ORPHAN-fe6c', supplied: null, where: "Jahvan's aunty's house, Palm Island", cycles: 397, kwh: 107, from: '2025-09-15', to: '2026-06-08', state: 'silent', note: 'Identified by Nine months of washes, then nothing since June. The register still has it in Tennant Creek.' },
   { assetId: 'GB0-154-2', supplied: '2025-12-13', where: "Nicole's house, Tennant Creek", cycles: 344, kwh: 262, from: '2025-09-15', to: '2026-05-09', state: 'silent', note: 'Its controller was reporting from September 2025, three months before the register says the machine was supplied. One of the two dates is wrong and we have not worked out which. It stopped in May either way.' },
   { assetId: 'GB0-125', supplied: '2025-07-02', where: 'Barkly Arts, Tennant Creek', cycles: 48, kwh: 132, from: '2025-09-28', to: '2026-09-07', state: 'reporting', note: 'Reporting, and barely used. Worth a visit for that reason.' },
-  { assetId: 'GB0-WM-ORPHAN-689f', supplied: null, where: 'Billow, Palm Island', cycles: 38, kwh: 10, from: '2025-09-15', to: '2025-09-30', state: 'silent', note: 'Identified by Ben, 17 September 2026. Two weeks of washes in September 2025 and nothing since. The register still has it in Tennant Creek.' },
+  { assetId: 'GB0-WM-ORPHAN-689f', supplied: null, where: 'Billow, Palm Island', cycles: 38, kwh: 10, from: '2025-09-15', to: '2025-09-30', state: 'silent', note: 'Identified by Two weeks of washes in September 2025 and nothing since. The register still has it in Tennant Creek.' },
   { assetId: 'GB0-132', supplied: '2025-07-02', where: 'Tennant Creek', cycles: 2, kwh: 1, from: '2025-09-19', to: '2026-03-01', state: 'silent', note: 'Two washes in six months, which almost certainly means the controller and not the machine. Its energy signature matches Palm Island, not Tennant Creek, so the register may have this one in the wrong place too.' },
   // Three controllers that registered on 1 March 2026 and have never recorded a wash. They are
   // on the list because a fleet page that only shows the working machines is a brochure.
@@ -1375,7 +1376,7 @@ export const WASHER_FLEET: readonly FleetRow[] = [
 
 
 export const WASHER_NEXT: readonly { title: string; detail: string }[] = [
-  { title: 'Cheaper, smaller and still durable', detail: 'The aim for the next version, in that order. It has to compete with what a family can already buy in town, or it stays a machine that arrives only when a funder pays for it. Ben, 17 September 2026.' },
+  { title: 'Cheaper, smaller and still durable', detail: 'The aim for the next version, in that order. It has to compete with what a family can already buy in town, or it stays a machine that arrives only when a funder pays for it.' },
   { title: 'Parts that can be replaced in community', detail: 'The drum is a Speed Queen and it stays, because it can be repaired anywhere. What we build around it, the enclosure, the controller and the plumbing, is where the cost and the size have to come out.' },
   { title: 'Measured against the laundry it replaces', detail: 'A commercial remote laundry is the comparison nobody has costed properly. The cycles and kilowatt hours above are the beginning of that number.' },
 ];
