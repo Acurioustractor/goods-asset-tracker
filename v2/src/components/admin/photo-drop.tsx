@@ -66,45 +66,61 @@ export function PhotoDrop() {
     (e: React.DragEvent) => {
       e.preventDefault();
       setOver(false);
-      const files = Array.from(e.dataTransfer.files ?? []);
+      const dt = e.dataTransfer;
+
+      // 1. A real file list. Finder, and some browsers for a web image too.
+      const files = Array.from(dt.files ?? []);
       if (files.length) {
         files.forEach(sendFile);
         return;
       }
+
       /*
-       * ORDER MATTERS AND IT COST US THE FIRST TRY. Google Photos puts the PAGE link in
-       * text/uri-list and the actual image in the text/html payload. Taking the uri-list first
-       * fetched photos.google.com and got a login page back: "unsupported type: text/html".
-       * So the <img src> wins, and the uri-list is the fallback for sites that only send that.
+       * 2. THE ONE THAT WAS MISSING. Dragging an image out of a web page, Chrome very often
+       * puts the decoded image on the drag as a file in dataTransfer.items rather than in
+       * dataTransfer.files. It never appears in .files, so checking only there made a Google
+       * Photos drag look empty and fall through to the page link, which needs a login. This
+       * path uses the browser's own copy of the picture, so Google's auth never comes into it.
        */
-      const html = e.dataTransfer.getData('text/html');
+      const items = Array.from(dt.items ?? []);
+      const asFiles = items
+        .filter((i) => i.kind === 'file')
+        .map((i) => i.getAsFile())
+        .filter((f): f is File => f !== null);
+      if (asFiles.length) {
+        asFiles.forEach(sendFile);
+        return;
+      }
+
+      // 3. The image URL out of the HTML payload. Google puts the picture here and the PAGE
+      //    link in text/uri-list, so this has to be read before that one.
+      const html = dt.getData('text/html');
       const fromImg = html.match(/<img[^>]+src=["']([^"']+)["']/i)?.[1];
-      if (fromImg && /^https?:\/\//.test(fromImg)) {
+      if (fromImg && /^https?:\/\//.test(fromImg) && !/^https?:\/\/photos\.google\.com\//i.test(fromImg)) {
         sendUrl(fromImg);
         return;
       }
-      const uri = (e.dataTransfer.getData('text/uri-list') || e.dataTransfer.getData('text/plain') || '')
-        .trim()
-        .split('\n')[0];
+
+      // 4. Anything else that is a plain image link.
+      const uri = (dt.getData('text/uri-list') || dt.getData('text/plain') || '').trim().split('\n')[0];
       if (uri && /^https?:\/\//.test(uri) && !/^https?:\/\/photos\.google\.com\//i.test(uri)) {
         sendUrl(uri);
         return;
       }
-      /*
-       * Nothing usable. Rather than guess again at what Google puts on a drag, say what the
-       * browser actually offered. Ben hit two dead ends in a row here and the only way to stop
-       * that is to instrument it.
-       */
-      const types = Array.from(e.dataTransfer.types ?? []);
-      setResults((prev) => [
-        {
-          ok: false,
-          error:
-            'No picture in that drag. Google gave only a page link, which needs a login. Download the photo and drag the file: you keep the date that way, and it files itself by trip.',
-          debug: types.length ? `the browser offered: ${types.join(', ')}` : 'the browser offered nothing',
-        },
-        ...prev,
-      ].slice(0, 12));
+
+      // Nothing usable: say what the browser actually offered rather than guess again.
+      const types = Array.from(dt.types ?? []);
+      setResults((prev) =>
+        [
+          {
+            ok: false,
+            error:
+              'Nothing droppable in that. Open the photo first so it is on screen full size, then drag the picture itself.',
+            debug: types.length ? `browser offered: ${types.join(', ')}` : 'browser offered nothing',
+          },
+          ...prev,
+        ].slice(0, 12),
+      );
     },
     [sendFile, sendUrl],
   );
