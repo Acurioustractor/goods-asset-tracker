@@ -43,7 +43,8 @@
  *    funder-moments: unknown slug, wrong tier or a quote that is not approved renders nothing.
  */
 
-import { BED } from './model-placemat';
+import { BED, RAISE } from './model-placemat';
+import { QBE_CLOSES } from './qbe-form';
 import { PLASTIC_KG_PER_BED } from './products';
 
 /** Password-gated, and written to the funder about their own money. Figures are allowed. */
@@ -337,7 +338,7 @@ export const BECAUSE_OF: readonly BecauseOf[] = [
   { id: 'trade', value: 320, unit: 'beds', headline: 'Beds bought and paid for', status: 'verified', detail: 'Four buyers, real invoices. The unit price has moved from $370 to $800 across them, which is a price model finding its floor.' },
   { id: 'plastic', value: PLASTIC_KG_PER_BED, unit: 'kg per bed', headline: 'Plastic kept out of the dump', status: 'modelled', detail: 'A design and specification figure. Nothing has been across a weighbridge. It matters here because it lowers the landed cost of a bed and keeps the feedstock local.' },
   { id: 'fte', value: 2, unit: 'FTE', headline: 'Paid roles', status: 'verified', detail: 'Two, and we say two. Employment hours beyond that are modelled and community employment share is an estimate, so neither is presented as a count.' },
-  { id: 'owned', value: 0, unit: 'sites', headline: 'Community-owned production sites', status: 'future', detail: 'Zero, and this is the number we print against ourselves. Ownership is a pathway. The containerised plant is built to move to community operation and then ownership, and the Alice Springs facility with Oonchiumpa is in a federal submission with a decision pending.' },
+  { id: 'owned', value: 0, unit: 'sites', headline: 'Community-owned production sites', status: 'future', detail: 'Zero, and this is the number we print against ourselves. Ownership is a pathway. The containerised plant is built to move to community operation and then ownership, and Oonchiumpa now hold a four-year federal offer for the Alice Springs facility, dated 12 August 2026 and not yet executed.' },
 ];
 
 // ---------------------------------------------------------------------------
@@ -417,7 +418,7 @@ export const NOT_FINISHED: readonly { title: string; detail: string }[] = [
   },
   {
     title: 'Ownership is still a pathway',
-    detail: 'Zero community-owned sites. The plant is built to transfer and the Alice Springs facility with Oonchiumpa is in a federal submission, A decision is pending, and a legal transfer takes its own time.',
+    detail: 'Zero community-owned sites. The plant is built to transfer, and Oonchiumpa hold a four-year federal offer for the Alice Springs facility that is not yet executed. A legal transfer takes its own time after that.',
   },
   {
     title: 'The health claim stays unclaimed',
@@ -434,6 +435,37 @@ export const BED_HERE = {
   priceAud: BED.priceAud,
   makeAud: BED.makeAud,
   contributionAud: BED.contributionAud,
+} as const;
+
+/**
+ * THE ASK WITH A DATE ON IT, and it is not the money.
+ *
+ * The Catalysing Impact application closes at noon on 25 September 2026 and asks for evidence
+ * of funder engagement. The Social Impact Hub, who run the programme with the QBE Foundation,
+ * wrote to funders about exactly that on 1 April 2026, and that letter is the whole reason
+ * this ask exists. It sits in the repo at public/qbe/funder-letter.pdf and the quoted line
+ * below is theirs, verbatim and dash-free so the voice guard reads it as a quote.
+ *
+ * WHAT IT IS NOT: a commitment of money, and not a way around the advisory committee. What the
+ * programme counts is a letter acknowledging alignment and an ongoing relationship, which is
+ * also what our note of the 16 September check-in records as sufficient.
+ *
+ * The Snow-side facts here are attributed to the record they came from and dated, because the
+ * guard in this file's test suite will not let this page assert an intention for Snow.
+ */
+export const THE_LETTER = {
+  by: 'about 21 September 2026',
+  closes: QBE_CLOSES,
+  programme: 'Catalysing Impact, run by the Social Impact Hub with the QBE Foundation',
+  qbeAskAud: RAISE.qbeAud,
+  qbeFor: RAISE.qbeFor,
+  cohort: 'Ten enterprises were selected into the programme. The grant is competitive, and the Hub says in writing that it is neither automatic nor guaranteed.',
+  forms: 'An expression of interest, a letter of intent, a term sheet or a funding agreement all count as evidence.',
+  sihQuote: 'They are requested to share this evidence of investor engagement as part of their application for grant funding.',
+  sihSource: 'Adam Long, Director of Funding for Impact, Social Impact Hub, in a letter to funders dated 1 April 2026',
+  sihLetterHref: '/qbe/funder-letter.pdf',
+  enough: 'Our note of the 16 September check-in records that a broad letter acknowledging alignment with the Snow Foundation strategy and an ongoing relationship would be sufficient, and that the decision goes through your advisory committee.',
+  verify: 'Jay Boolkin at the Social Impact Hub is the contact named on that letter, so none of this has to be taken on our word.',
 } as const;
 
 // ---------------------------------------------------------------------------
@@ -621,7 +653,7 @@ export const OONCHIUMPA_NEXT = {
     { title: 'Own it', detail: 'On the Supply Nation 51% First Nations ownership path. No site has passed this point.', state: 'future' as const },
   ],
   status:
-    'Lodged with the federal REAL Innovation Fund, with Lhere Artepe support letters signed. The decision is pending and we will say so until it is not.',
+    'The decision came. On 12 August 2026 the department wrote to Oonchiumpa offering $1,695,000 excluding GST over four years to 30 June 2030, with Lhere Artepe support letters already signed. The letter says plainly that it is not a grant agreement: nothing is executed and no money has moved. The money would be Oonchiumpa\u2019s to hold and spend, and we disclose it in our own applications without ever counting it as ours.',
   connection:
     'Kristy Bloomfield directs Oonchiumpa and is a director of Goods on Country. Sally met Kristy and Tanya Turner through an introduction we made in Sydney in October 2025.',
 } as const;
@@ -727,7 +759,7 @@ export const MAP_PLACES: readonly MapPlaceData[] = [
   { id: 'maningrida', name: 'Maningrida', lat: -12.053, lng: 134.226, since: '2025-08', beds: 40, note: 'Forty beds pressed in our own facility before they were built on Country. Eight washing machines in community.' },
   { id: 'katherine', name: 'Katherine', lat: -14.465, lng: 132.264, since: '2025-08', beds: 30, note: 'Beds travelling with the Deadly Heart Trek, alongside heart screening for over eight hundred children.' },
   { id: 'utopia', name: 'Utopia Homelands', lat: -22.235, lng: 134.741, since: '2026-05', beds: 147, note: 'Eighty-seven beds over two days with Oonchiumpa and the Utopia Council, a bed under thirty-six households.' },
-  { id: 'alice-springs', name: 'Mparntwe / Alice Springs', lat: -23.698, lng: 133.881, since: '2026-06', beds: 20, note: 'Where Oonchiumpa would operate the second facility. The federal submission is lodged and the decision is pending.' },
+  { id: 'alice-springs', name: 'Mparntwe / Alice Springs', lat: -23.698, lng: 133.881, since: '2026-06', beds: 20, note: 'Where Oonchiumpa would operate the second facility. A four-year federal offer to Oonchiumpa is on the table, dated 12 August 2026 and not yet executed.' },
 ];
 
 // ---------------------------------------------------------------------------

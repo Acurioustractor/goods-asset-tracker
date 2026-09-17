@@ -339,7 +339,7 @@ const snow: PartnerDashboard = {
       facility: 'Alice Springs production facility',
       hostCommunity: 'Mparntwe, led with Oonchiumpa',
       stage: 'planned',
-      note: 'REAL Innovation Fund submission lodged with a First Nations jobs pathway. Decision pending.',
+      note: 'A four-year REAL Innovation Fund offer to Oonchiumpa, dated 12 August 2026, with a First Nations jobs pathway. Not yet executed.',
     },
   ],
   kanban: [
@@ -356,7 +356,7 @@ const snow: PartnerDashboard = {
       heading: 'In progress',
       items: [
         { title: 'Commission the on-Country production plant', note: '~85% complete' },
-        { title: 'Alice Springs facility with Oonchiumpa', note: 'REAL Innovation Fund submission lodged, decision pending' },
+        { title: 'Alice Springs facility with Oonchiumpa', note: 'REAL Innovation Fund offer to Oonchiumpa, 12 August 2026, not yet executed' },
         { title: 'New washing machine prototype', note: 'Next-generation build in development now' },
         { title: 'Goods on Country Ltd, formerly The Butterfly Movement, charity transition', note: "Goods' DGR home; Aboriginal-led board forming" },
       ],
@@ -380,7 +380,8 @@ const snow: PartnerDashboard = {
     { date: 'Jan 2026', title: 'First washing machine given to Dianne Stokes', detail: 'In Tennant Creek. She named it Pakkimjalki Kari in Warumungu.' },
     { date: 'Early 2026', title: 'Selected into QBE Catalysing Impact 2026', detail: 'Blended-finance accelerator run by the Social Impact Hub. Stage 2 in September could bring matched catalytic capital.' },
     { date: 'May 2026', title: 'Central Australia deployment', detail: 'Utopia + Alice Springs; 87 beds that trip, with Centrecorp as delivery partner.' },
-    { date: 'Jun 2026', title: 'Oonchiumpa REAL Innovation Fund submission', detail: 'A community-owned Alice Springs facility + jobs pathway, decision pending.' },
+    { date: 'Jun 2026', title: 'Oonchiumpa REAL Innovation Fund submission', detail: 'Lodged for a community-owned Alice Springs facility and a jobs pathway for young people.' },
+    { date: 'Aug 2026', title: 'The federal offer to Oonchiumpa', detail: 'A letter dated 12 August offering $1,695,000 excluding GST over four years to 30 June 2030. It says it is not a grant agreement. Nothing is executed and no money has moved.' },
     { date: 'To date', title: `${CANONICAL_ASSETS.communitiesServed} communities, beds in homes, the first plant being commissioned`, detail: 'The base the next stage builds on, with a blended raise now underway to scale it.' },
   ],
   links: [
@@ -457,7 +458,7 @@ const snow: PartnerDashboard = {
     },
     forward: {
       title: 'The next step is on the table now',
-      body: 'Oonchiumpa has led a federal REAL Innovation Fund submission for a community-controlled production facility in Alice Springs, with a jobs pathway for young First Nations people. The decision is expected in the coming weeks. If it lands, the build session becomes a workforce.',
+      body: 'Oonchiumpa led a federal REAL Innovation Fund submission for a community-controlled production facility in Alice Springs, with a jobs pathway for young First Nations people. On 12 August 2026 the department wrote back with a four-year offer. It is not a grant agreement, nothing is executed and no money has moved. If it is signed, the build session becomes a workforce.',
     },
     links: [
       { label: 'The Utopia trip, in full', href: '/field-notes/utopia-may-2026', note: 'The field note from the May run: the build, the drive out, the Elders' },

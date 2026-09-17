@@ -10,7 +10,7 @@ import { ORGANISATION } from '@/lib/data/organisation';
 import { goodsBoard } from '@/lib/data/goods-board';
 import {
   ALIGNMENT, BECAUSE_OF, BUYER_TOTALS, BUYERS, DEMAND_GAPS, FILMS, heroFrames, MAP_PLACES,
-  NOT_FINISHED, OONCHIUMPA_NEXT, PLACE_BEATS, PRICE_LADDER, SNOW_MONEY, TOGETHER, WALLS,
+  NOT_FINISHED, OONCHIUMPA_NEXT, PLACE_BEATS, PRICE_LADDER, SNOW_MONEY, THE_LETTER, TOGETHER, WALLS,
   WASHER_NEXT, WASHER_PLACES, WASHER_TELEMETRY,
 } from '@/lib/data/snow-partnership';
 import { ChapterRail } from '@/components/pitch/chapter-rail';
@@ -565,11 +565,41 @@ export default async function PartnerStoryPage({ params }: { params: Promise<{ s
 
       <Chapter
         id="ch-next" number="13" label="What we are asking"
-        title="133 beds, and a longer conversation"
-        lead="The same ask we have put to our other bed funders, so nobody is being asked for something shaped specially for them."
+        title="A letter this month, and 133 beds behind it"
+        lead="Two asks. The first one is not money and it has a date on it. The second is the same ask we have put to our other bed funders, so nobody is being asked for something shaped specially for them."
       >
-        <div className="rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
-          <p className="font-display text-3xl sm:text-4xl" style={{ color: CHARCOAL }}>$99,750</p>
+        <div className="rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4', borderLeft: `4px solid ${RUST}` }}>
+          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>First, and it is not money</p>
+          <p className="mt-2 font-display text-2xl leading-snug sm:text-3xl" style={{ color: CHARCOAL }}>
+            A letter of intent, by {THE_LETTER.by}
+          </p>
+          <p className="mt-4 text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
+            Goods on Country is one of ten enterprises in {THE_LETTER.programme}. That application closes{' '}
+            {THE_LETTER.closes}, and it asks QBE for ${THE_LETTER.qbeAskAud.toLocaleString('en-AU')} for{' '}
+            {THE_LETTER.qbeFor.toLowerCase()}. {THE_LETTER.cohort}
+          </p>
+          <p className="mt-3 text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
+            What the programme counts from a funder is engagement, and it counts several shapes of it.{' '}
+            {THE_LETTER.forms}
+          </p>
+          <figure className="m-0 mt-5 border-l-2 pl-4" style={{ borderColor: SAGE }}>
+            <blockquote className="font-display text-lg leading-snug" style={{ color: CHARCOAL }}>
+              &ldquo;{THE_LETTER.sihQuote}&rdquo;
+            </blockquote>
+            <figcaption className="mt-2 text-xs" style={{ color: SAGE }}>{THE_LETTER.sihSource}</figcaption>
+          </figure>
+          <p className="mt-5 text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>{THE_LETTER.enough}</p>
+          <p className="mt-3 text-sm leading-relaxed" style={{ color: `${CHARCOAL}99` }}>
+            {THE_LETTER.verify}{' '}
+            <Link href={THE_LETTER.sihLetterHref} className="underline" style={{ color: RUST }}>
+              The Hub&rsquo;s letter is here.
+            </Link>
+          </p>
+        </div>
+
+        <div className="mt-6 rounded-lg p-6 sm:p-8" style={{ backgroundColor: '#FFFFFF', border: '1px solid #E8DED4' }}>
+          <p className="text-[11px] font-semibold uppercase tracking-wide" style={{ color: RUST }}>Then, the ask itself</p>
+          <p className="mt-2 font-display text-3xl sm:text-4xl" style={{ color: CHARCOAL }}>$99,750</p>
           <p className="mt-2 text-base leading-relaxed" style={{ color: `${CHARCOAL}cc` }}>
             133 Stretch Beds at $750 each, for a community organisation to sell or give out. The money reaches the
             community organisation, not us: customers pay them directly, and after costs they decide whether it
