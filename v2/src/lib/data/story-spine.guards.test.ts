@@ -145,7 +145,7 @@ describe('the questions', () => {
 });
 
 describe('the board', () => {
-  it('prints three directors, each with a portrait, a credit and a source, and no chair', () => {
+  it('prints three directors, each with a portrait and a source, and no chair', () => {
     expect(goodsBoard).toHaveLength(3);
     for (const d of goodsBoard) {
       expect(d.role).toBe('Director');
