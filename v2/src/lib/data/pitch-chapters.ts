@@ -12,6 +12,9 @@ import { BED, RAISE, aud, dollars } from './model-placemat';
 import { PLASTIC_KG_PER_BED } from './products';
 import { PAID_AUD, PAID_BEDS } from './story-questions';
 
+/** Washing machines on paid invoices, FY26 sole-trader ledger read 18 Sep 2026: Julalikari 6 (INV-0282, INV-0335), Homeland School Company 2 (INV-0303), Our Community Shed 1 (INV-0308). Three buyers. Replaces an unsourced 11. */
+export const PAID_WASHERS = 9;
+
 export const CHAPTERS_UPDATED = '2026-09-15';
 
 export type MeasureLabel = 'verified' | 'estimate' | 'modelled' | 'target';
@@ -106,7 +109,7 @@ export const MEASURES: readonly Measure[] = [
     id: 'enterprise',
     area: 'Enterprise',
     title: 'Beds paid for, and enterprises trading',
-    today: { value: PAID_BEDS, unit: 'beds', line: `${PAID_BEDS} beds and 11 washing machines paid for, ${aud(PAID_AUD)} including GST.`, label: 'verified' },
+    today: { value: PAID_BEDS, unit: 'beds', line: `${PAID_BEDS} beds and ${PAID_WASHERS} washing machines paid for, ${aud(PAID_AUD)} including GST.`, label: 'verified' },
     plan: { value: RAISE.bedsYearOne, unit: 'beds', line: `${RAISE.bedsYearOne} beds as community stock, four organisations selling.`, label: 'target' },
     counted: 'Settled invoices in Xero. The organisation\'s own sales record. Community enterprises trading today: 0.',
   },
@@ -249,7 +252,7 @@ export const GOVERNANCE = {
 /** S12. Who buys from a community organisation. */
 /** Washing machines per buyer are from the paid invoices (demand-and-buyers.ts, finance branch): INV-0303 carries Homeland School Company's two; the other three buyers' invoices carry none. */
 export const BUYERS = {
-  headline: `${PAID_BEDS} beds and 11 washing machines, bought and paid for.`,
+  headline: `${PAID_BEDS} beds and ${PAID_WASHERS} washing machines, bought and paid for.`,
   who: 'Health services, schools, housing programs, research programs and families. The organisation holds the stock, invoices the customer and keeps the whole $750.',
   rows: [
     { buyer: 'Centrecorp Foundation', beds: 167, washers: 0, line: 'Two orders for the Utopia homelands. Oonchiumpa held the build. 147 are in households and 20 are made and waiting.' },

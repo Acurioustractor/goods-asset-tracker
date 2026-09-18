@@ -203,40 +203,28 @@ ${Array.from({ length: 14 }, () => `<tr>${LOG_COLUMNS.map(() => '<td style="heig
 }));
 
 // ---------------------------------------------------------------------------------------------
-// 04 Theory of change
+// 04 Theory of change (rebuilt 18 Sep 2026 for Brian M. Davis: standard shape, this grant only)
 
-const S = STATIONS;
+const T = await import('../src/lib/data/theory-of-change.ts');
+const tag = (x) => `<span class="label">${esc(x.label)}</span>`;
 await emit('04-theory-of-change', page({
-  id: '04', kicker: 'Theory of change', title: 'How beds become community enterprise', compact: true,
+  id: '04', kicker: 'Theory of change', title: 'Beds made by young people, for their own community', landscape: true, compact: true,
   body: `
-<p class="lead">${esc(SHEET.subtitle)}</p>
-<div class="grid2">
-  <div class="box"><h3>The problem</h3><p>Families in remote communities sleep on floors because a bed cannot be bought locally and freight costs more than the bed. Scabies, and the path it runs to rheumatic heart disease, is why the bed is washable and off the ground. We claim no health outcome.</p></div>
-  <div class="box"><h3>What goes in</h3><p>Grants buy beds, 133 at a time at ${money(BED.priceAud)}, with freight and community work inside the price. QBE's ${money(RAISE.qbeAud)} builds two community production facilities. A ${money(RAISE.loanAud)} loan carries the first year of running the organisation.</p></div>
+<style>body{zoom:.8} .toc td{font-size:7.9pt} .toc th{font-size:7pt} .frame{display:grid;grid-template-columns:repeat(4,1fr);gap:5pt;margin-bottom:6pt} .frame .box p{font-size:8pt} .frame .box h3{font-size:8.4pt;color:#C45C3E;font-family:Inter,sans-serif;letter-spacing:.04em}</style>
+<div class="frame">${T.TOC_FRAME.map((f) => `<div class="box"><h3>${esc(f.theirs)}</h3><p>${esc(f.ours)}</p></div>`).join('')}</div>
+<div class="grid3">
+  <div class="box"><h3>The problem</h3><p>${esc(T.TOC_PROBLEM)}</p></div>
+  <div class="box clay"><h3>What goes in</h3><p>${T.TOC_INPUTS.map(esc).join(' ')}</p></div>
+  <div class="box sage"><h3>Where we start</h3><p>${T.TOC_TODAY.map(esc).join(' ')} <span class="label">verified</span></p></div>
 </div>
-<h2>What happens</h2>
-<div class="box clay"><h3>${esc(S.harvest.title)}</h3><p>${esc(S.harvest.line.replace(/^makes/, 'Makes'))}</p></div>
-<div class="arrow">↓</div>
-<div class="box"><h3>${esc(S.orgs.title)}</h3><p>${esc(S.orgs.line)}</p></div>
-<div class="arrow">↓</div>
-<div class="grid2">
-  <div class="box"><h3>${esc(S.buyers.title)}</h3><p>${esc(S.buyers.line)}</p></div>
-  <div class="box sage"><h3>${esc(S.money.title)}</h3><p>${esc(S.money.line)}</p></div>
-</div>
-<div class="arrow">↓</div>
-<div class="box"><h3>${esc(S.decide.title)}</h3><p>${esc(S.decide.line)}</p></div>
-<div class="arrow">↓</div>
-<div class="grid2">
-  <div class="box dashed"><h3>${esc(S.facility.title)}</h3><p>${esc(S.facility.line)}</p></div>
-  <div class="box dashed"><h3>${esc(S.next.title)}</h3><p>${esc(S.next.line)}</p></div>
-</div>
-<h2>What changes, and how we count it</h2>
-<table><tr><th>Measure</th><th>Today</th><th>This year</th></tr>
-${MEASURES.map((m) => `<tr><td>${esc(m.title)}</td><td>${esc(m.today.line)} <span class="label">${esc(m.today.label)}</span></td><td>${esc(m.plan.line)} <span class="label">${esc(m.plan.label)}</span></td></tr>`).join('')}
+<table class="toc"><tr><th style="width:12%">Impact</th><th style="width:20%">What we do</th><th>What it produces</th><th>What changes in 12 months</th><th>What it leads to</th><th style="width:15%">How we count it</th></tr>
+${T.TOC_STREAMS.map((r) => `<tr><td><b>${esc(r.impact)}</b></td><td>${esc(r.activity)}</td><td>${esc(r.output.line)} ${tag(r.output)}</td><td>${esc(r.outcome.line)} ${tag(r.outcome)}</td><td>${esc(r.longer.line)} ${tag(r.longer)}</td><td>${esc(r.counted)}</td></tr>`).join('')}
 </table>
-
-<h2>What has to be true</h2>
-<p>A facility goes only where a community has asked in its own words, beds are already there and somebody local wants to run it. Six months into a site we ask four questions, each a yes or a no: ${MONTH_SIX_QUESTIONS.map((q) => q.replace(/\?$/, '').toLowerCase()).join('; ')}. Ownership of the making is a pathway, and we do not claim it has moved until the answers are yes. Nothing in the raise is signed.</p>`,
+<div class="grid2">
+  <div class="box ink"><h3 style="color:#FBF8F1">The change we are working toward</h3><p>${esc(T.TOC_IMPACT)}</p></div>
+  <div class="box"><h3>What has to be true</h3><p>${T.TOC_ASSUMPTIONS.map(esc).join(' ')}</p></div>
+</div>
+<p class="small">Labels: verified is on a record today; modelled is calculated from the build; target is what this grant sets out to do; pathway depends on more than this grant. This page covers the ${T.TOC_GRANT.beds} beds this grant buys and nothing else.</p>`,
 }));
 
 // ---------------------------------------------------------------------------------------------
@@ -494,6 +482,35 @@ await emit('13-what-300000-produces', page({
 <p>${esc(`Beds. Philanthropy buys the first ${RAISE.bedsYearOne}, so a community's facility and its stock never compete for the same dollar, and no community sale repays QBE.`)} It does not pay the running cost of the organisation, which the ${money(RAISE.loanAud)} loan carries in the first year, and it does not pay for the work around each bed, which sits inside the ${money(BED.priceAud)} price.</p>
 <h2>What happens after the two facilities</h2>
 <p>Nobody lends against a community-made bed today, because nobody knows what one costs to make in a community. These two facilities produce that number in their first year, along with the cost of running a site a long way from a city. Grant capital builds facilities one and two. A measured cost is what lets repayable capital build the next ones.</p>`,
+}));
+
+// ---------------------------------------------------------------------------------------------
+// 15 The year so far (two pages; Brian M. Davis asked for an annual report the charity has not yet published)
+
+const Y = await import('../src/lib/data/year-so-far.ts');
+await emit('15-the-year-so-far', page({
+  id: '15', kicker: `The year so far · ${Y.YSF_AS_AT}`, title: 'Goods on Country, the year so far', compact: true,
+  body: `
+<style>body{zoom:.9}</style><p class="lead">${esc(ORGANISATION.boardLine)} We make the Stretch Bed from recycled plastic, with communities, and put the making and the selling in community hands. Every figure on these two pages is on a record today.</p>
+<p class="small" style="border-left:3px solid #C45C3E;padding-left:6pt">${esc(Y.YSF_NOT_ANNUAL_REPORT)}</p>
+<h2>The record</h2>
+<table>${Y.YSF_RECORD.map((r) => `<tr><td style="width:30%"><b>${esc(r.what)}</b></td><td class="n big" style="font-size:15pt;width:14%">${esc(r.value)}</td><td>${esc(r.note)} <span class="label">${esc(r.label)}</span></td></tr>`).join('')}</table>
+<h2>Who bought beds</h2>
+<table><tr><th>Buyer</th><th class="n">Beds</th><th>What happened</th></tr>
+${Y.YSF_BUYERS.map((b) => `<tr><td>${esc(b.buyer)}</td><td class="n">${b.beds}</td><td>${esc(b.line)}</td></tr>`).join('')}</table>
+<h2>What changed this year</h2>
+<ul>${Y.YSF_MOMENTS.map((m) => `<li>${esc(m)}</li>`).join('')}</ul>
+<div style="break-before:page"></div>
+<h2>Grants received, in order of arrival</h2>
+<table><tr><th>Funder</th><th>When</th><th>What it bought</th></tr>
+${[...GRANTS_RECEIVED].sort((a, b) => a.since.localeCompare(b.since)).map((g) => `<tr><td>${esc(g.funder)}</td><td>${esc(g.when)}</td><td>${esc(g.bought)}</td></tr>`).join('')}</table>
+<p class="small">Total received ${money(GRANTS_RECEIVED_TOTAL_AUD)}, checked against the books on ${esc(GRANTS_RECEIVED_AS_AT)}. $35,200 of the Snow Foundation line is a Drug Court invoice raised on the same ledger, not Goods.</p>
+<h2>In their words</h2>
+<div class="grid2">${Y.YSF_VOICES.map((v) => `<div class="box sage"><p style="font-family:'Playfair Display',Georgia,serif;font-size:11.5pt">\u201c${esc(v.quote)}\u201d</p><p class="small">${esc(v.who)}</p></div>`).join('')}</div>
+<h2>What we do not claim</h2>
+<ul>${Y.YSF_NOT_CLAIMED.map((m) => `<li>${esc(m)}</li>`).join('')}</ul>
+<h2>More, live</h2>
+<table>${Y.YSF_LINKS.map((l) => `<tr><td>${esc(l.label)}</td><td><a href="${l.url}" style="color:#C45C3E">${esc(l.url.replace('https://www.', ''))}</a></td></tr>`).join('')}</table>`,
 }));
 
 console.log(`\n${built.length} attachments in ${OUT}`);
