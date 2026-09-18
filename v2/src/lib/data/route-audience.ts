@@ -134,6 +134,14 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     verdict: 'keep',
   },
   {
+    route: '/admin/artefacts',
+    audience: 'internal',
+    access: 'admin',
+    leadsWithNow: null,
+    whyUnread: 'admin surface, behind the admin gate',
+    verdict: 'keep',
+  },
+  {
     route: '/admin/procurement',
     audience: 'internal',
     access: 'admin',
@@ -1706,6 +1714,17 @@ export const ROUTE_AUDIENCES: RouteAudience[] = [
     },
     verdict: 'keep',
     job: 'For a community deciding whether to make beds locally: the line, what it brings, the gates, the planning allowance, and a way to ask.',
+  },
+  {
+    route: '/annual-report',
+    audience: 'supporter',
+    access: 'open',
+    leadsWithNow: {
+      heading: 'A year of beds made with community.',
+      body: 'FY26 told through the places, the people and the records, with the audited statements to follow the October AGM.',
+    },
+    verdict: 'keep',
+    job: 'The annual report a funder or supporter asks for, linked from applications in place of a published report.',
   },
   {
     route: '/who-we-are',
