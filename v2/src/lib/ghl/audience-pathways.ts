@@ -325,7 +325,7 @@ export const AUDIENCE_PATHWAYS: AudiencePathway[] = [
           'A community organisation agrees to be the seller, or WA turns out to test the board rather than ownership.',
         state: 'missing',
         gap:
-          'Every instrument tests the entity that SELLS, and orders are invoiced by A Curious Tractor Pty Ltd, so every channel is shut to Goods as constituted. The WA register may test the board instead, which Goods on Country Ltd would pass with 100 per cent Indigenous directors. That is a question for the Industry Capability Network, not a finding.',
+          'Every instrument tests the entity that SELLS, and orders are invoiced by A Curious Tractor Pty Ltd, so every channel is shut to Goods as constituted. The WA register may test the board instead, which Goods on Country would pass with 100 per cent Indigenous directors. That is a question for the Industry Capability Network, not a finding.',
       },
       {
         id: 'procurement-order',

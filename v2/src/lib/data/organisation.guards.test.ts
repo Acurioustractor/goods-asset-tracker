@@ -7,7 +7,10 @@ const TEAM = GOVERNANCE.staff;
 
 describe('who Goods on Country is', () => {
   it('names one entity with a checkable ABN', () => {
-    expect(ORGANISATION.legalName).toBe('Goods on Country Ltd');
+    expect(ORGANISATION.legalName).toBe('The Butterfly Movement Ltd');
+    // ASIC live register, 19 Sep 2026: the change of name is not registered. Flip both when it is.
+    expect(ORGANISATION.pendingName).toBe('Goods on Country Ltd');
+    expect(ORGANISATION.identityLine).toMatch(/being lodged/);
     expect(ORGANISATION.identityLine).not.toMatch(/registered business name/i);
     expect(ORGANISATION.abn.replace(/\s/g, '')).toMatch(/^\d{11}$/);
     expect(ORGANISATION.abnLookupUrl).toContain(ORGANISATION.abn.replace(/\s/g, ''));

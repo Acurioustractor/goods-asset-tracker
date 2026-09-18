@@ -150,7 +150,7 @@ export default function StoryPage() {
           <Lines lines={method.lines} />
         </div>
         <h3 className="mt-16 font-display text-3xl font-semibold text-goods-ink">Who holds the work</h3>
-        <p className="mt-2 max-w-2xl text-[#4a4741]">The directors of Goods on Country Ltd, formerly The Butterfly Movement Ltd. The board handover is in progress.</p>
+        <p className="mt-2 max-w-2xl text-[#4a4741]">The directors of The Butterfly Movement Ltd, trading as Goods on Country. The board handover is in progress.</p>
         <ul className="mt-8 grid gap-8 sm:grid-cols-3">
           {goodsBoard.map((d) => (
             <li key={d.name}>

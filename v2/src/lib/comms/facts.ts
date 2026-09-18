@@ -51,7 +51,7 @@ export const COMMS = {
    */
   invoicingEntity: 'A Curious Tractor Pty Ltd',
   /** The charity. DGR. Never described as a business name of anything else. */
-  charity: 'Goods on Country Ltd',
+  charity: 'The Butterfly Movement Ltd (trading as Goods on Country)',
   /** The media pack, and the only page whose photographs are cleared for outside use. */
   pressUrl: 'https://www.goodsoncountry.com/press',
   /** Imported from products.ts, never typed out. */

@@ -264,7 +264,7 @@ export const AUDIENCE_SEGMENTS: AudienceSegment[] = [
     hardCap: 250,
     recommendedReportId: 'funder-impact',
     campaignNote:
-      'Cultivation cadence: lead with the impact report as evidence, then the ask. The charity is Goods on Country Ltd.',
+      'Cultivation cadence: lead with the impact report as evidence, then the ask. The charity is The Butterfly Movement Ltd, trading as Goods on Country.',
   },
   {
     id: 'buyer',

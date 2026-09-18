@@ -134,14 +134,14 @@ export const PAYMENT_DOORS: Record<PaymentDoorId, PaymentDoor> = {
   give: {
     id: 'give',
     label: 'Give or make a charitable grant',
-    receivingEntity: 'Goods on Country Ltd',
+    receivingEntity: 'The Butterfly Movement Ltd (trading as Goods on Country)',
     use: 'Charitable community capability, governance, scoping and network support.',
     note: 'Confirm grant purpose and receipting mechanics before paperwork is issued.',
   },
   lend: {
     id: 'lend',
     label: 'Lend or provide recoverable capital',
-    receivingEntity: 'Goods on Country Ltd',
+    receivingEntity: 'The Butterfly Movement Ltd (trading as Goods on Country)',
     use: 'The first-year running cost, repaid from the beds Goods on Country sells.',
     note: 'The instrument must state terms, repayment source and borrower.',
   },

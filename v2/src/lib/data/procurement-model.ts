@@ -183,7 +183,7 @@ export const COMMUNITY_ROUTES: readonly CommunityRoute[] = [
  * The Aboriginal Business Directory WA does not test ownership for an incorporated Aboriginal
  * organisation. It tests the BOARD: "Have a Board or management committee comprised of at
  * least 50% Aboriginal members", plus "Aboriginal representation in the management and
- * operations". Goods on Country Ltd has 100 per cent Indigenous directors.
+ * operations". Goods on Country has 100 per cent Indigenous directors.
  *
  * And that register is one of the two that unlock Rule C4.2, which has no dollar cap.
  *
@@ -197,7 +197,7 @@ export const COMMUNITY_ROUTES: readonly CommunityRoute[] = [
  */
 export const WA_BOARD_TEST = {
   rule: 'Incorporated Aboriginal organisations must have a board or management committee comprised of at least 50 per cent Aboriginal members, and Aboriginal representation in management and operations.',
-  whyItMatters: 'It is a board test, not an ownership test, and Goods on Country Ltd has 100 per cent Indigenous directors. It is one of the two registers that unlock Rule C4.2, which has no dollar cap. QUEENSLAND SAYS IT MORE PLAINLY STILL: an Indigenous not-for-profit qualifies if it is "an incorporated association or a public company limited by guarantee" that "can demonstrate 50% of the board of directors are of Aboriginal or Torres Strait Islander descent". Goods on Country Ltd is a public company limited by guarantee with 100 per cent Indigenous directors. Two jurisdictions now test the board and not ownership.',
+  whyItMatters: 'It is a board test, not an ownership test, and Goods on Country has 100 per cent Indigenous directors. It is one of the two registers that unlock Rule C4.2, which has no dollar cap. QUEENSLAND SAYS IT MORE PLAINLY STILL: an Indigenous not-for-profit qualifies if it is "an incorporated association or a public company limited by guarantee" that "can demonstrate 50% of the board of directors are of Aboriginal or Torres Strait Islander descent". Goods on Country Ltd is a public company limited by guarantee with 100 per cent Indigenous directors. Two jurisdictions now test the board and not ownership.',
   unresolved: [
     'Whether the management and operations limb is met, given Ben and Nic are the employees.',
     'Whether WA business registration, which the directory requires, is held or obtainable.',

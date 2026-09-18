@@ -49,7 +49,7 @@ export const SELLER_READINESS: SellerReadiness[] = [
   },
   {
     id: 'goods-on-country-ltd',
-    organisation: 'Goods on Country Ltd',
+    organisation: 'The Butterfly Movement Ltd (trading as Goods on Country)',
     qualifies: 'maybe',
     qualifiesNote: 'WA and QLD test the board composition, not ownership — 100% Indigenous directors may already satisfy both. Unresolved.',
     asked: false,

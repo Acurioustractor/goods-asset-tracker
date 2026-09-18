@@ -151,7 +151,7 @@ describe('doors', () => {
 
   it('sends gifts and loans to Goods on Country, and orders to A Curious Tractor for now (Ben, 16 September 2026)', () => {
     for (const door of ['donate', 'invest'] as const) {
-      expect(entityDoor(door).entity).toMatch(/goods on country ltd/i);
+      expect(entityDoor(door).entity).toMatch(/butterfly movement ltd/i);
     }
     expect(entityDoor('buy').entity).toMatch(/curious tractor/i);
     expect(entityDoor('donate').entity).not.toMatch(/curious tractor/i);

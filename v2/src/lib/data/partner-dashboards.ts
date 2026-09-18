@@ -358,7 +358,7 @@ const snow: PartnerDashboard = {
         { title: 'Commission the on-Country production plant', note: '~85% complete' },
         { title: 'Alice Springs facility with Oonchiumpa', note: 'REAL Innovation Fund offer to Oonchiumpa, 12 August 2026, not yet executed' },
         { title: 'New washing machine prototype', note: 'Next-generation build in development now' },
-        { title: 'Goods on Country Ltd, formerly The Butterfly Movement, charity transition', note: "Goods' DGR home; Aboriginal-led board forming" },
+        { title: 'The Butterfly Movement Ltd, trading as Goods on Country, charity transition', note: "Goods' DGR home; Aboriginal-led board forming" },
       ],
     },
     {

@@ -113,7 +113,7 @@ export const FUNDER_PAGES: FunderPage[] = [
     intro:
       "Goods on Country is a First Nations led social enterprise making the Stretch Bed: a flat-pack, washable, 10-year bed built from recycled HDPE, galvanised steel and Australian canvas, designed for remote Indigenous communities. We're in the QBE Catalysing Impact 2026 cohort, putting together a ~$3M blended capital raise (target) to build the On-Country manufacturing facility and meet the institutional buyer demand we have in active conversation.",
     whyUs: [
-      "Goods on Country Ltd, formerly The Butterfly Movement Ltd, is an ACNC-registered charity endorsed as a deductible gift recipient. Talk to us before you give and we will confirm how your gift is receipted.",
+      "The Butterfly Movement Ltd, trading as Goods on Country, is an ACNC-registered charity endorsed as a deductible gift recipient. Talk to us before you give and we will confirm how your gift is receipted.",
       'Self-servicing economics. At roughly $750 a bed with marginal cost well below sale price, the recoverable portion pays itself back across the buyer pipeline within two to three years.',
       "Catalytic position. Your commitment anchors the raise that SEFA's working capital and the QBE Catalysing Impact match (contingent on eligible co-capital raised) are both contingent on.",
       "Aligned to Minderoo's existing playbook. You've done recoverable grants like this before, and Goods is a clean fit.",

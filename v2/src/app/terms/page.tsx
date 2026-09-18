@@ -30,8 +30,8 @@ export default function TermsPage() {
           <Section title="Who we are">
             <p>
               Goods. is a social enterprise operated by A Curious Tractor Pty Ltd, which is the
-              seller of record for anything you buy here. Goods on Country Ltd, formerly The
-              Butterfly Movement Ltd, is the ACNC-registered charity that carries eligible giving.
+              seller of record for anything you buy here. The Butterfly Movement Ltd, trading as
+              Goods on Country, is the ACNC-registered charity that carries eligible giving.
               They are different legal entities.
               When this page says &ldquo;we&rdquo; or &ldquo;us&rdquo; it means us. When
               it says &ldquo;you&rdquo; it means you, the visitor or customer.

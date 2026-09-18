@@ -17,5 +17,6 @@ Built by `v2/scripts/build-attachments.mjs` from the site's data modules. Rebuil
 - 11-goods-on-country-the-model.pdf
 - 12-goods-on-country-money-map.pdf
 - 13-what-300000-produces.pdf
+- 15-the-year-so-far.pdf
 
 The production log (03) and strategic plan (06) are marked blank and draft on their face. The grants received list (08) prints no total because its lines sit on two different bases.
