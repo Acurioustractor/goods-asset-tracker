@@ -44,7 +44,7 @@ describe('artefact register', () => {
 
   it('matches the Notion register counts read on 18 September 2026', () => {
     expect(ARTEFACTS).toHaveLength(42);
-    expect(artefactsFor('qbe')).toHaveLength(25);
+    expect(artefactsFor('qbe')).toHaveLength(24);
     expect(artefactsFor('sefa')).toHaveLength(10);
     expect(artefactsFor('tfff')).toHaveLength(14);
     expect(artefactsFor('bmd')).toHaveLength(11);

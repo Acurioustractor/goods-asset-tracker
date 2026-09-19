@@ -64,7 +64,7 @@ export const ENTITIES: Record<EntityId, Entity> = {
       `ABN ${APPLICANT.abn}. ACN ${APPLICANT.acn}. Registered charity since 2012, deductible gift recipient.`,
       'Applicant and recipient. Holds the products, the intellectual property, the contracts, the making and the money.',
       'Board at submission: Kristy Bloomfield, Audrey Deemal, Sonia Mascolo.',
-      'AGM 12 October 2026 elects Kristy Bloomfield, Audrey Deemal, Jeremy Donovan.',
+      'The AGM in mid October 2026 elects Kristy Bloomfield, Audrey Deemal, Jeremy Donovan.',
       'Ben Knight and Nic Marchesi are employees running Goods on Country. Neither is a director.',
     ],
     style: 'applicant',
@@ -73,7 +73,7 @@ export const ENTITIES: Record<EntityId, Entity> = {
     id: 'act',
     title: 'A Curious Tractor Pty Ltd',
     lines: [
-      'Owned by Ben Knight and Nicholas Marchesi. Made the first beds. Catalysing Impact cohort member since March 2026.',
+      'Owned by Ben Knight and Nicholas Marchesi. Registered 21 April 2026. The founders joined the Catalysing Impact cohort in March under this name.',
       'Research and development. Invoices bed orders for now. Consortium member on Oonchiumpa’s REAL offer.',
     ],
     style: 'related',
@@ -96,7 +96,7 @@ export const ENTITIES: Record<EntityId, Entity> = {
     lines: [
       'QBE Foundation Stage 2, $300,000, two production facilities.',
       'Tim Fairfax Family Foundation, Brian M. Davis Charitable Foundation, Snow Foundation: 133 beds at $750 each.',
-      'SEFA Backing the Bold, $150,000 loan, first-year running cost.',
+      'Repayable capital, lender to be confirmed, $150,000, first-year running cost.',
     ],
     style: 'money',
   },

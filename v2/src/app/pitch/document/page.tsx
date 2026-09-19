@@ -41,7 +41,7 @@ const businessRows = [
 const whyNow = [
   'Health, housing, and school partners are looking for practical goods that keep homes washable, usable, and safe.',
   'The press, shredder, CNC, and container workflow are now real enough to move from proof to production discipline.',
-  'QBE Catalysing Impact, SEFA, Snow, Centrecorp, and White Box SELF are the next conversations.',
+  'QBE Catalysing Impact, Snow, Centrecorp, and White Box SELF are the next conversations.',
 ];
 
 const competition = [

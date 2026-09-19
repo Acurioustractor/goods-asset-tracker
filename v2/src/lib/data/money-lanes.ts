@@ -49,7 +49,7 @@ export const MONEY_LANES: readonly MoneyLane[] = [
   {
     id: 'loan',
     tone: 'loan',
-    source: { kicker: 'A loan', named: 'SEFA, Backing the Bold', amount: RAISE.loanAud },
+    source: { kicker: 'A loan', named: 'Repayable capital, lender to be confirmed', amount: RAISE.loanAud },
     buys: { kicker: 'Carries', title: 'The first year of running Goods on Country', line: `${RAISE.loanFor.split(',')[0]}.` },
     endsUp: { kicker: 'Comes back', title: 'Paid back', line: 'From the beds Goods on Country sells. Never from a community organisation’s sales.' },
     first: link('sefa', 'goods'),

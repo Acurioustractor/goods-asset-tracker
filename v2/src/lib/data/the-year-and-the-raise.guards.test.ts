@@ -233,7 +233,9 @@ describe('the raise', () => {
     expect(ASKS.filter((a) => a.job === 'facilitation')).toHaveLength(0);
     expect(EVERY_GRANT_BUYS_BEDS).toContain('133');
     expect(OPERATING_RULE).toMatch(/No grant is asked for the running cost/);
-    expect(OPERATING_RULE).toMatch(/loan of \$150,000/);
+    expect(OPERATING_RULE).toMatch(/\$150,000 of repayable capital/);
+    // Ben, 19 September 2026: Sefa is out of this raise; no lender is named.
+    expect(ASKS.map((a) => a.funder).join(' ')).not.toMatch(/sefa/i);
   });
 
   it('nothing is secured', () => {
