@@ -49,9 +49,9 @@
       "file": "v2/structure-and-funding-flow.svg",
       "png": "v2/structure-and-funding-flow.png",
       "pdf": "deliverables/qbe-stage2/Goods-structure-and-funding-flow.pdf",
-      "sha256": "b2609af1260f227b5dca4d77506f7f2f15c92fb4532ab5c5f021f593747b7d5c",
+      "sha256": "7f91d58e35e90ad5edab54d6d9003f82e1093405fec5419b4825a585525af7ee",
       "sourceDate": "2026-09-15",
-      "renderedAt": "2026-09-15",
+      "renderedAt": "2026-09-19",
       "source": "v2/src/lib/data/structure-diagram.ts",
       "renderer": "v2/src/lib/model/structure-svg.ts",
       "sheet": {
