@@ -24,7 +24,7 @@ export const YSF_RECORD = [
 export const YSF_MOMENTS = [
   'June 2026. The board became Aboriginal-led: Kristy Bloomfield and Audrey Deemal, with Jeremy Donovan standing at the October AGM.',
   'August 2026. The ALIVE National Centre at the University of Melbourne paid for 100 beds in full before one was made.',
-  'August 2026. The work moved into the charity, and The Butterfly Movement Ltd became Goods on Country Ltd. Same ABN, same DGR endorsement.',
+  'August 2026. The work moved into the charity, The Butterfly Movement Ltd, which trades as Goods on Country. Its change of name to Goods on Country Ltd is being lodged. Same ABN, same DGR endorsement.',
   'September 2026. The production log opened, so paid hours and plastic weights become measured numbers.',
 ] as const;
 

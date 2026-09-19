@@ -11,7 +11,7 @@
  * price more than anything else and a quote that hides it is a quote that gets renegotiated.
  *
  * Who invoices. Orders are invoiced by A Curious Tractor Pty Ltd for now (Ben, 16 September),
- * and the charity is Goods on Country Ltd. A buyer who needs to pay a DGR for a grant or a
+ * and the charity is The Butterfly Movement Ltd, trading as Goods on Country. A buyer who needs to pay a DGR for a grant or a
  * donation has to know that before they raise a purchase order, not after.
  */
 

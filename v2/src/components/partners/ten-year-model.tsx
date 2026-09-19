@@ -227,7 +227,7 @@ export function TenYearModel({ today }: { today: TodayFigures }) {
           <text x={M + 12} y={rowD.y + 19} fontSize="12" fill={INK}>The board</text>
           <text x={M + 12} y={rowD.y + 32} fontSize="10" fill={FAINT}>in place today</text>
           <text x={L} y={rowD.y + 19} fontSize="12" fill={MUTED}>
-            Three Indigenous directors hold the purpose, the assets and the decisions of Goods on Country Ltd, a DGR1 charity.
+            Three Indigenous directors hold the purpose, the assets and the decisions of Goods on Country, a DGR1 charity.
           </text>
           <text x={L} y={rowD.y + 34} fontSize="12" fill={MUTED}>
             Community partners keep their own boards and make the local decisions: how beds are used, who is paid, what is made next.

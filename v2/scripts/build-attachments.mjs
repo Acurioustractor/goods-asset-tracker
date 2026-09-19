@@ -45,7 +45,7 @@ const { renderMoneyFlowSvg } = await import('../src/lib/model/money-flow-svg.ts'
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const money = (n) => `$${Math.round(n).toLocaleString('en-AU')}`;
 const num = (n) => Math.round(n).toLocaleString('en-AU');
-const entityLine = `${ORGANISATION.legalName}, formerly ${ORGANISATION.formerName}. ABN ${ORGANISATION.abn}. ${ORGANISATION.charityLine}`;
+const entityLine = `${ORGANISATION.legalName}, trading as ${ORGANISATION.tradingName}. ABN ${ORGANISATION.abn}. ${ORGANISATION.charityLine}`;
 
 const CSS = `
 @page { size: A4; margin: 16mm 15mm 18mm; }
@@ -92,7 +92,7 @@ function page({ id, kicker, title, body, landscape = false, compact = false }) {
   return `<!doctype html><html lang="en-AU"><head><meta charset="utf-8"><title>${esc(title)}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 <style>${CSS}${extra}</style></head><body class="${landscape ? 'landscape' : ''}">
-<header class="doc"><div><div class="who">${esc(kicker)}</div></div><div class="when">Goods on Country Ltd<br>${DATE}</div></header>
+<header class="doc"><div><div class="who">${esc(kicker)}</div></div><div class="when">Goods on Country<br>${DATE}</div></header>
 <h1>${esc(title)}</h1>
 ${body}
 <footer class="doc">${esc(entityLine)} Attachment ${esc(id)}. Built from the same records as goodsoncountry.com.</footer>

@@ -1,5 +1,5 @@
 /**
- * The directors of Goods on Country Ltd, formerly The Butterfly Movement Ltd. Roles: DECISIONS.md
+ * The directors of The Butterfly Movement Ltd, trading as Goods on Country. Roles: DECISIONS.md
  * AA (5 September 2026). Biographies reviewed 7 September 2026
  * (thoughts/shared/handoffs/2026-09-07-goods-board-profiles.md). Kristy's portrait is the Goods
  * portrait library; Audrey's and Jeremy's are their official profile photographs, credited, held

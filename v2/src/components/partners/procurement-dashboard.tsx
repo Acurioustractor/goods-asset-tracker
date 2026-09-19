@@ -392,7 +392,7 @@ export function ProcurementDashboard({ data }: { data: DashboardData }) {
             {[
               { mark: '✕', c: 'var(--goods-terracotta)', n: PROCUREMENT_STATE.sellerEntity, s: 'Invoices the beds today. It is not Indigenous-owned, so it fails Supply Nation, the federal IPP and the NT Aboriginal Business register.' },
               { mark: '✓', c: 'var(--goods-sage)', n: 'A community organisation', s: 'Passes in all four jurisdictions. Bawinanga, Thamarrurr and Roper Gulf already hold government contracts in their own name.' },
-              { mark: '?', c: 'var(--goods-gold)', n: 'Goods on Country Ltd', s: 'Queensland and Western Australia test the composition of the board. 100% Indigenous directors may already satisfy both. The question is with the Industry Capability Network.' },
+              { mark: '?', c: 'var(--goods-gold)', n: 'Goods on Country, the charity', s: 'Queensland and Western Australia test the composition of the board. 100% Indigenous directors may already satisfy both. The question is with the Industry Capability Network.' },
             ].map((t) => (
               <div key={t.n} className="rounded-lg bg-muted/60 p-3" style={{ borderLeft: `3px solid ${t.c}` }}>
                 <p className="flex items-center gap-2 text-xs font-semibold">

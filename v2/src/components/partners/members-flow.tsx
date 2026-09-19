@@ -89,7 +89,7 @@ export function MembersFlow() {
         <Box
           x={x1}
           eyebrow="THE CHARITY GIVES EVERY MEMBER"
-          title="Goods on Country Ltd"
+          title="Goods on Country, the charity"
           sub={`${words} Indigenous directors hold it`}
           lines={[
             { text: 'design and research, with' },

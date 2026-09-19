@@ -371,7 +371,7 @@ export const ALIGNMENT: readonly Alignment[] = [
     id: 'first-nations-leadership',
     snowSays: 'Prioritise and promote First Nations leadership across all aspects of the RHD sector, including representation in governance structures. All future grants will require First Nations leadership.',
     snowSource: 'RHD Statement of Intent, principle one; and the November 2025 position on future grants',
-    goodsHas: 'Goods on Country Ltd is a registered charity with deductible gift recipient status and a board of 100% Indigenous directors: Kristy Bloomfield, Audrey Deemal and Jeremy Donovan. The ABN is public and checkable. The board handover is in progress and no chair has been appointed yet. We would rather you heard that here.',
+    goodsHas: 'Goods on Country is a registered charity with deductible gift recipient status and a board of 100% Indigenous directors: Kristy Bloomfield, Audrey Deemal and Jeremy Donovan. The ABN is public and checkable. The board handover is in progress and no chair has been appointed yet. We would rather you heard that here.',
     strength: 'strong',
   },
   {
@@ -749,7 +749,7 @@ export const THEMES: readonly Theme[] = [
     id: 'ownership',
     figure: { value: '0', unit: 'sites owned in community' },
     title: 'Indigenous ownership',
-    body: 'Goods on Country Ltd is a DGR1 charity and its directors are Indigenous. The making is built to move: a containerised plant that can be operated in community and then owned there, on the Supply Nation 51 per cent path.',
+    body: 'Goods on Country is a DGR1 charity and its directors are Indigenous. The making is built to move: a containerised plant that can be operated in community and then owned there, on the Supply Nation 51 per cent path.',
     proof: 'A board of three Indigenous directors, a public ABN, and a charity that holds the purpose, the assets and the decisions.',
     limit: 'Zero community-owned production sites. Ownership is a pathway and the honest number for it today is nothing. It is last here because it is the one still to be earned.',
   },
@@ -957,7 +957,7 @@ export const MEMBERS_MODEL = {
   label: 'The board and the members',
   heading: 'A charity with Indigenous directors, the community organisations proposed as its members, and a company behind it doing the research.',
   board:
-    'Goods on Country Ltd is the charity. Three Indigenous directors hold the purpose, the assets and the decisions. The charity exists for the community organisations: the ones holding the beds, running the build days and, from the first facility onwards, doing the making.',
+    'Goods on Country is the charity. Three Indigenous directors hold the purpose, the assets and the decisions. The charity exists for the community organisations: the ones holding the beds, running the build days and, from the first facility onwards, doing the making.',
   members: [ORGANISATION.membership.line, ORGANISATION.membership.why].join(' '),
   gives: {
     title: 'What a member brings',

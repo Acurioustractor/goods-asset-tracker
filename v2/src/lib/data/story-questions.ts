@@ -153,7 +153,7 @@ export const QUESTIONS: readonly StoryQuestion[] = [
   {
     id: 'where-money-lands',
     question: 'Which organisation does the money go to?',
-    answer: 'Goods on Country Ltd, formerly The Butterfly Movement Ltd, the registered charity behind the work since 2012, with deductible gift status. Everything sits there: the products, the IP, the contracts, the making, the sales, the money and the evidence. Community partners are independent organisations with their own boards, never part of the charity, and buyer receipts stay with them.',
+    answer: 'The Butterfly Movement Ltd, trading as Goods on Country, the registered charity behind the work since 2012, with deductible gift status. Everything sits there: the products, the IP, the contracts, the making, the sales, the money and the evidence. Community partners are independent organisations with their own boards, never part of the charity, and buyer receipts stay with them.',
     status: 'answered',
     askedBy: 'Every funder',
     asked: '2026-09-02',
@@ -164,7 +164,7 @@ export const QUESTIONS: readonly StoryQuestion[] = [
   {
     id: 'which-entity',
     question: 'Which entity applies to QBE and receives the grant?',
-    answer: 'Goods on Country Ltd, formerly The Butterfly Movement Ltd, applies and receives. Ruled 5 September. A Curious Tractor, the company the first beds were made through, is disclosed as a related entity; it does the research and development.',
+    answer: 'The Butterfly Movement Ltd, trading as Goods on Country, applies and receives. Ruled 5 September. A Curious Tractor, the company the first beds were made through, is disclosed as a related entity; it does the research and development.',
     status: 'answered',
     askedBy: 'The program team, form Q1, Q2 and Q8',
     asked: '2026-09-02',
@@ -241,7 +241,7 @@ export const QUESTIONS: readonly StoryQuestion[] = [
   {
     id: 'money-back',
     question: 'Does any of the money come back to the funder?',
-    answer: 'No. The funder acts once, and after that the money goes round inside the community. Nobody is buying shares: Goods on Country Ltd is a company limited by guarantee and has none. If a facility is ever financed with a loan, it is repaid from what Goods on Country is paid for making, never out of a community organisation’s sales money.',
+    answer: 'No. The funder acts once, and after that the money goes round inside the community. Nobody is buying shares: Goods on Country is a company limited by guarantee and has none. If a facility is ever financed with a loan, it is repaid from what Goods on Country is paid for making, never out of a community organisation’s sales money.',
     status: 'answered',
     askedBy: 'Foundation program leads',
     asked: '2026-09-02',

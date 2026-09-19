@@ -80,7 +80,7 @@ export const FLOW_ENTITIES: Record<FlowEntityId, FlowEntity> = {
     id: 'goods',
     title: 'Goods on Country',
     lines: [
-      'Goods on Country Ltd, a DGR1 charity. Makes the beds at its Queensland facility and hands them to community organisations as stock.',
+      'Goods on Country, a DGR1 charity. Makes the beds at its Queensland facility and hands them to community organisations as stock.',
       `Every $${BED_PRICE_AUD} bed: making $${BED_SPLIT.making}, freight $${BED_SPLIT.freight}, facilitation $${BED_SPLIT.facilitation}, $${BED_SPLIT.toGoods} carries the organisation.`,
     ],
     style: 'applicant',

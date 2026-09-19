@@ -201,13 +201,13 @@ export interface EntityDoor {
   what: string;
 }
 // One entity (ruling X, Ben 28 August 2026): the products, IP, contracts, making and capital sit
-// with Goods on Country Ltd, formerly The Butterfly Movement Ltd. Ben, 16 September
+// with The Butterfly Movement Ltd, trading as Goods on Country. Ben, 16 September
 // 2026: orders can still be invoiced by A Curious Tractor Pty Ltd for now, so the order door names it.
 const GOC = ORGANISATION.legalName;
 export const ENTITY_DOORS: EntityDoor[] = [
   {
     verb: 'Donate',
-    entity: `${GOC} (DGR)`,
+    entity: `${GOC}, trading as ${ORGANISATION.tradingName} (DGR)`,
     // RULING J 2026-07-25, from the public register: DGR endorsed since 17 Jan 2012 and ACNC
     // registered since 3 Dec 2012. It was never "interim" or pending FY2026-27.
     what: `Tax-deductible gifts. ${ORGANISATION.charityLine} ${ORGANISATION.giving}`,

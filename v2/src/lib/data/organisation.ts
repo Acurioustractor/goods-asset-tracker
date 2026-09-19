@@ -3,8 +3,9 @@
  * status, the board and the team. One module so the footer, the buying page, the facility page and
  * Who we are never disagree.
  *
- * Sources: Ben, 16 September 2026 (the company is Goods on Country Ltd, formerly The Butterfly Movement
- * Ltd, same ABN and ACN), rulings X (28 August 2026, one operating identity) and AA (5 September, the
+ * Sources: ASIC's live register, read 19 September 2026 (the company is still THE BUTTERFLY MOVEMENT LTD;
+ * Goods on Country is its registered business name from 23 July 2026; the change of company name the
+ * board resolved on 12 September is not yet registered). Ben, 16 September 2026 (one entity), rulings X (28 August 2026, one operating identity) and AA (5 September, the
  * charity applies and receives), the master artifact's entity paragraph (ABN, ACN, registered charity since 2012 with
  * deductible gift status), goods-board.ts for directors, pitch-chapters.ts GOVERNANCE for the team.
  * The board handover is in progress and no chair has been appointed: never print one. No imports, so
@@ -14,14 +15,16 @@
 
 export const ORGANISATION = {
   tradingName: 'Goods on Country',
-  legalName: 'Goods on Country Ltd',
-  formerName: 'The Butterfly Movement Ltd',
+  /** The name on ASIC's register. Change to pendingName when ASIC registers it. */
+  legalName: 'The Butterfly Movement Ltd',
+  /** Resolved by the board 12 September 2026, not yet registered with ASIC. */
+  pendingName: 'Goods on Country Ltd',
   abn: '22 155 132 684',
   acn: '155 132 684',
   /** ABN Lookup, the public register anyone can check. */
   abnLookupUrl: 'https://abr.business.gov.au/ABN/View?abn=22155132684',
   charityLine: 'A registered charity since 2012, endorsed as a deductible gift recipient.',
-  identityLine: 'Goods on Country Ltd was formerly The Butterfly Movement Ltd.',
+  identityLine: 'Goods on Country is the trading name of The Butterfly Movement Ltd, the registered charity. The change of company name to Goods on Country Ltd is being lodged.',
   /** Ben, 15 September 2026: this line is right; never flag it. Held equal to GOVERNANCE.line by the guards. */
   boardLine: 'Goods on Country is a DGR1 charity led by 100% Indigenous Directors.',
   boardNote: 'The board carries responsibility for purpose, assets and organisational decisions. The board handover is in progress and no chair has been appointed.',
