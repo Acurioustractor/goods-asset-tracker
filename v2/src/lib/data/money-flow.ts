@@ -71,9 +71,9 @@ export const FLOW_ENTITIES: Record<FlowEntityId, FlowEntity> = {
   },
   sefa: {
     id: 'sefa',
-    title: 'SEFA lends the first-year running cost',
+    title: 'A lender carries the first-year running cost',
     amount: dollars(LOAN_AUD),
-    lines: ['Backing the Bold loan. Repaid from the beds Goods sells.'],
+    lines: ['Lender to be confirmed. Repaid from the beds Goods sells.'],
     style: 'money',
   },
   goods: {

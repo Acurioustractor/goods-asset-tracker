@@ -96,7 +96,7 @@ export const ENTITIES: Record<EntityId, Entity> = {
     lines: [
       'QBE Foundation Stage 2, $300,000, two production facilities.',
       'Tim Fairfax Family Foundation, Brian M. Davis Charitable Foundation, Snow Foundation: 133 beds at $750 each.',
-      'SEFA Backing the Bold, $150,000 loan, first-year running cost.',
+      'Repayable capital, lender to be confirmed, $150,000, first-year running cost.',
     ],
     style: 'money',
   },

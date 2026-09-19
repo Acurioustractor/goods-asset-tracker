@@ -218,12 +218,12 @@ export const ASKS: readonly Ask[] = [
     source: 'Ben wrote $100,000 on 10 September and ruled it counts as beds, 133 at $750. Ben, 17 September 2026: the ask is the bed lot, $99,750, which is what the letter body has always said. The ask has not been sent.',
   },
   {
-    funder: 'SEFA, Backing the Bold',
+    funder: 'Repayable capital, lender to be confirmed',
     amountAud: LOAN_ASK_AUD,
     job: 'operating',
     stage: 'not-sent',
     instrument: 'loan',
-    source: 'Ben, 15 September 2026: the first-year running gap is carried by a SEFA loan of $150,000, inside the ask, repaid from the $288 each bed hands back. Jay\'s steer for QBE 2026 is philanthropy that unlocks capital, and this is the capital. EOI drafted; Joel Bird reviews the financials before it goes.',
+    source: 'Ben, 19 September 2026: Sefa is out of this raise; the line is repayable capital, lender to be confirmed. Ben, 15 September 2026: the first-year running gap is carried by a loan of $150,000, inside the ask, repaid from the $288 each bed hands back. Jay\'s steer for QBE 2026 is philanthropy that unlocks capital, and this is the capital. EOI drafted; Joel Bird reviews the financials before it goes.',
   },
 ];
 
@@ -244,7 +244,7 @@ export const SECURED_AUD = 0;
 
 /** No grant carries the running cost; a loan does. Ben, 15 September 2026. */
 export const OPERATING_RULE =
-  'No grant is asked for the running cost. Every grant except QBE buys beds; the organisation lives on the $288 each bed hands back, and the first-year gap is carried by a SEFA loan of $150,000 inside the ask, repaid from those beds.';
+  'No grant is asked for the running cost. Every grant except QBE buys beds; the organisation lives on the $288 each bed hands back, and the first-year gap is to be carried by $150,000 of repayable capital inside the ask, lender to be confirmed, repaid from those beds.';
 
 export const SECURED_CEILING =
   'Nothing in the raise is secured. Every line is an invitation, an application or a conversation. An invitation is not an award.';

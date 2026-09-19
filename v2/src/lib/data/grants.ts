@@ -112,7 +112,7 @@ export const FUNDING_LINES: readonly FundingLine[] = [
   },
   {
     id: 'sefa',
-    funder: 'SEFA, Backing the Bold',
+    funder: 'Repayable capital, lender to be confirmed',
     instrument: 'loan',
     amount: 'A$150,000',
     job: 'The first-year running cost, repaid from the beds',
